@@ -1,0 +1,169 @@
+#!/bin/bash
+#PBS -N bnb_wct_baseline
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=02:00:00
+#PBS -l filesystems=eagle:grand:home
+
+# baseline_v0 Phase F: Exact frozen WireCell reconstruction on BNB reco1 input.
+#
+# DO NOT SUBMIT until explicitly authorized. Gate conditions documented in
+#   generic_bnb/docs/BNB_RECO1_BASELINE_COMPATIBILITY.md
+#
+# Submit with:
+#   qsub -J 0-49 \
+#        -e $LOGDIR/wct_bnb_evt#.err \
+#        -o $LOGDIR/wct_bnb_evt#.out \
+#        pbs_bnb_wct_baseline_array.pbs
+#
+# Each array element processes one event from reco1_out.root.
+# Per-event output: generic_bnb/wirecell_exact_baseline/evt_NNNN/
+#   tracking-pr.root, nugraph.h5, mabc.zip, tf-default.root
+#
+# Frozen reconstruction:
+#   WCT: 251ff143  larwirecell: 9295e2a3  sbndcode: v10_14_02_04
+#   FCL SHA: f7cab672  (wcls-img-clus-matching-xin-prod.fcl)
+#
+# Input: fresh-50evt reco1_out.root (1.4 GB, 50 events, sbndcode v10_14_02_04)
+# Do NOT use existing fresh-50evt WireCell outputs (different WCT commit b2e3c6a9b440)
+
+set -euo pipefail
+
+EVT_IDX=${PBS_ARRAY_INDEX:-0}
+EVT_DIR=$(printf "evt_%04d" $EVT_IDX)
+
+RECO1=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08/fresh-50evt-integrated-20260909/run/reco1_out.root
+OUTDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/wirecell_exact_baseline/$EVT_DIR
+LOGDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs
+CONTAINER_LOG="$LOGDIR/container_wct_bnb_${EVT_DIR}.log"
+
+INTDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08
+CAND=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/latest_wct_master_migration_candidate_20260930
+CFGDIR="$INTDIR/reco-bundle-id-fix-validation-20260916/config-final"
+SNAPSHOT=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/runtime/wire-cell-data
+
+mkdir -p "$OUTDIR" "$LOGDIR"
+
+echo "=== BNB WireCell baseline_v0 (evt_idx=$EVT_IDX) ==="
+echo "PBS_JOBID: ${PBS_JOBID:-unknown}  PBS_ARRAY_INDEX: $EVT_IDX"
+echo "Frozen: WCT=251ff143 lwc=9295e2a3 sbndcode=v10_14_02_04"
+echo "Input: $RECO1"
+echo "Output: $OUTDIR"
+echo "Host: $(hostname)"
+date
+
+[ -f "$RECO1" ] || { echo "FATAL: reco1_out.root not found: $RECO1"; exit 1; }
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "$(cat <<INNEREOF
+set -euo pipefail
+
+EVT_IDX=${EVT_IDX}
+EVT_DIR=${EVT_DIR}
+RECO1=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08/fresh-50evt-integrated-20260909/run/reco1_out.root
+OUTDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/wirecell_exact_baseline/\$EVT_DIR
+LOGDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs
+
+INTDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08
+CAND=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/latest_wct_master_migration_candidate_20260930
+CFGDIR="\$INTDIR/reco-bundle-id-fix-validation-20260916/config-final"
+SNAPSHOT=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/runtime/wire-cell-data
+
+CAND_WCTLIB="\$CAND/install/wct-clean/lib"
+CAND_LWCLIB="\$CAND/build/lwc-install-clean/lib"
+
+gate_pass() { echo "[GATE PASS] \$*"; }
+gate_fail() { echo "[GATE FAIL] \$*"; exit 1; }
+
+echo "=== Environment ==="
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo "sbndcode: \${SBNDCODE_VERSION:-not set}"
+
+# Frozen WireCell libraries (baseline_v0: WCT 251ff143, larwirecell 9295e2a3)
+export LD_LIBRARY_PATH="\$CAND_LWCLIB:\$CAND_WCTLIB:\${LD_LIBRARY_PATH:-}"
+export CET_PLUGIN_PATH="\$CAND_LWCLIB:\$CAND_WCTLIB:\${CET_PLUGIN_PATH:-}"
+export WIRECELL_PATH="\${SNAPSHOT}:\${CFGDIR}:\${CAND}/config/sce-override:\${CAND}/wct/cfg"
+export FHICL_FILE_PATH="\$CAND/config:\$CFGDIR:\${FHICL_FILE_PATH:-}"
+
+echo "WIRECELL_PATH: \$WIRECELL_PATH"
+echo "CFGDIR: \$CFGDIR"
+
+# Check if already done
+H5="\$OUTDIR/nugraph.h5"
+TRKPR="\$OUTDIR/tracking-pr.root"
+if [ -f "\$H5" ] && [ -f "\$TRKPR" ]; then
+    H5SZ=\$(stat -c%s "\$H5" 2>/dev/null || echo 0)
+    TRKPRSZ=\$(stat -c%s "\$TRKPR" 2>/dev/null || echo 0)
+    if [ "\$H5SZ" -gt 1000 ] && [ "\$TRKPRSZ" -gt 1000 ]; then
+        echo "[WCT SKIP] Outputs already present for BNB evt \$EVT_IDX"
+        gate_pass "BNB WCT outputs present"
+        ls -lh "\$OUTDIR/"
+        echo "WCT_BNB_EVT_\${EVT_IDX}_COMPLETE (skip)"
+        exit 0
+    fi
+fi
+
+echo ""
+echo "=== Run frozen WireCell for BNB event index \$EVT_IDX ==="
+date
+WCT_LOG="\$LOGDIR/lar_wct_bnb_\${EVT_DIR}.log"
+cd "\$OUTDIR"
+
+set +e
+lar -c wcls-img-clus-matching-xin-prod.fcl \\
+    -s "\$RECO1" \\
+    --nskip \$EVT_IDX \\
+    -n 1 \\
+    > "\$WCT_LOG" 2>&1
+WCT_EXIT=\$?
+set -e
+date
+
+H5SZ=\$(stat -c%s "\$H5" 2>/dev/null || echo 0)
+TRKPRSZ=\$(stat -c%s "\$TRKPR" 2>/dev/null || echo 0)
+
+if [ \$WCT_EXIT -ne 0 ]; then
+    echo "[WCT WARN] lar exited \$WCT_EXIT"
+    if [ "\$H5SZ" -gt 1000 ] && [ "\$TRKPRSZ" -gt 1000 ]; then
+        echo "  Outputs exist - likely destructor crash (valid)"
+        gate_pass "BNB WCT complete with destructor crash evt \$EVT_IDX"
+    else
+        echo "  Outputs missing:"
+        ls -lh "\$OUTDIR/" 2>/dev/null || true
+        tail -40 "\$WCT_LOG"
+        gate_fail "BNB WCT failed for evt \$EVT_IDX"
+    fi
+else
+    gate_pass "BNB WCT complete (exit 0) evt \$EVT_IDX"
+fi
+
+echo ""
+echo "=== Output inventory for BNB evt \$EVT_IDX ==="
+ls -lh "\$OUTDIR/"
+echo "WCT_BNB_EVT_\${EVT_IDX}_COMPLETE"
+date
+INNEREOF
+)" 2>&1 | tee "$CONTAINER_LOG"
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+if [ "$CONTAINER_EXIT" -eq 0 ]; then
+    echo "WCT_BNB_EVT_${EVT_IDX}_PASS"
+else
+    echo "WCT_BNB_EVT_${EVT_IDX}_FAIL"
+    tail -40 "$CONTAINER_LOG"
+    exit 1
+fi

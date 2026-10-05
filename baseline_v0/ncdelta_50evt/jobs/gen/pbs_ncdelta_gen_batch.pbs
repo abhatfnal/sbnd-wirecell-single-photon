@@ -1,0 +1,250 @@
+#!/bin/bash
+#PBS -N ncdelta_gen_batch
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=04:00:00
+#PBS -l filesystems=eagle:grand:home
+
+# NC Delta radiative batch generation — baseline_v0 Phase A
+#
+# Usage: qsub -v BATCH_ID=NN pbs_ncdelta_gen_batch.pbs
+#   BATCH_ID: integer 01–10 (two-digit, zero-padded)
+#
+# Each batch runs 1000 NCRES attempts with a unique firstRun for distinct RNG seeds.
+# Expected acceptance ~0.6% → ~6 accepted events per batch → ~60 total from 10 batches.
+#
+# Baseline: WCT 251ff143, larwirecell 9295e2a3, sbndcode v10_14_02_04
+# Filter: NCDeltaRadiative_module.cc SHA f8574e5f...
+# Batch FCLs: jobs/gen/fcl/ncdelta_gen_batch_NN.fcl (pre-written, immutable)
+
+set -euo pipefail
+
+if [ -z "${BATCH_ID:-}" ]; then
+    echo "FATAL: BATCH_ID not set. Submit with: qsub -v BATCH_ID=01 $0"
+    exit 1
+fi
+
+BATCH_NUM=$(echo "$BATCH_ID" | sed 's/^0*//')
+[ -z "$BATCH_NUM" ] && BATCH_NUM=0
+FIRST_RUN=$(( BATCH_NUM * 10 ))
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+SRCDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/signal_mc/ncdelta
+FCLDIR="$BASEDIR/jobs/gen/fcl"
+OUTDIR="$BASEDIR/gen/batch_${BATCH_ID}"
+LOGDIR="$BASEDIR/logs"
+CONTAINER_LOG="$LOGDIR/container_gen_batch_${BATCH_ID}.log"
+
+mkdir -p "$OUTDIR" "$LOGDIR"
+
+# Verify pre-written batch FCL exists (written before submission, no container needed)
+BATCH_FCL="$FCLDIR/ncdelta_gen_batch_${BATCH_ID}.fcl"
+if [ ! -f "$BATCH_FCL" ]; then
+    echo "FATAL: batch FCL not found: $BATCH_FCL"
+    echo "  Run: bash jobs/gen/write_batch_fcls.sh  (or create manually)"
+    exit 1
+fi
+
+# Write provenance before container
+cat > "$OUTDIR/provenance.txt" <<PROV
+baseline_v0 Phase A — NC Delta radiative batch generation
+batch_id:       ${BATCH_ID}
+batch_num:      ${BATCH_NUM}
+first_run:      ${FIRST_RUN}
+ncres_attempts: 1000
+batch_fcl:      ${BATCH_FCL}
+filter_source:  $SRCDIR/src/NCDeltaRadiative_module.cc
+filter_sha256:  f8574e5fdf6d3f0d8794143aed31d2167ba592498fc50d61e2ff7e11e3f0c3e6
+generator_fcl:  $SRCDIR/fcl/prodgenie_ncdelta_sbnd.fcl
+sbndcode:       v10_14_02_04
+wct_commit:     251ff143
+larwirecell:    9295e2a3
+pbs_jobid:      ${PBS_JOBID:-unknown}
+hostname:       $(hostname)
+date:           $(date -u +%Y-%m-%dT%H:%M:%SZ)
+PROV
+
+echo "=== NC Delta Gen Batch ${BATCH_ID} ==="
+echo "PBS_JOBID: ${PBS_JOBID:-unknown}  Host: $(hostname)"
+echo "BATCH_ID=$BATCH_ID  firstRun=$FIRST_RUN  batch_fcl=$BATCH_FCL"
+date
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+# Pass paths as environment variables to avoid quoting issues in bash -lc
+export B_SRCDIR="$SRCDIR"
+export B_OUTDIR="$OUTDIR"
+export B_LOGDIR="$LOGDIR"
+export B_FCLDIR="$FCLDIR"
+export B_BATCH_ID="$BATCH_ID"
+export B_FIRST_RUN="$FIRST_RUN"
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    --env B_SRCDIR="$B_SRCDIR" \
+    --env B_OUTDIR="$B_OUTDIR" \
+    --env B_LOGDIR="$B_LOGDIR" \
+    --env B_FCLDIR="$B_FCLDIR" \
+    --env B_BATCH_ID="$B_BATCH_ID" \
+    --env B_FIRST_RUN="$B_FIRST_RUN" \
+    "$CONTAINER" \
+    bash -lc '
+set -euo pipefail
+
+SRCDIR="$B_SRCDIR"
+OUTDIR="$B_OUTDIR"
+LOGDIR="$B_LOGDIR"
+FCLDIR="$B_FCLDIR"
+BATCH_ID="$B_BATCH_ID"
+FIRST_RUN="$B_FIRST_RUN"
+BATCH_FCL="$FCLDIR/ncdelta_gen_batch_${BATCH_ID}.fcl"
+
+gate_pass() { echo "[GATE PASS] $*"; }
+gate_fail() { echo "[GATE FAIL] $*"; exit 1; }
+
+echo "=== Environment ==="
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo "sbndcode: ${SBNDCODE_VERSION:-not set}"
+
+# ---- Attempt to compile our fixed NCDeltaRadiative module ----
+echo ""
+echo "=== Compile NCDeltaRadiative (our fixed version) ==="
+SRC="$SRCDIR/src/NCDeltaRadiative_module.cc"
+BUILDDIR="$OUTDIR/build"
+mkdir -p "$BUILDDIR"
+
+GCC_DIR=/lus/flare/projects/neutrinoGPU/scisoft/larsoft/gcc/v12_1_0/Linux64bit+3.10-2.17/bin
+CXX="$GCC_DIR/g++"
+export PATH="$GCC_DIR:$PATH"
+echo "g++: $($CXX --version | head -1)"
+
+# Build include flags from ROOT_INCLUDE_PATH, filtering empty entries
+INCS=""
+if [ -n "${ROOT_INCLUDE_PATH:-}" ]; then
+    IFS=: read -ra _RIP <<< "$ROOT_INCLUDE_PATH"
+    for d in "${_RIP[@]}"; do
+        [ -n "$d" ] && INCS="$INCS -I$d"
+    done
+fi
+
+set +e
+$CXX -std=c++17 -O2 -fPIC -shared $INCS \
+    "$SRC" \
+    -o "$BUILDDIR/libNCDeltaRadiative_module.so" \
+    2>&1 | tee "$LOGDIR/compile_gen_batch_${BATCH_ID}.log"
+COMPILE_EXIT="${PIPESTATUS[0]}"
+set -e
+
+if [ $COMPILE_EXIT -eq 0 ] && [ -f "$BUILDDIR/libNCDeltaRadiative_module.so" ]; then
+    gate_pass "Compiled libNCDeltaRadiative_module.so (our fixed version)"
+    export CET_PLUGIN_PATH="$BUILDDIR:${CET_PLUGIN_PATH:-}"
+    echo "MODULE_SOURCE=our-fixed-version batch_${BATCH_ID}" >> "$OUTDIR/provenance.txt"
+    sha256sum "$BUILDDIR/libNCDeltaRadiative_module.so" >> "$OUTDIR/provenance.txt"
+else
+    # Fallback: installed module from sbnd-v10_14_02_04_delta.squashfs.
+    # Event selection logic is correct; TTree diagnostic data may be wrong (not used downstream).
+    echo "[COMPILE WARN] Compilation failed — using installed sbnd-v10_14_02_04_delta module"
+    echo "  Filter selection logic: correct (NC Delta radiative photon selection unchanged)"
+    echo "  ART event content (MCTruth/MCParticle): correct (written by GENIE)"
+    echo "MODULE_SOURCE=installed-sbncode-v10_14_02_04-fallback batch_${BATCH_ID}" >> "$OUTDIR/provenance.txt"
+fi
+
+# ---- FCL path setup ----
+echo ""
+echo "=== FCL path ==="
+export FHICL_FILE_PATH="$FCLDIR:$SRCDIR/fcl:${FHICL_FILE_PATH:-}"
+echo "FHICL_FILE_PATH prefix: $FCLDIR"
+[ -f "$BATCH_FCL" ] \
+    && gate_pass "Batch FCL found: $BATCH_FCL" \
+    || gate_fail "Batch FCL missing: $BATCH_FCL"
+[ -f "$SRCDIR/fcl/prodgenie_ncdelta_sbnd.fcl" ] \
+    && gate_pass "Base generator FCL found" \
+    || gate_fail "Base generator FCL missing"
+
+# ---- Run lar ----
+echo ""
+echo "=== Run lar generation (1000 NCRES attempts, firstRun=${FIRST_RUN}) ==="
+date
+
+GEN_LOG="$LOGDIR/lar_gen_batch_${BATCH_ID}.log"
+OUTFILE="$OUTDIR/ncdelta_gen_batch_${BATCH_ID}.root"
+cd "$OUTDIR"
+
+GEN_SIZE_PRE=$(stat -c%s "$OUTFILE" 2>/dev/null || echo 0)
+if [ "$GEN_SIZE_PRE" -gt 1000 ]; then
+    echo "[GEN SKIP] Output already exists (${GEN_SIZE_PRE} bytes) — skipping"
+    gate_pass "Output already present from prior run"
+else
+    set +e
+    lar -c "ncdelta_gen_batch_${BATCH_ID}.fcl" \
+        -o "$OUTFILE" \
+        > "$GEN_LOG" 2>&1
+    LAR_EXIT=$?
+    set -e
+    date
+
+    GEN_SIZE=$(stat -c%s "$OUTFILE" 2>/dev/null || echo 0)
+    if [ $LAR_EXIT -ne 0 ]; then
+        if [ "$GEN_SIZE" -gt 1000 ]; then
+            echo "[GEN WARN] lar exited $LAR_EXIT but output exists (${GEN_SIZE} bytes) — destructor crash (valid)"
+            gate_pass "lar generation complete with destructor crash"
+        else
+            echo "[GEN FAIL] lar exited $LAR_EXIT, output missing or empty"
+            tail -60 "$GEN_LOG"
+            exit 1
+        fi
+    else
+        gate_pass "lar generation complete (exit 0)"
+    fi
+fi
+
+# ---- Count accepted events ----
+echo ""
+echo "--- Generation statistics (batch ${BATCH_ID}) ---"
+grep -E "TrigReport.*passed|TrigReport.*failed|Events total" "$GEN_LOG" | tail -10 || true
+
+ACCEPTED=$(grep "TrigReport.*NCDeltaRadFilter.*passed" "$GEN_LOG" | awk "{print \$NF}" | tail -1 || echo "unknown")
+ATTEMPTED=$(grep "TrigReport.*Events total" "$GEN_LOG" | awk "{print \$NF}" | tail -1 || echo "unknown")
+echo "BATCH_${BATCH_ID}_ATTEMPTED=${ATTEMPTED}"
+echo "BATCH_${BATCH_ID}_ACCEPTED=${ACCEPTED}"
+
+echo "accepted_events: ${ACCEPTED}" >> "$OUTDIR/provenance.txt"
+echo "ncres_attempted: ${ATTEMPTED}" >> "$OUTDIR/provenance.txt"
+echo "output_file: $OUTFILE" >> "$OUTDIR/provenance.txt"
+
+GEN_SIZE=$(stat -c%s "$OUTFILE" 2>/dev/null || echo 0)
+echo "Output: $OUTFILE  (${GEN_SIZE} bytes)"
+[ "$GEN_SIZE" -gt 1000 ] \
+    && gate_pass "Output ROOT non-empty" \
+    || gate_fail "Output ROOT missing or empty"
+
+echo ""
+echo "=== Final output inventory ==="
+ls -lh "$OUTDIR/"
+echo ""
+echo "NCDELTA_GEN_BATCH_${BATCH_ID}_COMPLETE"
+date
+' 2>&1 | tee "$CONTAINER_LOG"
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+
+echo ""
+echo "Container exit: $CONTAINER_EXIT"
+date
+
+if [ "$CONTAINER_EXIT" -eq 0 ]; then
+    echo "NCDELTA_GEN_BATCH_${BATCH_ID}_PASS"
+else
+    echo "NCDELTA_GEN_BATCH_${BATCH_ID}_FAIL (container exit $CONTAINER_EXIT)"
+    tail -40 "$CONTAINER_LOG"
+    exit 1
+fi

@@ -1,0 +1,100 @@
+#!/bin/bash
+#PBS -N ncdelta_gen_merge
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=16:ngpus=1:mem=32gb
+#PBS -l walltime=01:00:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_gen_merge.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_gen_merge.out
+
+# baseline_v0: Merge 10 NC Delta gen batch outputs into one artROOT file.
+# Uses lar (not hadd) because artROOT files with different process_name values
+# are not safely merged by hadd - hadd only captures the first file's events.
+set -euo pipefail
+
+echo "=== NC Delta gen merge (baseline_v0) ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+GENDIR="$BASEDIR/gen"
+LOGDIR="$BASEDIR/logs"
+FCLDIR="$BASEDIR/jobs/gen/fcl"
+OUTFILE="$GENDIR/ncdelta_gen_merged.root"
+MERGELOG="$LOGDIR/lar_gen_merge.log"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+# List of gen batch files to merge (skip batches with 0 events: 01, 02)
+INPUTS=(
+    "$GENDIR/batch_03/ncdelta_gen_batch_03.root"
+    "$GENDIR/batch_04/ncdelta_gen_batch_04.root"
+    "$GENDIR/batch_05/ncdelta_gen_batch_05.root"
+    "$GENDIR/batch_06/ncdelta_gen_batch_06.root"
+    "$GENDIR/batch_07/ncdelta_gen_batch_07.root"
+    "$GENDIR/batch_08/ncdelta_gen_batch_08.root"
+    "$GENDIR/batch_09/ncdelta_gen_batch_09.root"
+    "$GENDIR/batch_10/ncdelta_gen_batch_10.root"
+    "$GENDIR/batch_11/ncdelta_gen_batch_11.root"
+    "$GENDIR/batch_12/ncdelta_gen_batch_12.root"
+)
+
+echo "Input files:"
+for f in "${INPUTS[@]}"; do
+    [ -f "$f" ] || { echo "FATAL: missing input $f"; exit 1; }
+    echo "  $(du -sh $f | cut -f1)  $f"
+done
+
+# Build lar -s arguments
+SOURCE_ARGS=""
+for f in "${INPUTS[@]}"; do
+    SOURCE_ARGS="$SOURCE_ARGS -s $f"
+done
+
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -euo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+
+cd '$GENDIR'
+
+echo 'Running lar merge...'
+set +e
+lar -c '$FCLDIR/ncdelta_gen_merge.fcl' \
+    $SOURCE_ARGS \
+    -o '$OUTFILE' \
+    > '$MERGELOG' 2>&1
+LAR_EXIT=\$?
+set -e
+
+echo \"lar exit: \$LAR_EXIT\"
+SZ=\$(stat -c%s '$OUTFILE' 2>/dev/null || echo 0)
+echo \"Output size: \$SZ bytes\"
+
+if [ \$LAR_EXIT -ne 0 ] && [ \"\$SZ\" -gt 1000 ]; then
+    echo '[MERGE WARN] lar exited non-zero but output exists (likely destructor crash)'
+elif [ \"\$SZ\" -le 1000 ]; then
+    echo '[MERGE FAIL] Output missing or empty'
+    exit 1
+fi
+
+echo '[MERGE PASS] artROOT merge complete'
+ls -lh '$OUTFILE'
+" 2>&1 | tee "$LOGDIR/container_gen_merge.log"
+
+echo ""
+echo "=== Merge complete ==="
+date

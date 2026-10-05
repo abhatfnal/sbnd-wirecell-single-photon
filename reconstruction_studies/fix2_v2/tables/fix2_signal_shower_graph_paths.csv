@@ -1,0 +1,4 @@
+evt_idx,RSE,shower_energy_mev,main_vertex_idx,shower_start_vertex_idx,same_main_cluster,graph_connected,shortest_hops,path_vertex_indices,path_edge_types,path_segment_lengths_cm,vtx_type,kine_inclusion_code,kine_discovery_path,notes
+14,50:0:449,121.6,0,4,true,true,1,"[0,4]","[track]","[33.6]",1,1,NeutrinoKinematics_BFS_first_or_leftover,"same cluster; track segment 33.6cm; vtx_type=1; Fix2-v2 Stage2 recovered via neighbor hop"
+20,60:0:153,153.8,2,1,false,true,1,"[2,1]","[track]","[4.2]",2,1,NeutrinoKinematics_leftover_or_satellite_keep,"different cluster (shw_cl=25 main_cl=3); track segment 4.2cm; vtx_type=2; Fix2-v2 Stage2 recovered via neighbor hop"
+58,120:0:664,449.0,97,1,false,false,NO_PATH,"[]","[]","[]",3,3,NeutrinoKinematics_leftover_vtxtype3,"different cluster (shw_cl=45 main_cl=2); 39cm Euclidean but BFS_NO_PATH; vtx_type=3; sv_in_map=true but not reachable from main_vertex; Fix2-v2 did NOT recover; DIFFERENT_CLUSTER"

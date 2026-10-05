@@ -1,0 +1,4 @@
+2759:  reader_single_photon_numu.BookMVA( "MyBDT", "weights/single_photon_numu_bdt_final.xml");
+2908:  reader_single_photon_other.BookMVA( "MyBDT", "weights/single_photon_other_bdt_final.xml");
+2957:  reader_single_photon_ncpi0.BookMVA( "MyBDT", "weights/single_photon_ncpi0_bdt_final.xml");
+3016:  reader_single_photon_nue.BookMVA( "MyBDT", "weights/single_photon_nue_bdt_final.xml");

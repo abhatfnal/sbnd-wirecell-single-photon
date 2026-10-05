@@ -1,0 +1,119 @@
+diff --git a/clus/src/NeutrinoTaggerSinglePhoton.cxx b/clus/src/NeutrinoTaggerSinglePhoton.cxx
+index 7432e8f..81fa60d 100644
+--- a/clus/src/NeutrinoTaggerSinglePhoton.cxx
++++ b/clus/src/NeutrinoTaggerSinglePhoton.cxx
+@@ -2431,6 +2431,114 @@ bool PatternAlgorithms::singlephoton_tagger(
+                 n_edges, n_neighbor_new, (int)candidate_showers.size());
+         }
+     }
++    // -----------------------------------------------------------------------
++    // Fix2 topology diagnosis (Tasks A-E, 2026-10-05):
++    // Find the highest-energy shower in ALL showers (not just candidates),
++    // log its start_vertex graph index, cluster membership, vtx_type, and
++    // whether a BFS path exists from main_vertex to that start_vertex.
++    // Runs only when DEBUG logging is active; zero overhead otherwise.
++    // -----------------------------------------------------------------------
++    {
++        // Task A: identify the max-energy shower
++        ShowerPtr diag_shw = nullptr;
++        double diag_e = 0;
++        for (const ShowerPtr& shw : showers) {
++            double e = shower_energy(shw);
++            if (e > diag_e) { diag_e = e; diag_shw = shw; }
++        }
++        if (diag_shw) {
++            auto [diag_sv, diag_vtype] = diag_shw->get_start_vertex_and_type();
++            SegmentPtr diag_sg0 = diag_shw->start_segment();
++            int diag_pdg = (diag_sg0 && diag_sg0->has_particle_info())
++                           ? diag_sg0->particle_info()->pdg() : 0;
++            int diag_cl  = diag_sg0 && diag_sg0->cluster()
++                           ? diag_sg0->cluster()->get_cluster_id() : -1;
++            int main_cl  = main_cluster ? main_cluster->get_cluster_id() : -1;
++            bool sv_in_map = diag_sv && map_vertex_to_shower.count(diag_sv) > 0;
++            bool in_cand   = candidate_showers.count(diag_shw) > 0;
++            int diag_sv_idx = diag_sv ? (int)diag_sv->get_graph_index() : -1;
++            Point mv_pt = main_vertex->fit().valid() ? main_vertex->fit().point
++                                                     : main_vertex->wcpt().point;
++            Point diag_sv_pt = diag_sv ? (diag_sv->fit().valid() ? diag_sv->fit().point
++                                                                  : diag_sv->wcpt().point)
++                                       : mv_pt;
++            double dist_to_mv = (diag_sv_pt - mv_pt).magnitude() / units::cm;
++
++            SPDLOG_LOGGER_DEBUG(s_log,
++                "fix2_diag: MAXE_SHW E={:.1f}MeV pdg={} vtx_type={} sv_idx={} "
++                "sv_pos=({:.1f},{:.1f},{:.1f})cm dist_to_mv={:.1f}cm "
++                "shw_cl={} main_cl={} same_cl={} sv_in_map={} in_candidates={}",
++                diag_e / units::MeV, diag_pdg, diag_vtype, diag_sv_idx,
++                diag_sv_pt.x() / units::cm, diag_sv_pt.y() / units::cm,
++                diag_sv_pt.z() / units::cm, dist_to_mv,
++                diag_cl, main_cl, (diag_cl == main_cl), sv_in_map, in_cand);
++
++            // Task B: BFS from main_vertex to diag_sv — find shortest path
++            if (diag_sv && diag_sv != main_vertex) {
++                // BFS with parent tracking
++                std::map<VertexPtr, VertexPtr>   bfs_parent;
++                std::map<VertexPtr, SegmentPtr>  bfs_edge;
++                std::queue<VertexPtr>                       bfs_q;
++                bfs_parent[main_vertex] = nullptr;
++                bfs_q.push(main_vertex);
++                bool bfs_found = false;
++                while (!bfs_q.empty() && !bfs_found) {
++                    VertexPtr curr = bfs_q.front(); bfs_q.pop();
++                    for (auto eit : sorted_out_edges(curr->get_descriptor(), graph)) {
++                        SegmentPtr eseg = graph[eit].segment;
++                        if (!eseg) continue;
++                        VertexPtr nxt = find_other_vertex(graph, eseg, curr);
++                        if (!nxt || bfs_parent.count(nxt)) continue;
++                        bfs_parent[nxt] = curr;
++                        bfs_edge[nxt]   = eseg;
++                        if (nxt == diag_sv) { bfs_found = true; break; }
++                        bfs_q.push(nxt);
++                    }
++                }
++                if (bfs_found) {
++                    // Reconstruct path from diag_sv back to main_vertex
++                    std::vector<VertexPtr>  path_v;
++                    std::vector<SegmentPtr> path_e;
++                    for (VertexPtr c = diag_sv; c != main_vertex; c = bfs_parent[c]) {
++                        path_v.push_back(c);
++                        path_e.push_back(bfs_edge[c]);
++                    }
++                    path_v.push_back(main_vertex);
++                    std::reverse(path_v.begin(), path_v.end());
++                    std::reverse(path_e.begin(), path_e.end());
++                    int hops = (int)path_e.size();
++                    SPDLOG_LOGGER_DEBUG(s_log,
++                        "fix2_diag: BFS_FOUND hops={} path_vtx_count={}", hops, (int)path_v.size());
++                    for (int hi = 0; hi < hops; ++hi) {
++                        SegmentPtr ps = path_e[hi];
++                        double seg_len = ps ? segment_track_length(ps) / units::cm : -1;
++                        bool ps_shw = ps && seg_is_shower(ps);
++                        bool ps_in_cand = false;
++                        if (ps) {
++                            for (const ShowerPtr& cshw : candidate_showers)
++                                if (cshw->start_segment() == ps) { ps_in_cand = true; break; }
++                        }
++                        SPDLOG_LOGGER_DEBUG(s_log,
++                            "fix2_diag:   hop{}: vtx{}->vtx{} seg_idx={} is_shw={} "
++                            "len={:.1f}cm seg_in_candidate_start={}",
++                            hi + 1,
++                            (int)path_v[hi]->get_graph_index(),
++                            (int)path_v[hi + 1]->get_graph_index(),
++                            ps ? (int)ps->get_graph_index() : -1,
++                            ps_shw, seg_len, ps_in_cand);
++                    }
++                } else {
++                    SPDLOG_LOGGER_DEBUG(s_log,
++                        "fix2_diag: BFS_NO_PATH main_vtx={} diag_sv={}",
++                        (int)main_vertex->get_graph_index(), diag_sv_idx);
++                }
++            } else {
++                SPDLOG_LOGGER_DEBUG(s_log, "fix2_diag: MAXE_SHW same vertex as main_vertex");
++            }
++        }
++    }
++    // -----------------------------------------------------------------------
++
+     if (candidate_showers.empty()) return false;
+ 
+     flag_sp = true;  // tentatively true; will be cleared on cuts

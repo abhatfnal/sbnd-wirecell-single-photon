@@ -1,0 +1,38 @@
+project: sbnd-wirecell-single-photon
+snapshot_date: "2026-10-05"
+
+baseline_v0:
+  wire_cell_toolkit:
+    commit: "251ff143bf6fa0c212ead0b8453abe94afcd2dda"
+  larwirecell:
+    commit: "9295e2a3"
+    modified_for_single_photon: false
+  sbndcode:
+    version: "v10_14_02_04"
+  wct_fcl:
+    file: "wcls-img-clus-matching-xin-prod.fcl"
+    sha256: "f7cab672247827a81967ef7c4e966ffcfe39f78477c70446983939b9350bcdb9"
+
+fix2_v2:
+  wire_cell_toolkit:
+    algorithm_commit: "8dddba5be2ccbb0ee1146e990fce89808bbd2816"
+    ab59_diagnostic_commit: "cd7e7b39e1c101da3c31e09850e367934f621950"
+    algorithm_tag: "sbnd-singlephoton-fix2-v2-algorithm-20261005"
+    ab59_tag: "sbnd-singlephoton-fix2-v2-ab59-20261005"
+  algorithm: "graph-adjacent one-hop shower fallback"
+  nc_delta_events_tested: 59
+  fallback_activations: 24
+  recovered_events: 5
+  regressions: 0
+  baseline_bdt_evaluable: 33
+  patched_bdt_evaluable: 38
+  baseline_pre_fv_selected: 3
+  patched_pre_fv_selected: 4
+  newly_selected_events:
+    - "evt_0020"
+
+microboone_reference:
+  numu_xml_sha256: "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961"
+  other_xml_sha256: "8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16"
+  ncpi0_xml_sha256: "983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3"
+  nue_xml_sha256: "8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a"

@@ -1,0 +1,121 @@
+#!/bin/bash
+#PBS -N ncdelta_g4_diag
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=00:30:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_g4_diag.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_g4_diag.out
+
+# Diagnostic: run G4 on batch_03.root alone (5 events) to check if crash is
+# merge-specific or inherent in NC Delta events.
+# Also dumps MCParticle PDG codes and status from merged file first event.
+
+set -uo pipefail
+
+echo "=== NC Delta G4 Diagnostic ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+BATCH03="$BASEDIR/gen/batch_03/ncdelta_gen_batch_03.root"
+MERGED="$BASEDIR/gen/ncdelta_gen_merged.root"
+DIAGDIR="$BASEDIR/g4_diag"
+LOGDIR="$BASEDIR/logs"
+
+mkdir -p "$DIAGDIR" "$LOGDIR"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+echo ""
+echo "=== STEP 1: Dump MCParticle PDG codes from merged file (event 0) ==="
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -uo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+
+python3 - <<'PYEOF'
+import sys
+import ROOT
+ROOT.gROOT.SetBatch(True)
+
+f = ROOT.TFile.Open('$MERGED')
+t = f.Get('Events')
+n = t.GetEntries()
+print(f'Merged file: {n} events')
+
+# Read first event MCParticle content
+t.SetBranchStatus('*', 0)
+# Enable all simb::MCTruths branches
+t.SetBranchStatus('simb::MCTruths*', 1)
+t.GetEntry(0)
+print('\\n=== Event 0 particles (all process names) ===')
+for b in t.GetListOfBranches():
+    bname = b.GetName()
+    if 'MCTruths' in bname and '.obj' in bname:
+        try:
+            col = getattr(t, bname)
+            if len(col) == 0:
+                continue
+            truth = col[0]
+            print(f'Branch: {bname} -> {truth.NParticles()} particles')
+            for ip in range(truth.NParticles()):
+                p = truth.GetParticle(ip)
+                pdg = p.PdgCode()
+                status = p.StatusCode()
+                E = p.E()
+                print(f'  PDG={pdg:12d} status={status:3d} E={E:.4f} GeV process={p.Process()}')
+        except Exception as ex:
+            print(f'  Branch {bname}: {ex}')
+PYEOF
+" 2>&1 | tee "$LOGDIR/g4_diag_dump.log"
+echo ""
+echo "=== STEP 2: Run G4 on batch_03.root alone (5 events) ==="
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -uo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo 'sbndcode env sourced'
+cd '$DIAGDIR'
+set +e
+lar -c standard_g4_sbnd.fcl \
+    -s '$BATCH03' \
+    -o '$DIAGDIR/ncdelta_g4_batch03_diag.root' \
+    > '$LOGDIR/g4_batch03_diag.log' 2>&1
+G4_EXIT=\$?
+set -e
+echo \"G4 batch03 exit: \$G4_EXIT\"
+SZ=\$(stat -c%s '$DIAGDIR/ncdelta_g4_batch03_diag.root' 2>/dev/null || echo 0)
+echo \"Output size: \$SZ bytes\"
+if [ \$G4_EXIT -ne 0 ] && [ \"\$SZ\" -gt 10000000 ]; then
+    echo '[DIAG] G4 batch03: exit non-zero but large output -> likely destructor crash (VALID)'
+elif [ \$G4_EXIT -ne 0 ]; then
+    echo '[DIAG] G4 batch03: CRASH before output'
+    tail -20 '$LOGDIR/g4_batch03_diag.log'
+else
+    echo '[DIAG] G4 batch03: CLEAN exit 0'
+fi
+grep -c 'Run0201' '$LOGDIR/g4_batch03_diag.log' && echo 'Run0201 warnings found in batch03 run' || echo 'No Run0201 warnings in batch03 run'
+" 2>&1 | tee "$LOGDIR/g4_diag_batch03.log"
+
+echo ""
+echo "=== Diagnostic complete ==="
+date

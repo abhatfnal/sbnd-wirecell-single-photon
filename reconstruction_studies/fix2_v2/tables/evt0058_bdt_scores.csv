@@ -1,0 +1,3 @@
+label,shw_sp_filled,bdt_numu,bdt_numu_eval,bdt_other,bdt_other_eval,bdt_ncpi0,bdt_ncpi0_eval,bdt_nue,bdt_nue_eval,notes
+baseline,0,DIAGNOSTIC_DEFAULT_VECTOR_SCORE:-0.9708,NOT_EVALUABLE,DIAGNOSTIC_DEFAULT_VECTOR_SCORE:-0.9985,NOT_EVALUABLE,DIAGNOSTIC_DEFAULT_VECTOR_SCORE:-0.0898,NOT_EVALUABLE,DIAGNOSTIC_DEFAULT_VECTOR_SCORE:-0.7344,NOT_EVALUABLE,shw_sp_filled=0: shw_sp_* block not populated; BDT evaluated on default/zero feature vector — not a physics score
+patched,1,0.9269,ok,0.1987,ok,-0.4632,ok,-0.9778,ok,shw_sp_filled=1: feature block populated; evaluability confirmed by mechanical input check

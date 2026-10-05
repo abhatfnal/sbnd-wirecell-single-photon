@@ -1,0 +1,56 @@
+#!/bin/bash
+#PBS -N bnb_truth_extract
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=00:30:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs/pbs_bnb_truth.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs/pbs_bnb_truth.out
+
+# Extract BNB truth categories from all 50 events in reco1_out.root.
+# Reads simb::MCTruth and simb::GTruth using ROOT PyROOT with sbndcode dicts.
+# Output: generic_bnb/tables/bnb_truth_categories.csv
+set -euo pipefail
+
+echo "=== BNB truth extraction (baseline_v0) ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0
+BNBDIR="$BASEDIR/generic_bnb"
+INFILE=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08/fresh-50evt-integrated-20260909/run/reco1_out.root
+OUTCSV="$BNBDIR/tables/bnb_truth_categories.csv"
+SCRIPT="$BNBDIR/jobs/dump_bnb_truth.py"
+LOGDIR="$BNBDIR/logs"
+
+mkdir -p "$BNBDIR/tables" "$LOGDIR"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -euo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo 'sbndcode env sourced'
+
+python3 '$SCRIPT' '$INFILE' '$OUTCSV'
+echo 'Truth extraction complete'
+ls -lh '$OUTCSV'
+" 2>&1 | tee "$LOGDIR/bnb_truth_extract.log"
+
+echo ""
+echo "=== BNB truth extraction done ==="
+date

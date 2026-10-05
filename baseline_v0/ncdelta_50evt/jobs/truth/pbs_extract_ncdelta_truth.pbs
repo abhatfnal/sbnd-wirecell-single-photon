@@ -1,0 +1,86 @@
+#!/bin/bash
+#PBS -N ncdelta_truth
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=00:30:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_truth.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_truth.out
+
+# baseline_v0: Extract per-event NC Delta truth quantities via gallery C++ ROOT macro.
+# Reads MCTruth and MCParticle from per-batch G4 artROOT files.
+# Output: ncdelta_50evt/tables/ncdelta_truth.csv (59 rows)
+
+set -euo pipefail
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+MACRO="$BASEDIR/jobs/truth/extract_ncdelta_truth.C"
+OUTCSV="$BASEDIR/tables/ncdelta_truth.csv"
+LOGDIR="$BASEDIR/logs"
+CONTAINER_LOG="$LOGDIR/container_truth.log"
+
+echo "=== NC Delta truth extraction (baseline_v0) ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -euo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo 'sbndcode: \${SBNDCODE_VERSION:-not set}'
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+MACRO=\"\$BASEDIR/jobs/truth/extract_ncdelta_truth.C\"
+OUTCSV=\"\$BASEDIR/tables/ncdelta_truth.csv\"
+G4DIR=\"\$BASEDIR/g4\"
+
+# Remove old partial CSV
+rm -f \"\$OUTCSV\"
+
+BATCHES=\"03 04 05 06 07 08 09 10 11 12\"
+FIRST=true
+for BATCH in \$BATCHES; do
+    INFILE=\"\$G4DIR/batch_\${BATCH}/ncdelta_g4_batch_\${BATCH}.root\"
+    if [ ! -f \"\$INFILE\" ]; then
+        echo \"MISSING: \$INFILE\"
+        continue
+    fi
+    SZ=\$(stat -c%s \"\$INFILE\")
+    echo \"--- batch_\${BATCH}: \$INFILE (\${SZ} bytes) ---\"
+
+    if [ \"\$FIRST\" = true ]; then
+        root -b -q \"\${MACRO}(\\\"Batch\${BATCH}\\\",\\\"\${INFILE}\\\",\\\"\${OUTCSV}\\\",false)\"
+        FIRST=false
+    else
+        root -b -q \"\${MACRO}(\\\"Batch\${BATCH}\\\",\\\"\${INFILE}\\\",\\\"\${OUTCSV}\\\",true)\"
+    fi
+done
+
+echo ''
+echo '=== ncdelta_truth.csv first 5 lines ==='
+head -5 \"\$OUTCSV\" 2>/dev/null || echo 'CSV not created'
+echo ''
+echo 'Total rows (excluding header):'
+tail -n +2 \"\$OUTCSV\" 2>/dev/null | wc -l || echo 'CSV not created'
+echo 'TRUTH_EXTRACTION_COMPLETE'
+" 2>&1 | tee "$CONTAINER_LOG"
+
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+date
+[ "$CONTAINER_EXIT" -eq 0 ] && echo "TRUTH_EXTRACTION_PASS" || { echo "TRUTH_EXTRACTION_FAIL"; exit 1; }

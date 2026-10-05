@@ -1,0 +1,53 @@
+#!/bin/bash
+#PBS -N bnb_rse_extract
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=4:ngpus=1:mem=16gb
+#PBS -l walltime=00:15:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs/pbs_rse.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/generic_bnb/logs/pbs_rse.out
+
+# Extract RSE (run/subrun/event) from reco1_out.root via art::EventAuxiliary.
+# Outputs generic_bnb/tables/bnb_rse_list.csv
+
+set -uo pipefail
+echo "=== BNB RSE extraction ==="
+echo "PBS_JOBID: $PBS_JOBID"
+date
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0
+BNBDIR="$BASEDIR/generic_bnb"
+INFILE=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08/fresh-50evt-integrated-20260909/run/reco1_out.root
+OUTCSV="$BNBDIR/tables/bnb_rse_list.csv"
+SCRIPT="$BNBDIR/jobs/extract_rse.py"
+LOGDIR="$BNBDIR/logs"
+
+mkdir -p "$BNBDIR/tables" "$LOGDIR"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -uo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo 'sbndcode env sourced'
+python3 '$SCRIPT' '$INFILE' > '$OUTCSV'
+echo 'RSE extraction complete'
+head -5 '$OUTCSV'
+wc -l '$OUTCSV'
+" 2>&1 | tee "$LOGDIR/rse_extract.log"
+
+echo "=== RSE extraction done ==="
+date

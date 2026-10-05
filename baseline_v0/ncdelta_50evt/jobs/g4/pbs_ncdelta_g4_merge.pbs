@@ -1,0 +1,126 @@
+#!/bin/bash
+#PBS -N ncdelta_g4_merge
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=00:30:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_g4_merge.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_g4_merge.out
+
+# baseline_v0: Merge 10 per-batch G4 outputs into ncdelta_g4_merged.root.
+# Run after pbs_ncdelta_g4_perbatch_array.pbs (indices 3-12) completes.
+#
+# Input:  g4/batch_03..12/ncdelta_g4_batch_NN.root (10 files, total 59 events)
+# Output: g4/ncdelta_g4_merged.root
+# FCL:    jobs/g4/fcl/ncdelta_g4_merge.fcl (process_name: NCDeltaG4Merge)
+
+set -euo pipefail
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+G4DIR="$BASEDIR/g4"
+FCLDIR="$BASEDIR/jobs/g4/fcl"
+OUTFILE="$G4DIR/ncdelta_g4_merged.root"
+LOGDIR="$BASEDIR/logs"
+MERGE_LOG="$LOGDIR/lar_g4_merge.log"
+CONTAINER_LOG="$LOGDIR/container_g4_merge.log"
+
+mkdir -p "$G4DIR" "$LOGDIR"
+
+echo "=== NC Delta G4 merge (baseline_v0) ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+# Check all 10 batch G4 files exist
+BATCH_FILES=""
+for BATCH_NUM in 03 04 05 06 07 08 09 10 11 12; do
+    F="$G4DIR/batch_${BATCH_NUM}/ncdelta_g4_batch_${BATCH_NUM}.root"
+    if [ ! -f "$F" ]; then
+        echo "FATAL: Missing G4 batch file: $F"
+        exit 1
+    fi
+    SZ=$(stat -c%s "$F")
+    if [ "$SZ" -lt 1000000 ]; then
+        echo "FATAL: G4 batch file too small ($SZ bytes): $F"
+        exit 1
+    fi
+    echo "  batch_${BATCH_NUM}: $F ($SZ bytes)"
+    BATCH_FILES="$BATCH_FILES -s $F"
+done
+echo "All 10 G4 batch files present."
+echo "Output: $OUTFILE"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -euo pipefail
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo 'sbndcode env sourced'
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+G4DIR=\"\$BASEDIR/g4\"
+FCLDIR=\"\$BASEDIR/jobs/g4/fcl\"
+OUTFILE=\"\$G4DIR/ncdelta_g4_merged.root\"
+MERGE_LOG=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/lar_g4_merge.log
+
+SZ=\$(stat -c%s \"\$OUTFILE\" 2>/dev/null || echo 0)
+if [ \"\$SZ\" -gt 50000000 ]; then
+    echo \"[MERGE SKIP] G4 merged output already exists (\$SZ bytes)\"
+    python3 -c \"import uproot; f=uproot.open('\$OUTFILE'); print('Events:', f['Events'].num_entries)\" 2>/dev/null || true
+    exit 0
+fi
+
+echo '=== Run G4 merge ==='
+date
+set +e
+lar -c \"\$FCLDIR/ncdelta_g4_merge.fcl\" \\
+    -s \"\$G4DIR/batch_03/ncdelta_g4_batch_03.root\" \\
+    -s \"\$G4DIR/batch_04/ncdelta_g4_batch_04.root\" \\
+    -s \"\$G4DIR/batch_05/ncdelta_g4_batch_05.root\" \\
+    -s \"\$G4DIR/batch_06/ncdelta_g4_batch_06.root\" \\
+    -s \"\$G4DIR/batch_07/ncdelta_g4_batch_07.root\" \\
+    -s \"\$G4DIR/batch_08/ncdelta_g4_batch_08.root\" \\
+    -s \"\$G4DIR/batch_09/ncdelta_g4_batch_09.root\" \\
+    -s \"\$G4DIR/batch_10/ncdelta_g4_batch_10.root\" \\
+    -s \"\$G4DIR/batch_11/ncdelta_g4_batch_11.root\" \\
+    -s \"\$G4DIR/batch_12/ncdelta_g4_batch_12.root\" \\
+    -o \"\$OUTFILE\" \\
+    > \"\$MERGE_LOG\" 2>&1
+MERGE_EXIT=\$?
+set -e
+date
+
+SZ=\$(stat -c%s \"\$OUTFILE\" 2>/dev/null || echo 0)
+if [ \$MERGE_EXIT -ne 0 ] && [ \"\$SZ\" -gt 50000000 ]; then
+    echo \"[MERGE WARN] exit \$MERGE_EXIT but large output (\$SZ bytes) -- likely destructor crash\"
+    echo '[GATE PASS] G4 merge complete with destructor crash (valid output)'
+elif [ \$MERGE_EXIT -ne 0 ]; then
+    tail -20 \"\$MERGE_LOG\"
+    echo '[GATE FAIL] G4 merge FAILED'
+    exit 1
+else
+    echo '[GATE PASS] G4 merge complete (exit 0)'
+fi
+
+N_EVENTS=\$(python3 -c \"import uproot; f=uproot.open('\$OUTFILE'); print(f['Events'].num_entries)\" 2>/dev/null || echo unknown)
+echo \"Events in merged output: \$N_EVENTS\"
+ls -lh \"\$G4DIR/ncdelta_g4_merged.root\"
+echo 'G4_MERGE_COMPLETE'
+date
+" 2>&1 | tee "$CONTAINER_LOG"
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+[ "$CONTAINER_EXIT" -eq 0 ] && echo "G4_MERGE_PASS" || { echo "G4_MERGE_FAIL"; exit 1; }

@@ -1,0 +1,38 @@
+#!/bin/bash
+#PBS -N fix2_evt_0020
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -q by-gpu
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=00:20:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005/logs/run_patched_evt_0020.out
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005/logs/run_patched_evt_0020.err
+
+set -euo pipefail
+echo "=== Fix2 Patched Run evt_0020 ==="
+echo "Node: $(hostname)"
+echo "Date: $(date)"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+DEV=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005
+TEMPLATE=$DEV/build/run_patched_evt_template.sh
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "EVT_IDX='20' EVT_TAG='evt_0020' bash '$TEMPLATE'" \
+    2>&1 | tee "$DEV/logs/container_evt_0020.log"
+
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+echo "JOB_COMPLETE_evt_0020"
+date

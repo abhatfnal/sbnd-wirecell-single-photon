@@ -1,0 +1,5 @@
+evt_tag,rse,baseline_shw_sp_filled,patched_shw_sp_filled,patched_shw_sp_energy_MeV,fix2_stage_that_helped,outcome
+evt_0014,50:0:449,0,1,121.6,Stage2_onehop,FIXED
+evt_0020,60:0:153,0,1,153.8,Stage2_onehop,FIXED
+evt_0054,120:0:529,0,0,0.0,Stage1_direct_11cands_downstream_fail,NOT_FIXED
+evt_0058,120:0:664,0,1,449.0,Stage3_proximity,FIXED

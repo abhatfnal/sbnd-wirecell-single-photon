@@ -1,0 +1,23 @@
+selection: microboone_inclusive_single_photon_reference
+
+reconstruction:
+  min_20mev_showers: 1
+  exactly_one_20br1_shower: true
+
+bdt_thresholds:
+  single_photon_numu_score: 0.4
+  single_photon_other_score: 0.2
+  single_photon_ncpi0_score: -0.05
+  single_photon_nue_score: -1.0
+
+proton_category:
+  reconstructed_proton_ke_threshold_mev: 35.0
+
+microboone_reference_fv:
+  reco_nuvtxX_min_cm: 5.0
+  reco_nuvtxX_max_cm: 250.0
+  note: "Reference only. This MicroBooNE FV is not applied as an SBND physics cut."
+
+sbnd_current_result:
+  selection_label: PRE_FV_REFERENCE_SELECTION
+  sbnd_fv_applied: false

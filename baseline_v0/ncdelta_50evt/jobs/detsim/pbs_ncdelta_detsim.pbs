@@ -1,0 +1,96 @@
+#!/bin/bash
+#PBS -N ncdelta_detsim_50evt
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=06:00:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_detsim.err
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/pbs_detsim.out
+
+# baseline_v0 Phase C: Detsim on G4 output (~50 events)
+# Input:  ncdelta_50evt/g4/ncdelta_g4.root
+# Output: ncdelta_50evt/detsim/ncdelta_detsim.root
+# FCL: standard_detsim_sbnd_bothrois.fcl
+set -euo pipefail
+
+echo "=== NC Delta Detsim (baseline_v0 50-event sample) ==="
+echo "PBS_JOBID: $PBS_JOBID"
+echo "Host: $(hostname)"
+date
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+INFILE="$BASEDIR/g4/ncdelta_g4_merged.root"
+OUTFILE="$BASEDIR/detsim/ncdelta_detsim.root"
+LOGDIR="$BASEDIR/logs"
+CONTAINER_LOG="$LOGDIR/container_detsim.log"
+
+mkdir -p "$BASEDIR/detsim" "$LOGDIR"
+
+[ -f "$INFILE" ] || { echo "FATAL: G4 file not found: $INFILE"; exit 1; }
+echo "Input: $INFILE ($(du -sh $INFILE | cut -f1))"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "$(cat <<'INNEREOF'
+set -euo pipefail
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+INFILE="$BASEDIR/g4/ncdelta_g4_merged.root"
+OUTFILE="$BASEDIR/detsim/ncdelta_detsim.root"
+LOGDIR="$BASEDIR/logs"
+
+gate_pass() { echo "[GATE PASS] $*"; }
+gate_fail() { echo "[GATE FAIL] $*"; exit 1; }
+
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo "sbndcode: ${SBNDCODE_VERSION:-not set}"
+
+SZ=$(stat -c%s "$OUTFILE" 2>/dev/null || echo 0)
+if [ "$SZ" -gt 10000000 ]; then
+    echo "[DETSIM SKIP] Output already exists ($SZ bytes)"
+    gate_pass "Detsim output present from prior run"
+else
+    echo "=== Run Detsim ==="
+    date
+    DLOG="$LOGDIR/lar_detsim.log"
+    cd "$BASEDIR/detsim"
+    set +e
+    lar -c standard_detsim_sbnd_bothrois.fcl \
+        -s "$INFILE" \
+        -o "$OUTFILE" \
+        > "$DLOG" 2>&1
+    D_EXIT=$?
+    set -e
+    date
+    SZ=$(stat -c%s "$OUTFILE" 2>/dev/null || echo 0)
+    if [ $D_EXIT -ne 0 ] && [ "$SZ" -gt 10000000 ]; then
+        echo "[DETSIM WARN] exit $D_EXIT but output exists ($SZ bytes) — destructor crash"
+        gate_pass "Detsim complete with destructor crash"
+    elif [ $D_EXIT -ne 0 ]; then
+        tail -40 "$DLOG"
+        gate_fail "Detsim failed exit=$D_EXIT"
+    else
+        gate_pass "Detsim complete (exit 0)"
+    fi
+fi
+
+ls -lh "$BASEDIR/detsim/"
+echo "DETSIM_COMPLETE"
+date
+INNEREOF
+)" 2>&1 | tee "$CONTAINER_LOG"
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+[ "$CONTAINER_EXIT" -eq 0 ] && echo "DETSIM_PASS" || { tail -30 "$CONTAINER_LOG"; echo "DETSIM_FAIL"; exit 1; }

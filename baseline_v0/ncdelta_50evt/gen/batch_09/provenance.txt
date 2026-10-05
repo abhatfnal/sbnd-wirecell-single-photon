@@ -1,0 +1,19 @@
+baseline_v0 Phase A — NC Delta radiative batch generation
+batch_id:       09
+batch_num:      9
+first_run:      90
+ncres_attempts: 1000
+batch_fcl:      /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/jobs/gen/fcl/ncdelta_gen_batch_09.fcl
+filter_source:  /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/signal_mc/ncdelta/src/NCDeltaRadiative_module.cc
+filter_sha256:  f8574e5fdf6d3f0d8794143aed31d2167ba592498fc50d61e2ff7e11e3f0c3e6
+generator_fcl:  /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/signal_mc/ncdelta/fcl/prodgenie_ncdelta_sbnd.fcl
+sbndcode:       v10_14_02_04
+wct_commit:     251ff143
+larwirecell:    9295e2a3
+pbs_jobid:      192804.sophia-pbs-01.lab.alcf.anl.gov
+hostname:       sophia-gpu-08
+date:           2026-10-04T00:51:57Z
+MODULE_SOURCE=installed-sbncode-v10_14_02_04-fallback batch_09
+accepted_events: unknown
+ncres_attempted: 998
+output_file: /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/gen/batch_09/ncdelta_gen_batch_09.root

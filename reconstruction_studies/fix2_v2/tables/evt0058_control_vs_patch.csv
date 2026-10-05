@@ -1,0 +1,9 @@
+column,control,patched,changed
+shw_sp_filled,0,1,YES
+shw_sp_n_20mev_showers,0,1,YES
+shw_sp_energy,0,449,YES
+shw_sp_n_20br1_showers,0,1,YES
+shw_sp_flag,1,1,no
+shw_sp_num_total_segments,nan,nan,no
+shw_sp_total_num_good_segments,nan,nan,no
+br_filled,0,0,no

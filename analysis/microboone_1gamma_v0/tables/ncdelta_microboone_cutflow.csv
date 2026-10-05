@@ -1,0 +1,11 @@
+step,count,is_0p,is_np,unclassifiable,notes
+total_events,59,27,30,2,
+has_neutrino_candidate,57,27,30,0,
+shw_sp_n_20mev_showers_gt0,33,18,15,0,
+FV_CUT_SKIPPED_PRE_FV_REFERENCE,(MicroBooNE literal: 5<reco_nuvtxX<250 cm — not applied; kine_nu_x_corr available but SBND FV not defined here),,,,PRE_FV_REFERENCE_SELECTION
+all_4_bdts_evaluable,33,18,15,0,
+numu_score_gt0p4,13,10,3,0,
+other_score_gt0p2,7,5,2,0,
+ncpi0_score_gtneg0p05,4,3,1,0,
+nue_score_gtneg1p0,4,3,1,0,
+shw_sp_n_20br1_showers_eq1,3,2,1,0,

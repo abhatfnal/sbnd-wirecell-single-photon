@@ -1,0 +1,128 @@
+#!/bin/bash
+#PBS -N ncdelta_g4_batch
+#PBS -q by-gpu
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=04:00:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -r y
+
+# baseline_v0 Phase C: G4 on individual NC Delta gen batch files.
+#
+# Runs G4 on one batch at a time to avoid artg4++ RegisterPhysics crash
+# that occurs when reading the merged gen file (multi-process-name MCTruth).
+#
+# Submit with:
+#   qsub -J 3-12 \
+#        -e $LOGDIR/pbs_g4_batch#.err \
+#        -o $LOGDIR/pbs_g4_batch#.out \
+#        pbs_ncdelta_g4_perbatch_array.pbs
+#
+# Array indices 3-12 correspond to batch numbers 03-12 (skip 01,02: 0 events).
+# Input:  ncdelta_50evt/gen/batch_NN/ncdelta_gen_batch_NN.root
+# Output: ncdelta_50evt/g4/batch_NN/ncdelta_g4_batch_NN.root
+#
+# Root cause of per-batch approach: the merged gen file (ncdelta_gen_merged.root)
+# contains MCTruth branches with 10 different process names (NCDeltaBatch03..12).
+# artg4++ calls RegisterPhysics() for each extra branch, which corrupts the
+# proton's ProcessManager after G4 kernel leaves PreInit. Per-batch files
+# have a single process name and G4 succeeds cleanly.
+#
+# After all 10 batch G4 jobs complete: submit pbs_ncdelta_g4_merge.pbs
+
+set -euo pipefail
+
+BATCH_IDX=${PBS_ARRAY_INDEX:-3}
+BATCH_NUM=$(printf "%02d" $BATCH_IDX)
+
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+INFILE="$BASEDIR/gen/batch_${BATCH_NUM}/ncdelta_gen_batch_${BATCH_NUM}.root"
+OUTDIR="$BASEDIR/g4/batch_${BATCH_NUM}"
+OUTFILE="$OUTDIR/ncdelta_g4_batch_${BATCH_NUM}.root"
+LOGDIR="$BASEDIR/logs"
+CONTAINER_LOG="$LOGDIR/container_g4_batch_${BATCH_NUM}.log"
+G4LOG="$LOGDIR/lar_g4_batch_${BATCH_NUM}.log"
+
+mkdir -p "$OUTDIR" "$LOGDIR"
+
+echo "=== NC Delta G4 per-batch (batch_${BATCH_NUM}) ==="
+echo "PBS_JOBID: ${PBS_JOBID:-unknown}  PBS_ARRAY_INDEX: $BATCH_IDX"
+echo "Input: $INFILE"
+echo "Output: $OUTFILE"
+echo "Host: $(hostname)"
+date
+
+[ -f "$INFILE" ] || { echo "FATAL: gen batch file not found: $INFILE"; exit 1; }
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "
+set -euo pipefail
+BATCH_NUM=${BATCH_NUM}
+BASEDIR=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt
+INFILE=\"\$BASEDIR/gen/batch_\${BATCH_NUM}/ncdelta_gen_batch_\${BATCH_NUM}.root\"
+OUTDIR=\"\$BASEDIR/g4/batch_\${BATCH_NUM}\"
+OUTFILE=\"\$OUTDIR/ncdelta_g4_batch_\${BATCH_NUM}.root\"
+G4LOG=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/baseline_v0/ncdelta_50evt/logs/lar_g4_batch_\${BATCH_NUM}.log
+
+gate_pass() { echo \"[GATE PASS] \$*\"; }
+gate_fail() { echo \"[GATE FAIL] \$*\"; exit 1; }
+
+source /lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env 2>/dev/null || true
+echo \"sbndcode: \${SBNDCODE_VERSION:-not set}\"
+
+# Skip if already done (>10MB output)
+SZ=\$(stat -c%s \"\$OUTFILE\" 2>/dev/null || echo 0)
+if [ \"\$SZ\" -gt 10000000 ]; then
+    echo \"[G4 SKIP] batch_\${BATCH_NUM} output already exists (\$SZ bytes)\"
+    gate_pass \"G4 batch_\${BATCH_NUM} output present from prior run\"
+    ls -lh \"\$OUTDIR/\"
+    echo \"G4_BATCH_\${BATCH_NUM}_COMPLETE (skip)\"
+    exit 0
+fi
+
+echo \"=== Run G4 for batch_\${BATCH_NUM} ===\"
+date
+cd \"\$OUTDIR\"
+set +e
+lar -c standard_g4_sbnd.fcl \\
+    -s \"\$INFILE\" \\
+    -o \"\$OUTFILE\" \\
+    > \"\$G4LOG\" 2>&1
+G4_EXIT=\$?
+set -e
+date
+
+SZ=\$(stat -c%s \"\$OUTFILE\" 2>/dev/null || echo 0)
+if [ \$G4_EXIT -ne 0 ] && [ \"\$SZ\" -gt 10000000 ]; then
+    echo \"[G4 WARN] batch_\${BATCH_NUM} exit \$G4_EXIT but large output (\$SZ bytes) -- likely destructor crash\"
+    gate_pass \"G4 batch_\${BATCH_NUM} complete with destructor crash (valid output)\"
+elif [ \$G4_EXIT -ne 0 ]; then
+    tail -40 \"\$G4LOG\"
+    gate_fail \"G4 batch_\${BATCH_NUM} FAILED exit=\$G4_EXIT\"
+else
+    gate_pass \"G4 batch_\${BATCH_NUM} complete (exit 0)\"
+fi
+
+# Sanity: check event count
+N_EVENTS=\$(python3 -c \"import uproot; f=uproot.open('\$OUTFILE'); print(f['Events'].num_entries)\" 2>/dev/null || echo unknown)
+echo \"Events in output: \$N_EVENTS\"
+ls -lh \"\$OUTDIR/\"
+echo \"G4_BATCH_\${BATCH_NUM}_COMPLETE\"
+date
+" 2>&1 | tee "$CONTAINER_LOG"
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+[ "$CONTAINER_EXIT" -eq 0 ] && echo "G4_BATCH_${BATCH_NUM}_PASS" || { echo "G4_BATCH_${BATCH_NUM}_FAIL"; exit 1; }

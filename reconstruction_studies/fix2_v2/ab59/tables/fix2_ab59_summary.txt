@@ -1,0 +1,31 @@
+=== Fix2-v2 59-Event A/B Study — Part G Summary ===
+Total events:                     59
+Missing patched output:           2 [39, 52]
+
+--- Fallback activation ---
+1. Events where fallback activates: 24/59
+
+--- shw_sp_filled changes ---
+2. Events gaining shw_sp_filled=1:  5  (RECOVERED_BY_FIX2)
+3. Events losing  shw_sp_filled=1:  0  (KEY SAFETY CRITERION)
+
+--- Already-working events ---
+4. Events changing selected shower (when both filled=1): 5
+
+--- Feature changes ---
+5. Events changing shw_sp_n_20mev_showers: 5
+6. Events changing shw_sp_n_20br1_showers: 5
+7. Events changing photon_flag:             0
+
+--- Safety criterion ---
+8. Unexpected changes (direct_has_usable=true but result changed): 0
+   PASS
+
+--- Event class counts ---
+   UNCHANGED_DIRECT_SUCCESS:           33
+   RECOVERED_BY_FIX2:                  5
+   FALLBACK_ACTIVATED_NO_RECOVERY:     19
+   FALLBACK_ACTIVATED_DIFFERENT_SHOWER:0
+   UNEXPECTED_CHANGE_WITHOUT_FALLBACK: 0
+   NO_NEUTRINO_CANDIDATE:              2
+   OTHER:                              0

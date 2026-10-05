@@ -1,0 +1,42 @@
+#!/bin/bash
+#PBS -N fix2_diag_0014
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -q by-gpu
+#PBS -l select=1:ncpus=64:ngpus=1:mem=128gb
+#PBS -l walltime=00:20:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005/logs/run_diag_evt_0014.out
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005/logs/run_diag_evt_0014.err
+
+# Diagnostic run: verify 1-hop for evt_0014 (121.6 MeV shower)
+set -euo pipefail
+echo "=== Fix2 Diagnostic Run evt_0014 ==="
+echo "Node: $(hostname)"
+echo "Date: $(date)"
+
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+DEV=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005
+TEMPLATE=$DEV/build/run_patched_evt_template.sh
+
+module use /soft/modulefiles
+module load spack-pe-base
+module load apptainer
+
+apptainer exec --fakeroot \
+    --bind /lus/eagle \
+    --bind /lus/grand \
+    --overlay "$LARSOFT_SQ":ro \
+    --overlay "$SBND_SQ":ro \
+    "$CONTAINER" \
+    bash -lc "EVT_IDX='14' EVT_TAG='evt_0014' bash '$TEMPLATE'" \
+    2>&1 | tee "$DEV/logs/container_diag_evt_0014.log"
+
+CONTAINER_EXIT="${PIPESTATUS[0]}"
+echo "Container exit: $CONTAINER_EXIT"
+
+echo "=== fix2_diag lines ==="
+grep "fix2_diag:" "$DEV/logs/lar_fix2_patched_evt_0014.log" 2>/dev/null || true
+echo "JOB_COMPLETE_DIAG_evt_0014"
+date

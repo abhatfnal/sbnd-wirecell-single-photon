@@ -1,0 +1,46 @@
+# ROOT / HDF5 / large event data
+*.root
+*.h5
+*.hdf5
+
+# Compiled objects/libraries
+*.so
+*.o
+*.a
+*.dylib
+
+# Archives / generated binary payloads
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# Logs and scheduler output
+*.log
+*.out
+*.err
+slurm-*
+core.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Build/work/output areas
+build/
+work/
+output/
+outputs/
+tmp/
+logs/
+control/
+patched/
+
+# macOS/editor
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/

@@ -1,0 +1,11 @@
+Weights copied from:
+/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights
+
+The single-photon BDT code first appears in Git history at:
+bf9d7113c952054b592a7b57be8041812212a714
+Date: 2022-09-21
+Author: eyandel
+Subject: add in single photon BDTs
+
+The four XMLs were not tracked in the Lee wc_postprocessing Git repository.
+Multiple copies were located under /exp/uboone/app/users/uboonepro/bbogart/.

@@ -1,0 +1,13 @@
+batch,pbs_job,attempted_ncres,accepted_ncdelta,lar_exit,output_root_exists,file_size_bytes,first_run,first_art_event,last_art_event,filter_acceptance_pct,rng_independence,pass_fail
+01,192796.sophia-pbs-01.lab.alcf.anl.gov,1000,0,134,0,3010,10,1,1000,0.00,CONFIRMED_seed=241105859,ZERO_ACCEPTED_VALID
+02,192797.sophia-pbs-01.lab.alcf.anl.gov,1000,0,134,0,2936,20,1,1000,0.00,CONFIRMED_seed=546985111,ZERO_ACCEPTED_VALID
+03,192798.sophia-pbs-01.lab.alcf.anl.gov,1000,5,134,1,93784,30,1,1000,0.50,CONFIRMED_seed=891945740,PASS
+04,192799.sophia-pbs-01.lab.alcf.anl.gov,1000,6,134,1,96463,40,1,1000,0.60,CONFIRMED_seed=688973968,PASS
+05,192800.sophia-pbs-01.lab.alcf.anl.gov,1000,9,134,1,101755,50,1,1000,0.90,CONFIRMED_seed=18158088,PASS
+06,192801.sophia-pbs-01.lab.alcf.anl.gov,1000,5,134,1,94436,60,1,1000,0.50,CONFIRMED_seed=235731962,PASS
+07,192802.sophia-pbs-01.lab.alcf.anl.gov,1000,9,134,1,103012,70,1,1000,0.90,CONFIRMED_seed=558098078,PASS
+08,192803.sophia-pbs-01.lab.alcf.anl.gov,1000,4,134,1,91479,80,1,1000,0.40,CONFIRMED_seed=462992326,PASS
+09,192804.sophia-pbs-01.lab.alcf.anl.gov,1000,2,134,1,88660,90,1,1000,0.20,CONFIRMED_seed=244074289,PASS
+10,192805.sophia-pbs-01.lab.alcf.anl.gov,1000,6,134,1,94070,100,1,1000,0.60,CONFIRMED_seed=635998899,PASS
+11,192839.sophia-pbs-01.lab.alcf.anl.gov,1000,3,134,1,91850,110,1,1000,0.30,CONFIRMED_seed=699977256,PASS
+12,192840.sophia-pbs-01.lab.alcf.anl.gov,1000,10,134,1,104227,120,1,1000,1.00,CONFIRMED_seed=359013383,PASS

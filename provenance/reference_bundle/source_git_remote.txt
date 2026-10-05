@@ -1,0 +1,2 @@
+origin	https://github.com/brb-rightback/wcp-uboone-bdt-eyandel.git (fetch)
+origin	https://github.com/brb-rightback/wcp-uboone-bdt-eyandel.git (push)

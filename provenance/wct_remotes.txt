@@ -1,0 +1,4 @@
+origin	/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/wct-ap-yuhw (fetch)
+origin	/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/wct-ap-yuhw (push)
+upstream	https://github.com/WireCell/wire-cell-toolkit.git (fetch)
+upstream	https://github.com/WireCell/wire-cell-toolkit.git (push)

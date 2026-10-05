@@ -1,0 +1,6 @@
+cd7e7b3 (HEAD -> feature/sbnd-singlephoton-onehop-20261005, tag: sbnd-singlephoton-fix2-v2-20261005) Fix2 diagnostic: BFS topology probe for graph-distance measurement
+8dddba5 clus: Fix 2-v2 — graph-adjacent shower fallback, remove 50 cm proximity scan
+e302f5f fix2: add proximity fallback for shower-typed conversion gap
+d2ed206 clus: Fix 2 — one-hop vertex extension for conversion-gap photon showers
+251ff14 (candidate-master) clus: preserve matching bundle provenance for NuGraph4
+51b5a1f (grafted, upstream/master) Merge pull request #535 from HaiwangYu/polaris-build-fixes
