@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -N dv2sp59_run
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -q by-gpu
+#PBS -l select=1:ncpus=16:ngpus=1:mem=64gb
+#PBS -l walltime=03:00:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102/logs/pbs/
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102/logs/pbs/
+# DV2-MAX x SP59: one lar process per (arm, event), sequential.
+# Usage: qsub -v RUNSET=main,JOBS="O:18 D:18 O:0 D:0" run_arm_batch.pbs
+set -uo pipefail
+: "${RUNSET:?}" "${JOBS:?}"
+W=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+echo "=== dv2sp59 batch RUNSET=$RUNSET JOBS=[$JOBS] node=$(hostname) job=${PBS_JOBID:-NA} $(date)"
+module use /soft/modulefiles; module load spack-pe-base; module load apptainer
+for J in ${JOBS//,/ }; do
+    ARM=${J%%:*}; EVT=${J##*:}; TAG=$(printf '%04d' "$EVT")
+    mkdir -p "$W/logs/$RUNSET/arm$ARM"
+    echo "--- arm $ARM event $TAG start $(date +%s) job=${PBS_JOBID:-NA}"
+    apptainer exec --fakeroot --bind /lus/eagle --bind /lus/grand \
+        --overlay "$LARSOFT_SQ":ro --overlay "$SBND_SQ":ro "$CONTAINER" \
+        bash -lc "ARM='$ARM' RUNSET='$RUNSET' EVT_IDX='$EVT' bash '$W/scripts/run_arm_template.sh'" \
+        > "$W/logs/$RUNSET/arm$ARM/container_evt_$TAG.log" 2>&1
+    rc=$?
+    echo "--- arm $ARM event $TAG container_exit=$rc end $(date +%s)"
+    if [ $rc -eq 3 ] || [ $rc -eq 4 ] || [ $rc -eq 5 ]; then echo "GUARD_FAIL_STOP arm $ARM event $TAG rc=$rc"; exit $rc; fi
+done
+echo "JOB_COMPLETE_DV2SP59_BATCH"
+date

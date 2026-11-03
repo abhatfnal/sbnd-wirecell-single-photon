@@ -1,0 +1,131 @@
+category,item,value,signal_value,status,note
+source sha256,cfg/pgrapher/experiment/sbnd/clus.jsonnet,d382e68f8ce45a221d1c423d3aad0b7fe8dd99553d6a90da0984a34bec4c55b6,d382e68f8ce45a221d1c423d3aad0b7fe8dd99553d6a90da0984a34bec4c55b6,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+source sha256,clus/inc/WireCellClus/MultiAlgBlobClustering.h,50d4ae7313b7aaa96f0ae3924964577e79867c37042c01560e4674c4f50d3340,50d4ae7313b7aaa96f0ae3924964577e79867c37042c01560e4674c4f50d3340,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+source sha256,clus/src/MultiAlgBlobClustering.cxx,47f31d2311fdf208cb2c62a1d6e02ac6529b9c6fcec042e0f45bfd0fca201199,47f31d2311fdf208cb2c62a1d6e02ac6529b9c6fcec042e0f45bfd0fca201199,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+source sha256,clus/src/NeutrinoTaggerSinglePhoton.cxx,8e085d4094b7db35e87be44e7b057b10d4abcba8160c5eb67c7c5565a0e30e38,8e085d4094b7db35e87be44e7b057b10d4abcba8160c5eb67c7c5565a0e30e38,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+source sha256,clus/src/clustering_switch_scope.cxx,18a1707dbbe530280d7356ab3aee8e0670de3b22a6c684065e3160db3eac46b3,18a1707dbbe530280d7356ab3aee8e0670de3b22a6c684065e3160db3eac46b3,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+source sha256,clus/test/doctest_matching_bundle_provenance.cxx,d30218bb5ff4dda95734d01b4004a2af74816b667248a04c9274b3a1d6a0d66c,d30218bb5ff4dda95734d01b4004a2af74816b667248a04c9274b3a1d6a0d66c,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWCPPyUtil.so,660d73e3bae9c59d646532588079f4ff89630d3b70c8a51c245e59f3f42ec4a6,660d73e3bae9c59d646532588079f4ff89630d3b70c8a51c245e59f3f42ec4a6,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWCPQuickhull.so,060bd3b59919cd20b29872cc4f9dd9e5428c97337354725a61fb05ffaab56070,060bd3b59919cd20b29872cc4f9dd9e5428c97337354725a61fb05ffaab56070,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellApps.so,367cf717b3409b33d6d2bb7555f8445477a61d34dc165ad54b2a38b3f4d43307,367cf717b3409b33d6d2bb7555f8445477a61d34dc165ad54b2a38b3f4d43307,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellAux.so,56bf6fa66cb0ee906fcf31229e0cdd2cc710b3e7de9c685984d55a91fa96617f,56bf6fa66cb0ee906fcf31229e0cdd2cc710b3e7de9c685984d55a91fa96617f,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellClus.so,59670bd7cf99562bb314dd3a6db3c702a42557959420a46cc04572937040e387,59670bd7cf99562bb314dd3a6db3c702a42557959420a46cc04572937040e387,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellFlash.so,852ff4847977d40b737b3c5cc8b7a2250260e7173e453b8d44d723ac8feeca32,852ff4847977d40b737b3c5cc8b7a2250260e7173e453b8d44d723ac8feeca32,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellGen.so,7a672c0135892303dc4bcfe7f755cb35c6fdc4f6b57166fe64f30504ec3fcd55,7a672c0135892303dc4bcfe7f755cb35c6fdc4f6b57166fe64f30504ec3fcd55,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellHio.so,9513007bb4600388ab2596eb8519adcd80445c7039cb71be63079ddc8b33ad70,9513007bb4600388ab2596eb8519adcd80445c7039cb71be63079ddc8b33ad70,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellIface.so,0d8378069cefcddf4efffa1797b5e1d80630b70bcac66f9c2b02ac394ba59822,0d8378069cefcddf4efffa1797b5e1d80630b70bcac66f9c2b02ac394ba59822,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellImg.so,b8fe22774c913259ad38208d4f6e6c8f6960b04f0d13220785928111ef152ab0,b8fe22774c913259ad38208d4f6e6c8f6960b04f0d13220785928111ef152ab0,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellMatch.so,8bf7b65a7c7ad76b558556d28d4427f781833c301099b3500ad7ff26b70f2bc8,8bf7b65a7c7ad76b558556d28d4427f781833c301099b3500ad7ff26b70f2bc8,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellMcs.so,56ae5e465707f3bd7ff15dbfbebab21c80966db66063725f9d31d81ebf4b6376,56ae5e465707f3bd7ff15dbfbebab21c80966db66063725f9d31d81ebf4b6376,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellPgraph.so,41a103addab1104c5840fc4a092d4e90d7daa03299b6de5d0f75d08572158711,41a103addab1104c5840fc4a092d4e90d7daa03299b6de5d0f75d08572158711,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellRoot.so,33a57e2fb485a804a9236da99735a91d0ade99ebf41968245790fcd36f959ddf,33a57e2fb485a804a9236da99735a91d0ade99ebf41968245790fcd36f959ddf,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellSig.so,90abfa8f8fcad1ab617eb011cced717296e87789f07688bd33634737a2418128,90abfa8f8fcad1ab617eb011cced717296e87789f07688bd33634737a2418128,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellSigProc.so,4498669f4ab7d265ada99229385db9cc0cffda18aa233d0a452087d1385b7e98,4498669f4ab7d265ada99229385db9cc0cffda18aa233d0a452087d1385b7e98,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellSio.so,75f5adc8fc200a236025161272ec5cce41f8fc6bd868ccf51c5bcf5c5505878b,75f5adc8fc200a236025161272ec5cce41f8fc6bd868ccf51c5bcf5c5505878b,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/install/wct/lib/libWireCellUtil.so,1e1dc2c3b643819533eda45723ba765e9bc2167c7a74b8fd3f0dceae8c17e77f,1e1dc2c3b643819533eda45723ba765e9bc2167c7a74b8fd3f0dceae8c17e77f,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/libWireCellAIML.so,bff22986c04fa981911e59ce7ad09fafca2160cf13b4751abf6c31aa320da1dd,bff22986c04fa981911e59ce7ad09fafca2160cf13b4751abf6c31aa320da1dd,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/libWireCellLarsoft.so,f9d98ee24f2903b5ba62894fc0d519a67030fc2d3844ff90ea586b9204e03156,f9d98ee24f2903b5ba62894fc0d519a67030fc2d3844ff90ea586b9204e03156,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/libWireCellQLMatch.so,b64cfa318951bf016bad3146ef2261b6014c210ca9fa544856c969de8726c065,b64cfa318951bf016bad3146ef2261b6014c210ca9fa544856c969de8726c065,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_LArInterface_WireCellNoiseFilter_module.so,c6ca4b04587d5f243fbc867918507500cf4e8d9b4037c6829a5292ba681ca26f,c6ca4b04587d5f243fbc867918507500cf4e8d9b4037c6829a5292ba681ca26f,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Modules_BlipMaker_module.so,4c4853fe0f1938e5e1a034ebf54ad8998fe762a2df037ce749b6773e6ae529b2,4c4853fe0f1938e5e1a034ebf54ad8998fe762a2df037ce749b6773e6ae529b2,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Modules_EventButcher_module.so,db5fe6505f16110a3c9e9d2cb6fb8f747888d3078f91983f84e076d192a408e3,db5fe6505f16110a3c9e9d2cb6fb8f747888d3078f91983f84e076d192a408e3,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Modules_FilterEventID_module.so,fdeeafb35f0b79ac65db7f830bbe4913ddaff1c8e4347ddd49ff33f405502366,fdeeafb35f0b79ac65db7f830bbe4913ddaff1c8e4347ddd49ff33f405502366,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Modules_Geometry_CTreeGeometry_module.so,cc3d23a390269f6da3d081f8dc7eb4d08b18e8dbb851939704cb8e55fa09883e,cc3d23a390269f6da3d081f8dc7eb4d08b18e8dbb851939704cb8e55fa09883e,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Modules_WireCellToolkit_module.so,1217341037af1008e8547093180ea921abdf27570a5997de304955da5826fc01,1217341037af1008e8547093180ea921abdf27570a5997de304955da5826fc01,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_Tools_WCLS_tool.so,02d3672938c21b47c65d3c5f7ece3157c9639b69a96b37f7f706c80a0f1d8e2c,02d3672938c21b47c65d3c5f7ece3157c9639b69a96b37f7f706c80a0f1d8e2c,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+library sha256,W/build/lwc-install/lib/liblarwirecell_qlmatch_SBNDOpDetDumper_module.so,2d4d79bee366856b67c59be47cae665d9a93dce4ee356e4ecf0750a7ac01400e,2d4d79bee366856b67c59be47cae665d9a93dce4ee356e4ecf0750a7ac01400e,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+DV2 bundle sha256,W/source/wct-int/cfg/dv2max/r7_cloud/bundle.json,bfb095ca286b20077c142e3e6bdd363ce6a83fbc548bfe76f4bb53d50ae12a6b,bfb095ca286b20077c142e3e6bdd363ce6a83fbc548bfe76f4bb53d50ae12a6b,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+DV2 bundle sha256,W/source/wct-int/cfg/dv2max/r7_cloud/isotonic_fold0.json,8f7128c041f048055db09bafa236b58f9438d74504373524c2336552295ecc62,8f7128c041f048055db09bafa236b58f9438d74504373524c2336552295ecc62,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+DV2 bundle sha256,W/source/wct-int/cfg/dv2max/r7_cloud/pass1.pt,4ed3a4dd42136e499f432000afad2c41abfddc36f1d59a886534f9466d3920cc,4ed3a4dd42136e499f432000afad2c41abfddc36f1d59a886534f9466d3920cc,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+DV2 bundle sha256,W/source/wct-int/cfg/dv2max/r7_cloud/pass2.pt,ffd1a6e4a593d1916beb452c1d9ec0005362be8991619d17fbbe23e4a0f91fe5,ffd1a6e4a593d1916beb452c1d9ec0005362be8991619d17fbbe23e4a0f91fe5,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+DV2 bundle sha256,W/source/wct-int/cfg/dv2max/r7_cloud/ranker_fold0.txt,37421302777ef3e20eb4940bb3a478bd42155c93bcb9b682b31870228593bad2,37421302777ef3e20eb4940bb3a478bd42155c93bcb9b682b31870228593bad2,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,filelock-3.19.1-py3-none-any.whl,d38e30481def20772f5baf097c122c3babc4fcdb7e14e57049eb9d88c6dc017d,d38e30481def20772f5baf097c122c3babc4fcdb7e14e57049eb9d88c6dc017d,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,fsspec-2025.10.0-py3-none-any.whl,7c7712353ae7d875407f97715f0e1ffcc21e33d5b24556cb1e090ae9409ec61d,7c7712353ae7d875407f97715f0e1ffcc21e33d5b24556cb1e090ae9409ec61d,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,jinja2-3.1.6-py3-none-any.whl,85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67,85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,lightgbm-4.6.0-py3-none-manylinux_2_28_x86_64.whl,cb19b5afea55b5b61cbb2131095f50538bd608a00655f23ad5d25ae3e3bf1c8d,cb19b5afea55b5b61cbb2131095f50538bd608a00655f23ad5d25ae3e3bf1c8d,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,markupsafe-3.0.4-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl,5e8b3d0b18fd623afa12ecb2ce8d8becef69f9b5440c6330c7972200e0bb84b0,5e8b3d0b18fd623afa12ecb2ce8d8becef69f9b5440c6330c7972200e0bb84b0,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,mpmath-1.3.0-py3-none-any.whl,a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c,a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,networkx-3.2.1-py3-none-any.whl,f18c69adc97877c42332c170849c96cefa91881c99a7cb3e95b7c659ebdc1ec2,f18c69adc97877c42332c170849c96cefa91881c99a7cb3e95b7c659ebdc1ec2,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,numpy-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl,f26b258c385842546006213344c50655ff1555a9338e2e5e02a0756dc3e803dd,f26b258c385842546006213344c50655ff1555a9338e2e5e02a0756dc3e803dd,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,scipy-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl,637e98dcf185ba7f8e663e122ebf908c4702420477ae52a04f9908707456ba4d,637e98dcf185ba7f8e663e122ebf908c4702420477ae52a04f9908707456ba4d,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,sympy-1.13.1-py3-none-any.whl,db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8,db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,torch-2.5.1+cpu-cp39-cp39-linux_x86_64.whl,a3ad26468abc5ee601aba49ff02f72387ae734b0900aa589b890c80d72b7b26b,a3ad26468abc5ee601aba49ff02f72387ae734b0900aa589b890c80d72b7b26b,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,typing_extensions-4.16.0-py3-none-any.whl,481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8,481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python wheel sha256,lightgbm-4.6.0.tar.gz,cb1c59720eb569389c0ba74d14f52351b573af489f230032a1c9f314f8bab7fe,cb1c59720eb569389c0ba74d14f52351b573af489f230032a1c9f314f8bab7fe,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python,lib_lightgbm.so (in use),4f61ba0807bf9ed46cb8458f2b07f236cfdd9a3b637caa2de6d602325b14a303,4f61ba0807bf9ed46cb8458f2b07f236cfdd9a3b637caa2de6d602325b14a303,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+python,"lib_lightgbm.so (wheel, kept)",6a12e1a7b13824d14c252d2a4d2e36af467383331a114eb0e7448eecbf02d7b1,6a12e1a7b13824d14c252d2a4d2e36af467383331a114eb0e7448eecbf02d7b1,IDENTICAL,ARM O/D stack (used read-only from SIGW)
+guard,ARM O/D libWireCellClus.so md5,927a1834af1e44dfef3467dcc6e53976,927a1834af1e44dfef3467dcc6e53976,IDENTICAL,run_bg_template.sh refuses to run unless md5 == 927a1834af1e44dfef3467dcc6e53976
+config md5,armD/pr-operating-point.jsonnet,9d2cc08e9c92c5309aa7a67be4b19aec,9d2cc08e9c92c5309aa7a67be4b19aec,IDENTICAL,W/configs copy vs SIGW/config
+config md5,armO/pr-operating-point.jsonnet,2fe23f9741f2d41d5bb813b5d8e3eb96,2fe23f9741f2d41d5bb813b5d8e3eb96,IDENTICAL,W/configs copy vs SIGW/config
+config md5,common/particle_dataset.jsonnet,1970cdd5563b71d9f13cc6fcec4bc42e,1970cdd5563b71d9f13cc6fcec4bc42e,IDENTICAL,W/configs copy vs SIGW/config
+config md5,common/wcls-img-clus-matching-xin.jsonnet,b03bb349f111aff1238b8968a51d3e37,b03bb349f111aff1238b8968a51d3e37,IDENTICAL,W/configs copy vs SIGW/config
+config md5,common/wcls-img-clus-matching-xin-prod.fcl,91d78235f0e07b462e26b11f05174cc1,91d78235f0e07b462e26b11f05174cc1,IDENTICAL,W/configs copy vs SIGW/config
+config md5,sce-override/pgrapher/experiment/sbnd/clus.jsonnet,5bbd591f116b98979b6dee61d61eaaf2,5bbd591f116b98979b6dee61d61eaaf2,IDENTICAL,W/configs copy vs SIGW/config
+compiled config md5,armO.json,5dd42fbe981f267debeb16a14c2f13e1,5dd42fbe981f267debeb16a14c2f13e1,IDENTICAL,compiled here vs compiled in the signal study
+compiled config md5,armD.json,9ca6613eb74f3f28d7691dfd22c5ba48,9ca6613eb74f3f28d7691dfd22c5ba48,IDENTICAL,compiled here vs compiled in the signal study
+ARM F stack,/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/fix2_vertex_shower_onehop_20261005/build/libWireCellClus.so,9cff76d0d81a4b6c45a88908e78e73e4,9cff76d0d81a4b6c45a88908e78e73e4,IDENTICAL,frozen Fix2-v2 libWireCellClus.so (md5)
+ARM F stack sha256,CAND/install/wct-clean/lib/libWCPQuickhull.so,97b7a77a535d199aedd55cedcb79c31b59ae813eae73589647a62e9fde9de571,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellApps.so,7a8d421f7272079b196bcd47ee004293faf7ea9c686a815b084387481af77141,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellAux.so,5dd64e93e37414442d5aec5e93e3840ca70bbcb92aee280aed78ae92e4533043,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellClus.so,e329632f0323463a3b1f6909d79f71242c07eed5a04a9a6046ce6e6c0fa02a8f,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellFlash.so,ea52d50f5122762ec4b07c9aec7381be9117646e6c00f519b135d2c19ec8e8f0,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellGen.so,049954118e4e6715a36a245f9009c570e055622eab85b3c36042ff869e77ea6a,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellHio.so,848e105f9366e159f8a97c347491a4f840aab27c51e88f5ed2d68568d2431591,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellIface.so,7138c7640fffa04193b4f7f36b633861c829db70438027f6ba3fc1ec6b1e5c33,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellImg.so,956f37f9c2bcabe7786136a1e7d976caa34cb83ae1a1be3d8c7f4422f704b8af,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellMatch.so,617e8decf58bb6db25a245ccdc3ad0d12bd6c8604b9a9d3235df62f1a6334339,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellMcs.so,d4c769ba7ecf3b0c9145fc17aa2fd9368906d64686c5a047a5e1fd699a35b822,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellPgraph.so,7d7a9197680ac26225f4b006f881b9f0251acfcfe082490567896efc36f1a384,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellRoot.so,554dc5ca0ce2f5a03519b57fa882f3cd0aaa1c96deecc3b5fea3769d8403fc04,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellSig.so,2c0250b3b02c2e721ff610eb28f95514622c2c1cb48e4869f692f705fba61db4,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellSigProc.so,40ad35812636a8207fc689d1e898e2e8aad3e96881595ec0e87a8b0c553951df,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellSio.so,f3311393841e4c27acc1a60e1fe53f9deeb991a7ca96850dc2fb7337d66127b2,,,read-only
+ARM F stack sha256,CAND/install/wct-clean/lib/libWireCellUtil.so,bbae203250bad572a01478772c394e3e9ca97f7acadd9cc91a44c1b925c3a2a3,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/libWireCellAIML.so,7d65f33e94c62f5e1b76233b37dea8f189fcab825963501fa85225b274c2c69d,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/libWireCellLarsoft.so,07273d8440f097e330f50883182eda48b9f8504ad94de680f8f98d4998872546,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/libWireCellQLMatch.so,f6a5a6431a33c492df78e35126b753e446a216d87aba591c81854f9a58594a3c,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_LArInterface_WireCellNoiseFilter_module.so,bde61711330e38195db47e839cfee4ac5682e60401338d9691f91a482d0e41cf,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Modules_BlipMaker_module.so,29b269a3675481a161472fe7a418d5e725072b592f4c00fc5f9a333c0e853c03,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Modules_EventButcher_module.so,95eaa5271666d16d4bba5b34caa36427f8c138d1a1251e8f988b5ec95a286bd7,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Modules_FilterEventID_module.so,38d0a928b2fdc39d8658c7ada8bb4c7e04a42476f52e13e57aef0b870305a760,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Modules_Geometry_CTreeGeometry_module.so,eee9e9ce356c9ee0b04246694bde728c1e2eac6b073211cd4f2279ff45c38ad5,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Modules_WireCellToolkit_module.so,41b16b16fb102d8097b7b25cdd03567e181faa0bd090341e8c7e4b3136f7da58,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_Tools_WCLS_tool.so,99ddb1ce82c07b4a3b0b8c5d650dd9a2cca23ea12ed63e20a4baf43810a139fb,,,read-only
+ARM F stack sha256,CAND/build/lwc-install-clean/lib/liblarwirecell_qlmatch_SBNDOpDetDumper_module.so,8a11cc13a7ec6a7ec442ea271808a6d856bef6503794ae015dd360086c7df904,,,read-only
+ARM F stack,config dir,/lus/eagle/projects/neutrinoGPU/abhat/sbnd/sample_generation_port/work/haiwang-current/integration-2026-09-08/reco-bundle-id-fix-validation-20260916/config-final,,,WIRECELL_PATH = SNAPSHOT:config-final:CAND/config/sce-override:CAND/wct/cfg
+scorer,score_microboone_bdts.py,2508298cb7d32c9533f954a381d21e42,2508298cb7d32c9533f954a381d21e42,IDENTICAL,analysis dir vs repo copy; run unchanged except N_EVENTS/BASEDIR/OUTDIR substitution
+BDT weights sha256,numu: /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/reference/sbnd_single_photon_microboone_reference_20261005/weights/single_photon_numu_bdt_final.xml,5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961,,,as read by the scorer (XML_PATHS)
+BDT weights sha256,other: /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/reference/sbnd_single_photon_microboone_reference_20261005/weights/single_photon_other_bdt_final.xml,8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16,,,as read by the scorer (XML_PATHS)
+BDT weights sha256,ncpi0: /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/reference/sbnd_single_photon_microboone_reference_20261005/weights/single_photon_ncpi0_bdt_final.xml,983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3,,,as read by the scorer (XML_PATHS)
+BDT weights sha256,nue: /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/reference/sbnd_single_photon_microboone_reference_20261005/weights/single_photon_nue_bdt_final.xml,8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a,,,as read by the scorer (XML_PATHS)
+study script sha256,W/scripts/analysis/ab_lib.py,4465074acde1d542c930f500cc141dcf8a91842dc0e1e8204e8b13163b414377,,,
+study script sha256,W/scripts/analysis/bdt_input_shift.py,b5c52098af8c1fd3e395d5298b33151ea1e328ffd4d407f2bc172dd15286d9d3,,,
+study script sha256,W/scripts/analysis/build_final_tables.py,04d4670e2336d4c24adda01166ab8c677b2fe9e769a5f0ce1c767398c7eed3c9,,,
+study script sha256,W/scripts/analysis/make_report_tables.py,1287923d8dbacf1794151c352ccd8365ad67cba8f435d733965e24e8d64281c7,,,
+study script sha256,W/scripts/analysis/plots_bg.py,fad0b62ce3caaffc314210113cd6508f5d9c1a74626fd9da15a1ff3766a4fbcc,,,
+study script sha256,W/scripts/analysis/prefill_em_cache.py,07eccf634bcdc0a1f7972c35fc28fe08806a054320b7c9377fe8bdd60c1fbf3e,,,
+study script sha256,W/scripts/analysis/reproducibility_201013.py,b70bcab6be4a4aadc9575afcc3020d0d646ad428b54f36aeb2c07ea60f84eb8c,,,
+study script sha256,W/scripts/analysis/run_bg.py,2b65a8c0c5eac506b92e323a34f5933d2f350ef72489485edf4acf703acbe061,,,
+study script sha256,W/scripts/compile_cfg.py,e3e3e7a2f5745a36e9549c7f2d5d8a43bdd1b1ec9f4795e23107bcc431eba134,,,
+study script sha256,W/scripts/make_event_lists.py,aa53a1816c58cdd5036235b9b32482f50edf57f393e68b8cd1c9125a480df8e8,,,
+study script sha256,W/scripts/make_provenance_bg.py,6e483cb9e0d05dadb7972e5677f5b204522a581aabbb4640e6cd2424cd2da38c,,,
+study script sha256,W/scripts/mirror_to_repo.sh,ec77a84bf4175b984c3da74ed22cf040f8d3884df5869eb8c863c419bbb02906,,,
+study script sha256,W/scripts/partlist_decoder.py,ef868237a565e362efa34adcdb62feed6c5b3de5f6158f13898c2cd8203f7e55,,,
+study script sha256,W/scripts/quarantine_infra.py,fd321a417c576c5cb2a60e471d221599dbda95dd9951c49c6f19a7942f84146a,,,
+study script sha256,W/scripts/run_bg_batch.pbs,25e25ebccbf727f7577360c62abd0de3c014b07f12d1b5955bfe81295b558d14,,,
+study script sha256,W/scripts/run_bg_template.sh,8d3a93bdc9b95b7c3da1d01e8322c3b5c97b69e101534b9a8e27d33b0f9d021b,,,
+study script sha256,W/scripts/truth_census.py,7acd815b663d3485044a2d3aac7062fff97dbad9b88431e88562d7fa71f24a15,,,
+signal analysis (exec'd read-only),SIGW/scripts/analysis/run_dv2.py,74c70b09d5e1eee76abd4a48ca609e98f52003365ed36d82716ecb316d7eec84,,,
+signal analysis (exec'd read-only),SIGW/scripts/analysis/ab_lib.py,e02e04d106f16e2d65332bcb207981b62578ef561216958c6eda3f906fd2353b,,,
+input,numucc_events.csv,a77833da80f1676c0095f54e5386cf63255749f3e39f12a01d74bde5e3940430,,,400 events from 275 Reco1 files (20.03 GB); file list sha256 below
+input,numucc Reco1 file list sha256,3194a46834bc77f80ac62bfc883185a03a317b6070947cc71aee964f0603df93,,,
+input,ncpi0_events.csv,3503bea645b6b9f6293f4c4bc3ea00ba2b794610bfb7c6c4764cd2a0994a6834,,,214 events from 208 Reco1 files (16.14 GB); file list sha256 below
+input,ncpi0 Reco1 file list sha256,fda01afc3f44af9bde46f6f36fdf5f32247fe4a13530593997a03ec9351de192,,,
+input,truth census,277efb85b1a641605f9e5d1a494e9bb1b15c5faf5b324d2d741f4104ec621e41,,,inputs/stageA10k_truth_events.csv (10000 rows)
+runtime,container,/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif + larsoft-v10_14_02.squashfs + sbnd-v10_14_02_04_delta.squashfs,,,same as the signal study
+runtime,env,/lus/eagle/projects/neutrinoGPU/larsoft_hpc/envs/sbndcode-v10_14_02_04.env,,,same as the signal study
+runtime,lar command,lar --nskip NSKIP -n 1 -c wcls-img-clus-matching-xin-prod.fcl -s INFILE --no-output,,,"DV2_STRICT=1, LD_PRELOAD libpython3.9 (O/D)"
+PBS job,sentinel,"200949 (18 runs: 6 truth-topology events x F,O,D; LANES 6 static; Exit 0; 4m46s; sophia-gpu-08; 18/18 CLEAN)",,,
+PBS job,stage1_killed,"201013 (LANES 12: job pids cgroup limit 1024 exhausted; 59/117 started runs compromised, 4 DV2 lar deadlocked; qdel at 1h44m, Exit 143; ALL 117 runs moved to scratch/infra_pids_limit_201013, none used)",,,
+PBS job,stage1,"201062 (162 runs: evt 0-29 x F,O,D minus sentinels; LANES 5 dynamic queue + pids throttle; Exit 0; 38m24s; max pids 460; 162/162 CLEAN)",,,
+PBS job,stage2,"201131 (1108 runs: numucc evt 30-399, ncpi0 evt 30-213, arms O,D; LANES 5; walltime 12h; Exit 0; 5h01m; max pids 482; 1108/1108 CLEAN)",,,

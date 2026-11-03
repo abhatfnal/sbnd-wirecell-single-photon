@@ -1,0 +1,8 @@
+event,original_accessibility,frozen_fix2v2_accessibility,traditional_swapON_accessibility,dv2_accessibility,dv2_vertex_truth_distance,dv2_vertex_truth_distance_sce,dv2_main_cluster,original_main_cluster,swapON_main_cluster,true_vertex_cluster,same_as_true_vertex_cluster,direct_or_onehop,shw_sp_filled,BDT_evaluable,selection,notes
+0002,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.6276,0.4927,4,1,4,4,True,DIRECT,1,True,True,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0031,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.5237,0.5967,17,1,17,17,True,DIRECT,1,True,False,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0032,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.6953,0.2887,25,1,25,25,True,DIRECT,1,True,True,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0037,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.8185,0.3543,2,1,2,2,True,DIRECT,1,True,False,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0042,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,1.7793,0.2635,7,1,7,7,True,DIRECT,1,True,True,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0056,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.2762,0.3493,6,1,6,6,True,DIRECT,1,True,True,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0
+0058,INACCESSIBLE,INACCESSIBLE,DIRECT,DIRECT,0.5667,0.2901,45,2,45,45,True,DIRECT,1,True,False,dv2 placement=graph vertex switched_main=True fallback=NONE photon_q_frac_in_main=0.1083

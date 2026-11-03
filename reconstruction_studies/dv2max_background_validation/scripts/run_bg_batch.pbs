@@ -1,0 +1,81 @@
+#!/bin/bash
+#PBS -N dv2bg_run
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -q by-gpu
+#PBS -l select=1:ncpus=32:ngpus=1:mem=120gb
+#PBS -l walltime=06:00:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_background_validation_20261102/logs/pbs/
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_background_validation_20261102/logs/pbs/
+# DV2-MAX x SP background validation: one PBS job, LANES parallel lanes; each lane pulls the NEXT line of the job
+# list (shared counter under flock) and runs it (one lar per (arm, runset, event), its own apptainer exec, exactly
+# as in the signal study).  One job instead of several co-resident by-gpu jobs: co-resident jobs were SIGTERMed
+# when a sibling ended (signal-study jobs 200907/200908).
+# Revision 2026-11-03 (infrastructure only; template / environment / lar command unchanged): job 201013 (LANES=12)
+# exhausted the job cgroup pids.max=1024 (pthread_create / fork failures, aborts, 4 deadlocked lar).  Now:
+#   - dynamic queue (static i%LANES striping put every ARM D run on the same lanes);
+#   - before each launch wait until pids.current <= pids.max - PIDS_RESERVE;
+#   - per-run timeout RUN_TIMEOUT s (a deadlocked lar can no longer block a lane);
+#   - post-run scan: prints the REAL lar exit (the template exits 0 after printing it) and any resource message;
+#   - pids monitor (every 15 s) -> logs/pbs/pids_<jobid>.log.
+# Usage: qsub -v JOBLIST=/abs/path/list.txt,LANES=5 run_bg_batch.pbs      (list lines: "ARM RUNSET EVT_IDX")
+set -uo pipefail
+: "${JOBLIST:?}" "${LANES:?}"
+PIDS_RESERVE=${PIDS_RESERVE:-200}
+RUN_TIMEOUT=${RUN_TIMEOUT:-3600}
+W=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_background_validation_20261102
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+JID=${PBS_JOBID:-NA}; JSHORT=${JID%%.*}
+CG=/sys/fs/cgroup/pids/jobs/$JSHORT
+echo "=== dv2bg batch JOBLIST=$JOBLIST LANES=$LANES node=$(hostname) job=$JID $(date)"
+echo "pids cgroup: $CG max=$(cat $CG/pids.max 2>/dev/null || echo NA) reserve=$PIDS_RESERVE run_timeout=${RUN_TIMEOUT}s"
+module use /soft/modulefiles; module load spack-pe-base; module load apptainer
+mapfile -t JOBS < <(grep -v '^ *#' "$JOBLIST" | grep -v '^ *$')
+echo "n_runs=${#JOBS[@]}"
+Q=$(mktemp -d "$W/scratch/queue_${JSHORT}_XXXX"); echo 0 > "$Q/next"
+PIDLOG="$W/logs/pbs/pids_${JSHORT}.log"
+( while true; do echo "$(date +%s) pids=$(cat $CG/pids.current 2>/dev/null || echo NA) lar=$(pgrep -u "$USER" -x lar | wc -l)"; sleep 15; done ) > "$PIDLOG" 2>&1 &
+MON=$!
+next_job() {  # atomically take the next line index
+    local i
+    exec 9>"$Q/lock"; flock 9
+    i=$(cat "$Q/next"); echo $((i + 1)) > "$Q/next"
+    flock -u 9; exec 9>&-
+    echo "$i"
+}
+wait_headroom() {
+    [ -r "$CG/pids.max" ] || return 0
+    local max cur
+    max=$(cat "$CG/pids.max"); [ "$max" = max ] && return 0
+    while cur=$(cat "$CG/pids.current"); [ "$cur" -gt $((max - PIDS_RESERVE)) ]; do sleep 5; done
+}
+lane() {
+    local L=$1 i
+    while i=$(next_job); [ "$i" -lt "${#JOBS[@]}" ]; do
+        read -r ARM RUNSET EVT <<< "${JOBS[$i]}"
+        local TAG; TAG=$(printf '%04d' "$EVT")
+        mkdir -p "$W/logs/$RUNSET/arm$ARM"
+        wait_headroom
+        echo "--- lane $L arm $ARM $RUNSET event $TAG start $(date +%s) pids=$(cat $CG/pids.current 2>/dev/null || echo NA)"
+        timeout -k 60 "$RUN_TIMEOUT" apptainer exec --fakeroot --bind /lus/eagle --bind /lus/grand \
+            --overlay "$LARSOFT_SQ":ro --overlay "$SBND_SQ":ro "$CONTAINER" \
+            bash -lc "ARM='$ARM' RUNSET='$RUNSET' EVT_IDX='$EVT' bash '$W/scripts/run_bg_template.sh'" \
+            > "$W/logs/$RUNSET/arm$ARM/container_evt_$TAG.log" 2>&1
+        local rc=$?
+        local CL="$W/logs/$RUNSET/arm$ARM/container_evt_$TAG.log" LL="$W/logs/$RUNSET/arm$ARM/lar_evt_$TAG.log"
+        local LX; LX=$(grep -o 'lar exit: [0-9]*' "$CL" 2>/dev/null | head -1 | cut -d' ' -f3)
+        local RES; RES=$(cat "$CL" "$LL" 2>/dev/null | grep -c -E 'Resource temporarily unavailable|pthread_create|fork: retry|popen failure|Cannot allocate memory|std::bad_alloc')
+        echo "--- lane $L arm $ARM $RUNSET event $TAG container_exit=$rc end $(date +%s) lar_exit=${LX:-NA} resource_msgs=$RES"
+        if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ]; then echo "RUN_TIMEOUT lane $L arm $ARM $RUNSET $TAG"; fi
+        if [ "${LX:-NA}" != 0 ] || [ "$RES" -ne 0 ]; then echo "INFRA_SUSPECT lane $L arm $ARM $RUNSET $TAG lar_exit=${LX:-NA} resource_msgs=$RES"; fi
+        if [ $rc -eq 3 ] || [ $rc -eq 4 ]; then echo "GUARD_FAIL_STOP lane $L arm $ARM $RUNSET $TAG rc=$rc"; return $rc; fi
+    done
+}
+for ((L = 0; L < LANES; L++)); do lane "$L" & sleep 20; done
+wait $(jobs -p | grep -v "^$MON$")
+kill $MON 2>/dev/null
+echo "max pids.current seen: $(awk '{split($2,a,"="); if (a[2]+0>m) m=a[2]+0} END {print m}' "$PIDLOG")"
+echo "JOB_COMPLETE_DV2BG_BATCH"
+date

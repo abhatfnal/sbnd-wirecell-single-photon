@@ -1,0 +1,19 @@
+# sentinel: 6 truth-topology events x arms F,O,D
+F numucc 27
+O numucc 27
+D numucc 27
+F numucc 13
+O numucc 13
+D numucc 13
+F numucc 3
+O numucc 3
+D numucc 3
+F ncpi0 8
+O ncpi0 8
+D ncpi0 8
+F ncpi0 2
+O ncpi0 2
+D ncpi0 2
+F ncpi0 0
+O ncpi0 0
+D ncpi0 0

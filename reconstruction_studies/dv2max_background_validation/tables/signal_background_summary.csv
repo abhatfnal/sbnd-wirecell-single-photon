@@ -1,0 +1,12 @@
+step,description,signal_O,signal_O_frac,signal_O_frac_err,signal_D,signal_D_frac,signal_D_frac_err,numucc_O,numucc_O_frac,numucc_O_frac_err,numucc_D,numucc_D_frac,numucc_D_frac_err,ncpi0_O,ncpi0_O_frac,ncpi0_O_frac_err,ncpi0_D,ncpi0_D_frac,ncpi0_D_frac_err,signal_D_minus_O,signal_D_over_O,numucc_D_minus_O,numucc_D_over_O,ncpi0_D_minus_O,ncpi0_D_over_O
+1_total,total,59,1.0000,0.0000,59,1.0000,0.0000,400,1.0000,0.0000,400,1.0000,0.0000,214,1.0000,0.0000,214,1.0000,0.0000,0,1.000,0,1.000,0,1.000
+2_neutrino_candidate,neutrino candidate,57,0.9661,0.0236,57,0.9661,0.0236,356,0.8900,0.0156,356,0.8900,0.0156,196,0.9159,0.0190,196,0.9159,0.0190,0,1.000,0,1.000,0,1.000
+3_shw_sp_n_20mev_gt0,>20 MeV SP shower,38,0.6441,0.0623,41,0.6949,0.0599,109,0.2725,0.0223,106,0.2650,0.0221,160,0.7477,0.0297,178,0.8318,0.0256,3,1.079,-3,0.972,18,1.113
+4_all_4_bdts_evaluable,all 4 BDTs evaluable,38,0.6441,0.0623,41,0.6949,0.0599,105,0.2625,0.0220,101,0.2525,0.0217,160,0.7477,0.0297,178,0.8318,0.0256,3,1.079,-4,0.962,18,1.113
+5_numu_gt0p4,numu > 0.4,15,0.2542,0.0567,29,0.4915,0.0651,6,0.0150,0.0061,5,0.0125,0.0056,85,0.3972,0.0334,120,0.5607,0.0339,14,1.933,-1,0.833,35,1.412
+6_other_gt0p2,other > 0.2,8,0.1356,0.0446,19,0.3220,0.0608,1,0.0025,0.0025,1,0.0025,0.0025,39,0.1822,0.0264,70,0.3271,0.0321,11,2.375,0,1.000,31,1.795
+7_ncpi0_gtneg0p05,ncpi0 > -0.05,5,0.0847,0.0363,10,0.1695,0.0488,0,0.0000,0.0000,0,0.0000,0.0000,7,0.0327,0.0122,8,0.0374,0.0130,5,2.000,0,,1,1.143
+8_nue_gtneg1p0,nue > -1.0,5,0.0847,0.0363,10,0.1695,0.0488,0,0.0000,0.0000,0,0.0000,0.0000,7,0.0327,0.0122,8,0.0374,0.0130,5,2.000,0,,1,1.143
+9_shw_sp_n_20br1_eq1,n_20br1 == 1,4,0.0678,0.0327,10,0.1695,0.0488,0,0.0000,0.0000,0,0.0000,0.0000,4,0.0187,0.0093,7,0.0327,0.0122,6,2.500,0,,3,1.750
+ratio_final_O,"arm O: final-step fraction, signal / background (per processed event, NOT normalized)",,,,,,,,inf (0 background selected),,,,,,3.627,,,,,,,,,,
+ratio_final_D,"arm D: final-step fraction, signal / background (per processed event, NOT normalized)",,,,,,,,,,,inf (0 background selected),,,,,,5.182,,,,,,,

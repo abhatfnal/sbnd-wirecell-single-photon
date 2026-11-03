@@ -1,0 +1,27 @@
+# Leaf-level compiled-config diffs (scripts/compile_cfg.py; libjsonnet 0.22.0 on the login node)
+# frozen = SNAPSHOT:config-final:CAND/config/sce-override:CAND/wct/cfg (Fix2-v2 reference stack)
+# armO   = SNAPSHOT:W/config/armO:W/config/common:W/config/sce-override:W/source/wct-int/cfg
+# armD   = SNAPSHOT:W/config/armD:W/config/common:W/config/sce-override:W/source/wct-int/cfg
+# leaves: frozen 25754, armO 25755, armD 25757
+
+=== ARM O vs ARM D (the test contrast) ===
+25267c25267
+< SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = ""
+---
+> SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = "dv2_split_move:dv2max/r7_cloud/bundle.json"
+25325a25326
+> TaggerCheckNeutrino:pr .dv2_bundle = "dv2max/r7_cloud/bundle.json"
+25548a25550
+> TaggerCheckNeutrino:pr .vertex_method = "dv2_split_move"
+
+=== FROZEN Fix2-v2 vs ARM O (control contrast) ===
+25267c25267
+< SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+---
+> SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = ""
+25322c25322
+< TaggerCheckNeutrino:pr .dl_weights = "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+---
+> TaggerCheckNeutrino:pr .dl_weights = ""
+25667a25668
+> UbooneTaggerOutputVisitor:pr .nu_particle_links = true

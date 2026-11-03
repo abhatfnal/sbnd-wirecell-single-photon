@@ -1,0 +1,40 @@
+# Leaf-level compiled-config diffs for the DV2-MAX x SP background validation (scripts/compile_cfg.py, libjsonnet on the login node)
+# armO / armD compiled here from W/configs (byte-identical copies of the signal-study configs; md5 list configs/signal_config_md5.txt)
+#   armO = SNAPSHOT:W/configs/armO:W/configs/common:W/configs/sce-override:SIGW/source/wct-int/cfg
+#   armD = SNAPSHOT:W/configs/armD:W/configs/common:W/configs/sce-override:SIGW/source/wct-int/cfg
+# ARM F (frozen Fix2-v2 control) = SNAPSHOT:config-final:CAND/config/sce-override:CAND/wct/cfg, compiled in the signal study
+#   (configs/signal_compiled/frozen.json); scripts/run_bg_template.sh ARM F uses exactly that WIRECELL_PATH.
+# leaves: frozen 25754, armO 25755, armD 25757
+
+=== Compiled-config identity with the signal study (md5) ===
+armO.json  background=5dd42fbe981f267debeb16a14c2f13e1  signal=5dd42fbe981f267debeb16a14c2f13e1  IDENTICAL
+armD.json  background=9ca6613eb74f3f28d7691dfd22c5ba48  signal=9ca6613eb74f3f28d7691dfd22c5ba48  IDENTICAL
+armO.leaves.txt  background=9ceff7f9c4f1cf555306214c7d936ab4  signal=9ceff7f9c4f1cf555306214c7d936ab4  IDENTICAL
+armD.leaves.txt  background=35ae4c81da203dc71120e22ef0517d05  signal=35ae4c81da203dc71120e22ef0517d05  IDENTICAL
+
+=== ARM O vs ARM D (the test contrast) ===
+25267c25267
+< SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = ""
+---
+> SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = "dv2_split_move:dv2max/r7_cloud/bundle.json"
+25325a25326
+> TaggerCheckNeutrino:pr .dv2_bundle = "dv2max/r7_cloud/bundle.json"
+25548a25550
+> TaggerCheckNeutrino:pr .vertex_method = "dv2_split_move"
+
+=== FROZEN Fix2-v2 (ARM F) vs ARM O (control contrast) ===
+25267c25267
+< SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+---
+> SbndPrMagnifyTrackingVisitor:pr .provenance.dl_weights = ""
+25322c25322
+< TaggerCheckNeutrino:pr .dl_weights = "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+---
+> TaggerCheckNeutrino:pr .dl_weights = ""
+25667a25668
+> UbooneTaggerOutputVisitor:pr .nu_particle_links = true
+
+Interpretation: O and D differ only in TaggerCheckNeutrino.vertex_method, TaggerCheckNeutrino.dv2_bundle and the
+provenance string. F differs from O only by the SCN dl_weights path (F; the DL vertex is compiled out of the frozen
+build, so it has no effect) and UbooneTaggerOutputVisitor.nu_particle_links (O only; adds output branches, does not
+change reconstruction). main_vertex_swap_apply is absent in all three.

@@ -1,0 +1,31 @@
+#!/bin/bash
+#PBS -N dv2sp59_build
+#PBS -A neutrinoGPU::wirecell_2026
+#PBS -q by-gpu
+#PBS -l select=1:ncpus=32:ngpus=1:mem=128gb
+#PBS -l walltime=01:30:00
+#PBS -l filesystems=eagle:grand:home
+#PBS -o /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102/logs/build/build_all.pbs.out
+#PBS -e /lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102/logs/build/build_all.pbs.err
+# DV2-MAX x SP59 (2026-11-02): LightGBM lib -> WCT (with Python) -> larwirecell -> gates.
+set -uo pipefail
+W=/lus/eagle/projects/neutrinoGPU/abhat/sbnd/single_photon/development/dv2max_singlephoton59_20261102
+CONTAINER=/lus/grand/projects/neutrinoGPU/software/containers/slf7.sif
+LARSOFT_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/larsoft-v10_14_02.squashfs
+SBND_SQ=/lus/eagle/projects/neutrinoGPU/larsoft_hpc/images/sbnd-v10_14_02_04_delta.squashfs
+echo "PBS_JOBID=${PBS_JOBID:-} host=$(hostname) $(date)"
+module use /soft/modulefiles; module load spack-pe-base; module load apptainer
+STEPS="${STEPS:-lightgbm wct lwc verify}"
+for step in $STEPS; do
+    case $step in
+        lightgbm) S=build_lightgbm.sh ;; wct) S=build_wct.sh ;; lwc) S=build_lwc.sh ;; verify) S=verify_build.sh ;;
+    esac
+    echo "===== STEP $step ($S) $(date)"
+    apptainer exec --fakeroot --bind /lus/eagle --bind /lus/grand \
+        --overlay "$LARSOFT_SQ":ro --overlay "$SBND_SQ":ro "$CONTAINER" \
+        bash -lc "NCPU=32 bash $W/scripts/$S" > "$W/logs/build/step_$step.log" 2>&1
+    rc=$?
+    echo "STEP $step exit $rc"; tail -5 "$W/logs/build/step_$step.log"
+    [ $rc -eq 0 ] || { echo "BUILD_ALL_FAIL at $step"; exit 1; }
+done
+echo "BUILD_ALL_DONE $(date)"
