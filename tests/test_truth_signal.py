@@ -159,3 +159,26 @@ def test_record_ancestry_jagged_links_by_index_and_rejects_bad_index():
     assert out["is_delta_rad"].to_list() == [[True, False]] and out["delta_pdg"].to_list() == [[2114, 0]]
     with pytest.raises(IndexError):
         TS.record_ancestry_jagged(records, [[0, 5]])
+
+
+def test_multi_signal_event_prefers_in_box_neutrino_and_keeps_counts():
+    rock = dict(SIG, pos=(-690.0, 0.0, 679.0), prims=[(22, 270.0), (2212, 80.0), (2212, 90.0)])     # outside the filter box
+    near = dict(SIG, pos=(-96.0, 0.0, 186.0), prims=[(22, 160.0), (2212, 80.0)])
+    ev = _ev([rock, near])                                                       # rock listed FIRST: 'first' would pick the wrong one
+    rec = dict(is_delta_rad=[[True, True]], delta_pdg=[[2114, 2214]], nucleon_pdg=[[2112, 2212]], nucleon_status=[[14, 14]], photon_e_gev=[[0.27, 0.16]])
+    cat = lambda k: [ev[k][0]]
+    r = TS.signal_truth(cat("pdg"), cat("isnc"), cat("mode"), cat("res"), cat("E"), cat("x"), cat("y"), cat("z"), cat("prim_pdg"), cat("prim_e"), nprim=cat("nprim"), record=rec)
+    assert r["n_signal_nu_candidates"][0] == 2 and r["n_signal_nu_in_box"][0] == 1
+    assert r["signal_nu_index"][0] == 1 and r["delta_pdg"][0] == 2214 and r["n_true_protons"][0] == 1 and r["is_ncdelta_radiative"][0] == 1
+
+
+def test_no_resnum_based_signal_definition():
+    # a record-defined signal neutrino with an arbitrary resnum is still signal; a resnum-0 NC resonant neutrino with a hard photon
+    # but NO Delta ancestry in the record is NOT signal. resnum must play no role.
+    ev = _ev([dict(SIG, res=9)]); cat = lambda k: [ev[k][0]]
+    on = dict(is_delta_rad=[[True]], delta_pdg=[[2114]], nucleon_pdg=[[2112]], nucleon_status=[[14]], photon_e_gev=[[0.15]])
+    off = dict(on, is_delta_rad=[[False]])
+    args = (cat("pdg"), cat("isnc"), cat("mode"), cat("res"), cat("E"), cat("x"), cat("y"), cat("z"), cat("prim_pdg"), cat("prim_e"))
+    assert TS.signal_truth(*args, nprim=cat("nprim"), record=on)["is_ncdelta_radiative"][0] == 1
+    ev0 = _ev([dict(SIG, res=0)]); a0 = [[ev0[k][0]] for k in ("pdg", "isnc", "mode", "res", "E", "x", "y", "z", "prim_pdg", "prim_e")]
+    assert TS.signal_truth(*a0, nprim=[ev0["nprim"][0]], record=off)["is_ncdelta_radiative"][0] == 0

@@ -1,6 +1,6 @@
 # Beam-off / beam-on exposure normalisation audit
 
-**No scale factor is computed or assumed here.** This note records what the merged CAFs contain, what is missing, and the exact gpVM commands to obtain the rest.
+**No scale factor is computed or assumed here.** This note records what the merged CAFs contain, what is missing, and the commands to obtain the rest (SAM from EAF via `env/sam_eaf.sh`; run database separately).
 Numbers come from `scripts/exposure_scan.py` (read-only over all listed files; per-file rows in `$SP_DATA/exposure_scan/*.jsonl`).
 
 ## 1. What the merged CAFs contain
@@ -44,10 +44,10 @@ So: **trigger count, livetime/run-database, spill count and SAM metadata are all
 
 > **Update 2026-11-06:** the `samweb` commands below do not need a gpVM; run them from EAF through `env/sam_eaf.sh <subcommand>` (`EAF_QUICKSTART.md` §10). The trigger/gate counts and livetime still come from the run database, which is not SAM.
 
-The reco1 and CAF SAM definitions are in `fg1/README.md` and `opendata-fixeddev/DATASET.md`. On a gpVM with SBND software and a token:
+The reco1 and CAF SAM definitions are in `fg1/README.md` and `opendata-fixeddev/DATASET.md`. From EAF (`env/sam_eaf.sh <subcommand>`, `EAF_QUICKSTART.md` §10) or any machine with SBND software:
 
 ```bash
-# set up your usual SBND environment on the gpVM (anything that provides samweb); the exact setup line was not verified from EAF
+# on EAF use env/sam_eaf.sh instead of `samweb`; elsewhere set up your usual SBND environment (anything that provides samweb)
 export SAM_EXPERIMENT=sbnd
 
 # --- the four datasets (names exactly as in Haiwang's READMEs) -------------------------------------------------

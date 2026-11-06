@@ -22,9 +22,10 @@ Evidence for each item is in the linked audit. Nothing below has been assumed in
 
 ## C2. Small production questions that SAM/CAF cannot answer (low priority; not blocking)
 
+(The GENIE branching question was answered as far as the data allow: the dedicated sample agrees with the natural NC Δ → Nγ population in the CV, `NATURAL_NCDELTA_CV_CROSSCHECK.md`.)
+
 10. **728 of the 16,505 reco1 units have no flatCAF child** (669 signal events, 4.4 % of POT): failed or still-pending CAF jobs? Should the Wire-Cell production include them once a flatCAF exists?
 11. **CAF `TotalGenEvents` is 125 in every file**, while SAM's reco1 `mc.generated_event_count` is 12,500 per unit. Which is the intended generated count (our denominator uses SAM `mc.pot` / `mc.generated_event_count`)?
-12. **GENIE tune / branching.** The pass fraction (7.0e-5) and the 55 % / 45 % Δ⁰ / Δ⁺ split look like a natural, unweighted radiative decay, but `genweight` and `prim.gstatus` are unfilled in the CAF. Please confirm the radiative branching is natural and no event weight is needed.
 
 ## Minor (no action unless convenient)
 

@@ -1,6 +1,6 @@
 # NC Delta -> N gamma rare-signal filter audit (official Gen2 `EX_ncdeltarad`)
 
-Status (updated 2026-11-06): source audit **plus direct measurement on the official sample**. The first version of this note said the official sample could only be reached from a gpVM. **That was wrong**: `samweb` is a UPS product in the SBND CVMFS tree, works from EAF (§1), and the official flatCAFs open from EAF over XRootD. Labels: **[source]** (read in the file named), **[measured]** (official flatCAF/SAM, 2026-11-06), **[doc]** (production tracking document), **[not determined]**.
+Status (2026-11-06): source audit **plus direct measurement on the official sample** (SAM metadata and all 15,777 official flatCAFs, read from EAF). Labels: **[source]** (read in the file named), **[measured]** (official flatCAF/SAM), **[doc]** (production tracking document), **[not determined]**.
 
 ## 1. Access from EAF (all read-only; nothing installed, conda environment untouched)
 
@@ -93,16 +93,15 @@ Field behaviour, identical to the BNB CV [measured, 25,608 neutrinos / 139,376 p
 
 1. Why 728 reco1 units have no flatCAF child (failed or pending CAF jobs), and whether more units failed earlier (no SAM record would exist).
 2. What CAF `TotalGenEvents` = 125 counts (SAM says 12,500 generated per unit).
-3. The GENIE tune / whether the radiative branching is natural (the pass fraction 7.0e-5 and the measured 55 % / 45 % Delta0 / Delta+ split are what a natural, unweighted decay would give but do not prove it; `genweight` is unfilled).
+3. The GENIE tune and branching configuration itself: the dedicated sample's absolute rate, Δ⁰/Δ⁺ split and shapes agree with the natural CV population (§7), so no enhancement above roughly 20 % is present, but agreement does not identify the configuration; `genweight` is unfilled.
 4. The Wire-Cell merged-CAF production of this existing sample (the highest-value request).
 
-## 7. Natural population in the BNB CV (Task 12)
+## 7. Natural population in the BNB CV [measured]
 
-The earlier version of this note skipped this because the CAF "cannot identify the process". **That reason no longer holds**: the BNB CV merged CAFs also carry `GenieEvtRecTree`, so `genie_record_ancestry` can identify natural NC Delta -> N gamma events there. The count itself has **not** been made in this commit (it needs a 37,742-file truth scan) and, as instructed, it would be a cross-check only, not a signal-efficiency sample.
+The CV merged CAFs also carry `GenieEvtRecTree`, so the same ancestry test identifies natural NC Δ → Nγ there: **416 events** in the 500,000 stored CV events (242 Δ⁰ → nγ, 174 Δ⁺ → pγ), of which 117 have the vertex in the provisional TPC box. The like-for-like (TPC-box) rate is 430 ± 40 per 1e20 POT against 437.8 for the dedicated sample (ratio 0.98, 95 % CI 0.81–1.18, p = 0.89); shapes and fractions agree. See `NATURAL_NCDELTA_CV_CROSSCHECK.md`. This supports, but does not prove, that the dedicated sample is an unweighted filtered subset of the natural generation.
 
-## 8. gpVM
+## 8. Reproducing the numbers
 
-Not needed. (The commands originally listed here were replaced by the EAF procedure of §1.) Reproduce the SAM numbers with:
 
 ```bash
 env/sam_eaf.sh list-definition-files <definition> --summary

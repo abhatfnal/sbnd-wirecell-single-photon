@@ -97,7 +97,11 @@ def record_ancestry_jagged(records: dict, evtrec_idx) -> dict:
         raise IndexError(f"genie_evtrec_idx outside [0,{n_rec}) in the GenieEvtRecTree")
     cache, out = {}, {k: [] for k in ("is_delta_rad", "delta_pdg", "nucleon_pdg", "nucleon_status", "photon_e_gev", "via_photon", "int_type")}
     pdg, st, fm, fd, ld, p4, it = (records[k] for k in ("StdHepPdg", "StdHepStatus", "StdHepFm", "StdHepFd", "StdHepLd", "StdHepP4", "IntType"))
+    has_delta = ak.to_numpy(ak.any((abs(pdg) == 2114) | (abs(pdg) == 2214), axis=1)) if n_rec else np.zeros(0, bool)   # exact prefilter: no Delta0/+ in the record -> cannot qualify
+    none = dict(is_delta_rad=False, delta_pdg=0, nucleon_pdg=0, nucleon_status=-1, photon_e_gev=float("nan"), via_photon=False)
     for i in np.unique(flat):
+        if not has_delta[i]:
+            cache[int(i)] = none; continue
         e = ak.to_numpy(p4[i])[:, 3] if len(p4[i]) else np.zeros(0)
         cache[int(i)] = genie_record_ancestry(pdg[i].to_list(), st[i].to_list(), fm[i].to_list(), fd[i].to_list(), ld[i].to_list(), e)
     res = {k: [] for k in out}
@@ -158,6 +162,14 @@ def signal_truth(pdg, isnc, genie_mode, resnum, enu_gev, x, y, z, prim_pdg, prim
     if record is not None:                       # exact, filter-equivalent: NC and a Delta0/Delta+ -> photon chain in the GENIE record
         proxy = ak.fill_none((isnc == 1) & ak.Array(record["is_delta_rad"]), False)
     n_cand = ak.to_numpy(ak.sum(proxy, axis=1))
+    # PROVISIONAL deterministic event-level rule: among the qualifying neutrinos prefer those whose vertex lies in the filter box
+    # (the generated phase space; a qualifying neutrino outside it is a far rock interaction that can never be the TPC signal),
+    # then take the first by rec.mc.nu index. n_signal_nu_candidates keeps the total, n_signal_nu_in_box the in-box count.
+    in_box_nu = ak.fill_none(FILTER_BOX.contains(x, y, z), False)
+    qbox = proxy & in_box_nu
+    n_in_box = ak.to_numpy(ak.sum(qbox, axis=1))
+    use_box = ak.Array(n_in_box > 0)
+    proxy = ak.where(use_box, qbox, proxy)
     found = n_cand > 0
     nev = len(found)
     pick = ak.argmax(ak.values_astype(proxy, np.int8), axis=1, keepdims=True)    # first True (or 0 when none)
@@ -174,7 +186,7 @@ def signal_truth(pdg, isnc, genie_mode, resnum, enu_gev, x, y, z, prim_pdg, prim
         is_ncdelta_radiative=(found.astype(np.int8) if record is not None else np.full(nev, 1 if from_filter_stream else -1, dtype=np.int8)),
         is_ncdelta_rad_proxy=ak.to_numpy(ak.sum(proxy_only, axis=1) > 0),
         proxy_recovers_stream=(ak.to_numpy(ak.sum(proxy_only, axis=1) > 0) if from_filter_stream else np.zeros(nev, dtype=bool)),
-        n_signal_nu_candidates=n_cand.astype(np.int16),
+        n_signal_nu_candidates=n_cand.astype(np.int16), n_signal_nu_in_box=n_in_box.astype(np.int16),
         signal_nu_index=nu_index,
         delta_pdg=(sel(ak.Array(record["delta_pdg"]), 0).astype(np.int32) if record is not None else np.zeros(nev, dtype=np.int32)),
         decay_nucleon_pdg=(sel(ak.Array(record["nucleon_pdg"]), 0).astype(np.int32) if record is not None else np.zeros(nev, dtype=np.int32)),

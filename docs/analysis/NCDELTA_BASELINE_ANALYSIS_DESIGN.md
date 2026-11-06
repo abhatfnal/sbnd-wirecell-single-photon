@@ -12,9 +12,9 @@ Branch: `analysis/ncdelta-1g0p-1g1p-baseline-20261105` (from `main` @ `615fe56`)
 
 ## 1a. What can and cannot be established before the signal exists
 
-The official Gen2 NC-Δ merged-CAF evaluation sample **exists** as an official production (reco1 and flat-CAF SAM definitions `…_EX_ncdeltarad_v10_14_02_05_{reco1,flat_caf}_sbnd`, names as reported; not verified from EAF). What is **pending is its Wire-Cell processing / merged-CAF production by Haiwang**. It does **not** block the background framework.
+The official Gen2 NC-Δ radiative sample **exists at reco1 and flatCAF level and has been measured directly** (SAM definitions `…_EX_ncdeltarad_v10_14_02_05_{reco1,flat_caf}_sbnd`: 16,505 / 15,777 files, 14,442 / 13,773 events; all flatCAFs readable from EAF; `NCDELTA_GENERATOR_FILTER_AUDIT.md`). What is **missing is its Wire-Cell processing / `recTreeWireCell` merged-CAF production** (Haiwang). It does **not** block the background framework, and the truth side of the signal (denominator, topology, Δ ancestry) is already established without Wire-Cell.
 
-| can be completed now (official BNB CV, nueCC as control, beam-on/off shapes) | cannot be established until the official Gen2 NC-Δ sample exists |
+| can be completed now (official BNB CV, nueCC as control, beam-on/off shapes) | cannot be established until the official Gen2 NC-Δ Wire-Cell merged CAF exists |
 |---|---|
 | full BNB baseline cut-flow (candidate- and event-level) | NC-Δ signal efficiency |
 | reconstruction acceptance (`wc.valid`, candidate present) | truth 0p / 1p signal ↔ reco 0p / 1p migration |
@@ -35,7 +35,7 @@ Per Haiwang: official Gen2 samples on Fermilab are for **evaluation**; the isola
 |---|---|---|---|---|
 | Aurora isolated MC (incl. ~26.7k NC-Δ merged CAFs, 59-event study) | Aurora (stays there) | training / development / reconstruction studies | YES | NO (never the evaluation denominator) |
 | official Gen2 MC (`bnb_cv`, `nuecc`) | Fermilab dCache | physics evaluation (background) | NO | YES |
-| official Gen2 NC-Δ radiative MC (`official_gen2_ncdelta`) | official SAM definitions exist; Wire-Cell merged CAFs pending | physics evaluation (signal) | NO | YES (once its merged CAFs exist) |
+| official Gen2 NC-Δ radiative MC (`official_gen2_ncdelta`) | official flatCAF available; Wire-Cell merged CAFs pending | physics evaluation (signal) | NO | YES (reco side once its Wire-Cell merged CAFs exist; truth side available now) |
 | official / open data (`beam_on_open`, `beam_off`) | Fermilab dCache | validation | NO | YES (shape validation now) |
 
 Nothing is stated here about a future blinding policy beyond what is known. The registry records these roles (`configs/samples.yaml`: `role`, `may_train`, `may_evaluate`); no code path reads the Aurora sample.
@@ -78,7 +78,7 @@ scripts/        make_manifests, exposure_scan, smoke_test (software validation)
                 baseline_scan / baseline_report (full-sample candidate tables and cut-flow)
                 truth_match_scan / truth_audit_report / truth_taxonomy_audit (MC truth, evaluation only)
                 bdt_evaluability_report, vertex_sentinel_report, shape_plots
-tests/          40 tests (mocked arrays, synthetic local ROOT, candidate-policy bookkeeping; the tiny remote read is skipped without a valid token)
+tests/          63 tests (mocked arrays, synthetic local ROOT, candidate-policy bookkeeping; the tiny remote read is skipped without a valid token)
 ```
 
 ### CAF facts this design relies on (verified on EAF)
@@ -132,33 +132,46 @@ Required outputs, in order:
 
 Explicitly for this baseline: **the stored production SCN vertexer is used; no DV2-MAX; no Fix2 modification; no BDT retraining; no threshold optimisation.**
 
-## 7. Arrival checklist for the official Gen2 NC-Δ evaluation sample (`official_gen2_ncdelta`, status `wc_merged_caf_pending`)
+## 7. Checklist for the official Gen2 NC-Δ sample (`official_gen2_ncdelta`; flatCAF available, Wire-Cell merged CAF pending)
 
-The official reco1/flat-CAF sample exists; do not assume the merged CAFs exist until Haiwang publishes them. Do not add paths, counts, POT or provenance to `configs/samples.yaml` until each item is verified from the files or the producer. The Aurora sample (`aurora_ncdelta_training`) is never a substitute.
+The Aurora sample (`aurora_ncdelta_training`) is never a substitute. Add a merged-CAF path to `configs/samples.yaml` only when the merged files exist and each Wire-Cell item below is verified from the files or the producer.
 
-- [x] official SAM definitions (reco1 `…_EX_ncdeltarad_v10_14_02_05_reco1_sbnd`, flat CAF `…_flat_caf_sbnd`): **verified 2026-11-06 with `samweb -e sbnd` from EAF** (16,505 / 15,777 files, 14,442 / 13,773 events; pass fraction 7.0e-5 per generated event; see the NCDELTA_GENERATOR_FILTER_AUDIT §4);
-- [ ] production chain: the same merged-CAF Wire-Cell chain as `bnb_cv` / `nuecc` / `beam_off` / `beam_on_open`;
-- [ ] schema md5 (`recTreeWireCell_info.schema_md5`; `d4396a3490ea…` if produced like fg1) and branch count; presence of `T_truth_nu/pf/track`, `T_overlap`, `T_match`, `T_pf`;
-- [ ] WCT / toolkit commit and `Trun.wct_version` (this string was identical across builds in fg1/opendata, so also use the producer's record);
-- [ ] **`Trun.dl_weights`**, checked per file, and the stored vertexer. For a like-for-like baseline it should be the same uboone SCN `.pth` as the other official evaluation samples. If it is not (e.g. DV2-MAX or a vertex fix), **flag the reconstruction mismatch before using it**;
-- [ ] truth trees and `rec.mc.nu.*` fields usable for the Δ truth definition;
-- [ ] total **generated** events and **filter-passing** events (efficiency denominator);
-- [ ] POT / normalisation and what it physically represents for a dedicated radiative-Δ sample;
-- [ ] radiative-Δ generator and filter definition (how Δ → Nγ is produced, branching treatment);
-- [ ] representation of the Δ truth decay (parent/daughter links, `genie_mode`, `resnum`, `iscc/isnc`);
-- [ ] `wc.valid` count and per-file PARTIAL/EMPTY accounting;
-- [ ] exact manifest (and ADLER32 if files are copied anywhere).
+**Established directly (SAM, source, official flatCAFs; 2026-11-06):**
 
-## Phase 2 additions (local commit after `a2bcaa3`)
+- [x] official SAM definitions (reco1, flat CAF): 16,505 / 15,777 files, 14,442 / 13,773 events, `v10_14_02_05`, readable over XRootD from EAF;
+- [x] official flatCAF availability, locations (`/pnfs/sbn/data_add/...`) and per-file SAM metadata;
+- [x] truth trees: `recTree` truth and **`GenieEvtRecTree`** (full GENIE record, linked by `rec.mc.nu.genie_evtrec_idx`);
+- [x] generated-event / stored-event / POT accounting: SAM reco1 `mc.generated_event_count` 12,500 per unit, `mc.pot`; CAF `TotalGenEvents` (125 per file) is not the generated count; zero-survivor units exist as files; 728 units without flatCAF (`NCDELTA_GENERATOR_FILTER_AUDIT.md` §4);
+- [x] `NCDeltaRadiative` filter definition (sbncode v10_14_02_05 source);
+- [x] Δ ancestry and decay representation: Δ⁰ → nγ 7,599, Δ⁺ → pγ 6,174; decay before FSI (nucleon status 14); 13,773 / 13,773 events verified;
+- [x] signal truth proton census (35 MeV, provisional): 0p 6,501 / 1p 6,160 / ≥2p 1,112; vertex 100 % in the filter box, 90.2 % in the provisional TPC box;
+- [x] `(run, subrun, event)` unique over all stored events.
 
-* Official Gen2 NC-Δ generator/filter semantics and what the CAF can/cannot identify: `NCDELTA_GENERATOR_FILTER_AUDIT.md` (the official flatCAF could not be located from EAF; gpVM commands are in its §9; inspection script `scripts/inspect_official_ncdelta_caf.py`).
-* Truth proton categories (post-FSI primaries, KE > 35 MeV provisional): `TRUTH_PROTON_DEFINITION_AUDIT.md`; signal truth object and the efficiency denominator: `SIGNAL_TRUTH_AND_DENOMINATOR.md`; code `src/sbnd_single_photon/truth_signal.py` (works on a plain flatCAF, no Wire-Cell tree).
-* Derived BNB analysis table (outside Git) and its exact validation: `ANALYSIS_TABLE_VALIDATION.md`; baseline plots and the 1γ0p/1γ1p background characterisation: `BASELINE_1G0P_1G1P_BACKGROUND.md`.
-* Correction to this note's earlier wording: `rec.mc.nu.npizero` is *almost* always 0 (4 of 1,014 neutrinos), not always 0; the conclusion (count π⁰ from the primaries) is unchanged.
+**Pending, Wire-Cell specific (cannot be known before the merged production exists):**
 
-## Phase 2b correction (SAM from EAF; measured official sample)
+- [ ] exact merged manifest (and ADLER32 if files are copied anywhere);
+- [ ] `recTreeWireCell` schema md5 (`d4396a3490ea…` if produced like fg1) and branch count;
+- [ ] WCT / toolkit commit and `Trun.wct_version`;
+- [ ] **`Trun.dl_weights`** per file and the stored vertexer (same uboone SCN `.pth` as the other official samples; otherwise flag the reconstruction mismatch before use) and the SCN weights;
+- [ ] `wc.valid` accounting and per-file PARTIAL/EMPTY counts (the 6,626 empty flatCAFs need no processing);
+- [ ] `T_match` / `T_overlap` / `T_truth_nu/pf/track` / `T_pf` present and filled in the merged production;
+- [ ] the merged events keep the unique `(run, subrun, event)` identity.
 
-* **Correction:** Phase 2 said the official sample needed a gpVM. It does not: `samweb -e sbnd` works from EAF (`EAF_QUICKSTART.md` §10, `env/sam_eaf.sh`) and the official flatCAFs (15,777 files, 13,773 events, ΣTotalPOT 2.83853e21) open over XRootD. The registry now records `official_flatcaf_status: available`, `wirecell_merged_status: pending`.
-* The flatCAF carries `GenieEvtRecTree`; Delta ancestry is therefore **verified for all 13,773 events** (Delta0 -> n gamma 7,599; Delta+ -> p gamma 6,174; the Delta decays before FSI). The earlier statement that the CAF cannot identify the process was wrong for these files (true for `recTree` alone). `resnum == 0` holds for only 97.66 %: it is not a definition.
-* Denominator accounting must use SAM `mc.pot` / `mc.generated_event_count` (12,500 per unit), **not** the CAF `TotalGenEvents` (125 per file); zero-survivor units exist as files and carry POT; 728 of 16,505 reco1 units have no flatCAF. See `SIGNAL_TRUTH_AND_DENOMINATOR.md`.
-* Wire-Cell merged-CAF arrival checklist (§7): the official sample's events have unique (run, subrun, event) over the whole set (0 duplicates), but 60.7 % of events contain more than one true neutrino (the signal neutrino is identified through the GENIE record, 99.96 % uniquely).
+## Phase 2 status (current facts)
+
+* Official Gen2 NC-Δ generator/filter semantics, SAM access from EAF (`env/sam_eaf.sh`, `EAF_QUICKSTART.md` §10), direct measurements on all 15,777 flatCAFs, accounting: `NCDELTA_GENERATOR_FILTER_AUDIT.md`. `scripts/official_ncdelta_truth_scan.py`, `scripts/official_ncdelta_census_report.py`, `scripts/inspect_official_ncdelta_caf.py`.
+* Truth proton categories (post-FSI primaries, KE > 35 MeV provisional): `TRUTH_PROTON_DEFINITION_AUDIT.md`; signal truth object and efficiency denominator: `SIGNAL_TRUTH_AND_DENOMINATOR.md`; code `src/sbnd_single_photon/truth_signal.py` (works on a plain flatCAF, no Wire-Cell tree).
+* The flatCAF (and the BNB CV merged CAFs) carry `GenieEvtRecTree`; Δ ancestry is verified for all 13,773 stored events and the signal neutrino is identified through the record. `resnum == 0` holds for only 97.66 % and is not a definition. `rec.mc.nu.npizero` is almost always 0 (11 of 25,608 neutrinos), so π⁰ is counted from the primaries.
+* Denominator accounting uses SAM `mc.pot` / `mc.generated_event_count`, not the CAF `TotalGenEvents`; see `SIGNAL_TRUTH_AND_DENOMINATOR.md`.
+* Derived BNB analysis table (outside Git) and its exact validation: `ANALYSIS_TABLE_VALIDATION.md`; baseline plots and 1γ0p/1γ1p background characterisation: `BASELINE_1G0P_1G1P_BACKGROUND.md`.
+
+## Signal/background bookkeeping (no double counting)
+
+The inclusive BNB CV contains **naturally generated NC Δ → Nγ events** (identified exactly with the GENIE record; `NATURAL_NCDELTA_CV_CROSSCHECK.md`). When the dedicated official NC-Δ sample is later used to obtain the high-statistics signal efficiency and the expected signal yield, **do not simply add "dedicated NC-Δ signal + full BNB CV"**: that counts the NC-Δ component already present in the CV twice.
+
+The future physical prediction must use a consistent scheme, for example:
+
+* **S** = the dedicated NC-Δ sample normalised to the physical POT (N_signal_truth / POT_dedicated × POT_data, `SIGNAL_TRUTH_AND_DENOMINATOR.md`);
+* **B** = the BNB CV **with its true NC Δ → Nγ interactions removed** (event key `(file_index/source_file, run, subrun, evt)`; the natural-signal event list is `tables/natural_ncdelta/natural_signal_events_bnb_cv.csv`), plus beam-off for cosmic-only backgrounds;
+
+or an equivalent, statistically correct scheme. Care is needed with events that contain a natural signal neutrino **and** other interactions (60 % of CV events have several neutrinos): the removal is per signal *interaction*, so a CV event whose selected candidate belongs to a different neutrino still counts as background for that candidate. Candidate-to-neutrino matching (`wc.T_overlap` / `T_match`) will be required to do this properly, and is evaluation-only, never used to choose candidates. **No final weighting is implemented here.** The natural-CV count is also an independent normalisation cross-check of the dedicated sample (rate per POT of signal in the TPC).
