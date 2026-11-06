@@ -1,0 +1,449 @@
+{
+ "label": "natural_bnb_cv",
+ "n_signal_events_all": 416,
+ "n_in_region": 117,
+ "tol_cm": 5.0,
+ "proton_threshold_mev": 35.0,
+ "truth_denominator": {
+  "0p": 59,
+  "1p": 46,
+  ">=2p": 12
+ },
+ "cutflow_A_any": {
+  "truth_denominator": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "wc_valid": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "candidate": {
+   "all": 105,
+   "0p": 52,
+   "1p": 42,
+   ">=2p": 11
+  },
+  "n20mev": {
+   "all": 70,
+   "0p": 36,
+   "1p": 27,
+   ">=2p": 7
+  },
+  "bdt_evaluable": {
+   "all": 70,
+   "0p": 36,
+   "1p": 27,
+   ">=2p": 7
+  },
+  "numu": {
+   "all": 47,
+   "0p": 18,
+   "1p": 23,
+   ">=2p": 6
+  },
+  "other": {
+   "all": 31,
+   "0p": 9,
+   "1p": 17,
+   ">=2p": 5
+  },
+  "ncpi0": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "nue": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "n20br1": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "final": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  }
+ },
+ "cutflow_B_any": {
+  "truth_denominator": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "wc_valid": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "candidate": {
+   "all": 103,
+   "0p": 51,
+   "1p": 41,
+   ">=2p": 11
+  },
+  "truth_matched_candidate": {
+   "all": 103,
+   "0p": 51,
+   "1p": 41,
+   ">=2p": 11
+  },
+  "n20mev": {
+   "all": 69,
+   "0p": 36,
+   "1p": 26,
+   ">=2p": 7
+  },
+  "bdt_evaluable": {
+   "all": 69,
+   "0p": 36,
+   "1p": 26,
+   ">=2p": 7
+  },
+  "numu": {
+   "all": 46,
+   "0p": 18,
+   "1p": 22,
+   ">=2p": 6
+  },
+  "other": {
+   "all": 31,
+   "0p": 9,
+   "1p": 17,
+   ">=2p": 5
+  },
+  "ncpi0": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "nue": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "n20br1": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  },
+  "final": {
+   "all": 13,
+   "0p": 4,
+   "1p": 8,
+   ">=2p": 1
+  }
+ },
+ "cutflow_A_first": {
+  "truth_denominator": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "wc_valid": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "candidate": {
+   "all": 105,
+   "0p": 52,
+   "1p": 42,
+   ">=2p": 11
+  },
+  "n20mev": {
+   "all": 69,
+   "0p": 35,
+   "1p": 27,
+   ">=2p": 7
+  },
+  "bdt_evaluable": {
+   "all": 69,
+   "0p": 35,
+   "1p": 27,
+   ">=2p": 7
+  },
+  "numu": {
+   "all": 46,
+   "0p": 18,
+   "1p": 22,
+   ">=2p": 6
+  },
+  "other": {
+   "all": 30,
+   "0p": 9,
+   "1p": 16,
+   ">=2p": 5
+  },
+  "ncpi0": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "nue": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "n20br1": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "final": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  }
+ },
+ "cutflow_B_first": {
+  "truth_denominator": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "wc_valid": {
+   "all": 117,
+   "0p": 59,
+   "1p": 46,
+   ">=2p": 12
+  },
+  "candidate": {
+   "all": 100,
+   "0p": 49,
+   "1p": 40,
+   ">=2p": 11
+  },
+  "truth_matched_candidate": {
+   "all": 100,
+   "0p": 49,
+   "1p": 40,
+   ">=2p": 11
+  },
+  "n20mev": {
+   "all": 67,
+   "0p": 35,
+   "1p": 25,
+   ">=2p": 7
+  },
+  "bdt_evaluable": {
+   "all": 67,
+   "0p": 35,
+   "1p": 25,
+   ">=2p": 7
+  },
+  "numu": {
+   "all": 45,
+   "0p": 18,
+   "1p": 21,
+   ">=2p": 6
+  },
+  "other": {
+   "all": 30,
+   "0p": 9,
+   "1p": 16,
+   ">=2p": 5
+  },
+  "ncpi0": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "nue": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "n20br1": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  },
+  "final": {
+   "all": 12,
+   "0p": 4,
+   "1p": 7,
+   ">=2p": 1
+  }
+ },
+ "efficiency_crosscheck": [
+  {
+   "policy": "any",
+   "truth_class": "total",
+   "selected": 13,
+   "truth": 117,
+   "efficiency": 0.1111,
+   "lo68": 0.0816,
+   "hi68": 0.1482
+  },
+  {
+   "policy": "any",
+   "truth_class": "0p",
+   "selected": 4,
+   "truth": 59,
+   "efficiency": 0.0678,
+   "lo68": 0.0356,
+   "hi68": 0.1182
+  },
+  {
+   "policy": "any",
+   "truth_class": "1p",
+   "selected": 8,
+   "truth": 46,
+   "efficiency": 0.1739,
+   "lo68": 0.116,
+   "hi68": 0.2485
+  },
+  {
+   "policy": "any",
+   "truth_class": ">=2p",
+   "selected": 1,
+   "truth": 12,
+   "efficiency": 0.0833,
+   "lo68": 0.0143,
+   "hi68": 0.2499
+  },
+  {
+   "policy": "first",
+   "truth_class": "total",
+   "selected": 12,
+   "truth": 117,
+   "efficiency": 0.1026,
+   "lo68": 0.0741,
+   "hi68": 0.1388
+  },
+  {
+   "policy": "first",
+   "truth_class": "0p",
+   "selected": 4,
+   "truth": 59,
+   "efficiency": 0.0678,
+   "lo68": 0.0356,
+   "hi68": 0.1182
+  },
+  {
+   "policy": "first",
+   "truth_class": "1p",
+   "selected": 7,
+   "truth": 46,
+   "efficiency": 0.1522,
+   "lo68": 0.0978,
+   "hi68": 0.2245
+  },
+  {
+   "policy": "first",
+   "truth_class": ">=2p",
+   "selected": 1,
+   "truth": 12,
+   "efficiency": 0.0833,
+   "lo68": 0.0143,
+   "hi68": 0.2499
+  }
+ ],
+ "delta_topology_any_truth_all_events": {
+  "Delta0 -> n gamma": {
+   "0p": 44,
+   "1p": 14,
+   ">=2p": 7,
+   "total": 65
+  },
+  "Delta+ -> p gamma": {
+   "0p": 15,
+   "1p": 32,
+   ">=2p": 5,
+   "total": 52
+  }
+ },
+ "delta_topology_any_reco_matched_candidate_stage": {
+  "Delta0 -> n gamma": {
+   "0p": 38,
+   "1p": 16,
+   ">=2p": 3,
+   "total": 57
+  },
+  "Delta+ -> p gamma": {
+   "0p": 16,
+   "1p": 24,
+   ">=2p": 6,
+   "total": 46
+  }
+ },
+ "delta_topology_any_reco_final_selected_stage": {
+  "Delta0 -> n gamma": {
+   "0p": 5,
+   "1p": 0,
+   ">=2p": 0,
+   "total": 5
+  },
+  "Delta+ -> p gamma": {
+   "0p": 2,
+   "1p": 6,
+   ">=2p": 0,
+   "total": 8
+  }
+ },
+ "selected_any": {
+  "n": 13,
+  "reco_channel": {
+   "1g0p": 7,
+   "1g1p": 6
+  },
+  "truth": {
+   "1p": 8,
+   "0p": 4,
+   ">=2p": 1
+  },
+  "n_selected_candidate_not_signal_matched": 0,
+  "n_events_multiple_passing": 0
+ },
+ "final_any": {
+  "total": 13,
+  "0p": 4,
+  "1p": 8,
+  ">=2p": 1,
+  "reco": {
+   "0p": 7,
+   "1p": 6,
+   ">=2p": 0
+  }
+ },
+ "final_first": {
+  "total": 12,
+  "0p": 4,
+  "1p": 7,
+  ">=2p": 1,
+  "reco": {
+   "0p": 7,
+   "1p": 5,
+   ">=2p": 0
+  }
+ },
+ "all_signal_events_any_final": 14
+}

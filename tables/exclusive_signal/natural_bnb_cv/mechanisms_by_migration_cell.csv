@@ -1,0 +1,13 @@
+truth,reco,events,note,rp_primary_signal_events,rp_primary_signal_rows,rp_secondary_signal_events,rp_secondary_signal_rows,rp_signal_other_pdg_events,rp_signal_other_pdg_rows,rp_other_neutrino_events,rp_other_neutrino_rows,rp_unmatched_events,rp_unmatched_rows,rp_leftover_shower_inc3_events,rp_leftover_shower_inc3_rows,rp_truth_ke_below_thr_events,rp_truth_ke_below_thr_rows,tp_found_proton_events,tp_found_proton_rows,tp_row_proton_below_thr_events,tp_row_proton_below_thr_rows,tp_row_other_pid_events,tp_row_other_pid_rows,tp_no_row_events,tp_no_row_rows
+0p,no candidate,8,signal candidate absent (no candidate or none truth-matched),,,,,,,,,,,,,,,,,,,,,,
+0p,0p,34,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+0p,1p,15,,3.0,3.0,4.0,4.0,7.0,7.0,0.0,0.0,0.0,0.0,5.0,5.0,3.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+0p,>=2p,2,,1.0,1.0,1.0,2.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+1p,no candidate,5,signal candidate absent (no candidate or none truth-matched),,,,,,,,,,,,,,,,,,,,,,
+1p,0p,13,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,2.0,4.0,4.0,7.0,7.0
+1p,1p,23,,18.0,18.0,2.0,2.0,3.0,3.0,0.0,0.0,0.0,0.0,3.0,3.0,0.0,0.0,18.0,18.0,0.0,0.0,3.0,3.0,2.0,2.0
+1p,>=2p,5,,3.0,3.0,3.0,5.0,2.0,2.0,0.0,0.0,1.0,1.0,1.0,1.0,0.0,0.0,3.0,3.0,0.0,0.0,1.0,1.0,1.0,1.0
+>=2p,no candidate,1,signal candidate absent (no candidate or none truth-matched),,,,,,,,,,,,,,,,,,,,,,
+>=2p,0p,7,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,4.0,7.0,12.0
+>=2p,1p,2,,2.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,2.0,2.0,0.0,0.0,1.0,1.0,1.0,1.0
+>=2p,>=2p,2,,2.0,5.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,4.0,0.0,0.0,0.0,0.0,2.0,2.0

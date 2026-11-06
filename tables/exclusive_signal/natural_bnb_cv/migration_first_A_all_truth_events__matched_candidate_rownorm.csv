@@ -1,0 +1,4 @@
+,reco 0p,reco 1p,reco >=2p,no candidate/unreco
+truth 0p,0.5593,0.2373,0.0339,0.1695
+truth 1p,0.2826,0.4783,0.1087,0.1304
+truth >=2p,0.5833,0.1667,0.1667,0.0833

@@ -1,0 +1,12 @@
+reason,all,0p,1p,>=2p
+wc_invalid,0,0,0,0
+no_candidate,12,7,4,1
+no_truth_matched_candidate,5,3,2,0
+no_20mev_shower,33,14,15,4
+bdt_not_evaluable,0,0,0,0
+fail_numu,22,17,4,1
+fail_other,15,9,5,1
+fail_ncpi0,18,5,9,4
+fail_nue,0,0,0,0
+fail_n20br1,0,0,0,0
+selected,12,4,7,1

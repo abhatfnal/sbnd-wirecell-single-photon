@@ -79,3 +79,16 @@ def classify_selected_events(selected: pd.DataFrame, sig_nu: pd.DataFrame, *, to
     g["event_class"] = np.where(g.n_signal_matched == 0, "background",
                                 np.where(g.n_signal_matched == g.n_pass, "signal_like", "mixed"))
     return g
+
+
+def to_signal_truth_table(sig_nu: pd.DataFrame, box: ActiveVolume | None = None) -> pd.DataFrame:
+    """Natural-CV signal neutrinos -> the sample-agnostic ``sig`` table of ``exclusive_signal`` (one row per event).
+
+    The signal interaction of an event follows ``select_signal_neutrino`` (in-filter-box preferred, then lowest index); ``in_region`` is the
+    PROVISIONAL truth region (default: the provisional active-TPC box; a parameter, not an FV); ``truth_cat`` = min(post-FSI primary
+    protons above 35 MeV, 2)."""
+    box = box or ActiveVolume()
+    s = select_signal_neutrino(sig_nu.rename(columns={"k": "nu_k"}) if "k" in sig_nu else sig_nu)
+    s["in_region"] = box.contains(s.x.values, s.y.values, s.z.values)
+    s["truth_cat"] = np.minimum(s.n_p35.values, 2).astype(int)
+    return s

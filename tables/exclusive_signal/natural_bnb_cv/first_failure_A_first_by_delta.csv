@@ -1,0 +1,11 @@
+reason,all,Delta0_to_ngamma,Delta+_to_pgamma
+wc_invalid,0,0,0
+no_candidate,12,7,5
+no_20mev_shower,36,23,13
+bdt_not_evaluable,0,0,0
+fail_numu,23,14,9
+fail_other,16,10,6
+fail_ncpi0,18,6,12
+fail_nue,0,0,0
+fail_n20br1,0,0,0
+selected,12,5,7

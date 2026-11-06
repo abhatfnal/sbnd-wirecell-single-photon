@@ -1,0 +1,22 @@
+variable,label,population,n_signal,n_bkg,sig_q5,sig_q25,sig_q50,sig_q75,sig_q95,bkg_q5,bkg_q25,bkg_q50,bkg_q75,bkg_q95,ks_D,ks_p
+c_score_numu,BDT numu,bdt_evaluable_candidates,69,50872,-0.9385,0.1766,0.8966,0.9799,0.9962,-1.0,-0.9999,-0.9616,0.2799,0.9834,0.5381,0.0
+c_score_other,BDT other,bdt_evaluable_candidates,69,50872,-0.9838,-0.5876,0.0613,0.7968,0.9544,-0.9993,-0.9858,-0.8131,0.1401,0.9215,0.3716,0.0
+c_score_ncpi0,BDT ncpi0,bdt_evaluable_candidates,69,50872,-0.9606,-0.6992,-0.3635,0.2651,0.7364,-0.9832,-0.8499,-0.368,0.3076,0.7812,0.1156,0.292
+c_score_nue,BDT nue,bdt_evaluable_candidates,69,50872,-0.995,-0.9678,-0.8212,-0.298,0.9412,-0.9972,-0.9344,-0.6145,0.1993,0.8354,0.147,0.0913
+c_shw_sp_n_20mev_showers,n showers >20 MeV,bdt_evaluable_candidates,69,50872,1.0,1.0,1.0,2.0,3.0,1.0,1.0,1.0,2.0,3.0,0.063,0.931
+c_shw_sp_n_20br1_showers,n 20br1 showers,bdt_evaluable_candidates,69,50872,1.0,1.0,1.0,2.0,3.0,1.0,1.0,1.0,2.0,3.0,0.0791,0.7506
+c_shw_sp_energy,main shower E [MeV],bdt_evaluable_candidates,69,50872,23.8932,97.9532,190.7426,301.8453,541.0545,23.9261,42.3298,82.0463,174.7175,483.7739,0.3546,0.0
+c_kine_reco_Enu,reco E_nu [MeV],bdt_evaluable_candidates,69,50872,195.5696,356.288,451.705,605.2722,919.2612,133.6582,383.0835,631.994,974.8802,1705.6683,0.3052,0.0
+c_lead_proton_ke_mev,leading proton KE [MeV] (np35>0),bdt_evaluable_candidates,30,25184,50.2518,84.8781,117.4315,206.899,378.0595,64.6131,98.9519,152.6947,234.947,407.675,0.1901,0.2007
+c_np35,reco protons >35 MeV,bdt_evaluable_candidates,69,50872,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,1.0,2.0,0.1012,0.4501
+c_kine_nu_x_corr,reco vtx x,bdt_evaluable_candidates,69,50872,-159.7149,-80.0984,15.4386,95.4824,168.3097,-182.3863,-105.8674,-19.1136,69.4011,170.1341,0.1326,0.1616
+c_kine_nu_y_corr,reco vtx y,bdt_evaluable_candidates,69,50872,-163.5725,-48.8486,37.0984,116.3083,171.8608,-176.7671,-90.4409,3.9283,97.6138,180.2911,0.1235,0.2237
+c_kine_nu_z_corr,reco vtx z,bdt_evaluable_candidates,69,50872,69.8605,145.8839,277.9529,374.78,468.9864,12.0363,102.4748,229.5483,360.8209,468.9231,0.1431,0.107
+c_flash_time_us,flash time [us],bdt_evaluable_candidates,69,50872,0.2689,0.538,0.97,1.3521,1.6806,0.28,0.5882,0.9724,1.3533,1.6596,0.0652,0.9125
+c_shw_sp_shw_vtx_dis,shw_vtx_dis,bdt_evaluable_candidates,69,50872,0.0,0.0,0.0,6.0469,31.255,0.0,0.0,1.6773,26.9542,168.2921,0.2307,0.001
+c_shw_sp_min_dis,shw min_dis,bdt_evaluable_candidates,69,50872,4.3405,6.7096,12.7023,1000.0,1000.0,3.4205,14.1586,1000.0,1000.0,1000.0,0.3681,0.0
+c_shw_sp_max_shw_dis,shw max_shw_dis,bdt_evaluable_candidates,69,50872,0.0,0.0,6.0465,36.1887,129.539,0.0,0.0,16.6916,55.2578,197.2082,0.1788,0.0211
+c_shw_sp_angle_beam,shw angle_beam,bdt_evaluable_candidates,69,50872,18.1093,35.3386,48.4011,96.4819,153.9152,15.7062,38.6428,63.7404,90.1192,141.8466,0.1718,0.03
+c_shw_sp_lowest_dQ_dx,lowest dQ/dx (<50),bdt_evaluable_candidates,56,44963,-0.0608,0.3485,0.7091,0.8825,1.1649,-0.0898,0.3907,0.6712,0.8747,1.1703,0.078,0.8584
+c_shw_sp_medium_dQ_dx,medium dQ/dx (<50),bdt_evaluable_candidates,69,50870,0.6937,1.0072,1.2589,1.97,2.8237,0.6103,1.0077,1.1879,1.7266,2.8784,0.1062,0.391
+c_shw_sp_highest_dQ_dx,highest dQ/dx (<50),bdt_evaluable_candidates,69,50871,0.0,0.9909,1.1837,1.4352,1.8562,0.0,1.0329,1.2346,1.4677,2.1668,0.1249,0.2135

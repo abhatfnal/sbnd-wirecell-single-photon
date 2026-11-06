@@ -165,6 +165,8 @@ The Aurora sample (`aurora_ncdelta_training`) is never a substitute. Add a merge
 * Denominator accounting uses SAM `mc.pot` / `mc.generated_event_count`, not the CAF `TotalGenEvents`; see `SIGNAL_TRUTH_AND_DENOMINATOR.md`.
 * Derived BNB analysis table (outside Git) and its exact validation: `ANALYSIS_TABLE_VALIDATION.md`; baseline plots and 1γ0p/1γ1p background characterisation: `BASELINE_1G0P_1G1P_BACKGROUND.md`.
 
+* Exclusive 0p/1p/≥2p characterisation of the frozen baseline (natural-signal rehearsal; official-sample drop-in): `EXCLUSIVE_SIGNAL_BASELINE_REHEARSAL.md`, `OFFICIAL_SIGNAL_WC_ARRIVAL_RUNBOOK.md`; code `exclusive_signal.py`.
+
 ## Signal/background bookkeeping (no double counting)
 
 The inclusive BNB CV contains **naturally generated NC Δ → Nγ events** (identified exactly with the GENIE record; `NATURAL_NCDELTA_CV_CROSSCHECK.md`). The dedicated official NC-Δ sample will give the high-statistics signal efficiency and yield; **"dedicated signal + full CV" would count the CV's natural signal twice**.
