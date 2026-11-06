@@ -111,4 +111,30 @@ python scripts/bdt_evaluability_report.py bnb_cv nuecc beam_off beam_on_open
 python scripts/shape_plots.py                             # SHAPE ONLY plots in plots/baseline_shapes
 ```
 
-Do not chain a `pkill -f` whose pattern also appears in your own command line (it kills the shell). The `official_gen2_ncdelta` sample is `wc_merged_caf_pending` (the official reco1/flat-CAF sample exists; only its Wire-Cell merged-CAF production is pending); nothing in these scripts reads it.
+Do not chain a `pkill -f` whose pattern also appears in your own command line (it kills the shell). The `official_gen2_ncdelta` sample: its official reco1/flatCAF files exist, are listed in SAM and are readable from EAF (section 10); only its Wire-Cell merged-CAF production is pending, so the merged-CAF scripts above do not read it.
+
+## 10. SAM (samweb) from EAF — no gpVM needed
+
+`samweb` is the UPS product `sam_web_client` in the SBND CVMFS tree. It does **not** need a gpVM, a pip install, or a change to the conda environment:
+
+```bash
+kinit <user>@FNAL.GOV                                                 # Kerberos ticket (once per session)
+source /cvmfs/sbnd.opensciencegrid.org/products/sbnd/setup_sbnd.sh    # prints a harmless "Product 'mrb' has no current chain"
+setup sam_web_client
+samweb -e sbnd server-info                                            # -e sbnd is required; shows "Authenticated username"
+samweb -e sbnd list-definition-files <definition> --summary
+samweb -e sbnd list-file-locations --dim "defname: <definition>"      # one location per file, in one call
+samweb -e sbnd get-metadata --json <file> [<file> ...]                # bulk; mc.pot, event_count, parents, fcl, version
+samweb -e sbnd file-lineage parents <file>
+```
+
+Do this in a **separate subshell** from the conda analysis shell. In a clean shell the `setup` function is not defined until the Fermilab bootstrap is sourced (`source /cvmfs/fermilab.opensciencegrid.org/products/common/etc/setups.sh`), so the repository provides a wrapper that does all of it in an `env -i` subshell and touches nothing else:
+
+```bash
+env/sam_eaf.sh server-info
+env/sam_eaf.sh list-definition-files aurora_SBND2026A_gen2_BNBLight_prodgenie_corsika_proton_rockbox0p1_sbnd_EX_ncdeltarad_v10_14_02_05_flat_caf_sbnd --summary
+```
+
+SAM locations of the official Gen2 samples are under `/pnfs/sbn/data_add/...` (**`sbn`**, not `sbnd`). `/pnfs` need not be mounted: `xrd.to_xrootd_url(path)` maps `/pnfs/sbn/x` to `root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/x`, which opens with the same bearer token (`source env/setup_eaf.sh`). SAM is used read-only; never create or modify definitions from here. Large file lists go under `$SP_DATA/sam/`, not into Git.
+
+Official NC-Delta truth census: `python scripts/official_ncdelta_truth_scan.py scan --workers 24` (≈ 18 min, 15,777 files), `... merge`, `python scripts/official_ncdelta_census_report.py` (see `NCDELTA_GENERATOR_FILTER_AUDIT.md` §4-§5).

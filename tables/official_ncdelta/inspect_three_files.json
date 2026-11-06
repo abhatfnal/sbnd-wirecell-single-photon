@@ -1,0 +1,283 @@
+[
+  {
+    "url": "root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/000011/caf/subrun_011641/reco2-reco1-detsim-g4-filter-gen-2483-4161-1955-eda8_ncdeltarad.flat.caf.root",
+    "trees": [
+      "GenieEvtRecTree",
+      "TotalEvents",
+      "TotalGenEvents",
+      "TotalPOT",
+      "env",
+      "globalTree",
+      "globalTree",
+      "metadata",
+      "recTree"
+    ],
+    "has_recTreeWireCell": false,
+    "n_events": 1,
+    "missing_truth_branches": [],
+    "has_prefsi": false,
+    "TotalPOT": 1.803293449515728e+17,
+    "TotalGenEvents": 125.0,
+    "TotalEvents": 1.0,
+    "n_events_read": 1,
+    "proxy_recovers_stream": 1,
+    "proxy_recovery_fraction": 1.0,
+    "n_nu_per_event": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "proxy_candidates_hist": [
+      0,
+      1
+    ],
+    "true_proton_category_counts": {
+      "none": 0,
+      "0p": 0,
+      "1p": 1,
+      "ge2p": 0
+    },
+    "photon_energy_mev_quantiles": [
+      177.7,
+      177.7,
+      177.7,
+      177.7,
+      177.7
+    ],
+    "vtx_in_filter_box_frac": 1.0,
+    "genie_mode_of_proxy": [
+      1
+    ],
+    "field_check": {
+      "rec.mc.nu.prim.gstatus": {
+        "n": 39,
+        "min": -1.0,
+        "max": -1.0,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.genweight": {
+        "n": 3,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.prim.startE": {
+        "n": 39,
+        "min": -9999.0,
+        "max": 1.3399453163146973,
+        "frac_sentinel_or_zero": 0.8717948717948718
+      },
+      "rec.mc.nu.nproton": {
+        "n": 3,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.npizero": {
+        "n": 3,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.imp_weight": {
+        "n": 3,
+        "min": 0.10691966116428375,
+        "max": 1.0,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.prim.contained": {
+        "n": 39,
+        "min": 0.0,
+        "max": 1.0,
+        "frac_sentinel_or_zero": 0.8974358974358975
+      }
+    }
+  },
+  {
+    "url": "root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/caf/000002/000021/reco2-reco1-detsim-g4-filter-gen-d694-6646-2812-0d8d_ncdeltarad.flat.caf.root",
+    "trees": [
+      "GenieEvtRecTree",
+      "TotalEvents",
+      "TotalGenEvents",
+      "TotalPOT",
+      "env",
+      "globalTree",
+      "globalTree",
+      "metadata",
+      "recTree"
+    ],
+    "has_recTreeWireCell": false,
+    "n_events": 1,
+    "missing_truth_branches": [],
+    "has_prefsi": false,
+    "TotalPOT": 1.7906810645562787e+17,
+    "TotalGenEvents": 125.0,
+    "TotalEvents": 1.0,
+    "n_events_read": 1,
+    "proxy_recovers_stream": 1,
+    "proxy_recovery_fraction": 1.0,
+    "n_nu_per_event": [
+      0,
+      1
+    ],
+    "proxy_candidates_hist": [
+      0,
+      1
+    ],
+    "true_proton_category_counts": {
+      "none": 0,
+      "0p": 0,
+      "1p": 1,
+      "ge2p": 0
+    },
+    "photon_energy_mev_quantiles": [
+      343.0,
+      343.0,
+      343.0,
+      343.0,
+      343.0
+    ],
+    "vtx_in_filter_box_frac": 1.0,
+    "genie_mode_of_proxy": [
+      1
+    ],
+    "field_check": {
+      "rec.mc.nu.prim.gstatus": {
+        "n": 4,
+        "min": -1.0,
+        "max": -1.0,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.genweight": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.prim.startE": {
+        "n": 4,
+        "min": 0.34301072359085083,
+        "max": 1.0651683807373047,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.nproton": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.npizero": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.imp_weight": {
+        "n": 1,
+        "min": 0.053840767592191696,
+        "max": 0.053840767592191696,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.prim.contained": {
+        "n": 4,
+        "min": 0.0,
+        "max": 1.0,
+        "frac_sentinel_or_zero": 0.25
+      }
+    }
+  },
+  {
+    "url": "root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/caf/000006/000061/reco2-reco1-detsim-g4-filter-gen-038a-9b60-611f-bf33_ncdeltarad.flat.caf.root",
+    "trees": [
+      "GenieEvtRecTree",
+      "TotalEvents",
+      "TotalGenEvents",
+      "TotalPOT",
+      "env",
+      "globalTree",
+      "globalTree",
+      "metadata",
+      "recTree"
+    ],
+    "has_recTreeWireCell": false,
+    "n_events": 1,
+    "missing_truth_branches": [],
+    "has_prefsi": false,
+    "TotalPOT": 1.81428824039177e+17,
+    "TotalGenEvents": 125.0,
+    "TotalEvents": 1.0,
+    "n_events_read": 1,
+    "proxy_recovers_stream": 1,
+    "proxy_recovery_fraction": 1.0,
+    "n_nu_per_event": [
+      0,
+      1
+    ],
+    "proxy_candidates_hist": [
+      0,
+      1
+    ],
+    "true_proton_category_counts": {
+      "none": 0,
+      "0p": 0,
+      "1p": 0,
+      "ge2p": 1
+    },
+    "photon_energy_mev_quantiles": [
+      895.1,
+      895.1,
+      895.1,
+      895.1,
+      895.1
+    ],
+    "vtx_in_filter_box_frac": 1.0,
+    "genie_mode_of_proxy": [
+      1
+    ],
+    "field_check": {
+      "rec.mc.nu.prim.gstatus": {
+        "n": 14,
+        "min": -1.0,
+        "max": -1.0,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.genweight": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.prim.startE": {
+        "n": 14,
+        "min": 0.007353028282523155,
+        "max": 1.0485420227050781,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.nproton": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.npizero": {
+        "n": 1,
+        "min": 0.0,
+        "max": 0.0,
+        "frac_sentinel_or_zero": 1.0
+      },
+      "rec.mc.nu.imp_weight": {
+        "n": 1,
+        "min": 0.017222857102751732,
+        "max": 0.017222857102751732,
+        "frac_sentinel_or_zero": 0.0
+      },
+      "rec.mc.nu.prim.contained": {
+        "n": 14,
+        "min": 0.0,
+        "max": 1.0,
+        "frac_sentinel_or_zero": 0.07142857142857142
+      }
+    }
+  }
+]

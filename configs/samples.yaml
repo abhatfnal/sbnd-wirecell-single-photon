@@ -79,19 +79,39 @@ samples:
   # Dataset roles (Haiwang): official Gen2 samples on Fermilab = EVALUATION; Aurora isolated samples = training/development.
   official_gen2_ncdelta:
     role: signal_evaluation
-    status: wc_merged_caf_pending
+    # `status` keeps merged-CAF code paths SAFE: only "available" enables manifest readers, and there is NO Wire-Cell merged CAF yet.
+    status: official_flatcaf_only
+    official_flatcaf_status: available        # VERIFIED 2026-11-06: SAM definitions evaluate; files open from EAF over XRootD
+    wirecell_merged_status: pending           # recTreeWireCell merging not yet done (Haiwang); no merged path exists, none is recorded
     may_train: false
     may_evaluate: true
-    # The official Gen2 NC-Delta radiative sample EXISTS (names as reported by the analyser from the official production;
-    # not verified from EAF, no samweb here). No file paths, event counts, POT or schema are recorded: none is verified.
+    # ---- everything below was MEASURED (SAM via env/sam_eaf.sh; full truth census of all flatCAFs), 2026-11-06 ----
     official_sam_definitions:
       reco1: aurora_SBND2026A_gen2_BNBLight_prodgenie_corsika_proton_rockbox0p1_sbnd_EX_ncdeltarad_v10_14_02_05_reco1_sbnd
       flat_caf: aurora_SBND2026A_gen2_BNBLight_prodgenie_corsika_proton_rockbox0p1_sbnd_EX_ncdeltarad_v10_14_02_05_flat_caf_sbnd
+    sam:
+      definition_flat_caf_id: 177787
+      created_by: sbndpro, 2026-05-26
+      software: {application: art sbndcode, version: v10_14_02_05, flatcaf_fcl: cafmakerjob_sbnd_sce_systtools_and_fluxwgt_and_g4rw.fcl, reco1_fcl: standard_reco1_sbnd.fcl}
+      production: {name: Exclusive, type: aurora, project: SBND2026A_gen2_BNBLight}
+      locations: "enstore:/pnfs/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/... (one location per file; dCache path /pnfs/sbn/..., NOT /pnfs/sbnd/)"
+      xrootd: "root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/... (xrd.to_xrootd_url maps it cleanly; files open from EAF, no staging delay observed)"
+      reco1: {files: 16505, events: 14442, zero_event_files: 6923, size_bytes: 421918746965, mc_generated_event_count_per_file: 12500, sum_generated_events: 206312500, sum_mc_pot: 2.9696990390e21}
+      flat_caf: {files: 15777, events: 13773, zero_event_files: 6626, size_bytes: 39904243228, sum_mc_pot: 2.83853154e21}
+      reco1_files_without_flatcaf_child: {files: 728, events: 669, pot: 1.3116750e20, generated_events: 9100000}
+      filenames_outside_git: "$SP_DATA/sam/official_gen2_ncdelta_{flatcaf,reco1}.files.txt, ..flatcaf.locations.txt, ..meta.csv.gz"
+    flatcaf_census:     # tables/official_ncdelta/official_ncdelta_census.json; truth only, no Wire-Cell
+      readable_files: 15777
+      stored_events: 13773
+      sum_TotalPOT: 2.8385315577e21
+      sum_TotalGenEvents_in_caf: 1972125   # = 125 per file; NOT the generated-event count (SAM reco1: 12500 per unit, x100); do not use as a denominator
+      events_with_record_verified_delta_radiative: 13773
+      delta0_to_n_gamma: 7599
+      deltaplus_to_p_gamma: 6174
     note: >
-      Preferred signal evaluation sample (official Gen2, same production family as bnb_cv / nuecc). What is PENDING is the
-      Wire-Cell processing / merged-CAF production of this existing sample by Haiwang, which would put it alongside the other
-      official merged CAFs. Until then it has no manifest and no code reads it. See the arrival checklist in
-      docs/analysis/NCDELTA_BASELINE_ANALYSIS_DESIGN.md.
+      Preferred signal evaluation sample (official Gen2). The official flatCAFs are readable from EAF (recTree + GenieEvtRecTree); only the
+      Wire-Cell merged-CAF production is pending. No merged-CAF manifest exists and no code path reads this sample as merged CAFs.
+      Accounting caveats (docs/analysis/NCDELTA_GENERATOR_FILTER_AUDIT.md section 4): use SAM mc.pot / mc.generated_event_count, not the CAF TotalGenEvents.
   aurora_ncdelta_training:
     role: training_development
     status: remains_on_aurora

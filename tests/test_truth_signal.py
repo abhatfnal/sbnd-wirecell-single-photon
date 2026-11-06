@@ -106,3 +106,56 @@ def test_prim_columns_regrouped_with_nprim_not_mixed_across_neutrinos():
     b = dict(SIG, isnc=0, pos=(0.0, 0.0, 50.0), prims=[(2212, 90.0), (2212, 91.0), (2212, 92.0)])
     r = _run([_ev([b, a])])                                        # the signal neutrino is second; its protons are NOT b's
     assert r["signal_nu_index"][0] == 1 and r["n_true_protons"][0] == 1
+
+
+# ---- GENIE-record ancestry (GenieEvtRecTree) -------------------------------------------------------------------------
+def test_record_ancestry_direct_and_chain_and_negative():
+    # record: 0 nu_mu, 1 Ar40, 2 Delta0(2114,st3), 3 n(st14, daughter), 4 gamma(st1, mother Delta)
+    pdg = [14, 1000180400, 2114, 2112, 22]; st = [0, 0, 3, 14, 1]; fm = [-1, -1, 0, 2, 2]; fd = [-1, -1, 3, -1, -1]; ld = [-1, -1, 4, -1, -1]
+    e = [0, 0, 1.2, 0.9, 0.18]
+    r = TS.genie_record_ancestry(pdg, st, fm, fd, ld, e)
+    assert r["is_delta_rad"] and r["delta_pdg"] == 2114 and r["nucleon_pdg"] == 2112 and r["nucleon_status"] == 14
+    assert r["photon_e_gev"] == 0.18 and not r["via_photon"]
+    # Delta+ -> p gamma via an in-nucleus photon: gamma(st1) <- gamma(st3) <- Delta+
+    pdg = [14, 2214, 2212, 22, 22]; st = [0, 3, 14, 3, 1]; fm = [-1, 0, 1, 1, 3]; fd = [-1, 2, -1, 4, -1]; ld = [-1, 3, -1, 4, -1]
+    r = TS.genie_record_ancestry(pdg, st, fm, fd, ld, [0] * 5)
+    assert r["is_delta_rad"] and r["delta_pdg"] == 2214 and r["nucleon_pdg"] == 2212 and r["via_photon"]
+    # photon from a de-excitation (mother = nucleus) or a pi0-like parent is NOT signal; neither is Delta++ / Delta-
+    for mother_pdg in (1000180390, 2224, 1114, 111):
+        pdg = [14, mother_pdg, 22]; st = [0, 3, 1]; fm = [-1, 0, 1]
+        assert not TS.genie_record_ancestry(pdg, st, fm, [-1] * 3, [-1] * 3)["is_delta_rad"]
+    # a status != 1 photon from a Delta does not count (must be an exiting photon)
+    pdg = [14, 2114, 22]; st = [0, 3, 3]; fm = [-1, 0, 1]
+    assert not TS.genie_record_ancestry(pdg, st, fm, [-1] * 3, [-1] * 3)["is_delta_rad"]
+
+
+def test_signal_truth_with_record_fills_delta_fields_and_resolves_tristate():
+    ev = _ev([dict(SIG, isnc=1), dict(pos=(0.0, 0.0, 900.0), isnc=0, mode=0, prims=[(2212, 100.0)])])
+    rec = dict(is_delta_rad=[[True, False]], delta_pdg=[[2114, 0]], nucleon_pdg=[[2112, 0]], nucleon_status=[[14, -1]],
+               photon_e_gev=[[0.15, float("nan")]])
+    cat = lambda k: [ev[k][0]]
+    r = TS.signal_truth(cat("pdg"), cat("isnc"), cat("mode"), cat("res"), cat("E"), cat("x"), cat("y"), cat("z"),
+                        cat("prim_pdg"), cat("prim_e"), nprim=cat("nprim"), record=rec)
+    assert r["is_ncdelta_radiative"][0] == 1 and r["delta_pdg"][0] == 2114 and r["delta_charge"][0] == 0 and r["decay_nucleon_pdg"][0] == 2112
+    assert r["signal_nu_index"][0] == 0 and np.isclose(r["photon_energy_record_mev"][0], 150.0)
+    # record says not Delta ancestry -> 0 (resolved), even if the proxy fires
+    rec0 = dict(rec, is_delta_rad=[[False, False]])
+    r0 = TS.signal_truth(cat("pdg"), cat("isnc"), cat("mode"), cat("res"), cat("E"), cat("x"), cat("y"), cat("z"),
+                         cat("prim_pdg"), cat("prim_e"), nprim=cat("nprim"), record=rec0)
+    assert r0["is_ncdelta_radiative"][0] == 0 and r0["is_ncdelta_rad_proxy"][0] and not r0["proxy_agrees_with_record"][0]
+    # Delta+ -> charge +1
+    recp = dict(rec, delta_pdg=[[2214, 0]], nucleon_pdg=[[2212, 0]])
+    rp = TS.signal_truth(cat("pdg"), cat("isnc"), cat("mode"), cat("res"), cat("E"), cat("x"), cat("y"), cat("z"),
+                         cat("prim_pdg"), cat("prim_e"), nprim=cat("nprim"), record=recp)
+    assert rp["delta_charge"][0] == 1 and rp["decay_nucleon_pdg"][0] == 2212
+
+
+def test_record_ancestry_jagged_links_by_index_and_rejects_bad_index():
+    records = dict(StdHepPdg=ak.Array([[14, 2114, 22], [14, 2112, 22]]), StdHepStatus=ak.Array([[0, 3, 1], [0, 1, 1]]),
+                   StdHepFm=ak.Array([[-1, 0, 1], [-1, 0, 0]]), StdHepFd=ak.Array([[-1, 2, -1], [-1, -1, -1]]),
+                   StdHepLd=ak.Array([[-1, 2, -1], [-1, -1, -1]]), StdHepP4=ak.Array([[[0] * 4, [0] * 4, [0, 0, 0, 0.2]]] + [[[0] * 4] * 3]),
+                   IntType=ak.Array([3, 2]))
+    out = TS.record_ancestry_jagged(records, [[0, 1]])
+    assert out["is_delta_rad"].to_list() == [[True, False]] and out["delta_pdg"].to_list() == [[2114, 0]]
+    with pytest.raises(IndexError):
+        TS.record_ancestry_jagged(records, [[0, 5]])

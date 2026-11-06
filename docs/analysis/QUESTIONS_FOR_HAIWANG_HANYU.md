@@ -16,16 +16,15 @@ Evidence for each item is in the linked audit. Nothing below has been assumed in
 7. **Leftover-shower proton rows.** Should rows with `kine_energy_included == 3` (all pool 2) count in the reco proton multiplicity? They are summed into reco E_ν, are 89 % true protons, but about half have a much too low energy (reco/true ≈ 0.25). The baseline counts them.
 8. **Flash-time convention** (unresolved, `FLASH_TIME_CONVENTION_AUDIT.md`): is the ≈ +0.3 µs offset of beam-on relative to MC in `flash_time_us` expected from FrameShift (`ShiftData2MC = 0`, RWM/trigger reference); does the 0.2 µs window edge truncate the MC spill; should data be shifted before comparing?
 
-## C. Can wait for the Wire-Cell merged CAFs of the official Gen2 NC-Δ sample
+## C. The one thing only the Wire-Cell team can do
 
-9. The official Gen2 NC-Δ radiative sample already exists (`…_EX_ncdeltarad_v10_14_02_05_{reco1,flat_caf}_sbnd`). **When will its Wire-Cell merged-CAF production be done?** With it please provide: the filter efficiency and generator/filter semantics (what `TotalGenEvents` / `TotalPOT` mean), the representation of the Δ → Nγ truth decay, and confirmation that it carries the same baseline SCN vertexer (`Trun.dl_weights`) as the other official samples (checklist in the design note §7).
+9. **Please process the EXISTING official Gen2 NC-Δ evaluation sample through the same fg1-compatible Wire-Cell merged-CAF workflow.** Everything else about this sample has been determined from SAM, the source and the files themselves (`NCDELTA_GENERATOR_FILTER_AUDIT.md`): 15,777 flatCAFs (`…_EX_ncdeltarad_v10_14_02_05_flat_caf_sbnd`) / 16,505 reco1 files, 13,773 / 14,442 signal events, 6,626 flatCAFs with zero events, Σ`TotalPOT` 2.83853e21, run/subrun/event unique over the whole set, all files readable over XRootD. Useful sizing: ~9,150 non-empty units, 1-5 events each (like the Aurora NC-Δ units, ~900 non-empty units per node-hour); the 6,626 empty units need nothing. Please keep the same SCN vertexer (`Trun.dl_weights`) and `T_truth_*` / `T_overlap` / `T_match` trees as the other official samples.
 
-## C2. Official NC-Δ generator/filter (from `NCDELTA_GENERATOR_FILTER_AUDIT.md`; for Avinay / T. Wester as well)
+## C2. Small production questions that SAM/CAF cannot answer (low priority; not blocking)
 
-10. **Production chain of the official `EX_ncdeltarad` definition.** Is it `prodgenie_corsika_proton_rockbox0p1` gen → `run_sbnd_gen2_rare_signal_filter.fcl` (`NCDeltaRadiative`, sbncode v10_14_02_05) → g4 → detsim → reco1 → reco2 → CAF, as in the Aurora training campaign? What GENIE tune (`GENIE_XSEC_TUNE`) and is the Δ radiative branching natural (no forcing, no weights)?
-11. **Filtered-sample bookkeeping.** In the official filtered flatCAF, are `TotalPOT` / `TotalGenEvents` the generator POT / events of the *unfiltered* input, including inputs whose filter output was empty? Can we get the filter-stage event counts (or `hists_filter.root` totals) per validated file set? This sets the signal denominator (`SIGNAL_TRUTH_AND_DENOMINATOR.md`).
-12. **Signal neutrino and Δ identity.** The CAF has no GENIE mother/status (`prim.gstatus` is never filled, no `prefsi`). Can the Δ charge / decay nucleon and the filter-selected neutrino index be provided (filter diagnostics tree `NCDeltaRadiativeFilter`, or a CAF fill)? Without it Δ0 → nγ vs Δ+ → pγ cannot be separated from truth.
-13. **Stream overlap.** Can an event be written to both `ncdeltarad` and `ccdeltarad` (or other rare-signal streams) from the same unfiltered input, and does the official definition list only the NC stream?
+10. **728 of the 16,505 reco1 units have no flatCAF child** (669 signal events, 4.4 % of POT): failed or still-pending CAF jobs? Should the Wire-Cell production include them once a flatCAF exists?
+11. **CAF `TotalGenEvents` is 125 in every file**, while SAM's reco1 `mc.generated_event_count` is 12,500 per unit. Which is the intended generated count (our denominator uses SAM `mc.pot` / `mc.generated_event_count`)?
+12. **GENIE tune / branching.** The pass fraction (7.0e-5) and the 55 % / 45 % Δ⁰ / Δ⁺ split look like a natural, unweighted radiative decay, but `genweight` and `prim.gstatus` are unfilled in the CAF. Please confirm the radiative branching is natural and no event weight is needed.
 
 ## Minor (no action unless convenient)
 

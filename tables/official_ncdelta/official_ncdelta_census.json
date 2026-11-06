@@ -1,0 +1,291 @@
+{
+ "files": {
+  "n_files": 15777,
+  "readable": 15777,
+  "zero_event_files": 6626,
+  "stored_events": 13773,
+  "sum_TotalPOT": 2.8385315577094954e+21,
+  "sum_TotalGenEvents": 1972125.0,
+  "sum_TotalEvents": 13773.0,
+  "files_missing_TotalPOT_hist": 0,
+  "files_missing_TotalGenEvents_hist": 0,
+  "has_genie_record_all": false,
+  "size_total_GB": 39.904243228,
+  "TotalGenEvents_value_counts": {
+   "125.0": 15777
+  },
+  "TotalEvents_equals_n_events": 15777,
+  "TotalEvents_value_counts": {
+   "0.0": 6626,
+   "1.0": 5722,
+   "2.0": 2487,
+   "3.0": 740,
+   "4.0": 163,
+   "5.0": 31
+  },
+  "sam_events_equals_n_events": 15777,
+  "TotalPOT_equals_SAM_mc_pot": 15777,
+  "TotalPOT_zero_event_files_nonzero": 6626
+ },
+ "sam_accounting": {
+  "reco1_files": 16505,
+  "reco1_events": 14442,
+  "reco1_zero_event_files": 6923,
+  "reco1_generated_event_count_per_file_unique": [
+   12500
+  ],
+  "reco1_sum_generated_events": 206312500.0,
+  "reco1_sum_mc_pot": 2.9696990390000005e+21,
+  "flatcaf_files": 15777,
+  "flatcaf_events": 13773,
+  "flatcaf_sum_mc_pot": 2.83853154e+21,
+  "reco1_without_flatcaf_child": 728,
+  "events_in_them": 669,
+  "pot_in_them": 1.3116749899999999e+20,
+  "generated_in_them": 9100000.0,
+  "zero_event_reco1_without_child": 297,
+  "filter_pass_fraction_reco1": 7.000060587700697e-05,
+  "flatcaf_units_generated_events": 197212500.0,
+  "flatcaf_units_pot": 2.83853154e+21,
+  "pot_per_generated_event": 14394178922750.684
+ },
+ "events": {
+  "n_events": 13773,
+  "duplicate_run_subrun_evt": 0,
+  "duplicate_file_run_subrun_evt": 0,
+  "n_nu_distribution": {
+   "1": 5417,
+   "2": 5591,
+   "3": 2158,
+   "4": 514,
+   "5": 81,
+   "6": 10,
+   "7": 2
+  },
+  "events_with_gt1_nu": 8356
+ },
+ "signal_identification": {
+  "events_record_delta_radiative": 13773,
+  "events_record_not_delta_radiative": 0,
+  "events_unknown": 0,
+  "proxy_fires": 13451,
+  "proxy_agrees_with_record_all": false,
+  "proxy_agrees_n": 13451,
+  "n_signal_nu_candidates_dist": {
+   "1": 13767,
+   "2": 6
+  },
+  "delta_pdg_counts": {
+   "2114": 7599,
+   "2214": 6174
+  },
+  "decay_nucleon_pdg_counts": {
+   "2112": 7599,
+   "2212": 6174
+  },
+  "delta_charge_counts": {
+   "0": 7599,
+   "1": 6174
+  },
+  "nucleon_status_at_decay": {
+   "14": 13773
+  },
+  "n_signal_events": 13773
+ },
+ "signal_neutrino": {
+  "n": 13773,
+  "isnc_fraction": 1.0,
+  "iscc_fraction": 0.0,
+  "resonant_fraction": 1.0,
+  "genie_mode_counts": {
+   "1": 13773
+  },
+  "resnum_counts": {
+   "0": 13451,
+   "9": 93,
+   "2": 74,
+   "7": 43,
+   "8": 30,
+   "10": 29,
+   "5": 16,
+   "11": 7,
+   "6": 7,
+   "4": 6,
+   "3": 5,
+   "14": 4,
+   "1": 3,
+   "13": 2,
+   "15": 2,
+   "16": 1
+  },
+  "resnum0_fraction": 0.9766209249981849,
+  "nu_pdg_counts": {
+   "14": 13516,
+   "-14": 165,
+   "12": 91,
+   "-12": 1
+  },
+  "int_type_counts": {
+   "3": 13773
+  },
+  "at_least_one_primary_photon": 1.0,
+  "photon_multiplicity": {
+   "1": 11938,
+   "2": 1835
+  },
+  "photon_gt20_fraction_any": 1.0,
+  "hardest_primary_photon_mev_q": [
+   134.0,
+   204.1,
+   272.4,
+   359.1,
+   527.8
+  ],
+  "record_photon_mev_q": [
+   134.0,
+   204.1,
+   272.4,
+   359.1,
+   527.8
+  ],
+  "via_in_nucleus_photon_fraction": 0.0,
+  "nu_energy_gev_q": [
+   0.516,
+   0.743,
+   0.958,
+   1.25,
+   2.049
+  ],
+  "vertex_in_filter_box": 1.0,
+  "vertex_in_active_tpc_box": 0.9022725622594933,
+  "vertex_in_filter_box_n": 13773,
+  "vertex_in_active_tpc_n": 12427,
+  "vertex_q": {
+   "x": [
+    -189.4,
+    -22.1,
+    180.2
+   ],
+   "y": [
+    -184.8,
+    -1.5,
+    185.1
+   ],
+   "z": [
+    23.8,
+    248.9,
+    482.3
+   ]
+  },
+  "truth_protons_35MeV": {
+   "0p": 6501,
+   "1p": 6160,
+   ">=2p": 1112
+  },
+  "n_p35_hist": [
+   6501,
+   6160,
+   711,
+   245,
+   111,
+   29,
+   14,
+   1,
+   1
+  ],
+  "primary_pi0_ge1": 0.01285123066869963,
+  "primary_pi_charged_ge1": 0.02083787119727002,
+  "truth_protons_by_delta": {
+   "2114": {
+    "n": 7599,
+    "p0": 5311,
+    "p1": 1809,
+    "p2": 479,
+    "nucleon": {
+     "2112": 7599
+    }
+   },
+   "2214": {
+    "n": 6174,
+    "p0": 1190,
+    "p1": 4351,
+    "p2": 633,
+    "nucleon": {
+     "2212": 6174
+    }
+   }
+  }
+ },
+ "other_neutrinos_in_events": {
+  "n": 11835,
+  "nc_fraction": 0.277482044782425,
+  "cc_fraction": 0.722517955217575,
+  "in_active_tpc_box": 0.0875369666244191,
+  "in_filter_box": 0.09767638360794255,
+  "record_delta_radiative_nc": 6
+ },
+ "all_neutrinos": {
+  "n": 25608,
+  "isnc_fraction": 0.6660809122149328
+ },
+ "surprises": {
+  "events_without_signal_by_record": 0,
+  "examples": [],
+  "events_two_or_more_signal_nu": 6,
+  "signal_nc_not_resnum0": 322,
+  "signal_not_resonant": 0,
+  "signal_without_primary_photon": 0,
+  "signal_nu_outside_filter_box": 0
+ },
+ "field_behaviour": {
+  "rec_hdr_pot": {
+   "min": 0.0,
+   "max": 1.8390903932583936e+17,
+   "nonzero": 9233,
+   "sentinel": 0,
+   "n": 13773
+  },
+  "rec_mc_nu_prim_gstatus": {
+   "min": -1.0,
+   "max": -1.0,
+   "nonzero": 139376,
+   "sentinel": 0,
+   "n": 139376
+  },
+  "rec_mc_nu_genweight": {
+   "min": 0.0,
+   "max": 0.0,
+   "nonzero": 0,
+   "sentinel": 0,
+   "n": 25608
+  },
+  "rec_mc_nu_npizero": {
+   "min": 0.0,
+   "max": 1.0,
+   "nonzero": 11,
+   "sentinel": 0,
+   "n": 25608
+  },
+  "rec_mc_nu_nproton": {
+   "min": 0.0,
+   "max": 0.0,
+   "nonzero": 0,
+   "sentinel": 0,
+   "n": 25608
+  },
+  "rec_mc_nu_prim_startE": {
+   "min": -9999.0,
+   "max": 37.215660095214844,
+   "nonzero": 139240,
+   "sentinel": 57854,
+   "n": 139376
+  },
+  "rec_mc_nu_prim_cont_tpc": {
+   "min": 0.0,
+   "max": 1.0,
+   "nonzero": 57104,
+   "sentinel": 0,
+   "n": 139376
+  }
+ }
+}

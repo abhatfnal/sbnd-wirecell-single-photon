@@ -136,7 +136,7 @@ Explicitly for this baseline: **the stored production SCN vertexer is used; no D
 
 The official reco1/flat-CAF sample exists; do not assume the merged CAFs exist until Haiwang publishes them. Do not add paths, counts, POT or provenance to `configs/samples.yaml` until each item is verified from the files or the producer. The Aurora sample (`aurora_ncdelta_training`) is never a substitute.
 
-- [ ] official SAM definitions (reco1 `…_EX_ncdeltarad_v10_14_02_05_reco1_sbnd`, flat CAF `…_flat_caf_sbnd`): verify existence, file/event counts and the production request (filter efficiency) with `samweb` on a gpVM;
+- [x] official SAM definitions (reco1 `…_EX_ncdeltarad_v10_14_02_05_reco1_sbnd`, flat CAF `…_flat_caf_sbnd`): **verified 2026-11-06 with `samweb -e sbnd` from EAF** (16,505 / 15,777 files, 14,442 / 13,773 events; pass fraction 7.0e-5 per generated event; see the NCDELTA_GENERATOR_FILTER_AUDIT §4);
 - [ ] production chain: the same merged-CAF Wire-Cell chain as `bnb_cv` / `nuecc` / `beam_off` / `beam_on_open`;
 - [ ] schema md5 (`recTreeWireCell_info.schema_md5`; `d4396a3490ea…` if produced like fg1) and branch count; presence of `T_truth_nu/pf/track`, `T_overlap`, `T_match`, `T_pf`;
 - [ ] WCT / toolkit commit and `Trun.wct_version` (this string was identical across builds in fg1/opendata, so also use the producer's record);
@@ -155,3 +155,10 @@ The official reco1/flat-CAF sample exists; do not assume the merged CAFs exist u
 * Truth proton categories (post-FSI primaries, KE > 35 MeV provisional): `TRUTH_PROTON_DEFINITION_AUDIT.md`; signal truth object and the efficiency denominator: `SIGNAL_TRUTH_AND_DENOMINATOR.md`; code `src/sbnd_single_photon/truth_signal.py` (works on a plain flatCAF, no Wire-Cell tree).
 * Derived BNB analysis table (outside Git) and its exact validation: `ANALYSIS_TABLE_VALIDATION.md`; baseline plots and the 1γ0p/1γ1p background characterisation: `BASELINE_1G0P_1G1P_BACKGROUND.md`.
 * Correction to this note's earlier wording: `rec.mc.nu.npizero` is *almost* always 0 (4 of 1,014 neutrinos), not always 0; the conclusion (count π⁰ from the primaries) is unchanged.
+
+## Phase 2b correction (SAM from EAF; measured official sample)
+
+* **Correction:** Phase 2 said the official sample needed a gpVM. It does not: `samweb -e sbnd` works from EAF (`EAF_QUICKSTART.md` §10, `env/sam_eaf.sh`) and the official flatCAFs (15,777 files, 13,773 events, ΣTotalPOT 2.83853e21) open over XRootD. The registry now records `official_flatcaf_status: available`, `wirecell_merged_status: pending`.
+* The flatCAF carries `GenieEvtRecTree`; Delta ancestry is therefore **verified for all 13,773 events** (Delta0 -> n gamma 7,599; Delta+ -> p gamma 6,174; the Delta decays before FSI). The earlier statement that the CAF cannot identify the process was wrong for these files (true for `recTree` alone). `resnum == 0` holds for only 97.66 %: it is not a definition.
+* Denominator accounting must use SAM `mc.pot` / `mc.generated_event_count` (12,500 per unit), **not** the CAF `TotalGenEvents` (125 per file); zero-survivor units exist as files and carry POT; 728 of 16,505 reco1 units have no flatCAF. See `SIGNAL_TRUTH_AND_DENOMINATOR.md`.
+* Wire-Cell merged-CAF arrival checklist (§7): the official sample's events have unique (run, subrun, event) over the whole set (0 duplicates), but 60.7 % of events contain more than one true neutrino (the signal neutrino is identified through the GENIE record, 99.96 % uniquely).

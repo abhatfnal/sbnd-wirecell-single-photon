@@ -40,7 +40,9 @@ So: **trigger count, livetime/run-database, spill count and SAM metadata are all
 - **Beam-on:** Σ`TotalPOT` = **4.62125e18** over 1,817 files, one non-zero `rec.hdr.pot` per file; `noffbeambnb` = 0 everywhere.
 - Both `tables/pot/beam_off_summary.json` and `tables/pot/beam_on_open_summary.json` record these numbers.
 
-## 4. Commands to run on the gpVM (SAM / run database)
+## 4. Commands (SAM part runs from EAF with `env/sam_eaf.sh`; the run database / DAQ logbook is a separate matter)
+
+> **Update 2026-11-06:** the `samweb` commands below do not need a gpVM; run them from EAF through `env/sam_eaf.sh <subcommand>` (`EAF_QUICKSTART.md` §10). The trigger/gate counts and livetime still come from the run database, which is not SAM.
 
 The reco1 and CAF SAM definitions are in `fg1/README.md` and `opendata-fixeddev/DATASET.md`. On a gpVM with SBND software and a token:
 
