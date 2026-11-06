@@ -19,7 +19,7 @@ Known limitations (see the design note):
     "active volume" is a box test on ``rec.mc.nu.position`` with PROVISIONAL SBND TPC dimensions. This is NOT a
     fiducial volume; the SBND FV is a pending collaboration decision.
   * the pi0 count is computed from the GENIE primaries (``prim.pdg == 111``): the CAF field ``rec.mc.nu.npizero`` is
-    always 0 in these files, so using it would silently turn every NC_PI0/CC_PI0 event into OTHER_NC/flavour categories.
+    almost always 0 in these files (4 of 1,014 neutrinos), so using it would silently turn every NC_PI0/CC_PI0 event into OTHER_NC/flavour categories.
   * The categories are per EVENT, not per reconstructed candidate; candidate-to-truth matching (``wc.T_match``)
     is a later step.
   * NC Delta -> N gamma signal is deliberately NOT defined here: it comes from the official Gen2 NC-Delta evaluation sample (official sample exists; its Wire-Cell merged-CAF production is pending).
@@ -56,7 +56,7 @@ def truth_summary(pdg, iscc, isnc, npizero, x, y, z, av: ActiveVolume = ActiveVo
     """Per-event numpy arrays behind the category: ``code``, ``n_nu``, ``n_act`` and the first active neutrino's
     ``a_pdg`` (|PDG|), ``a_cc``, ``a_nc``, ``a_pi0`` (npizero>=1) and position ``a_x/a_y/a_z`` (NaN if none).
     Inputs are ``[event][nu]`` jagged. ``npizero`` must be the number of final-state pi0 per neutrino: take it from the
-    GENIE primaries (``rec.mc.nu.prim.pdg == 111``); the stored ``rec.mc.nu.npizero`` field is always 0 in these CAFs."""
+    GENIE primaries (``rec.mc.nu.prim.pdg == 111``); the stored ``rec.mc.nu.npizero`` field is almost always 0 in these CAFs."""
     pdg, iscc, isnc, npizero = (ak.Array(a) for a in (pdg, iscc, isnc, npizero))
     x, y, z = (ak.Array(a) for a in (x, y, z))
     inside = av.contains(x, y, z)

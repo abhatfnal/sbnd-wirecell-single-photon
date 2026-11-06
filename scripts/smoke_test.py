@@ -76,7 +76,7 @@ def run_sample(name, sample, n_events, models, cfg, specs):
             pieces.append({k: d[k] for k in req["wc"] + req["derived"] + ["wc.T_tagger.nu_index"]})
             valid_all.append(valid)
             if sample.is_mc and f.has_truth_matching:
-                n_pi0 = ak.sum(C.per_candidate(d["rec.mc.nu.prim.pdg"], d["rec.mc.nu.nprim"]) == 111, axis=-1)  # npizero field is always 0
+                n_pi0 = ak.sum(C.per_candidate(d["rec.mc.nu.prim.pdg"], d["rec.mc.nu.nprim"]) == 111, axis=-1)  # npizero field is almost always 0
                 code = T.classify_events(d["rec.mc.nu.pdg"], d["rec.mc.nu.iscc"], d["rec.mc.nu.isnc"],
                                          n_pi0, d["rec.mc.nu.position.x"],
                                          d["rec.mc.nu.position.y"], d["rec.mc.nu.position.z"])

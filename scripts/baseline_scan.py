@@ -100,7 +100,7 @@ def _work(job):
                 r["c_nrows"] = fl(ak.num(pdg, axis=2)).astype(np.int16)
                 r["c_np_anyke"] = fl(ak.sum(pdg == 2212, axis=2)).astype(np.int16)
             if is_mc and "rec.mc.nu.pdg" in d:
-                # rec.mc.nu.npizero is ALWAYS 0 in these CAFs (verified: 0 of 738 nu, while 15% have a primary pi0);
+                # rec.mc.nu.npizero is almost always 0 in these CAFs (0 of 738 nu in a first check, 4 of 1014 in a later one, while 13-15% have a primary pi0);
                 # the pi0 count is therefore taken from the GENIE primaries (prim.pdg == 111), regrouped per neutrino by nprim.
                 n_pi0 = ak.sum(C.per_candidate(d["rec.mc.nu.prim.pdg"], d["rec.mc.nu.nprim"]) == 111, axis=-1)
                 r["ev_t_npizero_field_nonzero"] = ak.to_numpy(ak.sum(d["rec.mc.nu.npizero"] > 0, axis=1)).astype(np.int16)

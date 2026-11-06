@@ -20,6 +20,13 @@ Evidence for each item is in the linked audit. Nothing below has been assumed in
 
 9. The official Gen2 NC-Δ radiative sample already exists (`…_EX_ncdeltarad_v10_14_02_05_{reco1,flat_caf}_sbnd`). **When will its Wire-Cell merged-CAF production be done?** With it please provide: the filter efficiency and generator/filter semantics (what `TotalGenEvents` / `TotalPOT` mean), the representation of the Δ → Nγ truth decay, and confirmation that it carries the same baseline SCN vertexer (`Trun.dl_weights`) as the other official samples (checklist in the design note §7).
 
+## C2. Official NC-Δ generator/filter (from `NCDELTA_GENERATOR_FILTER_AUDIT.md`; for Avinay / T. Wester as well)
+
+10. **Production chain of the official `EX_ncdeltarad` definition.** Is it `prodgenie_corsika_proton_rockbox0p1` gen → `run_sbnd_gen2_rare_signal_filter.fcl` (`NCDeltaRadiative`, sbncode v10_14_02_05) → g4 → detsim → reco1 → reco2 → CAF, as in the Aurora training campaign? What GENIE tune (`GENIE_XSEC_TUNE`) and is the Δ radiative branching natural (no forcing, no weights)?
+11. **Filtered-sample bookkeeping.** In the official filtered flatCAF, are `TotalPOT` / `TotalGenEvents` the generator POT / events of the *unfiltered* input, including inputs whose filter output was empty? Can we get the filter-stage event counts (or `hists_filter.root` totals) per validated file set? This sets the signal denominator (`SIGNAL_TRUTH_AND_DENOMINATOR.md`).
+12. **Signal neutrino and Δ identity.** The CAF has no GENIE mother/status (`prim.gstatus` is never filled, no `prefsi`). Can the Δ charge / decay nucleon and the filter-selected neutrino index be provided (filter diagnostics tree `NCDeltaRadiativeFilter`, or a CAF fill)? Without it Δ0 → nγ vs Δ+ → pγ cannot be separated from truth.
+13. **Stream overlap.** Can an event be written to both `ncdeltarad` and `ccdeltarad` (or other rare-signal streams) from the same unfiltered input, and does the official definition list only the NC stream?
+
 ## Minor (no action unless convenient)
 
 - The `(0,0,0)` vertex is the default of a candidate with `has_vertex == 0`; confirm that is the intended "no main vertex" flag (`VERTEX_SENTINEL_AUDIT.md`).

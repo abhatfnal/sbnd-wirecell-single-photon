@@ -1,0 +1,110 @@
+{
+ "pot_total": 2.719402147414874e+19,
+ "per": "1e20 generated POT",
+ "vertex_diag": {
+  "any/1g0p (reco 0p)": {
+   "n": 318,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 5
+  },
+  "any/1g1p (reco 1p)": {
+   "n": 236,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 2
+  },
+  "any/diagnostic: reco >=2p": {
+   "n": 95,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 0
+  },
+  "first/1g0p (reco 0p)": {
+   "n": 307,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 5
+  },
+  "first/1g1p (reco 1p)": {
+   "n": 226,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 1
+  },
+  "first/diagnostic: reco >=2p": {
+   "n": 93,
+   "default_000_vertex": 0,
+   "outside_provisional_tpc_box": 0
+  }
+ },
+ "proton_diag": {
+  "any/1g0p (reco 0p)": {
+   "np35_hist": [
+    318,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_with_lead_proton": 0
+  },
+  "any/1g1p (reco 1p)": {
+   "np35_hist": [
+    0,
+    236,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_with_lead_proton": 236
+  },
+  "any/diagnostic: reco >=2p": {
+   "np35_hist": [
+    0,
+    0,
+    62,
+    24,
+    8,
+    1,
+    0
+   ],
+   "n_with_lead_proton": 95
+  },
+  "first/1g0p (reco 0p)": {
+   "np35_hist": [
+    307,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_with_lead_proton": 0
+  },
+  "first/1g1p (reco 1p)": {
+   "np35_hist": [
+    0,
+    226,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "n_with_lead_proton": 226
+  },
+  "first/diagnostic: reco >=2p": {
+   "np35_hist": [
+    0,
+    0,
+    60,
+    24,
+    8,
+    1,
+    0
+   ],
+   "n_with_lead_proton": 93
+  }
+ }
+}

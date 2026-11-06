@@ -1,0 +1,800 @@
+{
+ "sample": "bnb_cv",
+ "n_checks": 72,
+ "n_failed": 0,
+ "failed": [],
+ "result": {
+  "n_events": 500000,
+  "n_valid": 499899,
+  "n_candidates": 241845,
+  "stages": {
+   "cum_candidate_in_valid_event": {
+    "n_candidates": 241845,
+    "n_events_any": 237460,
+    "n_events_first": 237460
+   },
+   "cum_n_20mev_showers_gt0": {
+    "n_candidates": 52926,
+    "n_events_any": 52663,
+    "n_events_first": 51708
+   },
+   "cum_single_photon_numu_score_gt_0p4": {
+    "n_candidates": 11945,
+    "n_events_any": 11933,
+    "n_events_first": 11590
+   },
+   "cum_single_photon_other_score_gt_0p2": {
+    "n_candidates": 3926,
+    "n_events_any": 3924,
+    "n_events_first": 3803
+   },
+   "cum_single_photon_ncpi0_score_gt_m0p05": {
+    "n_candidates": 937,
+    "n_events_any": 936,
+    "n_events_first": 906
+   },
+   "cum_single_photon_nue_score_gt_m1": {
+    "n_candidates": 937,
+    "n_events_any": 936,
+    "n_events_first": 906
+   },
+   "cum_n_20br1_showers_eq1": {
+    "n_candidates": 649,
+    "n_events_any": 649,
+    "n_events_first": 626
+   }
+  },
+  "composition": {
+   "any": {
+    "CC_PI0": {
+     "n": 101,
+     "n_0p": 42,
+     "n_1p": 41,
+     "n_ge2p": 18
+    },
+    "DIRT_NO_ACTIVE": {
+     "n": 104,
+     "n_0p": 84,
+     "n_1p": 16,
+     "n_ge2p": 4
+    },
+    "MULTI_ACTIVE": {
+     "n": 41,
+     "n_0p": 14,
+     "n_1p": 20,
+     "n_ge2p": 7
+    },
+    "NC_PI0": {
+     "n": 178,
+     "n_0p": 93,
+     "n_1p": 63,
+     "n_ge2p": 22
+    },
+    "NUE_CC": {
+     "n": 165,
+     "n_0p": 52,
+     "n_1p": 78,
+     "n_ge2p": 35
+    },
+    "NUMU_CC": {
+     "n": 27,
+     "n_0p": 16,
+     "n_1p": 6,
+     "n_ge2p": 5
+    },
+    "OTHER_NC": {
+     "n": 33,
+     "n_0p": 17,
+     "n_1p": 12,
+     "n_ge2p": 4
+    },
+    "_total": {
+     "n": 649,
+     "n_0p": 318,
+     "n_1p": 236,
+     "n_ge2p": 95
+    }
+   },
+   "first": {
+    "CC_PI0": {
+     "n": 101,
+     "n_0p": 42,
+     "n_1p": 41,
+     "n_ge2p": 18
+    },
+    "DIRT_NO_ACTIVE": {
+     "n": 103,
+     "n_0p": 84,
+     "n_1p": 16,
+     "n_ge2p": 3
+    },
+    "MULTI_ACTIVE": {
+     "n": 23,
+     "n_0p": 6,
+     "n_1p": 11,
+     "n_ge2p": 6
+    },
+    "NC_PI0": {
+     "n": 178,
+     "n_0p": 93,
+     "n_1p": 63,
+     "n_ge2p": 22
+    },
+    "NUE_CC": {
+     "n": 165,
+     "n_0p": 52,
+     "n_1p": 78,
+     "n_ge2p": 35
+    },
+    "NUMU_CC": {
+     "n": 23,
+     "n_0p": 13,
+     "n_1p": 5,
+     "n_ge2p": 5
+    },
+    "OTHER_NC": {
+     "n": 33,
+     "n_0p": 17,
+     "n_1p": 12,
+     "n_ge2p": 4
+    },
+    "_total": {
+     "n": 626,
+     "n_0p": 307,
+     "n_1p": 226,
+     "n_ge2p": 93
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "events",
+   "got": 500000,
+   "expected": 500000,
+   "ok": true
+  },
+  {
+   "check": "wc.valid",
+   "got": 499899,
+   "expected": 499899,
+   "ok": true
+  },
+  {
+   "check": "final any",
+   "got": 649,
+   "expected": 649,
+   "ok": true
+  },
+  {
+   "check": "final first",
+   "got": 626,
+   "expected": 626,
+   "ok": true
+  },
+  {
+   "check": "split any 0p/1p/>=2p",
+   "got": [
+    318,
+    236,
+    95
+   ],
+   "expected": [
+    318,
+    236,
+    95
+   ],
+   "ok": true
+  },
+  {
+   "check": "split first 0p/1p/>=2p",
+   "got": [
+    307,
+    226,
+    93
+   ],
+   "expected": [
+    307,
+    226,
+    93
+   ],
+   "ok": true
+  },
+  {
+   "check": "files",
+   "got": 37742,
+   "expected": 37742,
+   "ok": true
+  },
+  {
+   "check": "candidate rows",
+   "got": 241845,
+   "expected": 241845,
+   "ok": true
+  },
+  {
+   "check": "events (ref csv)",
+   "got": 500000,
+   "expected": 500000,
+   "ok": true
+  },
+  {
+   "check": "wc.valid (ref csv)",
+   "got": 499899,
+   "expected": 499899,
+   "ok": true
+  },
+  {
+   "check": "stage candidate_in_valid_event n_candidates",
+   "got": 241845,
+   "expected": 241845,
+   "ok": true
+  },
+  {
+   "check": "stage candidate_exists n_events_any",
+   "got": 237460,
+   "expected": 237460,
+   "ok": true
+  },
+  {
+   "check": "stage candidate_exists n_events_first",
+   "got": 237460,
+   "expected": 237460,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20mev_showers_gt0 n_candidates",
+   "got": 52926,
+   "expected": 52926,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20mev_showers_gt0 n_events_any",
+   "got": 52663,
+   "expected": 52663,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20mev_showers_gt0 n_events_first",
+   "got": 51708,
+   "expected": 51708,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_numu_score_gt_0p4 n_candidates",
+   "got": 11945,
+   "expected": 11945,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_numu_score_gt_0p4 n_events_any",
+   "got": 11933,
+   "expected": 11933,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_numu_score_gt_0p4 n_events_first",
+   "got": 11590,
+   "expected": 11590,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_other_score_gt_0p2 n_candidates",
+   "got": 3926,
+   "expected": 3926,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_other_score_gt_0p2 n_events_any",
+   "got": 3924,
+   "expected": 3924,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_other_score_gt_0p2 n_events_first",
+   "got": 3803,
+   "expected": 3803,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_ncpi0_score_gt_m0p05 n_candidates",
+   "got": 937,
+   "expected": 937,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_ncpi0_score_gt_m0p05 n_events_any",
+   "got": 936,
+   "expected": 936,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_ncpi0_score_gt_m0p05 n_events_first",
+   "got": 906,
+   "expected": 906,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_nue_score_gt_m1 n_candidates",
+   "got": 937,
+   "expected": 937,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_nue_score_gt_m1 n_events_any",
+   "got": 936,
+   "expected": 936,
+   "ok": true
+  },
+  {
+   "check": "stage cum:single_photon_nue_score_gt_m1 n_events_first",
+   "got": 906,
+   "expected": 906,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20br1_showers_eq1 n_candidates",
+   "got": 649,
+   "expected": 649,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20br1_showers_eq1 n_events_any",
+   "got": 649,
+   "expected": 649,
+   "ok": true
+  },
+  {
+   "check": "stage cum:n_20br1_showers_eq1 n_events_first",
+   "got": 626,
+   "expected": 626,
+   "ok": true
+  },
+  {
+   "check": "composition first NUMU_CC",
+   "got": [
+    23,
+    13,
+    5,
+    5
+   ],
+   "expected": [
+    23,
+    13,
+    5,
+    5
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first NUE_CC",
+   "got": [
+    165,
+    52,
+    78,
+    35
+   ],
+   "expected": [
+    165,
+    52,
+    78,
+    35
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first NC_PI0",
+   "got": [
+    178,
+    93,
+    63,
+    22
+   ],
+   "expected": [
+    178,
+    93,
+    63,
+    22
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first CC_PI0",
+   "got": [
+    101,
+    42,
+    41,
+    18
+   ],
+   "expected": [
+    101,
+    42,
+    41,
+    18
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first OTHER_NC",
+   "got": [
+    33,
+    17,
+    12,
+    4
+   ],
+   "expected": [
+    33,
+    17,
+    12,
+    4
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first OTHER_CC",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first DIRT_NO_ACTIVE",
+   "got": [
+    103,
+    84,
+    16,
+    3
+   ],
+   "expected": [
+    103,
+    84,
+    16,
+    3
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first MULTI_ACTIVE",
+   "got": [
+    23,
+    6,
+    11,
+    6
+   ],
+   "expected": [
+    23,
+    6,
+    11,
+    6
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first COSMIC_NO_NU",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition first OTHER",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any NUMU_CC",
+   "got": [
+    27,
+    16,
+    6,
+    5
+   ],
+   "expected": [
+    27,
+    16,
+    6,
+    5
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any NUE_CC",
+   "got": [
+    165,
+    52,
+    78,
+    35
+   ],
+   "expected": [
+    165,
+    52,
+    78,
+    35
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any NC_PI0",
+   "got": [
+    178,
+    93,
+    63,
+    22
+   ],
+   "expected": [
+    178,
+    93,
+    63,
+    22
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any CC_PI0",
+   "got": [
+    101,
+    42,
+    41,
+    18
+   ],
+   "expected": [
+    101,
+    42,
+    41,
+    18
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any OTHER_NC",
+   "got": [
+    33,
+    17,
+    12,
+    4
+   ],
+   "expected": [
+    33,
+    17,
+    12,
+    4
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any OTHER_CC",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any DIRT_NO_ACTIVE",
+   "got": [
+    104,
+    84,
+    16,
+    4
+   ],
+   "expected": [
+    104,
+    84,
+    16,
+    4
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any MULTI_ACTIVE",
+   "got": [
+    41,
+    14,
+    20,
+    7
+   ],
+   "expected": [
+    41,
+    14,
+    20,
+    7
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any COSMIC_NO_NU",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "composition any OTHER",
+   "got": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expected": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "ok": true
+  },
+  {
+   "check": "candidate key (file,run,subrun,evt,nu_index) unique",
+   "got": 0,
+   "expected": 0,
+   "ok": true
+  },
+  {
+   "check": "event key (file,ev) unique",
+   "got": 0,
+   "expected": 0,
+   "ok": true
+  },
+  {
+   "check": "sum TotalPOT matches full-scan meta (rtol 1e-12)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "sum TotalGenEvents matches full-scan meta",
+   "got": 1887100.0,
+   "expected": 1887100.0,
+   "ok": true
+  },
+  {
+   "check": "candidate rows align (file,run,subrun,evt,nu_index) in order",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_score_numu identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_score_other identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_score_ncpi0 identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_score_nue identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_kine_nu_x_corr identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_kine_nu_y_corr identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_kine_nu_z_corr identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_flash_time_us identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_flash_pe identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_shw_sp_n_20mev_showers identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_shw_sp_n_20br1_showers identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_shw_sp_filled identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "column c_np35 identical (NaN-aware)",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "event valid identical",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "event truth code identical",
+   "got": true,
+   "expected": true,
+   "ok": true
+  },
+  {
+   "check": "bdt_evaluable identical",
+   "got": true,
+   "expected": true,
+   "ok": true
+  }
+ ]
+}

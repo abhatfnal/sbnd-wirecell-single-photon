@@ -100,7 +100,7 @@ Full-sample result (all four samples scanned): only ~21 % (CV), ~82 % (nueCC), ~
 2. **Fiducial volume:** none authoritative exists in accessible code (19 conflicting definitions, `SBND_FIDUCIAL_VOLUME_AUDIT.md`); SBND FV pending collaboration decision. `truth.ActiveVolume` is a *provisional nominal TPC box* used only to separate "dirt" from "active-volume" neutrinos; it is not an analysis FV.
 3. **Proton threshold 35 MeV:** planning value, to be confirmed against current SBND convention; kept configurable. MC-truth validation done (`RECO_PROTON_DEFINITION_AUDIT.md` §5): reco KE behaves like proton KE; rows of type 2212 with KE>35 MeV are 95.7 % true protons.
 4. **Which proton rows count:** `kine_energy_included != 1` marks leftover-shower rows that ARE summed into reco E_ν and are 89 % true protons; the inherited rule counts them. Reported as a sensitivity, not tuned.
-5. **Truth taxonomy details:** pi0 precedence over flavour (`BNB_TRUTH_CATEGORY_AUDIT.md`); `rec.mc.nu.isvtxcont` is unfilled and `vtx.*` is NaN in these CAFs, so the active-volume test uses `position.*`; `rec.mc.nu.npizero` is always 0, so π⁰ is counted from the primaries.
+5. **Truth taxonomy details:** pi0 precedence over flavour (`BNB_TRUTH_CATEGORY_AUDIT.md`); `rec.mc.nu.isvtxcont` is unfilled and `vtx.*` is NaN in these CAFs, so the active-volume test uses `position.*`; `rec.mc.nu.npizero` is almost always 0 (4/1,014 neutrinos), so π⁰ is counted from the primaries.
 6. **Exposure:** see `POT_EXPOSURE_AUDIT.md` and `DATA_EXPOSURE_NORMALIZATION.md`.
 
 ## 6. Future analysis sequence (after the official Gen2 NC-Δ evaluation sample exists)
@@ -148,3 +148,10 @@ The official reco1/flat-CAF sample exists; do not assume the merged CAFs exist u
 - [ ] representation of the Δ truth decay (parent/daughter links, `genie_mode`, `resnum`, `iscc/isnc`);
 - [ ] `wc.valid` count and per-file PARTIAL/EMPTY accounting;
 - [ ] exact manifest (and ADLER32 if files are copied anywhere).
+
+## Phase 2 additions (local commit after `a2bcaa3`)
+
+* Official Gen2 NC-Δ generator/filter semantics and what the CAF can/cannot identify: `NCDELTA_GENERATOR_FILTER_AUDIT.md` (the official flatCAF could not be located from EAF; gpVM commands are in its §9; inspection script `scripts/inspect_official_ncdelta_caf.py`).
+* Truth proton categories (post-FSI primaries, KE > 35 MeV provisional): `TRUTH_PROTON_DEFINITION_AUDIT.md`; signal truth object and the efficiency denominator: `SIGNAL_TRUTH_AND_DENOMINATOR.md`; code `src/sbnd_single_photon/truth_signal.py` (works on a plain flatCAF, no Wire-Cell tree).
+* Derived BNB analysis table (outside Git) and its exact validation: `ANALYSIS_TABLE_VALIDATION.md`; baseline plots and the 1γ0p/1γ1p background characterisation: `BASELINE_1G0P_1G1P_BACKGROUND.md`.
+* Correction to this note's earlier wording: `rec.mc.nu.npizero` is *almost* always 0 (4 of 1,014 neutrinos), not always 0; the conclusion (count π⁰ from the primaries) is unchanged.
