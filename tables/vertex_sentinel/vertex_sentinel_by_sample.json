@@ -1,0 +1,98 @@
+{
+ "bnb_cv": {
+  "valid_candidates": 241845,
+  "exactly_000": 4566,
+  "frac_000": 0.018879861068039447,
+  "nonfinite_vertex": 0,
+  "any_one_coordinate_zero_but_not_all": 0,
+  "bdt_evaluable_among_000": 0,
+  "frac_evaluable_among_000": 0.0,
+  "frac_evaluable_among_nonzero": 0.21480619861007505,
+  "filled0_among_000": 1.0,
+  "final_selected": 649,
+  "final_selected_000": 0,
+  "n20_gt0_among_000": 0,
+  "probe_has_vertex_first100files": {
+   "0": {
+    "n": 15,
+    "frac_000": 1.0
+   },
+   "1": {
+    "n": 682,
+    "frac_000": 0.0
+   }
+  }
+ },
+ "nuecc": {
+  "valid_candidates": 98576,
+  "exactly_000": 215,
+  "frac_000": 0.0021810582697614025,
+  "nonfinite_vertex": 0,
+  "any_one_coordinate_zero_but_not_all": 0,
+  "bdt_evaluable_among_000": 0,
+  "frac_evaluable_among_000": 0.0,
+  "frac_evaluable_among_nonzero": 0.8207927938918881,
+  "filled0_among_000": 1.0,
+  "final_selected": 15887,
+  "final_selected_000": 0,
+  "n20_gt0_among_000": 0,
+  "probe_has_vertex_first100files": {
+   "0": {
+    "n": 4,
+    "frac_000": 1.0
+   },
+   "1": {
+    "n": 891,
+    "frac_000": 0.0
+   }
+  }
+ },
+ "beam_off": {
+  "valid_candidates": 4733,
+  "exactly_000": 1967,
+  "frac_000": 0.41559264736953305,
+  "nonfinite_vertex": 0,
+  "any_one_coordinate_zero_but_not_all": 0,
+  "bdt_evaluable_among_000": 0,
+  "frac_evaluable_among_000": 0.0,
+  "frac_evaluable_among_nonzero": 0.29681851048445407,
+  "filled0_among_000": 1.0,
+  "final_selected": 6,
+  "final_selected_000": 0,
+  "n20_gt0_among_000": 0,
+  "probe_has_vertex_first100files": {
+   "0": {
+    "n": 188,
+    "frac_000": 1.0
+   },
+   "1": {
+    "n": 263,
+    "frac_000": 0.0
+   }
+  }
+ },
+ "beam_on_open": {
+  "valid_candidates": 42316,
+  "exactly_000": 1633,
+  "frac_000": 0.03859060402684564,
+  "nonfinite_vertex": 0,
+  "any_one_coordinate_zero_but_not_all": 0,
+  "bdt_evaluable_among_000": 0,
+  "frac_evaluable_among_000": 0.0,
+  "frac_evaluable_among_nonzero": 0.20893247793918837,
+  "filled0_among_000": 1.0,
+  "final_selected": 77,
+  "final_selected_000": 0,
+  "n20_gt0_among_000": 0,
+  "probe_has_vertex_first100files": {
+   "0": {
+    "n": 92,
+    "frac_000": 1.0
+   },
+   "1": {
+    "n": 2355,
+    "frac_000": 0.0
+   }
+  }
+ }
+}

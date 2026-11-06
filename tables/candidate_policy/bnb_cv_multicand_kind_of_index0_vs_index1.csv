@@ -1,0 +1,10 @@
+first_kind,second_kind,n_events
+cosmic,cosmic,4
+cosmic,nu_active,39
+cosmic,nu_dirt,3
+nu_active,cosmic,69
+nu_active,nu_active,999
+nu_active,nu_dirt,125
+nu_dirt,cosmic,9
+nu_dirt,nu_active,75
+nu_dirt,nu_dirt,20

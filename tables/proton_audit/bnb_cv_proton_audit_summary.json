@@ -1,0 +1,18 @@
+{
+ "meta": {
+  "sample": "bnb_cv",
+  "truth_files": 11999,
+  "valid_rows": 541395,
+  "valid_candidates": 75149
+ },
+ "ke_comparison": {
+  "median_reco_over_true_KE": 0.9895285379744124,
+  "median_reco_over_true_total_E": 0.10804504731114645,
+  "n": 62469,
+  "pearson_log": 0.8360501991265539,
+  "median_ratio_included==1": 0.9921622024967799,
+  "n_included==1": 54431,
+  "median_ratio_included!=1": 0.815827063360691,
+  "n_included!=1": 8038
+ }
+}

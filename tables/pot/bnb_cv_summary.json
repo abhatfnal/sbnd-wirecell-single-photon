@@ -1,0 +1,18 @@
+{
+ "n_files": 37742,
+ "n_files_ok": 37742,
+ "n_files_error": 0,
+ "n_events": 500000,
+ "n_wc_valid": 499899,
+ "n_unique_subruns": 37742,
+ "n_duplicate_subruns": 0,
+ "total_pot_sum": 2.719402147414874e+19,
+ "hdr_pot_sum": 2.7194021471011734e+19,
+ "n_zero_total_pot_files": 0,
+ "n_files_hdr_pot_nonzero_count_ne_1": 0,
+ "total_gen_events_sum": 1887100.0,
+ "sample": "bnb_cv",
+ "wall_s": 2438.1,
+ "known_events": 500000,
+ "known_wc_valid": 499899
+}

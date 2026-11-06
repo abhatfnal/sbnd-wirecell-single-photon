@@ -1,0 +1,19 @@
+{
+ "first": 626,
+ "any": 649,
+ "dedup_any": 649,
+ "events_with_>1_final_passing_candidate": 0,
+ "events_with_>1_candidate_valid": 4371,
+ "multi_cand_events_all_same_flash_group": 65,
+ "multi_cand_events_truth_matched": 1343,
+ "pair_class": {
+  "nu_active+nu_active": 936,
+  "nu_active+nu_dirt": 200,
+  "cosmic+nu_active": 108,
+  "same_interaction_split(nu_active)": 63,
+  "cosmic+nu_dirt": 12,
+  "nu_dirt+nu_dirt": 12,
+  "same_interaction_split(nu_dirt)": 8,
+  "cosmic+cosmic": 4
+ }
+}

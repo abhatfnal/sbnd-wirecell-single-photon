@@ -1,0 +1,74 @@
+# Baseline (out-of-the-box) inclusive single-photon selection, inherited from the MicroBooNE reference and
+# the earlier SBND pre-FV operating point (selection/microboone_single_photon_selection.yaml).
+# NOTHING here is tuned on SBND samples. No fiducial-volume cut (SBND FV pending; MicroBooNE FV NOT used).
+#
+# BDT scores are NOT stored in the CAF. They are produced OFFLINE by sbnd_single_photon.bdt from the four
+# original MicroBooNE XMLs (sha256 identical to provenance/microboone_reference_SHA256SUMS.txt). Scoring is not training.
+#
+# "branch" is the exact CAF column, per neutrino candidate: wc.<tree>.<name> (jagged [event][candidate]).
+# "derived: true" means the column is computed offline (name 'derived.<score>').
+version: 1
+candidate_policy: any          # UNRESOLVED: events can carry >1 in-window candidate (~1% in the CV smoke sample)
+requires:
+  wc_valid: 1
+bdt:
+  weight_dir_default: /exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights
+  models: [numu, other, ncpi0, nue]
+  evaluable_requires: {shw_sp_filled: "!= 0", all_inputs_finite: true}
+cuts:
+  - name: n_20mev_showers_gt0
+    branch: wc.T_tagger.shw_sp_n_20mev_showers
+    op: ">"
+    threshold: 0
+    source: "selection/microboone_single_photon_selection.yaml: min_20mev_showers=1; analysis/microboone_1gamma_v0 meta key"
+    in_mc: true        # verified on MC (bnb_cv, nuecc) and beam-off smoke files
+    in_beam_on: true   # verified on open beam-on smoke file
+  - name: single_photon_numu_score_gt_0p4
+    branch: derived.single_photon_numu_score
+    derived: true
+    bdt_model: numu
+    op: ">"
+    threshold: 0.4
+    source: "selection/microboone_single_photon_selection.yaml bdt_thresholds"
+    in_mc: derived
+    in_beam_on: derived
+  - name: single_photon_other_score_gt_0p2
+    branch: derived.single_photon_other_score
+    derived: true
+    bdt_model: other
+    op: ">"
+    threshold: 0.2
+    source: "selection/microboone_single_photon_selection.yaml bdt_thresholds"
+    in_mc: derived
+    in_beam_on: derived
+  - name: single_photon_ncpi0_score_gt_m0p05
+    branch: derived.single_photon_ncpi0_score
+    derived: true
+    bdt_model: ncpi0
+    op: ">"
+    threshold: -0.05
+    source: "selection/microboone_single_photon_selection.yaml bdt_thresholds"
+    in_mc: derived
+    in_beam_on: derived
+  - name: single_photon_nue_score_gt_m1
+    branch: derived.single_photon_nue_score
+    derived: true
+    bdt_model: nue
+    op: ">"
+    threshold: -1.0
+    source: "selection/microboone_single_photon_selection.yaml bdt_thresholds"
+    in_mc: derived
+    in_beam_on: derived
+  - name: n_20br1_showers_eq1
+    branch: wc.T_tagger.shw_sp_n_20br1_showers
+    op: "=="
+    threshold: 1
+    source: "selection/microboone_single_photon_selection.yaml: exactly_one_20br1_shower=true"
+    in_mc: true
+    in_beam_on: true
+bdt_input_notes:
+  - "all XML inputs are wc.T_tagger.<name> except reco_nuvtxY -> wc.T_kine.kine_nu_y_corr and the ncpi0 kine_pio_* inputs -> wc.T_kine.<name>"
+  - "BDT inputs are only valid when wc.T_tagger.shw_sp_filled != 0 (otherwise sentinel); non-evaluable candidates fail the BDT cuts"
+fiducial_volume:
+  applied: false
+  note: "SBND FV needs collaboration confirmation. MicroBooNE reference FV (reco_nuvtxX 5..250 cm) is NOT an SBND cut."

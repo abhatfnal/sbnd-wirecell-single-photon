@@ -1,0 +1,5 @@
+denominator,n,found_as_reco_proton_ke35,found_as_any_reco_proton_row
+all truth nu-protons KE>35,128018,0.4180037182271243,0.43375150369479293
+... with q_in_blobs>0,126971,0.4214505674524104,0.4373282088035851
+... in a candidate dominated by their nu,109883,0.48474286286322726,0.5029895434234595
+... in such a candidate and q_in_blobs>0,109668,0.48569318306160414,0.5039756355545829

@@ -1,0 +1,9 @@
+pdg,cc,nc,pi0,n_events,category
+12,False,True,False,372,OTHER_NC
+12,False,True,True,91,NC_PI0
+12,True,False,False,1016,NUE_CC
+12,True,False,True,194,CC_PI0
+14,False,True,False,51914,OTHER_NC
+14,False,True,True,10121,NC_PI0
+14,True,False,False,140680,NUMU_CC
+14,True,False,True,15874,CC_PI0

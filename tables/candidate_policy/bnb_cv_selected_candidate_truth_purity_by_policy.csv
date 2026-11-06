@@ -1,0 +1,4 @@
+policy,n_selected_events_truth_matched,n_selected_candidate_neutrino_dominated,frac_neutrino_dominated,n_selected_candidate_active_nu_dominated,frac_active_nu_dominated
+first,188,185,0.9840425531914894,153,0.8138297872340425
+any,193,190,0.9844559585492227,157,0.8134715025906736
+dedup_any,193,190,0.9844559585492227,157,0.8134715025906736

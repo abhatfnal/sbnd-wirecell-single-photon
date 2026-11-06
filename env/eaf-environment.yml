@@ -1,0 +1,24 @@
+# Dedicated EAF analysis environment for the NC-Delta 1g0p/1g1p baseline.
+# Exact solved versions of the EAF build: env/eaf-environment.lock.txt
+name: sp-ncdelta
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - uproot
+  - awkward
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - hist
+  - vector
+  - scikit-learn
+  - xrootd
+  - fsspec
+  - fsspec-xrootd
+  - lightgbm      # installed for later; NO classifier training in the baseline
+  - xgboost       # installed for later; NO classifier training in the baseline
+  - pyyaml
+  - pytest
+  - pyarrow

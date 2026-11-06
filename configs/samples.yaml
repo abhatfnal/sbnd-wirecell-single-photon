@@ -1,0 +1,102 @@
+# Sample registry for the NC-Delta 1g0p/1g1p baseline.
+# Every number below is KNOWN from Haiwang's READMEs (fg1/README.md, opendata-fixeddev/DATASET.md)
+# or from the prepared lists, and is re-verified by scripts/make_manifests.py (file counts)
+# and the smoke test (schema). POT weights are intentionally NOT assigned yet.
+#
+# Production reconstruction (all four available samples): stored uboone SCN DL vertexer
+#   Trun.dl_weights = uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth
+# NOT DV2-MAX (vertex_method=dv2_split_move / dv2max/r7_cloud/bundle.json), NOT Fix2.
+schema:
+  mc_and_beam_off:  {md5: d4396a3490ea5aec4b02f0c34fa9db33, n_branches: 2401}
+  beam_on_open:     {md5: c845fe94fbe59b507ef50ea87417c3f9, n_branches: 2283}  # strict subset of MC schema
+defaults:
+  xrootd_door: root://fndcadoor.fnal.gov
+  require: {wc_valid: 1}
+
+samples:
+  bnb_cv:
+    status: available
+    role: background_evaluation
+    may_train: false
+    may_evaluate: true
+    is_mc: true
+    label: "BNB CV MC (Gen2 2026, prodgenie_corsika_proton_rockbox0p1)"
+    production: "fg1 / SBND2026A gen2 BNBLight CV v10_14_02_03, WCT sbnd-wc-flatcaf 4b6853d4"
+    source_list: /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/fg1/lists/mc-cv.merged-caf.txt
+    manifest: manifests/bnb_cv.tsv.gz
+    n_files_listed: 37742        # 37,720 OK + 22 PARTIAL
+    n_caf_events: 500000
+    n_wc_valid_events: 499899
+    schema_md5: d4396a3490ea5aec4b02f0c34fa9db33
+    provenance_note: "seeded random subset of the SAM definition; POT must be summed over the LISTED files"
+  nuecc:
+    status: available
+    role: background_control_only
+    may_train: false
+    may_evaluate: true
+    is_mc: true
+    label: "nueCC MC (Gen2 Exclusive 2026)"
+    production: "fg1 / SBND2026A gen2 EX_nuecc v10_14_02_05, WCT sbnd-wc-flatcaf 4b6853d4"
+    source_list: /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/fg1/lists/mc-nuecc.merged-caf.txt
+    manifest: manifests/nuecc.tsv.gz
+    n_files_listed: 11441        # 11,421 OK + 20 PARTIAL (4 EMPTY pairs have no CAF)
+    n_caf_events: 100003
+    n_wc_valid_events: 99946
+    schema_md5: d4396a3490ea5aec4b02f0c34fa9db33
+    provenance_note: "exclusive nueCC sample: NOT a representative BNB mixture; do not add to bnb_cv without a defined normalisation"
+  beam_off:
+    status: available
+    role: data_validation
+    may_train: false
+    may_evaluate: true
+    is_mc: false
+    label: "InTime-Run1 beam-off data (strmOffBeamLight)"
+    production: "fg1 / data_SBND2026A_gen2_InTime-Run1 v10_14_02_02, WCT sbnd-wc-flatcaf 4b6853d4 (+FrameShift)"
+    source_list: /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/fg1/lists/beam-off.merged-caf.txt
+    manifest: manifests/beam_off.tsv.gz
+    n_files_listed: 1058         # 1,054 OK + 4 PARTIAL
+    n_caf_events: 49970
+    n_wc_valid_events: 49917
+    schema_md5: d4396a3490ea5aec4b02f0c34fa9db33
+  beam_on_open:
+    status: available
+    role: data_validation
+    may_train: false
+    may_evaluate: true
+    is_mc: false
+    label: "Open BNB FixedDev beam-on data, runs 18255-18259 (Respin CAF)"
+    production: "opendata-fixeddev, sbndbuild03, WCT sbnd-wc-flatcaf f6fd2209 (older, before truth matching)"
+    source_list: /pnfs/sbnd/persistent/users/yuhw/prod-sbndbuild03/opendata-fixeddev/lists/merged-caf.txt
+    manifest: manifests/beam_on_open.tsv.gz
+    n_files_listed: 1817         # 1,816 OK + 1 PARTIAL (d5055859)
+    n_caf_events: 89946
+    n_wc_valid_events: 89921
+    schema_md5: c845fe94fbe59b507ef50ea87417c3f9
+    provenance_note: "older schema: use ONLY branches common with MC; no MC truth/matching trees"
+
+  # ---------------------------------------------------------------------------------------------------------
+  # Signal samples. NO paths, counts, POT or provenance are recorded for either: none is verified.
+  # Dataset roles (Haiwang): official Gen2 samples on Fermilab = EVALUATION; Aurora isolated samples = training/development.
+  official_gen2_ncdelta:
+    role: signal_evaluation
+    status: wc_merged_caf_pending
+    may_train: false
+    may_evaluate: true
+    # The official Gen2 NC-Delta radiative sample EXISTS (names as reported by the analyser from the official production;
+    # not verified from EAF, no samweb here). No file paths, event counts, POT or schema are recorded: none is verified.
+    official_sam_definitions:
+      reco1: aurora_SBND2026A_gen2_BNBLight_prodgenie_corsika_proton_rockbox0p1_sbnd_EX_ncdeltarad_v10_14_02_05_reco1_sbnd
+      flat_caf: aurora_SBND2026A_gen2_BNBLight_prodgenie_corsika_proton_rockbox0p1_sbnd_EX_ncdeltarad_v10_14_02_05_flat_caf_sbnd
+    note: >
+      Preferred signal evaluation sample (official Gen2, same production family as bnb_cv / nuecc). What is PENDING is the
+      Wire-Cell processing / merged-CAF production of this existing sample by Haiwang, which would put it alongside the other
+      official merged CAFs. Until then it has no manifest and no code reads it. See the arrival checklist in
+      docs/analysis/NCDELTA_BASELINE_ANALYSIS_DESIGN.md.
+  aurora_ncdelta_training:
+    role: training_development
+    status: remains_on_aurora
+    may_train: true
+    may_evaluate: false
+    note: >
+      Isolated Aurora NC-Delta MC (~26.7k merged CAFs). Training / development / reconstruction-study material ONLY. Not to be
+      transferred, not the baseline signal placeholder, and its numbers are never the evaluation denominator.

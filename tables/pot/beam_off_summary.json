@@ -1,0 +1,23 @@
+{
+ "n_files": 1058,
+ "n_files_ok": 1058,
+ "n_files_error": 0,
+ "n_events": 49970,
+ "n_wc_valid": 49917,
+ "n_unique_subruns": 156,
+ "n_duplicate_subruns": 114,
+ "total_pot_sum": 0.0,
+ "hdr_pot_sum": 0.0,
+ "n_zero_total_pot_files": 1058,
+ "n_files_hdr_pot_nonzero_count_ne_1": 1058,
+ "noffbeambnb_sum": 2542847.0,
+ "n_files_noffbeambnb_nonzero_count_ne_1": 0,
+ "runs_min": 18250,
+ "runs_max": 18592,
+ "n_unique_runs": 156,
+ "total_gen_events_sum": 0.0,
+ "sample": "beam_off",
+ "wall_s": 63.8,
+ "known_events": 49970,
+ "known_wc_valid": 49917
+}

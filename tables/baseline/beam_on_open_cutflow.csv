@@ -1,0 +1,12 @@
+stage,n_candidates,n_events_any,n_events_first,stored_per_1e20_genPOT_any,stored_err_per_1e20_genPOT_any,stored_per_1e20_genPOT_first,stored_err_per_1e20_genPOT_first,note
+all_events,42316,89946,89946,,,,,all CAF events; candidates counted over all events
+wc_valid_fail,0,25,25,,,,,events with wc.valid != 1 (excluded)
+wc_valid,42316,89921,89921,,,,,usable reconstruction
+candidate_exists,42316,41783,41783,,,,,valid events with >=1 candidate
+(info) bdt_evaluable_candidates,8500,8480,8391,,,,,shw_sp_filled != 0 and all four scores finite; NOT a cut
+cum:n_20mev_showers_gt0,8959,8936,8838,,,,,
+cum:single_photon_numu_score_gt_0p4,1889,1888,1855,,,,,
+cum:single_photon_other_score_gt_0p2,507,507,498,,,,,
+cum:single_photon_ncpi0_score_gt_m0p05,129,129,129,,,,,
+cum:single_photon_nue_score_gt_m1,129,129,129,,,,,
+cum:n_20br1_showers_eq1,77,77,77,,,,,

@@ -1,0 +1,65 @@
+{
+ "sample": "bnb_cv",
+ "n_events": 500000,
+ "n_valid": 499899,
+ "category_all_events": {
+  "NUMU_CC": 140680,
+  "NUE_CC": 1016,
+  "NC_PI0": 10212,
+  "CC_PI0": 16068,
+  "OTHER_NC": 52286,
+  "OTHER_CC": 0,
+  "DIRT_NO_ACTIVE": 271433,
+  "MULTI_ACTIVE": 8305,
+  "COSMIC_NO_NU": 0,
+  "OTHER": 0
+ },
+ "category_valid_events": {
+  "NUMU_CC": 140650,
+  "NUE_CC": 1014,
+  "NC_PI0": 10210,
+  "CC_PI0": 16063,
+  "OTHER_NC": 52279,
+  "OTHER_CC": 0,
+  "DIRT_NO_ACTIVE": 271380,
+  "MULTI_ACTIVE": 8303,
+  "COSMIC_NO_NU": 0,
+  "OTHER": 0
+ },
+ "n_nu_per_event": {
+  "1": 209174,
+  "2": 200422,
+  "3": 72301,
+  "4": 15560,
+  "5": 2239,
+  "6": 274,
+  "7": 30
+ },
+ "n_active_nu_per_event": {
+  "0": 271433,
+  "1": 220262,
+  "2": 8164,
+  "3": 141
+ },
+ "single_active_with_pi0": {
+  "NC_PI0": 10212,
+  "CC_PI0": 16068,
+  "note": "under 'flavour-first' precedence the CC_PI0 events would be NUMU_CC/NUE_CC/OTHER_CC and NC_PI0 would be OTHER_NC"
+ },
+ "CC_PI0_by_flavour_if_flavour_first": {
+  "14": 15874,
+  "12": 194
+ },
+ "single_active_neither_cc_nor_nc": 0,
+ "single_active_both_cc_and_nc": 0,
+ "OTHER_category_events": 0,
+ "OTHER_pdgs": {},
+ "single_active_pdg_not_in_12_14": {},
+ "single_active_vertex_within_cm_of_box_face": {
+  "2": 0.025038363403583005,
+  "5": 0.06095014119548538,
+  "10": 0.12005248295212066,
+  "20": 0.2328908300115317
+ },
+ "note": "Neutrinos just outside the box are classified as dirt; DIRT_NO_ACTIVE / MULTI_ACTIVE depend on the box edge. Provisional box, NOT an FV."
+}

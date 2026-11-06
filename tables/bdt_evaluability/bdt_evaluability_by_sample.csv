@@ -1,0 +1,5 @@
+sample,valid_candidates,filled0,filled_nonfinite_any,evaluable,filled0_and_n20_eq0,filled0_and_n20_gt0,filled_and_n20_eq0,filled_and_n20_gt0
+bnb_cv,241845,190832,44,50969,188919,1913,0,51013
+nuecc,98576,17799,43,80734,17043,756,0,80777
+beam_off,4733,3911,1,821,3833,78,0,822
+beam_on_open,42316,33807,9,8500,33357,450,0,8509

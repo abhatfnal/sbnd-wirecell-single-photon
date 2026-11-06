@@ -1,0 +1,24 @@
+# Control-plot skeleton. SHAPES ONLY until exposure normalisation is established
+# (MC POT weights not assigned; beam-off -> beam-on scale factor not established).
+# kind: cand   = one entry per neutrino candidate (all candidates of wc.valid events, NO selection applied)
+#       proton_ke = one entry per proton row (pdg==2212) of the candidate
+#       proton_mult = reco proton multiplicity code per candidate (0p/1p/>=2p), see proton.py
+# "unit_note"/"caveat" are carried into the plot text.
+plots:
+  - {name: reco_vtx_x, kind: cand, branch: wc.T_kine.kine_nu_x_corr, bins: 50, range: [-250, 250], xlabel: "reco nu vertex x [cm]"}
+  - {name: reco_vtx_y, kind: cand, branch: wc.T_kine.kine_nu_y_corr, bins: 50, range: [-250, 250], xlabel: "reco nu vertex y [cm]"}
+  - {name: reco_vtx_z, kind: cand, branch: wc.T_kine.kine_nu_z_corr, bins: 50, range: [-50, 550], xlabel: "reco nu vertex z [cm]"}
+  - {name: reco_enu, kind: cand, branch: wc.T_kine.kine_reco_Enu, bins: 40, range: [0, 4000], xlabel: "reco E_nu [MeV]"}
+  - {name: shower_energy, kind: cand, branch: wc.T_tagger.shw_sp_energy, bins: 40, range: [0, 1500], xlabel: "shw_sp_energy [MeV] (main-vertex shower)", caveat: "sentinel values when shw_sp_filled==0"}
+  - {name: shower_vtx_dist, kind: cand, branch: wc.T_tagger.shw_sp_shw_vtx_dis, bins: 40, range: [0, 100], xlabel: "shw_sp_shw_vtx_dis [cm] (shower-to-vertex distance)", caveat: "unit/meaning to be confirmed"}
+  - {name: shower_dqdx, kind: cand, branch: wc.T_tagger.shw_sp_lem_e_dQdx, bins: 40, range: [0, 5], xlabel: "shw_sp_lem_e_dQdx (closest stored shower dQ/dx variable)", caveat: "variable meaning/units to be confirmed; may be a sentinel when unfilled"}
+  - {name: n_20mev_showers, kind: cand, branch: wc.T_tagger.shw_sp_n_20mev_showers, bins: 8, range: [-0.5, 7.5], xlabel: "shw_sp_n_20mev_showers"}
+  - {name: n_20br1_showers, kind: cand, branch: wc.T_tagger.shw_sp_n_20br1_showers, bins: 8, range: [-0.5, 7.5], xlabel: "shw_sp_n_20br1_showers"}
+  - {name: bdt_numu, kind: derived, branch: derived.single_photon_numu_score, bins: 40, range: [-1, 1], xlabel: "single_photon_numu_score (offline TMVA)"}
+  - {name: bdt_other, kind: derived, branch: derived.single_photon_other_score, bins: 40, range: [-1, 1], xlabel: "single_photon_other_score (offline TMVA)"}
+  - {name: bdt_ncpi0, kind: derived, branch: derived.single_photon_ncpi0_score, bins: 40, range: [-1, 1], xlabel: "single_photon_ncpi0_score (offline TMVA)"}
+  - {name: bdt_nue, kind: derived, branch: derived.single_photon_nue_score, bins: 40, range: [-1, 1], xlabel: "single_photon_nue_score (offline TMVA)"}
+  - {name: reco_proton_mult, kind: proton_mult, bins: 3, range: [-0.5, 2.5], xlabel: "reco proton multiplicity (0, 1, >=2; KE>35 MeV provisional)"}
+  - {name: reco_proton_ke, kind: proton_ke, bins: 40, range: [0, 600], xlabel: "reco proton KE [MeV] (type==2212 rows)"}
+  - {name: flash_pe, kind: cand, branch: wc.T_tagger.flash_pe, bins: 40, range: [0, 60000], xlabel: "matched flash PE", caveat: "units/meaning to be confirmed"}
+  - {name: flash_time_us, kind: cand, branch: wc.T_tagger.flash_time_us, bins: 40, range: [-2, 6], xlabel: "matched flash time [us]"}

@@ -1,0 +1,16 @@
+cls,same_flash_group,same_flash_tpc,n_events
+cosmic+cosmic,False,False,4
+cosmic+nu_active,False,False,88
+cosmic+nu_active,False,True,20
+cosmic+nu_dirt,False,False,9
+cosmic+nu_dirt,False,True,3
+nu_active+nu_active,False,False,696
+nu_active+nu_active,False,True,240
+nu_active+nu_dirt,False,False,148
+nu_active+nu_dirt,False,True,52
+nu_dirt+nu_dirt,False,False,10
+nu_dirt+nu_dirt,False,True,2
+same_interaction_split(nu_active),False,False,57
+same_interaction_split(nu_active),False,True,6
+same_interaction_split(nu_dirt),False,False,7
+same_interaction_split(nu_dirt),False,True,1

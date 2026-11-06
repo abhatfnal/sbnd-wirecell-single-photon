@@ -1,0 +1,171 @@
+{
+ "meta": {
+  "sample": "beam_off",
+  "n_files": 1058,
+  "n_events": 49970,
+  "n_wc_valid": 49917,
+  "sum_TotalPOT": 0.0,
+  "sum_TotalGenEvents": 0.0,
+  "schema_md5": [
+   "d4396a3490ea5aec4b02f0c34fa9db33"
+  ],
+  "dl_weights": [
+   "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+  ],
+  "completeness": {
+   "files_loaded": 1058,
+   "files_expected": 1058,
+   "events_loaded": 49970,
+   "events_expected": 49970,
+   "complete": true
+  },
+  "policies": "provisional: first (nu_index==0) and any; NO fiducial volume; no weights",
+  "rates_note": "per-POT columns suppressed: nueCC normalisation unresolved / data samples are shape-only (no scale factor)",
+  "final_events_with_>1_passing_candidate": 0
+ },
+ "cutflow": [
+  {
+   "stage": "all_events",
+   "n_candidates": 4733,
+   "n_events_any": 49970,
+   "n_events_first": 49970,
+   "note": "all CAF events; candidates counted over all events",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "wc_valid_fail",
+   "n_candidates": 0,
+   "n_events_any": 53,
+   "n_events_first": 53,
+   "note": "events with wc.valid != 1 (excluded)",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "wc_valid",
+   "n_candidates": 4733,
+   "n_events_any": 49917,
+   "n_events_first": 49917,
+   "note": "usable reconstruction",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "candidate_exists",
+   "n_candidates": 4733,
+   "n_events_any": 4697,
+   "n_events_first": 4697,
+   "note": "valid events with >=1 candidate",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "(info) bdt_evaluable_candidates",
+   "n_candidates": 821,
+   "n_events_any": 820,
+   "n_events_first": 818,
+   "note": "shw_sp_filled != 0 and all four scores finite; NOT a cut",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:n_20mev_showers_gt0",
+   "n_candidates": 900,
+   "n_events_any": 899,
+   "n_events_first": 897,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:single_photon_numu_score_gt_0p4",
+   "n_candidates": 359,
+   "n_events_any": 359,
+   "n_events_first": 359,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:single_photon_other_score_gt_0p2",
+   "n_candidates": 24,
+   "n_events_any": 24,
+   "n_events_first": 24,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:single_photon_ncpi0_score_gt_m0p05",
+   "n_candidates": 8,
+   "n_events_any": 8,
+   "n_events_first": 8,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:single_photon_nue_score_gt_m1",
+   "n_candidates": 8,
+   "n_events_any": 8,
+   "n_events_first": 8,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  },
+  {
+   "stage": "cum:n_20br1_showers_eq1",
+   "n_candidates": 6,
+   "n_events_any": 6,
+   "n_events_first": 6,
+   "note": "",
+   "stored_per_1e20_genPOT_any": null,
+   "stored_err_per_1e20_genPOT_any": null,
+   "stored_per_1e20_genPOT_first": null,
+   "stored_err_per_1e20_genPOT_first": null
+  }
+ ],
+ "final_reco_proton_split": {
+  "first|ke>35": {
+   "0p": 4,
+   "1p": 2,
+   "ge2p": 0
+  },
+  "first|ke>35 & included==1": {
+   "0p": 4,
+   "1p": 2,
+   "ge2p": 0
+  },
+  "any|ke>35": {
+   "0p": 4,
+   "1p": 2,
+   "ge2p": 0
+  },
+  "any|ke>35 & included==1": {
+   "0p": 4,
+   "1p": 2,
+   "ge2p": 0
+  }
+ }
+}

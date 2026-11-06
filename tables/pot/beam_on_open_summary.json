@@ -1,0 +1,23 @@
+{
+ "n_files": 1817,
+ "n_files_ok": 1817,
+ "n_files_error": 0,
+ "n_events": 89946,
+ "n_wc_valid": 89921,
+ "n_unique_subruns": 2,
+ "n_duplicate_subruns": 2,
+ "total_pot_sum": 4.62125261085646e+18,
+ "hdr_pot_sum": 4.621252604079354e+18,
+ "n_zero_total_pot_files": 0,
+ "n_files_hdr_pot_nonzero_count_ne_1": 0,
+ "noffbeambnb_sum": 0.0,
+ "n_files_noffbeambnb_nonzero_count_ne_1": 1817,
+ "runs_min": 18255,
+ "runs_max": 18259,
+ "n_unique_runs": 2,
+ "total_gen_events_sum": 0.0,
+ "sample": "beam_on_open",
+ "wall_s": 93.6,
+ "known_events": 89946,
+ "known_wc_valid": 89921
+}

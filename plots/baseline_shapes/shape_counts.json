@@ -1,0 +1,90 @@
+{
+ "valid_candidates": {
+  "beam_on_open": {
+   "c_shw_sp_n_20mev_showers": 42316,
+   "c_shw_sp_n_20br1_showers": 42316,
+   "c_score_numu": 8509,
+   "c_score_other": 8509,
+   "c_score_ncpi0": 8500,
+   "c_score_nue": 8509,
+   "c_flash_pe": 42316,
+   "c_flash_time_us": 42316,
+   "c_kine_nu_x_corr": 42316,
+   "c_kine_nu_y_corr": 42316,
+   "c_kine_nu_z_corr": 42316,
+   "c_np35": 42316
+  },
+  "beam_off": {
+   "c_shw_sp_n_20mev_showers": 4733,
+   "c_shw_sp_n_20br1_showers": 4733,
+   "c_score_numu": 822,
+   "c_score_other": 822,
+   "c_score_ncpi0": 821,
+   "c_score_nue": 822,
+   "c_flash_pe": 4733,
+   "c_flash_time_us": 4733,
+   "c_kine_nu_x_corr": 4733,
+   "c_kine_nu_y_corr": 4733,
+   "c_kine_nu_z_corr": 4733,
+   "c_np35": 4733
+  },
+  "bnb_cv": {
+   "c_shw_sp_n_20mev_showers": 241845,
+   "c_shw_sp_n_20br1_showers": 241845,
+   "c_score_numu": 51013,
+   "c_score_other": 51013,
+   "c_score_ncpi0": 50969,
+   "c_score_nue": 51013,
+   "c_flash_pe": 241845,
+   "c_flash_time_us": 241845,
+   "c_kine_nu_x_corr": 241845,
+   "c_kine_nu_y_corr": 241845,
+   "c_kine_nu_z_corr": 241845,
+   "c_np35": 241845
+  }
+ },
+ "final_selected": {
+  "beam_on_open": {
+   "c_shw_sp_n_20mev_showers": 77,
+   "c_shw_sp_n_20br1_showers": 77,
+   "c_score_numu": 77,
+   "c_score_other": 77,
+   "c_score_ncpi0": 77,
+   "c_score_nue": 77,
+   "c_flash_pe": 77,
+   "c_flash_time_us": 77,
+   "c_kine_nu_x_corr": 77,
+   "c_kine_nu_y_corr": 77,
+   "c_kine_nu_z_corr": 77,
+   "c_np35": 77
+  },
+  "beam_off": {
+   "c_shw_sp_n_20mev_showers": 6,
+   "c_shw_sp_n_20br1_showers": 6,
+   "c_score_numu": 6,
+   "c_score_other": 6,
+   "c_score_ncpi0": 6,
+   "c_score_nue": 6,
+   "c_flash_pe": 6,
+   "c_flash_time_us": 6,
+   "c_kine_nu_x_corr": 6,
+   "c_kine_nu_y_corr": 6,
+   "c_kine_nu_z_corr": 6,
+   "c_np35": 6
+  },
+  "bnb_cv": {
+   "c_shw_sp_n_20mev_showers": 649,
+   "c_shw_sp_n_20br1_showers": 649,
+   "c_score_numu": 649,
+   "c_score_other": 649,
+   "c_score_ncpi0": 649,
+   "c_score_nue": 649,
+   "c_flash_pe": 649,
+   "c_flash_time_us": 649,
+   "c_kine_nu_x_corr": 649,
+   "c_kine_nu_y_corr": 649,
+   "c_kine_nu_z_corr": 649,
+   "c_np35": 649
+  }
+ }
+}
