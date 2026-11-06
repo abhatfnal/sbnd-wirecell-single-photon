@@ -45,3 +45,16 @@ def test_stage_counts_join_any_vs_first_and_missing_events():
     assert r["any"]["reco_0p_1p_ge2p"] == [0, 1, 1]               # event (0,0): lowest-nu_index PASSING candidate is nu 1 (1p); event (0,1): 2p
     assert r["first"]["reco_0p_1p_ge2p"] == [0, 0, 1]             # (0,0) has no passing 'first' candidate
     assert r["any"]["cum_candidate_in_valid_event"] == 3          # event (0,2) has no candidate: not counted; invalid-event candidates handled by the table flags
+
+
+def test_classify_selected_events_signal_background_mixed_and_no_truth_selection():
+    kc = NS.KEY
+    sel = pd.DataFrame(dict(file_index=[0, 1, 2, 2, 3], ev=[0, 0, 0, 0, 0],
+                            dom_nu_vx=[10., 50., 10., 90., np.nan], dom_nu_vy=0., dom_nu_vz=100.))
+    sig = pd.DataFrame(dict(file_index=[0, 2, 3], ev=[0, 0, 0], x=[10.5, 10.0, 10.0], y=0., z=100.))
+    g = NS.classify_selected_events(sel, sig).set_index(kc)
+    assert g.loc[(0, 0), "event_class"] == "signal_like"       # matched candidate
+    assert g.loc[(1, 0), "event_class"] == "background"        # event has no signal neutrino
+    assert g.loc[(2, 0), "event_class"] == "mixed" and g.loc[(2, 0), "n_pass"] == 2   # counted once, flagged
+    assert g.loc[(3, 0), "event_class"] == "background"        # no truth match available (NaN) -> not signal
+    assert len(g) == 4 and g.n_pass.sum() == len(sel)          # one row per selected event, nothing dropped

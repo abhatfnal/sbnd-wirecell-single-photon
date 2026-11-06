@@ -57,3 +57,25 @@ def stage_counts(sig_events: pd.DataFrame, events: pd.DataFrame, cands: pd.DataF
         fin = cc[cc.pass_final.values].sort_values(KEY + ["c_nu_index"]).drop_duplicates(KEY)
         out[pol]["reco_0p_1p_ge2p"] = [int((fin.reco_proton_cat == k).sum()) for k in (0, 1, 2)]
     return out
+
+
+def classify_selected_events(selected: pd.DataFrame, sig_nu: pd.DataFrame, *, tol_cm: float = 5.0) -> pd.DataFrame:
+    """Truth classification of ALREADY-SELECTED events (MC evaluation only; never used to decide whether anything passes).
+
+    ``selected``: the candidates that pass the frozen chain (``any`` policy: all of them), with ``dom_nu_vx/vy/vz``
+    (vertex of the neutrino dominating the candidate's charge, NaN when unavailable) and the event KEY.
+    ``sig_nu``: the qualifying NC Delta -> N gamma neutrinos (KEY, x, y, z).
+    A passing candidate is signal-matched if its dominant neutrino vertex lies within ``tol_cm`` of a qualifying signal neutrino
+    of the same event. Event class: ``signal_like`` (>= 1 passing candidate signal-matched and none unmatched), ``mixed``
+    (signal-matched and unmatched passing candidates: explicit diagnostic, no truth-based pick), else ``background``.
+    One row per selected event; an event counts once."""
+    s = selected.copy()
+    s["_cid"] = np.arange(len(s))
+    m = s[KEY + ["_cid", "dom_nu_vx", "dom_nu_vy", "dom_nu_vz"]].merge(
+        sig_nu[KEY + ["x", "y", "z"]], on=KEY, how="inner")
+    d = np.sqrt((m.dom_nu_vx - m.x) ** 2 + (m.dom_nu_vy - m.y) ** 2 + (m.dom_nu_vz - m.z) ** 2)   # NaN -> False
+    s["_matched"] = s["_cid"].isin(m.loc[(d < tol_cm).values, "_cid"])
+    g = s.groupby(KEY).agg(n_pass=("_cid", "size"), n_signal_matched=("_matched", "sum")).reset_index()
+    g["event_class"] = np.where(g.n_signal_matched == 0, "background",
+                                np.where(g.n_signal_matched == g.n_pass, "signal_like", "mixed"))
+    return g

@@ -78,7 +78,7 @@ scripts/        make_manifests, exposure_scan, smoke_test (software validation)
                 baseline_scan / baseline_report (full-sample candidate tables and cut-flow)
                 truth_match_scan / truth_audit_report / truth_taxonomy_audit (MC truth, evaluation only)
                 bdt_evaluability_report, vertex_sentinel_report, shape_plots
-tests/          63 tests (mocked arrays, synthetic local ROOT, candidate-policy bookkeeping; the tiny remote read is skipped without a valid token)
+tests/          64 tests (mocked arrays, synthetic local ROOT, candidate-policy bookkeeping; the tiny remote read is skipped without a valid token)
 ```
 
 ### CAF facts this design relies on (verified on EAF)
@@ -167,11 +167,20 @@ The Aurora sample (`aurora_ncdelta_training`) is never a substitute. Add a merge
 
 ## Signal/background bookkeeping (no double counting)
 
-The inclusive BNB CV contains **naturally generated NC Δ → Nγ events** (identified exactly with the GENIE record; `NATURAL_NCDELTA_CV_CROSSCHECK.md`). When the dedicated official NC-Δ sample is later used to obtain the high-statistics signal efficiency and the expected signal yield, **do not simply add "dedicated NC-Δ signal + full BNB CV"**: that counts the NC-Δ component already present in the CV twice.
+The inclusive BNB CV contains **naturally generated NC Δ → Nγ events** (identified exactly with the GENIE record; `NATURAL_NCDELTA_CV_CROSSCHECK.md`). The dedicated official NC-Δ sample will give the high-statistics signal efficiency and yield; **"dedicated signal + full CV" would count the CV's natural signal twice**.
 
-The future physical prediction must use a consistent scheme, for example:
+**The background is NOT "the CV with NC-Δ events removed".** 60 % of CV events contain several neutrino interactions; dropping a whole event that holds an NC-Δ interaction would also delete legitimate non-signal activity of that spill. Bookkeeping is done at the **selected-event level**, after reconstruction and selection:
 
-* **S** = the dedicated NC-Δ sample normalised to the physical POT (N_signal_truth / POT_dedicated × POT_data, `SIGNAL_TRUTH_AND_DENOMINATOR.md`);
-* **B** = the BNB CV **with its true NC Δ → Nγ interactions removed** (event key `(file_index/source_file, run, subrun, evt)`; the natural-signal event list is `tables/natural_ncdelta/natural_signal_events_bnb_cv.csv`), plus beam-off for cosmic-only backgrounds;
+* **Event passes** (policy `any`, working): at least one candidate passes the frozen cuts (`wc.valid == 1`, no truth involved). Policy `first` is the comparison.
+* **MC evaluation only, after selection:** a selected event is **SIGNAL-LIKE** if at least one passing candidate is truth-matched to the defined NC Δ → Nγ signal interaction (`natural_signal.classify_selected_events`: dominant-neutrino vertex of the candidate within 5 cm of a qualifying signal neutrino of the same event); it is **BACKGROUND** otherwise. Truth matching **never** decides whether a candidate or event passes, and never chooses a candidate.
+* **Multiple passing candidates (future samples):** the event counts once. If one passing candidate is signal-matched and another is not, the event is labelled **`mixed`**, kept as an explicit diagnostic, and no candidate is picked by truth. (Not observed: every selected CV event has exactly one passing candidate.)
 
-or an equivalent, statistically correct scheme. Care is needed with events that contain a natural signal neutrino **and** other interactions (60 % of CV events have several neutrinos): the removal is per signal *interaction*, so a CV event whose selected candidate belongs to a different neutrino still counts as background for that candidate. Candidate-to-neutrino matching (`wc.T_overlap` / `T_match`) will be required to do this properly, and is evaluation-only, never used to choose candidates. **No final weighting is implemented here.** The natural-CV count is also an independent normalisation cross-check of the dedicated sample (rate per POT of signal in the TPC).
+**Observed in the present BNB CV (truth-level MC bookkeeping, not a data selection):** selected `any` = 649 = **14 signal-like + 635 non-signal CV events**, 0 mixed; all 14 passing candidates are dominated by the signal neutrino (13 vertices in the provisional TPC box, 1 in the padding). The same 14 sit in the 318 / 236 reco 1γ0p / 1γ1p counts of `BASELINE_1G0P_1G1P_BACKGROUND.md` (8 / 6).
+
+**Future high-statistics prediction (no weighting implemented here):**
+
+* **signal:** the dedicated official NC-Δ sample → efficiency and signal prediction (`SIGNAL_TRUTH_AND_DENOMINATOR.md`, N_expected = R_signal · POT_data);
+* **beam background:** the inclusive BNB CV **selected events classified non-signal** (the 635-type events);
+* **cosmic-only:** beam-off, once its normalisation is established (open question).
+
+The dedicated signal prediction **replaces**, and is not added to, the natural signal already represented in the inclusive CV (the 14-type events, which are dropped from the CV background by their selected-event classification, not by removing events from the sample). The natural-CV count remains an independent normalisation cross-check of the dedicated sample. Candidate-to-neutrino matching (`wc.T_overlap` / dominant-neutrino vertex) is evaluation-only.
