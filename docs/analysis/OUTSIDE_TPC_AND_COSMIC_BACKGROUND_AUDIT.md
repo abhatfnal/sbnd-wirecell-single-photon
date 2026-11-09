@@ -1,0 +1,24 @@
+# Outside-TPC, cosmic-matched and ambiguous selected candidates
+
+MC evaluation only; frozen baseline, `any`; non-signal passing candidates of the BNB CV (635), candidate-associated (`T_match`) categories of `CANDIDATE_ASSOCIATED_BACKGROUND_TAXONOMY.md`. Tables: `tables/background_mechanisms/outside_tpc_candidates.csv`, `cosmic_or_ambiguous_candidates.csv`, `old_event_vs_candidate_associated_crosstab_635.csv`. The *provisional* TPC box (|x|,|y| < 200, 0 < z < 500 cm) is a descriptive aid, **not a fiducial volume**; the 'distance' below is the Euclidean distance from the box to the matched-neutrino vertex.
+
+## 1. What the passing candidate is matched to
+Of the 635: 192+106+175+24+21 = **518** matched to an in-box neutrino (NC_PI0, CC_PI0, NUE_CC, NUMU_CC, OTHER_NC), **95 OUTSIDE_TPC_NU** (matched to a neutrino whose true vertex is outside the box), **15 COSMIC_OR_UNMATCHED**, **7 MULTI_OR_AMBIGUOUS** (the candidate overlaps ≥ 2 distinct truth neutrinos). By reco channel: 1γ0p 75 outside / 14 cosmic / 2 ambiguous; 1γ1p 17 / 0 / 4; ≥2p diag 3 / 1 / 1.
+
+## 2. Outside-TPC neutrino candidates (95)
+* **They are mostly just outside the box.** Distance to the box: min 0.1, quartiles 6.8 / 15.2 / 38.7, max 311 cm; 33 within 10 cm, 54 within 20 cm, 77 within 50 cm, 13 beyond 100 cm. Faces (dominant exceedance): upstream z < 0 in 48, |x| > 200 in 28, |y| > 200 in 16, downstream z > 500 in 3. Vertex ranges x ∈ [−473, 474], y ∈ [−473, 240], z ∈ [−311, 562] cm. The box is the nominal TPC extent and "just outside" candidates may still be partly inside the real active volume or cathode/anode regions; this is why the word **dirt is not used** for them here.
+* **They all deposit energy in the active volume** (`T_truth_nu.edep` > 0 for 95 of 95; median 0.48 in the stored unit). This is expected for events kept by the generator's dirt/energy-deposit path and says the interaction products reach the detector.
+* Flavour/current: ν_μ 84, ν_e 10, ν̄_μ 1; CC 48, NC 47; GENIE mode RES 63, DIS 23, MEC 4, QE 4, COH 1 (neutrino energy median 1.5 GeV; no anomaly in these categories relative to the in-box backgrounds).
+* **The selected shower** is a photon in 84 (π⁰/secondary photons), the primary electron of a ν_e CC in 10, a muon-origin row in 1; median dominant-charge fraction 0.93 and median top IoU 0.84, i.e. these are well-matched candidates, not poor matches.
+* By channel: 75 are reco 1γ0p (median distance 17.8 cm), 17 1γ1p (9.4 cm), 3 ≥2p (2.5 cm): outside-TPC neutrinos are a **1γ0p-dominated** contribution (24 % of 1γ0p, 7 % of 1γ1p, 3 % of ≥2p).
+* Old event-level category: 91 were `DIRT_NO_ACTIVE` and 4 `NUMU_CC` (a ν_μ CC in the box also existed in those events).
+
+## 3. Cosmic-matched / unmatched (15) and ambiguous (7)
+* **COSMIC_OR_UNMATCHED (15; 14 in 1γ0p, 1 in ≥2p):** the production top match is a cosmic truth object or absent; top IoU spans 0.03–0.92 (median 0.28). The dominant `T_overlap` truth track of the candidate is a **muon** in 12 (μ⁻ 6, μ⁺ 6), a **photon** in 2 (their mother is a π⁰: cosmic-induced π⁰), an e⁺ in 1. The selected shower itself is of cosmic/unmatched origin in 14 and an electron in 1. Event-level old categories: DIRT_NO_ACTIVE 11, NUMU_CC 2, NUE_CC 1, OTHER_NC 1 — an interaction was present in the event, but the selected candidate was built from a cosmic object (one of the three `T_match`/`T_overlap` disagreements is here: 34811/10, top IoU 0.92 to a cosmic object vs a `T_overlap` track of neutrino 1 with dominant fraction 0.54).
+* **MULTI_OR_AMBIGUOUS (7; 2 / 4 / 1):** each overlaps two distinct truth neutrinos (top IoU 0.30–0.63). Dominant candidate tracks: electrons 3, photons 2, protons 2; the selected shower is electron-origin in 4 and photon-origin in 3; old categories MULTI_ACTIVE 5, DIRT_NO_ACTIVE 1, NUE_CC 1. These are the genuine multi-interaction candidates; they are kept in their own category, not assigned to a flavour.
+* No cosmic-only (beam-off) contribution is represented in any of these numbers; the MC "cosmic" objects here are cosmic rays overlaid in the beam MC spill, which is different from the beam-off sample whose normalisation is unresolved.
+
+## 4. Conclusions (descriptive)
+1. The earlier "dirt/no-active" 1γ0p background (104 events) is, at the candidate level, **91 outside-the-box neutrino candidates (median 15 cm from the box), 11 candidates with no matched neutrino (cosmic muon or cosmic π⁰ activity) and 1 ambiguous**; the cosmic component is small (15 of 635).
+2. Terminology: "outside-TPC neutrino" is what the truth supports; whether they are rock/dirt events or interactions at the active-volume edge is not established (needs the real geometry and the generator's dirt definition).
+3. The provisional-box distance distribution is steeply concentrated near the boundary, so any statement about these backgrounds depends strongly on the (still open) fiducial/edge definition; none is made here.

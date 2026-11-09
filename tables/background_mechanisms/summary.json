@@ -1,0 +1,1824 @@
+{
+ "accounting": {
+  "total": 649,
+  "signal_like": 14,
+  "background": 635,
+  "mixed": 0,
+  "background_by_channel": {
+   "1g0p": 310,
+   "1g1p": 230,
+   "ge2p_diag": 95
+  },
+  "background_by_category": {
+   "NC_PI0": 192,
+   "NUE_CC": 175,
+   "CC_PI0": 106,
+   "OUTSIDE_TPC_NU": 95,
+   "NUMU_CC": 24,
+   "OTHER_NC": 21,
+   "COSMIC_OR_UNMATCHED": 15,
+   "MULTI_OR_AMBIGUOUS": 7
+  },
+  "crosstab": {
+   "CC_PI0": {
+    "1g0p": 43,
+    "1g1p": 42,
+    "ge2p_diag": 21
+   },
+   "COSMIC_OR_UNMATCHED": {
+    "1g0p": 14,
+    "1g1p": 0,
+    "ge2p_diag": 1
+   },
+   "MULTI_OR_AMBIGUOUS": {
+    "1g0p": 2,
+    "1g1p": 4,
+    "ge2p_diag": 1
+   },
+   "NC_PI0": {
+    "1g0p": 102,
+    "1g1p": 68,
+    "ge2p_diag": 22
+   },
+   "NUE_CC": {
+    "1g0p": 53,
+    "1g1p": 86,
+    "ge2p_diag": 36
+   },
+   "NUMU_CC": {
+    "1g0p": 11,
+    "1g1p": 6,
+    "ge2p_diag": 7
+   },
+   "OTHER_NC": {
+    "1g0p": 10,
+    "1g1p": 7,
+    "ge2p_diag": 4
+   },
+   "OUTSIDE_TPC_NU": {
+    "1g0p": 75,
+    "1g1p": 17,
+    "ge2p_diag": 3
+   }
+  }
+ },
+ "validation": {
+  "total_649": true,
+  "signal_like_14": true,
+  "background_635": true,
+  "mixed_0": true,
+  "T_match_signal_candidates": 14,
+  "event_signal_like_equals_T_match_signal": true
+ },
+ "association_audit": {
+  "n_passing": 649,
+  "n_events": 649,
+  "multi_passing_events": 0,
+  "tm_n_matches_quantiles": [
+   1.0,
+   1.0,
+   2.0,
+   3.0
+  ],
+  "top_iou_quantiles": [
+   0.0267,
+   0.4535,
+   0.6789,
+   0.8183,
+   0.9025,
+   0.9678,
+   1.0
+  ],
+  "mutual_top": 628,
+  "not_mutual": 21,
+  "neutrino_top": 634,
+  "cosmic_or_unmatched_top": 15,
+  "ambiguous_ge2_nu": 7,
+  "with_cosmic_object_also_matched": 99,
+  "agree_with_overlap_dominant": 646,
+  "disagree_with_overlap_dominant": 3,
+  "link_to_recmcnu_dist_max_cm": 2.6761608742572948e-05,
+  "unlinked_neutrino_matches": 0
+ },
+ "taxonomy_change": {
+  "n_background": 635,
+  "n_changed": 61,
+  "n_unchanged": 574,
+  "n_changed_excluding_multi_active": 21,
+  "transitions": {
+   "MULTI_ACTIVE->NC_PI0": 14,
+   "MULTI_ACTIVE->NUE_CC": 12,
+   "DIRT_NO_ACTIVE->COSMIC_OR_UNMATCHED": 11,
+   "MULTI_ACTIVE->MULTI_OR_AMBIGUOUS": 5,
+   "MULTI_ACTIVE->CC_PI0": 5,
+   "NUMU_CC->OUTSIDE_TPC_NU": 4,
+   "MULTI_ACTIVE->NUMU_CC": 3,
+   "NUMU_CC->COSMIC_OR_UNMATCHED": 2,
+   "DIRT_NO_ACTIVE->MULTI_OR_AMBIGUOUS": 1,
+   "NUE_CC->COSMIC_OR_UNMATCHED": 1,
+   "MULTI_ACTIVE->OTHER_NC": 1,
+   "NUE_CC->MULTI_OR_AMBIGUOUS": 1,
+   "OTHER_NC->COSMIC_OR_UNMATCHED": 1
+  },
+  "examples": [
+   {
+    "file_index": 10395,
+    "ev": 8,
+    "nu_index": 0.0,
+    "old_event_category": "DIRT_NO_ACTIVE",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.1899999976158142,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 15362,
+    "ev": 1,
+    "nu_index": 0.0,
+    "old_event_category": "DIRT_NO_ACTIVE",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.3100000023841858,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 1844,
+    "ev": 0,
+    "nu_index": 0.0,
+    "old_event_category": "DIRT_NO_ACTIVE",
+    "cand_category": "MULTI_OR_AMBIGUOUS",
+    "tm_top_iou": 0.5600000023841858,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -144.66,
+    "mnu_y": -18.15,
+    "mnu_z": -6.22
+   },
+   {
+    "file_index": 7808,
+    "ev": 10,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "CC_PI0",
+    "tm_top_iou": 0.9700000286102295,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -10.72,
+    "mnu_y": -154.7,
+    "mnu_z": 147.03
+   },
+   {
+    "file_index": 9220,
+    "ev": 3,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "CC_PI0",
+    "tm_top_iou": 0.9200000166893005,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": 48.73,
+    "mnu_y": 127.98,
+    "mnu_z": 15.83
+   },
+   {
+    "file_index": 1000,
+    "ev": 2,
+    "nu_index": 1.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "MULTI_OR_AMBIGUOUS",
+    "tm_top_iou": 0.30000001192092896,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -2.89,
+    "mnu_y": -115.09,
+    "mnu_z": 102.34
+   },
+   {
+    "file_index": 15795,
+    "ev": 8,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "MULTI_OR_AMBIGUOUS",
+    "tm_top_iou": 0.5400000214576721,
+    "mnu_pdg": 12.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": 119.59,
+    "mnu_y": 1.19,
+    "mnu_z": 275.85
+   },
+   {
+    "file_index": 8282,
+    "ev": 10,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NC_PI0",
+    "tm_top_iou": 0.800000011920929,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 1.0,
+    "mnu_x": 172.81,
+    "mnu_y": 185.77,
+    "mnu_z": 276.13
+   },
+   {
+    "file_index": 9213,
+    "ev": 2,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NC_PI0",
+    "tm_top_iou": 0.6499999761581421,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 1.0,
+    "mnu_x": 30.28,
+    "mnu_y": -50.97,
+    "mnu_z": 268.76
+   },
+   {
+    "file_index": 2144,
+    "ev": 3,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NUE_CC",
+    "tm_top_iou": 0.6899999976158142,
+    "mnu_pdg": 12.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -179.9,
+    "mnu_y": 127.19,
+    "mnu_z": 229.97
+   },
+   {
+    "file_index": 8541,
+    "ev": 9,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NUE_CC",
+    "tm_top_iou": 0.800000011920929,
+    "mnu_pdg": 12.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -129.88,
+    "mnu_y": 146.8,
+    "mnu_z": 229.08
+   },
+   {
+    "file_index": 11823,
+    "ev": 12,
+    "nu_index": 0.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NUMU_CC",
+    "tm_top_iou": 0.6399999856948853,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": 63.26,
+    "mnu_y": -16.34,
+    "mnu_z": 100.03
+   },
+   {
+    "file_index": 22326,
+    "ev": 9,
+    "nu_index": 1.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "NUMU_CC",
+    "tm_top_iou": 0.949999988079071,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": 96.75,
+    "mnu_y": 63.15,
+    "mnu_z": 176.64
+   },
+   {
+    "file_index": 979,
+    "ev": 1,
+    "nu_index": 1.0,
+    "old_event_category": "MULTI_ACTIVE",
+    "cand_category": "OTHER_NC",
+    "tm_top_iou": 0.8799999952316284,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 1.0,
+    "mnu_x": 162.15,
+    "mnu_y": 91.98,
+    "mnu_z": 72.41
+   },
+   {
+    "file_index": 24997,
+    "ev": 11,
+    "nu_index": 0.0,
+    "old_event_category": "NUE_CC",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.5400000214576721,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 35165,
+    "ev": 8,
+    "nu_index": 0.0,
+    "old_event_category": "NUE_CC",
+    "cand_category": "MULTI_OR_AMBIGUOUS",
+    "tm_top_iou": 0.6000000238418579,
+    "mnu_pdg": 12.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": 113.66,
+    "mnu_y": 133.49,
+    "mnu_z": 71.73
+   },
+   {
+    "file_index": 2545,
+    "ev": 6,
+    "nu_index": 0.0,
+    "old_event_category": "NUMU_CC",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.03999999910593033,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 10596,
+    "ev": 12,
+    "nu_index": 0.0,
+    "old_event_category": "NUMU_CC",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.9200000166893005,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 6450,
+    "ev": 3,
+    "nu_index": 1.0,
+    "old_event_category": "NUMU_CC",
+    "cand_category": "OUTSIDE_TPC_NU",
+    "tm_top_iou": 0.6600000262260437,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 1.0,
+    "mnu_x": 120.93,
+    "mnu_y": 50.68,
+    "mnu_z": -5.79
+   },
+   {
+    "file_index": 16849,
+    "ev": 1,
+    "nu_index": 1.0,
+    "old_event_category": "NUMU_CC",
+    "cand_category": "OUTSIDE_TPC_NU",
+    "tm_top_iou": 0.09000000357627869,
+    "mnu_pdg": 14.0,
+    "mnu_ccnc": 0.0,
+    "mnu_x": -115.24,
+    "mnu_y": 23.75,
+    "mnu_z": -17.82
+   },
+   {
+    "file_index": 14290,
+    "ev": 16,
+    "nu_index": 0.0,
+    "old_event_category": "OTHER_NC",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.05000000074505806,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   }
+  ]
+ },
+ "background_channels": {
+  "1g0p": 310,
+  "1g1p": 230,
+  "ge2p_diag": 95
+ },
+ "pot": 2.719402147414874e+19,
+ "shower_origin": {
+  "mapping": {
+   "n_candidates": 649,
+   "unique_energy_row_match": 646,
+   "no_row_match": 3,
+   "selected_shower_is_max_ke_shower": 623,
+   "selected_shower_not_max_ke_shower": 23,
+   "row_type_counts": {
+    "11.0": 646
+   },
+   "row_included_counts": {
+    "1.0": 637,
+    "3.0": 9
+   }
+  },
+  "origin_by_channel": {
+   "cosmic_or_unmatched": {
+    "1g0p": 14,
+    "1g1p": 1,
+    "ge2p_diag": 0,
+    "all": 15
+   },
+   "electron_positron": {
+    "1g0p": 67,
+    "1g1p": 93,
+    "ge2p_diag": 37,
+    "all": 197
+   },
+   "muon": {
+    "1g0p": 0,
+    "1g1p": 3,
+    "ge2p_diag": 2,
+    "all": 5
+   },
+   "no_matching_shower_row": {
+    "1g0p": 1,
+    "1g1p": 1,
+    "ge2p_diag": 1,
+    "all": 3
+   },
+   "photon": {
+    "1g0p": 223,
+    "1g1p": 131,
+    "ge2p_diag": 55,
+    "all": 409
+   },
+   "proton": {
+    "1g0p": 5,
+    "1g1p": 1,
+    "ge2p_diag": 0,
+    "all": 6
+   }
+  },
+  "dominant_charge_fraction_quantiles": [
+   0.2246,
+   0.5041,
+   0.834,
+   0.9185,
+   0.9572,
+   1.0
+  ],
+  "primary_fraction": 0.3826771653543307,
+  "photon_ancestor_pdg": {
+   "111.0": 356,
+   "22.0": 26,
+   "211.0": 15,
+   "2212.0": 6,
+   "-211.0": 3,
+   "2112.0": 2,
+   "0.0": 1
+  },
+  "electron_ancestor_pdg": {
+   "11.0": 188,
+   "-11.0": 6,
+   "211.0": 2,
+   "111.0": 1
+  }
+ },
+ "pi0": {
+  "CC_PI0|1g0p": {
+   "n": 43,
+   "n_pi0_pf": {
+    "1.0": 39,
+    "2.0": 4
+   },
+   "selected_matches_daughter": 39,
+   "selected_is_lead": 36,
+   "selected_is_sub": 3,
+   "pi0_E_q": [
+    234.0,
+    550.0,
+    2326.0
+   ],
+   "lead_q": [
+    163.0,
+    496.0,
+    1390.0
+   ],
+   "sub_q": [
+    20.0,
+    83.0,
+    635.0
+   ],
+   "asym_q": [
+    0.084,
+    0.567,
+    0.936
+   ],
+   "opening_q": [
+    8.9,
+    52.0,
+    122.8
+   ],
+   "pi0_vtx_in_tpc": 43,
+   "truth_protons": {
+    "1.0": 20,
+    "0.0": 17,
+    "2.0": 6
+   },
+   "other_photon_labels": {
+    "other_candidate": 13,
+    "selected_shower_not_a_pi0_daughter": 4,
+    "selected_row": 11,
+    "same_candidate_other_row": 14,
+    "nonshower_row": 6,
+    "lt20": 3,
+    "merged_with_selected": 6,
+    "exits": 2,
+    "no_charge": 1,
+    "no_reco_row": 1
+   },
+   "selected_origin": {
+    "photon": 39,
+    "electron_positron": 3,
+    "proton": 1
+   }
+  },
+  "CC_PI0|1g1p": {
+   "n": 42,
+   "n_pi0_pf": {
+    "1.0": 40,
+    "2.0": 2
+   },
+   "selected_matches_daughter": 41,
+   "selected_is_lead": 34,
+   "selected_is_sub": 7,
+   "pi0_E_q": [
+    201.0,
+    623.0,
+    2049.0
+   ],
+   "lead_q": [
+    132.0,
+    445.0,
+    1257.0
+   ],
+   "sub_q": [
+    23.0,
+    98.0,
+    591.0
+   ],
+   "asym_q": [
+    0.046,
+    0.514,
+    0.922
+   ],
+   "opening_q": [
+    11.2,
+    41.6,
+    116.9
+   ],
+   "pi0_vtx_in_tpc": 42,
+   "truth_protons": {
+    "1.0": 29,
+    "2.0": 7,
+    "0.0": 4,
+    "7.0": 1,
+    "3.0": 1
+   },
+   "other_photon_labels": {
+    "selected_row": 18,
+    "exits": 4,
+    "other_candidate": 8,
+    "no_charge": 3,
+    "no_reco_row": 3,
+    "same_candidate_other_row": 12,
+    "nonshower_row": 9,
+    "lt20": 2,
+    "selected_shower_not_a_pi0_daughter": 1,
+    "merged_with_selected": 3
+   },
+   "selected_origin": {
+    "photon": 41,
+    "electron_positron": 1
+   }
+  },
+  "CC_PI0|ge2p_diag": {
+   "n": 21,
+   "n_pi0_pf": {
+    "1.0": 20,
+    "2.0": 1
+   },
+   "selected_matches_daughter": 20,
+   "selected_is_lead": 15,
+   "selected_is_sub": 5,
+   "pi0_E_q": [
+    197.0,
+    335.0,
+    1577.0
+   ],
+   "lead_q": [
+    138.0,
+    264.0,
+    1233.0
+   ],
+   "sub_q": [
+    24.0,
+    137.0,
+    345.0
+   ],
+   "asym_q": [
+    0.139,
+    0.528,
+    0.8
+   ],
+   "opening_q": [
+    11.9,
+    47.6,
+    122.6
+   ],
+   "pi0_vtx_in_tpc": 21,
+   "truth_protons": {
+    "1.0": 7,
+    "2.0": 6,
+    "3.0": 4,
+    "4.0": 2,
+    "0.0": 1,
+    "5.0": 1
+   },
+   "other_photon_labels": {
+    "selected_row": 2,
+    "same_candidate_other_row": 15,
+    "nonshower_row": 10,
+    "merged_with_selected": 5,
+    "exits": 2,
+    "selected_shower_not_a_pi0_daughter": 1,
+    "no_charge": 1,
+    "no_reco_row": 1,
+    "other_candidate": 2
+   },
+   "selected_origin": {
+    "photon": 21
+   }
+  },
+  "NC_PI0|1g0p": {
+   "n": 102,
+   "n_pi0_pf": {
+    "1.0": 102
+   },
+   "selected_matches_daughter": 99,
+   "selected_is_lead": 88,
+   "selected_is_sub": 11,
+   "pi0_E_q": [
+    200.0,
+    525.0,
+    1672.0
+   ],
+   "lead_q": [
+    149.0,
+    431.0,
+    1231.0
+   ],
+   "sub_q": [
+    15.0,
+    71.0,
+    575.0
+   ],
+   "asym_q": [
+    0.093,
+    0.617,
+    0.943
+   ],
+   "opening_q": [
+    10.5,
+    49.4,
+    131.2
+   ],
+   "pi0_vtx_in_tpc": 102,
+   "truth_protons": {
+    "0.0": 68,
+    "1.0": 28,
+    "2.0": 5,
+    "4.0": 1
+   },
+   "other_photon_labels": {
+    "no_charge": 10,
+    "exits": 12,
+    "no_reco_row": 10,
+    "selected_row": 27,
+    "lt20": 15,
+    "same_candidate_other_row": 30,
+    "other_candidate": 28,
+    "nonshower_row": 16,
+    "merged_with_selected": 16,
+    "absent": 4,
+    "selected_shower_not_a_pi0_daughter": 3
+   },
+   "selected_origin": {
+    "photon": 99,
+    "proton": 2,
+    "electron_positron": 1
+   }
+  },
+  "NC_PI0|1g1p": {
+   "n": 68,
+   "n_pi0_pf": {
+    "1.0": 64,
+    "3.0": 2,
+    "0.0": 1,
+    "2.0": 1
+   },
+   "selected_matches_daughter": 64,
+   "selected_is_lead": 47,
+   "selected_is_sub": 17,
+   "pi0_E_q": [
+    172.0,
+    399.0,
+    2120.0
+   ],
+   "lead_q": [
+    104.0,
+    281.0,
+    1937.0
+   ],
+   "sub_q": [
+    14.0,
+    84.0,
+    488.0
+   ],
+   "asym_q": [
+    0.038,
+    0.437,
+    0.941
+   ],
+   "opening_q": [
+    11.9,
+    67.7,
+    136.7
+   ],
+   "pi0_vtx_in_tpc": 67,
+   "truth_protons": {
+    "1.0": 50,
+    "0.0": 8,
+    "2.0": 6,
+    "4.0": 2,
+    "6.0": 1,
+    "3.0": 1
+   },
+   "other_photon_labels": {
+    "no_charge": 10,
+    "exits": 12,
+    "no_reco_row": 10,
+    "selected_row": 6,
+    "other_candidate": 13,
+    "lt20": 8,
+    "same_candidate_other_row": 33,
+    "merged_with_selected": 11,
+    "nonshower_row": 21,
+    "selected_shower_not_a_pi0_daughter": 4,
+    "absent": 2
+   },
+   "selected_origin": {
+    "photon": 66,
+    "proton": 1,
+    "no_matching_shower_row": 1
+   }
+  },
+  "NC_PI0|ge2p_diag": {
+   "n": 22,
+   "n_pi0_pf": {
+    "1.0": 21,
+    "3.0": 1
+   },
+   "selected_matches_daughter": 22,
+   "selected_is_lead": 17,
+   "selected_is_sub": 5,
+   "pi0_E_q": [
+    177.0,
+    516.0,
+    1382.0
+   ],
+   "lead_q": [
+    101.0,
+    424.0,
+    922.0
+   ],
+   "sub_q": [
+    30.0,
+    95.0,
+    407.0
+   ],
+   "asym_q": [
+    0.096,
+    0.512,
+    0.866
+   ],
+   "opening_q": [
+    13.4,
+    49.6,
+    123.0
+   ],
+   "pi0_vtx_in_tpc": 22,
+   "truth_protons": {
+    "1.0": 8,
+    "2.0": 7,
+    "4.0": 2,
+    "3.0": 2,
+    "5.0": 1,
+    "0.0": 1,
+    "7.0": 1
+   },
+   "other_photon_labels": {
+    "other_candidate": 5,
+    "selected_row": 5,
+    "same_candidate_other_row": 6,
+    "nonshower_row": 4,
+    "no_charge": 6,
+    "exits": 6,
+    "no_reco_row": 6,
+    "merged_with_selected": 2,
+    "lt20": 1
+   },
+   "selected_origin": {
+    "photon": 22
+   }
+  }
+ },
+ "nue": {
+  "1g0p": {
+   "n": 53,
+   "origin": {
+    "electron_positron": 53
+   },
+   "primary_lepton": 53,
+   "photon_ancestor_pdg": {},
+   "electron_ancestor_pdg": {
+    "11.0": 51,
+    "-11.0": 2
+   },
+   "shower_primary": 53
+  },
+  "1g1p": {
+   "n": 86,
+   "origin": {
+    "electron_positron": 86
+   },
+   "primary_lepton": 86,
+   "photon_ancestor_pdg": {},
+   "electron_ancestor_pdg": {
+    "11.0": 85,
+    "-11.0": 1
+   },
+   "shower_primary": 86
+  },
+  "ge2p_diag": {
+   "n": 36,
+   "origin": {
+    "electron_positron": 36
+   },
+   "primary_lepton": 36,
+   "photon_ancestor_pdg": {},
+   "electron_ancestor_pdg": {
+    "11.0": 36
+   },
+   "shower_primary": 36
+  }
+ },
+ "outside_cosmic": {
+  "n_outside": 95,
+  "outside_by_channel": {
+   "1g0p": 75,
+   "1g1p": 17,
+   "ge2p_diag": 3
+  },
+  "dist_cm_quantiles": [
+   0.1,
+   6.8,
+   15.2,
+   38.7,
+   310.9
+  ],
+  "edep_gt0": 95,
+  "edep_quantiles": [
+   0.1776,
+   0.4758,
+   2.5208
+  ],
+  "flavour": {
+   "14.0": 84,
+   "12.0": 10,
+   "-14.0": 1
+  },
+  "ccnc": {
+   "0.0": 48,
+   "1.0": 47
+  },
+  "mode": {
+   "1.0": 63,
+   "2.0": 23,
+   "10.0": 4,
+   "0.0": 4,
+   "3.0": 1
+  },
+  "origin": {
+   "photon": 84,
+   "electron_positron": 10,
+   "muon": 1
+  },
+  "old_category": {
+   "DIRT_NO_ACTIVE": 91,
+   "NUMU_CC": 4
+  },
+  "vertex_x_range": [
+   -473.0768329870603,
+   474.3872680249418
+  ],
+  "vertex_y_range": [
+   -472.5054014946519,
+   240.33777567320305
+  ],
+  "vertex_z_range": [
+   -310.913854941644,
+   561.758091030377
+  ],
+  "n_cosmic_or_unmatched": 15,
+  "n_ambiguous": 7,
+  "cosmic_dom_pdg": {
+   "13.0": 6,
+   "-13.0": 6,
+   "22.0": 2,
+   "-11.0": 1
+  },
+  "cosmic_by_channel": {
+   "COSMIC_OR_UNMATCHED|1g0p": 14,
+   "COSMIC_OR_UNMATCHED|ge2p_diag": 1,
+   "MULTI_OR_AMBIGUOUS|1g0p": 2,
+   "MULTI_OR_AMBIGUOUS|1g1p": 4,
+   "MULTI_OR_AMBIGUOUS|ge2p_diag": 1
+  }
+ },
+ "migration": {
+  "CC_PI0": {
+   "truth 0p": {
+    "reco 0p": 17,
+    "reco 1p": 4,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 20,
+    "reco 1p": 29,
+    "reco >=2p": 7,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 6,
+    "reco 1p": 9,
+    "reco >=2p": 13,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  },
+  "COSMIC_OR_UNMATCHED": {
+   "truth 0p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 14,
+    "reco 1p": 0,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   }
+  },
+  "MULTI_OR_AMBIGUOUS": {
+   "truth 0p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 2,
+    "reco 1p": 4,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   }
+  },
+  "NC_PI0": {
+   "truth 0p": {
+    "reco 0p": 68,
+    "reco 1p": 8,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 28,
+    "reco 1p": 50,
+    "reco >=2p": 8,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 6,
+    "reco 1p": 10,
+    "reco >=2p": 13,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  },
+  "NUE_CC": {
+   "truth 0p": {
+    "reco 0p": 25,
+    "reco 1p": 1,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 23,
+    "reco 1p": 68,
+    "reco >=2p": 10,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 5,
+    "reco 1p": 17,
+    "reco >=2p": 26,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  },
+  "NUMU_CC": {
+   "truth 0p": {
+    "reco 0p": 5,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 5,
+    "reco 1p": 5,
+    "reco >=2p": 3,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 1,
+    "reco 1p": 1,
+    "reco >=2p": 4,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  },
+  "OTHER_NC": {
+   "truth 0p": {
+    "reco 0p": 6,
+    "reco 1p": 1,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 4,
+    "reco 1p": 5,
+    "reco >=2p": 3,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 0,
+    "reco 1p": 1,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  },
+  "OUTSIDE_TPC_NU": {
+   "truth 0p": {
+    "reco 0p": 18,
+    "reco 1p": 2,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   },
+   "truth 1p": {
+    "reco 0p": 44,
+    "reco 1p": 10,
+    "reco >=2p": 1,
+    "no_truth_category": 0
+   },
+   "truth >=2p": {
+    "reco 0p": 13,
+    "reco 1p": 5,
+    "reco >=2p": 2,
+    "no_truth_category": 0
+   },
+   "no truth category (reco counts)": {
+    "reco 0p": 0,
+    "reco 1p": 0,
+    "reco >=2p": 0,
+    "no_truth_category": 0
+   }
+  }
+ },
+ "migration_all_in_tpc": {
+  "truth 0p": {
+   "reco 0p": 121,
+   "reco 1p": 14,
+   "reco >=2p": 2,
+   "no_truth_category": 0
+  },
+  "truth 1p": {
+   "reco 0p": 80,
+   "reco 1p": 157,
+   "reco >=2p": 31,
+   "no_truth_category": 0
+  },
+  "truth >=2p": {
+   "reco 0p": 18,
+   "reco 1p": 38,
+   "reco >=2p": 57,
+   "no_truth_category": 0
+  },
+  "no truth category (reco counts)": {
+   "reco 0p": 0,
+   "reco 1p": 0,
+   "reco >=2p": 0,
+   "no_truth_category": 0
+  }
+ },
+ "other_pid_row_types": {
+  "truth1p_reco0p_in_tpc_nu": {
+   "11": 41,
+   "13": 20,
+   "211": 8
+  },
+  "truth0p_reco0p_ge1_truth_p": {},
+  "truth1p_reco1p_in_tpc_nu": {
+   "11": 4,
+   "13": 3,
+   "211": 1
+  },
+  "truth_ge2p_reco_any": {
+   "11": 38,
+   "13": 27,
+   "211": 23
+  }
+ },
+ "migration_mechanisms": {
+  "CC_PI0|truth0p_reco1p": {
+   "n": 4,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 3,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 2,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "CC_PI0|truth1p_reco0p": {
+   "n": 20,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 15,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 4
+  },
+  "CC_PI0|truth0p_reco0p": {
+   "n": 17,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "CC_PI0|truth1p_reco1p": {
+   "n": 29,
+   "rp_primary_signal": 24,
+   "rp_secondary_proton": 3,
+   "rp_other_pdg_same_nu": 1,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 1,
+   "rp_leftover_inc3": 4,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 24,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 3,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 0
+  },
+  "CC_PI0|truth_ge2p_reco0p": {
+   "n": 6,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 3,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 2
+  },
+  "CC_PI0|truth_ge2p_reco1p": {
+   "n": 9,
+   "rp_primary_signal": 7,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 1,
+   "rp_leftover_inc3": 2,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 7,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 5,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 1
+  },
+  "NC_PI0|truth0p_reco1p": {
+   "n": 8,
+   "rp_primary_signal": 1,
+   "rp_secondary_proton": 5,
+   "rp_other_pdg_same_nu": 2,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 3,
+   "rp_truth_ke_below_thr": 1,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NC_PI0|truth1p_reco0p": {
+   "n": 28,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 24,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 2
+  },
+  "NC_PI0|truth0p_reco0p": {
+   "n": 68,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NC_PI0|truth1p_reco1p": {
+   "n": 50,
+   "rp_primary_signal": 44,
+   "rp_secondary_proton": 3,
+   "rp_other_pdg_same_nu": 2,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 1,
+   "rp_leftover_inc3": 8,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 44,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 2,
+   "tp_no_row": 3,
+   "tp_only_other_cand": 1
+  },
+  "NC_PI0|truth_ge2p_reco0p": {
+   "n": 6,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 6,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 0
+  },
+  "NC_PI0|truth_ge2p_reco1p": {
+   "n": 10,
+   "rp_primary_signal": 9,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 2,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 9,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 5,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth0p_reco1p": {
+   "n": 1,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 1,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth1p_reco0p": {
+   "n": 23,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 23,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth0p_reco0p": {
+   "n": 25,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth1p_reco1p": {
+   "n": 68,
+   "rp_primary_signal": 59,
+   "rp_secondary_proton": 8,
+   "rp_other_pdg_same_nu": 1,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 2,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 63,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 3,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth_ge2p_reco0p": {
+   "n": 5,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 5,
+   "tp_no_row": 2,
+   "tp_only_other_cand": 0
+  },
+  "NUE_CC|truth_ge2p_reco1p": {
+   "n": 17,
+   "rp_primary_signal": 15,
+   "rp_secondary_proton": 2,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 16,
+   "tp_row_below_thr": 2,
+   "tp_row_other_pid": 12,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 1
+  },
+  "NUMU_CC|truth1p_reco0p": {
+   "n": 5,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 5,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUMU_CC|truth0p_reco0p": {
+   "n": 5,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUMU_CC|truth1p_reco1p": {
+   "n": 5,
+   "rp_primary_signal": 4,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 1,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 4,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 0
+  },
+  "NUMU_CC|truth_ge2p_reco0p": {
+   "n": 1,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 1,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "NUMU_CC|truth_ge2p_reco1p": {
+   "n": 1,
+   "rp_primary_signal": 1,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 1,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 1,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 0
+  },
+  "OTHER_NC|truth0p_reco1p": {
+   "n": 1,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 1,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "OTHER_NC|truth1p_reco0p": {
+   "n": 4,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 2,
+   "tp_no_row": 1,
+   "tp_only_other_cand": 0
+  },
+  "OTHER_NC|truth0p_reco0p": {
+   "n": 6,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "OTHER_NC|truth1p_reco1p": {
+   "n": 5,
+   "rp_primary_signal": 4,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 1,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 4,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 1
+  },
+  "OTHER_NC|truth_ge2p_reco1p": {
+   "n": 1,
+   "rp_primary_signal": 1,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 1,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "OUTSIDE_TPC_NU|truth0p_reco1p": {
+   "n": 2,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 1,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 1,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "OUTSIDE_TPC_NU|truth1p_reco0p": {
+   "n": 44,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 39,
+   "tp_only_other_cand": 5
+  },
+  "OUTSIDE_TPC_NU|truth0p_reco0p": {
+   "n": 18,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "OUTSIDE_TPC_NU|truth1p_reco1p": {
+   "n": 10,
+   "rp_primary_signal": 7,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 2,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 7,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 3,
+   "tp_only_other_cand": 0
+  },
+  "OUTSIDE_TPC_NU|truth_ge2p_reco0p": {
+   "n": 13,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 2,
+   "tp_no_row": 12,
+   "tp_only_other_cand": 0
+  },
+  "OUTSIDE_TPC_NU|truth_ge2p_reco1p": {
+   "n": 5,
+   "rp_primary_signal": 4,
+   "rp_secondary_proton": 1,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 2,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 4,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 5,
+   "tp_only_other_cand": 0
+  },
+  "ALL_IN_TPC_NU|truth0p_reco1p": {
+   "n": 14,
+   "rp_primary_signal": 1,
+   "rp_secondary_proton": 8,
+   "rp_other_pdg_same_nu": 5,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 7,
+   "rp_truth_ke_below_thr": 1,
+   "tp_found": 0,
+   "tp_row_below_thr": 0,
+   "tp_row_other_pid": 0,
+   "tp_no_row": 0,
+   "tp_only_other_cand": 0
+  },
+  "ALL_IN_TPC_NU|truth1p_reco0p": {
+   "n": 80,
+   "rp_primary_signal": 0,
+   "rp_secondary_proton": 0,
+   "rp_other_pdg_same_nu": 0,
+   "rp_other_neutrino": 0,
+   "rp_unmatched": 0,
+   "rp_leftover_inc3": 0,
+   "rp_truth_ke_below_thr": 0,
+   "tp_found": 0,
+   "tp_row_below_thr": 1,
+   "tp_row_other_pid": 69,
+   "tp_no_row": 4,
+   "tp_only_other_cand": 6
+  }
+ },
+ "reco_channel_vs_truth": {
+  "1g0p": {
+   "truth 0p": 121,
+   "truth 1p": 80,
+   "truth >=2p": 18
+  },
+  "1g1p": {
+   "truth 0p": 14,
+   "truth 1p": 157,
+   "truth >=2p": 38
+  },
+  "ge2p_diag": {
+   "truth 0p": 2,
+   "truth 1p": 31,
+   "truth >=2p": 57
+  }
+ },
+ "truth_vs_reco_NC_PI0": {
+  "1g0p": {
+   "truth 0p": 68,
+   "truth 1p": 28,
+   "truth >=2p": 6
+  },
+  "1g1p": {
+   "truth 0p": 8,
+   "truth 1p": 50,
+   "truth >=2p": 10
+  },
+  "ge2p_diag": {
+   "truth 0p": 1,
+   "truth 1p": 8,
+   "truth >=2p": 13
+  }
+ },
+ "truth_vs_reco_CC_PI0": {
+  "1g0p": {
+   "truth 0p": 17,
+   "truth 1p": 20,
+   "truth >=2p": 6
+  },
+  "1g1p": {
+   "truth 0p": 4,
+   "truth 1p": 29,
+   "truth >=2p": 9
+  },
+  "ge2p_diag": {
+   "truth 0p": 1,
+   "truth 1p": 7,
+   "truth >=2p": 13
+  }
+ },
+ "truth_vs_reco_NUE_CC": {
+  "1g0p": {
+   "truth 0p": 25,
+   "truth 1p": 23,
+   "truth >=2p": 5
+  },
+  "1g1p": {
+   "truth 0p": 1,
+   "truth 1p": 68,
+   "truth >=2p": 17
+  },
+  "ge2p_diag": {
+   "truth 0p": 0,
+   "truth 1p": 10,
+   "truth >=2p": 26
+  }
+ },
+ "derived_table": {
+  "rows": 649,
+  "columns": 60,
+  "path": "/exp/sbnd/data/users/abhat/single_photon_ncdelta/background_mechanisms/bnb_cv/background_mechanism_table.parquet"
+ }
+}

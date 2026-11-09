@@ -27,6 +27,8 @@ Evidence for each item is in the linked audit. Nothing below has been assumed in
 10. **728 of the 16,505 reco1 units have no flatCAF child** (669 signal events, 4.4 % of POT): failed or still-pending CAF jobs? Should the Wire-Cell production include them once a flatCAF exists?
 11. **CAF `TotalGenEvents` is 125 in every file**, while SAM's reco1 `mc.generated_event_count` is 12,500 per unit. Which is the intended generated count (our denominator uses SAM `mc.pot` / `mc.generated_event_count`)?
 
+12. **`wc.T_match` semantics** (used for the candidate-to-truth association, `PASSING_CANDIDATE_TRUTH_ASSOCIATION.md`): please confirm that `level == 3` / `side == 0` is the whole reconstructed neutrino candidate and `side == 1` the truth objects (`truth_nu_idx >= 0` neutrino, `-1` with `truth_trackid` cosmic), that `match_iou_q` is the charge IoU, what `mutual` means, and what levels 1 and 2 hold. Also whether `shw_sp_energy` is intended to be the `kine_energy_particle` of one shower row of `T_kine` (it is for 646 of 649 selected candidates; the 3 others have no row with that energy).
+
 ## Minor (no action unless convenient)
 
 - The `(0,0,0)` vertex is the default of a candidate with `has_vertex == 0`; confirm that is the intended "no main vertex" flag (`VERTEX_SENTINEL_AUDIT.md`).

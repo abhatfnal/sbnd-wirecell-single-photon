@@ -1,0 +1,31 @@
+{
+ "n_candidates": 241845,
+ "n_neutrino_dominant": 227214,
+ "neutrino_dominant_unlinked_to_recmcnu": 0,
+ "categories": {
+  "NUMU_CC": 138686,
+  "OUTSIDE_TPC_NU": 31108,
+  "OTHER_NC": 29815,
+  "CC_PI0": 16456,
+  "COSMIC_OR_UNMATCHED": 14631,
+  "NC_PI0": 9988,
+  "NUE_CC": 1030,
+  "SIGNAL_NCDELTA": 131
+ },
+ "final_total": 649,
+ "final_by_class": {
+  "CC_PI0": 106,
+  "COSMIC_OR_UNMATCHED": 15,
+  "NC_PI0": 192,
+  "NUE_CC": 179,
+  "OTHER_NU": 47,
+  "OUTSIDE_TPC_NU": 96,
+  "SIGNAL_NCDELTA": 14
+ },
+ "tmatch_vs_overlap": {
+  "files": 2397,
+  "n_candidates": 15409,
+  "agree": 15105,
+  "agree_fraction": 0.9802712700369913
+ }
+}

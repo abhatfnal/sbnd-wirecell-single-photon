@@ -1,0 +1,5 @@
+,reco 0p,reco 1p,reco >=2p,no_truth_category
+truth 0p,25,1,0,0
+truth 1p,23,68,10,0
+truth >=2p,5,17,26,0
+no truth category (reco counts),0,0,0,0

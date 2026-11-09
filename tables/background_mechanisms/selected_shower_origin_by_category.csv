@@ -1,0 +1,9 @@
+cand_category,cosmic_or_unmatched,electron_positron,muon,no_matching_shower_row,photon,proton
+CC_PI0,0,4,0,0,101,1
+COSMIC_OR_UNMATCHED,14,1,0,0,0,0
+MULTI_OR_AMBIGUOUS,0,4,0,0,3,0
+NC_PI0,0,1,0,1,187,3
+NUE_CC,0,175,0,0,0,0
+NUMU_CC,0,0,4,1,18,1
+OTHER_NC,1,2,0,1,16,1
+OUTSIDE_TPC_NU,0,10,1,0,84,0

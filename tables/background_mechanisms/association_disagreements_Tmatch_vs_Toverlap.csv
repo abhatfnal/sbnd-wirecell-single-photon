@@ -1,0 +1,4 @@
+file_index,ev,nu_index,dom_nu,tm_top_nu,tm_top_iou,tm_n_distinct_nu,cand_category,dom_q,dom_q_cand
+24997,11,0.0,0.0,-1,0.54010904,1,COSMIC_OR_UNMATCHED,2.6899418e+07,4.751807e+07
+26430,4,0.0,0.0,1,0.4582355,2,MULTI_OR_AMBIGUOUS,6.324952e+06,1.1923991e+07
+32366,2,0.0,-1.0,0,0.09602693,1,OTHER_NC,5.58465e+06,8.486306e+06
