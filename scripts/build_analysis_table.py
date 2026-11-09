@@ -2,7 +2,7 @@
 """Build the analysis-ready derived tables of ONE sample (resumable, per-file Parquet pieces, then merged). NO tuning, NO FV.
 
     source env/setup_eaf.sh
-    python scripts/build_analysis_table.py bnb_cv --workers 28 [--limit N]   # pieces -> $SP_DATA/analysis_tables/<sample>/pieces
+    python scripts/build_analysis_table.py bnb_cv --workers 24 [--limit N]   # pieces -> $SP_DATA/analysis_tables/<sample>/pieces
     python scripts/build_analysis_table.py bnb_cv --merge                    # -> candidates.parquet events.parquet files.parquet + metadata.json
 
 Tables (outside Git; see docs/analysis/ANALYSIS_TABLE_VALIDATION.md):
@@ -15,6 +15,8 @@ Cut flags are NOT stored in the pieces: they are derived at merge time from the 
 """
 from __future__ import annotations
 import argparse, hashlib, json, os, subprocess, sys, time, warnings
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ.setdefault(_v, "1")          # EAF rule: one BLAS/OMP thread per worker
 import multiprocessing as mp
 from pathlib import Path
 
@@ -158,7 +160,19 @@ def sha(path):
     h = hashlib.sha256(); h.update(Path(path).read_bytes()); return h.hexdigest()
 
 
-def merge(sample, root, expected_files):
+def resolve_sample(name, manifest=None):
+    """The registered sample, or (with ``--manifest``) the same sample enabled with an explicit manifest (the registration step of the official
+    NC Delta Wire-Cell sample; nothing is written to configs/samples.yaml). ``is_mc`` comes from the registry."""
+    import dataclasses
+    from sbnd_single_photon import samples as S
+    s = S.load_samples()[name]
+    if manifest:
+        rows = S.read_manifest(manifest)
+        s = dataclasses.replace(s, status="available", manifest=str(manifest), n_files_listed=len(rows))
+    return s
+
+
+def merge(sample, root, expected_files, s=None):
     import numpy as np, pandas as pd, pyarrow as pa, pyarrow.parquet as pq
     from sbnd_single_photon import samples as S, selection as SEL, scanio as SIO, bdt as B
     pdir = Path(root) / sample / "pieces"
@@ -191,7 +205,7 @@ def merge(sample, root, expected_files):
     ev["source_file"] = pd.Categorical(files.set_index("file_index").source_file.reindex(ev.file_index).values)
     for name, df in (("candidates", cand), ("events", ev), ("files", files)):
         pq.write_table(pa.Table.from_pandas(df, preserve_index=False), Path(root) / sample / f"{name}.parquet", compression="zstd")
-    s = S.load_samples()[sample]
+    s = s if s is not None else S.load_samples()[sample]
     git = subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
     dirty = bool(subprocess.run(["git", "-C", str(REPO), "status", "--porcelain", "--untracked-files=no"], capture_output=True, text=True).stdout.strip())
     wdir = Path(cfg["bdt"]["weight_dir_default"])
@@ -214,18 +228,19 @@ def main():
     ap.add_argument("sample"); ap.add_argument("--workers", type=int, default=24)
     ap.add_argument("--limit", type=int, default=None); ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--merge", action="store_true")
+    ap.add_argument("--manifest", default=None, help="explicit merged-CAF manifest (official NC Delta sample registration); overrides the registry entry")
     ap.add_argument("--root", default=os.path.join(os.environ.get("SP_DATA", "/tmp"), "analysis_tables"))
     a = ap.parse_args()
     from sbnd_single_photon import samples as S
-    s = S.load_samples()[a.sample]
+    s = resolve_sample(a.sample, a.manifest)
     pdir = Path(a.root) / a.sample / "pieces"
     if a.merge:
-        return merge(a.sample, a.root, s.n_files_listed)
+        return merge(a.sample, a.root, s.n_files_listed, s)
     pdir.mkdir(parents=True, exist_ok=True)
     urls = S.manifest_urls(s, a.start, None if a.limit is None else a.start + a.limit)
     jobs = [(a.sample, a.start + i, u, bool(s.is_mc), str(pdir)) for i, u in enumerate(urls)]
     t0 = time.time(); nerr = 0
-    with mp.get_context("spawn").Pool(a.workers, initializer=_init) as p:
+    with mp.get_context("spawn").Pool(min(a.workers, 24), initializer=_init) as p:      # EAF rule: at most 24 workers (32 cores)
         for k, (idx, st, dt) in enumerate(p.imap_unordered(work, jobs, chunksize=2)):
             if st.startswith("ERR"):
                 nerr += 1; print(f"[{a.sample}] file {idx}: {st}", flush=True)

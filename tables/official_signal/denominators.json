@@ -1,0 +1,115 @@
+{
+ "filter_box": {
+  "region": "filter_box",
+  "box": {
+   "x": [
+    -210.0,
+    210.0
+   ],
+   "y": [
+    -210.0,
+    210.0
+   ],
+   "z": [
+    -1.0,
+    510.0
+   ]
+  },
+  "N_signal_truth": 13773,
+  "n_events_with_several_in_region": 0,
+  "POT_signal_sample": 2.83853154e+21,
+  "generated_throws": 197212500,
+  "n_units": 15777,
+  "truth_class": {
+   "0p": 6501,
+   "1p": 6160,
+   "ge2p": 1112
+  },
+  "delta": {
+   "Delta0": 7599,
+   "Delta+": 6174
+  },
+  "delta_x_class": {
+   "Delta0_0p": 5311,
+   "Delta0_1p": 1809,
+   "Delta0_ge2p": 479,
+   "Delta+_0p": 1190,
+   "Delta+_1p": 4351,
+   "Delta+_ge2p": 633
+  },
+  "R_signal_per_POT": 4.852156759899874e-18,
+  "R_signal_per_1e20_POT": 485.2156759899874,
+  "NOTE": "generated_throws is exposure/filter bookkeeping, NOT the efficiency denominator"
+ },
+ "active_tpc": {
+  "region": "active_tpc",
+  "box": {
+   "x": [
+    -200.0,
+    200.0
+   ],
+   "y": [
+    -200.0,
+    200.0
+   ],
+   "z": [
+    0.0,
+    500.0
+   ]
+  },
+  "N_signal_truth": 12427,
+  "n_events_with_several_in_region": 0,
+  "POT_signal_sample": 2.83853154e+21,
+  "generated_throws": 197212500,
+  "n_units": 15777,
+  "truth_class": {
+   "0p": 5863,
+   "1p": 5557,
+   "ge2p": 1007
+  },
+  "delta": {
+   "Delta0": 6846,
+   "Delta+": 5581
+  },
+  "delta_x_class": {
+   "Delta0_0p": 4783,
+   "Delta0_1p": 1626,
+   "Delta0_ge2p": 437,
+   "Delta+_0p": 1080,
+   "Delta+_1p": 3931,
+   "Delta+_ge2p": 570
+  },
+  "R_signal_per_POT": 4.3779679122395805e-18,
+  "R_signal_per_1e20_POT": 437.79679122395805,
+  "NOTE": "generated_throws is exposure/filter bookkeeping, NOT the efficiency denominator"
+ },
+ "no_region_cut": {
+  "region": "no_region_cut",
+  "box": null,
+  "N_signal_truth": 13773,
+  "n_events_with_several_in_region": 6,
+  "POT_signal_sample": 2.83853154e+21,
+  "generated_throws": 197212500,
+  "n_units": 15777,
+  "truth_class": {
+   "0p": 6501,
+   "1p": 6160,
+   "ge2p": 1112
+  },
+  "delta": {
+   "Delta0": 7599,
+   "Delta+": 6174
+  },
+  "delta_x_class": {
+   "Delta0_0p": 5311,
+   "Delta0_1p": 1809,
+   "Delta0_ge2p": 479,
+   "Delta+_0p": 1190,
+   "Delta+_1p": 4351,
+   "Delta+_ge2p": 633
+  },
+  "R_signal_per_POT": 4.852156759899874e-18,
+  "R_signal_per_1e20_POT": 485.2156759899874,
+  "NOTE": "generated_throws is exposure/filter bookkeeping, NOT the efficiency denominator"
+ }
+}

@@ -1,5 +1,7 @@
 # Candidate-associated background taxonomy (second taxonomy; the event-level one is kept)
 
+> **Revalidated against the matcher's design document (see `WIRECELL_TRUTH_MATCH_SEMANTICS.md`, 2026-11-09).** The production top partner of a candidate is the FIRST stored partner (largest *point* IoU), not the largest *charge* IoU that Phase 4 used. Rule change affects 2 of the 649 selected candidates' top partner and exactly **1 category**: (file 32366, run 8060, subrun 80, evt 5) OTHER_NC -> COSMIC_OR_UNMATCHED (1γ1p; both IoUs are tiny: 0.096 for the old top neutrino vs 0.054 point-IoU for a cosmic object). All numbers below are the revalidated ones; the Phase-4 tables are preserved on the pushed Phase-4 branch.
+
 The existing event-level category (`BNB_TRUTH_CATEGORY_AUDIT.md`, `events.t_code`) is **not replaced**. This adds a second taxonomy tied to the **passing reconstructed candidate** through the production candidate association of `PASSING_CANDIDATE_TRUTH_ASSOCIATION.md` (top `wc.T_match` level-3 match). MC evaluation only; frozen baseline, `any`, 35 MeV, no FV. Table: `tables/background_mechanisms/candidate_truth_category.csv` (one row per passing candidate, with the old category, the new category and the match quality).
 
 ## 1. Definition (code: `background_truth.classify_candidate`, `background_mechanisms.add_categories`)
@@ -15,15 +17,15 @@ In order: **COSMIC_OR_UNMATCHED** (no match, or the top match is a cosmic truth 
 | CC_PI0 | 43 | 42 | 21 | 106 |
 | OUTSIDE_TPC_NU | 75 | 17 | 3 | 95 |
 | NUMU_CC | 11 | 6 | 7 | 24 |
-| OTHER_NC | 10 | 7 | 4 | 21 |
-| COSMIC_OR_UNMATCHED | 14 | 0 | 1 | 15 |
+| OTHER_NC | 10 | 6 | 4 | 20 |
+| COSMIC_OR_UNMATCHED | 14 | 1 | 1 | 16 |
 | MULTI_OR_AMBIGUOUS | 2 | 4 | 1 | 7 |
 | **total** | **310** | **230** | **95** | **635** |
 
 No event is dropped; every ambiguous event is in `MULTI_OR_AMBIGUOUS`. (OTHER_CC is empty.)
 
 ## 3. Comparison with the event-level category (635 non-signal events; `old_event_vs_candidate_associated_crosstab_635.csv`)
-**574 unchanged, 61 change interpretation** under the mapping NC_PI0, CC_PI0, NUE_CC, NUMU_CC, OTHER_NC, OTHER_CC identical; `DIRT_NO_ACTIVE` ↔ OUTSIDE_TPC_NU; `COSMIC_NO_NU` ↔ COSMIC_OR_UNMATCHED; `MULTI_ACTIVE` has no equivalent (the event-level category could not say which interaction produced the candidate). Of the 61, **40 were `MULTI_ACTIVE`** (several in-box interactions: 14 → NC_PI0, 12 → NUE_CC, 5 → CC_PI0, 3 → NUMU_CC, 1 → OTHER_NC, 5 stay ambiguous) and **21 were resolved differently**:
+**573 unchanged, 62 change interpretation** under the mapping NC_PI0, CC_PI0, NUE_CC, NUMU_CC, OTHER_NC, OTHER_CC identical; `DIRT_NO_ACTIVE` ↔ OUTSIDE_TPC_NU; `COSMIC_NO_NU` ↔ COSMIC_OR_UNMATCHED; `MULTI_ACTIVE` has no equivalent (the event-level category could not say which interaction produced the candidate). Of the 61, **40 were `MULTI_ACTIVE`** (several in-box interactions: 14 → NC_PI0, 12 → NUE_CC, 5 → CC_PI0, 3 → NUMU_CC, 1 → OTHER_NC, 5 stay ambiguous) and **21 were resolved differently**:
 
 | old event-level → new candidate-associated | n |
 |---|---|
@@ -33,7 +35,7 @@ No event is dropped; every ambiguous event is in `MULTI_OR_AMBIGUOUS`. (OTHER_CC
 | DIRT_NO_ACTIVE → MULTI_OR_AMBIGUOUS | 1 |
 | NUE_CC → COSMIC_OR_UNMATCHED | 1 |
 | NUE_CC → MULTI_OR_AMBIGUOUS | 1 |
-| OTHER_NC → COSMIC_OR_UNMATCHED | 1 |
+| OTHER_NC → COSMIC_OR_UNMATCHED | 2 |
 
 Examples (event key `(file_index, ev)`): (10395, 8) and (15362, 1) old DIRT_NO_ACTIVE → cosmic/unmatched (top-match IoU 0.19 / 0.31, no neutrino); (7808, 10) and (9220, 3) old MULTI_ACTIVE → CC_PI0 (IoU 0.97 / 0.92 to a ν_μ CC π⁰ in the TPC); (1000, 2) old MULTI_ACTIVE → ambiguous (IoU 0.30, overlaps two neutrinos). Takeaways (descriptive): the old DIRT_NO_ACTIVE group (104 events incl. 1 signal and 1 ambiguous) is 91 genuine outside-TPC neutrino candidates plus 11 candidates with no matched neutrino (cosmic or unmatched); the old MULTI_ACTIVE group is resolved to a single interaction for 35 of its 40 non-signal events and stays ambiguous for 5; the 9 ν_μ CC / ν_e CC / NC-labelled events that become outside-TPC, cosmic or ambiguous show that "an interaction of that type exists in the event" was not always the one the selected candidate was built from. The old category of the 14 signal events was 12 OTHER_NC, 1 MULTI_ACTIVE and 1 DIRT_NO_ACTIVE.
 

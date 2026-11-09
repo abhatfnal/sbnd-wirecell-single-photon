@@ -1,5 +1,25 @@
 # Beam-off / beam-on exposure normalisation audit
 
+## 0. Update 2026-11-09: source audit of the gate counters (read this first; supersedes the statements it contradicts below)
+
+**No scale factor is computed, assumed or stored. The two quotients that could be formed from the counters below are deliberately NOT formed.**
+
+**What `rec.hdr.noffbeambnb` is (SOURCE: sbncode `CAFMaker_module.cc` lines 948, 1009, 2876; `SBNDBNBEXTRetriever_module.cc`; sbnanaobj `SRHeader.h:51`; commits in `WIRECELL_SOURCE_CONVENTIONS_AUDIT.md` section 7).** `SBNDBNBEXTRetriever::produce` reads the PTB container fragment of every off-beam event and takes `PTBInfo.GateCounter` (`extractPTBInfo(..., 4)`): the number of BNB gates counted **since the previous trigger**; it keeps `TotalEXTCounts += GateCounter` and writes one `sbn::EXTCountInfo{gates_since_last_trigger}` per event into the **sub-run**. `CAFMaker` sums `spill.gates_since_last_trigger` over the sub-run (`fOffbeamBNBGates`) and writes it into `rec.hdr.noffbeambnb` of the **first event of the sub-run** (`if (fFirstInSubRun)`), together with `rec.hdr.pot`. So it is **the number of off-beam BNB gates of the sub-run, counted by the PTB between the EXT triggers, before any software filtering; neither raw triggers nor post-filter events.** [measured: 1,058 files, one non-zero entry per file, sum 2,542,847.]
+
+**The beam-on counterpart EXISTS in the CAF (the earlier version of this note was wrong to say it does not): `rec.hdr.nbnbinfo`.** `CAFMaker` writes `rec.hdr.nbnbinfo = fBNBInfo.size()` (the number of `BNBSpillInfo` entries of the sub-run; `FillExposure.cxx`: one entry per spill, `subRunPOT += info.POT()`) on the same first event, and `rec.hdr.pot` is the sum of those spills' POT. `SBNDBNBRetriever` (beam-on) counts `TotalBeamSpills += number_of_gates_since_previous_event` (the same PTB `GateCounter`, via `extractPTBInfo(..., 2)`) but only logs it (`LogDebug`); the stored product is one `BNBSpillInfo` per spill matched to the beam database (`matchMultiWireData`), and the retriever logs `"WRONG"` at debug level when the matched count differs from the PTB gate count. [measured: 1,817 beam-on files, exactly one non-zero `nbnbinfo` per file, **Σ nbnbinfo = 960,047** spills, Σ `rec.hdr.pot` = 4.62125260e18 = Σ `TotalPOT` (agrees to 1.5e-9), `noffbeambnb` = 0; `tables/pot/gate_counters_summary.json`.]
+
+| quantity | beam-on open (runs 18255, 18259) | beam-off (InTime-Run1) |
+|---|---|---|
+| files / events in the CAFs | 1,817 / 89,946 | 1,058 / 49,970 |
+| gate counter | Σ `nbnbinfo` = 960,047 (matched BNB spills) | Σ `noffbeambnb` = 2,542,847 (PTB off-beam BNB gates) |
+| events recorded per counted gate | 9.4 % | 2.0 % |
+| runs | 2 (18255: 1,329 files; 18259: 488) | 156 (18250-18592); **no file in run 18255**, 4 in 18259 |
+
+**SAM (read-only, `env/sam_eaf.sh`).** The reco1 and raw-parent file metadata carry run, stream (`bnblight` / `offbeamlight`), trigger menu (`configuration.name`: `opsFullTriggerMenuP3_ExtraMTCA5-5-00002` on, `caenPUSHbnbZeroBias5-00003` off), `sbn_dm.event_count` (the raw-file trigger count; `0` for many off-beam raw files; SAM cannot sum it over the definitions: "Event count: None"), parentage, production tags. **No SAM key holds a gate count, livetime or exposure.** Definition totals (reco1): beam-off 49,020 files / 2,233,625 events (the fg1 beam-off list is a 1,096-file random subset, 1,058 of whose CAFs hold events); beam-on 1,820 files.
+
+**Remaining blocker: ONE precise question for the data-quality / run-database owners.** *Is the approved beam-off scale for the open beam-on data (runs 18255, 18259) built from the stream gate counters, `Σ rec.hdr.nbnbinfo (beam-on) / Σ rec.hdr.noffbeambnb (beam-off)`, or from recorded-trigger counts (pre-filter events of the `bnblight` and `offbeamlight` streams) — given that the two streams record 9.4 % and 2.0 % of their counted gates respectively, so the two choices differ by a factor of ~4.8 — and is using the InTime-Run1 beam-off sample, which has no run-18255 files, for those runs acceptable?* Everything else (the exact meaning and filling of both counters, the files used, their sums, the stream/trigger-menu identities, parentage) is established above and in `tables/pot/`. Until it is answered, beam-off remains **shape only** and `prediction.B_COSMIC` stays UNRESOLVED (the prediction object refuses totals, purity, S/B and significance).
+
+
 **No scale factor is computed or assumed here.** This note records what the merged CAFs contain, what is missing, and the commands to obtain the rest (SAM from EAF via `env/sam_eaf.sh`; run database separately).
 Numbers come from `scripts/exposure_scan.py` (read-only over all listed files; per-file rows in `$SP_DATA/exposure_scan/*.jsonl`).
 
@@ -11,7 +31,7 @@ Numbers come from `scripts/exposure_scan.py` (read-only over all listed files; p
 |---|---|---|
 | `rec.hdr.pot` | non-zero on the first event of each file (`first_in_subrun == first_in_file == 1`, exactly one per file); float32 | 0 |
 | `TotalPOT` (TH1D, float64) | ≈ file POT (agrees with `rec.hdr.pot` to < 6e-8 relative in all 1,817 files) | 0 |
-| `rec.hdr.noffbeambnb` | 0 | **non-zero on the first event of each file** (e.g. 2407 in the first file for a 50-event file): the off-beam BNB gate count; exactly one non-zero per file in all 1,058 files (see §3) |
+| `rec.hdr.noffbeambnb` | 0 | **non-zero on the first event of each file** (e.g. 2407 in the first file for a 50-event file): the PTB off-beam BNB gate count of the sub-run (section 0); exactly one non-zero per file in all 1,058 files (see §3). Beam-on analogue: `rec.hdr.nbnbinfo` (non-zero on the first event of each of the 1,817 files) |
 | `TotalEvents` | = events in the file (1,817 / 1,817 files) | = events in the file |
 | `rec.hdr.triggerinfo.*`, `rec.hdr.bnbinfo.*`, `spillbnbinfo.*` | per-event, mostly default/sentinel values after the CAF filtering (e.g. `passed_trigger = 0`, trigger times set for beam-on only) | sentinel (4294967295) |
 | `metadata/metatree` | empty | empty |
@@ -25,8 +45,8 @@ Run/sub-run facts that matter:
 
 | needed | why | status |
 |---|---|---|
-| **beam-on trigger / spill (gate) count** for exactly the beam-on files (or runs) used | the standard beam-off scaling is (number of beam-on triggers) / (number of off-beam gates) | **not in the CAF**: the beam-on CAF stores POT but no gate counter (`noffbeambnb = 0`) |
-| beam-off gate count for exactly the files used | denominator of the scaling | probably `Σ rec.hdr.noffbeambnb` (see §3); **its meaning (per file? per raw file before filtering?) must be confirmed** |
+| **beam-on trigger / spill (gate) count** for exactly the beam-on files (or runs) used | the standard beam-off scaling is (number of beam-on triggers) / (number of off-beam gates) | **in the CAF as `rec.hdr.nbnbinfo`** (Σ 960,047 over the 1,817 files; section 0); which counter pair is approved is the one open question |
+| beam-off gate count for exactly the files used | denominator of the scaling | `Σ rec.hdr.noffbeambnb` = 2,542,847; **meaning established from source (section 0): PTB off-beam BNB gates of the sub-run, before filtering** |
 | **livetime / run list quality** | runs 18255/18259 vs 18250–18592 may have different conditions (CRT/trigger/light-yield, DAQ configuration) | run database |
 | fraction of the beam-on stream that is in the open sample | the open data is a subset (1,817 of 1,820 reco1 files; runs 18255/18259 only); POT of the *whole* run vs of the listed files | SAM |
 | whether `TotalPOT` of a *filtered* file equals the POT of the raw events it came from | per-file POT is only meaningful if no file was split/merged | SAM + Haiwang |

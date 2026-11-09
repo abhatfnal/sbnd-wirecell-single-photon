@@ -1,0 +1,36 @@
+{
+ "status": {
+  "S_NCDELTA": {
+   "status": "pending",
+   "note": "truth rate known; reconstruction efficiency pending the official Wire-Cell sample"
+  },
+  "B_BNB_NEUTRINO": {
+   "status": "known",
+   "note": "selected non-signal CV events (counts {'1g0p': 310, '1g1p': 230, 'ge2p': 95}); POT_CV 2.7194e+19; statistical only; no cosmic-only component; natural signal-like events excluded"
+  },
+  "B_COSMIC": {
+   "status": "unresolved",
+   "note": "beam-off SHAPE only; absolute scale unresolved (beam-on gate count / livetime not available)"
+  },
+  "DATA": {
+   "status": "known",
+   "note": "open beam-on raw counts at 4.62125e+18 POT; not compared until B_COSMIC is normalised"
+  }
+ },
+ "refusals": {
+  "total_background": "refused: total predicted background: component S_NCDELTA is PENDING (truth rate known; reconstruction efficiency pending the official Wire-Cell sample); refusing to proc",
+  "purity": "refused: purity: component S_NCDELTA is PENDING (truth rate known; reconstruction efficiency pending the official Wire-Cell sample); refusing to proceed",
+  "s_over_b": "refused: S/B: component S_NCDELTA is PENDING (truth rate known; reconstruction efficiency pending the official Wire-Cell sample); refusing to proceed",
+  "significance": "refused: significance: component S_NCDELTA is PENDING (truth rate known; reconstruction efficiency pending the official Wire-Cell sample); refusing to proceed"
+ },
+ "B_COSMIC_shape_counts_beam_off_selected": {
+  "1g0p": 4,
+  "1g1p": 2,
+  "ge2p": 0
+ },
+ "DATA_open_beam_on_selected_raw": {
+  "1g0p": 39,
+  "1g1p": 27,
+  "ge2p": 11
+ }
+}

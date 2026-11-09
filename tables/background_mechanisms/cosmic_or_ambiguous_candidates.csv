@@ -7,7 +7,7 @@ file_index,ev,reco_channel,cand_category,tm_n,tm_top_nu,tm_n_distinct_nu,tm_top_
 14290,16,1g0p,COSMIC_OR_UNMATCHED,1,-1,0,0.053,13.0,-1.0,0.864,0.0,cosmic_or_unmatched,OTHER_NC
 15362,1,1g0p,COSMIC_OR_UNMATCHED,2,-1,1,0.306,13.0,-1.0,0.848,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
 15795,8,1g1p,MULTI_OR_AMBIGUOUS,3,0,2,0.536,11.0,0.0,0.767,0.0,electron_positron,MULTI_ACTIVE
-16677,11,1g1p,MULTI_OR_AMBIGUOUS,2,0,2,0.632,2212.0,0.0,0.52,0.0,electron_positron,MULTI_ACTIVE
+16677,11,1g1p,MULTI_OR_AMBIGUOUS,2,1,2,0.347,2212.0,0.0,0.52,0.0,electron_positron,MULTI_ACTIVE
 18395,8,1g0p,COSMIC_OR_UNMATCHED,1,-1,0,0.027,-13.0,-1.0,0.535,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
 19401,5,1g0p,COSMIC_OR_UNMATCHED,1,-1,0,0.139,-13.0,-1.0,0.974,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
 21905,10,1g0p,COSMIC_OR_UNMATCHED,2,-1,1,0.561,-13.0,-1.0,0.916,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
@@ -17,6 +17,7 @@ file_index,ev,reco_channel,cand_category,tm_n,tm_top_nu,tm_n_distinct_nu,tm_top_
 26430,4,1g1p,MULTI_OR_AMBIGUOUS,2,1,2,0.458,22.0,0.0,0.517,0.0,photon,MULTI_ACTIVE
 28521,9,1g0p,COSMIC_OR_UNMATCHED,3,-1,0,0.756,22.0,-1.0,0.905,111.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
 31607,2,1g0p,COSMIC_OR_UNMATCHED,1,-1,0,0.728,-11.0,-1.0,0.995,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
+32366,2,1g1p,COSMIC_OR_UNMATCHED,2,-1,1,0.036,-13.0,-1.0,0.658,0.0,cosmic_or_unmatched,OTHER_NC
 34811,10,1g0p,COSMIC_OR_UNMATCHED,2,-1,0,0.923,13.0,1.0,0.537,0.0,cosmic_or_unmatched,DIRT_NO_ACTIVE
 35165,8,1g0p,MULTI_OR_AMBIGUOUS,2,0,2,0.6,11.0,0.0,0.917,0.0,electron_positron,NUE_CC
 35648,1,1g1p,MULTI_OR_AMBIGUOUS,3,0,2,0.508,11.0,0.0,0.861,0.0,electron_positron,MULTI_ACTIVE

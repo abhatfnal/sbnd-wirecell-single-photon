@@ -188,3 +188,6 @@ The inclusive BNB CV contains **naturally generated NC Δ → Nγ events** (iden
 * **cosmic-only:** beam-off, once its normalisation is established (open question).
 
 The dedicated signal prediction **replaces**, and is not added to, the natural signal already represented in the inclusive CV (the 14-type events, which are dropped from the CV background by their selected-event classification, not by removing events from the sample). The natural-CV count remains an independent normalisation cross-check of the dedicated sample. Candidate-to-neutrino matching (`wc.T_overlap` / dominant-neutrino vertex) is evaluation-only.
+
+## Signal-arrival readiness (2026-11-09)
+When the official Wire-Cell merged NC-Delta CAFs arrive, `OFFICIAL_SIGNAL_WC_ARRIVAL_RUNBOOK.md` is one command (`scripts/run_official_signal_baseline.py official ...`). Supporting documents: `WIRECELL_TRUTH_MATCH_SEMANTICS.md` (source-defined `T_match`/`T_overlap`), `WIRECELL_SOURCE_CONVENTIONS_AUDIT.md`, `OFFICIAL_SIGNAL_MASTER_TABLE.md` (truth master and denominators), `OFFICIAL_SIGNAL_PROVENANCE_GATE.md`, `SIGNAL_YIELD_AND_PREDICTION_PLUMBING.md`, `OFFICIAL_NCDELTA_WC_ARRIVAL_REPORT_TEMPLATE.md`, and the updated beam-off audit in `DATA_EXPOSURE_NORMALIZATION.md`.

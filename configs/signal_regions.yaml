@@ -1,0 +1,17 @@
+# Truth regions V of the signal denominator N_signal_truth(V; S). A region is a PARAMETER of the denominator, never a hidden cut.
+# NO analysis fiducial volume is approved. When one is, add it under `regions:` (and nothing else changes: every denominator, efficiency and
+# yield routine takes the region name). The result must always state the region it was computed with.
+regions:
+  filter_box:           # hard-coded in the NCDeltaRadiative generator filter (parent vertex); 100 % of the generated signal is inside
+    x: [-210.0, 210.0]
+    y: [-210.0, 210.0]
+    z: [-1.0, 510.0]
+    role: generator_phase_space
+  active_tpc:           # PROVISIONAL nominal TPC box (truth.ActiveVolume); used as the working truth region of the baseline
+    x: [-200.0, 200.0]
+    y: [-200.0, 200.0]
+    z: [0.0, 500.0]
+    role: provisional_working_region
+  # approved_fv: null   # FUTURE, NOT APPROVED. Do not invent one here.
+default_region: active_tpc
+proton_threshold_mev: 35.0     # PROVISIONAL truth/reco proton kinetic-energy threshold (unchanged)

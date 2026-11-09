@@ -1,0 +1,28 @@
+{
+ "n_selected_found": 649,
+ "n_selected_expected": 649,
+ "read_errors": [],
+ "files": 645,
+ "top_nu_differs_source_vs_iouq": 2,
+ "top_iou_n_quantiles": {
+  "0": 0.03420298919081688,
+  "0.05": 0.44990392327308654,
+  "0.25": 0.6448694467544556,
+  "0.5": 0.7665964365005493,
+  "0.75": 0.8633612990379333,
+  "0.95": 0.9479138135910035,
+  "1": 1.0
+ },
+ "mutual_candidates": 628,
+ "invariants": {
+  "files_nmatch_equals_items": 645,
+  "max_nmatch": 3,
+  "files_iou_n_nonincreasing": 645,
+  "iou_n_order_violations": 0,
+  "mutual_flag_agreement_min": 1.0,
+  "candidates_level3": 4549,
+  "candidates_with_ge2_distinct_truth_nu": 47,
+  "truth_nu_claimed_as_top_by_several_candidates": 6,
+  "truth_nu_claimed": 4362
+ }
+}

@@ -79,6 +79,7 @@ samples:
   # Dataset roles (Haiwang): official Gen2 samples on Fermilab = EVALUATION; Aurora isolated samples = training/development.
   official_gen2_ncdelta:
     role: signal_evaluation
+    is_mc: true        # enables the MC truth reads once the merged-CAF manifest is registered (status below still keeps the readers OFF)
     # `status` keeps merged-CAF code paths SAFE: only "available" enables manifest readers, and there is NO Wire-Cell merged CAF yet.
     status: official_flatcaf_only
     official_flatcaf_status: available        # VERIFIED 2026-11-06: SAM definitions evaluate; files open from EAF over XRootD

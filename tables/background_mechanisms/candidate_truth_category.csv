@@ -264,7 +264,7 @@ file_index,ev,run,subrun,evt,nu_index,event_class,reco_channel,n_pass,old_event_
 16575,7,6766,64,15,0.0,background,ge2p_diag,1,NUE_CC,NUE_CC,False,0,0.9305,0.0007,2,1,1,1,0.0,12.0,0.0,0.0,181.2029,-21.4386,368.14,True,0.0,0.0,1.0,0.0,electron_positron,0.9571,True
 16588,0,8187,27,4,0.0,background,1g0p,1,DIRT_NO_ACTIVE,OUTSIDE_TPC_NU,False,0,0.6621,0.0009,2,1,1,1,0.0,14.0,1.0,2.0,-28.6131,35.4581,-271.604,False,271.604,1.0,1.0,0.0,photon,0.8721,False
 16675,7,2155,73,30,0.0,background,1g0p,1,NC_PI0,NC_PI0,False,1,0.6443,,1,1,0,1,1.0,14.0,1.0,2.0,-197.1022,-43.2504,48.2662,True,0.0,1.0,2.0,1.0,proton,0.2246,True
-16677,11,6702,12,42,0.0,background,1g1p,1,MULTI_ACTIVE,MULTI_OR_AMBIGUOUS,True,0,0.6323,0.3468,2,2,0,1,0.0,14.0,0.0,1.0,-92.0499,-61.3438,137.0331,True,0.0,0.0,1.0,0.0,electron_positron,0.4394,False
+16677,11,6702,12,42,0.0,background,1g1p,1,MULTI_ACTIVE,MULTI_OR_AMBIGUOUS,True,1,0.3468,0.6323,2,2,0,1,1.0,14.0,0.0,0.0,-11.9145,64.4097,409.7224,True,0.0,0.0,1.0,0.0,electron_positron,0.4394,False
 16687,7,5049,20,23,0.0,background,1g0p,1,NC_PI0,NC_PI0,False,0,0.7563,,1,1,0,1,0.0,14.0,1.0,2.0,64.4663,-117.6742,445.382,True,0.0,1.0,0.0,0.0,photon,0.9416,False
 16699,9,5176,26,31,0.0,background,1g1p,1,NUE_CC,NUE_CC,False,2,0.7614,0.008,2,1,1,1,2.0,12.0,0.0,10.0,-105.7876,62.6666,155.4956,True,0.0,0.0,1.0,2.0,electron_positron,0.8954,True
 16718,10,6682,61,31,0.0,background,1g1p,1,NUE_CC,NUE_CC,False,1,0.831,,1,1,0,1,1.0,12.0,0.0,10.0,-131.988,-97.0413,229.0676,True,0.0,0.0,1.0,1.0,electron_positron,0.906,True
@@ -544,7 +544,7 @@ file_index,ev,run,subrun,evt,nu_index,event_class,reco_channel,n_pass,old_event_
 31348,14,855,24,48,0.0,background,1g1p,1,NC_PI0,NC_PI0,False,0,0.9559,,1,1,0,1,0.0,14.0,1.0,1.0,142.1125,-117.8034,6.2829,True,0.0,1.0,1.0,0.0,photon,0.9855,False
 31363,4,7014,26,14,0.0,background,1g1p,1,NC_PI0,NC_PI0,False,1,0.8292,,1,1,0,1,1.0,14.0,1.0,1.0,2.8023,-13.0211,209.0405,True,0.0,1.0,4.0,1.0,photon,0.8326,False
 31382,3,3095,92,18,0.0,background,1g1p,1,NUMU_CC,NUMU_CC,False,0,0.4462,,1,1,0,1,0.0,14.0,0.0,1.0,-122.5452,-102.5903,295.4462,True,0.0,0.0,2.0,0.0,photon,1.0,False
-31505,3,4371,20,6,0.0,background,1g0p,1,DIRT_NO_ACTIVE,OUTSIDE_TPC_NU,False,1,0.4123,0.0048,3,1,2,1,1.0,14.0,1.0,1.0,51.741,-15.9266,-17.4841,False,17.4841,1.0,1.0,1.0,photon,0.9832,False
+31505,3,4371,20,6,0.0,background,1g0p,1,DIRT_NO_ACTIVE,OUTSIDE_TPC_NU,False,1,0.4123,0.0043,3,1,2,1,1.0,14.0,1.0,1.0,51.741,-15.9266,-17.4841,False,17.4841,1.0,1.0,1.0,photon,0.9832,False
 31521,10,6786,64,32,0.0,background,1g1p,1,CC_PI0,CC_PI0,False,0,0.8057,,1,1,0,1,0.0,14.0,0.0,1.0,-137.6708,57.9582,396.5323,True,0.0,1.0,1.0,0.0,photon,0.9602,False
 31561,4,979,23,16,0.0,background,1g0p,1,NUMU_CC,NUMU_CC,False,0,0.8939,,1,1,0,1,0.0,14.0,0.0,1.0,12.9659,-127.0328,369.33,True,0.0,0.0,1.0,0.0,photon,0.9233,True
 31607,2,3420,82,13,0.0,background,1g0p,1,DIRT_NO_ACTIVE,COSMIC_OR_UNMATCHED,True,-1,0.7283,,1,0,1,1,,,,,,,,False,0.0,,,-1.0,cosmic_or_unmatched,0.9962,True
@@ -567,7 +567,7 @@ file_index,ev,run,subrun,evt,nu_index,event_class,reco_channel,n_pass,old_event_
 32296,14,1858,93,47,1.0,background,ge2p_diag,1,DIRT_NO_ACTIVE,OUTSIDE_TPC_NU,False,2,0.8275,,1,1,0,1,2.0,14.0,0.0,2.0,-56.1736,200.3966,411.5926,False,0.3966,1.0,2.0,2.0,photon,0.3761,False
 32316,12,1711,10,43,0.0,background,1g0p,1,NUMU_CC,NUMU_CC,False,0,0.894,,1,1,0,1,0.0,14.0,0.0,1.0,21.2957,-124.3019,424.9933,True,0.0,0.0,0.0,0.0,photon,0.9509,True
 32346,4,4677,9,33,0.0,background,1g1p,1,NUE_CC,NUE_CC,False,0,0.6939,,1,1,0,1,0.0,12.0,0.0,10.0,25.2047,-18.1464,160.1167,True,0.0,0.0,2.0,0.0,electron_positron,0.9543,True
-32366,2,8060,80,5,0.0,background,1g1p,1,OTHER_NC,OTHER_NC,False,0,0.096,0.0356,2,1,1,0,0.0,14.0,1.0,0.0,54.4473,13.8395,255.5309,True,0.0,0.0,1.0,-1.0,cosmic_or_unmatched,0.728,True
+32366,2,8060,80,5,0.0,background,1g1p,1,OTHER_NC,COSMIC_OR_UNMATCHED,True,-1,0.0356,0.096,2,1,1,0,,,,,,,,False,0.0,,,-1.0,cosmic_or_unmatched,0.728,True
 32380,0,2576,58,2,0.0,background,1g1p,1,NC_PI0,NC_PI0,False,0,0.891,0.0088,2,1,1,1,0.0,14.0,1.0,1.0,-21.905,73.0114,166.082,True,0.0,1.0,1.0,0.0,photon,0.9543,False
 32392,6,1862,32,20,0.0,background,ge2p_diag,1,NUE_CC,NUE_CC,False,1,0.627,,1,1,0,1,1.0,12.0,0.0,0.0,-125.5746,112.7305,149.8167,True,0.0,0.0,1.0,1.0,electron_positron,0.917,True
 32421,8,631,84,33,0.0,background,ge2p_diag,1,NUE_CC,NUE_CC,False,0,0.4985,0.0003,2,1,1,1,0.0,12.0,0.0,1.0,123.6715,-75.9488,104.5904,True,0.0,0.0,3.0,0.0,electron_positron,0.843,True

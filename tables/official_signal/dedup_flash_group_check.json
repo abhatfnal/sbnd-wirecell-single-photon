@@ -1,0 +1,22 @@
+{
+ "files": 120,
+ "reason_counts": {
+  "2": 408,
+  "0": 813,
+  "3": 168,
+  "1": 25
+ },
+ "sample": "bnb_cv first 120 manifest files",
+ "branch": "wc.T_bundle.reason",
+ "enum": {
+  "0": "kSelectedMain",
+  "1": "kSelectedDemoted",
+  "2": "kAllCosmic",
+  "3": "kLengthFloor",
+  "4": "kStmOnly",
+  "5": "kNoEligible",
+  "6": "kDedupFlashGroup"
+ },
+ "conclusion": "no bundle has reason 6 (kDedupFlashGroup): nu_dedup_flash_group was OFF in this production",
+ "source": "NuBundleCensus.h (Reason enum), TaggerCheckNeutrino.h:801 (default false)"
+}

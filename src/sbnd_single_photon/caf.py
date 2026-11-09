@@ -149,7 +149,7 @@ class MergedCaf:
             return default
         v = self._wt[key].array(entry_stop=1)[0]
         v = ak.to_list(v)
-        if isinstance(v, list) and v and isinstance(v[0], int) and name in ("dl_weights", "wct_version", "input_file"):
+        if isinstance(v, list) and v and isinstance(v[0], int) and name in ("dl_weights", "wct_version", "input_file", "bdt_weights_dir"):
             return bytes(v).decode("latin1")
         return v
 

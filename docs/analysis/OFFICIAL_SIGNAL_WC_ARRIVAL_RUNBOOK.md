@@ -1,24 +1,28 @@
-# Runbook: when the official Wire-Cell merged NC-Delta signal CAFs arrive
+# Runbook: when the official Wire-Cell merged NC-Delta signal CAFs arrive (analysis is READY; nothing has arrived)
 
-Status: **not ready to run yet; nothing has arrived.** No sample path, manifest or result for the official Wire-Cell merged sample exists in this repository and none must be invented (`configs/samples.yaml`: `official_gen2_ncdelta` has `status: official_flatcaf_only`, `wirecell_merged_status: pending`; the merged-CAF readers stay disabled until the manifest is registered).
+Status 2026-11-09: **no merged-CAF path, manifest or result exists and none is invented** (`configs/samples.yaml`: `official_gen2_ncdelta` stays `status: official_flatcaf_only`, `wirecell_merged_status: pending`; the merged-CAF readers stay off until the provenance gate is open). The machinery has been exercised on the natural-CV rehearsal (exact reproduction, below) and on real BNB CV merged CAFs as a dry run of the registration tool (the gate correctly stayed closed: all events unexpected, declarations unknown).
 
-The signal characterisation is sample-agnostic by construction (`src/sbnd_single_photon/exclusive_signal.py`, `scripts/exclusive_signal_characterize.py`): it consumes (i) a signal-truth table and (ii) the derived analysis table of the same sample. Rehearsed on the natural BNB signal (`EXCLUSIVE_SIGNAL_BASELINE_REHEARSAL.md`). The physics code does not change; only inputs do.
+## What Haiwang needs to provide
+Exactly one of: a file list / manifest, a directory, or a SAM definition of the merged CAFs; plus a short producer declaration (`declared_same_evaluation_chain_as_fg1`, `declared_uses_dv2_max`, `declared_uses_fix2`, `declared_alternative_bdt_training`, `declared_wct_commit`, `declared_larwirecell_commit`, `declared_sbndcode_version`; `OFFICIAL_SIGNAL_PROVENANCE_GATE.md`).
 
-## Steps (in order; stop and ask if a check fails)
+## One command (workers <= 24; BLAS/OMP threads pinned to 1)
+```bash
+source env/setup_eaf.sh
+python scripts/run_official_signal_baseline.py official --file-list <files.txt> --provenance <declaration.yaml> --workers 20
+#   (or --manifest / --directory / --sam-definition; --region active_tpc is the default; --exposure-pot P adds the expected-yield section)
+```
+Steps it performs, each also callable alone:
 
-1. **Get from Haiwang:** the merged-CAF location/manifest, the Wire-Cell commit and SCN-vertexer provenance, and confirmation that `recTree` + `recTreeWireCell` (incl. `T_tagger`, `T_kine`, `T_overlap`, `T_truth_track`, `T_truth_nu`) and `GenieEvtRecTree` are present, and the full list of units (to account for the 728 reco1 units without a flatCAF).
-2. **Register the manifest** (do not create paths in advance): add `manifest:` to `official_gen2_ncdelta` in `configs/samples.yaml`, set `wirecell_merged_status: available` and `status: available` (this is the only switch that enables the merged-CAF readers); `tests/test_samples.py` must be updated in the same commit; `python scripts/make_manifests.py`.
-3. **Schema check:** `python scripts/smoke_test.py official_gen2_ncdelta` (branch presence, `wc.valid`, `schema_md5` against the BNB CV schema).
-4. **Build the derived table** (same code as the BNB CV; offline BDT scoring from the original MicroBooNE XMLs; scoring, not training):
-   `python scripts/build_analysis_table.py official_gen2_ncdelta --workers 28` then `--merge`, then `python scripts/validate_analysis_table.py official_gen2_ncdelta --elementwise` (the exact checks that need sample-specific expected numbers must be supplied from the new sample, not from the BNB CV).
-5. **Signal truth table:** `signal_truth_from_official_events(pd.read_parquet("$SP_DATA/official_gen2_ncdelta_truth/events.parquet"))` (already built from all 15,777 flatCAFs with the exact GENIE-record ancestry) then `attach_event_key(sig, events)` to map (run, subrun, evt) onto the merged table's `(file_index, ev)`; **report `n_missing`**: events absent from the merged table are *inefficiency* (they stay in the truth denominator), not dropped events. Write the result as Parquet under `$SP_DATA/exclusive_signal_inputs/official_gen2_ncdelta/signal_truth.parquet` (columns: file_index, ev, x, y, z, truth_cat, delta_pdg, in_region, nucleon_pdg, photon_mev, E, n_p35).
-6. **Run the same characterisation:**
-   `python scripts/exclusive_signal_characterize.py --label official_gen2_ncdelta --tables $SP_DATA/analysis_tables/official_gen2_ncdelta --signal-truth <parquet from step 5>`
-   `python scripts/exclusive_signal_mechanisms.py --label official_gen2_ncdelta --sample official_gen2_ncdelta`
-   `python scripts/exclusive_signal_vs_background.py --label official_gen2_ncdelta --signal-tables $SP_DATA/analysis_tables/official_gen2_ncdelta --tables $SP_DATA/analysis_tables/bnb_cv` (signal candidates from the official table, background = the BNB CV table; no code edit).
-7. **Denominator and exposure:** `N_signal_truth(V; S)` per event from the truth table restricted to the units S that have a merged CAF; POT(S) and generated throws from SAM `mc.pot` / `mc.generated_event_count` of the same units (`SIGNAL_TRUTH_AND_DENOMINATOR.md`). Never use the CAF `TotalGenEvents` (125 per file).
-8. **Cross-check against the rehearsal:** the efficiencies and migration matrices must be statistically consistent with the natural-CV rehearsal (the natural events are an unbiased subset of the same physics; agreement of the TPC-box rate per POT was already shown). A disagreement is a finding to report, not to fix.
-9. **Then, and only then,** consider the comparison builds (DV2, Fix2) as controlled studies. Nothing is tuned in this runbook.
+1. `scripts/register_official_ncdelta_wc.py` - read-only inspection of every file (trees, alignment, `wc.valid`, schema, `Trun` provenance, truth/matching trees, baseline branches); event-key reconciliation against the 13,773-event truth census (expected / represented / `wc.valid` / missing / duplicates / unexpected / unit mismatch); evaluates the provenance gate (`configs/official_signal_provenance_gate.yaml`); writes `manifests/official_gen2_ncdelta_wc.tsv.gz` and `tables/official_signal/arrival_registration.json`. **Stops (exit 2) if the gate is closed.**
+2. `scripts/build_official_signal_analysis_table.py` - the same derived-table code as the BNB CV (`build_analysis_table.py --manifest ...`, offline BDT scoring from the original XMLs: scoring, not training), then the truth join per region -> `$SP_DATA/analysis_tables/official_gen2_ncdelta/` and `$SP_DATA/official_signal_baseline/` (events never found in the merged CAFs are kept as `signal_missing_*`: they stay in the denominator).
+3. Exact accounting (`signal_pipeline.validate_accounting`): rows = truth denominator, every event in exactly one first-failure reason (incl. `missing_from_merged_caf`), cumulative cutflow non-increasing, any >= first.
+4. The report (`tables/official_signal/official_<region>/` and a filled `ARRIVAL_REPORT.md` from `OFFICIAL_NCDELTA_WC_ARRIVAL_REPORT_TEMPLATE.md`): truth denominator, `wc.valid`, candidates, BDT evaluable, each frozen cut, final any/first, total / 0p / 1p efficiency with exact binomial intervals, truth -> reco migration, reco 1γ0p / 1γ1p / ≥2p, Δ0 / Δ+ diagnostics, and (with `--exposure-pot`) the expected yield through the full truth -> reco migration (`SIGNAL_YIELD_AND_PREDICTION_PLUMBING.md`).
+
+Prerequisite already done: `python scripts/build_official_signal_master.py` (truth master + denominators, `OFFICIAL_SIGNAL_MASTER_TABLE.md`).
+
+## After the report
+* Compare with the natural-CV rehearsal (`tables/official_signal/rehearsal_natural_bnb_cv/`): statistical consistency only; a disagreement is a finding, not something to fix. The rehearsal reproduces denominator 117 -> final `any` 13 -> `first` 12 and every Phase-3 table exactly (`python scripts/run_official_signal_baseline.py rehearsal`).
+* Only then consider the comparison builds (DV2, Fix2) as controlled studies. Nothing is tuned here: no cut, threshold, FV or BDT is changed by this workflow.
 
 ## Frozen conventions (unchanged)
-`wc.valid == 1` required; candidate policy `any` (comparison `first`); proton threshold 35 MeV; truth region = provisional active-TPC box (a parameter, no FV); truth is evaluation only and never chooses a candidate or an event.
+`wc.valid == 1` required; candidate policy `any` (comparison `first`); proton threshold 35 MeV; truth region = provisional active-TPC box (a parameter in `configs/signal_regions.yaml`, no FV); truth is evaluation only and never chooses a candidate or an event; generated throws are never the efficiency denominator.

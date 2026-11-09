@@ -25,7 +25,7 @@ NUMU_CC|truth_ge2p_reco1p,1,1,0,0,0,0,1,0,1,0,0,1,0
 OTHER_NC|truth0p_reco1p,1,0,1,0,0,0,1,0,0,0,0,0,0
 OTHER_NC|truth1p_reco0p,4,0,0,0,0,0,0,0,0,1,2,1,0
 OTHER_NC|truth0p_reco0p,6,0,0,0,0,0,0,0,0,0,0,0,0
-OTHER_NC|truth1p_reco1p,5,4,0,1,0,0,0,0,4,0,0,0,1
+OTHER_NC|truth1p_reco1p,4,3,0,1,0,0,0,0,3,0,0,0,1
 OTHER_NC|truth_ge2p_reco1p,1,1,0,0,0,0,0,0,1,0,0,0,0
 OUTSIDE_TPC_NU|truth0p_reco1p,2,0,1,1,0,0,1,0,0,0,0,0,0
 OUTSIDE_TPC_NU|truth1p_reco0p,44,0,0,0,0,0,0,0,0,0,0,39,5

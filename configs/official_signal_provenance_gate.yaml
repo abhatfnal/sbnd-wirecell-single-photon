@@ -1,0 +1,49 @@
+# Acceptance gate for the OFFICIAL NC Delta Wire-Cell merged-CAF sample (docs/analysis/OFFICIAL_SIGNAL_PROVENANCE_GATE.md).
+# REQUIRED: the sample may not be used for the baseline unless ALL pass (an UNKNOWN fact is not a pass).  EXPECTED: deviations are reported
+# and must be explained.  INFORMATIONAL: recorded only; legitimately different versions never block.  Facts come from (a) measured file contents
+# (scripts/register_official_ncdelta_wc.py) and (b) a producer declaration file (--provenance <yaml>) written by whoever ran the production.
+# fg1 reference (Haiwang's fg1/README.md): chain r8 = step 1 `lar wcls-img-clus-matching` (+MC truth labels), step 2 `wire-cell wct-pr.jsonnet`,
+# step 3 merge into the CAF; WCT HaiwangYu/wire-cell-toolkit sbnd-wc-flatcaf 4b6853d4; larwirecell HaiwangYu/larwirecell sbnd-wc-flatcaf ad5d942;
+# sbndcode v10_14_02_03; SCN vertex weights uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth; schema 2,401 branches / 20 trees, md5 d4396a3490ea5aec4b02f0c34fa9db33.
+reference_fg1:
+  wct_commit: 4b6853d4
+  larwirecell_commit: ad5d942
+  sbndcode: v10_14_02_03
+  dl_weights: uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth
+  schema_md5: d4396a3490ea5aec4b02f0c34fa9db33
+  n_wc_branches: 2401
+checks:
+  # ---- file structure (measured) ----
+  - {id: rec_trees_present,        level: REQUIRED, fact: all_files_have_recTree_and_recTreeWireCell, rule: "true", why: merged CAF must carry both trees}
+  - {id: entries_aligned,          level: REQUIRED, fact: all_files_entries_aligned, rule: "true", why: recTree and recTreeWireCell entry counts equal in every file}
+  - {id: ids_aligned,              level: REQUIRED, fact: all_files_ids_aligned, rule: "true", why: run/subrun/event identical in both trees}
+  - {id: wc_valid_present,         level: REQUIRED, fact: all_files_have_wc_valid, rule: "true", why: wc.valid must be explicit in every file}
+  - {id: truth_trees_present,      level: REQUIRED, fact: all_files_have_truth_and_matching_trees, rule: "true", why: T_match T_overlap T_truth_nu T_truth_pf T_truth_track (evaluation needs them)}
+  - {id: genie_record_present,     level: REQUIRED, fact: all_files_have_GenieEvtRecTree, rule: "true", why: exact Delta-radiative process test needs the GENIE record}
+  - {id: baseline_branches_present, level: REQUIRED, fact: baseline_required_branches_present, rule: "true", why: every branch of configs/baseline_selection.yaml exists (schema compatibility, not byte equality)}
+  - {id: unreadable_files,         level: REQUIRED, fact: n_files_with_error, rule: equals, value: 0, why: no file may fail to open/read unreported}
+  # ---- event-key reconciliation against the official flatCAF truth census (measured) ----
+  - {id: event_keys_accounted,     level: REQUIRED, fact: event_keys_accounted, rule: "true", why: every expected and incoming event is classified; nothing silently discarded}
+  - {id: no_duplicate_events,      level: REQUIRED, fact: duplicate_event_rows, rule: equals, value: 0, why: a duplicated event would double count the numerator}
+  - {id: no_unexpected_events,     level: REQUIRED, fact: unexpected_event_rows, rule: equals, value: 0, why: events outside the official truth set cannot be normalised}
+  - {id: no_unit_mismatch,         level: REQUIRED, fact: unit_mismatch_rows, rule: equals, value: 0, why: an event must come from the generation unit the truth table says}
+  - {id: wc_valid_accounted,       level: REQUIRED, fact: wc_valid_accounted, rule: "true", why: wc.valid==0 and missing events stay in the denominator and fail the numerator}
+  - {id: no_missing_events,        level: EXPECTED, fact: missing_events, rule: equals, value: 0, why: missing events are inefficiency but must be explained (whole unit not processed vs lost event)}
+  # ---- production chain (producer declaration; UNKNOWN until declared) ----
+  - {id: same_chain_as_fg1,        level: REQUIRED, fact: declared_same_evaluation_chain_as_fg1, rule: "true", why: same imaging/clustering/PR/tagger chain as the BNB CV baseline}
+  - {id: scn_vertex_model,         level: REQUIRED, fact: dl_weights, rule: equals, value: "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth", why: expected SCN vertex model (measured in-file, Trun.dl_weights)}
+  - {id: no_dv2_max,               level: REQUIRED, fact: declared_uses_dv2_max, rule: "false", why: DV2-MAX is a comparison build, not the baseline}
+  - {id: no_fix2,                  level: REQUIRED, fact: declared_uses_fix2, rule: "false", why: Fix2 is a comparison build, not the baseline}
+  - {id: no_alternative_bdt,       level: REQUIRED, fact: declared_alternative_bdt_training, rule: "false", why: frozen MicroBooNE-derived BDTs only}
+  - {id: no_hidden_selection_change, level: REQUIRED, fact: baseline_selection_sha256_matches_frozen, rule: "true", why: configs/baseline_selection.yaml unchanged since the BNB CV baseline}
+  # ---- expected, may legitimately differ ----
+  - {id: schema_md5_matches_fg1,   level: EXPECTED, fact: schema_md5_set_equals_fg1, rule: "true", why: same schema md5 as fg1 (a newer schema is allowed if baseline_branches_present)}
+  - {id: single_schema,            level: EXPECTED, fact: n_distinct_schema_md5, rule: equals, value: 1, why: one schema across the sample}
+  - {id: single_dl_weights,        level: EXPECTED, fact: n_distinct_dl_weights, rule: equals, value: 1, why: one SCN model across the sample}
+  - {id: wct_commit_declared,      level: EXPECTED, fact: declared_wct_commit, rule: present, why: exact toolkit commit recorded}
+  - {id: larwirecell_commit_declared, level: EXPECTED, fact: declared_larwirecell_commit, rule: present, why: exact larwirecell commit recorded}
+  - {id: sbndcode_declared,        level: EXPECTED, fact: declared_sbndcode_version, rule: present, why: reco1 release recorded}
+  # ---- informational ----
+  - {id: wct_version_strings,      level: INFORMATIONAL, fact: wct_version_set, rule: present, why: Trun.wct_version of the files (fg1 differs legitimately from later production)}
+  - {id: bdt_weights_dir_strings,  level: INFORMATIONAL, fact: bdt_weights_dir_set, rule: present, why: Trun.bdt_weights_dir as recorded}
+  - {id: n_wc_branches,            level: INFORMATIONAL, fact: n_wc_branches_set, rule: present, why: 2401 expected for the fg1 schema}

@@ -1,0 +1,47 @@
+{
+ "beam_on_open": {
+  "files": 1817,
+  "read_ok": 1817,
+  "events": 89946,
+  "sum_nbnbinfo": 960047.0,
+  "sum_noffbeambnb": 0.0,
+  "sum_hdr_pot": 4.621252604079354e+18,
+  "sum_TotalPOT": 4.62125261085646e+18,
+  "files_with_one_nonzero_nbnbinfo": 1817,
+  "files_with_one_nonzero_noffbeambnb": 0,
+  "runs": [
+   18255,
+   18259
+  ],
+  "n_runs": 2,
+  "files_per_run_top": {
+   "18255": 1329,
+   "18259": 488
+  }
+ },
+ "beam_off": {
+  "files": 1058,
+  "read_ok": 1058,
+  "events": 49970,
+  "sum_nbnbinfo": 0.0,
+  "sum_noffbeambnb": 2542847.0,
+  "sum_hdr_pot": 0.0,
+  "sum_TotalPOT": 0.0,
+  "files_with_one_nonzero_nbnbinfo": 0,
+  "files_with_one_nonzero_noffbeambnb": 1058,
+  "runs": [
+   18250,
+   18253,
+   18256,
+   "..."
+  ],
+  "n_runs": 156,
+  "files_per_run_top": {
+   "18270": 29,
+   "18503": 29,
+   "18487": 28,
+   "18515": 27,
+   "18504": 25
+  }
+ }
+}

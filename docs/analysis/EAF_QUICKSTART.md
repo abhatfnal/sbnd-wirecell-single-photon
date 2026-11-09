@@ -138,3 +138,15 @@ env/sam_eaf.sh list-definition-files aurora_SBND2026A_gen2_BNBLight_prodgenie_co
 SAM locations of the official Gen2 samples are under `/pnfs/sbn/data_add/...` (**`sbn`**, not `sbnd`). `/pnfs` need not be mounted: `xrd.to_xrootd_url(path)` maps `/pnfs/sbn/x` to `root://fndcadoor.fnal.gov//pnfs/fnal.gov/usr/sbn/x`, which opens with the same bearer token (`source env/setup_eaf.sh`). SAM is used read-only; never create or modify definitions from here. Large file lists go under `$SP_DATA/sam/`, not into Git.
 
 Official NC-Delta truth census: `python scripts/official_ncdelta_truth_scan.py scan --workers 24` (≈ 18 min, 15,777 files), `... merge`, `python scripts/official_ncdelta_census_report.py` (see `NCDELTA_GENERATOR_FILTER_AUDIT.md` §4-§5).
+
+## 12. CPU / thread rules for every multiprocessing job (EAF instance: 32 cores)
+
+* **At most 24 worker processes** by default (16-24 depending on memory and XRootD behaviour); never more than 32 workers in total. The scripts clamp `--workers` to 24 (`build_analysis_table.py`, `exposure_gate_counters.py`, `register_official_ncdelta_wc.py`, `run_official_signal_baseline.py`; older scan scripts that accept more should be called with `--workers 24` or fewer; cold XRootD reads are latency-bound, so a one-off scan of already-cached files tolerates more, but stay under 32).
+* **One BLAS/OpenMP thread per worker**, set before launching Python:
+
+```bash
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+```
+
+  The new scripts `setdefault` these variables themselves.
+* Run long jobs with `nohup ... &` and a log; kill by PID (`ps | grep "[x]pattern"`), never by a broad `pkill -f`.

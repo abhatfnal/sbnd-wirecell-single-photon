@@ -15,8 +15,8 @@
    "CC_PI0": 106,
    "OUTSIDE_TPC_NU": 95,
    "NUMU_CC": 24,
-   "OTHER_NC": 21,
-   "COSMIC_OR_UNMATCHED": 15,
+   "OTHER_NC": 20,
+   "COSMIC_OR_UNMATCHED": 16,
    "MULTI_OR_AMBIGUOUS": 7
   },
   "crosstab": {
@@ -27,7 +27,7 @@
    },
    "COSMIC_OR_UNMATCHED": {
     "1g0p": 14,
-    "1g1p": 0,
+    "1g1p": 1,
     "ge2p_diag": 1
    },
    "MULTI_OR_AMBIGUOUS": {
@@ -52,7 +52,7 @@
    },
    "OTHER_NC": {
     "1g0p": 10,
-    "1g1p": 7,
+    "1g1p": 6,
     "ge2p_diag": 4
    },
    "OUTSIDE_TPC_NU": {
@@ -82,7 +82,7 @@
   ],
   "top_iou_quantiles": [
    0.0267,
-   0.4535,
+   0.4479,
    0.6789,
    0.8183,
    0.9025,
@@ -91,10 +91,10 @@
   ],
   "mutual_top": 628,
   "not_mutual": 21,
-  "neutrino_top": 634,
-  "cosmic_or_unmatched_top": 15,
+  "neutrino_top": 633,
+  "cosmic_or_unmatched_top": 16,
   "ambiguous_ge2_nu": 7,
-  "with_cosmic_object_also_matched": 99,
+  "with_cosmic_object_also_matched": 98,
   "agree_with_overlap_dominant": 646,
   "disagree_with_overlap_dominant": 3,
   "link_to_recmcnu_dist_max_cm": 2.6761608742572948e-05,
@@ -102,9 +102,9 @@
  },
  "taxonomy_change": {
   "n_background": 635,
-  "n_changed": 61,
-  "n_unchanged": 574,
-  "n_changed_excluding_multi_active": 21,
+  "n_changed": 62,
+  "n_unchanged": 573,
+  "n_changed_excluding_multi_active": 22,
   "transitions": {
    "MULTI_ACTIVE->NC_PI0": 14,
    "MULTI_ACTIVE->NUE_CC": 12,
@@ -113,12 +113,12 @@
    "MULTI_ACTIVE->CC_PI0": 5,
    "NUMU_CC->OUTSIDE_TPC_NU": 4,
    "MULTI_ACTIVE->NUMU_CC": 3,
+   "OTHER_NC->COSMIC_OR_UNMATCHED": 2,
    "NUMU_CC->COSMIC_OR_UNMATCHED": 2,
    "DIRT_NO_ACTIVE->MULTI_OR_AMBIGUOUS": 1,
-   "NUE_CC->COSMIC_OR_UNMATCHED": 1,
    "MULTI_ACTIVE->OTHER_NC": 1,
-   "NUE_CC->MULTI_OR_AMBIGUOUS": 1,
-   "OTHER_NC->COSMIC_OR_UNMATCHED": 1
+   "NUE_CC->COSMIC_OR_UNMATCHED": 1,
+   "NUE_CC->MULTI_OR_AMBIGUOUS": 1
   },
   "examples": [
    {
@@ -388,6 +388,19 @@
     "old_event_category": "OTHER_NC",
     "cand_category": "COSMIC_OR_UNMATCHED",
     "tm_top_iou": 0.05000000074505806,
+    "mnu_pdg": NaN,
+    "mnu_ccnc": NaN,
+    "mnu_x": NaN,
+    "mnu_y": NaN,
+    "mnu_z": NaN
+   },
+   {
+    "file_index": 32366,
+    "ev": 2,
+    "nu_index": 0.0,
+    "old_event_category": "OTHER_NC",
+    "cand_category": "COSMIC_OR_UNMATCHED",
+    "tm_top_iou": 0.03999999910593033,
     "mnu_pdg": NaN,
     "mnu_ccnc": NaN,
     "mnu_x": NaN,
@@ -936,16 +949,17 @@
    -310.913854941644,
    561.758091030377
   ],
-  "n_cosmic_or_unmatched": 15,
+  "n_cosmic_or_unmatched": 16,
   "n_ambiguous": 7,
   "cosmic_dom_pdg": {
+   "-13.0": 7,
    "13.0": 6,
-   "-13.0": 6,
    "22.0": 2,
    "-11.0": 1
   },
   "cosmic_by_channel": {
    "COSMIC_OR_UNMATCHED|1g0p": 14,
+   "COSMIC_OR_UNMATCHED|1g1p": 1,
    "COSMIC_OR_UNMATCHED|ge2p_diag": 1,
    "MULTI_OR_AMBIGUOUS|1g0p": 2,
    "MULTI_OR_AMBIGUOUS|1g1p": 4,
@@ -1000,7 +1014,7 @@
    },
    "no truth category (reco counts)": {
     "reco 0p": 14,
-    "reco 1p": 0,
+    "reco 1p": 1,
     "reco >=2p": 1,
     "no_truth_category": 0
    }
@@ -1118,7 +1132,7 @@
    },
    "truth 1p": {
     "reco 0p": 4,
-    "reco 1p": 5,
+    "reco 1p": 4,
     "reco >=2p": 3,
     "no_truth_category": 0
    },
@@ -1171,7 +1185,7 @@
   },
   "truth 1p": {
    "reco 0p": 80,
-   "reco 1p": 157,
+   "reco 1p": 156,
    "reco >=2p": 31,
    "no_truth_category": 0
   },
@@ -1598,15 +1612,15 @@
    "tp_only_other_cand": 0
   },
   "OTHER_NC|truth1p_reco1p": {
-   "n": 5,
-   "rp_primary_signal": 4,
+   "n": 4,
+   "rp_primary_signal": 3,
    "rp_secondary_proton": 0,
    "rp_other_pdg_same_nu": 1,
    "rp_other_neutrino": 0,
    "rp_unmatched": 0,
    "rp_leftover_inc3": 0,
    "rp_truth_ke_below_thr": 0,
-   "tp_found": 4,
+   "tp_found": 3,
    "tp_row_below_thr": 0,
    "tp_row_other_pid": 0,
    "tp_no_row": 0,
@@ -1756,7 +1770,7 @@
   },
   "1g1p": {
    "truth 0p": 14,
-   "truth 1p": 157,
+   "truth 1p": 156,
    "truth >=2p": 38
   },
   "ge2p_diag": {

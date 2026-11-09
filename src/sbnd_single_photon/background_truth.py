@@ -1,10 +1,12 @@
 """Candidate-associated truth for the Wire-Cell single-photon candidates (MC evaluation only; truth never selects anything).
 
-Association actually used: the PRODUCTION bipartite matching ``wc.T_match`` at ``level == 3`` (whole reconstructed neutrino
-candidate, ``side == 0``, ``nu_index`` = the candidate) against the truth objects (``side == 1``: ``truth_nu_idx >= 0`` is a truth
+Association actually used: the PRODUCTION bipartite matching ``wc.T_match`` at ``level == 3`` (candidate defined by the particle-flow-tree
+segments, ``side == 0``, ``nu_index`` = the candidate) against the truth objects (``side == 1``: ``truth_nu_idx >= 0`` is a truth
 neutrino interaction, ``truth_nu_idx == -1`` with ``truth_trackid > 0`` is a cosmic/non-neutrino truth object). For each candidate the
-production stores ``match_obj`` (truth objects it overlaps), ``match_iou_q`` (charge IoU), ``match_shared_q`` (shared charge) and the
-``mutual`` flag. The TOP match is the one with the largest IoU; its IoU is the stored match-quality information; no threshold is invented.
+production stores up to 3 partners (``match_obj``) IN ORDER of decreasing ``match_iou_n`` (point IoU; ties ``match_iou_q``, then lower obj),
+plus ``match_iou_q``/``match_shared_q`` and ``mutual``. SOURCE-DEFINED top partner = the FIRST stored one (``rule="source"``, default; the
+design document of the matcher, docs/analysis/WIRECELL_TRUTH_MATCH_SEMANTICS.md). Phase 4 had used the largest charge IoU among the stored
+partners (``rule="iou_q"``, kept for comparison only). No threshold is invented.
 Cross-check association (not used for the label): the dominant-charge truth neutrino from ``wc.T_overlap`` already in the derived table.
 See docs/analysis/PASSING_CANDIDATE_TRUTH_ASSOCIATION.md.
 """
@@ -18,7 +20,7 @@ from .truth import ActiveVolume
 
 PROTON_MASS_MEV = 938.272
 MATCH_SCALARS = ["level", "side", "obj", "nu_index", "truth_nu_idx", "truth_trackid", "nmatch", "mutual"]
-MATCH_JAGGED = ["match_obj", "match_iou_q", "match_shared_q"]
+MATCH_JAGGED = ["match_obj", "match_iou_n", "match_iou_q", "match_shared_n", "match_shared_q"]
 UNMATCHED, COSMIC = -9, -1          # tm_top_nu codes besides a truth neutrino index (>= 0)
 
 CATEGORIES = ("SIGNAL_NCDELTA", "NC_PI0", "CC_PI0", "NUE_CC", "NUMU_CC", "OTHER_NC", "OTHER_CC", "OUTSIDE_TPC_NU",
@@ -39,21 +41,32 @@ def rows_and_items(f, start: int = 0, stop=None) -> tuple[pd.DataFrame, pd.DataF
     return R, I
 
 
-def candidate_association(R: pd.DataFrame, I: pd.DataFrame) -> pd.DataFrame:
-    """One row per (ev, nu_index) candidate: production top match and its quality (see module docstring)."""
+def candidate_association(R: pd.DataFrame, I: pd.DataFrame, rule: str = "source") -> pd.DataFrame:
+    """One row per (ev, nu_index) candidate: production top match and its quality (see module docstring).
+
+    ``rule="source"``: top = first stored partner (production order, decreasing point IoU). ``rule="iou_q"``: largest charge IoU (Phase 4)."""
+    if rule not in ("source", "iou_q"):
+        raise ValueError(rule)
+    I = I.copy()
+    I["pos"] = I.groupby("row").cumcount()
     C = R[(R.level == 3) & (R.side == 0) & (R.nu_index >= 0)][["row", "ev", "nu_index", "mutual", "nmatch"]]
     T = R[(R.level == 3) & (R.side == 1)][["ev", "obj", "truth_nu_idx", "truth_trackid"]].rename(columns={"obj": "match_obj"})
     m = I.merge(C[["row", "ev", "nu_index"]], on="row").merge(T, on=["ev", "match_obj"], how="left")
     m["truth_nu_idx"] = m.truth_nu_idx.fillna(-1).astype(int)
-    m = m.sort_values(["ev", "nu_index", "match_iou_q", "match_shared_q"], ascending=[True, True, False, False])
+    if rule == "source":
+        m = m.sort_values(["ev", "nu_index", "pos"], kind="stable")
+    else:
+        m = m.sort_values(["ev", "nu_index", "match_iou_q", "match_shared_q"], ascending=[True, True, False, False])
     g = m.groupby(["ev", "nu_index"], sort=False)
     top = g.head(1).set_index(["ev", "nu_index"])
     sec = g.nth(1).set_index(["ev", "nu_index"]).match_iou_q.rename("tm_second_iou")
+    extra = [c for c in ("match_iou_n",) if c in top.columns]
     agg = pd.DataFrame({"tm_n": g.size(), "tm_n_distinct_nu": g.apply(lambda d: d.loc[d.truth_nu_idx >= 0, "truth_nu_idx"].nunique()),
                         "tm_n_cosmic": g.apply(lambda d: int((d.truth_nu_idx < 0).sum()))})
     out = C.set_index(["ev", "nu_index"])[["mutual"]].rename(columns={"mutual": "tm_mutual"}).join(agg).join(sec)
-    out = out.join(top[["truth_nu_idx", "truth_trackid", "match_iou_q", "match_shared_q"]].rename(
-        columns={"truth_nu_idx": "tm_top_nu", "truth_trackid": "tm_top_trackid", "match_iou_q": "tm_top_iou", "match_shared_q": "tm_top_shared"}))
+    out = out.join(top[["truth_nu_idx", "truth_trackid", "match_iou_q", "match_shared_q"] + extra].rename(
+        columns={"truth_nu_idx": "tm_top_nu", "truth_trackid": "tm_top_trackid", "match_iou_q": "tm_top_iou", "match_shared_q": "tm_top_shared",
+                 "match_iou_n": "tm_top_iou_n"}))
     out["tm_n"] = out.tm_n.fillna(0).astype(int)
     out["tm_n_distinct_nu"] = out.tm_n_distinct_nu.fillna(0).astype(int)
     out["tm_n_cosmic"] = out.tm_n_cosmic.fillna(0).astype(int)

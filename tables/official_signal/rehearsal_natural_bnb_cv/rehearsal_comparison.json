@@ -1,0 +1,20 @@
+{
+ "cutflow_A_any.csv": true,
+ "cutflow_A_first.csv": true,
+ "efficiency_crosscheck.csv": true,
+ "migration_any_A_all_truth_events__matched_candidate_raw.csv": true,
+ "migration_any_B_events_with_matched_candidate_raw.csv": true,
+ "migration_any_C_matched_candidate_bdt_evaluable_raw.csv": true,
+ "migration_any_D_final_events__analysis_selected_candidate_raw.csv": true,
+ "migration_any_D_final_events__matched_candidate_raw.csv": true,
+ "migration_first_A_all_truth_events__matched_candidate_raw.csv": true,
+ "migration_first_B_events_with_matched_candidate_raw.csv": true,
+ "migration_first_C_matched_candidate_bdt_evaluable_raw.csv": true,
+ "migration_first_D_final_events__analysis_selected_candidate_raw.csv": true,
+ "migration_first_D_final_events__matched_candidate_raw.csv": true,
+ "denominator_117": true,
+ "final_any_13": true,
+ "final_first_12": true,
+ "truth_classes": true,
+ "ALL": true
+}
