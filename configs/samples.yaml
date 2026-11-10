@@ -75,15 +75,33 @@ samples:
     provenance_note: "older schema: use ONLY branches common with MC; no MC truth/matching trees"
 
   # ---------------------------------------------------------------------------------------------------------
-  # Signal samples. NO paths, counts, POT or provenance are recorded for either: none is verified.
+  # Signal samples. official_gen2_ncdelta: every number below was MEASURED (SAM census 2026-11-06; merged CAFs 2026-11-10). aurora_ncdelta_training: nothing recorded.
   # Dataset roles (Haiwang): official Gen2 samples on Fermilab = EVALUATION; Aurora isolated samples = training/development.
   official_gen2_ncdelta:
     role: signal_evaluation
-    is_mc: true        # enables the MC truth reads once the merged-CAF manifest is registered (status below still keeps the readers OFF)
-    # `status` keeps merged-CAF code paths SAFE: only "available" enables manifest readers, and there is NO Wire-Cell merged CAF yet.
-    status: official_flatcaf_only
+    is_mc: true        # enables the MC truth reads of the registered merged-CAF manifest
+    # VERIFIED 2026-11-10 from the actual files (scripts/register_official_ncdelta_wc.py, provenance gate OPEN): the official Wire-Cell merged CAFs exist.
+    status: available
     official_flatcaf_status: available        # VERIFIED 2026-11-06: SAM definitions evaluate; files open from EAF over XRootD
-    wirecell_merged_status: pending           # recTreeWireCell merging not yet done (Haiwang); no merged path exists, none is recorded
+    wirecell_merged_status: available         # fg1 evaluation chain, FermiGrid prod #6 (Haiwang Yu, 2026-11-10); 9,150 non-empty merged CAFs
+    manifest: manifests/official_gen2_ncdelta_wc.tsv.gz
+    n_files_listed: 9150
+    n_caf_events: 13772          # events stored in the 9,150 non-empty merged CAFs (the SAM flatCAF census has 13,773: one CAF is missing from the production)
+    n_wc_valid_events: 13772
+    schema_md5: d4396a3490ea5aec4b02f0c34fa9db33
+    wirecell_merged:
+      production_id: ncdr (HaiwangYu/sbnd-wirecell-production issue #6), date 2026-11-10, configuration label fg1 (evaluation)
+      path: /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/ncdr/mc-ncdr/<id>/   # README.md and lists/ one level up; XRootD door maps /pnfs/sbnd -> /pnfs/fnal.gov/usr/sbnd
+      pairs: 15776          # 9,150 OK (non-empty merged CAF), 6,626 EMPTY (no events, no merged CAF), 0 PARTIAL; 729 reco1 files not run (728 truly without a flatCAF + 1 bookkeeping miss)
+      merged_cafs: 9150
+      events: 13772         # all wc.valid == 1 (MEASURED from the files; 13,773 in the truth census: 1 event never processed, see docs/analysis/OFFICIAL_NCDELTA_WC_ARRIVAL_REPORT.md)
+      wc_valid: 13772
+      schema: {md5: d4396a3490ea5aec4b02f0c34fa9db33, wc_branches: 2401}
+      wct: {version_in_files: "sbnd-dlvtx-35-pre-master-merge-2026-09-02-424-g78f81c64", declared_commit: "4b6853d4 (HaiwangYu/wire-cell-toolkit sbnd-wc-flatcaf)", larwirecell_declared: "ad5d942", sbndcode_declared: "v10_14_02_03 e26:prof"}
+      dl_weights: uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth
+      bdt_weights_dir: uboone/weights
+      provenance_gate: OPEN (tables/official_signal/arrival_registration.json; DV2-MAX / Fix2 / alternative-BDT declarations are inferred from "same configuration as fg1")
+      record: tables/official_signal/production_record.json
     may_train: false
     may_evaluate: true
     # ---- everything below was MEASURED (SAM via env/sam_eaf.sh; full truth census of all flatCAFs), 2026-11-06 ----
@@ -110,8 +128,8 @@ samples:
       delta0_to_n_gamma: 7599
       deltaplus_to_p_gamma: 6174
     note: >
-      Preferred signal evaluation sample (official Gen2). The official flatCAFs are readable from EAF (recTree + GenieEvtRecTree); only the
-      Wire-Cell merged-CAF production is pending. No merged-CAF manifest exists and no code path reads this sample as merged CAFs.
+      Preferred signal evaluation sample (official Gen2). The official flatCAFs are readable from EAF (recTree + GenieEvtRecTree) and the Wire-Cell
+      merged CAFs (fg1 chain) are registered through manifests/official_gen2_ncdelta_wc.tsv.gz (9,150 non-empty files; 6,626 empty units have no merged CAF).
       Accounting caveats (docs/analysis/NCDELTA_GENERATOR_FILTER_AUDIT.md section 4): use SAM mc.pot / mc.generated_event_count, not the CAF TotalGenEvents.
   aurora_ncdelta_training:
     role: training_development

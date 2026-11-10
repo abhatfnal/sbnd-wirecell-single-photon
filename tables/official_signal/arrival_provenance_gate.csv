@@ -1,0 +1,30 @@
+id,level,fact,rule,value,observed,status,why
+rec_trees_present,REQUIRED,all_files_have_recTree_and_recTreeWireCell,true,,True,PASS,merged CAF must carry both trees
+entries_aligned,REQUIRED,all_files_entries_aligned,true,,True,PASS,recTree and recTreeWireCell entry counts equal in every file
+ids_aligned,REQUIRED,all_files_ids_aligned,true,,True,PASS,run/subrun/event identical in both trees
+wc_valid_present,REQUIRED,all_files_have_wc_valid,true,,True,PASS,wc.valid must be explicit in every file
+truth_trees_present,REQUIRED,all_files_have_truth_and_matching_trees,true,,True,PASS,T_match T_overlap T_truth_nu T_truth_pf T_truth_track (evaluation needs them)
+genie_record_present,REQUIRED,all_files_have_GenieEvtRecTree,true,,True,PASS,exact Delta-radiative process test needs the GENIE record
+baseline_branches_present,REQUIRED,baseline_required_branches_present,true,,True,PASS,every branch of configs/baseline_selection.yaml exists (schema compatibility
+unreadable_files,REQUIRED,n_files_with_error,equals,0,0,PASS,no file may fail to open/read unreported
+event_keys_accounted,REQUIRED,event_keys_accounted,true,,True,PASS,every expected and incoming event is classified; nothing silently discarded
+no_duplicate_events,REQUIRED,duplicate_event_rows,equals,0,0,PASS,a duplicated event would double count the numerator
+no_unexpected_events,REQUIRED,unexpected_event_rows,equals,0,0,PASS,events outside the official truth set cannot be normalised
+no_unit_mismatch,REQUIRED,unit_mismatch_rows,equals,0,0,PASS,an event must come from the generation unit the truth table says
+wc_valid_accounted,REQUIRED,wc_valid_accounted,true,,True,PASS,wc.valid==0 and missing events stay in the denominator and fail the numerator
+no_missing_events,EXPECTED,missing_events,equals,0,1,FAIL,missing events are inefficiency but must be explained (whole unit not processed vs lost event)
+same_chain_as_fg1,REQUIRED,declared_same_evaluation_chain_as_fg1,true,,True,PASS,same imaging/clustering/PR/tagger chain as the BNB CV baseline
+scn_vertex_model,REQUIRED,dl_weights,equals,uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth,uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth,PASS,expected SCN vertex model (measured in-file
+no_dv2_max,REQUIRED,declared_uses_dv2_max,false,,False,PASS,DV2-MAX is a comparison build
+no_fix2,REQUIRED,declared_uses_fix2,false,,False,PASS,Fix2 is a comparison build
+no_alternative_bdt,REQUIRED,declared_alternative_bdt_training,false,,False,PASS,frozen MicroBooNE-derived BDTs only
+no_hidden_selection_change,REQUIRED,baseline_selection_sha256_matches_frozen,true,,True,PASS,configs/baseline_selection.yaml unchanged since the BNB CV baseline
+schema_md5_matches_fg1,EXPECTED,schema_md5_set_equals_fg1,true,,True,PASS,same schema md5 as fg1 (a newer schema is allowed if baseline_branches_present)
+single_schema,EXPECTED,n_distinct_schema_md5,equals,1,1,PASS,one schema across the sample
+single_dl_weights,EXPECTED,n_distinct_dl_weights,equals,1,1,PASS,one SCN model across the sample
+wct_commit_declared,EXPECTED,declared_wct_commit,present,,4b6853d4 (HaiwangYu/wire-cell-toolkit sbnd-wc-flatcaf),PASS,exact toolkit commit recorded
+larwirecell_commit_declared,EXPECTED,declared_larwirecell_commit,present,,ad5d942 (sbnd-wc-flatcaf),PASS,exact larwirecell commit recorded
+sbndcode_declared,EXPECTED,declared_sbndcode_version,present,,v10_14_02_03 e26:prof,PASS,reco1 release recorded
+wct_version_strings,INFORMATIONAL,wct_version_set,present,,['sbnd-dlvtx-35-pre-master-merge-2026-09-02-424-g78f81c64'],PASS,Trun.wct_version of the files (fg1 differs legitimately from later production)
+bdt_weights_dir_strings,INFORMATIONAL,bdt_weights_dir_set,present,,['uboone/weights'],PASS,Trun.bdt_weights_dir as recorded
+n_wc_branches,INFORMATIONAL,n_wc_branches_set,present,,[2401],PASS,2401 expected for the fg1 schema

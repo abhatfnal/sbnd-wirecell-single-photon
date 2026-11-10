@@ -1,4 +1,6 @@
-# Runbook: when the official Wire-Cell merged NC-Delta signal CAFs arrive (analysis is READY; nothing has arrived)
+# Runbook: when the official Wire-Cell merged NC-Delta signal CAFs arrive (the CAFs ARRIVED 2026-11-10: see OFFICIAL_NCDELTA_WC_ARRIVAL_REPORT.md; this runbook was executed as written)
+
+> Update 2026-11-10: the production (`ncdr`, prod #6) was registered, the gate opened and the baseline was run. The status paragraph below is the pre-arrival state (historical).
 
 Status 2026-11-09: **no merged-CAF path, manifest or result exists and none is invented** (`configs/samples.yaml`: `official_gen2_ncdelta` stays `status: official_flatcaf_only`, `wirecell_merged_status: pending`; the merged-CAF readers stay off until the provenance gate is open). The machinery has been exercised on the natural-CV rehearsal (exact reproduction, below) and on real BNB CV merged CAFs as a dry run of the registration tool (the gate correctly stayed closed: all events unexpected, declarations unknown).
 

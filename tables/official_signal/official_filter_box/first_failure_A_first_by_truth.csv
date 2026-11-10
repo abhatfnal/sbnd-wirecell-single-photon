@@ -1,0 +1,12 @@
+reason,all,0p,1p,>=2p
+wc_invalid,0,0,0,0
+no_candidate,1834,1014,710,110
+no_20mev_shower,3710,1460,1908,342
+bdt_not_evaluable,53,24,24,5
+fail_numu,3136,1532,1338,266
+fail_other,2321,1327,853,141
+fail_ncpi0,1439,583,701,155
+fail_nue,0,0,0,0
+fail_n20br1,159,100,50,9
+selected,1120,461,575,84
+missing_from_merged_caf,1,0,1,0

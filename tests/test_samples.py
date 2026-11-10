@@ -13,20 +13,19 @@ def test_registry_parsing():
     assert reg["beam_off"].n_caf_events == 49970
 
 
-def test_signal_placeholders_have_no_fake_data():
+def test_signal_registry_entries_record_only_verified_data():
     reg = S.load_samples()
-    for name in ("official_gen2_ncdelta", "aurora_ncdelta_training"):
-        sig = reg[name]
-        assert not sig.available
-        assert sig.manifest is None and sig.n_caf_events is None and sig.n_files_listed is None
-        with pytest.raises(ValueError):
-            S.manifest_urls(sig)
-    og = reg["official_gen2_ncdelta"]
-    assert og.status == "official_flatcaf_only" and not og.available                    # merged-CAF readers must stay disabled
-    assert og.extra["official_flatcaf_status"] == "available" and og.extra["wirecell_merged_status"] == "pending"
-    assert og.extra["sam"]["flat_caf"]["files"] == 15777 and og.extra["sam"]["flat_caf"]["events"] == 13773
+    tr = reg["aurora_ncdelta_training"]
+    assert not tr.available and tr.manifest is None and tr.n_caf_events is None and tr.n_files_listed is None and tr.status == "remains_on_aurora"
+    with pytest.raises(ValueError):
+        S.manifest_urls(tr)
+    og = reg["official_gen2_ncdelta"]                                                      # registered 2026-11-10 after the provenance gate opened
+    assert og.status == "available" and og.available and og.is_mc and og.n_files_listed == 9150
+    assert og.n_caf_events == og.n_wc_valid_events == 13772
+    assert og.extra["official_flatcaf_status"] == "available" and og.extra["wirecell_merged_status"] == "available"
+    assert og.extra["sam"]["flat_caf"]["files"] == 15777 and og.extra["sam"]["flat_caf"]["events"] == 13773   # SAM census (one event never processed)
     assert og.extra["flatcaf_census"]["stored_events"] == 13773
-    assert reg["aurora_ncdelta_training"].status == "remains_on_aurora"
+    assert len(S.manifest_urls(og)) == 9150
 
 
 def test_train_evaluation_separation():

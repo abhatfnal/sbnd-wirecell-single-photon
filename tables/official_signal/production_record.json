@@ -1,0 +1,117 @@
+{
+ "source": {
+  "catalogue": "https://haiwangyu.github.io/sbnd-wirecell-production/ (data: docs/productions.js, raw.githubusercontent.com/HaiwangYu/sbnd-wirecell-production/main/docs/productions.js)",
+  "issue": "HaiwangYu/sbnd-wirecell-production#6",
+  "fetched": "2026-11-10"
+ },
+ "catalogue_entry": {
+  "id": "ncdr",
+  "species": "mc-ncdr",
+  "side": "evaluation",
+  "config": "fg1",
+  "site": "FermiGrid",
+  "title": "MC NC \u0394-radiative (all of the SAM sample)",
+  "date": "2026-11-10",
+  "status": "available",
+  "events": 13772,
+  "events_wc": 13772,
+  "units": "15,776 pairs: 9,150 OK, 6,626 EMPTY (158 jobs, cluster 87460684@jobsub01; 2 pairs rerun)",
+  "status_note": "checked 2026-11-10: 9,150 merged CAFs on persistent, none empty"
+ },
+ "fg1_config": {
+  "toolkit": "HaiwangYu/wire-cell-toolkit sbnd-wc-flatcaf 4b6853d4",
+  "larwirecell": "sbnd-wc-flatcaf ad5d942",
+  "sbndcode": "v10_14_02_03 e26:prof",
+  "cfg": "wcp-porting-validation 88cb05aa",
+  "wire_cell_data": "9e2f4b8",
+  "workflow": "c93da2c (ncdr tarball wcgrid-ncdr.tar.gz)",
+  "schema": "d4396a3490ea (2,401 branches, 20 trees)"
+ },
+ "output": "/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/ncdr/mc-ncdr/<id>/",
+ "readme": "/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/ncdr/README.md",
+ "list_files": {
+  "README.md": {
+   "sha256": "93501508571b10ef8a671994702bce2611fc0c1a37b63ad63a3c0acc7d24d008",
+   "lines": 29
+  },
+  "pairs-mc-ncdr.tsv": {
+   "sha256": "92c08a850beb0ae65a5d888ddb9e66e10ae368c6a1e6f364461abed41604b9d0",
+   "lines": 15777
+  },
+  "pairs-mc-ncdr.skipped.tsv": {
+   "sha256": "a7d164f995feef6fbc4d36c389ee1ae82fbd5459b36a5abf14b6aabbbc954ef3",
+   "lines": 729
+  },
+  "status-mc-ncdr.tsv": {
+   "sha256": "09ebdc9d3ed17b4d14cc5ef59655c53a284f707a588a65560ea39fe3c1087f62",
+   "lines": 15777
+  },
+  "events-mc-ncdr.tsv.gz": {
+   "sha256": "16a4d99cee07ff92275c8e0eb15f5ec537ebbb673b8ce6409158b1100fe33ef6",
+   "lines": 13773
+  },
+  "mc-ncdr.merged-caf.txt": {
+   "sha256": "0ea37e43db9c5945826add3debc92a57b57459e1b51610f13cb6fcaa0c8ec788",
+   "lines": 9150
+  }
+ },
+ "status_counts": {
+  "OK": 9150,
+  "EMPTY": 6626
+ },
+ "verified_from_files": {
+  "merged_cafs_registered": 9150,
+  "files_with_error": 0,
+  "events": 13772,
+  "wc_valid": 13772,
+  "schema_md5": "d4396a3490ea5aec4b02f0c34fa9db33",
+  "wc_branches": 2401,
+  "wc_top_level_names": 24,
+  "dl_weights": "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth",
+  "wct_version": "sbnd-dlvtx-35-pre-master-merge-2026-09-02-424-g78f81c64",
+  "bdt_weights_dir": "uboone/weights",
+  "TotalPOT_sum_nonempty": 1.6462827168256507e+21,
+  "TotalPOT_matches_SAM_unit_mc_pot_max_rel": 2.8e-06,
+  "TotalGenEvents_in_caf": 125,
+  "SAM_generated_events_per_unit": 12500
+ },
+ "live_sam": {
+  "reco1_files": 16505,
+  "flat_caf_files": 15777,
+  "file_lists_identical_to_saved_2026_11_06_snapshot": true
+ },
+ "missing_event": {
+  "run": 317,
+  "subrun": 41,
+  "evt": 6753,
+  "flatcaf": "reco2-reco1-detsim-g4-filter-gen-2483-4161-1955-eda8_ncdeltarad.flat.caf.root",
+  "reco1_unit": "reco1-detsim-g4-filter-gen-2483-4161-1955-eda8_ncdeltarad.root",
+  "signal_nu_index": 0,
+  "delta_pdg": 2114,
+  "delta_charge": 0,
+  "decay_nucleon_pdg": 2112,
+  "truth_cat": 1,
+  "n_true_protons_35MeV": 1,
+  "photon_energy_mev": 177.6996406005821,
+  "nu_energy_gev": 1.2345478534698486,
+  "vtx_cm": [
+   -56.89604568481445,
+   49.32973098754883,
+   40.05137634277344
+  ],
+  "in_filter_box": true,
+  "in_active_tpc": true,
+  "unit_pot": 1.80329e+17,
+  "unit_gen_events": 12500,
+  "sam_flatcaf_location": "enstore:/pnfs/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/000011/caf/subrun_011641",
+  "haiwang_derived_path_not_found": "/pnfs/sbn/data_add/sbn_nd/aurora/mc/v10_14_02_05/prodgenie_corsika_proton_rockbox0p1_sbnd/Gen2_Exclusive_2026/ncdeltarad/caf/000011/000116/",
+  "sam_flatcaf_checks": {
+   "content_status": "good",
+   "adler32": "a799f26d",
+   "size": 2827667,
+   "event_count": 1,
+   "parent": "reco1-detsim-g4-filter-gen-2483-4161-1955-eda8_ncdeltarad.root"
+  },
+  "cause": "E (other; mechanism INFERRED, to be confirmed by the producer): Haiwang's pair builder evidently derives the CAF path from the reco1 directory pattern (.../caf/<A>/<B>/...); this one CAF is registered in SAM under an anomalous directory layout (.../<A>/caf/subrun_<NNNNNN>/), so it was classified 'no CAF' and listed in pairs-mc-ncdr.skipped.tsv (729th entry). SAM definitions did NOT change (A rejected), no CAF was removed (B), not a deliberate exclusion of a problematic pair (C; to be confirmed), same snapshot (D rejected: 728 of 729 skipped agree)."
+ }
+}

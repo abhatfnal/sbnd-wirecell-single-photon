@@ -16,6 +16,7 @@ Jagged layout of ``recTreeWireCell`` (verified on fg1 MC):
 """
 from __future__ import annotations
 
+import contextlib
 import warnings
 from typing import Iterable, Optional, Sequence
 
@@ -65,6 +66,23 @@ def per_candidate(flat: ak.Array, length: ak.Array) -> ak.Array:
         raise CafError(f"nested branch inconsistent with its ..length in {bad} event(s)")
     inner = ak.unflatten(ak.flatten(flat, axis=1), ak.flatten(length, axis=1))
     return ak.unflatten(inner, counts)
+
+
+@contextlib.contextmanager
+def tolerant_embedded_basket_read():
+    """Skip uproot's byte-count check of ``TObjArrayOfTBaskets`` ONLY (nothing else is relaxed).
+
+    25 of the 9,150 official NC Delta merged CAFs (27 signal events) carry ``wc.T_overlap.*`` branches whose embedded-basket header has 8 trailing
+    bytes uproot does not consume (``expected 1245 bytes but cursor moved by 1237``). The payload parses to sensible values (checked against run/event
+    numbers stored in the same tree). Use as a FALLBACK after a ``DeserializationError``; the caller must record that it was used.
+    """
+    from uproot.models.TObjArray import Model_TObjArrayOfTBaskets as M
+    orig = M.check_numbytes
+    M.check_numbytes = lambda self, chunk, cursor, context: None
+    try:
+        yield
+    finally:
+        M.check_numbytes = orig
 
 
 class MergedCaf:

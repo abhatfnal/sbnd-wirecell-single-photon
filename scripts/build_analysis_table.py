@@ -134,7 +134,13 @@ def _work(job):
                     ev["t_" + k] = v
                 if f.has_truth_matching:
                     try:
-                        dm = candidate_dominant_truth(f, n, valid).rename(columns={"nu_index": "c_nu_index"})
+                        try:
+                            dm = candidate_dominant_truth(f, n, valid)
+                        except Exception:                      # uproot embedded-basket byte-count quirk of some tiny files (see caf.tolerant_embedded_basket_read)
+                            with C.tolerant_embedded_basket_read():
+                                dm = candidate_dominant_truth(f, n, valid)
+                            print(f"[{sample}] file {idx}: dominant-truth read with the tolerant embedded-basket fallback", flush=True)
+                        dm = dm.rename(columns={"nu_index": "c_nu_index"})
                         cdf = cdf.merge(dm.rename(columns={"c_nu_index": "c_nu_index_dm"}), how="left",
                                         left_on=["ev", "c_nu_index"], right_on=["ev", "c_nu_index_dm"]).drop(columns=["c_nu_index_dm"])
                         cdf["dom_ok"] = True

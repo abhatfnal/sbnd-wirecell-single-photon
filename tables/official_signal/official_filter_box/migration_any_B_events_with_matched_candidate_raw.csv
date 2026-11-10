@@ -1,0 +1,4 @@
+,reco 0p,reco 1p,reco >=2p,no candidate/unreco,row_total
+truth 0p,4030.0,968.0,157.0,0.0,5155.0
+truth 1p,1910.0,2690.0,611.0,0.0,5211.0
+truth >=2p,282.0,371.0,314.0,0.0,967.0
