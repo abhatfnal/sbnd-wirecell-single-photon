@@ -65,7 +65,7 @@ def classify_proton_origin(pdg, status, fm, e_gev, ke_threshold_mev=35.0) -> dic
 def work(job):
     import awkward as ak
     from sbnd_single_photon import truth_signal as TS, xrd
-    idx, name, url, rows = job; out = PIECES / f"{idx}.parquet"
+    idx, name, url, rows, pdir = job; out = Path(pdir) / f"{idx}.parquet"
     if out.exists():
         return idx, "cached"
     try:
@@ -80,20 +80,26 @@ def work(job):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--workers", type=int, default=6); a = ap.parse_args(); PIECES.mkdir(parents=True, exist_ok=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--all-candidate-stage", action="store_true", help="Phase 9: ALL truth-1p events with >= 1 candidate (A_candidate) instead of those reaching numu; separate pieces dir and output file")
+    a = ap.parse_args(); global PIECES
+    if a.all_candidate_stage:
+        PIECES = OUT / "proton_origin_pieces_all_candidate_stage"
+    PIECES.mkdir(parents=True, exist_ok=True)
     from sbnd_single_photon import xrd
-    t = pd.read_parquet(SPD / "spine_harmonization" / "official_ncdelta" / "event_flags_and_table.parquet", columns=["run", "subrun", "evt", "truth35", "A_numu"])
+    t = pd.read_parquet(SPD / "spine_harmonization" / "official_ncdelta" / "event_flags_and_table.parquet", columns=["run", "subrun", "evt", "truth35", "A_numu", "A_candidate"])
     m = pd.read_parquet(SPD / "official_gen2_ncdelta_master" / "signal_events.parquet", columns=["run", "subrun", "evt", "flatcaf", "ev", "signal_nu_index"])
-    ev = t[(t.truth35 == 1) & t.A_numu.astype(bool)].merge(m, on=["run", "subrun", "evt"])
+    sel = t.A_candidate.astype(bool) if a.all_candidate_stage else t.A_numu.astype(bool)
+    ev = t[(t.truth35 == 1) & sel].merge(m, on=["run", "subrun", "evt"])
     loc = {l.split("\t")[1]: xrd.to_xrootd_url(l.split("\t")[0][len("enstore:"):] + "/" + l.split("\t")[1]) for l in LOC.read_text().splitlines()}
-    jobs = [(i, n, loc[n], g[["run", "subrun", "evt", "ev", "signal_nu_index"]]) for i, (n, g) in enumerate(ev.groupby("flatcaf", sort=True))]
+    jobs = [(i, n, loc[n], g[["run", "subrun", "evt", "ev", "signal_nu_index"]], str(PIECES)) for i, (n, g) in enumerate(ev.groupby("flatcaf", sort=True))]
     print("events", len(ev), "files", len(jobs))
     with mp.get_context("spawn").Pool(min(a.workers, 24)) as p:
         res = list(p.imap_unordered(work, jobs, chunksize=1))
     bad = [r for r in res if r[1].startswith("ERR")]; print("errors", len(bad), bad[:3])
     if bad:
         return 1
-    pd.concat([pd.read_parquet(x) for x in sorted(PIECES.glob("*.parquet"))], ignore_index=True).to_parquet(OUT / "proton_origin.parquet", index=False)
+    pd.concat([pd.read_parquet(x) for x in sorted(PIECES.glob("*.parquet"))], ignore_index=True).to_parquet(OUT / ("proton_origin_all_candidate_stage.parquet" if a.all_candidate_stage else "proton_origin.parquet"), index=False)
     print("merged")
     return 0
 

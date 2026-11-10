@@ -1,0 +1,4974 @@
+{
+ "taxonomy": [
+  {
+   "group": "all",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 5423,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.4786,
+   "lo68": 0.4739,
+   "hi68": 0.4833,
+   "n_failing": 3251,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "all",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 2657,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.2345,
+   "lo68": 0.2305,
+   "hi68": 0.2385,
+   "n_failing": 3251,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "all",
+   "outcome": "photon_no_reco_charge",
+   "n": 275,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0243,
+   "lo68": 0.0228,
+   "hi68": 0.0258,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0846
+  },
+  {
+   "group": "all",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 329,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.029,
+   "lo68": 0.0275,
+   "hi68": 0.0307,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1012
+  },
+  {
+   "group": "all",
+   "outcome": "photon_fragmented",
+   "n": 492,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0434,
+   "lo68": 0.0415,
+   "hi68": 0.0454,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1513
+  },
+  {
+   "group": "all",
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0001,
+   "lo68": 0.0,
+   "hi68": 0.0003,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0003
+  },
+  {
+   "group": "all",
+   "outcome": "photon_particle_row_missing",
+   "n": 162,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0143,
+   "lo68": 0.0132,
+   "hi68": 0.0155,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0498
+  },
+  {
+   "group": "all",
+   "outcome": "photon_as_track",
+   "n": 424,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0374,
+   "lo68": 0.0356,
+   "hi68": 0.0393,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1304
+  },
+  {
+   "group": "all",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 961,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0848,
+   "lo68": 0.0822,
+   "hi68": 0.0875,
+   "n_failing": 3251,
+   "frac_of_failing": 0.2956
+  },
+  {
+   "group": "all",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 40,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0035,
+   "lo68": 0.003,
+   "hi68": 0.0042,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0123
+  },
+  {
+   "group": "all",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 567,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.05,
+   "lo68": 0.048,
+   "hi68": 0.0522,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1744
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 2499,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.4797,
+   "lo68": 0.4726,
+   "hi68": 0.4867,
+   "n_failing": 1254,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 1457,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.2797,
+   "lo68": 0.2734,
+   "hi68": 0.286,
+   "n_failing": 1254,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_no_reco_charge",
+   "n": 79,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0152,
+   "lo68": 0.0135,
+   "hi68": 0.0171,
+   "n_failing": 1254,
+   "frac_of_failing": 0.063
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 163,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0313,
+   "lo68": 0.0289,
+   "hi68": 0.0339,
+   "n_failing": 1254,
+   "frac_of_failing": 0.13
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_fragmented",
+   "n": 277,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0532,
+   "lo68": 0.05,
+   "hi68": 0.0565,
+   "n_failing": 1254,
+   "frac_of_failing": 0.2209
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0004,
+   "n_failing": 1254,
+   "frac_of_failing": 0.0
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_particle_row_missing",
+   "n": 56,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0107,
+   "lo68": 0.0093,
+   "hi68": 0.0124,
+   "n_failing": 1254,
+   "frac_of_failing": 0.0447
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_as_track",
+   "n": 225,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0432,
+   "lo68": 0.0404,
+   "hi68": 0.0462,
+   "n_failing": 1254,
+   "frac_of_failing": 0.1794
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 325,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0624,
+   "lo68": 0.059,
+   "hi68": 0.0659,
+   "n_failing": 1254,
+   "frac_of_failing": 0.2592
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 9,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.0017,
+   "lo68": 0.0012,
+   "hi68": 0.0025,
+   "n_failing": 1254,
+   "frac_of_failing": 0.0072
+  },
+  {
+   "group": "truth 0p",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 120,
+   "n_candidate_stage": 5210,
+   "frac_of_candidate_stage": 0.023,
+   "lo68": 0.021,
+   "hi68": 0.0253,
+   "n_failing": 1254,
+   "frac_of_failing": 0.0957
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 2444,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.4727,
+   "lo68": 0.4657,
+   "hi68": 0.4798,
+   "n_failing": 1702,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 1024,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.1981,
+   "lo68": 0.1925,
+   "hi68": 0.2038,
+   "n_failing": 1702,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_no_reco_charge",
+   "n": 173,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0335,
+   "lo68": 0.031,
+   "hi68": 0.0362,
+   "n_failing": 1702,
+   "frac_of_failing": 0.1016
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 151,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0292,
+   "lo68": 0.0269,
+   "hi68": 0.0317,
+   "n_failing": 1702,
+   "frac_of_failing": 0.0887
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_fragmented",
+   "n": 193,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0373,
+   "lo68": 0.0347,
+   "hi68": 0.0402,
+   "n_failing": 1702,
+   "frac_of_failing": 0.1134
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0002,
+   "lo68": 0.0,
+   "hi68": 0.0006,
+   "n_failing": 1702,
+   "frac_of_failing": 0.0006
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_particle_row_missing",
+   "n": 92,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0178,
+   "lo68": 0.016,
+   "hi68": 0.0198,
+   "n_failing": 1702,
+   "frac_of_failing": 0.0541
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_as_track",
+   "n": 171,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0331,
+   "lo68": 0.0306,
+   "hi68": 0.0358,
+   "n_failing": 1702,
+   "frac_of_failing": 0.1005
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 530,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.1025,
+   "lo68": 0.0983,
+   "hi68": 0.1069,
+   "n_failing": 1702,
+   "frac_of_failing": 0.3114
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 27,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0052,
+   "lo68": 0.0042,
+   "hi68": 0.0064,
+   "n_failing": 1702,
+   "frac_of_failing": 0.0159
+  },
+  {
+   "group": "truth 1p",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 364,
+   "n_candidate_stage": 5170,
+   "frac_of_candidate_stage": 0.0704,
+   "lo68": 0.0668,
+   "hi68": 0.0741,
+   "n_failing": 1702,
+   "frac_of_failing": 0.2139
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 480,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.5047,
+   "lo68": 0.488,
+   "hi68": 0.5215,
+   "n_failing": 295,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 176,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.1851,
+   "lo68": 0.1723,
+   "hi68": 0.1985,
+   "n_failing": 295,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_no_reco_charge",
+   "n": 23,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0242,
+   "lo68": 0.0192,
+   "hi68": 0.0303,
+   "n_failing": 295,
+   "frac_of_failing": 0.078
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 15,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0158,
+   "lo68": 0.0118,
+   "hi68": 0.0209,
+   "n_failing": 295,
+   "frac_of_failing": 0.0508
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_fragmented",
+   "n": 22,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0231,
+   "lo68": 0.0183,
+   "hi68": 0.0291,
+   "n_failing": 295,
+   "frac_of_failing": 0.0746
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0019,
+   "n_failing": 295,
+   "frac_of_failing": 0.0
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_particle_row_missing",
+   "n": 14,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0147,
+   "lo68": 0.0108,
+   "hi68": 0.0198,
+   "n_failing": 295,
+   "frac_of_failing": 0.0475
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_as_track",
+   "n": 28,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0294,
+   "lo68": 0.024,
+   "hi68": 0.036,
+   "n_failing": 295,
+   "frac_of_failing": 0.0949
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 106,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.1115,
+   "lo68": 0.1012,
+   "hi68": 0.1226,
+   "n_failing": 295,
+   "frac_of_failing": 0.3593
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 4,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0042,
+   "lo68": 0.0022,
+   "hi68": 0.0075,
+   "n_failing": 295,
+   "frac_of_failing": 0.0136
+  },
+  {
+   "group": "truth >=2p",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 83,
+   "n_candidate_stage": 951,
+   "frac_of_candidate_stage": 0.0873,
+   "lo68": 0.0781,
+   "hi68": 0.0974,
+   "n_failing": 295,
+   "frac_of_failing": 0.2814
+  },
+  {
+   "group": "Delta0",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 2923,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.4764,
+   "lo68": 0.47,
+   "hi68": 0.4829,
+   "n_failing": 1607,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "Delta0",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 1605,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.2616,
+   "lo68": 0.256,
+   "hi68": 0.2673,
+   "n_failing": 1607,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_no_reco_charge",
+   "n": 120,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0196,
+   "lo68": 0.0178,
+   "hi68": 0.0215,
+   "n_failing": 1607,
+   "frac_of_failing": 0.0747
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 196,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0319,
+   "lo68": 0.0297,
+   "hi68": 0.0344,
+   "n_failing": 1607,
+   "frac_of_failing": 0.122
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_fragmented",
+   "n": 283,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0461,
+   "lo68": 0.0434,
+   "hi68": 0.049,
+   "n_failing": 1607,
+   "frac_of_failing": 0.1761
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0003,
+   "n_failing": 1607,
+   "frac_of_failing": 0.0
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_particle_row_missing",
+   "n": 88,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0143,
+   "lo68": 0.0128,
+   "hi68": 0.016,
+   "n_failing": 1607,
+   "frac_of_failing": 0.0548
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_as_track",
+   "n": 263,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0429,
+   "lo68": 0.0403,
+   "hi68": 0.0456,
+   "n_failing": 1607,
+   "frac_of_failing": 0.1637
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 419,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0683,
+   "lo68": 0.0651,
+   "hi68": 0.0717,
+   "n_failing": 1607,
+   "frac_of_failing": 0.2607
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 12,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.002,
+   "lo68": 0.0014,
+   "hi68": 0.0027,
+   "n_failing": 1607,
+   "frac_of_failing": 0.0075
+  },
+  {
+   "group": "Delta0",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 226,
+   "n_candidate_stage": 6135,
+   "frac_of_candidate_stage": 0.0368,
+   "lo68": 0.0344,
+   "hi68": 0.0394,
+   "n_failing": 1607,
+   "frac_of_failing": 0.1406
+  },
+  {
+   "group": "Delta+",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 2500,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.4811,
+   "lo68": 0.4741,
+   "hi68": 0.4882,
+   "n_failing": 1644,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "Delta+",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 1052,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.2025,
+   "lo68": 0.1968,
+   "hi68": 0.2082,
+   "n_failing": 1644,
+   "frac_of_failing": NaN
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_no_reco_charge",
+   "n": 155,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0298,
+   "lo68": 0.0275,
+   "hi68": 0.0324,
+   "n_failing": 1644,
+   "frac_of_failing": 0.0943
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 133,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0256,
+   "lo68": 0.0234,
+   "hi68": 0.028,
+   "n_failing": 1644,
+   "frac_of_failing": 0.0809
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_fragmented",
+   "n": 209,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0402,
+   "lo68": 0.0375,
+   "hi68": 0.0431,
+   "n_failing": 1644,
+   "frac_of_failing": 0.1271
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0002,
+   "lo68": 0.0,
+   "hi68": 0.0006,
+   "n_failing": 1644,
+   "frac_of_failing": 0.0006
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_particle_row_missing",
+   "n": 74,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0142,
+   "lo68": 0.0126,
+   "hi68": 0.0161,
+   "n_failing": 1644,
+   "frac_of_failing": 0.045
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_as_track",
+   "n": 161,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.031,
+   "lo68": 0.0286,
+   "hi68": 0.0336,
+   "n_failing": 1644,
+   "frac_of_failing": 0.0979
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 542,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.1043,
+   "lo68": 0.1,
+   "hi68": 0.1087,
+   "n_failing": 1644,
+   "frac_of_failing": 0.3297
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 28,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0054,
+   "lo68": 0.0044,
+   "hi68": 0.0066,
+   "n_failing": 1644,
+   "frac_of_failing": 0.017
+  },
+  {
+   "group": "Delta+",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 341,
+   "n_candidate_stage": 5196,
+   "frac_of_candidate_stage": 0.0656,
+   "lo68": 0.0622,
+   "hi68": 0.0692,
+   "n_failing": 1644,
+   "frac_of_failing": 0.2074
+  }
+ ],
+ "accounting": {
+  "denominator_tpc_box": 12427,
+  "candidate_stage": 11331,
+  "pass_n20": 8080,
+  "fail_n20": 3251,
+  "missing_production_event_in_population": 0,
+  "baseline_first_fail_no_20mev_shower": 3251,
+  "fail_classes_sum": 3251,
+  "by_class": {
+   "photon_shower_typed_non_electron": 961,
+   "photon_shower_not_in_main_vertex_set": 567,
+   "photon_fragmented": 492,
+   "photon_as_track": 424,
+   "photon_charge_outside_candidates": 329,
+   "photon_no_reco_charge": 275,
+   "photon_particle_row_missing": 162,
+   "photon_shower_below_20MeV": 40,
+   "photon_in_other_candidate": 1
+  }
+ },
+ "final_selected_photon_object": {
+  "n": 1153,
+  "outcome": {
+   "pass_photon_shower_in_passing_candidate": 1131,
+   "pass_not_via_signal_photon_shower": 22
+  },
+  "photon_object_state": {
+   "photon_shower_not_in_main_vertex_set": 1129,
+   "photon_fragmented": 14,
+   "photon_particle_row_missing": 4,
+   "photon_shower_typed_non_electron": 2,
+   "photon_as_track": 2,
+   "photon_charge_outside_candidates": 1,
+   "photon_in_other_candidate": 1
+  },
+  "by_truth": {
+   "truth 0p": {
+    "pass_photon_shower_in_passing_candidate": 469,
+    "pass_not_via_signal_photon_shower": 7
+   },
+   "truth 1p": {
+    "pass_photon_shower_in_passing_candidate": 579,
+    "pass_not_via_signal_photon_shower": 15
+   },
+   "truth >=2p": {
+    "pass_photon_shower_in_passing_candidate": 83
+   }
+  }
+ },
+ "pass_not_via_breakdown": {
+  "photon_fragmented": 1622,
+  "photon_shower_typed_non_electron": 409,
+  "photon_as_track": 300,
+  "photon_particle_row_missing": 220,
+  "photon_charge_outside_candidates": 66,
+  "photon_no_reco_charge": 30,
+  "photon_shower_not_in_main_vertex_set": 6,
+  "photon_shower_below_20MeV": 4
+ },
+ "pass_not_via_breakdown_by_truth": {
+  "truth 0p": {
+   "photon_fragmented": 927,
+   "photon_shower_typed_non_electron": 215,
+   "photon_as_track": 161,
+   "photon_particle_row_missing": 104,
+   "photon_charge_outside_candidates": 33,
+   "photon_no_reco_charge": 14,
+   "photon_shower_not_in_main_vertex_set": 2,
+   "photon_shower_below_20MeV": 1
+  },
+  "truth 1p": {
+   "photon_fragmented": 608,
+   "photon_shower_typed_non_electron": 159,
+   "photon_as_track": 117,
+   "photon_particle_row_missing": 98,
+   "photon_charge_outside_candidates": 26,
+   "photon_no_reco_charge": 9,
+   "photon_shower_not_in_main_vertex_set": 4,
+   "photon_shower_below_20MeV": 3
+  },
+  "truth >=2p": {
+   "photon_fragmented": 87,
+   "photon_shower_typed_non_electron": 35,
+   "photon_as_track": 22,
+   "photon_particle_row_missing": 18,
+   "photon_no_reco_charge": 7,
+   "photon_charge_outside_candidates": 7
+  }
+ },
+ "taxonomy_threshold_sensitivity": [
+  {
+   "outside_frac_min": 0.5,
+   "dominant_frac_min": 0.5,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 329,
+   "photon_fragmented": 492,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 162,
+   "photon_as_track": 424,
+   "photon_shower_typed_non_electron": 961,
+   "photon_shower_below_20MeV": 40,
+   "photon_shower_not_in_main_vertex_set": 567
+  },
+  {
+   "outside_frac_min": 0.25,
+   "dominant_frac_min": 0.5,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 306,
+   "photon_fragmented": 494,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 163,
+   "photon_as_track": 434,
+   "photon_shower_typed_non_electron": 967,
+   "photon_shower_below_20MeV": 41,
+   "photon_shower_not_in_main_vertex_set": 570
+  },
+  {
+   "outside_frac_min": 0.75,
+   "dominant_frac_min": 0.5,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 403,
+   "photon_fragmented": 477,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 156,
+   "photon_as_track": 413,
+   "photon_shower_typed_non_electron": 937,
+   "photon_shower_below_20MeV": 39,
+   "photon_shower_not_in_main_vertex_set": 550
+  },
+  {
+   "outside_frac_min": 0.5,
+   "dominant_frac_min": 0.33,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 329,
+   "photon_fragmented": 95,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 197,
+   "photon_as_track": 622,
+   "photon_shower_typed_non_electron": 1053,
+   "photon_shower_below_20MeV": 42,
+   "photon_shower_not_in_main_vertex_set": 637
+  },
+  {
+   "outside_frac_min": 0.5,
+   "dominant_frac_min": 0.66,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 329,
+   "photon_fragmented": 907,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 127,
+   "photon_as_track": 261,
+   "photon_shower_typed_non_electron": 826,
+   "photon_shower_below_20MeV": 37,
+   "photon_shower_not_in_main_vertex_set": 488
+  },
+  {
+   "outside_frac_min": 0.25,
+   "dominant_frac_min": 0.33,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 306,
+   "photon_fragmented": 95,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 198,
+   "photon_as_track": 634,
+   "photon_shower_typed_non_electron": 1059,
+   "photon_shower_below_20MeV": 43,
+   "photon_shower_not_in_main_vertex_set": 640
+  },
+  {
+   "outside_frac_min": 0.75,
+   "dominant_frac_min": 0.66,
+   "photon_no_reco_charge": 275,
+   "photon_charge_outside_candidates": 403,
+   "photon_fragmented": 884,
+   "photon_in_other_candidate": 1,
+   "photon_particle_row_missing": 121,
+   "photon_as_track": 255,
+   "photon_shower_typed_non_electron": 803,
+   "photon_shower_below_20MeV": 36,
+   "photon_shower_not_in_main_vertex_set": 473
+  }
+ ],
+ "high_energy": [
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 5423,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.4786,
+   "n_failing": 3251,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 2657,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.2345,
+   "n_failing": 3251,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_no_reco_charge",
+   "n": 275,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0243,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0846
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_charge_outside_candidates",
+   "n": 329,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.029,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1012
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_fragmented",
+   "n": 492,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0434,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1513
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0001,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0003
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_particle_row_missing",
+   "n": 162,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0143,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0498
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_as_track",
+   "n": 424,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0374,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1304
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 961,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0848,
+   "n_failing": 3251,
+   "frac_of_failing": 0.2956
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_shower_below_20MeV",
+   "n": 40,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.0035,
+   "n_failing": 3251,
+   "frac_of_failing": 0.0123
+  },
+  {
+   "E_gamma_above_mev": 0,
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 567,
+   "n_candidate_stage": 11331,
+   "frac_of_candidate_stage": 0.05,
+   "n_failing": 3251,
+   "frac_of_failing": 0.1744
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 5363,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.4795,
+   "n_failing": 3185,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 2637,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.2358,
+   "n_failing": 3185,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_no_reco_charge",
+   "n": 272,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0243,
+   "n_failing": 3185,
+   "frac_of_failing": 0.0854
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_charge_outside_candidates",
+   "n": 317,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0283,
+   "n_failing": 3185,
+   "frac_of_failing": 0.0995
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_fragmented",
+   "n": 489,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0437,
+   "n_failing": 3185,
+   "frac_of_failing": 0.1535
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0001,
+   "n_failing": 3185,
+   "frac_of_failing": 0.0003
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_particle_row_missing",
+   "n": 159,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0142,
+   "n_failing": 3185,
+   "frac_of_failing": 0.0499
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_as_track",
+   "n": 411,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0367,
+   "n_failing": 3185,
+   "frac_of_failing": 0.129
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 949,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0848,
+   "n_failing": 3185,
+   "frac_of_failing": 0.298
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_shower_below_20MeV",
+   "n": 39,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.0035,
+   "n_failing": 3185,
+   "frac_of_failing": 0.0122
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 548,
+   "n_candidate_stage": 11185,
+   "frac_of_candidate_stage": 0.049,
+   "n_failing": 3185,
+   "frac_of_failing": 0.1721
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 4413,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.5076,
+   "n_failing": 2226,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 2054,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.2363,
+   "n_failing": 2226,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_no_reco_charge",
+   "n": 187,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0215,
+   "n_failing": 2226,
+   "frac_of_failing": 0.084
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_charge_outside_candidates",
+   "n": 200,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.023,
+   "n_failing": 2226,
+   "frac_of_failing": 0.0898
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_fragmented",
+   "n": 352,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0405,
+   "n_failing": 2226,
+   "frac_of_failing": 0.1581
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0001,
+   "n_failing": 2226,
+   "frac_of_failing": 0.0004
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_particle_row_missing",
+   "n": 102,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0117,
+   "n_failing": 2226,
+   "frac_of_failing": 0.0458
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_as_track",
+   "n": 252,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.029,
+   "n_failing": 2226,
+   "frac_of_failing": 0.1132
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 695,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0799,
+   "n_failing": 2226,
+   "frac_of_failing": 0.3122
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_shower_below_20MeV",
+   "n": 29,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0033,
+   "n_failing": 2226,
+   "frac_of_failing": 0.013
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 408,
+   "n_candidate_stage": 8693,
+   "frac_of_candidate_stage": 0.0469,
+   "n_failing": 2226,
+   "frac_of_failing": 0.1833
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 1143,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.5841,
+   "n_failing": 387,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 427,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.2182,
+   "n_failing": 387,
+   "frac_of_failing": NaN
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_no_reco_charge",
+   "n": 28,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0143,
+   "n_failing": 387,
+   "frac_of_failing": 0.0724
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_charge_outside_candidates",
+   "n": 29,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0148,
+   "n_failing": 387,
+   "frac_of_failing": 0.0749
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_fragmented",
+   "n": 56,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0286,
+   "n_failing": 387,
+   "frac_of_failing": 0.1447
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0,
+   "n_failing": 387,
+   "frac_of_failing": 0.0
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_particle_row_missing",
+   "n": 20,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0102,
+   "n_failing": 387,
+   "frac_of_failing": 0.0517
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_as_track",
+   "n": 41,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.021,
+   "n_failing": 387,
+   "frac_of_failing": 0.1059
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 114,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0583,
+   "n_failing": 387,
+   "frac_of_failing": 0.2946
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_shower_below_20MeV",
+   "n": 8,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0041,
+   "n_failing": 387,
+   "frac_of_failing": 0.0207
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 91,
+   "n_candidate_stage": 1957,
+   "frac_of_candidate_stage": 0.0465,
+   "n_failing": 387,
+   "frac_of_failing": 0.2351
+  }
+ ],
+ "shower_stage_efficiency_vs_energy": {
+  ">0": {
+   "n": 11331,
+   "pass_fraction": 0.7130879887035566
+  },
+  ">100": {
+   "n": 11185,
+   "pass_fraction": 0.7152436298614215
+  },
+  ">200": {
+   "n": 8693,
+   "pass_fraction": 0.743931899229265
+  },
+  ">400": {
+   "n": 1957,
+   "pass_fraction": 0.8022483392948391
+  }
+ },
+ "by_end_class": [
+  {
+   "photon_end_class": "conv",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 5350,
+   "n_candidate_stage": 10786,
+   "fraction": 0.496,
+   "lo68": 0.4912,
+   "hi68": 0.5009
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 2585,
+   "n_candidate_stage": 10786,
+   "fraction": 0.2397,
+   "lo68": 0.2355,
+   "hi68": 0.2438
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_no_reco_charge",
+   "n": 8,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0007,
+   "lo68": 0.0005,
+   "hi68": 0.0011
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 300,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0278,
+   "lo68": 0.0262,
+   "hi68": 0.0295
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_fragmented",
+   "n": 478,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0443,
+   "lo68": 0.0423,
+   "hi68": 0.0464
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_in_other_candidate",
+   "n": 1,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0001,
+   "lo68": 0.0,
+   "hi68": 0.0003
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_particle_row_missing",
+   "n": 157,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0146,
+   "lo68": 0.0134,
+   "hi68": 0.0158
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_as_track",
+   "n": 391,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0363,
+   "lo68": 0.0344,
+   "hi68": 0.0381
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 931,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0863,
+   "lo68": 0.0836,
+   "hi68": 0.0891
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 29,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0027,
+   "lo68": 0.0022,
+   "hi68": 0.0033
+  },
+  {
+   "photon_end_class": "conv",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 556,
+   "n_candidate_stage": 10786,
+   "fraction": 0.0515,
+   "lo68": 0.0494,
+   "hi68": 0.0538
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 60,
+   "n_candidate_stage": 205,
+   "fraction": 0.2927,
+   "lo68": 0.2596,
+   "hi68": 0.3279
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 45,
+   "n_candidate_stage": 205,
+   "fraction": 0.2195,
+   "lo68": 0.1897,
+   "hi68": 0.2523
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_no_reco_charge",
+   "n": 1,
+   "n_candidate_stage": 205,
+   "fraction": 0.0049,
+   "lo68": 0.0008,
+   "hi68": 0.016
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 18,
+   "n_candidate_stage": 205,
+   "fraction": 0.0878,
+   "lo68": 0.0678,
+   "hi68": 0.1123
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_fragmented",
+   "n": 12,
+   "n_candidate_stage": 205,
+   "fraction": 0.0585,
+   "lo68": 0.0421,
+   "hi68": 0.0799
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 205,
+   "fraction": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0089
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_particle_row_missing",
+   "n": 5,
+   "n_candidate_stage": 205,
+   "fraction": 0.0244,
+   "lo68": 0.0139,
+   "hi68": 0.0406
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_as_track",
+   "n": 26,
+   "n_candidate_stage": 205,
+   "fraction": 0.1268,
+   "lo68": 0.1032,
+   "hi68": 0.1545
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 25,
+   "n_candidate_stage": 205,
+   "fraction": 0.122,
+   "lo68": 0.0987,
+   "hi68": 0.1493
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 3,
+   "n_candidate_stage": 205,
+   "fraction": 0.0146,
+   "lo68": 0.0067,
+   "hi68": 0.0287
+  },
+  {
+   "photon_end_class": "other_interaction",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 10,
+   "n_candidate_stage": 205,
+   "fraction": 0.0488,
+   "lo68": 0.0338,
+   "hi68": 0.0689
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "pass_photon_shower_in_passing_candidate",
+   "n": 13,
+   "n_candidate_stage": 340,
+   "fraction": 0.0382,
+   "lo68": 0.0279,
+   "hi68": 0.0517
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "pass_not_via_signal_photon_shower",
+   "n": 27,
+   "n_candidate_stage": 340,
+   "fraction": 0.0794,
+   "lo68": 0.0646,
+   "hi68": 0.0969
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_no_reco_charge",
+   "n": 266,
+   "n_candidate_stage": 340,
+   "fraction": 0.7824,
+   "lo68": 0.7576,
+   "hi68": 0.8053
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_charge_outside_candidates",
+   "n": 11,
+   "n_candidate_stage": 340,
+   "fraction": 0.0324,
+   "lo68": 0.0228,
+   "hi68": 0.0451
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_fragmented",
+   "n": 2,
+   "n_candidate_stage": 340,
+   "fraction": 0.0059,
+   "lo68": 0.0021,
+   "hi68": 0.0136
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_in_other_candidate",
+   "n": 0,
+   "n_candidate_stage": 340,
+   "fraction": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0054
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_particle_row_missing",
+   "n": 0,
+   "n_candidate_stage": 340,
+   "fraction": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.0054
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_as_track",
+   "n": 7,
+   "n_candidate_stage": 340,
+   "fraction": 0.0206,
+   "lo68": 0.013,
+   "hi68": 0.0315
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_shower_typed_non_electron",
+   "n": 5,
+   "n_candidate_stage": 340,
+   "fraction": 0.0147,
+   "lo68": 0.0084,
+   "hi68": 0.0245
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_shower_below_20MeV",
+   "n": 8,
+   "n_candidate_stage": 340,
+   "fraction": 0.0235,
+   "lo68": 0.0154,
+   "hi68": 0.0349
+  },
+  {
+   "photon_end_class": "left_volume",
+   "outcome": "photon_shower_not_in_main_vertex_set",
+   "n": 1,
+   "n_candidate_stage": 340,
+   "fraction": 0.0029,
+   "lo68": 0.0005,
+   "hi68": 0.0097
+  }
+ ],
+ "pass_vs_conv_distance": [
+  {
+   "group": "all",
+   "bin": 0,
+   "lo": 0,
+   "hi": 5,
+   "n": 2467,
+   "pass_n20": 1828,
+   "pass_fraction": 0.741,
+   "lo68": 0.7319,
+   "hi68": 0.7499
+  },
+  {
+   "group": "all",
+   "bin": 1,
+   "lo": 5,
+   "hi": 10,
+   "n": 1874,
+   "pass_n20": 1396,
+   "pass_fraction": 0.7449,
+   "lo68": 0.7345,
+   "hi68": 0.7551
+  },
+  {
+   "group": "all",
+   "bin": 2,
+   "lo": 10,
+   "hi": 20,
+   "n": 2565,
+   "pass_n20": 1886,
+   "pass_fraction": 0.7353,
+   "lo68": 0.7263,
+   "hi68": 0.7441
+  },
+  {
+   "group": "all",
+   "bin": 3,
+   "lo": 20,
+   "hi": 30,
+   "n": 1562,
+   "pass_n20": 1135,
+   "pass_fraction": 0.7266,
+   "lo68": 0.7149,
+   "hi68": 0.7381
+  },
+  {
+   "group": "all",
+   "bin": 4,
+   "lo": 30,
+   "hi": 50,
+   "n": 1486,
+   "pass_n20": 1094,
+   "pass_fraction": 0.7362,
+   "lo68": 0.7243,
+   "hi68": 0.7478
+  },
+  {
+   "group": "all",
+   "bin": 5,
+   "lo": 50,
+   "hi": 75,
+   "n": 595,
+   "pass_n20": 430,
+   "pass_fraction": 0.7227,
+   "lo68": 0.7031,
+   "hi68": 0.7415
+  },
+  {
+   "group": "all",
+   "bin": 6,
+   "lo": 75,
+   "hi": 100,
+   "n": 169,
+   "pass_n20": 123,
+   "pass_fraction": 0.7278,
+   "lo68": 0.6892,
+   "hi68": 0.7635
+  },
+  {
+   "group": "all",
+   "bin": 7,
+   "lo": 100,
+   "hi": 150,
+   "n": 59,
+   "pass_n20": 39,
+   "pass_fraction": 0.661,
+   "lo68": 0.5884,
+   "hi68": 0.7275
+  },
+  {
+   "group": "all",
+   "bin": 8,
+   "lo": 150,
+   "hi": 250,
+   "n": 9,
+   "pass_n20": 4,
+   "pass_fraction": 0.4444,
+   "lo68": 0.2461,
+   "hi68": 0.658
+  },
+  {
+   "group": "all",
+   "bin": 9,
+   "lo": 250,
+   "hi": 1000,
+   "n": 0,
+   "pass_n20": 0,
+   "pass_fraction": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  },
+  {
+   "group": "truth 0p",
+   "bin": 0,
+   "lo": 0,
+   "hi": 5,
+   "n": 1174,
+   "pass_n20": 887,
+   "pass_fraction": 0.7555,
+   "lo68": 0.7423,
+   "hi68": 0.7683
+  },
+  {
+   "group": "truth 0p",
+   "bin": 1,
+   "lo": 5,
+   "hi": 10,
+   "n": 846,
+   "pass_n20": 666,
+   "pass_fraction": 0.7872,
+   "lo68": 0.7722,
+   "hi68": 0.8015
+  },
+  {
+   "group": "truth 0p",
+   "bin": 2,
+   "lo": 10,
+   "hi": 20,
+   "n": 1175,
+   "pass_n20": 929,
+   "pass_fraction": 0.7906,
+   "lo68": 0.7781,
+   "hi68": 0.8027
+  },
+  {
+   "group": "truth 0p",
+   "bin": 3,
+   "lo": 20,
+   "hi": 30,
+   "n": 709,
+   "pass_n20": 554,
+   "pass_fraction": 0.7814,
+   "lo68": 0.7647,
+   "hi68": 0.7972
+  },
+  {
+   "group": "truth 0p",
+   "bin": 4,
+   "lo": 30,
+   "hi": 50,
+   "n": 704,
+   "pass_n20": 546,
+   "pass_fraction": 0.7756,
+   "lo68": 0.7587,
+   "hi68": 0.7916
+  },
+  {
+   "group": "truth 0p",
+   "bin": 5,
+   "lo": 50,
+   "hi": 75,
+   "n": 304,
+   "pass_n20": 229,
+   "pass_fraction": 0.7533,
+   "lo68": 0.7261,
+   "hi68": 0.7788
+  },
+  {
+   "group": "truth 0p",
+   "bin": 6,
+   "lo": 75,
+   "hi": 100,
+   "n": 73,
+   "pass_n20": 58,
+   "pass_fraction": 0.7945,
+   "lo68": 0.7361,
+   "hi68": 0.8438
+  },
+  {
+   "group": "truth 0p",
+   "bin": 7,
+   "lo": 100,
+   "hi": 150,
+   "n": 20,
+   "pass_n20": 13,
+   "pass_fraction": 0.65,
+   "lo68": 0.5131,
+   "hi68": 0.769
+  },
+  {
+   "group": "truth 0p",
+   "bin": 8,
+   "lo": 150,
+   "hi": 250,
+   "n": 4,
+   "pass_n20": 4,
+   "pass_fraction": 1.0,
+   "lo68": 0.631,
+   "hi68": 1.0
+  },
+  {
+   "group": "truth 0p",
+   "bin": 9,
+   "lo": 250,
+   "hi": 1000,
+   "n": 0,
+   "pass_n20": 0,
+   "pass_fraction": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  },
+  {
+   "group": "truth 1p",
+   "bin": 0,
+   "lo": 0,
+   "hi": 5,
+   "n": 1076,
+   "pass_n20": 784,
+   "pass_fraction": 0.7286,
+   "lo68": 0.7144,
+   "hi68": 0.7424
+  },
+  {
+   "group": "truth 1p",
+   "bin": 1,
+   "lo": 5,
+   "hi": 10,
+   "n": 868,
+   "pass_n20": 608,
+   "pass_fraction": 0.7005,
+   "lo68": 0.6841,
+   "hi68": 0.7163
+  },
+  {
+   "group": "truth 1p",
+   "bin": 2,
+   "lo": 10,
+   "hi": 20,
+   "n": 1171,
+   "pass_n20": 812,
+   "pass_fraction": 0.6934,
+   "lo68": 0.6793,
+   "hi68": 0.7072
+  },
+  {
+   "group": "truth 1p",
+   "bin": 3,
+   "lo": 20,
+   "hi": 30,
+   "n": 715,
+   "pass_n20": 484,
+   "pass_fraction": 0.6769,
+   "lo68": 0.6585,
+   "hi68": 0.6949
+  },
+  {
+   "group": "truth 1p",
+   "bin": 4,
+   "lo": 30,
+   "hi": 50,
+   "n": 686,
+   "pass_n20": 478,
+   "pass_fraction": 0.6968,
+   "lo68": 0.6782,
+   "hi68": 0.7148
+  },
+  {
+   "group": "truth 1p",
+   "bin": 5,
+   "lo": 50,
+   "hi": 75,
+   "n": 249,
+   "pass_n20": 173,
+   "pass_fraction": 0.6948,
+   "lo68": 0.6628,
+   "hi68": 0.7251
+  },
+  {
+   "group": "truth 1p",
+   "bin": 6,
+   "lo": 75,
+   "hi": 100,
+   "n": 79,
+   "pass_n20": 56,
+   "pass_fraction": 0.7089,
+   "lo68": 0.6488,
+   "hi68": 0.763
+  },
+  {
+   "group": "truth 1p",
+   "bin": 7,
+   "lo": 100,
+   "hi": 150,
+   "n": 32,
+   "pass_n20": 19,
+   "pass_fraction": 0.5938,
+   "lo68": 0.4897,
+   "hi68": 0.691
+  },
+  {
+   "group": "truth 1p",
+   "bin": 8,
+   "lo": 150,
+   "hi": 250,
+   "n": 3,
+   "pass_n20": 0,
+   "pass_fraction": 0.0,
+   "lo68": 0.0,
+   "hi68": 0.4588
+  },
+  {
+   "group": "truth 1p",
+   "bin": 9,
+   "lo": 250,
+   "hi": 1000,
+   "n": 0,
+   "pass_n20": 0,
+   "pass_fraction": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  }
+ ],
+ "edge_three_way": [
+  {
+   "variable": "vtx_x",
+   "bin": 0,
+   "lo": -200,
+   "hi": -150,
+   "n_bin": 1654,
+   "no_candidate": 0.1759,
+   "candidate_shower_fail": 0.2709,
+   "shower_pass": 0.5532
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 1,
+   "lo": -150,
+   "hi": -100,
+   "n_bin": 1736,
+   "no_candidate": 0.0778,
+   "candidate_shower_fail": 0.2615,
+   "shower_pass": 0.6607
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 2,
+   "lo": -100,
+   "hi": -50,
+   "n_bin": 1765,
+   "no_candidate": 0.0612,
+   "candidate_shower_fail": 0.2385,
+   "shower_pass": 0.7003
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 3,
+   "lo": -50,
+   "hi": 0,
+   "n_bin": 1793,
+   "no_candidate": 0.0591,
+   "candidate_shower_fail": 0.2543,
+   "shower_pass": 0.6866
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 4,
+   "lo": 0,
+   "hi": 50,
+   "n_bin": 1627,
+   "no_candidate": 0.0473,
+   "candidate_shower_fail": 0.2692,
+   "shower_pass": 0.6835
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 5,
+   "lo": 50,
+   "hi": 100,
+   "n_bin": 1450,
+   "no_candidate": 0.0621,
+   "candidate_shower_fail": 0.2434,
+   "shower_pass": 0.6945
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 6,
+   "lo": 100,
+   "hi": 150,
+   "n_bin": 1304,
+   "no_candidate": 0.0828,
+   "candidate_shower_fail": 0.2745,
+   "shower_pass": 0.6426
+  },
+  {
+   "variable": "vtx_x",
+   "bin": 7,
+   "lo": 150,
+   "hi": 200,
+   "n_bin": 1098,
+   "no_candidate": 0.1648,
+   "candidate_shower_fail": 0.2942,
+   "shower_pass": 0.541
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 0,
+   "lo": -200,
+   "hi": -150,
+   "n_bin": 1400,
+   "no_candidate": 0.1429,
+   "candidate_shower_fail": 0.2929,
+   "shower_pass": 0.5643
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 1,
+   "lo": -150,
+   "hi": -100,
+   "n_bin": 1464,
+   "no_candidate": 0.0765,
+   "candidate_shower_fail": 0.2548,
+   "shower_pass": 0.6687
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 2,
+   "lo": -100,
+   "hi": -50,
+   "n_bin": 1665,
+   "no_candidate": 0.0727,
+   "candidate_shower_fail": 0.2643,
+   "shower_pass": 0.6631
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 3,
+   "lo": -50,
+   "hi": 0,
+   "n_bin": 1764,
+   "no_candidate": 0.0663,
+   "candidate_shower_fail": 0.2608,
+   "shower_pass": 0.6729
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 4,
+   "lo": 0,
+   "hi": 50,
+   "n_bin": 1665,
+   "no_candidate": 0.0697,
+   "candidate_shower_fail": 0.2396,
+   "shower_pass": 0.6907
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 5,
+   "lo": 50,
+   "hi": 100,
+   "n_bin": 1586,
+   "no_candidate": 0.0788,
+   "candidate_shower_fail": 0.2541,
+   "shower_pass": 0.6671
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 6,
+   "lo": 100,
+   "hi": 150,
+   "n_bin": 1524,
+   "no_candidate": 0.0768,
+   "candidate_shower_fail": 0.2513,
+   "shower_pass": 0.6719
+  },
+  {
+   "variable": "vtx_y",
+   "bin": 7,
+   "lo": 150,
+   "hi": 200,
+   "n_bin": 1359,
+   "no_candidate": 0.1383,
+   "candidate_shower_fail": 0.2818,
+   "shower_pass": 0.5798
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 0,
+   "lo": 0,
+   "hi": 50,
+   "n_bin": 1274,
+   "no_candidate": 0.0856,
+   "candidate_shower_fail": 0.27,
+   "shower_pass": 0.6444
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 1,
+   "lo": 50,
+   "hi": 100,
+   "n_bin": 1280,
+   "no_candidate": 0.057,
+   "candidate_shower_fail": 0.25,
+   "shower_pass": 0.693
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 2,
+   "lo": 100,
+   "hi": 150,
+   "n_bin": 1204,
+   "no_candidate": 0.0556,
+   "candidate_shower_fail": 0.2641,
+   "shower_pass": 0.6802
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 3,
+   "lo": 150,
+   "hi": 200,
+   "n_bin": 1319,
+   "no_candidate": 0.0728,
+   "candidate_shower_fail": 0.2593,
+   "shower_pass": 0.6679
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 4,
+   "lo": 200,
+   "hi": 250,
+   "n_bin": 1278,
+   "no_candidate": 0.0618,
+   "candidate_shower_fail": 0.2387,
+   "shower_pass": 0.6995
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 5,
+   "lo": 250,
+   "hi": 300,
+   "n_bin": 1231,
+   "no_candidate": 0.0496,
+   "candidate_shower_fail": 0.2583,
+   "shower_pass": 0.6921
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 6,
+   "lo": 300,
+   "hi": 350,
+   "n_bin": 1268,
+   "no_candidate": 0.0647,
+   "candidate_shower_fail": 0.2674,
+   "shower_pass": 0.668
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 7,
+   "lo": 350,
+   "hi": 400,
+   "n_bin": 1210,
+   "no_candidate": 0.0678,
+   "candidate_shower_fail": 0.2273,
+   "shower_pass": 0.705
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 8,
+   "lo": 400,
+   "hi": 450,
+   "n_bin": 1170,
+   "no_candidate": 0.0872,
+   "candidate_shower_fail": 0.2838,
+   "shower_pass": 0.6291
+  },
+  {
+   "variable": "vtx_z",
+   "bin": 9,
+   "lo": 450,
+   "hi": 500,
+   "n_bin": 1193,
+   "no_candidate": 0.2892,
+   "candidate_shower_fail": 0.3001,
+   "shower_pass": 0.4107
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 0,
+   "lo": 0,
+   "hi": 10,
+   "n_bin": 1468,
+   "no_candidate": 0.2909,
+   "candidate_shower_fail": 0.2711,
+   "shower_pass": 0.438
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 1,
+   "lo": 10,
+   "hi": 25,
+   "n_bin": 2015,
+   "no_candidate": 0.1454,
+   "candidate_shower_fail": 0.3151,
+   "shower_pass": 0.5395
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 2,
+   "lo": 25,
+   "hi": 50,
+   "n_bin": 2912,
+   "no_candidate": 0.0697,
+   "candidate_shower_fail": 0.2644,
+   "shower_pass": 0.6659
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 3,
+   "lo": 50,
+   "hi": 75,
+   "n_bin": 2244,
+   "no_candidate": 0.0379,
+   "candidate_shower_fail": 0.25,
+   "shower_pass": 0.7121
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 4,
+   "lo": 75,
+   "hi": 100,
+   "n_bin": 1639,
+   "no_candidate": 0.0281,
+   "candidate_shower_fail": 0.2471,
+   "shower_pass": 0.7248
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 5,
+   "lo": 100,
+   "hi": 150,
+   "n_bin": 1771,
+   "no_candidate": 0.0215,
+   "candidate_shower_fail": 0.2185,
+   "shower_pass": 0.76
+  },
+  {
+   "variable": "dist_boundary",
+   "bin": 6,
+   "lo": 150,
+   "hi": 250,
+   "n_bin": 378,
+   "no_candidate": 0.0106,
+   "candidate_shower_fail": 0.2513,
+   "shower_pass": 0.7381
+  }
+ ],
+ "vertex_distributions": [
+  {
+   "variable": "d_vertex",
+   "group": "truth 0p",
+   "n": 4926,
+   "median": 27.764,
+   "q16": 6.761,
+   "q84": 62.947,
+   "mean": 36.358
+  },
+  {
+   "variable": "d_vertex",
+   "group": "truth 1p",
+   "n": 4978,
+   "median": 4.767,
+   "q16": 0.619,
+   "q84": 44.603,
+   "mean": 20.562
+  },
+  {
+   "variable": "d_vertex",
+   "group": "truth >=2p",
+   "n": 927,
+   "median": 2.359,
+   "q16": 0.595,
+   "q84": 37.58,
+   "mean": 17.598
+  },
+  {
+   "variable": "parallel",
+   "group": "truth 0p",
+   "n": 4926,
+   "median": 24.568,
+   "q16": 3.164,
+   "q84": 56.477,
+   "mean": 29.318
+  },
+  {
+   "variable": "parallel",
+   "group": "truth 1p",
+   "n": 4978,
+   "median": 1.069,
+   "q16": -0.354,
+   "q84": 41.607,
+   "mean": 16.173
+  },
+  {
+   "variable": "parallel",
+   "group": "truth >=2p",
+   "n": 927,
+   "median": 0.518,
+   "q16": -0.552,
+   "q84": 35.357,
+   "mean": 13.134
+  },
+  {
+   "variable": "perp",
+   "group": "truth 0p",
+   "n": 4926,
+   "median": 1.176,
+   "q16": 0.357,
+   "q84": 5.107,
+   "mean": 7.28
+  },
+  {
+   "variable": "perp",
+   "group": "truth 1p",
+   "n": 4978,
+   "median": 1.06,
+   "q16": 0.368,
+   "q84": 4.446,
+   "mean": 4.355
+  },
+  {
+   "variable": "perp",
+   "group": "truth >=2p",
+   "n": 927,
+   "median": 1.017,
+   "q16": 0.349,
+   "q84": 3.389,
+   "mean": 4.101
+  },
+  {
+   "variable": "d_conv",
+   "group": "truth 0p",
+   "n": 4762,
+   "median": 11.689,
+   "q16": 1.023,
+   "q84": 36.206,
+   "mean": 21.71
+  },
+  {
+   "variable": "d_conv",
+   "group": "truth 1p",
+   "n": 4709,
+   "median": 13.907,
+   "q16": 3.131,
+   "q84": 35.873,
+   "mean": 20.948
+  },
+  {
+   "variable": "d_conv",
+   "group": "truth >=2p",
+   "n": 877,
+   "median": 12.117,
+   "q16": 3.106,
+   "q84": 32.556,
+   "mean": 20.42
+  },
+  {
+   "variable": "frac_axis",
+   "group": "truth 0p",
+   "n": 4762,
+   "median": 1.432,
+   "q16": 0.983,
+   "q84": 4.534,
+   "mean": 6.859
+  },
+  {
+   "variable": "frac_axis",
+   "group": "truth 1p",
+   "n": 4709,
+   "median": 0.202,
+   "q16": -0.027,
+   "q84": 2.503,
+   "mean": 2.716
+  },
+  {
+   "variable": "frac_axis",
+   "group": "truth >=2p",
+   "n": 877,
+   "median": 0.06,
+   "q16": -0.043,
+   "q84": 2.125,
+   "mean": 2.352
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "group": "truth 0p",
+   "n": 4637,
+   "median": 0.0,
+   "q16": 0.0,
+   "q84": 12.685,
+   "mean": 7.351
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "group": "truth 1p",
+   "n": 4530,
+   "median": 4.801,
+   "q16": 0.0,
+   "q84": 28.664,
+   "mean": 13.689
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "group": "truth >=2p",
+   "n": 859,
+   "median": 5.974,
+   "q16": 0.0,
+   "q84": 26.597,
+   "mean": 13.665
+  },
+  {
+   "variable": "shw_start_to_true_conv",
+   "group": "truth 0p",
+   "n": 4552,
+   "median": 8.949,
+   "q16": 0.76,
+   "q84": 30.15,
+   "mean": 15.177
+  },
+  {
+   "variable": "shw_start_to_true_conv",
+   "group": "truth 1p",
+   "n": 4435,
+   "median": 2.276,
+   "q16": 0.567,
+   "q84": 24.227,
+   "mean": 10.334
+  },
+  {
+   "variable": "shw_start_to_true_conv",
+   "group": "truth >=2p",
+   "n": 835,
+   "median": 2.147,
+   "q16": 0.609,
+   "q84": 19.676,
+   "mean": 9.716
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "group": "truth 0p",
+   "n": 4637,
+   "median": 0.0,
+   "q16": -3.909,
+   "q84": 0.0,
+   "mean": -2.806
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "group": "truth 1p",
+   "n": 4530,
+   "median": -2.277,
+   "q16": -24.68,
+   "q84": 0.0,
+   "mean": -10.533
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "group": "truth >=2p",
+   "n": 859,
+   "median": -4.325,
+   "q16": -25.73,
+   "q84": 0.0,
+   "mean": -11.336
+  }
+ ],
+ "vertex_effect_sizes": [
+  {
+   "variable": "d_vertex",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4926,
+   "n_b": 4978,
+   "median_a": 27.764,
+   "median_b": 4.767,
+   "smd": -0.462,
+   "ks": 0.373,
+   "wasserstein": 15.796
+  },
+  {
+   "variable": "d_vertex",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4978,
+   "n_b": 927,
+   "median_a": 4.767,
+   "median_b": 2.359,
+   "smd": -0.09,
+   "ks": 0.115,
+   "wasserstein": 3.991
+  },
+  {
+   "variable": "d_vertex",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4926,
+   "n_b": 927,
+   "median_a": 27.764,
+   "median_b": 2.359,
+   "smd": -0.523,
+   "ks": 0.488,
+   "wasserstein": 19.116
+  },
+  {
+   "variable": "parallel",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4926,
+   "n_b": 4978,
+   "median_a": 24.568,
+   "median_b": 1.069,
+   "smd": -0.413,
+   "ks": 0.405,
+   "wasserstein": 14.478
+  },
+  {
+   "variable": "parallel",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4978,
+   "n_b": 927,
+   "median_a": 1.069,
+   "median_b": 0.518,
+   "smd": -0.101,
+   "ks": 0.092,
+   "wasserstein": 3.72
+  },
+  {
+   "variable": "parallel",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4926,
+   "n_b": 927,
+   "median_a": 24.568,
+   "median_b": 0.518,
+   "smd": -0.506,
+   "ks": 0.494,
+   "wasserstein": 17.785
+  },
+  {
+   "variable": "perp",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4926,
+   "n_b": 4978,
+   "median_a": 1.176,
+   "median_b": 1.06,
+   "smd": -0.141,
+   "ks": 0.036,
+   "wasserstein": 2.931
+  },
+  {
+   "variable": "perp",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4978,
+   "n_b": 927,
+   "median_a": 1.06,
+   "median_b": 1.017,
+   "smd": -0.015,
+   "ks": 0.056,
+   "wasserstein": 1.386
+  },
+  {
+   "variable": "perp",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4926,
+   "n_b": 927,
+   "median_a": 1.176,
+   "median_b": 1.017,
+   "smd": -0.138,
+   "ks": 0.08,
+   "wasserstein": 3.364
+  },
+  {
+   "variable": "d_conv",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4762,
+   "n_b": 4709,
+   "median_a": 11.689,
+   "median_b": 13.907,
+   "smd": -0.025,
+   "ks": 0.131,
+   "wasserstein": 3.849
+  },
+  {
+   "variable": "d_conv",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4709,
+   "n_b": 877,
+   "median_a": 13.907,
+   "median_b": 12.117,
+   "smd": -0.019,
+   "ks": 0.053,
+   "wasserstein": 1.982
+  },
+  {
+   "variable": "d_conv",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4762,
+   "n_b": 877,
+   "median_a": 11.689,
+   "median_b": 12.117,
+   "smd": -0.039,
+   "ks": 0.129,
+   "wasserstein": 3.577
+  },
+  {
+   "variable": "frac_axis",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4762,
+   "n_b": 4709,
+   "median_a": 1.432,
+   "median_b": 0.202,
+   "smd": -0.073,
+   "ks": 0.426,
+   "wasserstein": 4.994
+  },
+  {
+   "variable": "frac_axis",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4709,
+   "n_b": 877,
+   "median_a": 0.202,
+   "median_b": 0.06,
+   "smd": -0.014,
+   "ks": 0.087,
+   "wasserstein": 1.01
+  },
+  {
+   "variable": "frac_axis",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4762,
+   "n_b": 877,
+   "median_a": 1.432,
+   "median_b": 0.06,
+   "smd": -0.084,
+   "ks": 0.498,
+   "wasserstein": 5.338
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4637,
+   "n_b": 4530,
+   "median_a": 0.0,
+   "median_b": 4.801,
+   "smd": 0.28,
+   "ks": 0.307,
+   "wasserstein": 6.777
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4530,
+   "n_b": 859,
+   "median_a": 4.801,
+   "median_b": 5.974,
+   "smd": -0.001,
+   "ks": 0.034,
+   "wasserstein": 1.165
+  },
+  {
+   "variable": "shw_start_to_reco_vtx",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4637,
+   "n_b": 859,
+   "median_a": 0.0,
+   "median_b": 5.974,
+   "smd": 0.263,
+   "ks": 0.332,
+   "wasserstein": 6.446
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "a": "truth 0p",
+   "b": "truth 1p",
+   "n_a": 4637,
+   "n_b": 4530,
+   "median_a": 0.0,
+   "median_b": -2.277,
+   "smd": -0.384,
+   "ks": 0.331,
+   "wasserstein": 7.857
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "a": "truth 1p",
+   "b": "truth >=2p",
+   "n_a": 4530,
+   "n_b": 859,
+   "median_a": -2.277,
+   "median_b": -4.325,
+   "smd": -0.038,
+   "ks": 0.045,
+   "wasserstein": 1.142
+  },
+  {
+   "variable": "vtx_minus_shw_start_along_photon",
+   "a": "truth 0p",
+   "b": "truth >=2p",
+   "n_a": 4637,
+   "n_b": 859,
+   "median_a": 0.0,
+   "median_b": -4.325,
+   "smd": -0.433,
+   "ks": 0.371,
+   "wasserstein": 8.641
+  }
+ ],
+ "vertex_proximity": [
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 50,
+   "n_group": 4926,
+   "fraction": 0.0102,
+   "lo68": 0.0087,
+   "hi68": 0.0118
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 1161,
+   "n_group": 4926,
+   "fraction": 0.2357,
+   "lo68": 0.2296,
+   "hi68": 0.2419
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 272,
+   "n_group": 4926,
+   "fraction": 0.0552,
+   "lo68": 0.052,
+   "hi68": 0.0587
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 2171,
+   "n_group": 4926,
+   "fraction": 0.4407,
+   "lo68": 0.4336,
+   "hi68": 0.4479
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 164,
+   "n_group": 4926,
+   "fraction": 0.0333,
+   "lo68": 0.0307,
+   "hi68": 0.0361
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 1108,
+   "n_group": 4926,
+   "fraction": 0.2249,
+   "lo68": 0.2189,
+   "hi68": 0.231
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 42,
+   "n_group": 3829,
+   "fraction": 0.011,
+   "lo68": 0.0093,
+   "hi68": 0.0129
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 994,
+   "n_group": 3829,
+   "fraction": 0.2596,
+   "lo68": 0.2524,
+   "hi68": 0.2669
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 217,
+   "n_group": 3829,
+   "fraction": 0.0567,
+   "lo68": 0.0529,
+   "hi68": 0.0607
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 1659,
+   "n_group": 3829,
+   "fraction": 0.4333,
+   "lo68": 0.4251,
+   "hi68": 0.4414
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 60,
+   "n_group": 3829,
+   "fraction": 0.0157,
+   "lo68": 0.0137,
+   "hi68": 0.0179
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 857,
+   "n_group": 3829,
+   "fraction": 0.2238,
+   "lo68": 0.217,
+   "hi68": 0.2308
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 8,
+   "n_group": 1097,
+   "fraction": 0.0073,
+   "lo68": 0.0048,
+   "hi68": 0.0109
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 167,
+   "n_group": 1097,
+   "fraction": 0.1522,
+   "lo68": 0.1413,
+   "hi68": 0.1639
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 55,
+   "n_group": 1097,
+   "fraction": 0.0501,
+   "lo68": 0.0435,
+   "hi68": 0.0576
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 512,
+   "n_group": 1097,
+   "fraction": 0.4667,
+   "lo68": 0.4512,
+   "hi68": 0.4823
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 104,
+   "n_group": 1097,
+   "fraction": 0.0948,
+   "lo68": 0.0859,
+   "hi68": 0.1045
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 251,
+   "n_group": 1097,
+   "fraction": 0.2288,
+   "lo68": 0.2159,
+   "hi68": 0.2422
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 28,
+   "n_group": 2816,
+   "fraction": 0.0099,
+   "lo68": 0.0081,
+   "hi68": 0.0122
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 933,
+   "n_group": 2816,
+   "fraction": 0.3313,
+   "lo68": 0.3223,
+   "hi68": 0.3404
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 11,
+   "n_group": 2816,
+   "fraction": 0.0039,
+   "lo68": 0.0027,
+   "hi68": 0.0055
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 1148,
+   "n_group": 2816,
+   "fraction": 0.4077,
+   "lo68": 0.3983,
+   "hi68": 0.4171
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 44,
+   "n_group": 2816,
+   "fraction": 0.0156,
+   "lo68": 0.0133,
+   "hi68": 0.0183
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 652,
+   "n_group": 2816,
+   "fraction": 0.2315,
+   "lo68": 0.2235,
+   "hi68": 0.2398
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 14,
+   "n_group": 987,
+   "fraction": 0.0142,
+   "lo68": 0.0105,
+   "hi68": 0.019
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 52,
+   "n_group": 987,
+   "fraction": 0.0527,
+   "lo68": 0.0455,
+   "hi68": 0.0608
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 204,
+   "n_group": 987,
+   "fraction": 0.2067,
+   "lo68": 0.1936,
+   "hi68": 0.2204
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 502,
+   "n_group": 987,
+   "fraction": 0.5086,
+   "lo68": 0.4922,
+   "hi68": 0.525
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 15,
+   "n_group": 987,
+   "fraction": 0.0152,
+   "lo68": 0.0113,
+   "hi68": 0.0202
+  },
+  {
+   "group": "truth 0p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 200,
+   "n_group": 987,
+   "fraction": 0.2026,
+   "lo68": 0.1896,
+   "hi68": 0.2163
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 75,
+   "n_group": 4978,
+   "fraction": 0.0151,
+   "lo68": 0.0133,
+   "hi68": 0.017
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 381,
+   "n_group": 4978,
+   "fraction": 0.0765,
+   "lo68": 0.0728,
+   "hi68": 0.0805
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 1637,
+   "n_group": 4978,
+   "fraction": 0.3288,
+   "lo68": 0.3221,
+   "hi68": 0.3356
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 1568,
+   "n_group": 4978,
+   "fraction": 0.315,
+   "lo68": 0.3083,
+   "hi68": 0.3217
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 269,
+   "n_group": 4978,
+   "fraction": 0.054,
+   "lo68": 0.0508,
+   "hi68": 0.0574
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 1048,
+   "n_group": 4978,
+   "fraction": 0.2105,
+   "lo68": 0.2047,
+   "hi68": 0.2165
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 39,
+   "n_group": 3383,
+   "fraction": 0.0115,
+   "lo68": 0.0097,
+   "hi68": 0.0137
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 304,
+   "n_group": 3383,
+   "fraction": 0.0899,
+   "lo68": 0.0849,
+   "hi68": 0.0951
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 1151,
+   "n_group": 3383,
+   "fraction": 0.3402,
+   "lo68": 0.332,
+   "hi68": 0.3486
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 1067,
+   "n_group": 3383,
+   "fraction": 0.3154,
+   "lo68": 0.3073,
+   "hi68": 0.3236
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 51,
+   "n_group": 3383,
+   "fraction": 0.0151,
+   "lo68": 0.013,
+   "hi68": 0.0175
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 771,
+   "n_group": 3383,
+   "fraction": 0.2279,
+   "lo68": 0.2206,
+   "hi68": 0.2354
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 36,
+   "n_group": 1595,
+   "fraction": 0.0226,
+   "lo68": 0.0189,
+   "hi68": 0.0269
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 77,
+   "n_group": 1595,
+   "fraction": 0.0483,
+   "lo68": 0.0429,
+   "hi68": 0.0543
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 486,
+   "n_group": 1595,
+   "fraction": 0.3047,
+   "lo68": 0.293,
+   "hi68": 0.3167
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 501,
+   "n_group": 1595,
+   "fraction": 0.3141,
+   "lo68": 0.3023,
+   "hi68": 0.3262
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 218,
+   "n_group": 1595,
+   "fraction": 0.1367,
+   "lo68": 0.128,
+   "hi68": 0.1458
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 277,
+   "n_group": 1595,
+   "fraction": 0.1737,
+   "lo68": 0.1641,
+   "hi68": 0.1837
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 21,
+   "n_group": 1605,
+   "fraction": 0.0131,
+   "lo68": 0.0103,
+   "hi68": 0.0166
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 264,
+   "n_group": 1605,
+   "fraction": 0.1645,
+   "lo68": 0.1551,
+   "hi68": 0.1743
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 72,
+   "n_group": 1605,
+   "fraction": 0.0449,
+   "lo68": 0.0397,
+   "hi68": 0.0506
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 741,
+   "n_group": 1605,
+   "fraction": 0.4617,
+   "lo68": 0.4489,
+   "hi68": 0.4745
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 19,
+   "n_group": 1605,
+   "fraction": 0.0118,
+   "lo68": 0.0092,
+   "hi68": 0.0152
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 488,
+   "n_group": 1605,
+   "fraction": 0.304,
+   "lo68": 0.2924,
+   "hi68": 0.316
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 18,
+   "n_group": 1747,
+   "fraction": 0.0103,
+   "lo68": 0.0079,
+   "hi68": 0.0133
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 38,
+   "n_group": 1747,
+   "fraction": 0.0218,
+   "lo68": 0.0183,
+   "hi68": 0.0258
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 1068,
+   "n_group": 1747,
+   "fraction": 0.6113,
+   "lo68": 0.5993,
+   "hi68": 0.6232
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 319,
+   "n_group": 1747,
+   "fraction": 0.1826,
+   "lo68": 0.1733,
+   "hi68": 0.1923
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 28,
+   "n_group": 1747,
+   "fraction": 0.016,
+   "lo68": 0.013,
+   "hi68": 0.0196
+  },
+  {
+   "group": "truth 1p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 276,
+   "n_group": 1747,
+   "fraction": 0.158,
+   "lo68": 0.1492,
+   "hi68": 0.1672
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 12,
+   "n_group": 927,
+   "fraction": 0.0129,
+   "lo68": 0.0093,
+   "hi68": 0.0178
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 52,
+   "n_group": 927,
+   "fraction": 0.0561,
+   "lo68": 0.0485,
+   "hi68": 0.0647
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 375,
+   "n_group": 927,
+   "fraction": 0.4045,
+   "lo68": 0.388,
+   "hi68": 0.4213
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 224,
+   "n_group": 927,
+   "fraction": 0.2416,
+   "lo68": 0.2273,
+   "hi68": 0.2565
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 50,
+   "n_group": 927,
+   "fraction": 0.0539,
+   "lo68": 0.0465,
+   "hi68": 0.0624
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "all",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 214,
+   "n_group": 927,
+   "fraction": 0.2309,
+   "lo68": 0.2168,
+   "hi68": 0.2455
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 10,
+   "n_group": 642,
+   "fraction": 0.0156,
+   "lo68": 0.0107,
+   "hi68": 0.0222
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 44,
+   "n_group": 642,
+   "fraction": 0.0685,
+   "lo68": 0.0585,
+   "hi68": 0.08
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 244,
+   "n_group": 642,
+   "fraction": 0.3801,
+   "lo68": 0.3603,
+   "hi68": 0.4002
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 170,
+   "n_group": 642,
+   "fraction": 0.2648,
+   "lo68": 0.247,
+   "hi68": 0.2834
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 19,
+   "n_group": 642,
+   "fraction": 0.0296,
+   "lo68": 0.0229,
+   "hi68": 0.0379
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage pass",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 155,
+   "n_group": 642,
+   "fraction": 0.2414,
+   "lo68": 0.2242,
+   "hi68": 0.2595
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 2,
+   "n_group": 285,
+   "fraction": 0.007,
+   "lo68": 0.0025,
+   "hi68": 0.0162
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 8,
+   "n_group": 285,
+   "fraction": 0.0281,
+   "lo68": 0.0184,
+   "hi68": 0.0416
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 131,
+   "n_group": 285,
+   "fraction": 0.4596,
+   "lo68": 0.4286,
+   "hi68": 0.491
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 54,
+   "n_group": 285,
+   "fraction": 0.1895,
+   "lo68": 0.1657,
+   "hi68": 0.2156
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 31,
+   "n_group": 285,
+   "fraction": 0.1088,
+   "lo68": 0.0901,
+   "hi68": 0.1305
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "shower-stage fail",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 59,
+   "n_group": 285,
+   "fraction": 0.207,
+   "lo68": 0.1824,
+   "hi68": 0.2339
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 5,
+   "n_group": 319,
+   "fraction": 0.0157,
+   "lo68": 0.0089,
+   "hi68": 0.0261
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 42,
+   "n_group": 319,
+   "fraction": 0.1317,
+   "lo68": 0.1124,
+   "hi68": 0.1534
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 27,
+   "n_group": 319,
+   "fraction": 0.0846,
+   "lo68": 0.0689,
+   "hi68": 0.1032
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 126,
+   "n_group": 319,
+   "fraction": 0.395,
+   "lo68": 0.3664,
+   "hi68": 0.4242
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 9,
+   "n_group": 319,
+   "fraction": 0.0282,
+   "lo68": 0.019,
+   "hi68": 0.0408
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger attached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 110,
+   "n_group": 319,
+   "fraction": 0.3448,
+   "lo68": 0.3172,
+   "hi68": 0.3735
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "between",
+   "n": 5,
+   "n_group": 316,
+   "fraction": 0.0158,
+   "lo68": 0.009,
+   "hi68": 0.0264
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "conversion_point",
+   "n": 2,
+   "n_group": 316,
+   "fraction": 0.0063,
+   "lo68": 0.0022,
+   "hi68": 0.0146
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "interaction_vertex",
+   "n": 214,
+   "n_group": 316,
+   "fraction": 0.6772,
+   "lo68": 0.6488,
+   "hi68": 0.7045
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "neither",
+   "n": 42,
+   "n_group": 316,
+   "fraction": 0.1329,
+   "lo68": 0.1135,
+   "hi68": 0.1548
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "no_conversion_point",
+   "n": 9,
+   "n_group": 316,
+   "fraction": 0.0285,
+   "lo68": 0.0192,
+   "hi68": 0.0412
+  },
+  {
+   "group": "truth >=2p",
+   "stratum": "tagger detached",
+   "tolerance_col": "prox",
+   "proximity": "not_separable",
+   "n": 44,
+   "n_group": 316,
+   "fraction": 0.1392,
+   "lo68": 0.1194,
+   "hi68": 0.1615
+  }
+ ],
+ "vertex_events": {
+  "matched_candidate_events": 10831,
+  "conv_events": 10348,
+  "anchored5_by_class": {
+   "truth 0p": 0.1315468940316687,
+   "truth 1p": 0.5032141422257935,
+   "truth >=2p": 0.61596548004315
+  }
+ },
+ "connectivity_states": [
+  {
+   "group": "all",
+   "state": "A_attached_at_vertex_root",
+   "n": 2743,
+   "n_group": 11331,
+   "fraction": 0.2421,
+   "lo68": 0.238,
+   "hi68": 0.2462
+  },
+  {
+   "group": "all",
+   "state": "B_detached_photon_node_at_vertex",
+   "n": 1845,
+   "n_group": 11331,
+   "fraction": 0.1628,
+   "lo68": 0.1593,
+   "hi68": 0.1664
+  },
+  {
+   "group": "all",
+   "state": "C_connected_through_other_particle",
+   "n": 1449,
+   "n_group": 11331,
+   "fraction": 0.1279,
+   "lo68": 0.1247,
+   "hi68": 0.1311
+  },
+  {
+   "group": "all",
+   "state": "D_no_pf_path_in_candidate",
+   "n": 22,
+   "n_group": 11331,
+   "fraction": 0.0019,
+   "lo68": 0.0015,
+   "hi68": 0.0024
+  },
+  {
+   "group": "all",
+   "state": "E_shower_in_other_candidate",
+   "n": 5,
+   "n_group": 11331,
+   "fraction": 0.0004,
+   "lo68": 0.0003,
+   "hi68": 0.0007
+  },
+  {
+   "group": "all",
+   "state": "F_no_clean_electron_shower_object",
+   "n": 5267,
+   "n_group": 11331,
+   "fraction": 0.4648,
+   "lo68": 0.4601,
+   "hi68": 0.4696
+  },
+  {
+   "group": "truth 0p",
+   "state": "A_attached_at_vertex_root",
+   "n": 1695,
+   "n_group": 5210,
+   "fraction": 0.3253,
+   "lo68": 0.3188,
+   "hi68": 0.332
+  },
+  {
+   "group": "truth 0p",
+   "state": "B_detached_photon_node_at_vertex",
+   "n": 423,
+   "n_group": 5210,
+   "fraction": 0.0812,
+   "lo68": 0.0774,
+   "hi68": 0.0852
+  },
+  {
+   "group": "truth 0p",
+   "state": "C_connected_through_other_particle",
+   "n": 511,
+   "n_group": 5210,
+   "fraction": 0.0981,
+   "lo68": 0.0939,
+   "hi68": 0.1024
+  },
+  {
+   "group": "truth 0p",
+   "state": "D_no_pf_path_in_candidate",
+   "n": 7,
+   "n_group": 5210,
+   "fraction": 0.0013,
+   "lo68": 0.0008,
+   "hi68": 0.0021
+  },
+  {
+   "group": "truth 0p",
+   "state": "E_shower_in_other_candidate",
+   "n": 2,
+   "n_group": 5210,
+   "fraction": 0.0004,
+   "lo68": 0.0001,
+   "hi68": 0.0009
+  },
+  {
+   "group": "truth 0p",
+   "state": "F_no_clean_electron_shower_object",
+   "n": 2572,
+   "n_group": 5210,
+   "fraction": 0.4937,
+   "lo68": 0.4866,
+   "hi68": 0.5007
+  },
+  {
+   "group": "truth 1p",
+   "state": "A_attached_at_vertex_root",
+   "n": 875,
+   "n_group": 5170,
+   "fraction": 0.1692,
+   "lo68": 0.164,
+   "hi68": 0.1746
+  },
+  {
+   "group": "truth 1p",
+   "state": "B_detached_photon_node_at_vertex",
+   "n": 1197,
+   "n_group": 5170,
+   "fraction": 0.2315,
+   "lo68": 0.2256,
+   "hi68": 0.2375
+  },
+  {
+   "group": "truth 1p",
+   "state": "C_connected_through_other_particle",
+   "n": 770,
+   "n_group": 5170,
+   "fraction": 0.1489,
+   "lo68": 0.144,
+   "hi68": 0.1541
+  },
+  {
+   "group": "truth 1p",
+   "state": "D_no_pf_path_in_candidate",
+   "n": 12,
+   "n_group": 5170,
+   "fraction": 0.0023,
+   "lo68": 0.0017,
+   "hi68": 0.0032
+  },
+  {
+   "group": "truth 1p",
+   "state": "E_shower_in_other_candidate",
+   "n": 2,
+   "n_group": 5170,
+   "fraction": 0.0004,
+   "lo68": 0.0001,
+   "hi68": 0.0009
+  },
+  {
+   "group": "truth 1p",
+   "state": "F_no_clean_electron_shower_object",
+   "n": 2314,
+   "n_group": 5170,
+   "fraction": 0.4476,
+   "lo68": 0.4406,
+   "hi68": 0.4546
+  },
+  {
+   "group": "truth >=2p",
+   "state": "A_attached_at_vertex_root",
+   "n": 173,
+   "n_group": 951,
+   "fraction": 0.1819,
+   "lo68": 0.1692,
+   "hi68": 0.1953
+  },
+  {
+   "group": "truth >=2p",
+   "state": "B_detached_photon_node_at_vertex",
+   "n": 225,
+   "n_group": 951,
+   "fraction": 0.2366,
+   "lo68": 0.2226,
+   "hi68": 0.2512
+  },
+  {
+   "group": "truth >=2p",
+   "state": "C_connected_through_other_particle",
+   "n": 168,
+   "n_group": 951,
+   "fraction": 0.1767,
+   "lo68": 0.1641,
+   "hi68": 0.1899
+  },
+  {
+   "group": "truth >=2p",
+   "state": "D_no_pf_path_in_candidate",
+   "n": 3,
+   "n_group": 951,
+   "fraction": 0.0032,
+   "lo68": 0.0014,
+   "hi68": 0.0062
+  },
+  {
+   "group": "truth >=2p",
+   "state": "E_shower_in_other_candidate",
+   "n": 1,
+   "n_group": 951,
+   "fraction": 0.0011,
+   "lo68": 0.0002,
+   "hi68": 0.0035
+  },
+  {
+   "group": "truth >=2p",
+   "state": "F_no_clean_electron_shower_object",
+   "n": 381,
+   "n_group": 951,
+   "fraction": 0.4006,
+   "lo68": 0.3843,
+   "hi68": 0.4172
+  }
+ ],
+ "pf_state_vs_tagger_gap": {
+  "False": {
+   "deeper": 490,
+   "none": 1,
+   "photon_node_at_vertex": 2556,
+   "root": 55
+  },
+  "True": {
+   "deeper": 718,
+   "none": 2,
+   "photon_node_at_vertex": 0,
+   "root": 4125
+  }
+ },
+ "hadronic": [
+  {
+   "delta": "Delta+",
+   "origin": "decay_proton",
+   "n_events": 3301,
+   "shower_stage_pass": 2165,
+   "pass_fraction": 0.6559,
+   "lo68": 0.6474,
+   "hi68": 0.6642,
+   "n_matched_vertex_events": 3188,
+   "anchored5_fraction": 0.5402,
+   "parallel_median": 0.6761,
+   "d_vertex_median": 3.267,
+   "frac_state_A": 0.1557,
+   "frac_state_B": 0.2505,
+   "frac_state_C": 0.1418,
+   "frac_not_in_main_vertex_set": 0.0748,
+   "frac_typed_non_electron": 0.1124,
+   "reco_proton_present": 0.6735
+  },
+  {
+   "delta": "Delta+",
+   "origin": "fsi_created",
+   "n_events": 294,
+   "shower_stage_pass": 210,
+   "pass_fraction": 0.7143,
+   "lo68": 0.6855,
+   "hi68": 0.7415,
+   "n_matched_vertex_events": 279,
+   "anchored5_fraction": 0.3907,
+   "parallel_median": 14.3804,
+   "d_vertex_median": 15.7793,
+   "frac_state_A": 0.1905,
+   "frac_state_B": 0.1905,
+   "frac_state_C": 0.1633,
+   "frac_not_in_main_vertex_set": 0.0612,
+   "frac_typed_non_electron": 0.0782,
+   "reco_proton_present": 0.5556
+  },
+  {
+   "delta": "Delta+",
+   "origin": "ambiguous",
+   "n_events": 73,
+   "shower_stage_pass": 53,
+   "pass_fraction": 0.726,
+   "lo68": 0.6639,
+   "hi68": 0.7812,
+   "n_matched_vertex_events": 72,
+   "anchored5_fraction": 0.5,
+   "parallel_median": 3.9199,
+   "d_vertex_median": 5.4641,
+   "frac_state_A": 0.2466,
+   "frac_state_B": 0.2329,
+   "frac_state_C": 0.1233,
+   "frac_not_in_main_vertex_set": 0.0548,
+   "frac_typed_non_electron": 0.0822,
+   "reco_proton_present": 0.5694
+  },
+  {
+   "delta": "Delta+",
+   "origin": "not_from_decay",
+   "n_events": 5,
+   "shower_stage_pass": 4,
+   "pass_fraction": 0.8,
+   "lo68": 0.4756,
+   "hi68": 0.9661,
+   "n_matched_vertex_events": 5,
+   "anchored5_fraction": 0.0,
+   "parallel_median": 46.4081,
+   "d_vertex_median": 46.4126,
+   "frac_state_A": 0.4,
+   "frac_state_B": 0.2,
+   "frac_state_C": 0.0,
+   "frac_not_in_main_vertex_set": 0.0,
+   "frac_typed_non_electron": 0.0,
+   "reco_proton_present": 1.0
+  },
+  {
+   "delta": "Delta0",
+   "origin": "fsi_created",
+   "n_events": 1476,
+   "shower_stage_pass": 1021,
+   "pass_fraction": 0.6917,
+   "lo68": 0.6792,
+   "hi68": 0.704,
+   "n_matched_vertex_events": 1414,
+   "anchored5_fraction": 0.4448,
+   "parallel_median": 4.4409,
+   "d_vertex_median": 10.3693,
+   "frac_state_A": 0.1917,
+   "frac_state_B": 0.1999,
+   "frac_state_C": 0.1612,
+   "frac_not_in_main_vertex_set": 0.0637,
+   "frac_typed_non_electron": 0.0867,
+   "reco_proton_present": 0.6231
+  },
+  {
+   "delta": "Delta0",
+   "origin": "not_from_decay",
+   "n_events": 21,
+   "shower_stage_pass": 15,
+   "pass_fraction": 0.7143,
+   "lo68": 0.5828,
+   "hi68": 0.8213,
+   "n_matched_vertex_events": 20,
+   "anchored5_fraction": 0.45,
+   "parallel_median": -0.0154,
+   "d_vertex_median": 6.0016,
+   "frac_state_A": 0.0952,
+   "frac_state_B": 0.0476,
+   "frac_state_C": 0.3333,
+   "frac_not_in_main_vertex_set": 0.0476,
+   "frac_typed_non_electron": 0.0952,
+   "reco_proton_present": 0.5
+  },
+  {
+   "delta": "all",
+   "origin": "decay_proton",
+   "n_events": 3301,
+   "shower_stage_pass": 2165,
+   "pass_fraction": 0.6559,
+   "lo68": 0.6474,
+   "hi68": 0.6642,
+   "n_matched_vertex_events": 3188,
+   "anchored5_fraction": 0.5402,
+   "parallel_median": 0.6761,
+   "d_vertex_median": 3.267,
+   "frac_state_A": 0.1557,
+   "frac_state_B": 0.2505,
+   "frac_state_C": 0.1418,
+   "frac_not_in_main_vertex_set": 0.0748,
+   "frac_typed_non_electron": 0.1124,
+   "reco_proton_present": 0.6735
+  },
+  {
+   "delta": "all",
+   "origin": "fsi_created",
+   "n_events": 1770,
+   "shower_stage_pass": 1231,
+   "pass_fraction": 0.6955,
+   "lo68": 0.6841,
+   "hi68": 0.7066,
+   "n_matched_vertex_events": 1693,
+   "anchored5_fraction": 0.4359,
+   "parallel_median": 6.3844,
+   "d_vertex_median": 11.7506,
+   "frac_state_A": 0.1915,
+   "frac_state_B": 0.1983,
+   "frac_state_C": 0.1616,
+   "frac_not_in_main_vertex_set": 0.0633,
+   "frac_typed_non_electron": 0.0853,
+   "reco_proton_present": 0.6119
+  },
+  {
+   "delta": "all",
+   "origin": "ambiguous",
+   "n_events": 73,
+   "shower_stage_pass": 53,
+   "pass_fraction": 0.726,
+   "lo68": 0.6639,
+   "hi68": 0.7812,
+   "n_matched_vertex_events": 72,
+   "anchored5_fraction": 0.5,
+   "parallel_median": 3.9199,
+   "d_vertex_median": 5.4641,
+   "frac_state_A": 0.2466,
+   "frac_state_B": 0.2329,
+   "frac_state_C": 0.1233,
+   "frac_not_in_main_vertex_set": 0.0548,
+   "frac_typed_non_electron": 0.0822,
+   "reco_proton_present": 0.5694
+  },
+  {
+   "delta": "all",
+   "origin": "not_from_decay",
+   "n_events": 26,
+   "shower_stage_pass": 19,
+   "pass_fraction": 0.7308,
+   "lo68": 0.6161,
+   "hi68": 0.8243,
+   "n_matched_vertex_events": 25,
+   "anchored5_fraction": 0.36,
+   "parallel_median": 1.4001,
+   "d_vertex_median": 9.453,
+   "frac_state_A": 0.1538,
+   "frac_state_B": 0.0769,
+   "frac_state_C": 0.2692,
+   "frac_not_in_main_vertex_set": 0.0385,
+   "frac_typed_non_electron": 0.0769,
+   "reco_proton_present": 0.6
+  }
+ ],
+ "vertex_anchoring_by_reco_proton": [
+  {
+   "truth": "1p",
+   "reco_proton_present": false,
+   "n": 1739,
+   "anchored5": 0.2703,
+   "parallel_median": 24.304,
+   "d_vertex_median": 26.457,
+   "frac_interaction_vertex": 0.1639,
+   "frac_conversion_point": 0.1346,
+   "attached_tagger": 0.6545
+  },
+  {
+   "truth": "1p",
+   "reco_proton_present": true,
+   "n": 3239,
+   "anchored5": 0.6283,
+   "parallel_median": 0.3594,
+   "d_vertex_median": 1.9854,
+   "frac_interaction_vertex": 0.4174,
+   "frac_conversion_point": 0.0454,
+   "attached_tagger": 0.3575
+  },
+  {
+   "truth": "0p",
+   "reco_proton_present": false,
+   "n": 3836,
+   "anchored5": 0.1371,
+   "parallel_median": 26.2133,
+   "d_vertex_median": 27.6044,
+   "frac_interaction_vertex": 0.0508,
+   "frac_conversion_point": 0.2732,
+   "attached_tagger": 0.7719
+  },
+  {
+   "truth": "0p",
+   "reco_proton_present": true,
+   "n": 1090,
+   "anchored5": 0.1119,
+   "parallel_median": 18.5091,
+   "d_vertex_median": 28.0059,
+   "frac_interaction_vertex": 0.0706,
+   "frac_conversion_point": 0.1037,
+   "attached_tagger": 0.6069
+  }
+ ],
+ "detachment_strata": [
+  {
+   "stratum": "all",
+   "truth": "truth 0p",
+   "n": 2446,
+   "detached": 0.276
+  },
+  {
+   "stratum": "all",
+   "truth": "truth 1p",
+   "n": 2174,
+   "detached": 0.6099
+  },
+  {
+   "stratum": "all",
+   "truth": "truth >=2p",
+   "n": 387,
+   "detached": 0.6098
+  },
+  {
+   "stratum": "reco proton present = False",
+   "truth": "truth 0p",
+   "n": 2027,
+   "detached": 0.2368
+  },
+  {
+   "stratum": "reco proton present = False",
+   "truth": "truth 1p",
+   "n": 750,
+   "detached": 0.3547
+  },
+  {
+   "stratum": "reco proton present = False",
+   "truth": "truth >=2p",
+   "n": 108,
+   "detached": 0.213
+  },
+  {
+   "stratum": "reco proton present = True",
+   "truth": "truth 0p",
+   "n": 419,
+   "detached": 0.4654
+  },
+  {
+   "stratum": "reco proton present = True",
+   "truth": "truth 1p",
+   "n": 1424,
+   "detached": 0.7444
+  },
+  {
+   "stratum": "reco proton present = True",
+   "truth": "truth >=2p",
+   "n": 279,
+   "detached": 0.7634
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = False",
+   "truth": "truth 0p",
+   "n": 2034,
+   "detached": 0.2237
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = False",
+   "truth": "truth 1p",
+   "n": 849,
+   "detached": 0.2697
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = False",
+   "truth": "truth >=2p",
+   "n": 137,
+   "detached": 0.2482
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = True",
+   "truth": "truth 0p",
+   "n": 412,
+   "detached": 0.534
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = True",
+   "truth": "truth 1p",
+   "n": 1325,
+   "detached": 0.8279
+  },
+  {
+   "stratum": "vertex within 5 cm of the true vertex = True",
+   "truth": "truth >=2p",
+   "n": 250,
+   "detached": 0.808
+  },
+  {
+   "stratum": "reco proton False & anchored False",
+   "truth": "truth 0p",
+   "n": 1685,
+   "detached": 0.1875
+  },
+  {
+   "stratum": "reco proton False & anchored True",
+   "truth": "truth 0p",
+   "n": 342,
+   "detached": 0.4795
+  },
+  {
+   "stratum": "reco proton True & anchored False",
+   "truth": "truth 0p",
+   "n": 349,
+   "detached": 0.3983
+  },
+  {
+   "stratum": "reco proton True & anchored True",
+   "truth": "truth 0p",
+   "n": 70,
+   "detached": 0.8
+  },
+  {
+   "stratum": "reco proton False & anchored False",
+   "truth": "truth 1p",
+   "n": 516,
+   "detached": 0.2481
+  },
+  {
+   "stratum": "reco proton False & anchored True",
+   "truth": "truth 1p",
+   "n": 234,
+   "detached": 0.5897
+  },
+  {
+   "stratum": "reco proton True & anchored False",
+   "truth": "truth 1p",
+   "n": 333,
+   "detached": 0.3033
+  },
+  {
+   "stratum": "reco proton True & anchored True",
+   "truth": "truth 1p",
+   "n": 1091,
+   "detached": 0.879
+  },
+  {
+   "stratum": "conversion distance 0-5 cm",
+   "truth": "truth 0p",
+   "n": 522,
+   "detached": 0.2395
+  },
+  {
+   "stratum": "conversion distance 5-10 cm",
+   "truth": "truth 0p",
+   "n": 429,
+   "detached": 0.2214
+  },
+  {
+   "stratum": "conversion distance 10-20 cm",
+   "truth": "truth 0p",
+   "n": 575,
+   "detached": 0.3165
+  },
+  {
+   "stratum": "conversion distance 20-30 cm",
+   "truth": "truth 0p",
+   "n": 340,
+   "detached": 0.3441
+  },
+  {
+   "stratum": "conversion distance 30-50 cm",
+   "truth": "truth 0p",
+   "n": 347,
+   "detached": 0.2853
+  },
+  {
+   "stratum": "conversion distance 50-1000 cm",
+   "truth": "truth 0p",
+   "n": 195,
+   "detached": 0.2615
+  },
+  {
+   "stratum": "conversion distance 0-5 cm",
+   "truth": "truth 1p",
+   "n": 458,
+   "detached": 0.3865
+  },
+  {
+   "stratum": "conversion distance 5-10 cm",
+   "truth": "truth 1p",
+   "n": 406,
+   "detached": 0.7217
+  },
+  {
+   "stratum": "conversion distance 10-20 cm",
+   "truth": "truth 1p",
+   "n": 509,
+   "detached": 0.7053
+  },
+  {
+   "stratum": "conversion distance 20-30 cm",
+   "truth": "truth 1p",
+   "n": 320,
+   "detached": 0.6219
+  },
+  {
+   "stratum": "conversion distance 30-50 cm",
+   "truth": "truth 1p",
+   "n": 296,
+   "detached": 0.6216
+  },
+  {
+   "stratum": "conversion distance 50-1000 cm",
+   "truth": "truth 1p",
+   "n": 162,
+   "detached": 0.6235
+  },
+  {
+   "stratum": "proton origin = decay_proton",
+   "truth": "truth 1p",
+   "n": 1367,
+   "detached": 0.6554
+  },
+  {
+   "stratum": "proton origin = fsi_created",
+   "truth": "truth 1p",
+   "n": 763,
+   "detached": 0.5347
+  },
+  {
+   "stratum": "proton origin = ambiguous",
+   "truth": "truth 1p",
+   "n": 35,
+   "detached": 0.4857
+  }
+ ],
+ "detachment_accounting_through_anchoring": {
+  "truth 0p": {
+   "p_anchored": 0.16843826655764513,
+   "p_det_given_anchored": 0.5339805825242718,
+   "p_det_given_not_anchored": 0.22369714847590955,
+   "p_detached": 0.2759607522485691
+  },
+  "truth 1p": {
+   "p_anchored": 0.609475620975161,
+   "p_det_given_anchored": 0.8279245283018868,
+   "p_det_given_not_anchored": 0.2697290930506478,
+   "p_detached": 0.609935602575897
+  }
+ },
+ "detachment_adjusted": {
+  "none": {
+   "raw_difference": 0.3339748503273279
+  },
+  "+ reco proton present": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.17819671078879218,
+   "adjusted_lo68": 0.162919473344294,
+   "adjusted_hi68": 0.1913381942603867,
+   "group_log_odds_coef": 0.8209784848580028,
+   "n": 4620.0
+  },
+  "+ vertex displacement along the photon": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.11901395180796566,
+   "adjusted_lo68": 0.10318997286880173,
+   "adjusted_hi68": 0.13380214413342115,
+   "group_log_odds_coef": 0.6138075686718029,
+   "n": 4620.0
+  },
+  "+ vertex anchored (<=5 cm)": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.03957052707092273,
+   "adjusted_lo68": 0.02547391314152622,
+   "adjusted_hi68": 0.05278041473562265,
+   "group_log_odds_coef": 0.2407319704531386,
+   "n": 4620.0
+  },
+  "+ conversion distance": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.034199415863244244,
+   "adjusted_lo68": 0.019530813348691792,
+   "adjusted_hi68": 0.04538596059825014,
+   "group_log_odds_coef": 0.21482997763846348,
+   "n": 4620.0
+  },
+  "+ photon energy and angle": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.02699890789442726,
+   "adjusted_lo68": 0.012441813607895395,
+   "adjusted_hi68": 0.039731191611608464,
+   "group_log_odds_coef": 0.17606001734984672,
+   "n": 4620.0
+  },
+  "+ candidate multiplicity": {
+   "raw_difference": 0.3339748503273279,
+   "adjusted_difference": 0.02671720798603367,
+   "adjusted_lo68": 0.012657434848828007,
+   "adjusted_hi68": 0.03905418387163659,
+   "group_log_odds_coef": 0.1742647975972927,
+   "n": 4620.0
+  }
+ },
+ "detached_0p_vs_1p_effect_sizes": [
+  {
+   "variable": "numu_1_score",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": -0.349,
+   "median_b": -0.471,
+   "smd": -0.653,
+   "ks": 0.47,
+   "wasserstein": 0.116
+  },
+  {
+   "variable": "numu_score",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": -0.989,
+   "median_b": -0.674,
+   "smd": 0.427,
+   "ks": 0.24,
+   "wasserstein": 0.267
+  },
+  {
+   "variable": "shw_sp_shw_vtx_dis",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 21.409,
+   "median_b": 16.97,
+   "smd": -0.299,
+   "ks": 0.118,
+   "wasserstein": 11.706
+  },
+  {
+   "variable": "shw_sp_max_shw_dis",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 30.696,
+   "median_b": 20.952,
+   "smd": -0.266,
+   "ks": 0.146,
+   "wasserstein": 14.362
+  },
+  {
+   "variable": "n_good_showers",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 0.0,
+   "median_b": 0.0,
+   "smd": -0.096,
+   "ks": 0.042,
+   "wasserstein": 0.069
+  },
+  {
+   "variable": "lem_e_charge",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 143.448,
+   "median_b": 234.346,
+   "smd": 0.524,
+   "ks": 0.269,
+   "wasserstein": 71.881
+  },
+  {
+   "variable": "vertex displacement along photon (cm)",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 17.36,
+   "median_b": 0.17,
+   "smd": -0.481,
+   "ks": 0.45,
+   "wasserstein": 23.392
+  },
+  {
+   "variable": "|V_reco - V_true| (cm)",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 28.053,
+   "median_b": 0.963,
+   "smd": -0.582,
+   "ks": 0.507,
+   "wasserstein": 28.448
+  },
+  {
+   "variable": "frozen other score",
+   "n_a": 675,
+   "n_b": 1326,
+   "median_a": 0.052,
+   "median_b": 0.688,
+   "smd": 0.665,
+   "ks": 0.309,
+   "wasserstein": 0.424
+  }
+ ],
+ "detached_0p_vs_1p_fractions": {
+  "hol_2 at default": {
+   "detached_0p": 1.0,
+   "detached_1p": 1.0
+  },
+  "reco proton present": {
+   "detached_0p": 0.28888888888888886,
+   "detached_1p": 0.799396681749623
+  },
+  "vertex anchored (<=5 cm)": {
+   "detached_0p": 0.32592592592592595,
+   "detached_1p": 0.8273001508295625
+  },
+  "PF state A_attached_at_vertex_root": {
+   "detached_0p": 0.03259259259259259,
+   "detached_1p": 0.026395173453996983
+  },
+  "PF state B_detached_photon_node_at_vertex": {
+   "detached_0p": 0.48444444444444446,
+   "detached_1p": 0.7835595776772247
+  },
+  "PF state C_connected_through_other_particle": {
+   "detached_0p": 0.1348148148148148,
+   "detached_1p": 0.07013574660633484
+  },
+  "PF state E_shower_in_other_candidate": {
+   "detached_0p": 0.0,
+   "detached_1p": 0.0
+  },
+  "PF state F_no_clean_electron_shower_object": {
+   "detached_0p": 0.34814814814814815,
+   "detached_1p": 0.11990950226244344
+  },
+  "vertex class interaction_vertex": {
+   "detached_0p": 0.27555555555555555,
+   "detached_1p": 0.7096530920060332
+  },
+  "vertex class conversion_point": {
+   "detached_0p": 0.02666666666666667,
+   "detached_1p": 0.007541478129713424
+  },
+  "vertex class between": {
+   "detached_0p": 0.013333333333333334,
+   "detached_1p": 0.00904977375565611
+  },
+  "vertex class neither": {
+   "detached_0p": 0.49037037037037035,
+   "detached_1p": 0.13046757164404224
+  },
+  "vertex class not_separable": {
+   "detached_0p": 0.18518518518518517,
+   "detached_1p": 0.1334841628959276
+  },
+  "vertex class no_conversion_point": {
+   "detached_0p": 0.008888888888888889,
+   "detached_1p": 0.00980392156862745
+  }
+ },
+ "other_survival_by_state": [
+  {
+   "truth": "truth 0p",
+   "shower": "attached",
+   "vertex": "not anchored",
+   "n": 1579,
+   "survive": 731,
+   "survival": 0.463,
+   "lo68": 0.4501,
+   "hi68": 0.4758,
+   "median_other_score": 0.1157,
+   "median_numu_1": -0.1712,
+   "hol2_default": 0.0526
+  },
+  {
+   "truth": "truth 0p",
+   "shower": "attached",
+   "vertex": "anchored (<=5 cm)",
+   "n": 192,
+   "survive": 130,
+   "survival": 0.6771,
+   "lo68": 0.6398,
+   "hi68": 0.7124,
+   "median_other_score": 0.6134,
+   "median_numu_1": -0.2222,
+   "hol2_default": 0.0365
+  },
+  {
+   "truth": "truth 0p",
+   "shower": "detached",
+   "vertex": "not anchored",
+   "n": 455,
+   "survive": 152,
+   "survival": 0.3341,
+   "lo68": 0.3112,
+   "hi68": 0.3576,
+   "median_other_score": -0.2246,
+   "median_numu_1": -0.2951,
+   "hol2_default": 1.0
+  },
+  {
+   "truth": "truth 0p",
+   "shower": "detached",
+   "vertex": "anchored (<=5 cm)",
+   "n": 220,
+   "survive": 144,
+   "survival": 0.6545,
+   "lo68": 0.6195,
+   "hi68": 0.6881,
+   "median_other_score": 0.4822,
+   "median_numu_1": -0.3534,
+   "hol2_default": 1.0
+  },
+  {
+   "truth": "truth 1p",
+   "shower": "attached",
+   "vertex": "not anchored",
+   "n": 620,
+   "survive": 272,
+   "survival": 0.4387,
+   "lo68": 0.4181,
+   "hi68": 0.4595,
+   "median_other_score": 0.0334,
+   "median_numu_1": -0.1638,
+   "hol2_default": 0.0935
+  },
+  {
+   "truth": "truth 1p",
+   "shower": "attached",
+   "vertex": "anchored (<=5 cm)",
+   "n": 228,
+   "survive": 148,
+   "survival": 0.6491,
+   "lo68": 0.6147,
+   "hi68": 0.6822,
+   "median_other_score": 0.5374,
+   "median_numu_1": -0.2365,
+   "hol2_default": 0.0658
+  },
+  {
+   "truth": "truth 1p",
+   "shower": "detached",
+   "vertex": "not anchored",
+   "n": 229,
+   "survive": 91,
+   "survival": 0.3974,
+   "lo68": 0.3634,
+   "hi68": 0.4323,
+   "median_other_score": -0.0942,
+   "median_numu_1": -0.2849,
+   "hol2_default": 1.0
+  },
+  {
+   "truth": "truth 1p",
+   "shower": "detached",
+   "vertex": "anchored (<=5 cm)",
+   "n": 1097,
+   "survive": 862,
+   "survival": 0.7858,
+   "lo68": 0.7727,
+   "hi68": 0.7984,
+   "median_other_score": 0.7698,
+   "median_numu_1": -0.4929,
+   "hol2_default": 1.0
+  }
+ ],
+ "other_survival_by_origin_and_attachment": [
+  {
+   "origin": "decay_proton",
+   "detached": false,
+   "n": 471,
+   "survival": 0.5456475583864119,
+   "lo68": 0.5215538685116107,
+   "hi68": 0.5695385445695571,
+   "anchored5": 0.2929936305732484
+  },
+  {
+   "origin": "decay_proton",
+   "detached": true,
+   "n": 896,
+   "survival": 0.7366071428571429,
+   "lo68": 0.721057613826242,
+   "hi68": 0.7516084100483065,
+   "anchored5": 0.8426339285714286
+  },
+  {
+   "origin": "fsi_created",
+   "detached": false,
+   "n": 355,
+   "survival": 0.43661971830985913,
+   "lo68": 0.40909984781596975,
+   "hi68": 0.46451541803822705,
+   "anchored5": 0.23943661971830985
+  },
+  {
+   "origin": "fsi_created",
+   "detached": true,
+   "n": 408,
+   "survival": 0.6813725490196079,
+   "lo68": 0.656625248756024,
+   "hi68": 0.7051841741001442,
+   "anchored5": 0.7941176470588235
+  }
+ ],
+ "energy_response": [
+  {
+   "E_gamma_above_mev": 0,
+   "n_candidate_stage": 11331,
+   "n_dominant_electron_shower": 6061,
+   "frac_with_electron_shower": 0.5349,
+   "n_shower_below_20": 61,
+   "frac_below_20_of_candidate_stage": 0.0054,
+   "frac_below_20_of_electron_showers": 0.0101,
+   "ratio_median_counted": 0.8976,
+   "ratio_median_not_counted": 0.8898,
+   "n_counted": 5423,
+   "n_not_counted": 638
+  },
+  {
+   "E_gamma_above_mev": 100,
+   "n_candidate_stage": 11185,
+   "n_dominant_electron_shower": 5981,
+   "frac_with_electron_shower": 0.5347,
+   "n_shower_below_20": 60,
+   "frac_below_20_of_candidate_stage": 0.0054,
+   "frac_below_20_of_electron_showers": 0.01,
+   "ratio_median_counted": 0.8954,
+   "ratio_median_not_counted": 0.8854,
+   "n_counted": 5363,
+   "n_not_counted": 618
+  },
+  {
+   "E_gamma_above_mev": 200,
+   "n_candidate_stage": 8693,
+   "n_dominant_electron_shower": 4867,
+   "frac_with_electron_shower": 0.5599,
+   "n_shower_below_20": 39,
+   "frac_below_20_of_candidate_stage": 0.0045,
+   "frac_below_20_of_electron_showers": 0.008,
+   "ratio_median_counted": 0.8978,
+   "ratio_median_not_counted": 0.8792,
+   "n_counted": 4413,
+   "n_not_counted": 454
+  },
+  {
+   "E_gamma_above_mev": 400,
+   "n_candidate_stage": 1957,
+   "n_dominant_electron_shower": 1245,
+   "frac_with_electron_shower": 0.6362,
+   "n_shower_below_20": 10,
+   "frac_below_20_of_candidate_stage": 0.0051,
+   "frac_below_20_of_electron_showers": 0.008,
+   "ratio_median_counted": 0.9123,
+   "ratio_median_not_counted": 0.9027,
+   "n_counted": 1143,
+   "n_not_counted": 102
+  }
+ ],
+ "energy_response_quantiles": {
+  "counted": [
+   0.597,
+   0.898,
+   1.076
+  ],
+  "not counted": [
+   0.473,
+   0.89,
+   1.073
+  ]
+ },
+ "energy_response_by_outcome": {
+  "pass_photon_shower_in_passing_candidate": [
+   0.597,
+   0.898,
+   1.076
+  ],
+  "photon_shower_below_20MeV": [
+   0.007,
+   0.022,
+   0.076
+  ],
+  "photon_shower_not_in_main_vertex_set": [
+   0.605,
+   0.945,
+   1.077
+  ],
+  "pass_not_via_signal_photon_shower": [
+   0.041,
+   0.317,
+   0.864
+  ],
+  "photon_charge_outside_candidates": [
+   0.024,
+   0.045,
+   0.175
+  ]
+ },
+ "high_energy_failure_events": {
+  "n": 387,
+  "by_outcome": {
+   "photon_shower_typed_non_electron": 114,
+   "photon_shower_not_in_main_vertex_set": 91,
+   "photon_fragmented": 56,
+   "photon_as_track": 41,
+   "photon_charge_outside_candidates": 29,
+   "photon_no_reco_charge": 28,
+   "photon_particle_row_missing": 20,
+   "photon_shower_below_20MeV": 8
+  },
+  "by_truth": {
+   "truth 1p": 205,
+   "truth 0p": 152,
+   "truth >=2p": 30
+  }
+ },
+ "metadata": {
+  "git_commit_at_run": "987e901493aec669c1fa4b3166901eb1e641702f",
+  "official_manifest_sha256": "d89f2d12cde09d61a081731bdd5eca62519f6cc7a67634273051453c6053d69d",
+  "truth_master_sha256": "43cc7c647e1db1d074eb593dce9dea082adf6a2c7652d050d979533773542088",
+  "t_match_semantics": "WIRECELL_TRUTH_MATCH_SEMANTICS.md (2026-11-09), level-1 particle/overlap rows; association via T_overlap trackid of the signal photon",
+  "baseline_selection_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b",
+  "phase8_audit_summary_sha256": "00b5ca3c84dae5ffa41769b41a55f4b84fd7ab68e4f73586e90133d8037b0cdc",
+  "phase8_population_sha256": "a314dfc8279bd3d3acfe02fee74bcf52ac8fbdfe53b2c3505eed8294c5bb38d8",
+  "phase8_metadata": {
+   "git_commit_at_run": "2a1ec07ad822ebc5a62d8227cbc7d9dda259b1ed",
+   "official_manifest_sha256": "d89f2d12cde09d61a081731bdd5eca62519f6cc7a67634273051453c6053d69d",
+   "other_bdt_weights_sha256": "8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16",
+   "baseline_selection_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b",
+   "truth_master_sha256": "43cc7c647e1db1d074eb593dce9dea082adf6a2c7652d050d979533773542088",
+   "phase7_event_flags_sha256": "da73b57315ea82af49f7c9f2eddf53ac37cb721564db7be11a2b72ebda5e2d0e",
+   "phase7_spine_truth_sha256": "608cbd8734f35f63c49e0ee7b7ed99ddc8370863be6c5bd9b949225ddfb56bcd",
+   "candidate_scan_sha256": "0f93ea66674509622165d2853332a3d204adda0001a9abf293f5b2dfcc4f7e6f",
+   "threshold": 0.2,
+   "weights_path": "/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_other_bdt_final.xml",
+   "wct_commit": "4b6853d4 (HaiwangYu/wire-cell-toolkit sbnd-wc-flatcaf)"
+  },
+  "raw_scan_sha256": {
+   "cand": "dba5af5eca089cccaddafad8eb6ad2e7729c591908f72746c17cf51cf41f4b5d",
+   "kine": "ef7864e52e982b6458f4a9b9cfb4297d74db8677d92dcf539110ffb68afeceae",
+   "pf": "87f5071f0adefded970154e99ddba72e1d246fa9cd473d5d242b508ec45a360a",
+   "seg": "0c7b9fd63d6401a8f3266fb257084bf639253a4d018bd10e1b6f3e4b4f138717",
+   "shlist": "8d65ca29106907c165c6e56957161f548aceee4b1d9319c0f1f3486cb54261a7",
+   "pho_ov": "fcebdb411bd723129f7cb6a9d3c7d89f1121df881ab3f7b7de386ea903b42abf",
+   "ov_all": "beb558559fd8c0206e10cbe7a4a7e589f9320613436c883927d8bd0207acf93b",
+   "truth": "2c9245a96fa17e91f1243297d393ae3f7c2f87c915ae84636c8106722c95501b"
+  },
+  "classification_parameters": {
+   "outside_frac_min": 0.5,
+   "dominant_frac_min": 0.5,
+   "proximity_tol_cm": 5.0,
+   "sp_energy_mev": 20.0
+  }
+ }
+}

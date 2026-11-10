@@ -1,0 +1,8 @@
+outside_frac_min,dominant_frac_min,photon_no_reco_charge,photon_charge_outside_candidates,photon_fragmented,photon_in_other_candidate,photon_particle_row_missing,photon_as_track,photon_shower_typed_non_electron,photon_shower_below_20MeV,photon_shower_not_in_main_vertex_set
+0.5,0.5,275,329,492,1,162,424,961,40,567
+0.25,0.5,275,306,494,1,163,434,967,41,570
+0.75,0.5,275,403,477,1,156,413,937,39,550
+0.5,0.33,275,329,95,1,197,622,1053,42,637
+0.5,0.66,275,329,907,1,127,261,826,37,488
+0.25,0.33,275,306,95,1,198,634,1059,43,640
+0.75,0.66,275,403,884,1,121,255,803,36,473
