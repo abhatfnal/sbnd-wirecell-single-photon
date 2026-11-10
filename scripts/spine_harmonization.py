@@ -26,7 +26,7 @@ for d in (OUT, PLD, SUMD):
     d.mkdir(parents=True, exist_ok=True)
 RSE = ["run", "subrun", "evt"]; SUMMARY: dict = {}
 SCHEMA = "spine-harmonization-1.0"
-PROV = "official Gen2 EX_ncdeltarad | SAME frozen Wire-Cell selection, DIFFERENT truth denominator | NOT a Wire-Cell vs SPINE comparison"
+PROV = "official Gen2 EX_ncdeltarad | same frozen WC numerator, different truth denominator | NOT a WC-vs-SPINE comparison"
 
 
 def sha(p):
@@ -215,9 +215,21 @@ def main_report():
     for nm, m in (("harmonized 0p50 (50 MeV categories)", t.spine_truth_0p50), ("harmonized Np50 (50 MeV categories)", t.spine_truth_Np50)):
         wf.append(dict(step=nm, **{f"any_{k}": v for k, v in eff(m.to_numpy(bool), "A_final", t).items()}, first_eff=eff(m.to_numpy(bool), "A_final_first", t)["efficiency"]))
     W = pd.DataFrame(wf); W.to_csv(OUT / "waterfall.csv", index=False); W.to_csv(SUMD / "waterfall.csv", index=False); SUMMARY["waterfall"] = W.round(5).to_dict("records")
-    fig, ax = PS.figure(1, 1, size=(8.5, 4.2)); a = ax[0][0]; x = np.arange(len(W)); y = W.any_efficiency.to_numpy()
-    a.errorbar(x, y, yerr=[y - W.any_lo68, W.any_hi68 - y], fmt="o-", color="k"); a.set_xticks(x); a.set_xticklabels(W.step, rotation=35, ha="right", fontsize=7); a.set_ylabel("frozen WC final efficiency (policy any)"); a.set_ylim(bottom=0)
-    fig.tight_layout(); PS.annotate(fig, PROV, extra="denominator-definition effects only"); fig.savefig(PLD / "waterfall_definition_effect.png", bbox_inches="tight"); plt.close(fig)
+    # Panel A: the cumulative denominator-definition ladder (ends at the harmonized signal). Panel B: the harmonized TOPOLOGY subsets are two DISJOINT subsets of the harmonized
+    # denominator, not further cuts: shown as separate unconnected markers next to 'all'.
+    fig, ax = PS.figure(1, 2, size=(12.5, 4.6)); a, b = ax[0]
+    ladder = W.iloc[:7]; x = np.arange(len(ladder)); y = ladder.any_efficiency.to_numpy()
+    a.errorbar(x, y, yerr=[y - ladder.any_lo68, ladder.any_hi68 - y], fmt="o-", color="k"); a.axvline(1.5, color="0.7", ls=":", lw=0.8)
+    a.set_xticks(x); a.set_xticklabels(ladder.step, rotation=35, ha="right", fontsize=7); a.set_ylabel("frozen WC final efficiency (policy any)"); a.set_ylim(bottom=0)
+    a.set_title("A: cumulative denominator definition (first two points are alternative starting regions)", fontsize=8)
+    topo = pd.concat([W.iloc[[6]], W.iloc[7:9]]); topo = topo.assign(label=["harmonized all", "harmonized 0p50", "harmonized Np50"])
+    for k, (r, col) in enumerate(zip(topo.itertuples(), ["k", "#009E73", "#0072B2"])):
+        b.errorbar([k], [r.any_efficiency], yerr=[[r.any_efficiency - r.any_lo68], [r.any_hi68 - r.any_efficiency]], fmt="o", color=col, ls="none", ms=7)
+        b.annotate(f"{100 * r.any_efficiency:.2f} %", (k, r.any_efficiency), textcoords="offset points", xytext=(12, -3), fontsize=8)
+    b.set_xticks(range(3)); b.set_xticklabels(topo.label, fontsize=8); b.set_xlim(-0.5, 2.8); b.set_ylim(bottom=0); b.set_ylabel("frozen WC final efficiency (policy any)")
+    b.set_title("B: harmonized topology subsets (disjoint subsets of the same denominator; NOT sequential cuts)", fontsize=8)
+    fig.tight_layout(); PS.annotate(fig, PROV, extra="denominator-definition effects only")
+    fig.savefig(PLD / "denominator_definition_effect.png", bbox_inches="tight"); plt.close(fig)
 
     # ---- Task 14: differential trends, loose TPC box vs harmonized
     bins = DF.load_bins()["variables"]; sub = {"loose TPC box": t[t.tpc_box].copy(), "harmonized": t[t.spine_truth_signal].copy()}

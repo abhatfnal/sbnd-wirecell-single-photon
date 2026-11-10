@@ -1993,7 +1993,7 @@
  "metadata": {
   "schema_version": "spine-harmonization-1.0",
   "signal_definition_schema": "spine-signal-definition-1.0",
-  "git_commit_at_run": "7a47eee4197e5c23a0ad271b99f17645641eabb4",
+  "git_commit_at_run": "677df66f5693eb4c78096b62bc070f66022c9adb",
   "official_manifest_sha256": "d89f2d12cde09d61a081731bdd5eca62519f6cc7a67634273051453c6053d69d",
   "truth_master_sha256": "43cc7c647e1db1d074eb593dce9dea082adf6a2c7652d050d979533773542088",
   "differential_truth_scan_sha256": "67f873f4b62c59030aebf1db75417ea935eebf06684d2387852beca37532ddb0",
