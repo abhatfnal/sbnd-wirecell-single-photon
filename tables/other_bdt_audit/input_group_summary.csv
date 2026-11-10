@@ -1,0 +1,9 @@
+group,n_inputs,mean_ks,max_ks,n_ks_gt_0p1,n_ks_gt_0p2,top
+numuCC tagger (flags/scores),4,0.15423365485658577,0.3587521748516813,2,2,numu_1_score
+shower-quality sub-taggers (br2/br4/lem/hol),22,0.14073361543349908,0.3355089999180082,12,3,shw_sp_br2_sg_length
+shower multiplicity,6,0.13983810503126345,0.15846347339892178,6,0,shw_sp_n_good_showers
+shower / vertex geometry,11,0.10987713468492406,0.3339748503273279,4,1,shw_sp_shw_vtx_dis
+shower calorimetry (dQ/dx along the shower),31,0.08618079775002231,0.14698123440557062,9,0,shw_sp_medium_dQ_dx
+track / proton activity at the vertex,11,0.058002883185051694,0.0975364092549953,0,0,shw_sp_proton_length_1
+vertex position,1,0.036974923292520466,0.036974923292520466,0,0,reco_nuvtxY
+cosmic tagger (flags/scores of the cosmic-muon taggers),60,0.036521761806006366,0.14138698556718401,10,0,cosmict_4_angle_beam

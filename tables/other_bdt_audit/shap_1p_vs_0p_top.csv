@@ -1,0 +1,16 @@
+variable,mean_phi,mean_abs_phi,group,n_splits
+shw_sp_hol_2_min_angle,0.11503583764859483,0.19673744462524478,shower-quality sub-taggers (br2/br4/lem/hol),72
+numu_1_score,0.0862283954244434,0.16730498793600182,numuCC tagger (flags/scores),194
+shw_sp_br2_sg_length,0.07325365793019033,0.11372951101519756,shower-quality sub-taggers (br2/br4/lem/hol),70
+shw_sp_lem_e_charge,0.06370396796078377,0.3052352274336397,shower-quality sub-taggers (br2/br4/lem/hol),174
+shw_sp_shw_vtx_dis,0.059978832559442946,0.1065245833232428,shower / vertex geometry,114
+numu_score,0.04597572899512866,0.10367606598322382,numuCC tagger (flags/scores),281
+shw_sp_n_good_showers,-0.04560209544055452,0.12711963830854875,shower multiplicity,33
+shw_sp_br2_n_shower_main_segs,0.03667691047017912,0.05570003428584289,shower-quality sub-taggers (br2/br4/lem/hol),40
+shw_sp_highest_dQ_dx,-0.03241739205404727,0.11459719013352294,shower calorimetry (dQ/dx along the shower),108
+shw_sp_lowest_dQ_dx,-0.025308255875459366,0.1456590898057983,shower calorimetry (dQ/dx along the shower),89
+shw_sp_max_dQ_dx_sample,0.020962667542298138,0.12268287622923324,shower calorimetry (dQ/dx along the shower),105
+shw_sp_lem_n_3seg,0.02013393792761172,0.07633958797938148,shower-quality sub-taggers (br2/br4/lem/hol),15
+shw_sp_lem_shower_num_main_segs,0.018733091739363238,0.049854434158539,shower-quality sub-taggers (br2/br4/lem/hol),28
+cosmict_2_angle_beam,0.01812852965530306,0.04403242609525199,cosmic tagger (flags/scores of the cosmic-muon taggers),48
+shw_sp_n_br4_showers,0.017469706094330063,0.038491097287720835,shower multiplicity,35
