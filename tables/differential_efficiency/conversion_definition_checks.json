@@ -1,0 +1,39 @@
+{
+ "n": 13773,
+ "classes": {
+  "conv": 11665,
+  "left_volume": 1884,
+  "other_interaction": 224
+ },
+ "start_minus_vertex_max_cm": 17839.626797992903,
+ "start_minus_vertex_q99": 17643.42804860068,
+ "len_minus_disp_max_conv": 5.280350837406189,
+ "len_minus_disp_q99": 2.639890258869575e-05,
+ "angle_track_vs_genp_deg": {
+  "0.5": 2.456732739880241e-05,
+  "0.9": 0.00021822561190793993,
+  "0.99": 1.2915981032397432,
+  "1": 29.518466203112943
+ },
+ "proc_by_contained": {
+  "0": {
+   "Transportation": 1,
+   "conv": 1834,
+   "phot": 41,
+   "photonNuclear": 8
+  },
+  "1": {
+   "Transportation": 0,
+   "conv": 11665,
+   "phot": 157,
+   "photonNuclear": 67
+  }
+ },
+ "A_median": 13.523427479141857,
+ "B_median": 13.733659247101652,
+ "A_n": 11665,
+ "B_n": 11889,
+ "conv_uncontained": 1834,
+ "conv_uncontained_end_on_boundary_frac": 0.7393675027262814,
+ "conv_uncontained_dist_median": 2.1991326958620627
+}

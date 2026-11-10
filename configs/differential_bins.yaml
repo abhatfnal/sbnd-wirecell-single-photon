@@ -1,0 +1,17 @@
+# FIXED, a-priori bin edges for the differential efficiency characterisation (schema_version below). Chosen from the physical range of each
+# variable (round numbers / uniform widths) BEFORE looking at any efficiency; NOT tuned to emphasise an effect. Events outside [first, last]
+# edge are counted in explicit underflow/overflow rows (never dropped); the outermost edges therefore only define the plotted range.
+schema_version: "differential-efficiency-1.0"
+variables:
+  photon_energy_mev:   {label: "True photon energy [MeV]",                    edges: [0, 50, 100, 150, 200, 250, 300, 400, 500, 700, 1200]}
+  cos_theta_beam:      {label: "cos(theta_gamma, +z beam axis)",              edges: [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]}
+  nu_energy_gev:       {label: "True neutrino energy [GeV]",                  edges: [0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 5.0]}
+  vtx_x:               {label: "True vertex x [cm]",                          edges: [-200, -150, -100, -50, 0, 50, 100, 150, 200]}
+  vtx_y:               {label: "True vertex y [cm]",                          edges: [-200, -150, -100, -50, 0, 50, 100, 150, 200]}
+  vtx_z:               {label: "True vertex z [cm]",                          edges: [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]}
+  conv_distance_cm:    {label: "True photon conversion distance [cm]",        edges: [0, 5, 10, 20, 30, 50, 75, 100, 150, 250, 1000]}
+  lead_proton_ke_mev:  {label: "Leading true proton KE [MeV]",                edges: [35, 50, 75, 100, 150, 200, 300, 500, 2000]}
+  max_sub35_proton_ke_mev: {label: "Highest true proton KE below 35 MeV [MeV]", edges: [0, 5, 10, 15, 20, 25, 30, 35]}
+broad_bins_natural_cv:      # coarse bins for the 117-event natural-CV cross-check (do not over-bin)
+  photon_energy_mev: [0, 150, 300, 1200]
+  cos_theta_beam:    [-1.0, 0.0, 0.5, 1.0]
