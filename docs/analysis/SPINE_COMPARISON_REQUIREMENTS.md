@@ -1,47 +1,40 @@
-# Requirements for a future comparison with the SPINE NC-Delta technote (NOT implemented)
+# Requirements for a comparison with the SPINE NC-Delta analysis
 
-Status: **requirements only.** No SPINE number is compared with any Wire-Cell baseline number anywhere in this repository, and none must be until every item below is harmonized.
-Date: 2026-11-10. Branch: `analysis/ncdelta-differential-efficiency-20261110`.
+Status (2026-11-10, updated on branch `analysis/ncdelta-spine-harmonized-definition-20261110`): the **truth side is now harmonized as far as the flatCAF allows**
+(`SPINE_SIGNAL_DEFINITION_SOURCE_AUDIT.md`, `SPINE_SIGNAL_DEFINITION_HARMONIZATION.md`). **The reconstruction side is not**, and no Wire-Cell number may be quoted against a SPINE number yet.
+This document replaces the earlier version of the requirements; items that were resolved are replaced by what was found.
 
-The SPINE technote (Seokju) is a *dedicated* NC-Delta selection with its own signal definition and channel-specific BDTs. The Wire-Cell numbers of this repository are
-**baseline efficiencies of the frozen MicroBooNE-derived BDT chain against a deliberately loose, generator-level signal definition**. The quoted totals
-(SPINE ~19 % for 0p and ~40 % for Np, as given in the request; ours 8.12 % for truth 0p and 10.69 % for truth 1p) therefore do **not** measure the same thing and are **not** a statement
-about the relative reconstruction quality of the two chains. The list below is the full set of differences known to us (from the task description of the technote's definition);
-anything we have not seen in the technote itself is flagged "to confirm".
+## A. Now harmonized (truth side, same official Gen2 events)
 
-## 1. Differences in the signal / denominator definition
+| item | what is now in place | exactness |
+|---|---|---|
+| signal categories | masks `spine_truth_signal` (= `spine_technote_strict`), `spine_truth_0p50`, `spine_truth_Np50`, plus the named variants; per-event flags stored outside Git | topology rule **exact** (same collection `rec.mc.nu.prim`, same thresholds as medulla's `mc_topology`); containment and veto **approximate** (see below) |
+| FV | true vertex |x|,|y| < 180 cm, 10 < z < 450 cm (strict inequalities) -> 9,206 of 13,773 official events | exact for the technote/`gOre_fiducial_cut` values; the production SPINE `FiducialProcessor` margins were **not** found (the medulla docstring quotes 25/25/30/50 cm; sensitivity table provided) |
+| containment | 5 cm margin on a flatCAF-**primary** approximation | **approximation only**: SPINE containment uses all particles incl. secondaries and all spacepoints; four variants quantified |
+| proton threshold and channels | 50 MeV post-FSI primary protons; 0p50 / Np50; 35->50 MeV cross-tab | exact for the primary-proton definition |
+| photon / lepton / pion topology | exactly one photon > 25 MeV; no e/mu/pi+- > 25 MeV; every above-threshold primary a photon or nucleon (the source rule) | exact |
+| Delta identification | ancestry (our filter) with `resnum` variants: `resnum == 0` and the Delta-type set of the source | both quantified; the effect is below 0.1 pp in efficiency |
+| sample truth keys | `(run, subrun, evt)` of all 13,773 official events, with the harmonization flags | exact |
+| frozen Wire-Cell numerator on the harmonized denominator | `any` and `first`, all / 0p50 / Np50 | done, no cut changed |
+| 50-MeV reco projection of the Wire-Cell selection | reco 0p50 / Np50 from the leading reco proton-row KE (> 50 MeV), baseline row convention; `included == 3` handling as a sensitivity | done (policy sensitivity only) |
 
-| # | Item | SPINE technote | This repository (frozen baseline) | What the harmonization needs | Data available here? |
-|---|---|---|---|---|---|
-| 1 | Fiducial volume | x, y in [-180, 180] cm, z in [10, 450] cm | provisional TPC box: abs(x), abs(y) < 200 cm, 0 < z < 500 cm (no approved FV) | recompute the denominator and numerator inside the SPINE FV (vertex = true neutrino vertex) | yes: true vertex is in the event table |
-| 2 | Truth containment | all final-state endpoints at least 5 cm from the active-volume boundary | none (explicitly not imposed) | per-event minimum over the signal neutrino's final-state primaries of the distance of the **end point** to the boundary | partly: `rec.mc.nu.prim.end.{x,y,z}` and `contained` are in the flatCAF; **not yet extracted per event** (only the signal photon's end point is). A new truth scan is required. Geant4 secondaries are not stored in `prim`. |
-| 3 | True photon multiplicity | exactly one true photon with KE > 25 MeV | no photon-energy requirement; the generator filter only requires one status-1 photon from a Delta (resnum == 0 holds for only 97.66 % of events); `photon_n_gt20` (20 MeV) is stored | count primary photons with KE > 25 MeV (not 20) per event | partly: energies of all primary photons are in the flatCAF; only the 20 MeV count and the maximum are stored |
-| 4 | Other charged leptons / pions | no true electron, charged pion or muon above 25 MeV | not required; `n_primary_pi_charged` (any energy) is stored, no electron/muon information | per-primary KE of e, mu, pi+- | extractable from the same primary arrays; needs a truth scan |
-| 5 | Proton threshold | 50 MeV | 35 MeV (**provisional**, never optimized) | recompute the proton multiplicity with the SPINE threshold on **post-FSI primary protons** (same primary collection) | partly: the stored table has the leading/sub-leading KE and counts above 35, 20, 10 MeV; **no count above 50 MeV** (derivable only for multiplicity 0 and 1 vs >= 2 through the two leading KEs) |
-| 6 | Topology channels | 0p and Np (N >= 1) | 0p / 1p / >= 2p (and reco 1g0p / 1g1p) | merge our 1p and >= 2p into Np for the comparison; the reco-side channel definition also differs (see 2.2) | yes |
-| 7 | Denominator sample | to confirm (dedicated sample? which generator configuration? is their denominator pre-filtered?) | official Gen2 EX_ncdeltarad, filter box 13,773 events, TPC box 12,427; POT 2.84e21 | same truth events (or an explicit statement of the difference in generator and filter) | yes (ours) |
-| 8 | Event selection of the denominator (neutrino choice) | to confirm | provisional rule: neutrino whose vertex is in the filter box, then lowest index (6 multi-signal events) | same convention | yes (ours) |
+## B. Differences that remain and are NOT resolved here
 
-## 2. Differences in the reconstruction / selection side
+1. **Which SPINE commit/TOML produced the technote numbers**, and whether it included `neutrino2026_veto` and the expanded Delta-resonance set (added 2026-05-26 and 2026-06-17). We quantify both with/without; the choice must come from the technote author.
+2. **Production SPINE containment/fiducial settings** (`mode` tpc/module/detector, margins, cathode margin) are not in the public repositories we could read.
+3. **SPINE truth particles are not in the flatCAF.** Particle-level cuts of the signal tree (single_photon, no_electrons, ...) act on SPINE truth particles (primary-classified, deposit-based `energy_init`); we use the exact `mc_topology` rule on `rec.mc.nu.prim` instead. The two agree only if SPINE `energy_init` equals `genE` for the same particles (unverified).
+4. **Efficiency definition of the SPINE quote** (denominator = which truth set? numerator = after the full chain, including cosmic rejection/flash matching and the channel-specific BDT working point?). Must be obtained from the author.
 
-1. **Reconstruction chain.** SPINE = ML (deep-learning) reconstruction with channel-specific BDTs trained for this analysis. This repository = production Wire-Cell
-   (SCN vertexer, fg1) with the frozen MicroBooNE-derived BDTs (numu, other, ncpi0, nue). The frozen BDTs were never retrained and are not tuned to the SBND NC-Delta signal.
-2. **Reco channel definition.** Wire-Cell reco proton rows are derived from `kine_particle_type` rows with a 35 MeV kinetic-energy rule (provisional);
-   the SPINE proton threshold and its particle-ID definition may differ. Reco 1g0p / 1g1p here are analysis categories, not truth.
-3. **Efficiency definition.** To confirm with the author: is the quoted efficiency (a) after the full selection including cosmic rejection/flash matching, (b) per channel BDT or the final working point,
-   (c) normalised to the signal in the FV with the containment and one-photon requirements above, or to a looser set? Our efficiency is normalised to **all** truth events in the region
-   (so the containment/one-photon/no-lepton requirements, which remove signal events from SPINE's denominator, are *inefficiencies* here).
-4. **Candidate policy.** Our `any` policy counts an event as selected if any Wire-Cell candidate passes; `first` uses the policy-first candidate. SPINE's interaction choice is to be confirmed.
-5. **Cosmic / flash handling.** Wire-Cell: the frozen chain uses the matched-flash information only through its BDT inputs; the cosmic normalisation and flash-time reference are unresolved here.
-   SPINE: to confirm.
+## C. Future requirements for a real Wire-Cell vs SPINE comparison
 
-## 3. The procedure that would make the comparison meaningful (to run later)
+* Run the **same Gen2 events** through SPINE (or obtain SPINE outputs keyed by `(run, subrun, evt)`), so both chains see the same truth events; the harmonization flags are the join table.
+* SPINE reconstruction outputs and the **exact interaction/candidate policy** (our `any` / `first` have no SPINE analogue yet).
+* The **SPINE final selection working point** and the channel-specific BDT outputs.
+* **Reconstruction-stage semantic mapping** between the Wire-Cell stages (candidate, > 20 MeV shower, BDT evaluable, numu, other, ncpi0, n_20br1) and the SPINE cut flow.
+* **Cosmic / flash treatment** of both chains on the same footing (neither is final here).
+* **Systematic uncertainties** on both sides (none in this phase).
+* A common handling of the **proton row definition** (our `included == 3` convention changes 58 of 1,172 selected events between reco 0p50 and Np50).
 
-1. Add the missing truth variables to the existing resumable truth scan (per-primary end-point distances for containment, photon counts above 25 MeV, e/mu/pi KE, proton counts above 50 MeV).
-2. Build the **SPINE-harmonized denominator** from the official events: FV, containment, exactly one photon above 25 MeV, no e/pi+-/mu above 25 MeV, proton threshold 50 MeV, channels 0p / Np.
-3. Re-evaluate the **same frozen Wire-Cell baseline** numerator on that denominator (the numerator needs no new reconstruction).
-4. Report the Wire-Cell efficiency on the harmonized denominator next to the SPINE value, **clearly labelled as two different reconstructions on the same signal definition**,
-   with the Wire-Cell frozen-baseline caveat (not retrained, not optimized).
-5. Obtain from the technote's author: the exact efficiency definition, the sample, the cut flow, and the channel-specific BDT working points; treat any difference remaining after steps 1-3 as a physics/reconstruction statement only then.
+## D. Rule until C is done
 
-Until then: **do not** quote 8.12 % / 10.69 % against ~19 % / ~40 %.
+Do **not** quote the Wire-Cell efficiencies (8.12 % / 10.69 % in the loose TPC box, or 9.38 % / 12.81 % on the harmonized 0p50 / Np50 denominator) against the SPINE ~19 % / ~40 % as reconstruction-quality numbers. The harmonization shows how much of OUR number depends on the definition; it does not explain the difference to SPINE.

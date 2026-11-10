@@ -1,0 +1,11 @@
+# SPINE (medulla) NC-Delta TRUTH definition as reproduced on the official Gen2 flatCAF truth (COMPARISON MODE). Provenance: docs/analysis/SPINE_SIGNAL_DEFINITION_SOURCE_AUDIT.md
+# source: github.com/seokjuchung/medulla  branch feature/schung_NCDelta  commit 4048f930aa7679cebbcf9f9b11aa33f21f350f05  (selection/toml/gORe_main.toml, selection/include/gOre/{core,cuts,event_cuts,vars}_gOre.h)
+schema_version: "spine-signal-definition-1.0"
+thresholds_mev: {gamma: 25.0, electron: 25.0, muon: 25.0, pion: 25.0, proton: 50.0}
+delta_resnum: [0, 6, 7, 9, 12, 13, 14, 15]          # genie::EResonance Delta-type states (event cut has_nc_delta_ng_interaction / mc_category)
+walls_cm: {x: [-200.0, 200.0], y: [-200.0, 200.0], z: [0.0, 500.0]}              # GORE_WALL_* (core_gOre.h)
+fiducial_distance_cm: {x: [20.0, 20.0], y: [20.0, 20.0], z: [10.0, 50.0]}        # -> |x|,|y| < 180, 10 < z < 450 (strict)
+spine_box_cm: {x: [-201.6, 201.6], y: [-200.0075, 200.0075], z: [-0.1575, 501.1575]}   # SPINE sbnd_v2-6 geometry, module mode (both TPCs one module)
+containment_margin_cm: 5.0
+gdml_active_box_cm: {x: [-201.3, 201.3], y: [-203.7323, 203.7323], z: [0.0, 501.0]}    # sbnd_v02_06.gdml boxTPCActive
+legacy_proton_threshold_mev: 35.0

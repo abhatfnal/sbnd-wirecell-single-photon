@@ -1,0 +1,31 @@
+step,kind,n,fraction,n_0p50,n_Np50,n_Delta0,n_DeltaPlus,n_truth35_0p,n_truth35_1p,n_truth35_ge2p
+all official signal (filter box),cumulative,13773,1.0,7375,6398,7599,6174,6501,6160,1112
++ NC Delta ancestry (nc_delta_ancestry),cumulative,13773,1.0,7375,6398,7599,6174,6501,6160,1112
++ SPINE FV,cumulative,9206,0.6684092064183548,4929,4277,5094,4112,4327,4116,763
++ containment (flatCAF-primary 5 cm approximation),cumulative,8945,0.6494590866187469,4834,4111,4970,3975,4249,3959,737
++ exactly one photon > 25 MeV,cumulative,8945,0.6494590866187469,4834,4111,4970,3975,4249,3959,737
++ no e / mu / charged pi > 25 MeV,cumulative,8771,0.6368256734190082,4794,3977,4883,3888,4211,3848,712
++ above-threshold primaries only photons/nucleons (medulla only_photons_and_nucleons) = spine_technote_strict,cumulative,8668,0.6293472736513468,4764,3904,4823,3845,4185,3794,689
++ Delta-type resnum (source extra) = spine_source_signal,cumulative,8634,0.6268786756697887,4761,3873,4801,3833,4184,3780,670
+"+ neutrino2026 veto (source extra, approximate) = spine_source_signal_veto2026",cumulative,7679,0.5575401147172003,4247,3432,4289,3390,3727,3358,594
+SPINE FV alone,independent,9206,0.6684092064183548,4929,4277,5094,4112,4327,4116,763
+SPINE FV with the margins of the medulla fiducial_cut docstring (25/25/30/50 cm) alone,independent,8366,0.6074203151092717,4491,3875,4645,3721,3948,3729,689
+containment alone (main approximation),independent,11009,0.7993175052639222,6114,4895,6204,4805,5393,4736,880
+containment alone (literal: all non-nu primaries incl. neutrons),independent,8116,0.5892688593625208,4073,4043,4247,3869,3591,3980,545
+containment alone (GDML active box instead of SPINE box),independent,11182,0.8118783126406738,6204,4978,6287,4895,5468,4815,899
+"containment alone (flatCAF contained flag, zero margin, above-threshold primaries)",independent,8941,0.6491686633267988,4500,4441,4676,4265,3969,4381,591
+exactly one photon > 25 MeV alone,independent,13773,1.0,7375,6398,7599,6174,6501,6160,1112
+no electron > 25 MeV alone,independent,13773,1.0,7375,6398,7599,6174,6501,6160,1112
+no muon > 25 MeV alone,independent,13773,1.0,7375,6398,7599,6174,6501,6160,1112
+no charged pion > 25 MeV alone,independent,13503,0.980396427793509,7315,6188,7462,6041,6444,5986,1073
+only photons+nucleons above threshold (source) alone,independent,13343,0.9687794961155884,7276,6067,7379,5964,6409,5898,1036
+GENIE record stable final state = nucleons + nu + ONE photon (literal) alone,independent,11562,0.8394685253757351,6349,5213,6395,5167,5571,5094,897
+resnum == 0 alone,independent,13451,0.9766209249981849,7292,6159,7430,6021,6427,6012,1012
+resnum in Delta-type set alone,independent,13602,0.9875844042692223,7335,6267,7504,6098,6465,6080,1057
+neutrino2026 veto alone (approx),independent,12280,0.8915995062804037,6577,5703,6798,5482,5792,5501,987
+TPC box (current working region) alone,independent,12427,0.9022725622594933,6664,5763,6846,5581,5863,5557,1007
+A spine_technote_threshold (no GENIE-final-state requirement),variant,8771,0.6368256734190082,4794,3977,4883,3888,4211,3848,712
+B spine_technote_strict (source rule: only photons/nucleons above threshold),variant,8668,0.6293472736513468,4764,3904,4823,3845,4185,3794,689
+B' spine_technote_strict_record (literal GENIE stable final state),variant,7554,0.5484643868438249,4172,3382,4199,3355,3647,3300,607
+spine_source_signal,variant,8634,0.6268786756697887,4761,3873,4801,3833,4184,3780,670
+spine_source_signal_veto2026,variant,7679,0.5575401147172003,4247,3432,4289,3390,3727,3358,594

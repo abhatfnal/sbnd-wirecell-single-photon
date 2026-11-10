@@ -1,0 +1,2009 @@
+{
+ "denominators": {
+  "nc_delta_ancestry": 13773,
+  "spine_resnum_1232": 13451,
+  "spine_resnum_delta": 13602,
+  "spine_fv": 9206,
+  "spine_containment": 11009,
+  "spine_one_photon_25": 13773,
+  "spine_no_e_25": 13773,
+  "spine_no_mu_25": 13773,
+  "spine_no_charged_pi_25": 13503,
+  "spine_genie_final_state": 13343,
+  "spine_genie_record_strict": 11562,
+  "spine_technote_threshold": 8771,
+  "spine_technote_strict": 8668,
+  "spine_technote_strict_record": 7554,
+  "spine_source_signal": 8634,
+  "spine_source_signal_veto2026": 7679,
+  "spine_truth_signal": 8668,
+  "spine_truth_0p50": 4764,
+  "spine_truth_Np50": 3904,
+  "tpc_box": 12427,
+  "cont_literal": 8116,
+  "cont_gdml": 11182,
+  "cont_flag": 8941,
+  "veto2026": 12280
+ },
+ "checks": {
+  "n_events": 13773,
+  "missing_event_in_table": 1,
+  "missing_event_in_spine_truth_signal": 0,
+  "sum_final_any_filter_box": 1172,
+  "sum_final_first_filter_box": 1120,
+  "tpc_final_any": 1153,
+  "spine_fv_inside_tpc_box": true,
+  "ancestry_all_true": true,
+  "n_p35_scan_equals_master": true
+ },
+ "ladder": [
+  {
+   "step": "all official signal (filter box)",
+   "kind": "cumulative",
+   "n": 13773,
+   "fraction": 1.0,
+   "n_0p50": 7375,
+   "n_Np50": 6398,
+   "n_Delta0": 7599,
+   "n_DeltaPlus": 6174,
+   "n_truth35_0p": 6501,
+   "n_truth35_1p": 6160,
+   "n_truth35_ge2p": 1112
+  },
+  {
+   "step": "+ NC Delta ancestry (nc_delta_ancestry)",
+   "kind": "cumulative",
+   "n": 13773,
+   "fraction": 1.0,
+   "n_0p50": 7375,
+   "n_Np50": 6398,
+   "n_Delta0": 7599,
+   "n_DeltaPlus": 6174,
+   "n_truth35_0p": 6501,
+   "n_truth35_1p": 6160,
+   "n_truth35_ge2p": 1112
+  },
+  {
+   "step": "+ SPINE FV",
+   "kind": "cumulative",
+   "n": 9206,
+   "fraction": 0.6684,
+   "n_0p50": 4929,
+   "n_Np50": 4277,
+   "n_Delta0": 5094,
+   "n_DeltaPlus": 4112,
+   "n_truth35_0p": 4327,
+   "n_truth35_1p": 4116,
+   "n_truth35_ge2p": 763
+  },
+  {
+   "step": "+ containment (flatCAF-primary 5 cm approximation)",
+   "kind": "cumulative",
+   "n": 8945,
+   "fraction": 0.6495,
+   "n_0p50": 4834,
+   "n_Np50": 4111,
+   "n_Delta0": 4970,
+   "n_DeltaPlus": 3975,
+   "n_truth35_0p": 4249,
+   "n_truth35_1p": 3959,
+   "n_truth35_ge2p": 737
+  },
+  {
+   "step": "+ exactly one photon > 25 MeV",
+   "kind": "cumulative",
+   "n": 8945,
+   "fraction": 0.6495,
+   "n_0p50": 4834,
+   "n_Np50": 4111,
+   "n_Delta0": 4970,
+   "n_DeltaPlus": 3975,
+   "n_truth35_0p": 4249,
+   "n_truth35_1p": 3959,
+   "n_truth35_ge2p": 737
+  },
+  {
+   "step": "+ no e / mu / charged pi > 25 MeV",
+   "kind": "cumulative",
+   "n": 8771,
+   "fraction": 0.6368,
+   "n_0p50": 4794,
+   "n_Np50": 3977,
+   "n_Delta0": 4883,
+   "n_DeltaPlus": 3888,
+   "n_truth35_0p": 4211,
+   "n_truth35_1p": 3848,
+   "n_truth35_ge2p": 712
+  },
+  {
+   "step": "+ above-threshold primaries only photons/nucleons (medulla only_photons_and_nucleons) = spine_technote_strict",
+   "kind": "cumulative",
+   "n": 8668,
+   "fraction": 0.6293,
+   "n_0p50": 4764,
+   "n_Np50": 3904,
+   "n_Delta0": 4823,
+   "n_DeltaPlus": 3845,
+   "n_truth35_0p": 4185,
+   "n_truth35_1p": 3794,
+   "n_truth35_ge2p": 689
+  },
+  {
+   "step": "+ Delta-type resnum (source extra) = spine_source_signal",
+   "kind": "cumulative",
+   "n": 8634,
+   "fraction": 0.6269,
+   "n_0p50": 4761,
+   "n_Np50": 3873,
+   "n_Delta0": 4801,
+   "n_DeltaPlus": 3833,
+   "n_truth35_0p": 4184,
+   "n_truth35_1p": 3780,
+   "n_truth35_ge2p": 670
+  },
+  {
+   "step": "+ neutrino2026 veto (source extra, approximate) = spine_source_signal_veto2026",
+   "kind": "cumulative",
+   "n": 7679,
+   "fraction": 0.5575,
+   "n_0p50": 4247,
+   "n_Np50": 3432,
+   "n_Delta0": 4289,
+   "n_DeltaPlus": 3390,
+   "n_truth35_0p": 3727,
+   "n_truth35_1p": 3358,
+   "n_truth35_ge2p": 594
+  },
+  {
+   "step": "SPINE FV alone",
+   "kind": "independent",
+   "n": 9206,
+   "fraction": 0.6684,
+   "n_0p50": 4929,
+   "n_Np50": 4277,
+   "n_Delta0": 5094,
+   "n_DeltaPlus": 4112,
+   "n_truth35_0p": 4327,
+   "n_truth35_1p": 4116,
+   "n_truth35_ge2p": 763
+  },
+  {
+   "step": "SPINE FV with the margins of the medulla fiducial_cut docstring (25/25/30/50 cm) alone",
+   "kind": "independent",
+   "n": 8366,
+   "fraction": 0.6074,
+   "n_0p50": 4491,
+   "n_Np50": 3875,
+   "n_Delta0": 4645,
+   "n_DeltaPlus": 3721,
+   "n_truth35_0p": 3948,
+   "n_truth35_1p": 3729,
+   "n_truth35_ge2p": 689
+  },
+  {
+   "step": "containment alone (main approximation)",
+   "kind": "independent",
+   "n": 11009,
+   "fraction": 0.7993,
+   "n_0p50": 6114,
+   "n_Np50": 4895,
+   "n_Delta0": 6204,
+   "n_DeltaPlus": 4805,
+   "n_truth35_0p": 5393,
+   "n_truth35_1p": 4736,
+   "n_truth35_ge2p": 880
+  },
+  {
+   "step": "containment alone (literal: all non-nu primaries incl. neutrons)",
+   "kind": "independent",
+   "n": 8116,
+   "fraction": 0.5893,
+   "n_0p50": 4073,
+   "n_Np50": 4043,
+   "n_Delta0": 4247,
+   "n_DeltaPlus": 3869,
+   "n_truth35_0p": 3591,
+   "n_truth35_1p": 3980,
+   "n_truth35_ge2p": 545
+  },
+  {
+   "step": "containment alone (GDML active box instead of SPINE box)",
+   "kind": "independent",
+   "n": 11182,
+   "fraction": 0.8119,
+   "n_0p50": 6204,
+   "n_Np50": 4978,
+   "n_Delta0": 6287,
+   "n_DeltaPlus": 4895,
+   "n_truth35_0p": 5468,
+   "n_truth35_1p": 4815,
+   "n_truth35_ge2p": 899
+  },
+  {
+   "step": "containment alone (flatCAF contained flag, zero margin, above-threshold primaries)",
+   "kind": "independent",
+   "n": 8941,
+   "fraction": 0.6492,
+   "n_0p50": 4500,
+   "n_Np50": 4441,
+   "n_Delta0": 4676,
+   "n_DeltaPlus": 4265,
+   "n_truth35_0p": 3969,
+   "n_truth35_1p": 4381,
+   "n_truth35_ge2p": 591
+  },
+  {
+   "step": "exactly one photon > 25 MeV alone",
+   "kind": "independent",
+   "n": 13773,
+   "fraction": 1.0,
+   "n_0p50": 7375,
+   "n_Np50": 6398,
+   "n_Delta0": 7599,
+   "n_DeltaPlus": 6174,
+   "n_truth35_0p": 6501,
+   "n_truth35_1p": 6160,
+   "n_truth35_ge2p": 1112
+  },
+  {
+   "step": "no electron > 25 MeV alone",
+   "kind": "independent",
+   "n": 13773,
+   "fraction": 1.0,
+   "n_0p50": 7375,
+   "n_Np50": 6398,
+   "n_Delta0": 7599,
+   "n_DeltaPlus": 6174,
+   "n_truth35_0p": 6501,
+   "n_truth35_1p": 6160,
+   "n_truth35_ge2p": 1112
+  },
+  {
+   "step": "no muon > 25 MeV alone",
+   "kind": "independent",
+   "n": 13773,
+   "fraction": 1.0,
+   "n_0p50": 7375,
+   "n_Np50": 6398,
+   "n_Delta0": 7599,
+   "n_DeltaPlus": 6174,
+   "n_truth35_0p": 6501,
+   "n_truth35_1p": 6160,
+   "n_truth35_ge2p": 1112
+  },
+  {
+   "step": "no charged pion > 25 MeV alone",
+   "kind": "independent",
+   "n": 13503,
+   "fraction": 0.9804,
+   "n_0p50": 7315,
+   "n_Np50": 6188,
+   "n_Delta0": 7462,
+   "n_DeltaPlus": 6041,
+   "n_truth35_0p": 6444,
+   "n_truth35_1p": 5986,
+   "n_truth35_ge2p": 1073
+  },
+  {
+   "step": "only photons+nucleons above threshold (source) alone",
+   "kind": "independent",
+   "n": 13343,
+   "fraction": 0.9688,
+   "n_0p50": 7276,
+   "n_Np50": 6067,
+   "n_Delta0": 7379,
+   "n_DeltaPlus": 5964,
+   "n_truth35_0p": 6409,
+   "n_truth35_1p": 5898,
+   "n_truth35_ge2p": 1036
+  },
+  {
+   "step": "GENIE record stable final state = nucleons + nu + ONE photon (literal) alone",
+   "kind": "independent",
+   "n": 11562,
+   "fraction": 0.8395,
+   "n_0p50": 6349,
+   "n_Np50": 5213,
+   "n_Delta0": 6395,
+   "n_DeltaPlus": 5167,
+   "n_truth35_0p": 5571,
+   "n_truth35_1p": 5094,
+   "n_truth35_ge2p": 897
+  },
+  {
+   "step": "resnum == 0 alone",
+   "kind": "independent",
+   "n": 13451,
+   "fraction": 0.9766,
+   "n_0p50": 7292,
+   "n_Np50": 6159,
+   "n_Delta0": 7430,
+   "n_DeltaPlus": 6021,
+   "n_truth35_0p": 6427,
+   "n_truth35_1p": 6012,
+   "n_truth35_ge2p": 1012
+  },
+  {
+   "step": "resnum in Delta-type set alone",
+   "kind": "independent",
+   "n": 13602,
+   "fraction": 0.9876,
+   "n_0p50": 7335,
+   "n_Np50": 6267,
+   "n_Delta0": 7504,
+   "n_DeltaPlus": 6098,
+   "n_truth35_0p": 6465,
+   "n_truth35_1p": 6080,
+   "n_truth35_ge2p": 1057
+  },
+  {
+   "step": "neutrino2026 veto alone (approx)",
+   "kind": "independent",
+   "n": 12280,
+   "fraction": 0.8916,
+   "n_0p50": 6577,
+   "n_Np50": 5703,
+   "n_Delta0": 6798,
+   "n_DeltaPlus": 5482,
+   "n_truth35_0p": 5792,
+   "n_truth35_1p": 5501,
+   "n_truth35_ge2p": 987
+  },
+  {
+   "step": "TPC box (current working region) alone",
+   "kind": "independent",
+   "n": 12427,
+   "fraction": 0.9023,
+   "n_0p50": 6664,
+   "n_Np50": 5763,
+   "n_Delta0": 6846,
+   "n_DeltaPlus": 5581,
+   "n_truth35_0p": 5863,
+   "n_truth35_1p": 5557,
+   "n_truth35_ge2p": 1007
+  },
+  {
+   "step": "A spine_technote_threshold (no GENIE-final-state requirement)",
+   "kind": "variant",
+   "n": 8771,
+   "fraction": 0.6368,
+   "n_0p50": 4794,
+   "n_Np50": 3977,
+   "n_Delta0": 4883,
+   "n_DeltaPlus": 3888,
+   "n_truth35_0p": 4211,
+   "n_truth35_1p": 3848,
+   "n_truth35_ge2p": 712
+  },
+  {
+   "step": "B spine_technote_strict (source rule: only photons/nucleons above threshold)",
+   "kind": "variant",
+   "n": 8668,
+   "fraction": 0.6293,
+   "n_0p50": 4764,
+   "n_Np50": 3904,
+   "n_Delta0": 4823,
+   "n_DeltaPlus": 3845,
+   "n_truth35_0p": 4185,
+   "n_truth35_1p": 3794,
+   "n_truth35_ge2p": 689
+  },
+  {
+   "step": "B' spine_technote_strict_record (literal GENIE stable final state)",
+   "kind": "variant",
+   "n": 7554,
+   "fraction": 0.5485,
+   "n_0p50": 4172,
+   "n_Np50": 3382,
+   "n_Delta0": 4199,
+   "n_DeltaPlus": 3355,
+   "n_truth35_0p": 3647,
+   "n_truth35_1p": 3300,
+   "n_truth35_ge2p": 607
+  },
+  {
+   "step": "spine_source_signal",
+   "kind": "variant",
+   "n": 8634,
+   "fraction": 0.6269,
+   "n_0p50": 4761,
+   "n_Np50": 3873,
+   "n_Delta0": 4801,
+   "n_DeltaPlus": 3833,
+   "n_truth35_0p": 4184,
+   "n_truth35_1p": 3780,
+   "n_truth35_ge2p": 670
+  },
+  {
+   "step": "spine_source_signal_veto2026",
+   "kind": "variant",
+   "n": 7679,
+   "fraction": 0.5575,
+   "n_0p50": 4247,
+   "n_Np50": 3432,
+   "n_Delta0": 4289,
+   "n_DeltaPlus": 3390,
+   "n_truth35_0p": 3727,
+   "n_truth35_1p": 3358,
+   "n_truth35_ge2p": 594
+  }
+ ],
+ "tpc_vs_fv": [
+  {
+   "region": "in both (TPC box and SPINE FV)",
+   "policy": "any",
+   "numerator": 973,
+   "denominator": 9206,
+   "efficiency": 0.1057,
+   "lo68": 0.1025,
+   "hi68": 0.109
+  },
+  {
+   "region": "in both (TPC box and SPINE FV)",
+   "policy": "first",
+   "numerator": 926,
+   "denominator": 9206,
+   "efficiency": 0.1006,
+   "lo68": 0.0974,
+   "hi68": 0.1038
+  },
+  {
+   "region": "in both (TPC box and SPINE FV)",
+   "policy": "candidate",
+   "numerator": 8834,
+   "denominator": 9206,
+   "efficiency": 0.9596,
+   "lo68": 0.9574,
+   "hi68": 0.9616
+  },
+  {
+   "region": "current-only (TPC box, not SPINE FV)",
+   "policy": "any",
+   "numerator": 180,
+   "denominator": 3221,
+   "efficiency": 0.0559,
+   "lo68": 0.0518,
+   "hi68": 0.0602
+  },
+  {
+   "region": "current-only (TPC box, not SPINE FV)",
+   "policy": "first",
+   "numerator": 175,
+   "denominator": 3221,
+   "efficiency": 0.0543,
+   "lo68": 0.0503,
+   "hi68": 0.0586
+  },
+  {
+   "region": "current-only (TPC box, not SPINE FV)",
+   "policy": "candidate",
+   "numerator": 2497,
+   "denominator": 3221,
+   "efficiency": 0.7752,
+   "lo68": 0.7676,
+   "hi68": 0.7827
+  },
+  {
+   "region": "SPINE-only (SPINE FV, not TPC box)",
+   "policy": "any",
+   "numerator": 0,
+   "denominator": 0,
+   "efficiency": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  },
+  {
+   "region": "SPINE-only (SPINE FV, not TPC box)",
+   "policy": "first",
+   "numerator": 0,
+   "denominator": 0,
+   "efficiency": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  },
+  {
+   "region": "SPINE-only (SPINE FV, not TPC box)",
+   "policy": "candidate",
+   "numerator": 0,
+   "denominator": 0,
+   "efficiency": NaN,
+   "lo68": NaN,
+   "hi68": NaN
+  },
+  {
+   "region": "neither (filter box, not TPC box, not SPINE FV)",
+   "policy": "any",
+   "numerator": 19,
+   "denominator": 1346,
+   "efficiency": 0.0141,
+   "lo68": 0.0109,
+   "hi68": 0.0181
+  },
+  {
+   "region": "neither (filter box, not TPC box, not SPINE FV)",
+   "policy": "first",
+   "numerator": 19,
+   "denominator": 1346,
+   "efficiency": 0.0141,
+   "lo68": 0.0109,
+   "hi68": 0.0181
+  },
+  {
+   "region": "neither (filter box, not TPC box, not SPINE FV)",
+   "policy": "candidate",
+   "numerator": 607,
+   "denominator": 1346,
+   "efficiency": 0.451,
+   "lo68": 0.4371,
+   "hi68": 0.4649
+  }
+ ],
+ "crosstab_35_vs_50": {
+  "harmonized (spine_truth_signal)": {
+   "35: 0p": {
+    "50: 0p50": 4185,
+    "50: Np50": 0
+   },
+   "35: 1p": {
+    "50: 0p50": 500,
+    "50: Np50": 3294
+   },
+   "35: >=2p": {
+    "50: 0p50": 79,
+    "50: Np50": 610
+   }
+  },
+  "TPC box (loose, current)": {
+   "35: 0p": {
+    "50: 0p50": 5863,
+    "50: Np50": 0
+   },
+   "35: 1p": {
+    "50: 0p50": 697,
+    "50: Np50": 4860
+   },
+   "35: >=2p": {
+    "50: 0p50": 104,
+    "50: Np50": 903
+   }
+  },
+  "filter box (all official signal)": {
+   "35: 0p": {
+    "50: 0p50": 6501,
+    "50: Np50": 0
+   },
+   "35: 1p": {
+    "50: 0p50": 765,
+    "50: Np50": 5395
+   },
+   "35: >=2p": {
+    "50: 0p50": 109,
+    "50: Np50": 1003
+   }
+  }
+ },
+ "migration_35_to_50": {
+  "truth1p35_to_0p50": 500,
+  "truth1p35_total": 3794,
+  "truth_ge2p35_to_1p50": 199,
+  "truth_ge2p35_to_0p50": 79,
+  "truth_ge2p35_total": 689,
+  "truth0p35_is_0p50": true,
+  "topology_fraction_0p50": 0.549607752653438,
+  "topology_fraction_Np50": 0.4503922473465621,
+  "topology_fraction_35_0p": 0.4828103368712506,
+  "topology_fraction_35_1p": 0.4377018920166128,
+  "topology_fraction_35_ge2p": 0.07948777111213659
+ },
+ "wc_efficiency": [
+  {
+   "denominator_set": "loose official, filter box (13,773)",
+   "policy": "any",
+   "numerator": 1172,
+   "denominator": 13773,
+   "efficiency": 0.08509,
+   "lo68": 0.08271,
+   "hi68": 0.08754
+  },
+  {
+   "denominator_set": "loose official, filter box (13,773)",
+   "policy": "first",
+   "numerator": 1120,
+   "denominator": 13773,
+   "efficiency": 0.08132,
+   "lo68": 0.07898,
+   "hi68": 0.08372
+  },
+  {
+   "denominator_set": "loose official, provisional TPC box (current baseline)",
+   "policy": "any",
+   "numerator": 1153,
+   "denominator": 12427,
+   "efficiency": 0.09278,
+   "lo68": 0.09017,
+   "hi68": 0.09546
+  },
+  {
+   "denominator_set": "loose official, provisional TPC box (current baseline)",
+   "policy": "first",
+   "numerator": 1101,
+   "denominator": 12427,
+   "efficiency": 0.0886,
+   "lo68": 0.08604,
+   "hi68": 0.09122
+  },
+  {
+   "denominator_set": "SPINE FV only",
+   "policy": "any",
+   "numerator": 973,
+   "denominator": 9206,
+   "efficiency": 0.10569,
+   "lo68": 0.10247,
+   "hi68": 0.109
+  },
+  {
+   "denominator_set": "SPINE FV only",
+   "policy": "first",
+   "numerator": 926,
+   "denominator": 9206,
+   "efficiency": 0.10059,
+   "lo68": 0.09744,
+   "hi68": 0.10382
+  },
+  {
+   "denominator_set": "A spine_technote_threshold",
+   "policy": "any",
+   "numerator": 949,
+   "denominator": 8771,
+   "efficiency": 0.1082,
+   "lo68": 0.10487,
+   "hi68": 0.11162
+  },
+  {
+   "denominator_set": "A spine_technote_threshold",
+   "policy": "first",
+   "numerator": 902,
+   "denominator": 8771,
+   "efficiency": 0.10284,
+   "lo68": 0.09958,
+   "hi68": 0.10619
+  },
+  {
+   "denominator_set": "B spine_technote_strict = HARMONIZED ALL",
+   "policy": "any",
+   "numerator": 947,
+   "denominator": 8668,
+   "efficiency": 0.10925,
+   "lo68": 0.10589,
+   "hi68": 0.11271
+  },
+  {
+   "denominator_set": "B spine_technote_strict = HARMONIZED ALL",
+   "policy": "first",
+   "numerator": 900,
+   "denominator": 8668,
+   "efficiency": 0.10383,
+   "lo68": 0.10054,
+   "hi68": 0.10721
+  },
+  {
+   "denominator_set": "harmonized 0p50",
+   "policy": "any",
+   "numerator": 447,
+   "denominator": 4764,
+   "efficiency": 0.09383,
+   "lo68": 0.08958,
+   "hi68": 0.09825
+  },
+  {
+   "denominator_set": "harmonized 0p50",
+   "policy": "first",
+   "numerator": 418,
+   "denominator": 4764,
+   "efficiency": 0.08774,
+   "lo68": 0.08362,
+   "hi68": 0.09204
+  },
+  {
+   "denominator_set": "harmonized Np50",
+   "policy": "any",
+   "numerator": 500,
+   "denominator": 3904,
+   "efficiency": 0.12807,
+   "lo68": 0.12269,
+   "hi68": 0.13365
+  },
+  {
+   "denominator_set": "harmonized Np50",
+   "policy": "first",
+   "numerator": 482,
+   "denominator": 3904,
+   "efficiency": 0.12346,
+   "lo68": 0.11817,
+   "hi68": 0.12896
+  },
+  {
+   "denominator_set": "B' strict (literal GENIE record)",
+   "policy": "any",
+   "numerator": 834,
+   "denominator": 7554,
+   "efficiency": 0.11041,
+   "lo68": 0.10678,
+   "hi68": 0.11413
+  },
+  {
+   "denominator_set": "B' strict (literal GENIE record)",
+   "policy": "first",
+   "numerator": 787,
+   "denominator": 7554,
+   "efficiency": 0.10418,
+   "lo68": 0.10065,
+   "hi68": 0.10782
+  },
+  {
+   "denominator_set": "spine_source_signal (Delta resnum set)",
+   "policy": "any",
+   "numerator": 943,
+   "denominator": 8634,
+   "efficiency": 0.10922,
+   "lo68": 0.10585,
+   "hi68": 0.11268
+  },
+  {
+   "denominator_set": "spine_source_signal (Delta resnum set)",
+   "policy": "first",
+   "numerator": 896,
+   "denominator": 8634,
+   "efficiency": 0.10378,
+   "lo68": 0.10048,
+   "hi68": 0.10716
+  },
+  {
+   "denominator_set": "spine_source_signal + neutrino2026 veto",
+   "policy": "any",
+   "numerator": 845,
+   "denominator": 7679,
+   "efficiency": 0.11004,
+   "lo68": 0.10645,
+   "hi68": 0.11373
+  },
+  {
+   "denominator_set": "spine_source_signal + neutrino2026 veto",
+   "policy": "first",
+   "numerator": 805,
+   "denominator": 7679,
+   "efficiency": 0.10483,
+   "lo68": 0.10132,
+   "hi68": 0.10845
+  },
+  {
+   "denominator_set": "loose TPC box, truth 0p (35 MeV)",
+   "policy": "any",
+   "numerator": 476,
+   "denominator": 5863,
+   "efficiency": 0.08119,
+   "lo68": 0.07761,
+   "hi68": 0.08491
+  },
+  {
+   "denominator_set": "loose TPC box, truth 0p (35 MeV)",
+   "policy": "first",
+   "numerator": 453,
+   "denominator": 5863,
+   "efficiency": 0.07726,
+   "lo68": 0.07376,
+   "hi68": 0.08091
+  },
+  {
+   "denominator_set": "loose TPC box, truth 1p (35 MeV)",
+   "policy": "any",
+   "numerator": 594,
+   "denominator": 5557,
+   "efficiency": 0.10689,
+   "lo68": 0.10273,
+   "hi68": 0.1112
+  },
+  {
+   "denominator_set": "loose TPC box, truth 1p (35 MeV)",
+   "policy": "first",
+   "numerator": 566,
+   "denominator": 5557,
+   "efficiency": 0.10185,
+   "lo68": 0.09778,
+   "hi68": 0.10608
+  },
+  {
+   "denominator_set": "loose TPC box, truth >=2p (35 MeV)",
+   "policy": "any",
+   "numerator": 83,
+   "denominator": 1007,
+   "efficiency": 0.08242,
+   "lo68": 0.07369,
+   "hi68": 0.09203
+  },
+  {
+   "denominator_set": "loose TPC box, truth >=2p (35 MeV)",
+   "policy": "first",
+   "numerator": 82,
+   "denominator": 1007,
+   "efficiency": 0.08143,
+   "lo68": 0.07275,
+   "hi68": 0.09099
+  }
+ ],
+ "sensitivity_variants": [
+  {
+   "variant": "HEADLINE spine_truth_signal",
+   "n": 8668,
+   "n_0p50": 4764,
+   "n_Np50": 3904,
+   "eff_any": 0.10925,
+   "lo_any": 0.10589,
+   "hi_any": 0.11271,
+   "eff_first": 0.10383,
+   "lo_first": 0.10054,
+   "hi_first": 0.10721,
+   "eff_any_0p50": 0.09383,
+   "eff_any_Np50": 0.12807
+  },
+  {
+   "variant": "containment: literal (all non-nu primaries incl. neutrons, 5 cm)",
+   "n": 7036,
+   "n_0p50": 3609,
+   "n_Np50": 3427,
+   "eff_any": 0.11441,
+   "lo_any": 0.1106,
+   "hi_any": 0.11834,
+   "eff_first": 0.10887,
+   "lo_first": 0.10514,
+   "hi_first": 0.11271,
+   "eff_any_0p50": 0.09643,
+   "eff_any_Np50": 0.13335
+  },
+  {
+   "variant": "containment: flatCAF contained flag (zero margin)",
+   "n": 7273,
+   "n_0p50": 3748,
+   "n_Np50": 3525,
+   "eff_any": 0.11343,
+   "lo_any": 0.1097,
+   "hi_any": 0.11728,
+   "eff_first": 0.10793,
+   "lo_first": 0.10428,
+   "hi_first": 0.1117,
+   "eff_any_0p50": 0.09498,
+   "eff_any_Np50": 0.13305
+  },
+  {
+   "variant": "containment: GDML active box instead of SPINE box",
+   "n": 8690,
+   "n_0p50": 4774,
+   "n_Np50": 3916,
+   "eff_any": 0.10909,
+   "lo_any": 0.10573,
+   "hi_any": 0.11254,
+   "eff_first": 0.10368,
+   "lo_first": 0.1004,
+   "hi_first": 0.10706,
+   "eff_any_0p50": 0.09384,
+   "eff_any_Np50": 0.12768
+  },
+  {
+   "variant": "no containment requirement",
+   "n": 8907,
+   "n_0p50": 4857,
+   "n_Np50": 4050,
+   "eff_any": 0.10778,
+   "lo_any": 0.10448,
+   "hi_any": 0.11117,
+   "eff_first": 0.1025,
+   "lo_first": 0.09928,
+   "hi_first": 0.10582,
+   "eff_any_0p50": 0.09265,
+   "eff_any_Np50": 0.12593
+  },
+  {
+   "variant": "FV with medulla docstring margins (25/25/30/50)",
+   "n": 7936,
+   "n_0p50": 4364,
+   "n_Np50": 3572,
+   "eff_any": 0.11152,
+   "lo_any": 0.10797,
+   "hi_any": 0.11517,
+   "eff_first": 0.1061,
+   "lo_first": 0.10263,
+   "hi_first": 0.10967,
+   "eff_any_0p50": 0.09716,
+   "eff_any_Np50": 0.12906
+  },
+  {
+   "variant": "Delta(1232) only (resnum == 0)",
+   "n": 8614,
+   "n_0p50": 4758,
+   "n_Np50": 3856,
+   "eff_any": 0.10936,
+   "lo_any": 0.10598,
+   "hi_any": 0.11283,
+   "eff_first": 0.1039,
+   "lo_first": 0.1006,
+   "hi_first": 0.1073,
+   "eff_any_0p50": 0.09374,
+   "eff_any_Np50": 0.12863
+  },
+  {
+   "variant": "Delta-type resnum set (source)",
+   "n": 8634,
+   "n_0p50": 4761,
+   "n_Np50": 3873,
+   "eff_any": 0.10922,
+   "lo_any": 0.10585,
+   "hi_any": 0.11268,
+   "eff_first": 0.10378,
+   "lo_first": 0.10048,
+   "hi_first": 0.10716,
+   "eff_any_0p50": 0.09368,
+   "eff_any_Np50": 0.12832
+  },
+  {
+   "variant": "literal GENIE record final state instead of the thresholded rule",
+   "n": 7554,
+   "n_0p50": 4172,
+   "n_Np50": 3382,
+   "eff_any": 0.11041,
+   "lo_any": 0.10678,
+   "hi_any": 0.11413,
+   "eff_first": 0.10418,
+   "lo_first": 0.10065,
+   "hi_first": 0.10782,
+   "eff_any_0p50": 0.0942,
+   "eff_any_Np50": 0.1304
+  },
+  {
+   "variant": "+ neutrino2026 veto (approx.)",
+   "n": 7709,
+   "n_0p50": 4250,
+   "n_Np50": 3459,
+   "eff_any": 0.11013,
+   "lo_any": 0.10655,
+   "hi_any": 0.11382,
+   "eff_first": 0.10494,
+   "lo_first": 0.10144,
+   "hi_first": 0.10855,
+   "eff_any_0p50": 0.09529,
+   "eff_any_Np50": 0.12836
+  },
+  {
+   "variant": "A: without any final-state restriction",
+   "n": 8771,
+   "n_0p50": 4794,
+   "n_Np50": 3977,
+   "eff_any": 0.1082,
+   "lo_any": 0.10487,
+   "hi_any": 0.11162,
+   "eff_first": 0.10284,
+   "lo_first": 0.09958,
+   "hi_first": 0.10619,
+   "eff_any_0p50": 0.09324,
+   "eff_any_Np50": 0.12623
+  }
+ ],
+ "region_x_class": [
+  {
+   "region": "loose TPC box",
+   "proton_class": "all",
+   "policy": "any",
+   "numerator": 1153,
+   "denominator": 12427,
+   "efficiency": 0.09278,
+   "lo68": 0.09017,
+   "hi68": 0.09546
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "all",
+   "policy": "first",
+   "numerator": 1101,
+   "denominator": 12427,
+   "efficiency": 0.0886,
+   "lo68": 0.08604,
+   "hi68": 0.09122
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: 0p",
+   "policy": "any",
+   "numerator": 476,
+   "denominator": 5863,
+   "efficiency": 0.08119,
+   "lo68": 0.07761,
+   "hi68": 0.08491
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: 0p",
+   "policy": "first",
+   "numerator": 453,
+   "denominator": 5863,
+   "efficiency": 0.07726,
+   "lo68": 0.07376,
+   "hi68": 0.08091
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: 1p",
+   "policy": "any",
+   "numerator": 594,
+   "denominator": 5557,
+   "efficiency": 0.10689,
+   "lo68": 0.10273,
+   "hi68": 0.1112
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: 1p",
+   "policy": "first",
+   "numerator": 566,
+   "denominator": 5557,
+   "efficiency": 0.10185,
+   "lo68": 0.09778,
+   "hi68": 0.10608
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: >=2p",
+   "policy": "any",
+   "numerator": 83,
+   "denominator": 1007,
+   "efficiency": 0.08242,
+   "lo68": 0.07369,
+   "hi68": 0.09203
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "35: >=2p",
+   "policy": "first",
+   "numerator": 82,
+   "denominator": 1007,
+   "efficiency": 0.08143,
+   "lo68": 0.07275,
+   "hi68": 0.09099
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "50: 0p50",
+   "policy": "any",
+   "numerator": 527,
+   "denominator": 6664,
+   "efficiency": 0.07908,
+   "lo68": 0.07576,
+   "hi68": 0.08253
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "50: 0p50",
+   "policy": "first",
+   "numerator": 496,
+   "denominator": 6664,
+   "efficiency": 0.07443,
+   "lo68": 0.0712,
+   "hi68": 0.07779
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "50: Np50",
+   "policy": "any",
+   "numerator": 626,
+   "denominator": 5763,
+   "efficiency": 0.10862,
+   "lo68": 0.10451,
+   "hi68": 0.11288
+  },
+  {
+   "region": "loose TPC box",
+   "proton_class": "50: Np50",
+   "policy": "first",
+   "numerator": 605,
+   "denominator": 5763,
+   "efficiency": 0.10498,
+   "lo68": 0.10092,
+   "hi68": 0.10918
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "all",
+   "policy": "any",
+   "numerator": 947,
+   "denominator": 8668,
+   "efficiency": 0.10925,
+   "lo68": 0.10589,
+   "hi68": 0.11271
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "all",
+   "policy": "first",
+   "numerator": 900,
+   "denominator": 8668,
+   "efficiency": 0.10383,
+   "lo68": 0.10054,
+   "hi68": 0.10721
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: 0p",
+   "policy": "any",
+   "numerator": 401,
+   "denominator": 4185,
+   "efficiency": 0.09582,
+   "lo68": 0.09125,
+   "hi68": 0.10059
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: 0p",
+   "policy": "first",
+   "numerator": 379,
+   "denominator": 4185,
+   "efficiency": 0.09056,
+   "lo68": 0.0861,
+   "hi68": 0.09522
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: 1p",
+   "policy": "any",
+   "numerator": 481,
+   "denominator": 3794,
+   "efficiency": 0.12678,
+   "lo68": 0.12134,
+   "hi68": 0.13242
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: 1p",
+   "policy": "first",
+   "numerator": 456,
+   "denominator": 3794,
+   "efficiency": 0.12019,
+   "lo68": 0.11488,
+   "hi68": 0.12571
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: >=2p",
+   "policy": "any",
+   "numerator": 65,
+   "denominator": 689,
+   "efficiency": 0.09434,
+   "lo68": 0.0831,
+   "hi68": 0.10684
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "35: >=2p",
+   "policy": "first",
+   "numerator": 65,
+   "denominator": 689,
+   "efficiency": 0.09434,
+   "lo68": 0.0831,
+   "hi68": 0.10684
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "50: 0p50",
+   "policy": "any",
+   "numerator": 447,
+   "denominator": 4764,
+   "efficiency": 0.09383,
+   "lo68": 0.08958,
+   "hi68": 0.09825
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "50: 0p50",
+   "policy": "first",
+   "numerator": 418,
+   "denominator": 4764,
+   "efficiency": 0.08774,
+   "lo68": 0.08362,
+   "hi68": 0.09204
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "50: Np50",
+   "policy": "any",
+   "numerator": 500,
+   "denominator": 3904,
+   "efficiency": 0.12807,
+   "lo68": 0.12269,
+   "hi68": 0.13365
+  },
+  {
+   "region": "harmonized",
+   "proton_class": "50: Np50",
+   "policy": "first",
+   "numerator": 482,
+   "denominator": 3904,
+   "efficiency": 0.12346,
+   "lo68": 0.11817,
+   "hi68": 0.12896
+  }
+ ],
+ "included_sensitivity": {
+  "n_selected": 1172,
+  "baseline_equals_stored_lead_ke": true,
+  "n_selected_changed_0p50_Np50": 58
+ },
+ "migration_50": [
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_0p50",
+   "reco": "0p50",
+   "count": 3385,
+   "row_total": 4764,
+   "fraction": 0.7105,
+   "lo68": 0.7038,
+   "hi68": 0.7172
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_0p50",
+   "reco": "Np50",
+   "count": 978,
+   "row_total": 4764,
+   "fraction": 0.2053,
+   "lo68": 0.1994,
+   "hi68": 0.2113
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_0p50",
+   "reco": "no selected/matched candidate",
+   "count": 401,
+   "row_total": 4764,
+   "fraction": 0.0842,
+   "lo68": 0.0801,
+   "hi68": 0.0884
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_Np50",
+   "reco": "0p50",
+   "count": 1219,
+   "row_total": 3904,
+   "fraction": 0.3122,
+   "lo68": 0.3047,
+   "hi68": 0.3198
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_Np50",
+   "reco": "Np50",
+   "count": 2479,
+   "row_total": 3904,
+   "fraction": 0.635,
+   "lo68": 0.6271,
+   "hi68": 0.6428
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "signal_matched_candidate",
+   "truth": "truth_Np50",
+   "reco": "no selected/matched candidate",
+   "count": 206,
+   "row_total": 3904,
+   "fraction": 0.0528,
+   "lo68": 0.0492,
+   "hi68": 0.0566
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_0p50",
+   "reco": "0p50",
+   "count": 387,
+   "row_total": 4764,
+   "fraction": 0.0812,
+   "lo68": 0.0773,
+   "hi68": 0.0854
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_0p50",
+   "reco": "Np50",
+   "count": 60,
+   "row_total": 4764,
+   "fraction": 0.0126,
+   "lo68": 0.011,
+   "hi68": 0.0144
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_0p50",
+   "reco": "no selected/matched candidate",
+   "count": 4317,
+   "row_total": 4764,
+   "fraction": 0.9062,
+   "lo68": 0.9018,
+   "hi68": 0.9104
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_Np50",
+   "reco": "0p50",
+   "count": 66,
+   "row_total": 3904,
+   "fraction": 0.0169,
+   "lo68": 0.0148,
+   "hi68": 0.0192
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_Np50",
+   "reco": "Np50",
+   "count": 434,
+   "row_total": 3904,
+   "fraction": 0.1112,
+   "lo68": 0.1061,
+   "hi68": 0.1164
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_frozen_selection_any",
+   "truth": "truth_Np50",
+   "reco": "no selected/matched candidate",
+   "count": 3404,
+   "row_total": 3904,
+   "fraction": 0.8719,
+   "lo68": 0.8663,
+   "hi68": 0.8773
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_0p50",
+   "reco": "0p50",
+   "count": 415,
+   "row_total": 4764,
+   "fraction": 0.0871,
+   "lo68": 0.083,
+   "hi68": 0.0914
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_0p50",
+   "reco": "Np50",
+   "count": 32,
+   "row_total": 4764,
+   "fraction": 0.0067,
+   "lo68": 0.0055,
+   "hi68": 0.0081
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_0p50",
+   "reco": "no selected/matched candidate",
+   "count": 4317,
+   "row_total": 4764,
+   "fraction": 0.9062,
+   "lo68": 0.9018,
+   "hi68": 0.9104
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_Np50",
+   "reco": "0p50",
+   "count": 89,
+   "row_total": 3904,
+   "fraction": 0.0228,
+   "lo68": 0.0204,
+   "hi68": 0.0254
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_Np50",
+   "reco": "Np50",
+   "count": 411,
+   "row_total": 3904,
+   "fraction": 0.1053,
+   "lo68": 0.1003,
+   "hi68": 0.1104
+  },
+  {
+   "denominator": "harmonized",
+   "stage": "final_SENSITIVITY_included==1_rows_only",
+   "truth": "truth_Np50",
+   "reco": "no selected/matched candidate",
+   "count": 3404,
+   "row_total": 3904,
+   "fraction": 0.8719,
+   "lo68": 0.8663,
+   "hi68": 0.8773
+  }
+ ],
+ "migration_35": [
+  {
+   "denominator": "harmonized",
+   "truth35": 0,
+   "reco35": "reco_0p",
+   "count": 355,
+   "row_total": 4185,
+   "fraction": 0.08482676224611709
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 0,
+   "reco35": "reco_1p",
+   "count": 45,
+   "row_total": 4185,
+   "fraction": 0.010752688172043012
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 0,
+   "reco35": "reco_ge2p",
+   "count": 1,
+   "row_total": 4185,
+   "fraction": 0.00023894862604540023
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 0,
+   "reco35": "not_selected",
+   "count": 3784,
+   "row_total": 4185,
+   "fraction": 0.9041816009557945
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 1,
+   "reco35": "reco_0p",
+   "count": 75,
+   "row_total": 3794,
+   "fraction": 0.019768054823405375
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 1,
+   "reco35": "reco_1p",
+   "count": 384,
+   "row_total": 3794,
+   "fraction": 0.10121244069583553
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 1,
+   "reco35": "reco_ge2p",
+   "count": 22,
+   "row_total": 3794,
+   "fraction": 0.005798629414865577
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 1,
+   "reco35": "not_selected",
+   "count": 3313,
+   "row_total": 3794,
+   "fraction": 0.8732208750658935
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 2,
+   "reco35": "reco_0p",
+   "count": 7,
+   "row_total": 689,
+   "fraction": 0.010159651669085631
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 2,
+   "reco35": "reco_1p",
+   "count": 27,
+   "row_total": 689,
+   "fraction": 0.03918722786647315
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 2,
+   "reco35": "reco_ge2p",
+   "count": 31,
+   "row_total": 689,
+   "fraction": 0.04499274310595065
+  },
+  {
+   "denominator": "harmonized",
+   "truth35": 2,
+   "reco35": "not_selected",
+   "count": 624,
+   "row_total": 689,
+   "fraction": 0.9056603773584906
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 0,
+   "reco35": "reco_0p",
+   "count": 425,
+   "row_total": 5863,
+   "fraction": 0.07248848712263346
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 0,
+   "reco35": "reco_1p",
+   "count": 50,
+   "row_total": 5863,
+   "fraction": 0.008528057308545113
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 0,
+   "reco35": "reco_ge2p",
+   "count": 1,
+   "row_total": 5863,
+   "fraction": 0.00017056114617090227
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 0,
+   "reco35": "not_selected",
+   "count": 5387,
+   "row_total": 5863,
+   "fraction": 0.9188128944226506
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 1,
+   "reco35": "reco_0p",
+   "count": 93,
+   "row_total": 5557,
+   "fraction": 0.016735648731329853
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 1,
+   "reco35": "reco_1p",
+   "count": 471,
+   "row_total": 5557,
+   "fraction": 0.08475796292963829
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 1,
+   "reco35": "reco_ge2p",
+   "count": 30,
+   "row_total": 5557,
+   "fraction": 0.005398596364945114
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 1,
+   "reco35": "not_selected",
+   "count": 4963,
+   "row_total": 5557,
+   "fraction": 0.8931077919740867
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 2,
+   "reco35": "reco_0p",
+   "count": 9,
+   "row_total": 1007,
+   "fraction": 0.00893743793445879
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 2,
+   "reco35": "reco_1p",
+   "count": 35,
+   "row_total": 1007,
+   "fraction": 0.03475670307845084
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 2,
+   "reco35": "reco_ge2p",
+   "count": 39,
+   "row_total": 1007,
+   "fraction": 0.038728897715988087
+  },
+  {
+   "denominator": "TPC box",
+   "truth35": 2,
+   "reco35": "not_selected",
+   "count": 924,
+   "row_total": 1007,
+   "fraction": 0.9175769612711023
+  }
+ ],
+ "waterfall": [
+  {
+   "step": "loose official signal, filter box",
+   "any_numerator": 1172,
+   "any_denominator": 13773,
+   "any_efficiency": 0.08509,
+   "any_lo68": 0.08271,
+   "any_hi68": 0.08754,
+   "first_eff": 0.08132
+  },
+  {
+   "step": "provisional TPC box (current baseline)",
+   "any_numerator": 1153,
+   "any_denominator": 12427,
+   "any_efficiency": 0.09278,
+   "any_lo68": 0.09017,
+   "any_hi68": 0.09546,
+   "first_eff": 0.0886
+  },
+  {
+   "step": "SPINE FV",
+   "any_numerator": 973,
+   "any_denominator": 9206,
+   "any_efficiency": 0.10569,
+   "any_lo68": 0.10247,
+   "any_hi68": 0.109,
+   "first_eff": 0.10059
+  },
+  {
+   "step": "+ containment (approx.)",
+   "any_numerator": 959,
+   "any_denominator": 8945,
+   "any_efficiency": 0.10721,
+   "any_lo68": 0.10393,
+   "any_hi68": 0.11058,
+   "first_eff": 0.10196
+  },
+  {
+   "step": "+ photon topology (one photon > 25 MeV)",
+   "any_numerator": 959,
+   "any_denominator": 8945,
+   "any_efficiency": 0.10721,
+   "any_lo68": 0.10393,
+   "any_hi68": 0.11058,
+   "first_eff": 0.10196
+  },
+  {
+   "step": "+ charged-particle veto (e/mu/pi+- > 25 MeV)",
+   "any_numerator": 949,
+   "any_denominator": 8771,
+   "any_efficiency": 0.1082,
+   "any_lo68": 0.10487,
+   "any_hi68": 0.11162,
+   "first_eff": 0.10284
+  },
+  {
+   "step": "+ strict final state (only photons/nucleons above threshold)",
+   "any_numerator": 947,
+   "any_denominator": 8668,
+   "any_efficiency": 0.10925,
+   "any_lo68": 0.10589,
+   "any_hi68": 0.11271,
+   "first_eff": 0.10383
+  },
+  {
+   "step": "harmonized 0p50 (50 MeV categories)",
+   "any_numerator": 447,
+   "any_denominator": 4764,
+   "any_efficiency": 0.09383,
+   "any_lo68": 0.08958,
+   "any_hi68": 0.09825,
+   "first_eff": 0.08774
+  },
+  {
+   "step": "harmonized Np50 (50 MeV categories)",
+   "any_numerator": 500,
+   "any_denominator": 3904,
+   "any_efficiency": 0.12807,
+   "any_lo68": 0.12269,
+   "any_hi68": 0.13365,
+   "first_eff": 0.12346
+  }
+ ],
+ "differential": {
+  "photon_energy_mev": {
+   "bins": [
+    {
+     "bin": 1,
+     "lo": 50.0,
+     "hi": 100.0,
+     "efficiency": 0.0242,
+     "efficiency_h": 0.0273,
+     "denominator": 110
+    },
+    {
+     "bin": 2,
+     "lo": 100.0,
+     "hi": 150.0,
+     "efficiency": 0.035,
+     "efficiency_h": 0.0345,
+     "denominator": 551
+    },
+    {
+     "bin": 3,
+     "lo": 150.0,
+     "hi": 200.0,
+     "efficiency": 0.0436,
+     "efficiency_h": 0.05,
+     "denominator": 1320
+    },
+    {
+     "bin": 4,
+     "lo": 200.0,
+     "hi": 250.0,
+     "efficiency": 0.0722,
+     "efficiency_h": 0.0834,
+     "denominator": 1642
+    },
+    {
+     "bin": 5,
+     "lo": 250.0,
+     "hi": 300.0,
+     "efficiency": 0.0923,
+     "efficiency_h": 0.1032,
+     "denominator": 1483
+    },
+    {
+     "bin": 6,
+     "lo": 300.0,
+     "hi": 400.0,
+     "efficiency": 0.1227,
+     "efficiency_h": 0.1472,
+     "denominator": 2093
+    },
+    {
+     "bin": 7,
+     "lo": 400.0,
+     "hi": 500.0,
+     "efficiency": 0.1475,
+     "efficiency_h": 0.1785,
+     "denominator": 919
+    },
+    {
+     "bin": 8,
+     "lo": 500.0,
+     "hi": 700.0,
+     "efficiency": 0.1433,
+     "efficiency_h": 0.1783,
+     "denominator": 471
+    },
+    {
+     "bin": 9,
+     "lo": 700.0,
+     "hi": 1200.0,
+     "efficiency": 0.15,
+     "efficiency_h": 0.1757,
+     "denominator": 74
+    }
+   ],
+   "ratio_first_last": 6.441441441441442,
+   "loose_ratio_first_last": 6.1875
+  },
+  "cos_theta_beam": {
+   "bins": [
+    {
+     "bin": 0,
+     "lo": -1.0,
+     "hi": -0.75,
+     "efficiency": 0.0296,
+     "efficiency_h": 0.0315,
+     "denominator": 381
+    },
+    {
+     "bin": 1,
+     "lo": -0.75,
+     "hi": -0.5,
+     "efficiency": 0.0326,
+     "efficiency_h": 0.0295,
+     "denominator": 441
+    },
+    {
+     "bin": 2,
+     "lo": -0.5,
+     "hi": -0.25,
+     "efficiency": 0.037,
+     "efficiency_h": 0.0389,
+     "denominator": 591
+    },
+    {
+     "bin": 3,
+     "lo": -0.25,
+     "hi": 0.0,
+     "efficiency": 0.0535,
+     "efficiency_h": 0.063,
+     "denominator": 730
+    },
+    {
+     "bin": 4,
+     "lo": 0.0,
+     "hi": 0.25,
+     "efficiency": 0.0857,
+     "efficiency_h": 0.0974,
+     "denominator": 965
+    },
+    {
+     "bin": 5,
+     "lo": 0.25,
+     "hi": 0.5,
+     "efficiency": 0.0883,
+     "efficiency_h": 0.1019,
+     "denominator": 1246
+    },
+    {
+     "bin": 6,
+     "lo": 0.5,
+     "hi": 0.75,
+     "efficiency": 0.1115,
+     "efficiency_h": 0.1333,
+     "denominator": 1711
+    },
+    {
+     "bin": 7,
+     "lo": 0.75,
+     "hi": 1.0,
+     "efficiency": 0.1282,
+     "efficiency_h": 0.1552,
+     "denominator": 2603
+    }
+   ],
+   "ratio_first_last": 4.927775643488284,
+   "loose_ratio_first_last": 4.33609404221213
+  },
+  "vtx_z": {
+   "bins": [
+    {
+     "bin": 0,
+     "lo": 0.0,
+     "hi": 50.0,
+     "efficiency": 0.0926,
+     "efficiency_h": 0.1087,
+     "denominator": 791
+    },
+    {
+     "bin": 1,
+     "lo": 50.0,
+     "hi": 100.0,
+     "efficiency": 0.1094,
+     "efficiency_h": 0.1241,
+     "denominator": 1007
+    },
+    {
+     "bin": 2,
+     "lo": 100.0,
+     "hi": 150.0,
+     "efficiency": 0.0855,
+     "efficiency_h": 0.0951,
+     "denominator": 988
+    },
+    {
+     "bin": 3,
+     "lo": 150.0,
+     "hi": 200.0,
+     "efficiency": 0.0933,
+     "efficiency_h": 0.1066,
+     "denominator": 1013
+    },
+    {
+     "bin": 4,
+     "lo": 200.0,
+     "hi": 250.0,
+     "efficiency": 0.0962,
+     "efficiency_h": 0.1101,
+     "denominator": 999
+    },
+    {
+     "bin": 5,
+     "lo": 250.0,
+     "hi": 300.0,
+     "efficiency": 0.1024,
+     "efficiency_h": 0.1127,
+     "denominator": 985
+    },
+    {
+     "bin": 6,
+     "lo": 300.0,
+     "hi": 350.0,
+     "efficiency": 0.0978,
+     "efficiency_h": 0.1024,
+     "denominator": 1016
+    },
+    {
+     "bin": 7,
+     "lo": 350.0,
+     "hi": 400.0,
+     "efficiency": 0.1157,
+     "efficiency_h": 0.1306,
+     "denominator": 965
+    },
+    {
+     "bin": 8,
+     "lo": 400.0,
+     "hi": 450.0,
+     "efficiency": 0.088,
+     "efficiency_h": 0.0918,
+     "denominator": 904
+    }
+   ],
+   "ratio_first_last": 0.8444767441860466,
+   "loose_ratio_first_last": 0.9504708097928438
+  }
+ },
+ "differential_np50_lead_ke": [
+  {
+   "lo": 50.0,
+   "hi": 75.0,
+   "denominator": 677,
+   "numerator": 54,
+   "efficiency": 0.0798
+  },
+  {
+   "lo": 75.0,
+   "hi": 100.0,
+   "denominator": 529,
+   "numerator": 66,
+   "efficiency": 0.1248
+  },
+  {
+   "lo": 100.0,
+   "hi": 150.0,
+   "denominator": 683,
+   "numerator": 83,
+   "efficiency": 0.1215
+  },
+  {
+   "lo": 150.0,
+   "hi": 200.0,
+   "denominator": 556,
+   "numerator": 88,
+   "efficiency": 0.1583
+  },
+  {
+   "lo": 200.0,
+   "hi": 300.0,
+   "denominator": 651,
+   "numerator": 121,
+   "efficiency": 0.1859
+  },
+  {
+   "lo": 300.0,
+   "hi": 500.0,
+   "denominator": 561,
+   "numerator": 70,
+   "efficiency": 0.1248
+  },
+  {
+   "lo": 500.0,
+   "hi": 2000.0,
+   "denominator": 244,
+   "numerator": 18,
+   "efficiency": 0.0738
+  }
+ ],
+ "metadata": {
+  "schema_version": "spine-harmonization-1.0",
+  "signal_definition_schema": "spine-signal-definition-1.0",
+  "git_commit_at_run": "7a47eee4197e5c23a0ad271b99f17645641eabb4",
+  "official_manifest_sha256": "d89f2d12cde09d61a081731bdd5eca62519f6cc7a67634273051453c6053d69d",
+  "truth_master_sha256": "43cc7c647e1db1d074eb593dce9dea082adf6a2c7652d050d979533773542088",
+  "differential_truth_scan_sha256": "67f873f4b62c59030aebf1db75417ea935eebf06684d2387852beca37532ddb0",
+  "spine_truth_scan_sha256": "608cbd8734f35f63c49e0ee7b7ed99ddc8370863be6c5bd9b949225ddfb56bcd",
+  "signal_definition_config_sha256": "3cd4e253a1dc5dd42fd3c1ad2d3eeaf15f6c37a99d264955a0a84a8f88757f0f",
+  "baseline_selection_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b",
+  "medulla_source": {
+   "repo": "github.com/seokjuchung/medulla",
+   "branch": "feature/schung_NCDelta",
+   "commit": "4048f930aa7679cebbcf9f9b11aa33f21f350f05"
+  }
+ }
+}
