@@ -209,8 +209,8 @@
   },
   "cutflow_min_p": 0.2455487093343014
  },
- "beam_neutrino_only_S_B_per_1e20POT": {
-  "note": "EXCLUDES cosmic-only background (unresolved); stat only; the S region is the truth region, B is the whole BNB CV non-signal selection",
+ "signal_and_beam_neutrino_background_rates_per_1e20POT": {
+  "note": "PRELIMINARY reference only. NOT the analysis S/B or purity: S is restricted to the truth region (provisional TPC box / filter box) while B is the whole BNB CV non-signal selection with no corresponding vertex requirement, so the populations do not share a phase-space convention; cosmic background is also excluded (normalisation unresolved). Final S/B needs BOTH a common signal/background analysis volume AND cosmic normalisation. Total purity, total S/B and significance are refused.",
   "filter_box": {
    "refusals": {
     "total_background": "refused (UnresolvedNormalizationError)",
@@ -223,18 +223,16 @@
     "S_unc": 0.7959921951235412,
     "B_beam_neutrino": 1139.9564433480098,
     "B_unc": 64.7451752525696,
-    "S_over_B_beam_neutrino_only": 0.016719191925866492,
-    "S_over_B_unc": 0.0011786809401758502,
-    "beam_neutrino_only_purity": 0.016444257233107842
+    "raw_signal_over_background_rate_ratio_before_common_FV": 0.016719191925866492,
+    "raw_ratio_unc": 0.0011786809401758502
    },
    "1g1p": {
     "S": 19.7637402330925,
     "S_unc": 0.805533168556858,
     "B_beam_neutrino": 845.7741353872331,
     "B_unc": 55.76869497775462,
-    "S_over_B_beam_neutrino_only": 0.02336763375253108,
-    "S_over_B_unc": 0.0018114139262759461,
-    "beam_neutrino_only_purity": 0.022834055897239566
+    "raw_signal_over_background_rate_ratio_before_common_FV": 0.02336763375253108,
+    "raw_ratio_unc": 0.0018114139262759461
    }
   },
   "active_tpc": {
@@ -249,18 +247,16 @@
     "S_unc": 0.7834545582729464,
     "B_beam_neutrino": 1139.9564433480098,
     "B_unc": 64.7451752525696,
-    "S_over_B_beam_neutrino_only": 0.01628653261540045,
-    "S_over_B_unc": 0.0011523822801414337,
-    "beam_neutrino_only_purity": 0.016025532261543664
+    "raw_signal_over_background_rate_ratio_before_common_FV": 0.01628653261540045,
+    "raw_ratio_unc": 0.0011523822801414337
    },
    "1g1p": {
     "S": 19.587592815685248,
     "S_unc": 0.7990464004422052,
     "B_beam_neutrino": 845.7741353872331,
     "B_unc": 55.76869497775462,
-    "S_over_B_beam_neutrino_only": 0.02315936607202723,
-    "S_over_B_unc": 0.0017957001626330142,
-    "beam_neutrino_only_purity": 0.022635150339225727
+    "raw_signal_over_background_rate_ratio_before_common_FV": 0.02315936607202723,
+    "raw_ratio_unc": 0.0017957001626330142
    }
   }
  },

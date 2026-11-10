@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Official Gen2 NC-Delta baseline: efficiencies by truth class and Delta type, truth->reco migration (rows normalised, binomial errors), comparison with the
-117-event natural-BNB-CV rehearsal, migration-aware yields, beam-neutrino-only S/B and the DESCRIPTIVE Task-13 diagnostics. Frozen baseline only; nothing is tuned.
+117-event natural-BNB-CV rehearsal, migration-aware yields, an independent signal/background RATE reference (NOT an analysis S/B) and the DESCRIPTIVE Task-13 diagnostics. Frozen baseline only; nothing is tuned.
 
     source env/setup_eaf.sh && python scripts/run_official_signal_baseline.py official --skip-register --skip-build --region active_tpc --exposure-pot 1e20
     (same for --region filter_box) && python scripts/analyze_official_signal_baseline.py
@@ -128,7 +128,7 @@ def main():
     dsel = pd.read_csv(rh / "migration_any_D_final_events__analysis_selected_candidate_raw.csv", index_col=0)
     summary["natural_cv_comparison"] = cmpr
 
-    # --------------------------------------------------------------------------- backgrounds and beam-neutrino-only S/B
+    # --------------------------------------------------------------------------- signal and background rates side by side (NOT an analysis S/B)
     bg = json.load(open(TAB / "background_rate_model.json"))
     comp = P.Component("B_BNB_NEUTRINO", "known", {c: bg["by_reco_channel"][c]["rate_per_1e20_POT"] for c in P.CHANNELS},
                        {c: bg["by_reco_channel"][c]["stat_unc_per_1e20_POT"] for c in P.CHANNELS}, note="from tables/official_signal/background_rate_model.json")
@@ -144,10 +144,9 @@ def main():
             except P.UnresolvedNormalizationError:
                 ref[name] = "refused (UnresolvedNormalizationError)"
         sb[r] = dict(refusals=ref, **{ch: dict(S=s[ch], S_unc=ds[ch], B_beam_neutrino=comp.values[ch], B_unc=comp.stat_unc[ch],
-                    S_over_B_beam_neutrino_only=s[ch] / comp.values[ch],
-                    S_over_B_unc=(s[ch] / comp.values[ch]) * float(np.hypot(ds[ch] / s[ch], comp.stat_unc[ch] / comp.values[ch])),
-                    beam_neutrino_only_purity=s[ch] / (s[ch] + comp.values[ch])) for ch in ("1g0p", "1g1p")})
-    summary["beam_neutrino_only_S_B_per_1e20POT"] = dict(note="EXCLUDES cosmic-only background (unresolved); stat only; the S region is the truth region, B is the whole BNB CV non-signal selection", **sb)
+                    raw_signal_over_background_rate_ratio_before_common_FV=s[ch] / comp.values[ch],
+                    raw_ratio_unc=(s[ch] / comp.values[ch]) * float(np.hypot(ds[ch] / s[ch], comp.stat_unc[ch] / comp.values[ch]))) for ch in ("1g0p", "1g1p")})
+    summary["signal_and_beam_neutrino_background_rates_per_1e20POT"] = dict(note="PRELIMINARY reference only. NOT the analysis S/B or purity: S is restricted to the truth region (provisional TPC box / filter box) while B is the whole BNB CV non-signal selection with no corresponding vertex requirement, so the populations do not share a phase-space convention; cosmic background is also excluded (normalisation unresolved). Final S/B needs BOTH a common signal/background analysis volume AND cosmic normalisation. Total purity, total S/B and significance are refused.", **sb)
 
     # --------------------------------------------------------------------------- Task 13 descriptive diagnostics (TPC box, policy any)
     t13 = {}

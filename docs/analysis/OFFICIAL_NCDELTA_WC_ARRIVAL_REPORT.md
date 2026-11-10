@@ -147,20 +147,27 @@ Signal sample POT 2.83853154e21 (SAM `mc.pot` of the 15,777 flatCAF units; inclu
 
 These use the NC Delta -> N gamma cross-section and flux of the generator exactly as simulated (no reweighting, no systematic uncertainty).
 
-## 10. Beam-neutrino background and beam-neutrino-only S/B (per 1e20 POT)
+## 10. Signal and beam-neutrino background rates (per 1e20 POT) -- quoted independently, NOT an analysis S/B
 
-B_BNB_NEUTRINO is read from `tables/official_signal/background_rate_model.json` (validated Phase-4 non-signal BNB CV events, 635 selected, POT 2.7194e19; natural NC-Delta
-signal-like events excluded): 1g0p 310 events -> 1139.96 +- 64.7; 1g1p 230 -> 845.77 +- 55.8 (>=2p 95 -> 349.3 +- 35.8).
+**Signal** (official NC Delta, truth vertex in the provisional TPC box, policy `any`, MC expectation): reco 1g0p **18.57 +- 0.78**; reco 1g1p **19.59 +- 0.80** (section 9).
 
-| | S (TPC box) | B (beam neutrino) | S/B, **beam-neutrino-only** | S/(S+B), beam-neutrino-only |
-|---|---|---|---|---|
-| reco 1g0p | 18.57 +- 0.78 | 1140 +- 65 | 0.0163 +- 0.0012 | 1.60 % |
-| reco 1g1p | 19.59 +- 0.80 | 846 +- 56 | 0.0232 +- 0.0018 | 2.26 % |
+**Beam-neutrino background** B_BNB_NEUTRINO, read from `tables/official_signal/background_rate_model.json` (validated Phase-4 non-signal BNB CV events, 635 selected, POT 2.7194e19; natural
+NC-Delta signal-like events excluded): reco 1g0p **~1140 +- 65** (310 events); reco 1g1p **~846 +- 56** (230 events); reco >=2p ~349 +- 36 (95 events). Statistical only.
 
-**These exclude the cosmic-only background** (beam-off normalisation unresolved) and any systematic uncertainty; they are an upper bound on purity and S/B with a single background component.
-The S region is the truth region while B is the whole BNB CV non-signal selection (no vertex region applied), so the two are not defined over an identical fiducial convention.
-**COSMIC NORMALIZATION: UNRESOLVED. No total purity or significance is quoted;** the prediction object continues to refuse `total_background`, `purity`, `s_over_b` and `significance`
-(re-verified in `official_baseline/summary.json`, all four refused).
+**Why these are not combined into an S/B or purity.** The signal is restricted to events whose *truth* vertex lies in the provisional TPC box, whereas B is *all* selected non-signal BNB CV events with
+no corresponding analysis-volume (FV / reconstructed-vertex) requirement. The two populations therefore do **not** share a phase-space convention, and the cosmic-only background is absent
+(beam-off normalisation unresolved). A ratio of the two numbers is a scale comparison only. The headline S/B and purity are therefore **suppressed**.
+
+Reference table (diagnostic only):
+
+| reco channel | S | B (beam neutrino) | raw signal/background rate ratio **before a common FV convention** |
+|---|---|---|---|
+| 1g0p | 18.57 +- 0.78 | 1140 +- 65 | 0.0163 +- 0.0012 |
+| 1g1p | 19.59 +- 0.80 | 846 +- 56 | 0.0232 +- 0.0018 |
+
+**This is NOT the analysis S/B and not a purity.** The final S/B requires **both** (i) a common signal/background analysis volume (the same FV / reconstructed-vertex requirement applied to S and B) **and**
+(ii) the cosmic normalisation. **COSMIC NORMALIZATION: UNRESOLVED. Total purity, total S/B and significance are not quoted;** the prediction object continues to refuse `total_background`, `purity`,
+`s_over_b` and `significance` (re-verified in `official_baseline/summary.json`, all four refused). No systematic uncertainty is included.
 
 ## 11. Natural-CV rehearsal comparison (TPC box)
 
@@ -196,12 +203,12 @@ events; with 13 selected events its relative uncertainty is ~28 %, so it can onl
 ## 13. Unresolved analysis conventions
 
 Fiducial volume (the TPC box is a provisional truth region); proton threshold 35 MeV and reco/true proton definitions; candidate policy `any` vs `first` (+4.7 %); the treatment of the missing production
-event (kept); cosmic and beam-off normalisation (blocks any total purity / significance); the NC Delta -> N gamma cross-section and flux systematic uncertainties and the flux-weighted
+event (kept); cosmic and beam-off normalisation (blocks any total purity / S/B / significance); a common signal/background analysis volume (also required for any S/B); the NC Delta -> N gamma cross-section and flux systematic uncertainties and the flux-weighted
 statement of the S/B; whether the pi0/nueCC-like backgrounds of the BNB CV should be vertex-restricted like the signal. See `QUESTIONS_FOR_HAIWANG_HANYU.md`.
 
 ## 14. Exact limitations
 
-* Statistical errors only; no systematic uncertainty of any kind. S/B is **beam-neutrino-only**; no cosmic component.
+* Statistical errors only; no systematic uncertainty of any kind. No S/B or purity is quoted: signal and background do not yet share an analysis volume, and there is no cosmic component.
 * DV2-MAX / Fix2 / alternative-BDT negatives and the larwirecell/sbndcode/cfg/wire-cell-data commits are the producer's declaration.
 * The missing-event mechanism (path derivation) is inferred from the lists and SAM locations, not confirmed by the producer.
 * 25 of 9,150 merged CAFs (27 signal events) have `wc.T_overlap.*` branches with an 8-byte trailing mismatch in the embedded-basket header that stock uproot refuses (`expected 1245 bytes but cursor moved by 1237`). A scoped fallback
