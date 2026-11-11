@@ -1,0 +1,11 @@
+first_failure,all,0p,1p,>=2p
+no_candidate,1095,653,386,56
+no_20mev_shower,3251,1254,1702,295
+bdt_not_evaluable,46,20,21,5
+fail_numu,3030,1490,1276,264
+fail_other,2226,1289,801,136
+fail_ncpi0,1465,583,723,159
+fail_nue,0,0,0,0
+fail_n20br1,160,98,53,9
+selected,1153,476,594,83
+missing_from_merged_caf,1,0,1,0

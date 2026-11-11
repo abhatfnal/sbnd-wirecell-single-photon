@@ -1,0 +1,9 @@
+group,n,phase18_share_of_loss,phase18_denominator,corrected_share_of_loss,corrected_denominator,share_of_truth_denominator
+fail numu: all,3031,0.2978,10178,0.26885,11274,0.2439
+compact (length < 20 cm),1445,0.142,10178,0.12817,11274,0.11628
+few-segment (< 5),1349,0.1325,10178,0.11966,11274,0.10855
+compact or few-segment,1733,0.1703,10178,0.15372,11274,0.13945
+non-clean photon object,1756,0.1725,10178,0.15576,11274,0.14131
+clean photon shower,1275,0.1253,10178,0.11309,11274,0.1026
+"clean photon shower, not compact",983,0.0966,10178,0.08719,11274,0.0791
+muon/pion-like dominant object,486,0.0478,10178,0.04311,11274,0.03911
