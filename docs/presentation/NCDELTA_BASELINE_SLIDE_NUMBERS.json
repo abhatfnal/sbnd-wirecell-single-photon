@@ -1,0 +1,1077 @@
+[
+{
+"slide": "1,2",
+"displayed": "12,427",
+"meaning": "official Gen2 signal events in the provisional TPC box (truth denominator)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['truth_denominator']",
+"kind": "json",
+"value": 12427
+},
+{
+"slide": "2",
+"displayed": "5,863 / 5,557 / 1,007",
+"meaning": "truth 0p / 1p / >=2p in the box (0p)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['truth_by_class']['0p']",
+"kind": "json",
+"value": 5863
+},
+{
+"slide": "2",
+"displayed": "5,557",
+"meaning": "truth 1p",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['truth_by_class']['1p']",
+"kind": "json",
+"value": 5557
+},
+{
+"slide": "2",
+"displayed": "1,007",
+"meaning": "truth >=2p",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['truth_by_class']['>=2p']",
+"kind": "json",
+"value": 1007
+},
+{
+"slide": "2",
+"displayed": "1,153",
+"meaning": "selected events, policy any",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['final_any']",
+"kind": "json",
+"value": 1153
+},
+{
+"slide": "2",
+"displayed": "1,101",
+"meaning": "selected events, policy first",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['final_first']",
+"kind": "json",
+"value": 1101
+},
+{
+"slide": "2",
+"displayed": "9.28 %",
+"meaning": "efficiency any, total (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|all'][2]",
+"kind": "json",
+"value": 0.09278184598052627
+},
+{
+"slide": "2",
+"displayed": "8.86 %",
+"meaning": "efficiency first, total (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['first|all'][2]",
+"kind": "json",
+"value": 0.08859740886778789
+},
+{
+"slide": "2",
+"displayed": "8.12 %",
+"meaning": "efficiency any, truth 0p (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|0p'][2]",
+"kind": "json",
+"value": 0.08118710557734948
+},
+{
+"slide": "2",
+"displayed": "10.69 %",
+"meaning": "efficiency any, truth 1p (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|1p'][2]",
+"kind": "json",
+"value": 0.10689220802591326
+},
+{
+"slide": "2",
+"displayed": "8.24 %",
+"meaning": "efficiency any, truth >=2p (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|>=2p'][2]",
+"kind": "json",
+"value": 0.08242303872889771
+},
+{
+"slide": "backup",
+"displayed": "7.61 %",
+"meaning": "efficiency any, Delta0 -> n gamma (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|Delta0'][2]",
+"kind": "json",
+"value": 0.07610283377154543
+},
+{
+"slide": "backup",
+"displayed": "11.32 %",
+"meaning": "efficiency any, Delta+ -> p gamma (value index 2 of [selected, truth, eff, lo68, hi68])",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal']['eff']['any|Delta+'][2]",
+"kind": "json",
+"value": 0.11324135459595054
+},
+{
+"slide": "3",
+"displayed": "8.8 %",
+"meaning": "first-failure fraction of the 12,427, stage candidate (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['candidate'][3]",
+"kind": "json",
+"value": 0.08811458920093346
+},
+{
+"slide": "3",
+"displayed": "26.2 %",
+"meaning": "first-failure fraction of the 12,427, stage > 20 MeV shower (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['> 20 MeV shower'][3]",
+"kind": "json",
+"value": 0.26160778949062524
+},
+{
+"slide": "3",
+"displayed": "24.4 %",
+"meaning": "first-failure fraction of the 12,427, stage numu (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['numu'][3]",
+"kind": "json",
+"value": 0.2438239317614871
+},
+{
+"slide": "3",
+"displayed": "17.9 %",
+"meaning": "first-failure fraction of the 12,427, stage other (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['other'][3]",
+"kind": "json",
+"value": 0.17912609640299348
+},
+{
+"slide": "3",
+"displayed": "11.8 %",
+"meaning": "first-failure fraction of the 12,427, stage ncpi0 (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['ncpi0'][3]",
+"kind": "json",
+"value": 0.11788846865695662
+},
+{
+"slide": "3",
+"displayed": "1.3 %",
+"meaning": "first-failure fraction of the 12,427, stage n_20br1 (index 3)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['n_20br1'][3]",
+"kind": "json",
+"value": 0.01287519111611813
+},
+{
+"slide": "2,backup",
+"displayed": "11,331",
+"meaning": "cumulative surviving events after stage candidate (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['candidate'][0]",
+"kind": "json",
+"value": 11331
+},
+{
+"slide": "2,backup",
+"displayed": "8,080",
+"meaning": "cumulative surviving events after stage > 20 MeV shower (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['> 20 MeV shower'][0]",
+"kind": "json",
+"value": 8080
+},
+{
+"slide": "2,backup",
+"displayed": "8,034",
+"meaning": "cumulative surviving events after stage BDT evaluable (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['BDT evaluable'][0]",
+"kind": "json",
+"value": 8034
+},
+{
+"slide": "2,backup",
+"displayed": "5,007",
+"meaning": "cumulative surviving events after stage numu (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['numu'][0]",
+"kind": "json",
+"value": 5007
+},
+{
+"slide": "2,backup",
+"displayed": "2,781",
+"meaning": "cumulative surviving events after stage other (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['other'][0]",
+"kind": "json",
+"value": 2781
+},
+{
+"slide": "2,backup",
+"displayed": "1,313",
+"meaning": "cumulative surviving events after stage ncpi0 (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['ncpi0'][0]",
+"kind": "json",
+"value": 1313
+},
+{
+"slide": "2,backup",
+"displayed": "1,153",
+"meaning": "cumulative surviving events after stage n_20br1 (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['n_20br1'][0]",
+"kind": "json",
+"value": 1153
+},
+{
+"slide": "3",
+"displayed": "3,030",
+"meaning": "first-failure count at numu (exclusive; 3,027 by cumulative difference, documented 3-event bookkeeping difference)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['loss_budget']['numu'][2]",
+"kind": "json",
+"value": 3030
+},
+{
+"slide": "3,5",
+"displayed": "26.9 %",
+"meaning": "numu failures as a share of the total baseline loss (11,274 of 12,427) - CORRECTED Phase-19 value",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['phase18_correction']['numu_fail_share_corrected']",
+"kind": "json",
+"value": 0.2688486783750222
+},
+{
+"slide": "backup",
+"displayed": "12.8 %",
+"meaning": "compact (< 20 cm) numu failures as a share of the total loss (corrected)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['phase18_correction']['compact_share_corrected']",
+"kind": "json",
+"value": 0.1281710129501508
+},
+{
+"slide": "3,5",
+"displayed": "29.8 %",
+"meaning": "SUPERSEDED Phase-18 share (denominator 11,331 omitted the 1,096 events without a candidate); NEVER show on a slide",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['phase18_correction']['numu_fail_share_phase18']",
+"kind": "json",
+"value": 0.2977991746905089
+},
+{
+"slide": "8",
+"displayed": "425",
+"meaning": "truth 0p -> reco 0p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 0p'][0]",
+"kind": "json",
+"value": 425
+},
+{
+"slide": "8",
+"displayed": "50",
+"meaning": "truth 0p -> reco 1p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 0p'][1]",
+"kind": "json",
+"value": 50
+},
+{
+"slide": "8",
+"displayed": "1",
+"meaning": "truth 0p -> reco >=2p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 0p'][2]",
+"kind": "json",
+"value": 1
+},
+{
+"slide": "8",
+"displayed": "93",
+"meaning": "truth 1p -> reco 0p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 1p'][0]",
+"kind": "json",
+"value": 93
+},
+{
+"slide": "8",
+"displayed": "471",
+"meaning": "truth 1p -> reco 1p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 1p'][1]",
+"kind": "json",
+"value": 471
+},
+{
+"slide": "8",
+"displayed": "30",
+"meaning": "truth 1p -> reco >=2p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth 1p'][2]",
+"kind": "json",
+"value": 30
+},
+{
+"slide": "8",
+"displayed": "9",
+"meaning": "truth >=2p -> reco 0p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth >=2p'][0]",
+"kind": "json",
+"value": 9
+},
+{
+"slide": "8",
+"displayed": "35",
+"meaning": "truth >=2p -> reco 1p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth >=2p'][1]",
+"kind": "json",
+"value": 35
+},
+{
+"slide": "8",
+"displayed": "39",
+"meaning": "truth >=2p -> reco >=2p (selected events)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['migration_final']['truth >=2p'][2]",
+"kind": "json",
+"value": 39
+},
+{
+"slide": "8",
+"displayed": "527 / 556 / 70",
+"meaning": "reco 1g0p / 1g1p / >=2p totals (column sums of migration_final)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "sum over $['migration_final'][*][0..2]",
+"kind": "sum",
+"value": [
+527,
+556,
+70
+]
+},
+{
+"slide": "10",
+"displayed": "635",
+"meaning": "selected non-signal BNB-CV events",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['selected_nonsignal']",
+"kind": "json",
+"value": 635
+},
+{
+"slide": "10",
+"displayed": "310",
+"meaning": "selected non-signal events, reco 1g0p (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['1g0p'][0]",
+"kind": "json",
+"value": 310
+},
+{
+"slide": "10",
+"displayed": "230",
+"meaning": "selected non-signal events, reco 1g1p (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['1g1p'][0]",
+"kind": "json",
+"value": 230
+},
+{
+"slide": "10",
+"displayed": "95",
+"meaning": "selected non-signal events, reco ge2p (index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['ge2p'][0]",
+"kind": "json",
+"value": 95
+},
+{
+"slide": "11",
+"displayed": "1,140",
+"meaning": "beam-neutrino selected rate per 1e20 POT, reco 1g0p (index 1; stat. only)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['1g0p'][1]",
+"kind": "json",
+"value": 1139.9564433480098
+},
+{
+"slide": "11",
+"displayed": "846",
+"meaning": "beam-neutrino selected rate per 1e20 POT, reco 1g1p (index 1; stat. only)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['1g1p'][1]",
+"kind": "json",
+"value": 845.7741353872331
+},
+{
+"slide": "11",
+"displayed": "349",
+"meaning": "beam-neutrino selected rate per 1e20 POT, reco ge2p (index 1; stat. only)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['background']['by_channel']['ge2p'][1]",
+"kind": "json",
+"value": 349.3414907034224
+},
+{
+"slide": "11",
+"displayed": "40.6",
+"meaning": "signal selected rate per 1e20 POT, provisional TPC box, policy any (total)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal_rate']['total_per_1e20']",
+"kind": "json",
+"value": 40.61959445410989
+},
+{
+"slide": "11",
+"displayed": "18.57 / 19.59 / 2.47",
+"meaning": "signal rate per 1e20 POT by reco channel (1g0p)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal_rate']['by_reco_channel']['1g0p']",
+"kind": "json",
+"value": 18.565937794723254
+},
+{
+"slide": "11",
+"displayed": "19.59",
+"meaning": "signal rate, reco 1g1p",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal_rate']['by_reco_channel']['1g1p']",
+"kind": "json",
+"value": 19.587592815685248
+},
+{
+"slide": "11",
+"displayed": "2.47",
+"meaning": "signal rate, reco >=2p",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['signal_rate']['by_reco_channel']['ge2p']",
+"kind": "json",
+"value": 2.466063843701381
+},
+{
+"slide": "14",
+"displayed": "416 / 128 / 117",
+"meaning": "natural NC-Delta events in the BNB CV (total)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['n_events']",
+"kind": "json",
+"value": 416
+},
+{
+"slide": "14",
+"displayed": "128",
+"meaning": "natural events in the filter box",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['in_filter_box']",
+"kind": "json",
+"value": 128
+},
+{
+"slide": "14",
+"displayed": "117",
+"meaning": "natural events in the provisional TPC box",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['in_tpc_box']",
+"kind": "json",
+"value": 117
+},
+{
+"slide": "14",
+"displayed": "13",
+"meaning": "natural events selected, policy any",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['selected_any']",
+"kind": "json",
+"value": 13
+},
+{
+"slide": "14",
+"displayed": "11.1 %",
+"meaning": "13 / 117",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['natural_final_fraction']",
+"kind": "json",
+"value": 0.1111111111111111
+},
+{
+"slide": "14",
+"displayed": "p = 0.52",
+"meaning": "binomial p, natural 13/117 vs official 9.28 %",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['final_p_binom']",
+"kind": "json",
+"value": 0.5216034435290675
+},
+{
+"slide": "14",
+"displayed": "0.98",
+"meaning": "TPC-box rate ratio natural CV / dedicated (95 % interval 0.81-1.18)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['natural_cv']['rate_ratio_cv_over_dedicated']",
+"kind": "json",
+"value": 0.982742762627524
+},
+{
+"slide": "15",
+"displayed": "947 / 8,668 = 10.93 %",
+"meaning": "Wire-Cell efficiency on the SPINE-harmonised denominator (selected, index 0)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['harmonized']['B spine_technote_strict = HARMONIZED ALL'][0]",
+"kind": "json",
+"value": 947
+},
+{
+"slide": "15",
+"displayed": "8,668",
+"meaning": "harmonised denominator (index 1)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['harmonized']['B spine_technote_strict = HARMONIZED ALL'][1]",
+"kind": "json",
+"value": 8668
+},
+{
+"slide": "15",
+"displayed": "9.38 %",
+"meaning": "harmonised 0p50 (index 2)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['harmonized']['harmonized 0p50'][2]",
+"kind": "json",
+"value": 0.09382871536523929
+},
+{
+"slide": "15",
+"displayed": "12.81 %",
+"meaning": "harmonised Np50 (index 2)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['harmonized']['harmonized Np50'][2]",
+"kind": "json",
+"value": 0.12807377049180327
+},
+{
+"slide": "1",
+"displayed": "0.4 / 0.2 / -0.05",
+"meaning": "frozen thresholds numu / other / ncpi0 (numu)",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['frozen']['thresholds']['numu']",
+"kind": "json",
+"value": 0.4
+},
+{
+"slide": "1",
+"displayed": "35 MeV",
+"meaning": "provisional truth proton threshold",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['frozen']['proton_threshold_mev']",
+"kind": "json",
+"value": 35
+},
+{
+"slide": "1",
+"displayed": "any",
+"meaning": "candidate policy used for characterisation",
+"file": "tables/baseline_consolidation/summary.json",
+"key": "$['frozen']['candidate_policy']",
+"kind": "json",
+"value": "any"
+},
+{
+"slide": "4",
+"displayed": "27.6 %",
+"meaning": "signal photons with a track-typed dominant object",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6, PID mis-typing",
+"kind": "text",
+"value": "27.6 %"
+},
+{
+"slide": "4",
+"displayed": "~3",
+"meaning": "median number of pieces of a fragmented photon",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6, Fragmentation",
+"kind": "text",
+"value": "median 3"
+},
+{
+"slide": "4",
+"displayed": "567",
+"meaning": "events with a good electron shower outside the main-vertex shower set",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6, last bullet",
+"kind": "text",
+"value": "567 events"
+},
+{
+"slide": "4",
+"displayed": "17.4 %",
+"meaning": "share of the shower-stage failures that are the 567",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, > 20 MeV shower",
+"kind": "text",
+"value": "17.4 %"
+},
+{
+"slide": "4",
+"displayed": "29.6 %",
+"meaning": "share of shower-stage failures typed muon / pion / proton",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, > 20 MeV shower",
+"kind": "text",
+"value": "29.6 %"
+},
+{
+"slide": "4",
+"displayed": "1.2 %",
+"meaning": "shower-stage failures that are genuinely below 20 MeV",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, > 20 MeV shower",
+"kind": "text",
+"value": "1.2 %"
+},
+{
+"slide": "5",
+"displayed": "29 % vs 74 %",
+"meaning": "numu survival for total shower length < 20 cm vs above",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "survival 29 % for total shower length < 20 cm vs 74 % above"
+},
+{
+"slide": "5",
+"displayed": "25 % vs 73 %",
+"meaning": "numu survival for < 5 vs >= 5 segments",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "25 % for < 5 segments vs 73 %"
+},
+{
+"slide": "5",
+"displayed": "76 %",
+"meaning": "numu survival, clean electron shower",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "clean electron shower 76 %"
+},
+{
+"slide": "5",
+"displayed": "36 %",
+"meaning": "numu survival, fragmented",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "fragmented 36 %"
+},
+{
+"slide": "5",
+"displayed": "22-25 %",
+"meaning": "numu survival, muon-/pion-typed",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "muon-/pion-typed 22-25 %"
+},
+{
+"slide": "5",
+"displayed": "44 %",
+"meaning": "share of the raw compact-vs-extended difference shared with the photon reco class",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "About 44 %"
+},
+{
+"slide": "5",
+"displayed": "25-32 pp",
+"meaning": "association that remains after control",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, numu",
+"kind": "text",
+"value": "25-32 pp"
+},
+{
+"slide": "5",
+"displayed": "65-79 % vs 33-46 %",
+"meaning": "other-stage survival, anchored vs not anchored vertex",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, other",
+"kind": "text",
+"value": "65-79 %, not anchored 33-46 %"
+},
+{
+"slide": "5",
+"displayed": "94.2 % / 88.0 %",
+"meaning": "ncpi0-rejected events with a pair flag / with a pair containing the signal photon",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4, ncpi0",
+"kind": "text",
+"value": "94.2 %"
+},
+{
+"slide": "6",
+"displayed": "0.93 cm vs 11.6 cm",
+"meaning": "|V_reco - V_true| median, truth 1p vs truth 0p (final selected)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 7",
+"kind": "text",
+"value": "truth 1p 0.93 cm"
+},
+{
+"slide": "6",
+"displayed": "11.6 cm",
+"meaning": "truth 0p vertex distance",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 7",
+"kind": "text",
+"value": "truth 0p 11.6 cm"
+},
+{
+"slide": "6",
+"displayed": "+25.8 / +36 / +24.5 cm",
+"meaning": "median photon-line displacement for truth 0p: traditional / raw network / DL-stage",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 7",
+"kind": "text",
+"value": "+25.8 cm in the traditional vertex, +36 cm in the raw network output and +24.5 cm at the DL-stage vertex"
+},
+{
+"slide": "6",
+"displayed": "0.25 cm",
+"meaning": "median move of the late refinement",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 7",
+"kind": "text",
+"value": "median 0.25 cm"
+},
+{
+"slide": "6",
+"displayed": "42 % -> 67.5 %",
+"meaning": "DL-stage anchoring when a true proton is reco-typed",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 7",
+"kind": "text",
+"value": "42 % to 67.5 %"
+},
+{
+"slide": "7",
+"displayed": "46 % / 67 % / 22 %",
+"meaning": "proton typing efficiency above 35 MeV / at 200-300 MeV / above 500 MeV",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 8",
+"kind": "text",
+"value": "46 % overall, 67 % at 200-300 MeV and 22 % above 500 MeV"
+},
+{
+"slide": "7",
+"displayed": "17 %",
+"meaning": "protons above 35 MeV with a row typed muon / pion / electron-shower",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 8",
+"kind": "text",
+"value": "17 % of the protons above 35 MeV"
+},
+{
+"slide": "7",
+"displayed": "65 %",
+"meaning": "merged truth-1p protons merged into the signal photon",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 8",
+"kind": "text",
+"value": "65 % of the merged truth-1p protons"
+},
+{
+"slide": "7",
+"displayed": "883 -> 37",
+"meaning": "truth 1p -> reco 0p: matched row typed non-proton (matched candidate -> final)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 2, mechanisms",
+"kind": "text",
+"value": "883 -> 37"
+},
+{
+"slide": "7",
+"displayed": "468 -> 11 / 319 -> 26",
+"meaning": "truth 0p -> reco 1p: signal photon typed proton / Geant4 secondary (matched -> final)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 2, mechanisms",
+"kind": "text",
+"value": "468 -> 11"
+},
+{
+"slide": "9",
+"displayed": "+2.8 MeV, [-44, +34] MeV",
+"meaning": "M_reco - M_true_decay for 348 truth-matched Delta+ decay pairs",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 9",
+"kind": "text",
+"value": "median **+2.8 MeV, 68 % interval [-44, +34] MeV**"
+},
+{
+"slide": "9",
+"displayed": "1.034 / 12.7 %",
+"meaning": "photon E_reco / E_true median and 68 % half-width (1,148 truth-correct selected photons)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 9",
+"kind": "text",
+"value": "1.034 +/- 12.7 %"
+},
+{
+"slide": "9",
+"displayed": "348",
+"meaning": "selected Delta+ decay pairs in the headline resolution",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 9",
+"kind": "text",
+"value": "348 selected **Delta+ decay pairs**"
+},
+{
+"slide": "10",
+"displayed": "~33 / 24 / 17 %",
+"meaning": "1g0p: NC pi0 / outside-TPC / nue CC share of the 310",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 10",
+"kind": "text",
+"value": "NC pi0 102 (32.9 %), outside-TPC neutrinos 75 (24.2 %), nue CC 53 (17.1 %)"
+},
+{
+"slide": "10",
+"displayed": "~37 / 30 / 18 %",
+"meaning": "1g1p: nue CC / NC pi0 / CC pi0 share of the 230",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 10",
+"kind": "text",
+"value": "nue CC 86 (37.4 %"
+},
+{
+"slide": "13a",
+"displayed": "2.4 % -> ~15 %",
+"meaning": "final efficiency vs true photon energy, 50-100 MeV to above 400 MeV",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 5",
+"kind": "text",
+"value": "2.4 % (50-100 MeV) to about 15 % above 400 MeV"
+},
+{
+"slide": "13b",
+"displayed": "3.0 % -> 12.8 %",
+"meaning": "final efficiency vs photon cos(theta), backward to forward",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 5",
+"kind": "text",
+"value": "3.0 % (cos in [-1,-0.75]) to 12.8 %"
+},
+{
+"slide": "13c",
+"displayed": "4.4 %",
+"meaning": "final efficiency in the last 50 cm in z (450-500 cm)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 5",
+"kind": "text",
+"value": "4.4 % at 450-500 cm"
+},
+{
+"slide": "13c",
+"displayed": "11.4 % vs 7.3 %",
+"meaning": "interior diagnostic box vs outside (not a proposed FV)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 5",
+"kind": "text",
+"value": "11.4 % vs 7.3 % outside"
+},
+{
+"slide": "2,5",
+"displayed": "+3 / -3",
+"meaning": "exclusive first failure minus cumulative difference at numu / ncpi0 (bookkeeping)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 3 bookkeeping note",
+"kind": "text",
+"value": "+3 at `numu`"
+},
+{
+"slide": "B03",
+"displayed": "52 events",
+"meaning": "any minus first: real signal events whose candidate 0 belongs to another interaction",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 1",
+"kind": "text",
+"value": "52 events"
+},
+{
+"slide": "B03",
+"displayed": "22",
+"meaning": "extra background events selected by any",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 14, F",
+"kind": "text",
+"value": "adds 22 background events"
+},
+{
+"slide": "B04",
+"displayed": "9.28 % / 10.1-10.6 % / 9.92 %",
+"meaning": "efficiency with no FV / 175-190 cm families / with the high-y carve-out (decision support only; no recommendation)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 14, D",
+"kind": "text",
+"value": "10.1-10.6 % for the 175-190 cm families"
+},
+{
+"slide": "B05",
+"displayed": "63 events",
+"meaning": "1g1p -> 1g0p when included == 3 rows are excluded",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 14, E2",
+"kind": "text",
+"value": "63 events 1g1p -> 1g0p"
+},
+{
+"slide": "B05",
+"displayed": "1,072",
+"meaning": "truth events that change truth category between 35 and 50 MeV",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 14, E1",
+"kind": "text",
+"value": "1,072 truth events"
+},
+{
+"slide": "B05",
+"displayed": "84.7 -> 89.7 %",
+"meaning": "truth-1p fraction of the reco 1g1p channel, included == 3 counted vs excluded (a truth-composition number)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 14, E2",
+"kind": "text",
+"value": "84.7 -> 89.7 %"
+},
+{
+"slide": "B06",
+"displayed": "11,512",
+"meaning": "events with a defined true conversion distance (92.6 % of the box)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6",
+"kind": "text",
+"value": "11,512 events"
+},
+{
+"slide": "B06",
+"displayed": "0.975",
+"meaning": "Spearman of the reco gap with the true conversion distance for detached showers with an anchored vertex",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6",
+"kind": "text",
+"value": "Spearman 0.975"
+},
+{
+"slide": "B07",
+"displayed": "15.1 % / 13.0 %",
+"meaning": "shower-stage failures that are fragmented / track-typed",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4",
+"kind": "text",
+"value": "fragmented 15.1 %"
+},
+{
+"slide": "B07",
+"displayed": "13.0 %",
+"meaning": "shower-stage failures that are track-typed",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 4",
+"kind": "text",
+"value": "track 13.0 %"
+},
+{
+"slide": "B09",
+"displayed": "62 % / 15 % / 6 %",
+"meaning": "parent of the 567 shower-not-in-main-vertex-set events: true signal proton / mis-typed photon piece / pi0 pair",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 6",
+"kind": "text",
+"value": "a true signal proton 62 %"
+},
+{
+"slide": "B11",
+"displayed": "+12.7 pp -> +0.7 pp",
+"meaning": "decay-vs-FSI difference at other, before and after proton KE alone",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 1",
+"kind": "text",
+"value": "+12.7 pp falls to +0.7 pp"
+},
+{
+"slide": "B11",
+"displayed": "+3.8 pp / +5.2 pp",
+"meaning": "residual final-efficiency differences (decay minus FSI-created; Delta+ minus Delta0 after adjustment)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 1",
+"kind": "text",
+"value": "decay minus FSI-created +3.8 pp"
+},
+{
+"slide": "B12",
+"displayed": "182 of 362",
+"meaning": "protons above 500 MeV with a row typed muon / pion / electron-shower",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 8",
+"kind": "text",
+"value": "182 of 362"
+},
+{
+"slide": "B12",
+"displayed": "55-66 cm vs 122 cm",
+"meaning": "length of mistyped protons vs correctly typed",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 8",
+"kind": "text",
+"value": "55-66 cm vs 122 cm"
+},
+{
+"slide": "B14",
+"displayed": "9,206 of 13,773",
+"meaning": "official events inside the SPINE truth FV",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 16",
+"kind": "text",
+"value": "9,206 of 13,773"
+},
+{
+"slide": "B15",
+"displayed": "A B C O P Q T U V Y",
+"meaning": "roadmap items DONE",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 17",
+"kind": "text",
+"value": "A B C O P Q T U V Y"
+},
+{
+"slide": "9",
+"displayed": "10.4 %",
+"meaning": "photon-energy half-width of the Delta-mass width (proton KE 3 %)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 9",
+"kind": "text",
+"value": "photon energy (half-width 10.4 %)"
+},
+{
+"slide": "9",
+"displayed": "1220.8 MeV",
+"meaning": "median M_Delta of all 554 usable events (context only; includes policy-dependent wrong-pair tails, NOT the headline resolution)",
+"file": "docs/analysis/NCDELTA_FROZEN_WIRECELL_BASELINE.md",
+"key": "section 9",
+"kind": "text",
+"value": "median 1220.8 MeV"
+}
+]
