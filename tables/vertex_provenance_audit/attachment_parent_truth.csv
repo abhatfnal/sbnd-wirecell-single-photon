@@ -1,0 +1,7 @@
+pclass,ambiguous_mixed,cosmic,none,other_nu_hadron,signal_other_EM,signal_other_hadron,signal_photon_fragment,signal_proton,unmatched
+A direct child of the main vertex,0,0,13,0,0,0,0,0,0
+B under a proton-typed object,33,0,3,2,1,2,2,293,0
+C under a muon-like object,11,8,3,9,1,3,42,47,0
+D under a pion-like object,1,3,2,2,1,2,22,12,1
+E under a generic (electron / other) object,2,0,0,0,0,0,21,0,0
+F under pseudo objects only (no real ancestor),0,0,25,0,0,0,0,0,0

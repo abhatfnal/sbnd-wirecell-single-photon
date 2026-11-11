@@ -1,0 +1,31 @@
+item,value
+events requested (Phase-9 event_taxonomy),11331.0
+events with >= 1 DL record,11309.0
+events without any DL record,22.0
+DL records (calls),23508.0
+  production calls (pass 0),11754.0
+  dual-chain OFF calls (pass 1),11754.0
+  other pass codes,0.0
+candidates in the Phase-9 candidate table,11783.0
+candidates with a production DL call,11754.0
+candidates without a production call,29.0
+candidates with more than one production call (duplicates),0.0
+"duplicated (event, candidate, call_index) records",0.0
+run / subrun / event keys of the scan match Phase 9 (records),23508.0
+  records compared,23508.0
+events where the DL candidate count differs from the T_kine candidate count,29.0
+production calls with status != 0 (network error / odd payload),0.0
+production calls with accepted == 1 (DL vertex switched the main vertex),10752.0
+production calls not accepted (traditional vertex kept),1002.0
+"  of those with the sentinel dl_xyz = (0, 0, 0)",1002.0
+production calls with a valid traditional vertex,11650.0
+production calls with a valid final vertex,11750.0
+production calls with the signal interaction found in truth_all_*,11754.0
+production calls with truth_sce_applied == 1,11754.0
+"accepted DL vertices inside the box |x|,|y| < 260, -60 < z < 560 cm",10752.0
+  accepted DL vertices,10752.0
+final vertices inside the same box,11748.0
+  valid final vertices,11750.0
+production calls compared with T_kine kine_nu_*_corr,11754.0
+  |final - kine_nu_corr| < 0.01 cm,11754.0
+  max |final - kine_nu_corr| cm,1.811007163827026e-05

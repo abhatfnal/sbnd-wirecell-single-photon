@@ -1,0 +1,6 @@
+mechanism,n,fraction
+indirect shower under a true hadronic object of the signal interaction,357,0.6296296296296297
+indirect shower under a track-typed object that is itself a piece of the signal photon (type inheritance / fragmentation),82,0.14462081128747795
+indirect shower under another object (generic / other truth),79,0.13932980599647266
+member of a reconstructed pi0 pair (pseudo-pi0 ancestor),36,0.06349206349206349
+direct child of the main vertex node or root (start vertex differs),13,0.02292768959435626

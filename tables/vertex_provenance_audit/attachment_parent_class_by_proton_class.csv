@@ -1,0 +1,7 @@
+pclass,no reco proton,"reco proton present, not a true proton (fake)",true proton merged (no typed true proton),true proton reco-typed
+A direct child of the main vertex,7,3,0,3
+B under a proton-typed object,9,30,14,283
+C under a muon-like object,66,14,10,34
+D under a pion-like object,19,16,7,4
+E under a generic (electron / other) object,12,9,0,2
+F under pseudo objects only (no real ancestor),9,4,3,9

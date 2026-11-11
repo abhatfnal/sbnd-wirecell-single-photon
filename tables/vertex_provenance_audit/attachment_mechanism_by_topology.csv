@@ -1,0 +1,6 @@
+mechanism,truth 0p,truth 1p,truth >=2p
+direct child of the main vertex node or root (start vertex differs),7,3,3
+indirect shower under a track-typed object that is itself a piece of the signal photon (type inheritance / fragmentation),54,26,2
+indirect shower under a true hadronic object of the signal interaction,29,281,47
+indirect shower under another object (generic / other truth),15,35,29
+member of a reconstructed pi0 pair (pseudo-pi0 ancestor),15,19,2

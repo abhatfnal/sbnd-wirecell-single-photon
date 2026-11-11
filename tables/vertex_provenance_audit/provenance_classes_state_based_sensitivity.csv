@@ -1,0 +1,8 @@
+prov_class_state,truth 0p,truth 1p,truth >=2p
+"A DL displaced along the photon, final stays there",1177,407,62
+"B DL at the interaction vertex, final moves along the photon",0,3,0
+"C DL at the interaction vertex, final stays anchored",246,1567,368
+"D DL displaced, final corrects toward the interaction vertex",25,78,10
+E other DL / final disagreement,2314,1696,233
+F missing / unresolved,175,270,52
+S conversion distance < 5 cm (not separable),1145,1065,216

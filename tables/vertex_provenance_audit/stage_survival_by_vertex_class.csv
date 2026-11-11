@@ -1,0 +1,57 @@
+prov_class,stage,n,step_survival,cumulative
+"A DL displaced along the photon, final stays there",all events,5100,,1.0
+"A DL displaced along the photon, final stays there",candidate,5100,1.0,1.0
+"A DL displaced along the photon, final stays there",shower stage,4087,0.8013725490196079,0.8013725490196079
+"A DL displaced along the photon, final stays there",numu,2331,0.5703449963298263,0.45705882352941174
+"A DL displaced along the photon, final stays there",other,1053,0.4517374517374517,0.20647058823529413
+"A DL displaced along the photon, final stays there",ncpi0,498,0.47293447293447294,0.0976470588235294
+"A DL displaced along the photon, final stays there",n_20br1,398,0.7991967871485943,0.0780392156862745
+"A DL displaced along the photon, final stays there",final,398,1.0,0.0780392156862745
+"B DL at the interaction vertex, final moves along the photon",all events,1,,1.0
+"B DL at the interaction vertex, final moves along the photon",candidate,1,1.0,1.0
+"B DL at the interaction vertex, final moves along the photon",shower stage,1,1.0,1.0
+"B DL at the interaction vertex, final moves along the photon",numu,1,1.0,1.0
+"B DL at the interaction vertex, final moves along the photon",other,0,0.0,0.0
+"B DL at the interaction vertex, final moves along the photon",ncpi0,0,,0.0
+"B DL at the interaction vertex, final moves along the photon",n_20br1,0,,0.0
+"B DL at the interaction vertex, final moves along the photon",final,0,,0.0
+"C DL at the interaction vertex, final stays anchored",all events,2185,,1.0
+"C DL at the interaction vertex, final stays anchored",candidate,2185,1.0,1.0
+"C DL at the interaction vertex, final stays anchored",shower stage,1516,0.6938215102974828,0.6938215102974828
+"C DL at the interaction vertex, final stays anchored",numu,1275,0.8410290237467019,0.5835240274599542
+"C DL at the interaction vertex, final stays anchored",other,983,0.7709803921568628,0.44988558352402747
+"C DL at the interaction vertex, final stays anchored",ncpi0,465,0.47304170905391657,0.2128146453089245
+"C DL at the interaction vertex, final stays anchored",n_20br1,455,0.978494623655914,0.20823798627002288
+"C DL at the interaction vertex, final stays anchored",final,455,1.0,0.20823798627002288
+"D DL displaced, final corrects toward the interaction vertex",all events,113,,1.0
+"D DL displaced, final corrects toward the interaction vertex",candidate,113,1.0,1.0
+"D DL displaced, final corrects toward the interaction vertex",shower stage,103,0.911504424778761,0.911504424778761
+"D DL displaced, final corrects toward the interaction vertex",numu,82,0.7961165048543689,0.7256637168141593
+"D DL displaced, final corrects toward the interaction vertex",other,64,0.7804878048780488,0.5663716814159292
+"D DL displaced, final corrects toward the interaction vertex",ncpi0,26,0.40625,0.23008849557522124
+"D DL displaced, final corrects toward the interaction vertex",n_20br1,25,0.9615384615384616,0.22123893805309736
+"D DL displaced, final corrects toward the interaction vertex",final,25,1.0,0.22123893805309736
+E other DL / final disagreement,all events,787,,1.0
+E other DL / final disagreement,candidate,787,1.0,1.0
+E other DL / final disagreement,shower stage,362,0.4599745870393901,0.4599745870393901
+E other DL / final disagreement,numu,181,0.5,0.22998729351969505
+E other DL / final disagreement,other,74,0.4088397790055249,0.0940279542566709
+E other DL / final disagreement,ncpi0,13,0.17567567567567569,0.016518424396442185
+E other DL / final disagreement,n_20br1,10,0.7692307692307693,0.012706480304955527
+E other DL / final disagreement,final,10,1.0,0.012706480304955527
+F missing / unresolved,all events,497,,1.0
+F missing / unresolved,candidate,497,1.0,1.0
+F missing / unresolved,shower stage,140,0.28169014084507044,0.28169014084507044
+F missing / unresolved,numu,68,0.4857142857142857,0.13682092555331993
+F missing / unresolved,other,24,0.35294117647058826,0.0482897384305835
+F missing / unresolved,ncpi0,10,0.4166666666666667,0.02012072434607646
+F missing / unresolved,n_20br1,10,1.0,0.02012072434607646
+F missing / unresolved,final,10,1.0,0.02012072434607646
+S conversion distance < 5 cm (not separable),all events,2426,,1.0
+S conversion distance < 5 cm (not separable),candidate,2426,1.0,1.0
+S conversion distance < 5 cm (not separable),shower stage,1818,0.7493816982687551,0.7493816982687551
+S conversion distance < 5 cm (not separable),numu,1055,0.5803080308030804,0.4348722176422094
+S conversion distance < 5 cm (not separable),other,579,0.5488151658767773,0.23866446826051113
+S conversion distance < 5 cm (not separable),ncpi0,301,0.5198618307426598,0.12407254740313273
+S conversion distance < 5 cm (not separable),n_20br1,255,0.8471760797342193,0.10511129431162407
+S conversion distance < 5 cm (not separable),final,255,1.0,0.10511129431162407

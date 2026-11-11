@@ -1,0 +1,8 @@
+item,n
+events with outcome photon_shower_not_in_main_vertex_set (Phase 9),567
+reproduced population,567
+  of which PF state 'deeper' (Phase 9),554
+  PF state photon_node_at_vertex,12
+  PF state root,1
+"events with state photon_shower_not_in_main_vertex_set (all, incl. those that pass n20 via another shower)",5970
+all of the 567 reach the shower stage,0
