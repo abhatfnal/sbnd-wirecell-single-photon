@@ -1,0 +1,7 @@
+delta,origin_class,n_reaching_other,other_survival,final_efficiency,documented_phase8_n,documented_phase8_other_survival
+Delta+,ambiguous,35,0.5142857142857142,0.3142857142857143,35.0,
+Delta+,decay_proton,1367,0.6708119970738844,0.32772494513533285,1367.0,0.671
+Delta+,fsi_created,137,0.5401459854014599,0.11678832116788321,137.0,0.54
+Delta+,not_from_decay,2,0.5,0.0,,
+Delta0,fsi_created,626,0.5734824281150159,0.1900958466453674,,
+Delta0,not_from_decay,7,0.5714285714285714,0.0,,

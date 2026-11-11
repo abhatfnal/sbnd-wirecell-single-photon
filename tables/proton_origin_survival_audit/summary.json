@@ -1,0 +1,12 @@
+{
+ "n_truth_1p": 5170,
+ "n_delta_plus": 3673,
+ "n_delta0": 1497,
+ "origin_counts": {
+  "A decay proton": 3301,
+  "B1 Delta0: proton from the neutron decay nucleon (FSI-created)": 1476,
+  "B2 Delta+: decay-nucleon chain contains a non-proton (charge exchange)": 294,
+  "D ambiguous chain (several stable proton descendants of the decay nucleon)": 73,
+  "C proton not descended from the decay nucleon": 26
+ }
+}

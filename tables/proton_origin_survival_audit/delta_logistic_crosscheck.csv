@@ -1,0 +1,5 @@
+population,outcome,covariates,coef_group,odds_ratio,marginal_effect,n
+all truth 1p,final,"photon E, angle; proton KE; reco; anchoring; attachment",0.4846662472273926,1.6236330263809338,0.04211767052264231,5084
+all truth 1p,final,+ neutron-capture-like photon row,0.10441382925026658,1.1100597350651613,0.009734360480575294,5084
+all truth 1p,other | numu,"photon E, angle; proton KE; reco; anchoring; attachment",0.208039955228261,1.231262363934875,0.04087767325885131,2168
+all truth 1p,other | numu,+ neutron-capture-like photon row,0.15760116126250603,1.1706991813988665,0.030634095761614973,2168

@@ -1,0 +1,7 @@
+index,2112,2212,item,origin_class,n,chain_has_nonproton,n_decay_nucleon_proton_descendants_mean,n_stable_protons_10_mean,ke_match_dKE_max_mev
+Delta+,0.0,3673.0,decay nucleon pdg by Delta charge (GENIE status-14 daughter of the Delta),,,,,,
+Delta0,1497.0,0.0,decay nucleon pdg by Delta charge (GENIE status-14 daughter of the Delta),,,,,,
+,,,chain fields by stored origin class,ambiguous,73.0,0.0,2.0,1.6712328767123288,4.572946500047692e-05
+,,,chain fields by stored origin class,decay_proton,3301.0,0.0,1.0,1.0021205695243864,5.847511647516512e-05
+,,,chain fields by stored origin class,fsi_created,1770.0,1.0,1.9802259887005649,1.6401129943502826,5.0389772695780266e-05
+,,,chain fields by stored origin class,not_from_decay,26.0,0.0,1.4615384615384615,1.9615384615384615,2.9357173048083496e-05

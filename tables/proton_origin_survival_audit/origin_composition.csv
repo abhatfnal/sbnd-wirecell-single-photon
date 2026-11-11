@@ -1,0 +1,6 @@
+origin,Delta+,Delta0,all,fraction_of_truth_1p
+A decay proton,3301,0,3301,0.6384912959381045
+B1 Delta0: proton from the neutron decay nucleon (FSI-created),0,1476,1476,0.28549323017408124
+B2 Delta+: decay-nucleon chain contains a non-proton (charge exchange),294,0,294,0.05686653771760155
+C proton not descended from the decay nucleon,5,21,26,0.005029013539651838
+D ambiguous chain (several stable proton descendants of the decay nucleon),73,0,73,0.014119922630560928

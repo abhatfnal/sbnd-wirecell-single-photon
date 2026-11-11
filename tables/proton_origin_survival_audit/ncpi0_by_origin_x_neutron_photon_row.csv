@@ -1,0 +1,8 @@
+origin,neutron_capture_like_photon_row,n,kine_pair_present,ncpi0_survival
+A decay,False,742,0.5673854447439353,0.5916442048517521
+A decay,True,173,0.9826589595375722,0.24855491329479767
+B1 Delta0 FSI-created,False,192,0.578125,0.5104166666666666
+B1 Delta0 FSI-created,True,166,0.9518072289156626,0.21686746987951808
+B2 Delta+ charge-exchange,False,24,0.625,0.4583333333333333
+B2 Delta+ charge-exchange,True,50,0.98,0.16
+D ambiguous,False,17,0.4117647058823529,0.6470588235294118

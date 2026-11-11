@@ -1,0 +1,7 @@
+item,n
+"natural signal events (unique file, event)",416
+  truth 1p (n_p35 == 1),172
+  truth 1p with decay nucleon pdg 2212 (Delta+),118
+  truth 1p with decay nucleon pdg 2112 (Delta0),54
+GENIE mother chain of the final proton (decay / FSI-created split),-1
+final-selection flags for these events,-1

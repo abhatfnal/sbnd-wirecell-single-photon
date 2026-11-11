@@ -1,0 +1,5 @@
+comparison,outcome,covariates,coef_group,odds_ratio,marginal_effect,n
+A decay vs B2 Delta+ charge-exchange (same Delta charge),final,"photon E, angle; proton KE; edge; anchoring; reco",0.8885545028522434,2.4316122211545927,0.07113952598589773,3538
+A decay vs B2 Delta+ charge-exchange (same Delta charge),other | numu,"photon E, angle; proton KE; edge; anchoring; reco",0.02278615831505876,1.0230477459006915,0.004265264852490323,1500
+A decay vs B1 Delta0 FSI-created (other Delta charge),final,"photon E, angle; proton KE; edge; anchoring; reco",0.5444533052208466,1.723665805652069,0.048845350510514585,4696
+A decay vs B1 Delta0 FSI-created (other Delta charge),other | numu,"photon E, angle; proton KE; edge; anchoring; reco",0.25214635486291953,1.2867843506514625,0.048785221870209804,1988
