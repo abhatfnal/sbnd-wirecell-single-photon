@@ -1,0 +1,22 @@
+upstream_component,field,downstream_bdt,scorer_default,frac_at_scorer_default_at_stage,note
+UbooneNumuBDTScorer sub-BDT numu_1 (flag-1 direct-muon features),numu_1_score,numu,-0.4,0.0001244090569793,also an input of `other`
+UbooneNumuBDTScorer xgboost numu BDT (log-odds),numu_score,numu,,,no default; input of numu AND other
+UbooneNumuBDTScorer sub-BDT numu_1,numu_1_score,other,-0.4,0.0001997203914519,
+UbooneNumuBDTScorer xgboost numu BDT,numu_score,other,,,
+UbooneNumuBDTScorer sub-BDT numu_2 (flag-2 long-muon shower features),numu_2_score,other,-0.1,0.9968044737367684,
+UbooneNumuBDTScorer sub-BDT cosmict_10 (upstream-dirt features),cosmict_10_score,other,0.7,0.9962053125624126,
+UbooneNueBDTScorer vector sub-BDT tro_5 (min over per-segment/per-object elements),tro_5_score,ncpi0,0.5,0.6048184106436534,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT tro_4 (min over per-segment/per-object elements),tro_4_score,ncpi0,0.33,0.498022294138799,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT tro_2 (min over per-segment/per-object elements),tro_2_score,ncpi0,0.35,0.6472491909385113,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT tro_1 (min over per-segment/per-object elements),tro_1_score,ncpi0,0.28,0.498022294138799,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT stw_4 (min over per-segment/per-object elements),stw_4_score,ncpi0,0.7,0.711254944264653,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT stw_3 (min over per-segment/per-object elements),stw_3_score,ncpi0,0.5,0.6177633944624236,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT stw_2 (min over per-segment/per-object elements),stw_2_score,ncpi0,0.7,0.6760158216468896,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT sig_2 (min over per-segment/per-object elements),sig_2_score,ncpi0,0.55,0.5030564545127651,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT sig_1 (min over per-segment/per-object elements),sig_1_score,ncpi0,0.59,0.8680330816253147,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT pio_2 (min over per-segment/per-object elements),pio_2_score,ncpi0,0.2,0.5530384753685724,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT lol_2 (min over per-segment/per-object elements),lol_2_score,ncpi0,0.7,0.6903991370010788,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT lol_1 (min over per-segment/per-object elements),lol_1_score,ncpi0,0.85,0.4976627112549442,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT br3_6 (min over per-segment/per-object elements),br3_6_score,ncpi0,0.75,0.6040992448759439,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT br3_5 (min over per-segment/per-object elements),br3_5_score,ncpi0,0.42,0.5871988493347716,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost
+UbooneNueBDTScorer vector sub-BDT br3_3 (min over per-segment/per-object elements),br3_3_score,ncpi0,0.3,0.4976627112549442,evaluated in cal_bdts_xgboost step 1; ALSO inputs of the (unused here) nueCC xgboost

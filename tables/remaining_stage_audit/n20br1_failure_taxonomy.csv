@@ -1,0 +1,7 @@
+cls,n,frac,n0p,n1p,n2p,nDelta0,nDeltaPlus,n_clean,median_n20mev,median_n20br1
+no_br1_shower__clean_photon_shower_fails_br1,0,0.0,0,0,0,0,0,0,,
+no_br1_shower__photon_object_not_clean,0,0.0,0,0,0,0,0,0,,
+multiple_br1_showers__extra_signal_photon_piece,126,0.7875,80,39,7,78,48,115,2.0,2.0
+multiple_br1_showers__extra_other_signal_particle,17,0.10625,9,6,2,8,9,17,2.0,2.0
+multiple_br1_showers__extra_other_interaction,8,0.05,3,5,0,5,3,8,2.0,2.0
+multiple_br1_showers__unattributed,9,0.05625,6,3,0,6,3,9,2.0,2.0

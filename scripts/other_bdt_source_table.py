@@ -36,12 +36,13 @@ def group_of(n: str) -> str:
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--wct-src", required=True); a = ap.parse_args(); src = Path(a.wct_src)
+    ap = argparse.ArgumentParser(); ap.add_argument("--wct-src", required=True); ap.add_argument("--model", default="other", choices=["other", "numu", "ncpi0", "nue"], help="Phase 12: the same table for the other frozen models (default: other, unchanged output)")
+    ap.add_argument("--outdir", default=None); a = ap.parse_args(); src = Path(a.wct_src)
     info = (src / "NeutrinoTaggerInfo.h").read_text().splitlines()
     cxx = {f: (src / f).read_text().splitlines() for f in CXX}
-    m = B.TmvaBdt("other", B.DEFAULT_WEIGHT_DIR / "single_photon_other_bdt_final.xml"); rows = []
+    m = B.TmvaBdt(a.model, B.DEFAULT_WEIGHT_DIR / f"single_photon_{a.model}_bdt_final.xml"); rows = []
     for idx, n in m.var_list:
-        branch = B.input_branch("other", n); base = branch.split(".")[-1]
+        branch = B.input_branch(a.model, n); base = branch.split(".")[-1]
         decl = next(((i + 1, l.strip()) for i, l in enumerate(info) if re.search(rf"\b(float|int|double|bool)\s+{re.escape(base)}\s*(\{{[^}}]*\}})?\s*;", l)), None)
         typ = dflt = comment = ""
         if decl:
@@ -54,7 +55,7 @@ def main():
         first = fills[0] if fills else ("", "", "")
         rows.append(dict(var_index=idx, bdt_variable=n, caf_branch=branch, group=group_of(n), declared_type=typ, declared_default=dflt, header_line=decl[0] if decl else "", header_comment=comment or "(none in source)",
                          n_fill_sites=len(fills), first_fill_file=first[0], first_fill_line=first[1], first_fill_code=first[2], scope="candidate (one value per neutrino-candidate bundle; wc.T_tagger)" if base != "kine_nu_y_corr" else "candidate (wc.T_kine)"))
-    t = pd.DataFrame(rows); out = REPO / "tables" / "other_bdt_audit"; out.mkdir(parents=True, exist_ok=True); t.to_csv(out / "input_source_table.csv", index=False)
+    t = pd.DataFrame(rows); out = Path(a.outdir) if a.outdir else REPO / "tables" / "other_bdt_audit"; out.mkdir(parents=True, exist_ok=True); t.to_csv(out / ("input_source_table.csv" if a.model == "other" else f"input_source_table_{a.model}.csv"), index=False)
     print(len(t), "inputs;", int((t.header_line == "").sum()), "without header declaration;", int((t.n_fill_sites == 0).sum()), "without a fill site found;", int((t.header_comment != "(none in source)").sum()), "with a header comment")
     print(t.group.value_counts().to_string())
 

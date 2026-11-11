@@ -1,0 +1,4 @@
+model,n_candidates,n_compared_to_stored_derived_score,max_abs_diff_vs_stored,median_abs_diff_vs_stored,n_stored_missing,n_nonfinite_recomputed,n_independent_tmva_f32,max_abs_diff_vs_independent,median_abs_diff_vs_independent,n_diff_gt_1e6,n_decision_flips_at_threshold,n_tie_convention_cases,scalar_xml_subset_n,scalar_vs_vectorised_f32_max,n_inputs,n_trees,n_leaves,weight_sha256
+numu,8447,8112,0.0,0.0,335,0,8447,3.1184228255209945e-09,4.164757427815857e-11,0,0,1,200,0.0,73,300,8403,5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961
+ncpi0,8447,8108,0.0,0.0,339,4,8443,2.4091474370990795e-09,1.3341650006992722e-10,0,0,0,200,0.0,45,400,18622,983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3
+nue,8447,8112,0.0,0.0,335,0,8447,0.10911778135040515,9.574230297459962e-11,5,0,5,200,0.0,56,300,8536,8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a
