@@ -1,0 +1,22 @@
+group,n,n_pass,survival,lo68,hi68
+all events reaching numu,8038,5007,0.6229,0.6175,0.6283
+truth 0p,3937,2446,0.6213,0.6135,0.629
+truth 1p,3450,2174,0.6301,0.6219,0.6383
+truth >=2p,651,387,0.5945,0.5751,0.6136
+clean signal-photon shower,5392,4117,0.7635,0.7577,0.7693
+non-clean photon object,2646,890,0.3364,0.3272,0.3456
+object: clean e-shower,5366,4101,0.7643,0.7584,0.77
+object: fragmented,1619,582,0.3595,0.3476,0.3715
+object: muon-like,303,76,0.2508,0.2268,0.2765
+object: pion-like,333,74,0.2222,0.2003,0.2458
+object: proton-like,68,21,0.3088,0.2559,0.3673
+object: track (e-track / other),3,2,0.6667,0.3856,0.8644
+object: e-shower not usable,10,4,0.4,0.2611,0.5571
+object: no relevant photon row,336,147,0.4375,0.4107,0.4647
+vertex anchored,2551,1991,0.7805,0.7722,0.7886
+vertex not anchored,5263,2955,0.5615,0.5546,0.5683
+vertex no signal-matched candidate,224,61,0.2723,0.2436,0.303
+compact (length < 20 cm),2044,599,0.2931,0.2831,0.3032
+not compact (length >= 20 cm),5994,4408,0.7354,0.7297,0.7411
+few-segment (< 5 segments),1794,445,0.248,0.238,0.2584
+not few-segment,6244,4562,0.7306,0.725,0.7362

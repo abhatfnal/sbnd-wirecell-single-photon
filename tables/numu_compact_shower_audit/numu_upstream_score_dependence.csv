@@ -1,0 +1,9 @@
+variable,auc_survive_higher,spearman_with_stage_score,spearman_with_n_segments,spearman_with_total_length,spearman_with_true_energy
+numu_score,0.165,-0.6752,-0.0498,-0.0752,0.1702
+numu_1_score,0.2905,-0.4449,-0.166,-0.1765,0.0168
+shw_sp_br3_1_n_shower_segments,0.7794,0.5231,1.0,0.8709,0.4055
+shw_sp_length_total,0.7594,0.4725,0.8709,1.0,0.4552
+shw_sp_length_main,0.7118,0.3898,0.6106,0.817,0.3367
+shw_sp_lem_e_charge,0.7671,0.4893,0.8573,0.9622,0.4683
+shw_sp_lem_shower_num_masegs,0.7127,0.4069,0.5939,0.685,0.2864
+shw_sp_stem_length,0.5755,0.1409,0.2446,0.4341,0.1798

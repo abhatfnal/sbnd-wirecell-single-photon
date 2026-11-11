@@ -1,0 +1,17 @@
+population,binned_by,bin,n,n_pass,survival,lo68,hi68
+official Gen2 NC-Delta (event-level controlling candidate),total length,20-40,1719,994.0,0.5782,0.5663,0.5901
+official Gen2 NC-Delta (event-level controlling candidate),total length,40-80,2746,2116.0,0.7706,0.7625,0.7785
+official Gen2 NC-Delta (event-level controlling candidate),total length,<20,2044,599.0,0.2931,0.2831,0.3032
+official Gen2 NC-Delta (event-level controlling candidate),total length,>=80,1529,1298.0,0.8489,0.8395,0.8579
+official Gen2 NC-Delta (event-level controlling candidate),n segments,1-4,1794,445.0,0.248,0.238,0.2584
+official Gen2 NC-Delta (event-level controlling candidate),n segments,11-17,1997,1545.0,0.7737,0.7642,0.7829
+official Gen2 NC-Delta (event-level controlling candidate),n segments,5-10,2153,1210.0,0.562,0.5513,0.5727
+official Gen2 NC-Delta (event-level controlling candidate),n segments,>=18,2094,1807.0,0.8629,0.8553,0.8703
+"natural NC-Delta CV (candidates, no truth label stored)",total length,20-40,14,5.0,0.3571,0.2426,0.4908
+"natural NC-Delta CV (candidates, no truth label stored)",total length,40-80,25,21.0,0.84,0.7538,0.9
+"natural NC-Delta CV (candidates, no truth label stored)",total length,<20,53,6.0,0.1132,0.0767,0.1641
+"natural NC-Delta CV (candidates, no truth label stored)",total length,>=80,16,15.0,0.9375,0.8477,0.9759
+"natural NC-Delta CV (candidates, no truth label stored)",n segments,1-4,53,3.0,0.0566,0.0323,0.0973
+"natural NC-Delta CV (candidates, no truth label stored)",n segments,11-17,17,14.0,0.8235,0.7139,0.8972
+"natural NC-Delta CV (candidates, no truth label stored)",n segments,5-10,15,9.0,0.6,0.4711,0.7164
+"natural NC-Delta CV (candidates, no truth label stored)",n segments,>=18,23,21.0,0.913,0.8358,0.9559

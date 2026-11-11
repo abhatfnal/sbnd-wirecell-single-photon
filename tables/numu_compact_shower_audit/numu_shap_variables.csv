@@ -1,0 +1,74 @@
+variable,family,mean_phi_accepted,mean_phi_rejected,mean_abs_phi,mean_phi_rejected_compact,mean_phi_rejected_not_compact
+numu_score,upstream BDT scores,0.5398,-0.7215,0.9048,-0.537,-0.9024
+shw_sp_lem_e_charge,shower quality (br/lem/hol/lol),0.1439,-0.2227,0.3207,-0.5254,0.0741
+shw_sp_br1_2_n_shower_segs,shower quality (br/lem/hol/lol),0.1001,-0.2162,0.2723,-0.4224,-0.014
+shw_sp_br3_1_n_shower_segments,shower quality (br/lem/hol/lol),0.0992,-0.1929,0.2506,-0.3787,-0.0108
+shw_sp_br1_1_n_segs,shower quality (br/lem/hol/lol),0.0951,-0.1894,0.2461,-0.366,-0.0162
+shw_sp_lem_e_dQdx,shower quality (br/lem/hol/lol),-0.0647,0.1111,0.2044,0.2873,-0.0617
+shw_sp_n_good_tracks,track / hadron activity,0.0511,-0.0716,0.1695,-0.0767,-0.0666
+shw_sp_br1_2_shower_length,shower quality (br/lem/hol/lol),-0.0578,0.0956,0.1663,0.2258,-0.0321
+shw_sp_E_indirect_max_energy,vertex / gap geometry,0.0079,-0.063,0.1625,-0.0302,-0.095
+shw_sp_n_br1_showers,multiplicity,-0.0184,-0.0118,0.1494,-0.0165,-0.0073
+shw_sp_n_good_showers,multiplicity,0.011,-0.0017,0.1463,-0.0205,0.0167
+shw_sp_shw_vtx_dis,vertex / gap geometry,-0.002,-0.062,0.1427,-0.053,-0.0709
+shw_sp_br1_2_max_length,shower quality (br/lem/hol/lol),-0.0383,0.0431,0.1382,0.1261,-0.0383
+numu_cc_3_track_length,numuCC tagger inputs,-0.061,0.0367,0.1382,0.0561,0.0177
+shw_sp_n_br2_showers,multiplicity,0.0022,0.0007,0.1094,-0.0013,0.0027
+shw_sp_br3_1_total_length,shower quality (br/lem/hol/lol),-0.0376,0.0618,0.1082,0.1462,-0.0209
+shw_sp_min_dis,vertex / gap geometry,0.0391,-0.0427,0.1053,-0.0844,-0.0019
+numu_1_score,upstream BDT scores,-0.009,-0.0307,0.0973,-0.0347,-0.0268
+shw_sp_lowest_dQ_dx,"calorimetry (dQ/dx, dE/dx)",-0.0125,0.0183,0.0943,0.0331,0.0037
+shw_sp_br1_2_max_length_ratio,shower quality (br/lem/hol/lol),-0.004,-0.0191,0.0925,-0.0147,-0.0234
+shw_sp_br1_1_vtx_n_segs,shower quality (br/lem/hol/lol),0.0148,-0.055,0.09,-0.0521,-0.0578
+shw_sp_max_dQ_dx_sample,"calorimetry (dQ/dx, dE/dx)",0.0029,-0.0217,0.0857,-0.029,-0.0146
+numu_cc_3_max_muon_length,numuCC tagger inputs,0.0231,-0.0495,0.0839,-0.0429,-0.0559
+shw_sp_n_br4_showers,multiplicity,0.0123,0.0073,0.079,0.0083,0.0063
+shw_sp_br3_8_max_dQ_dx,shower quality (br/lem/hol/lol),0.0166,-0.0214,0.073,-0.0506,0.0071
+numu_cc_3_max_length_all,numuCC tagger inputs,-0.0137,-0.0083,0.0697,-0.0015,-0.015
+shw_sp_br3_2_n_ele,shower quality (br/lem/hol/lol),0.0103,-0.0231,0.065,-0.0274,-0.0189
+shw_sp_highest_dQ_dx,"calorimetry (dQ/dx, dE/dx)",-0.0072,-0.0146,0.0637,-0.0179,-0.0113
+shw_sp_br1_1_shower_type,shower quality (br/lem/hol/lol),0.0131,-0.0266,0.0567,-0.039,-0.0143
+shw_sp_br1_2_n_connected,shower quality (br/lem/hol/lol),0.0116,-0.0299,0.0561,-0.0566,-0.0037
+shw_sp_medium_dQ_dx,"calorimetry (dQ/dx, dE/dx)",0.0069,-0.0245,0.0538,-0.0305,-0.0186
+shw_sp_br3_2_n_other,shower quality (br/lem/hol/lol),0.0006,0.0185,0.0452,0.0364,0.0011
+numu_cc_3_max_length,numuCC tagger inputs,0.0006,-0.0051,0.0433,0.0079,-0.0178
+shw_sp_n_20br1_showers,multiplicity,-0.003,-0.0111,0.042,-0.0039,-0.0181
+shw_sp_max_shw_dis,vertex / gap geometry,0.0049,0.002,0.0401,-0.0002,0.0042
+shw_sp_n_br3_showers,multiplicity,-0.0004,-0.0192,0.0394,-0.0142,-0.0241
+shw_sp_length_main,vertex / gap geometry,0.0099,-0.0186,0.0386,-0.0496,0.0117
+shw_sp_vec_mean_dedx,"calorimetry (dQ/dx, dE/dx)",-0.0005,-0.0185,0.0379,-0.0178,-0.0191
+shw_sp_lem_shower_main_length,shower quality (br/lem/hol/lol),-0.0073,0.0063,0.0378,0.0331,-0.02
+numu_cc_3_n_daughter_all,numuCC tagger inputs,0.0027,-0.001,0.0376,0.0053,-0.0072
+shw_sp_br3_4_total_length,shower quality (br/lem/hol/lol),0.0089,-0.0128,0.0374,-0.0324,0.0063
+shw_sp_br3_8_n_main_segs,shower quality (br/lem/hol/lol),0.0063,-0.0165,0.0367,-0.0323,-0.001
+shw_sp_br3_1_total_main_length,shower quality (br/lem/hol/lol),-0.0007,-0.0037,0.0344,-0.0017,-0.0056
+shw_sp_br1_1_sg_length,shower quality (br/lem/hol/lol),-0.0056,-0.0003,0.0326,0.0117,-0.0121
+shw_sp_br3_1_sg_length,shower quality (br/lem/hol/lol),0.0125,-0.0014,0.0325,-0.0184,0.0152
+shw_sp_stem_length,vertex / gap geometry,0.011,0.0,0.0312,-0.0112,0.011
+shw_sp_n_lowest,"calorimetry (dQ/dx, dE/dx)",-0.0011,-0.0071,0.0304,-0.0081,-0.0061
+shw_sp_proton_dqdx_1,track / hadron activity,0.0008,-0.0046,0.029,-0.003,-0.0061
+shw_sp_length_total,vertex / gap geometry,-0.0049,0.0165,0.0289,0.0412,-0.0077
+shw_sp_n_below_threshold,"calorimetry (dQ/dx, dE/dx)",0.0022,-0.0078,0.0248,-0.0047,-0.011
+shw_sp_br1_2_n_connected_1,shower quality (br/lem/hol/lol),0.0097,-0.0073,0.0246,-0.0174,0.0026
+shw_sp_br3_1_sg_direct_length,shower quality (br/lem/hol/lol),0.0051,-0.0012,0.0181,-0.0081,0.0056
+shw_sp_n_stem_size,vertex / gap geometry,0.0049,-0.0018,0.0181,-0.0103,0.0066
+shw_sp_lem_n_3seg,shower quality (br/lem/hol/lol),0.0016,-0.0086,0.0174,-0.0151,-0.0023
+shw_sp_n_vertex,vertex / gap geometry,-0.0028,0.0001,0.017,0.0024,-0.0022
+shw_sp_br1_3_n_shower_main_segs,shower quality (br/lem/hol/lol),0.0015,-0.0068,0.0145,-0.012,-0.0017
+shw_sp_n_other_vertex,vertex / gap geometry,0.0019,-0.0035,0.012,-0.0034,-0.0037
+shw_sp_min_dQ_dx_5,"calorimetry (dQ/dx, dE/dx)",-0.001,-0.0074,0.0115,-0.0044,-0.0104
+shw_sp_br3_2_other_fid,shower quality (br/lem/hol/lol),-0.0058,-0.0001,0.0102,0.0038,-0.004
+shw_sp_n_highest,"calorimetry (dQ/dx, dE/dx)",0.0,0.0007,0.0091,0.0014,0.0
+shw_sp_lem_shower_num_main_segs,shower quality (br/lem/hol/lol),-0.0016,0.0034,0.0087,0.0072,-0.0004
+shw_sp_br1_3_max_length_p,shower quality (br/lem/hol/lol),-0.0009,-0.0017,0.0082,0.0013,-0.0046
+numu_cc_flag_3,numuCC tagger inputs,0.0016,-0.0027,0.0044,-0.0026,-0.0028
+numu_cc_3_particle_type,numuCC tagger inputs,0.0009,-0.0026,0.0036,-0.0041,-0.0011
+shw_sp_br3_4_acc_length,shower quality (br/lem/hol/lol),0.0004,-0.0001,0.0035,-0.0016,0.0014
+numu_cc_3_n_daughter_tracks,numuCC tagger inputs,-0.0011,0.0001,0.0034,-0.0005,0.0006
+shw_sp_proton_energy_1,track / hadron activity,0.0012,-0.0004,0.0032,-0.0004,-0.0003
+shw_sp_proton_dqdx_2,track / hadron activity,-0.0002,-0.0006,0.0028,-0.0018,0.0005
+shw_sp_flag_all_above,vertex / gap geometry,0.0002,0.0005,0.0026,0.0006,0.0004
+shw_sp_n_below_zero,"calorimetry (dQ/dx, dE/dx)",-0.0003,0.001,0.0017,0.0012,0.0007
+shw_sp_proton_length_1,track / hadron activity,0.0002,0.0001,0.0009,-0.0,0.0003
+shw_sp_proton_length_2,track / hadron activity,0.0,-0.0,0.0001,-0.0,-0.0
+shw_sp_proton_energy_2,track / hadron activity,0.0,0.0,0.0,0.0,0.0

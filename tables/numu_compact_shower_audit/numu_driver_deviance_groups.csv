@@ -1,0 +1,7 @@
+group,columns,pseudo_r2_alone,pseudo_r2_full,deviance_increase_if_dropped,share_of_full_deviance_drop
+"true kinematics (energy, angle, conversion, edge)",Eb+cosb+convb+faceb,0.0055,0.2589,264.2247,0.0958
+photon reco state (object class),obj,0.1333,0.2589,158.5915,0.0575
+vertex anchoring,anch_l,0.0458,0.2589,146.2337,0.053
+"compactness / segmentation (segments, length)",segb+lenb,0.1858,0.2589,338.3872,0.1227
+reco shower energy,Erb,0.1622,0.2589,60.4546,0.0219
+"truth topology (0p/1p/>=2p, Delta charge)",topo_l+delta,0.0006,0.2589,71.9327,0.0261

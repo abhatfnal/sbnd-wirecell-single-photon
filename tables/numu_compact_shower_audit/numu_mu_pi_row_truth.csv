@@ -1,0 +1,6 @@
+obj,truth_of_row,n,n_pass,survival,lo68,hi68
+muon-like,no truth-matched row,2,1.0,0.5,0.2113,0.7887
+muon-like,signal-photon piece,301,75.0,0.2492,0.2251,0.2749
+pion-like,no truth-matched row,2,0.0,0.0,0.0,0.3333
+pion-like,signal primary proton,2,0.0,0.0,0.0,0.3333
+pion-like,signal-photon piece,329,74.0,0.2249,0.2028,0.2488

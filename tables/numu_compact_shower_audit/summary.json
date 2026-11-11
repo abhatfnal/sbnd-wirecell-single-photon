@@ -1,0 +1,153 @@
+{
+ "baseline": {
+  "n_events": 8038,
+  "n_pass": 5007,
+  "n_fail": 3031,
+  "survival": 0.6229161482955959,
+  "n_bdt_evaluable": 8034,
+  "n_total_signal_box_events": 11331
+ },
+ "reproduction": {
+  "n_finite_inputs": 8038,
+  "n_nonfinite_inputs": 0,
+  "max_abs_score_diff": 2.5886995325130613e-09,
+  "decision_flips": 0,
+  "threshold": 0.4,
+  "n_trees": 300,
+  "n_inputs": 73
+ },
+ "energy_flatness": {
+  "spearman_survive_vs_etrue": 0.019485384950865978,
+  "spearman_survive_vs_nseg": 0.46949849703392016,
+  "spearman_survive_vs_len": 0.4355510009827039,
+  "spearman_nseg_vs_etrue": 0.40550160925757334,
+  "spearman_len_vs_etrue": 0.45518287122187706
+ },
+ "mu_pi_rows": {
+  "muon-like|no truth-matched row": [
+   2,
+   0.5
+  ],
+  "muon-like|signal-photon piece": [
+   301,
+   0.24916943521594684
+  ],
+  "pion-like|no truth-matched row": [
+   2,
+   0.0
+  ],
+  "pion-like|signal primary proton": [
+   2,
+   0.0
+  ],
+  "pion-like|signal-photon piece": [
+   329,
+   0.22492401215805471
+  ]
+ },
+ "ctrl_cand_is_signal_cand": 0.9856929584473749,
+ "driver_groups": {
+  "true kinematics (energy, angle, conversion, edge)": [
+   0.005453048498070601,
+   0.0958157108988
+  ],
+  "photon reco state (object class)": [
+   0.13334143145105204,
+   0.05750999253097026
+  ],
+  "vertex anchoring": [
+   0.04584989278033702,
+   0.0530286792634406
+  ],
+  "compactness / segmentation (segments, length)": [
+   0.18579094059001888,
+   0.1227092480179855
+  ],
+  "reco shower energy": [
+   0.16224920596363368,
+   0.021922630393715156
+  ],
+  "truth topology (0p/1p/>=2p, Delta charge)": [
+   0.000645254297434561,
+   0.026084930933395183
+  ]
+ },
+ "shap": {
+  "n_fg": 800,
+  "n_bg": 300,
+  "base_margin": 0.8926132097343119,
+  "additivity_max_error": 2.042810365310288e-14,
+  "mean_margin_accepted": 1.8198393068516543,
+  "mean_margin_rejected": -0.9762035117055166,
+  "threshold_margin": 0.42364893019360184
+ },
+ "natural_cv": {
+  "n_candidates": 108,
+  "n_events": 105,
+  "n_pass": 47,
+  "survival": 0.4351851851851852,
+  "compact_survival": 0.11320754716981132,
+  "n_compact": 53,
+  "noncompact_survival": 0.7454545454545455,
+  "official_compact_survival": 0.2930528375733855,
+  "official_noncompact_survival": 0.735402068735402
+ },
+ "loss_budget": {
+  "n_signal_box_events": 11331,
+  "n_final": 1153,
+  "n_lost": 10178,
+  "n_reach_numu": 8038,
+  "n_fail_numu": 3031,
+  "numu_fail_share_of_total_loss": 0.2977991746905089,
+  "numu_fail_share_of_numu_population": 0.37708385170440406,
+  "n_fail_numu_compact": 1445,
+  "n_fail_numu_few_seg": 1349,
+  "n_fail_numu_compact_or_few": 1733,
+  "n_fail_numu_compact_nonclean": 1153,
+  "n_fail_numu_nonclean": 1756,
+  "n_fail_numu_clean": 1275
+ },
+ "bookkeeping": {
+  "extra_numu_survivors_if_compact_matched_noncompact": 904.1618284951617,
+  "as_fraction_of_final": 0.7841819848180066,
+  "note": "bookkeeping of the association only; not a selection, not an efficiency gain claim"
+ },
+ "metadata": {
+  "git_head_at_run": "63449d732f360f00277c6dea12d6d941f25589ca",
+  "branch": "analysis/ncdelta-numu-training-domain-audit-20261111",
+  "baseline_config_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b",
+  "numu_xml_sha256": "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961",
+  "thresholds": {
+   "numu": 0.4,
+   "other": 0.2,
+   "ncpi0": -0.05
+  },
+  "compactness_bins": {
+   "n_seg_edges": [
+    0,
+    5,
+    11,
+    18,
+    "inf"
+   ],
+   "length_edges_cm": [
+    0,
+    20,
+    40,
+    80,
+    "inf"
+   ],
+   "compact_length_cm": 20.0,
+   "few_segment_below": 5
+  },
+  "seeds": {
+   "shap": 20261111,
+   "bootstrap": 20261111
+  },
+  "inputs": {
+   "numu_stage.parquet": "cb7356493950708d4f1c0a9d49bbe7a41528afbf3142d262269a9e637c195e55",
+   "numu_stage_inputs.parquet": "2260d6341a521bebee1e5348026de7ff73603a77f03c34257ac87729ed8f5844",
+   "photon_pid_events.parquet": "189c8f41f0d5b2e0212eb7a8ccaba25eaab422c996779c39fcde6d11b05660a9"
+  }
+ }
+}
