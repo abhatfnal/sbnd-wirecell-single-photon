@@ -1,0 +1,61 @@
+{
+ "n_photon_events": 11331,
+ "n_rows": 83097,
+ "n_signal_photon_rows": 40697,
+ "n_signal_proton_rows": 6786,
+ "n_primary_protons": 20023,
+ "n_protons_gt35": 8132,
+ "photon_populations": [
+  {
+   "pid_class": "A clean electron shower",
+   "n": 5397,
+   "fraction": 0.4763039449298385
+  },
+  {
+   "pid_class": "B electron shower, not usable by the single-photon stage",
+   "n": 617,
+   "fraction": 0.05445238725619981
+  },
+  {
+   "pid_class": "C muon-like dominant object",
+   "n": 1079,
+   "fraction": 0.09522548760038832
+  },
+  {
+   "pid_class": "D pion-like dominant object",
+   "n": 784,
+   "fraction": 0.06919071573559263
+  },
+  {
+   "pid_class": "E proton-like dominant object",
+   "n": 225,
+   "fraction": 0.019857029388403495
+  },
+  {
+   "pid_class": "F electron-track / other track",
+   "n": 5,
+   "fraction": 0.00044126731974229987
+  },
+  {
+   "pid_class": "G fragmented (Phase 9), mixed types",
+   "n": 2114,
+   "fraction": 0.1865678227870444
+  },
+  {
+   "pid_class": "H no particle row",
+   "n": 383,
+   "fraction": 0.03380107669226017
+  },
+  {
+   "pid_class": "I no reconstructed charge",
+   "n": 305,
+   "fraction": 0.026917306504280293
+  },
+  {
+   "pid_class": "J charge outside candidates / other candidate",
+   "n": 422,
+   "fraction": 0.03724296178625011
+  }
+ ],
+ "seg_extra_present": true
+}

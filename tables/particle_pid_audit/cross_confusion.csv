@@ -1,0 +1,15 @@
+truth,reco,n,fraction,n_truth
+signal photon (dominant object),e-shower,6980,0.6160091783602506,11331
+signal photon (dominant object),e-track,30,0.0026476039184537992,11331
+signal photon (dominant object),mu-like,1593,0.14058776806989676,11331
+signal photon (dominant object),pi-like,1164,0.10272703203600742,11331
+signal photon (dominant object),proton-like,332,0.029300150030888712,11331
+signal photon (dominant object),other,0,0.0,11331
+signal photon (dominant object),no row / merged / no candidate,1232,0.10872826758450269,11331
+signal primary proton > 35 MeV (top row),e-shower,778,0.0956714215445155,8132
+signal primary proton > 35 MeV (top row),e-track,1,0.00012297097884899163,8132
+signal primary proton > 35 MeV (top row),mu-like,441,0.05423020167240531,8132
+signal primary proton > 35 MeV (top row),pi-like,186,0.022872602065912444,8132
+signal primary proton > 35 MeV (top row),proton-like,3765,0.46298573536645354,8132
+signal primary proton > 35 MeV (top row),other,0,0.0,8132
+signal primary proton > 35 MeV (top row),no row / merged / no candidate,2961,0.36411706837186425,8132

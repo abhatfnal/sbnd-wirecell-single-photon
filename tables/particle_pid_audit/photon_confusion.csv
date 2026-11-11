@@ -1,0 +1,113 @@
+variant,e_bin,reco,n,fraction,n_bin
+phase9_hierarchy,all,e-shower,6014,0.5307563321860383,11331
+phase9_hierarchy,all,e-track,5,0.00044126731974229987,11331
+phase9_hierarchy,all,mu-like,1079,0.09522548760038832,11331
+phase9_hierarchy,all,pi-like,784,0.06919071573559263,11331
+phase9_hierarchy,all,proton-like,225,0.019857029388403495,11331
+phase9_hierarchy,all,other,0,0.0,11331
+phase9_hierarchy,all,no row,688,0.060718383196540465,11331
+phase9_hierarchy,all,ambiguous,2536,0.2238107845732945,11331
+phase9_hierarchy,<100,e-shower,79,0.541095890410959,146
+phase9_hierarchy,<100,e-track,0,0.0,146
+phase9_hierarchy,<100,mu-like,22,0.1506849315068493,146
+phase9_hierarchy,<100,pi-like,8,0.0547945205479452,146
+phase9_hierarchy,<100,proton-like,1,0.00684931506849315,146
+phase9_hierarchy,<100,other,0,0.0,146
+phase9_hierarchy,<100,no row,9,0.06164383561643835,146
+phase9_hierarchy,<100,ambiguous,27,0.18493150684931506,146
+phase9_hierarchy,100-200,e-shower,1098,0.4406099518459069,2492
+phase9_hierarchy,100-200,e-track,0,0.0,2492
+phase9_hierarchy,100-200,mu-like,363,0.1456661316211878,2492
+phase9_hierarchy,100-200,pi-like,188,0.0754414125200642,2492
+phase9_hierarchy,100-200,proton-like,40,0.016051364365971106,2492
+phase9_hierarchy,100-200,other,0,0.0,2492
+phase9_hierarchy,100-200,no row,216,0.08667736757624397,2492
+phase9_hierarchy,100-200,ambiguous,587,0.235553772070626,2492
+phase9_hierarchy,200-300,e-shower,2035,0.505464480874317,4026
+phase9_hierarchy,200-300,e-track,4,0.0009935419771485345,4026
+phase9_hierarchy,200-300,mu-like,388,0.09637357178340784,4026
+phase9_hierarchy,200-300,pi-like,295,0.07327372081470442,4026
+phase9_hierarchy,200-300,proton-like,70,0.017386984600099353,4026
+phase9_hierarchy,200-300,other,0,0.0,4026
+phase9_hierarchy,200-300,no row,236,0.058618976651763535,4026
+phase9_hierarchy,200-300,ambiguous,998,0.24788872329855938,4026
+phase9_hierarchy,300-500,e-shower,2317,0.5909206834991074,3921
+phase9_hierarchy,300-500,e-track,1,0.0002550369803621525,3921
+phase9_hierarchy,300-500,mu-like,269,0.06860494771741903,3921
+phase9_hierarchy,300-500,pi-like,256,0.06528946697271104,3921
+phase9_hierarchy,300-500,proton-like,95,0.024228513134404488,3921
+phase9_hierarchy,300-500,other,0,0.0,3921
+phase9_hierarchy,300-500,no row,189,0.04820198928844682,3921
+phase9_hierarchy,300-500,ambiguous,794,0.2024993624075491,3921
+phase9_hierarchy,500-1000,e-shower,476,0.6467391304347826,736
+phase9_hierarchy,500-1000,e-track,0,0.0,736
+phase9_hierarchy,500-1000,mu-like,37,0.050271739130434784,736
+phase9_hierarchy,500-1000,pi-like,37,0.050271739130434784,736
+phase9_hierarchy,500-1000,proton-like,19,0.025815217391304348,736
+phase9_hierarchy,500-1000,other,0,0.0,736
+phase9_hierarchy,500-1000,no row,37,0.050271739130434784,736
+phase9_hierarchy,500-1000,ambiguous,130,0.1766304347826087,736
+phase9_hierarchy,>1000,e-shower,9,0.9,10
+phase9_hierarchy,>1000,e-track,0,0.0,10
+phase9_hierarchy,>1000,mu-like,0,0.0,10
+phase9_hierarchy,>1000,pi-like,0,0.0,10
+phase9_hierarchy,>1000,proton-like,0,0.0,10
+phase9_hierarchy,>1000,other,0,0.0,10
+phase9_hierarchy,>1000,no row,1,0.1,10
+phase9_hierarchy,>1000,ambiguous,0,0.0,10
+dominant_type,all,e-shower,6980,0.6160091783602506,11331
+dominant_type,all,e-track,30,0.0026476039184537992,11331
+dominant_type,all,mu-like,1593,0.14058776806989676,11331
+dominant_type,all,pi-like,1164,0.10272703203600742,11331
+dominant_type,all,proton-like,332,0.029300150030888712,11331
+dominant_type,all,other,0,0.0,11331
+dominant_type,all,no row,1232,0.10872826758450269,11331
+dominant_type,all,ambiguous,0,0.0,11331
+dominant_type,<100,e-shower,84,0.5753424657534246,146
+dominant_type,<100,e-track,0,0.0,146
+dominant_type,<100,mu-like,24,0.1643835616438356,146
+dominant_type,<100,pi-like,10,0.0684931506849315,146
+dominant_type,<100,proton-like,1,0.00684931506849315,146
+dominant_type,<100,other,0,0.0,146
+dominant_type,<100,no row,27,0.18493150684931506,146
+dominant_type,<100,ambiguous,0,0.0,146
+dominant_type,100-200,e-shower,1285,0.5156500802568218,2492
+dominant_type,100-200,e-track,3,0.001203852327447833,2492
+dominant_type,100-200,mu-like,497,0.199438202247191,2492
+dominant_type,100-200,pi-like,261,0.10473515248796147,2492
+dominant_type,100-200,proton-like,54,0.021669341894060994,2492
+dominant_type,100-200,other,0,0.0,2492
+dominant_type,100-200,no row,392,0.15730337078651685,2492
+dominant_type,100-200,ambiguous,0,0.0,2492
+dominant_type,200-300,e-shower,2420,0.6010928961748634,4026
+dominant_type,200-300,e-track,10,0.0024838549428713363,4026
+dominant_type,200-300,mu-like,607,0.1507699950322901,4026
+dominant_type,200-300,pi-like,438,0.10879284649776454,4026
+dominant_type,200-300,proton-like,107,0.026577247888723298,4026
+dominant_type,200-300,other,0,0.0,4026
+dominant_type,200-300,no row,444,0.11028315946348734,4026
+dominant_type,200-300,ambiguous,0,0.0,4026
+dominant_type,300-500,e-shower,2643,0.6740627390971691,3921
+dominant_type,300-500,e-track,15,0.0038255547054322878,3921
+dominant_type,300-500,mu-like,415,0.1058403468502933,3921
+dominant_type,300-500,pi-like,396,0.1009946442234124,3921
+dominant_type,300-500,proton-like,140,0.03570517725070135,3921
+dominant_type,300-500,other,0,0.0,3921
+dominant_type,300-500,no row,312,0.07957153787299158,3921
+dominant_type,300-500,ambiguous,0,0.0,3921
+dominant_type,500-1000,e-shower,539,0.7323369565217391,736
+dominant_type,500-1000,e-track,2,0.002717391304347826,736
+dominant_type,500-1000,mu-like,50,0.06793478260869565,736
+dominant_type,500-1000,pi-like,59,0.08016304347826086,736
+dominant_type,500-1000,proton-like,30,0.04076086956521739,736
+dominant_type,500-1000,other,0,0.0,736
+dominant_type,500-1000,no row,56,0.07608695652173914,736
+dominant_type,500-1000,ambiguous,0,0.0,736
+dominant_type,>1000,e-shower,9,0.9,10
+dominant_type,>1000,e-track,0,0.0,10
+dominant_type,>1000,mu-like,0,0.0,10
+dominant_type,>1000,pi-like,0,0.0,10
+dominant_type,>1000,proton-like,0,0.0,10
+dominant_type,>1000,other,0,0.0,10
+dominant_type,>1000,no row,1,0.1,10
+dominant_type,>1000,ambiguous,0,0.0,10

@@ -1,0 +1,20 @@
+check,value
+candidates with a main vertex and >= 1 non-shower segment at it,11110.0
+  with 0 muon-typed segments at the main vertex,6427.0
+  with exactly 1 muon-typed segment at the main vertex,4663.0
+  with >= 2 muon-typed segments at the main vertex (source arbitration leaves at most 1 unless a long-muon chain claims the slot),20.0
+pion-typed non-shower segments (all),7949.0
+  of which at the main vertex,4551.0
+  at the main vertex with a muon-typed sibling at the main vertex,2540.0
+  at the main vertex with a muon-typed sibling at least as long,2080.0
+pion-typed non-shower segments shorter than 1.5 cm (vertex-activity rule region),869.0
+T_kine rows (all candidates),83097.0
+  rows whose type equals the key segment's pdg,82969.0
+  shower rows (kine_particle_is_shower == 1),68351.0
+  shower rows whose key segment is NOT flagged shower (the shower object is built around a track-typed start segment),57450.0
+  shower rows typed muon / pion / proton,13047.0
+  shower rows typed electron,55303.0
+non-shower key segments typed 11: fraction with dirsign 0,0.0002694086480176014
+non-shower key segments typed 13: fraction with dirsign 0,0.000268564522626561
+non-shower key segments typed 211: fraction with dirsign 0,0.00039541320680110717
+non-shower key segments typed 2212: fraction with dirsign 0,6.787944610371979e-05

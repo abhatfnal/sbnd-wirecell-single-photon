@@ -1,0 +1,46 @@
+group,proton_class,n,fraction,n_group
+0,proton-typed,0,0.0,1
+0,mu-typed,0,0.0,1
+0,pi-typed,0,0.0,1
+0,e-shower-typed,0,0.0,1
+0,e-track-typed,0,0.0,1
+0,other-typed,0,0.0,1
+0,no row,1,1.0,1
+0,merged / subdominant partner,0,0.0,1
+0,no signal-matched candidate,0,0.0,1
+1,proton-typed,2802,0.5043196544276458,5556
+1,mu-typed,349,0.06281497480201584,5556
+1,pi-typed,123,0.022138228941684664,5556
+1,e-shower-typed,643,0.11573074154067675,5556
+1,e-track-typed,1,0.00017998560115190784,5556
+1,other-typed,0,0.0,5556
+1,no row,506,0.09107271418286537,5556
+1,merged / subdominant partner,554,0.09971202303815695,5556
+1,no signal-matched candidate,578,0.10403167746580273,5556
+2,proton-typed,963,0.37398058252427185,2575
+2,mu-typed,92,0.03572815533980583,2575
+2,pi-typed,63,0.02446601941747573,2575
+2,e-shower-typed,135,0.05242718446601942,2575
+2,e-track-typed,0,0.0,2575
+2,other-typed,0,0.0,2575
+2,no row,349,0.13553398058252428,2575
+2,merged / subdominant partner,766,0.2974757281553398,2575
+2,no signal-matched candidate,207,0.08038834951456311,2575
+Delta+,proton-typed,2609,0.4855760282895961,5373
+Delta+,mu-typed,322,0.05992927600967802,5373
+Delta+,pi-typed,130,0.02419504932067746,5373
+Delta+,e-shower-typed,513,0.09547738693467336,5373
+Delta+,e-track-typed,1,0.00018611576400521124,5373
+Delta+,other-typed,0,0.0,5373
+Delta+,no row,554,0.10310813325888703,5373
+Delta+,merged / subdominant partner,751,0.13977293876791363,5373
+Delta+,no signal-matched candidate,493,0.09175507165456914,5373
+Delta0,proton-typed,1156,0.41899238854657483,2759
+Delta0,mu-typed,119,0.04313156940920623,2759
+Delta0,pi-typed,56,0.02029720913374411,2759
+Delta0,e-shower-typed,265,0.09604929322218195,2759
+Delta0,e-track-typed,0,0.0,2759
+Delta0,other-typed,0,0.0,2759
+Delta0,no row,302,0.10945994925697716,2759
+Delta0,merged / subdominant partner,569,0.20623414280536426,2759
+Delta0,no signal-matched candidate,292,0.10583544762595143,2759

@@ -1,0 +1,8 @@
+category,n_failures,share_of_failures
+only signal-photon piece(s),1704,0.5621906961398878
+no muon/pion-typed row,598,0.19729462223688551
+only other objects,252,0.08314087759815242
+only true hadronic object(s),186,0.06136588584625536
+signal-photon piece(s) and other objects (no hadron),146,0.04816892114813593
+signal-photon piece(s) and true hadronic object(s),116,0.03827119762454635
+hadron and other objects (no photon piece),29,0.009567799406136588

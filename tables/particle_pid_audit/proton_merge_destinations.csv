@@ -1,0 +1,49 @@
+ke_bin,destination,n,fraction,n_bin
+all KE,signal photon,875,0.39132379248658317,2236
+all KE,another signal proton,1290,0.5769230769230769,2236
+all KE,non-proton signal hadron (pion / muon / neutron-like),32,0.014311270125223614,2236
+all KE,other signal EM,38,0.01699463327370304,2236
+all KE,other-neutrino or cosmic object,1,0.0004472271914132379,2236
+all KE,unmatched / ambiguous,0,0.0,2236
+0-35,signal photon,355,0.3879781420765027,915
+0-35,another signal proton,536,0.585792349726776,915
+0-35,non-proton signal hadron (pion / muon / neutron-like),3,0.003278688524590164,915
+0-35,other signal EM,21,0.022950819672131147,915
+0-35,other-neutrino or cosmic object,0,0.0,915
+0-35,unmatched / ambiguous,0,0.0,915
+35-50,signal photon,155,0.3057199211045365,507
+35-50,another signal proton,342,0.6745562130177515,507
+35-50,non-proton signal hadron (pion / muon / neutron-like),4,0.007889546351084813,507
+35-50,other signal EM,6,0.011834319526627219,507
+35-50,other-neutrino or cosmic object,0,0.0,507
+35-50,unmatched / ambiguous,0,0.0,507
+50-100,signal photon,210,0.4783599088838269,439
+50-100,another signal proton,216,0.4920273348519362,439
+50-100,non-proton signal hadron (pion / muon / neutron-like),9,0.02050113895216401,439
+50-100,other signal EM,3,0.00683371298405467,439
+50-100,other-neutrino or cosmic object,1,0.002277904328018223,439
+50-100,unmatched / ambiguous,0,0.0,439
+100-200,signal photon,115,0.6084656084656085,189
+100-200,another signal proton,65,0.3439153439153439,189
+100-200,non-proton signal hadron (pion / muon / neutron-like),7,0.037037037037037035,189
+100-200,other signal EM,2,0.010582010582010581,189
+100-200,other-neutrino or cosmic object,0,0.0,189
+100-200,unmatched / ambiguous,0,0.0,189
+200-300,signal photon,18,0.28125,64
+200-300,another signal proton,42,0.65625,64
+200-300,non-proton signal hadron (pion / muon / neutron-like),3,0.046875,64
+200-300,other signal EM,1,0.015625,64
+200-300,other-neutrino or cosmic object,0,0.0,64
+200-300,unmatched / ambiguous,0,0.0,64
+300-500,signal photon,12,0.17647058823529413,68
+300-500,another signal proton,52,0.7647058823529411,68
+300-500,non-proton signal hadron (pion / muon / neutron-like),3,0.04411764705882353,68
+300-500,other signal EM,1,0.014705882352941176,68
+300-500,other-neutrino or cosmic object,0,0.0,68
+300-500,unmatched / ambiguous,0,0.0,68
+>500,signal photon,9,0.16981132075471697,53
+>500,another signal proton,37,0.6981132075471698,53
+>500,non-proton signal hadron (pion / muon / neutron-like),3,0.05660377358490566,53
+>500,other signal EM,4,0.07547169811320754,53
+>500,other-neutrino or cosmic object,0,0.0,53
+>500,unmatched / ambiguous,0,0.0,53

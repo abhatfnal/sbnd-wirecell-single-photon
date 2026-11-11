@@ -1,0 +1,13 @@
+truth_topology,destination,n,fraction,n_group
+truth 1p,signal photon,361,0.6516245487364621,554
+truth 1p,another signal proton,156,0.2815884476534296,554
+truth 1p,non-proton signal hadron (pion / muon / neutron-like),22,0.039711191335740074,554
+truth 1p,other signal EM,14,0.02527075812274368,554
+truth 1p,other-neutrino or cosmic object,1,0.0018050541516245488,554
+truth 1p,unmatched / ambiguous,0,0.0,554
+truth >=2p,signal photon,158,0.206266318537859,766
+truth >=2p,another signal proton,598,0.7806788511749347,766
+truth >=2p,non-proton signal hadron (pion / muon / neutron-like),7,0.009138381201044387,766
+truth >=2p,other signal EM,3,0.0039164490861618795,766
+truth >=2p,other-neutrino or cosmic object,0,0.0,766
+truth >=2p,unmatched / ambiguous,0,0.0,766

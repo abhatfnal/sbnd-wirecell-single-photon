@@ -1,0 +1,43 @@
+population,rank,type,n,fraction,n_pieces
+fragmented events,dominant (largest charge),electron shower,966,0.45695364238410596,2114
+fragmented events,dominant (largest charge),electron track,25,0.011825922421948912,2114
+fragmented events,dominant (largest charge),muon-like,514,0.24314096499526963,2114
+fragmented events,dominant (largest charge),pion-like,380,0.17975402081362346,2114
+fragmented events,dominant (largest charge),proton-like,107,0.05061494796594134,2114
+fragmented events,dominant (largest charge),other,0,0.0,2114
+fragmented events,dominant (largest charge),no row,122,0.05771050141911069,2114
+fragmented events,later pieces,electron shower,1317,0.5028636884306987,2619
+fragmented events,later pieces,electron track,69,0.026345933562428408,2619
+fragmented events,later pieces,muon-like,389,0.14852997327224132,2619
+fragmented events,later pieces,pion-like,549,0.20962199312714777,2619
+fragmented events,later pieces,proton-like,146,0.05574646811760214,2619
+fragmented events,later pieces,other,0,0.0,2619
+fragmented events,later pieces,no row,149,0.056891943489881636,2619
+fragmented events,second piece,electron shower,936,0.44297207761476576,2113
+fragmented events,second piece,electron track,40,0.01893043066729768,2113
+fragmented events,second piece,muon-like,508,0.24041646947468054,2113
+fragmented events,second piece,pion-like,402,0.1902508282063417,2113
+fragmented events,second piece,proton-like,101,0.04779933743492665,2113
+fragmented events,second piece,other,0,0.0,2113
+fragmented events,second piece,no row,126,0.05963085660198769,2113
+non-fragmented events,dominant (largest charge),electron shower,6067,0.7063686110140878,8589
+non-fragmented events,dominant (largest charge),electron track,5,0.0005821399464431249,8589
+non-fragmented events,dominant (largest charge),muon-like,1094,0.12737222028175574,8589
+non-fragmented events,dominant (largest charge),pion-like,794,0.09244382349516823,8589
+non-fragmented events,dominant (largest charge),proton-like,228,0.026545581557806498,8589
+non-fragmented events,dominant (largest charge),other,1,0.00011642798928862498,8589
+non-fragmented events,dominant (largest charge),no row,400,0.046571195715449994,8589
+non-fragmented events,later pieces,electron shower,579,0.555662188099808,1042
+non-fragmented events,later pieces,electron track,3,0.0028790786948176585,1042
+non-fragmented events,later pieces,muon-like,127,0.1218809980806142,1042
+non-fragmented events,later pieces,pion-like,206,0.19769673704414586,1042
+non-fragmented events,later pieces,proton-like,75,0.07197696737044146,1042
+non-fragmented events,later pieces,other,0,0.0,1042
+non-fragmented events,later pieces,no row,52,0.04990403071017274,1042
+non-fragmented events,second piece,electron shower,1872,0.5185595567867036,3610
+non-fragmented events,second piece,electron track,4,0.00110803324099723,3610
+non-fragmented events,second piece,muon-like,702,0.19445983379501386,3610
+non-fragmented events,second piece,pion-like,477,0.13213296398891966,3610
+non-fragmented events,second piece,proton-like,209,0.05789473684210526,3610
+non-fragmented events,second piece,other,0,0.0,3610
+non-fragmented events,second piece,no row,346,0.09584487534626039,3610

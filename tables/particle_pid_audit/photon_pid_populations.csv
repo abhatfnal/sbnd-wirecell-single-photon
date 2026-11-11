@@ -1,0 +1,11 @@
+pid_class,n,fraction
+A clean electron shower,5397,0.4763039449298385
+"B electron shower, not usable by the single-photon stage",617,0.05445238725619981
+C muon-like dominant object,1079,0.09522548760038832
+D pion-like dominant object,784,0.06919071573559263
+E proton-like dominant object,225,0.019857029388403495
+F electron-track / other track,5,0.00044126731974229987
+"G fragmented (Phase 9), mixed types",2114,0.1865678227870444
+H no particle row,383,0.03380107669226017
+I no reconstructed charge,305,0.026917306504280293
+J charge outside candidates / other candidate,422,0.03724296178625011

@@ -1,0 +1,7 @@
+input
+per-segment dQ/dx vector and its median
+template scores (muon / proton / electron) and particle_score
+start_n / end_n at PID time (derivable from persisted vertex ids only for the final graph)
+dirsign at PID time (final value persisted)
+shower direction and get_kine_charge
+production values of the knob-gated PID options

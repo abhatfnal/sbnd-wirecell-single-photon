@@ -1,0 +1,81 @@
+pid_class,stage,n,step_survival,cumulative
+A clean electron shower,all events,5397,,1.0
+A clean electron shower,shower stage,5397,1.0,1.0
+A clean electron shower,BDT evaluable,5363,0.9937002038169354,0.9937002038169354
+A clean electron shower,numu,4101,0.7646839455528622,0.7598665925514174
+A clean electron shower,other,2552,0.6222872470129237,0.47285528997591253
+A clean electron shower,ncpi0,1278,0.5007836990595611,0.2367982212340189
+A clean electron shower,n_20br1,1129,0.8834115805946792,0.20919029090235317
+A clean electron shower,final,1129,1.0,0.20919029090235317
+"B electron shower, not usable by the single-photon stage",all events,617,,1.0
+"B electron shower, not usable by the single-photon stage",shower stage,10,0.01620745542949757,0.01620745542949757
+"B electron shower, not usable by the single-photon stage",BDT evaluable,10,1.0,0.01620745542949757
+"B electron shower, not usable by the single-photon stage",numu,4,0.4,0.006482982171799027
+"B electron shower, not usable by the single-photon stage",other,1,0.25,0.0016207455429497568
+"B electron shower, not usable by the single-photon stage",ncpi0,0,0.0,0.0
+"B electron shower, not usable by the single-photon stage",n_20br1,0,,0.0
+"B electron shower, not usable by the single-photon stage",final,0,,0.0
+C muon-like dominant object,all events,1079,,1.0
+C muon-like dominant object,shower stage,304,0.28174235403151066,0.28174235403151066
+C muon-like dominant object,BDT evaluable,303,0.9967105263157895,0.2808155699721965
+C muon-like dominant object,numu,76,0.2508250825082508,0.07043558850787766
+C muon-like dominant object,other,10,0.13157894736842105,0.009267840593141797
+C muon-like dominant object,ncpi0,3,0.3,0.0027803521779425394
+C muon-like dominant object,n_20br1,2,0.6666666666666666,0.0018535681186283596
+C muon-like dominant object,final,2,1.0,0.0018535681186283596
+D pion-like dominant object,all events,784,,1.0
+D pion-like dominant object,shower stage,333,0.4247448979591837,0.4247448979591837
+D pion-like dominant object,BDT evaluable,333,1.0,0.4247448979591837
+D pion-like dominant object,numu,74,0.2222222222222222,0.09438775510204081
+D pion-like dominant object,other,24,0.32432432432432434,0.030612244897959183
+D pion-like dominant object,ncpi0,2,0.08333333333333333,0.002551020408163265
+D pion-like dominant object,n_20br1,2,1.0,0.002551020408163265
+D pion-like dominant object,final,2,1.0,0.002551020408163265
+E proton-like dominant object,all events,225,,1.0
+E proton-like dominant object,shower stage,69,0.30666666666666664,0.30666666666666664
+E proton-like dominant object,BDT evaluable,68,0.9855072463768116,0.3022222222222222
+E proton-like dominant object,numu,21,0.3088235294117647,0.09333333333333334
+E proton-like dominant object,other,7,0.3333333333333333,0.03111111111111111
+E proton-like dominant object,ncpi0,0,0.0,0.0
+E proton-like dominant object,n_20br1,0,,0.0
+E proton-like dominant object,final,0,,0.0
+F electron-track / other track,all events,5,,1.0
+F electron-track / other track,shower stage,3,0.6,0.6
+F electron-track / other track,BDT evaluable,3,1.0,0.6
+F electron-track / other track,numu,2,0.6666666666666666,0.4
+F electron-track / other track,other,0,0.0,0.0
+F electron-track / other track,ncpi0,0,,0.0
+F electron-track / other track,n_20br1,0,,0.0
+F electron-track / other track,final,0,,0.0
+"G fragmented (Phase 9), mixed types",all events,2114,,1.0
+"G fragmented (Phase 9), mixed types",shower stage,1622,0.7672658467360454,0.7672658467360454
+"G fragmented (Phase 9), mixed types",BDT evaluable,1618,0.9975339087546239,0.7653736991485336
+"G fragmented (Phase 9), mixed types",numu,582,0.35970333745364647,0.2753074739829707
+"G fragmented (Phase 9), mixed types",other,150,0.25773195876288657,0.07095553453169347
+"G fragmented (Phase 9), mixed types",ncpi0,24,0.16,0.011352885525070956
+"G fragmented (Phase 9), mixed types",n_20br1,14,0.5833333333333334,0.006622516556291391
+"G fragmented (Phase 9), mixed types",final,14,1.0,0.006622516556291391
+H no particle row,all events,383,,1.0
+H no particle row,shower stage,220,0.5744125326370757,0.5744125326370757
+H no particle row,BDT evaluable,218,0.990909090909091,0.5691906005221932
+H no particle row,numu,105,0.481651376146789,0.2741514360313316
+H no particle row,other,27,0.2571428571428571,0.07049608355091384
+H no particle row,ncpi0,4,0.14814814814814814,0.010443864229765013
+H no particle row,n_20br1,4,1.0,0.010443864229765013
+H no particle row,final,4,1.0,0.010443864229765013
+I no reconstructed charge,all events,305,,1.0
+I no reconstructed charge,shower stage,30,0.09836065573770492,0.09836065573770492
+I no reconstructed charge,BDT evaluable,28,0.9333333333333333,0.09180327868852459
+I no reconstructed charge,numu,9,0.32142857142857145,0.029508196721311476
+I no reconstructed charge,other,2,0.2222222222222222,0.006557377049180328
+I no reconstructed charge,ncpi0,0,0.0,0.0
+I no reconstructed charge,n_20br1,0,,0.0
+I no reconstructed charge,final,0,,0.0
+J charge outside candidates / other candidate,all events,422,,1.0
+J charge outside candidates / other candidate,shower stage,92,0.21800947867298578,0.21800947867298578
+J charge outside candidates / other candidate,BDT evaluable,90,0.9782608695652174,0.2132701421800948
+J charge outside candidates / other candidate,numu,33,0.36666666666666664,0.07819905213270142
+J charge outside candidates / other candidate,other,8,0.24242424242424243,0.018957345971563982
+J charge outside candidates / other candidate,ncpi0,2,0.25,0.004739336492890996
+J charge outside candidates / other candidate,n_20br1,2,1.0,0.004739336492890996
+J charge outside candidates / other candidate,final,2,1.0,0.004739336492890996

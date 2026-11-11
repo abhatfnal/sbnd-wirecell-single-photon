@@ -1,0 +1,41 @@
+group,pid_class,n,fraction,n_group
+truth 0p,A clean electron shower,2485,0.47696737044145876,5210
+truth 0p,"B electron shower, not usable by the single-photon stage",132,0.025335892514395393,5210
+truth 0p,C muon-like dominant object,422,0.08099808061420345,5210
+truth 0p,D pion-like dominant object,424,0.08138195777351248,5210
+truth 0p,E proton-like dominant object,80,0.015355086372360844,5210
+truth 0p,F electron-track / other track,0,0.0,5210
+truth 0p,"G fragmented (Phase 9), mixed types",1204,0.2310940499040307,5210
+truth 0p,any track-typed dominant object,1521,0.29193857965451053,5210
+truth 1p,A clean electron shower,2432,0.4704061895551257,5170
+truth 1p,"B electron shower, not usable by the single-photon stage",398,0.0769825918762089,5170
+truth 1p,C muon-like dominant object,554,0.10715667311411992,5170
+truth 1p,D pion-like dominant object,292,0.05647969052224371,5170
+truth 1p,E proton-like dominant object,125,0.024177949709864602,5170
+truth 1p,F electron-track / other track,5,0.0009671179883945841,5170
+truth 1p,"G fragmented (Phase 9), mixed types",801,0.15493230174081238,5170
+truth 1p,any track-typed dominant object,1383,0.267504835589942,5170
+truth >=2p,A clean electron shower,480,0.5047318611987381,951
+truth >=2p,"B electron shower, not usable by the single-photon stage",87,0.0914826498422713,951
+truth >=2p,C muon-like dominant object,103,0.10830704521556257,951
+truth >=2p,D pion-like dominant object,68,0.07150368033648791,951
+truth >=2p,E proton-like dominant object,20,0.02103049421661409,951
+truth >=2p,F electron-track / other track,0,0.0,951
+truth >=2p,"G fragmented (Phase 9), mixed types",109,0.11461619348054679,951
+truth >=2p,any track-typed dominant object,243,0.2555205047318612,951
+Delta+,A clean electron shower,2488,0.47882986913010006,5196
+Delta+,"B electron shower, not usable by the single-photon stage",374,0.07197844495765973,5196
+Delta+,C muon-like dominant object,553,0.10642802155504234,5196
+Delta+,D pion-like dominant object,301,0.057929176289453425,5196
+Delta+,E proton-like dominant object,126,0.02424942263279446,5196
+Delta+,F electron-track / other track,3,0.0005773672055427252,5196
+Delta+,"G fragmented (Phase 9), mixed types",835,0.1607005388760585,5196
+Delta+,any track-typed dominant object,1423,0.27386451116243266,5196
+Delta0,A clean electron shower,2909,0.4741646291768541,6135
+Delta0,"B electron shower, not usable by the single-photon stage",243,0.03960880195599022,6135
+Delta0,C muon-like dominant object,526,0.08573757131214343,6135
+Delta0,D pion-like dominant object,483,0.07872860635696821,6135
+Delta0,E proton-like dominant object,99,0.01613691931540342,6135
+Delta0,F electron-track / other track,2,0.00032599837000814997,6135
+Delta0,"G fragmented (Phase 9), mixed types",1279,0.2084759576202119,6135
+Delta0,any track-typed dominant object,1724,0.28101059494702524,6135

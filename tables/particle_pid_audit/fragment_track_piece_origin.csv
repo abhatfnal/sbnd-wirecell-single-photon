@@ -1,0 +1,25 @@
+population,item,n,fraction
+fragmented events at the shower stage (Phase-14 population),fragmented events,1622,1.0
+fragmented events at the shower stage (Phase-14 population),with a track-typed significant piece,1354,0.8347718865598027
+fragmented events at the shower stage (Phase-14 population),dominant piece track-typed,659,0.406288532675709
+fragmented events at the shower stage (Phase-14 population),"dominant piece electron shower, a minor piece track-typed",695,0.4284833538840937
+fragmented events at the shower stage (Phase-14 population),dominant and a minor piece track-typed,416,0.2564734895191122
+fragmented events at the shower stage (Phase-14 population),no track-typed significant piece,268,0.16522811344019728
+fragmented events at the shower stage (Phase-14 population),dominant piece type: electron shower,883,0.5443896424167695
+fragmented events at the shower stage (Phase-14 population),dominant piece type: muon-like,338,0.20838471023427868
+fragmented events at the shower stage (Phase-14 population),dominant piece type: pion-like,242,0.14919852034525277
+fragmented events at the shower stage (Phase-14 population),dominant piece type: proton-like,64,0.03945745992601726
+fragmented events at the shower stage (Phase-14 population),dominant piece type: electron track,15,0.009247842170160296
+fragmented events at the shower stage (Phase-14 population),dominant piece type: no row,80,0.04932182490752158
+all fragmented events (Phase 9),fragmented events,2114,1.0
+all fragmented events (Phase 9),with a track-typed significant piece,1825,0.8632923368022706
+all fragmented events (Phase 9),dominant piece track-typed,1026,0.4853358561967833
+all fragmented events (Phase 9),"dominant piece electron shower, a minor piece track-typed",799,0.37795648060548725
+all fragmented events (Phase 9),dominant and a minor piece track-typed,723,0.34200567644276253
+all fragmented events (Phase 9),no track-typed significant piece,289,0.13670766319772942
+all fragmented events (Phase 9),dominant piece type: electron shower,966,0.45695364238410596
+all fragmented events (Phase 9),dominant piece type: muon-like,514,0.24314096499526963
+all fragmented events (Phase 9),dominant piece type: pion-like,380,0.17975402081362346
+all fragmented events (Phase 9),dominant piece type: proton-like,107,0.05061494796594134
+all fragmented events (Phase 9),dominant piece type: electron track,25,0.011825922421948912
+all fragmented events (Phase 9),dominant piece type: no row,122,0.05771050141911069

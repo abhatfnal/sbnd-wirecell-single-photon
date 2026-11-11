@@ -1,0 +1,15 @@
+pid_class,estimator,n,median,p16,p84
+A clean electron shower,dominant row E_reco / E_true,5397,0.9002231065321816,0.6013095085398676,1.0759708772811327
+A clean electron shower,sum of significant pieces / E_true,5397,0.9940578895119196,0.7874251991860829,1.1002528677486456
+"B electron shower, not usable by the single-photon stage",dominant row E_reco / E_true,617,0.9093862751296015,0.5355240031096473,1.0748856848389983
+"B electron shower, not usable by the single-photon stage",sum of significant pieces / E_true,617,0.9669257533519682,0.6300343752074962,1.0813537185518503
+C muon-like dominant object,dominant row E_reco / E_true,1079,0.524449069285983,0.3074303603355487,0.7660186142507337
+C muon-like dominant object,sum of significant pieces / E_true,1079,0.6909886176289965,0.4129812346595706,0.8659693283254697
+D pion-like dominant object,dominant row E_reco / E_true,784,0.5186437314872014,0.3693624890839656,0.7341060924917071
+D pion-like dominant object,sum of significant pieces / E_true,784,0.7337411757941558,0.5414437120528557,0.9242350970841653
+E proton-like dominant object,dominant row E_reco / E_true,225,0.5610159935188391,0.3259300366945867,0.8131791843468321
+E proton-like dominant object,sum of significant pieces / E_true,225,0.7045317989602807,0.37762441469649843,0.9383646484481398
+F electron-track / other track,dominant row E_reco / E_true,5,0.0,0.0,0.28531337530235873
+F electron-track / other track,sum of significant pieces / E_true,5,0.38626903563402526,0.0960879109416895,0.6301548131554819
+"G fragmented (Phase 9), mixed types",dominant row E_reco / E_true,1992,0.36098850759463885,0.23402300678101118,0.4971229230337447
+"G fragmented (Phase 9), mixed types",sum of significant pieces / E_true,2114,0.8264466529242254,0.5715672029134065,1.0580385862340753

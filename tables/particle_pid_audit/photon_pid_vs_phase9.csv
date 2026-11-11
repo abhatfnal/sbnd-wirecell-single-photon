@@ -1,0 +1,11 @@
+pid_class,pass_not_via_signal_photon_shower,pass_photon_shower_in_passing_candidate,photon_as_track,photon_charge_outside_candidates,photon_fragmented,photon_in_other_candidate,photon_no_reco_charge,photon_particle_row_missing,photon_shower_below_20MeV,photon_shower_not_in_main_vertex_set,photon_shower_typed_non_electron
+A clean electron shower,0,5397,0,0,0,0,0,0,0,0,0
+"B electron shower, not usable by the single-photon stage",10,0,0,0,0,0,0,0,40,567,0
+C muon-like dominant object,304,0,325,0,0,0,0,0,0,0,450
+D pion-like dominant object,333,0,37,0,0,0,0,0,0,0,414
+E proton-like dominant object,69,0,60,0,0,0,0,0,0,0,96
+F electron-track / other track,3,0,2,0,0,0,0,0,0,0,0
+"G fragmented (Phase 9), mixed types",1622,0,0,0,492,0,0,0,0,0,0
+H no particle row,220,0,0,0,0,0,0,162,0,0,1
+I no reconstructed charge,30,0,0,0,0,0,275,0,0,0,0
+J charge outside candidates / other candidate,66,26,0,329,0,1,0,0,0,0,0

@@ -1,0 +1,5 @@
+item,n
+signal primary protons (all KE),20023
+signal primary protons KE > 35 MeV (Phase-10 denominator),8132
+  of which with a signal-matched candidate,7347
+signal primary protons KE <= 35 MeV,11891
