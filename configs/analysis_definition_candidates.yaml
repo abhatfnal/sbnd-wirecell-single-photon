@@ -1,0 +1,31 @@
+# Candidate ANALYSIS-DEFINITION PACKAGES for the NC-Delta single-photon analysis (Phase 13 decision support).
+# These are POLICY ALTERNATIVES kept as sensitivities.  NONE of them is the default selection: configs/baseline_selection.yaml is unchanged and the frozen photon selection (candidate, > 20 MeV shower, numu, other,
+# ncpi0, nue, n_20br1 == 1) is identical in every package.  A package only changes (a) the fiducial volume applied to the RECONSTRUCTED vertex of the selected candidate (signal numerator and BNB-CV background; the
+# TRUE vertex defines the signal denominator with the same boundaries; the truth FV is never imposed on the background), (b) the reco-proton convention (and the matching truth threshold) used to split 0p / 1p / >=2p,
+# (c) the candidate policy.  No package carries the label `provisional_recommended`: the evidence supports a provisional convention for E (included == 3) and F only; D has NO RECOMMENDATION (see `provisional_conventions`).
+version: 1
+fiducial_volumes: [none, av200, cafpyana190, numu2021, spine180, legacy_nue175, cohpi_carve]     # definitions: src/sbnd_single_photon/analysis_definitions.py (FV_SPECS) and docs/analysis/FIDUCIAL_VOLUME_DECISION_AUDIT.md
+proton_policies:
+  P1: {reco_threshold_mev: 35, truth_threshold_mev: 35, exclude_included3: false}     # frozen-baseline convention
+  P2: {reco_threshold_mev: 35, truth_threshold_mev: 35, exclude_included3: true}
+  P3: {reco_threshold_mev: 50, truth_threshold_mev: 50, exclude_included3: false}
+  P4: {reco_threshold_mev: 50, truth_threshold_mev: 50, exclude_included3: true}
+candidate_policies: {any: "event passes if any candidate passes all frozen cuts (counted once)", first: "only candidate index 0 (longest selected activity first; not the neutrino-identity candidate)"}
+packages:
+  baseline_frozen:        {truth_fv: none,          reco_fv: none,          proton_policy: P1, candidate_policy: any}      # the validated frozen baseline (reference of the whole project); NOT changed
+  av200_P1_any:           {truth_fv: av200,         reco_fv: av200,         proton_policy: P1, candidate_policy: any}      # envelope reference: provisional truth box applied to the reco vertex too
+  cafpyana190_P1_any:     {truth_fv: cafpyana190,   reco_fv: cafpyana190,   proton_policy: P1, candidate_policy: any}
+  numu2021_P1_any:        {truth_fv: numu2021,      reco_fv: numu2021,      proton_policy: P1, candidate_policy: any}
+  spine180_P1_any:        {truth_fv: spine180,      reco_fv: spine180,      proton_policy: P1, candidate_policy: any}
+  legacy_nue175_P1_any:   {truth_fv: legacy_nue175, reco_fv: legacy_nue175, proton_policy: P1, candidate_policy: any}
+  cohpi_carve_P1_any:     {truth_fv: cohpi_carve,   reco_fv: cohpi_carve,   proton_policy: P1, candidate_policy: any}
+  av200_P2_any:           {truth_fv: av200,         reco_fv: av200,         proton_policy: P2, candidate_policy: any}
+  av200_P3_any:           {truth_fv: av200,         reco_fv: av200,         proton_policy: P3, candidate_policy: any}
+  av200_P4_any:           {truth_fv: av200,         reco_fv: av200,         proton_policy: P4, candidate_policy: any}
+  av200_P1_first:         {truth_fv: av200,         reco_fv: av200,         proton_policy: P1, candidate_policy: first}
+  spine_comparable_FV180_P3_any: {truth_fv: spine180, reco_fv: spine180,    proton_policy: P3, candidate_policy: any}    # SPINE FV and 50 MeV: same thresholds, NOT the same proton definition
+provisional_conventions:       # "recommended provisional convention for the next validation stage" (NOT a final optimised choice); see docs/analysis/ANALYSIS_DEFINITION_DECISION_MATRIX.md
+  D_fiducial_volume:      {recommendation: NO_RECOMMENDATION, basis: "no authoritative SBND FV; efficiency varies smoothly with the distance to the faces (no knee); needs the analysis group / Haiwang-Hanyu"}
+  E_included3:            {recommendation: exclude_included3_rows_from_proton_count, basis: "source semantics (pool-2 leftover showers of another cluster, not vertex-attached tracks); needs Haiwang-Hanyu confirmation"}
+  E_proton_threshold:     {recommendation: NO_RECOMMENDATION, basis: "35 MeV is an inherited planning value, 50 MeV the SPINE technote value; no source or physical argument singles one out"}
+  F_candidate_policy:     {recommendation: any_event_counted_once, basis: "source semantics (candidate index = activity length, not neutrino identity) and event-counting logic (never more than one passing candidate)"}

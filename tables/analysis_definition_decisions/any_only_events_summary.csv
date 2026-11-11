@@ -1,0 +1,26 @@
+sample,variable,value,n,frac
+bnb_cv,cand0_first_failed_stage,no > 20 MeV shower,19,0.8260869565217391
+bnb_cv,cand0_first_failed_stage,numu,2,0.08695652173913043
+bnb_cv,cand0_first_failed_stage,n_20br1,1,0.043478260869565216
+bnb_cv,cand0_first_failed_stage,ncpi0,1,0.043478260869565216
+bnb_cv,cand0_truth,neutrino_in_AV,22,0.9565217391304348
+bnb_cv,cand0_truth,neutrino_outside_AV_dirt,1,0.043478260869565216
+bnb_cv,passing_cand_truth,neutrino_in_AV,18,0.782608695652174
+bnb_cv,passing_cand_truth,neutrino_outside_AV_dirt,5,0.21739130434782608
+bnb_cv,same_truth_neutrino,False,22,0.9565217391304348
+bnb_cv,same_truth_neutrino,True,1,0.043478260869565216
+bnb_cv,truth_topology,background,22,0.9565217391304348
+bnb_cv,truth_topology,signal_like,1,0.043478260869565216
+bnb_cv,passing_cand_is_signal_matched,True,1,0.043478260869565216
+official_signal,cand0_first_failed_stage,no > 20 MeV shower,37,0.7115384615384616
+official_signal,cand0_first_failed_stage,numu,13,0.25
+official_signal,cand0_first_failed_stage,BDT not evaluable,1,0.019230769230769232
+official_signal,cand0_first_failed_stage,ncpi0,1,0.019230769230769232
+official_signal,cand0_truth,neutrino_in_AV,50,0.9615384615384616
+official_signal,cand0_truth,neutrino_outside_AV_dirt,2,0.038461538461538464
+official_signal,passing_cand_truth,neutrino_in_AV,52,1.0
+official_signal,same_truth_neutrino,False,52,1.0
+official_signal,truth_topology,truth 1p,28,0.5384615384615384
+official_signal,truth_topology,truth 0p,23,0.4423076923076923
+official_signal,truth_topology,truth >=2p,1,0.019230769230769232
+official_signal,passing_cand_is_signal_matched,True,52,1.0

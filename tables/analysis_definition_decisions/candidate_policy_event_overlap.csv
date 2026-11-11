@@ -1,0 +1,4 @@
+sample,both,any_only,first_only,neither,n_any,n_first,n_events
+official_signal,1101,52,0,11274,1153,1101,12427
+bnb_cv_all_selected,626,23,0,499351,649,626,500000
+bnb_cv_non_signal_background,613,22,0,499365,635,613,500000

@@ -1,0 +1,47 @@
+# Decision matrix for D (fiducial volume), E (proton threshold / `included == 3`) and F (candidate policy)
+
+Date: 2026-11-11. Branch `analysis/ncdelta-analysis-definition-decisions-20261111`. **Decision support.** Evidence: `FIDUCIAL_VOLUME_DECISION_AUDIT.md`, `ANALYSIS_DEFINITION_DECISION_SUPPORT.md`, `ANALYSIS_READINESS_BLOCKERS.md`, `configs/analysis_definition_candidates.yaml`. The frozen baseline is unchanged. **No option is preferred because it gives a higher signal efficiency, truth purity or S/B**; where a recommendation is given it is labelled with the kind of evidence it rests on. Signal impact and background impact are listed so that tradeoffs are visible, not hidden.
+
+## D. Fiducial volume (applied to the reco vertex of the selected candidate; the truth FV defines only the signal denominator)
+
+| option | source semantics | other SBND analyses | interpretability | robustness | signal impact (efficiency, 9.28 % with no FV) | background impact (beam-neutrino, selected 635) | SPINE compatibility | unresolved external question | risk |
+|---|---|---|---|---|---|---|---|---|---|
+| `none` | frozen baseline: no FV | none | reco vertex outside the TPC / near faces included | edge regions with visibly changing reconstruction (candidate 64 % within 5 cm of a face) | 9.28 % | 635 (95 OUTSIDE_TPC_NU) | no | none | the signal denominator (provisional box) and background phase space mismatch persists |
+| `av200` (provisional box) | the active volume, not an analysis FV | sbnana `avnd` plotting AV | simple; identical to the truth box | includes the whole edge region | 9.28 % (reco-FV removes 7 background events) | 628 | no | whether any FV is wanted at all | not a fiducial volume |
+| `cafpyana190` (|x|,|y|<190, 10<z<450) | maintained helper `InFV(det="SBND")` | nueCC and cc2p helpers (#5) | common SBND box | removes the worst z bin (450-500, 4.4 % efficiency) but only 10 cm in x,y where efficiency is already lower | 10.11 % (denominator 10,087) | 485 (OUTSIDE_TPC_NU 28) | no (10 vs 20 cm margins) | which box, applied to SCE-corrected `kine_nu_*_corr`? | none specific |
+| `numu2021` (x +-189.15, y +-190, z 10-450) | numuCC 2021 `kInFV` | numuCC | as above; the x edge is geometry-motivated | as above | 10.15 % | 484 | no | same | pre-dates the current geometry |
+| `spine180` (<=180, 10-450, inclusive) | SPINE truth FV of the NC-Delta technote | SPINE NC-Delta only | defined for the truth vertex; the reco FV (SPINE `FiducialProcessor` margins) is unaudited | 20 cm margin in x,y (more of the falling region removed) | 10.44 % (denominator 9,206) | 448 (OUTSIDE_TPC_NU 23) | **yes for the truth vertex** | does SPINE apply an equivalent reco FV? | chosen for comparability rather than on its own merit |
+| `legacy_nue175` (1.5<|x|<175, <175, 30-450) | legacy 2020 nue `fvndAbs`, cathode excluded | none current | tight; cathode exclusion is not motivated for Wire-Cell | smallest volume (8,272 truth events) | 10.57 % | 394 | no | is a cathode exclusion wanted? | pre-dates the geometry; large fraction of the sample removed |
+| `cohpi_carve` (high-y carve-out at z>250) | cohpi / gump | coherent-pi analyses | the carve-out excludes a detector region with known issues in other analyses | largest signal loss (efficiency 9.92 % on a 8,486-event denominator) | 9.92 % | 401 | no | is the high-y / z>250 region excluded for the single-photon channel? | the region is not shown to be problematic for Wire-Cell |
+
+**Edge evidence (not a criterion for a specific boundary):** the efficiency is flat inside the volume and falls at the outermost 20-50 cm; the candidate-formation fraction rises smoothly over 100 cm; the photon leaves the volume in 30 % of the events within 5 cm of a face but < 1 % beyond 50 cm. **There is no knee**, so the geometry alone does not single out a boundary.
+
+## E. Proton policy (the frozen photon selection is identical; truth uses the matching 35 / 50 MeV threshold)
+
+| option | source semantics | other analyses | interpretability | robustness | signal impact (reco 1g0p / 1g1p / >=2p of 1,153) | background impact (selected BNB 1g0p / 1g1p) | SPINE compatibility | unresolved external question | risk |
+|---|---|---|---|---|---|---|---|---|---|
+| P1 35 MeV, `included == 3` counted | the inherited rule (type 2212, any pool, any `included`) | MicroBooNE single-photon reference 35 MeV | counts leftover-shower rows of other clusters as protons | 18.5 % of the true protons sit within 35-50 MeV; 20 events differ from P3 | 527 / 556 / 70; reco 1g1p truth-1p fraction 84.7 % | 310 / 230 | no analogue of leftover rows | is the `included == 3` row a proton? | counts non-vertex-attached shower objects |
+| P2 35 MeV, `included == 3` excluded | **a proton row should be a vertex-attached object: `included == 3` rows are pool-2 satellite showers of another cluster (connection type 3, <= 80 cm)** | MicroBooNE threshold, but the tagger's own proton count is vertex-attached | reco proton = tracks (and showers) on the main vertex graph | 63 events change reco category relative to P1 | 592 / 505 / 56; truth-1p fraction of 1g1p 89.7 % | 339 / 212 | closer in spirit (primary-like objects) | does the production intend pool-2 rows as protons? | removes 26 truth-1p events' only reco proton (they become reco 0p) |
+| P3 50 MeV, counted | threshold not source-defined | SPINE truth threshold 50 MeV | fewer low-energy rows | fewer events near the resolution-limited band | 545 / 540 / 68 | 317 / 228 | **same threshold, not the same definition** | which threshold is the physics definition? | threshold choice moves 1,072 truth events between categories |
+| P4 50 MeV, excluded | as P2 | as P3 | as P2 | as P2 | 603 / 495 / 55 | 345 / 209 | as P3 | both questions | both risks |
+**Signal evidence for information only:** M_Delta mode 1225 MeV for all four; truth-correct fraction of the masses 88.6 / 91.1 / 88.7 / 90.9 %.
+
+## F. Candidate policy (event counted once)
+
+| option | source semantics | other analyses | interpretability | robustness | signal impact (selected of 12,427) | background impact (non-signal) | SPINE compatibility | unresolved external question | risk |
+|---|---|---|---|---|---|---|---|---|---|
+| `any` | the baseline; candidate order = activity length, not neutrino identity | MicroBooNE-style event-level selection | an event passes if any interaction candidate passes; counted once (no event has two passing candidates) | independent of the arbitrary index | 1,153 | 635 | SPINE has its own interaction policy (no analogue) | is event-level any acceptable? | adds 22 background events whose candidate 0 failed |
+| `first` | only index 0 | none found | tied to a sort that does not identify the neutrino | depends on the longest-activity ordering: when another interaction has the longest activity the event is lost (52 real signal events) | 1,101 | 613 | no analogue | - | loses signal for a reason unrelated to the photon selection |
+The 52 `any`-only signal events are all real NC-Delta candidates (candidate 0 belongs to another neutrino interaction in all 52); the 22 `any`-only background events are of the same kind as the common background; `first` is a strict subset of `any` with identical objects (first-only = 0).
+
+## Provisional conventions (recommended provisional convention for the next validation stage; NOT a final optimised choice)
+
+| decision | provisional convention | rests primarily on | what would change it |
+|---|---|---|---|
+| **D fiducial volume** | **NO RECOMMENDATION** | - | no authoritative SBND FV exists; the efficiency changes smoothly with the distance to the faces (no knee), so no geometric argument singles out a boundary; the choice between the 175 / 180 / 190 cm families is a physics and collaboration-convention decision. Required: **the analysis group / Haiwang-Hanyu: which FV convention, applied to the SCE-corrected `kine_nu_*_corr`, with or without the high-y carve-out and a cathode exclusion** |
+| **E1 `included == 3` rows** | **do not count `included == 3` rows as reconstructed protons** (P2 / P4 family) | **source semantics**: pool-2 leftover showers of another cluster attached by proximity are not vertex-attached tracks; the name is a misnomer (not energy accounting); not derived from the signal purity | confirmation by Haiwang / Hanyu that pool-2 rows are not intended to be protons; if they are, P1 / P3 |
+| **E2 proton threshold (35 vs 50 MeV)** | **NO RECOMMENDATION** | - | 35 MeV is the MicroBooNE reference / inherited planning value, 50 MeV the SPINE technote value; neither is SBND-authoritative; the reco effect is small (20 events), the truth-topology effect large (1,072 truth events); required: the analysis group (and the SPINE comparison plan) |
+| **F candidate policy** | **`any`, each selected event counted once** | **source semantics** (candidate index = activity length, not neutrino identity) and **event-counting logic** (no event has two passing candidates; `first` is a strict subset that loses 52 real signal events for a reason unrelated to the photon selection) | collaboration decision on event-level `any` |
+
+## Policy envelope
+`ANALYSIS_DEFINITION_DECISION_SUPPORT.md` section 10 and `tables/analysis_definition_decisions/policy_envelope.csv`: each package differs from the reference `av200_P1_any` in one respect (FV, proton policy or candidate policy); the differences are listed separately and are **not combined in quadrature** and are not a systematic uncertainty.

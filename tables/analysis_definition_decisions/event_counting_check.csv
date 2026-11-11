@@ -1,0 +1,3 @@
+sample,events_with_candidate,events_with_2plus_candidates,selected_events,events_with_2plus_passing_candidates,max_passing_per_event
+official_signal_filter_box,11938,471,1172,0,1
+bnb_cv,237460,4371,649,0,1
