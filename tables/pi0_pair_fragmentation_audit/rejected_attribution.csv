@@ -1,0 +1,10 @@
+measure,n
+rejected events (all),1468
+"rejected, any pair flag (kine or tagger)",1383
+"rejected, a pair contains the signal photon (dominant or fragment), either pair",1292
+"rejected, Phase-9 photon state = fragmented (event-level fragmentation)",126
+"rejected, a pair contains a same-photon fragment (kine or tagger)",482
+"rejected, both fragmented (Phase 9) AND a pair contains a same-photon fragment",76
+"rejected, clean photon (Phase 9) and a pair flag",1199
+"rejected, clean photon (Phase 9) and no pair flag",77
+"rejected, clean photon (Phase 9) and a pair containing the signal photon and a non-photon second member",766

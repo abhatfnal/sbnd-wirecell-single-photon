@@ -1,0 +1,62 @@
+pair,photon_state,ncpi0,second_member,n,n_group
+kine,clean,fail,other EM from signal interaction,349,1083
+kine,clean,fail,same signal photon fragment,325,1083
+kine,clean,fail,signal proton / hadronic object,214,1083
+kine,clean,fail,cosmic,81,1083
+kine,clean,fail,ambiguous / mixed,57,1083
+kine,clean,fail,unmatched,31,1083
+kine,clean,fail,indeterminate,17,1083
+kine,clean,fail,other-neutrino EM object,6,1083
+kine,clean,fail,dirt / outside-AV neutrino,3,1083
+kine,clean,pass,same signal photon fragment,223,553
+kine,clean,pass,signal proton / hadronic object,132,553
+kine,clean,pass,other EM from signal interaction,101,553
+kine,clean,pass,cosmic,40,553
+kine,clean,pass,indeterminate,21,553
+kine,clean,pass,ambiguous / mixed,17,553
+kine,clean,pass,unmatched,16,553
+kine,clean,pass,other-neutrino EM object,3,553
+kine,fragmented,fail,same signal photon fragment,58,109
+kine,fragmented,fail,signal proton / hadronic object,23,109
+kine,fragmented,fail,ambiguous / mixed,13,109
+kine,fragmented,fail,other EM from signal interaction,8,109
+kine,fragmented,fail,indeterminate,2,109
+kine,fragmented,fail,cosmic,2,109
+kine,fragmented,fail,unmatched,2,109
+kine,fragmented,fail,dirt / outside-AV neutrino,1,109
+kine,fragmented,pass,same signal photon fragment,12,20
+kine,fragmented,pass,indeterminate,3,20
+kine,fragmented,pass,signal proton / hadronic object,2,20
+kine,fragmented,pass,unmatched,1,20
+kine,fragmented,pass,other EM from signal interaction,1,20
+kine,fragmented,pass,ambiguous / mixed,1,20
+kine,other non-clean,fail,same signal photon fragment,16,30
+kine,other non-clean,fail,other EM from signal interaction,7,30
+kine,other non-clean,fail,signal proton / hadronic object,3,30
+kine,other non-clean,fail,unmatched,2,30
+kine,other non-clean,fail,cosmic,1,30
+kine,other non-clean,fail,ambiguous / mixed,1,30
+kine,other non-clean,pass,ambiguous / mixed,2,4
+kine,other non-clean,pass,same signal photon fragment,1,4
+kine,other non-clean,pass,signal proton / hadronic object,1,4
+tagger,clean,fail,same signal photon fragment,84,197
+tagger,clean,fail,signal proton / hadronic object,70,197
+tagger,clean,fail,cosmic,18,197
+tagger,clean,fail,ambiguous / mixed,12,197
+tagger,clean,fail,other EM from signal interaction,11,197
+tagger,clean,fail,unmatched,1,197
+tagger,clean,fail,other-neutrino EM object,1,197
+tagger,clean,pass,cosmic,8,23
+tagger,clean,pass,same signal photon fragment,6,23
+tagger,clean,pass,signal proton / hadronic object,4,23
+tagger,clean,pass,other EM from signal interaction,3,23
+tagger,clean,pass,ambiguous / mixed,1,23
+tagger,clean,pass,other-neutrino EM object,1,23
+tagger,fragmented,fail,same signal photon fragment,15,26
+tagger,fragmented,fail,signal proton / hadronic object,7,26
+tagger,fragmented,fail,ambiguous / mixed,3,26
+tagger,fragmented,fail,other EM from signal interaction,1,26
+tagger,other non-clean,fail,same signal photon fragment,2,5
+tagger,other non-clean,fail,signal proton / hadronic object,1,5
+tagger,other non-clean,fail,cosmic,1,5
+tagger,other non-clean,fail,ambiguous / mixed,1,5

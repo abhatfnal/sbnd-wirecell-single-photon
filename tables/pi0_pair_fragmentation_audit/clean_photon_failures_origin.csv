@@ -1,0 +1,15 @@
+pair,origin,n,fraction
+kine,same-photon pieces,325,0.2547021943573668
+kine,signal photon + signal proton/hadron,214,0.1677115987460815
+kine,signal photon + other signal EM,349,0.27351097178683387
+kine,signal photon + non-signal object,178,0.13949843260188088
+kine,pair without the signal photon,11,0.008620689655172414
+kine,indeterminate,64,0.050156739811912224
+kine,no pair,135,0.10579937304075235
+tagger,same-photon pieces,84,0.06583072100313479
+tagger,signal photon + signal proton/hadron,70,0.054858934169279
+tagger,signal photon + other signal EM,11,0.008620689655172414
+tagger,signal photon + non-signal object,32,0.025078369905956112
+tagger,pair without the signal photon,8,0.006269592476489028
+tagger,indeterminate,0,0.0
+tagger,no pair,1071,0.8393416927899686

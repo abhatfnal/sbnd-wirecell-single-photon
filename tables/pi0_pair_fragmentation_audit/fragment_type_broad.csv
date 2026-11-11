@@ -1,0 +1,10 @@
+category,n,fraction
+e + e only (2 pieces),53,0.032675709001233046
+e + muon-like,455,0.280517879161529
+e + pion-like,263,0.1621454993834772
+e + proton-like,233,0.1436498150431566
+any track-typed piece (muon/pion/proton/e-track),1354,0.8347718865598027
+track + shower (>= 1 each),1130,0.6966707768187423
+>= 3 significant pieces,1366,0.842170160295931
+has a piece without a particle row,260,0.16029593094944514
+>= 2 electron-typed showers,938,0.5782983970406905

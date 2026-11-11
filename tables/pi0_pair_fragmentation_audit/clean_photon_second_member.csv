@@ -1,0 +1,17 @@
+pair,second_member,n,fraction,n_group
+kine,other EM from signal interaction,349,0.322253000923361,1083
+kine,same signal photon fragment,325,0.30009233610341646,1083
+kine,signal proton / hadronic object,214,0.19759926131117267,1083
+kine,cosmic,81,0.07479224376731301,1083
+kine,ambiguous / mixed,57,0.05263157894736842,1083
+kine,unmatched,31,0.028624192059095107,1083
+kine,indeterminate,17,0.01569713758079409,1083
+kine,other-neutrino EM object,6,0.00554016620498615,1083
+kine,dirt / outside-AV neutrino,3,0.002770083102493075,1083
+tagger,same signal photon fragment,84,0.4263959390862944,197
+tagger,signal proton / hadronic object,70,0.3553299492385787,197
+tagger,cosmic,18,0.09137055837563451,197
+tagger,ambiguous / mixed,12,0.06091370558375635,197
+tagger,other EM from signal interaction,11,0.05583756345177665,197
+tagger,unmatched,1,0.005076142131979695,197
+tagger,other-neutrino EM object,1,0.005076142131979695,197

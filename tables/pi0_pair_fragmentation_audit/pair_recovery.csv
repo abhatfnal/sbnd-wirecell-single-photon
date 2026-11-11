@@ -1,0 +1,17 @@
+pair,level,recovery_class,n,fraction,n_present
+kine,energy signature + elimination,unique_exact,1318,0.6752049180327869,1952
+kine,energy signature + elimination,unique_by_elimination,308,0.15778688524590165,1952
+kine,energy signature + elimination,ambiguous,294,0.15061475409836064,1952
+kine,energy signature + elimination,unresolved,32,0.01639344262295082,1952
+kine,+ stored-distance geometry,unique_exact,1318,0.6752049180327869,1952
+kine,+ stored-distance geometry,unique_by_elimination,312,0.1598360655737705,1952
+kine,+ stored-distance geometry,ambiguous,191,0.09784836065573771,1952
+kine,+ stored-distance geometry,unique_by_geometry,99,0.0507172131147541,1952
+kine,+ stored-distance geometry,unresolved,32,0.01639344262295082,1952
+tagger,energy signature + elimination,unique_exact,262,0.966789667896679,271
+tagger,energy signature + elimination,ambiguous,7,0.025830258302583026,271
+tagger,energy signature + elimination,unique_by_elimination,2,0.007380073800738007,271
+tagger,+ stored-distance geometry,unique_exact,262,0.966789667896679,271
+tagger,+ stored-distance geometry,ambiguous,6,0.02214022140221402,271
+tagger,+ stored-distance geometry,unique_by_elimination,2,0.007380073800738007,271
+tagger,+ stored-distance geometry,unique_by_geometry,1,0.0036900369003690036,271

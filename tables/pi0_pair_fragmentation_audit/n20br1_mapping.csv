@@ -1,0 +1,5 @@
+mapping,n,fraction
+"clean at Phase 9, second significant piece (>= 10 % charge) below the 50 % dominance threshold",77,0.6111111111111112
+"clean at Phase 9, second piece 5-10 % of the photon charge",22,0.1746031746031746
+"clean at Phase 9, extra row carries < 5 % of the photon charge or is not a charge piece",17,0.1349206349206349
+already fragmented at the shower stage (Phase 9),10,0.07936507936507936

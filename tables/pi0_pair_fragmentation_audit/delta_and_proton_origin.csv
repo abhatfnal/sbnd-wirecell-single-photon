@@ -1,0 +1,13 @@
+group,pair,n,survival,pair_present,pair_present_fraction,second_signal_proton,pair_contains_signal_photon
+delta Delta+,kine,1400,0.49642857142857144,970,0.6928571428571428,183,898
+delta Delta+,tagger,1400,0.49642857142857144,114,0.08142857142857143,38,105
+delta Delta0,kine,1381,0.44750181028240404,982,0.7110789283128168,175,901
+delta Delta0,tagger,1381,0.44750181028240404,157,0.11368573497465605,41,146
+"truth 1p, proton origin ambiguous",kine,18,0.6111111111111112,8,0.4444444444444444,1,7
+"truth 1p, proton origin ambiguous",tagger,18,0.6111111111111112,0,0.0,0,0
+"truth 1p, proton origin decay_proton",kine,917,0.5267175572519084,593,0.6466739367502726,99,543
+"truth 1p, proton origin decay_proton",tagger,917,0.5267175572519084,71,0.07742639040348964,25,65
+"truth 1p, proton origin fsi_created",kine,433,0.3533487297921478,334,0.7713625866050808,67,314
+"truth 1p, proton origin fsi_created",tagger,433,0.3533487297921478,54,0.12471131639722864,16,50
+"truth 1p, proton origin not_from_decay",kine,5,0.0,4,0.8,1,4
+"truth 1p, proton origin not_from_decay",tagger,5,0.0,3,0.6,0,2

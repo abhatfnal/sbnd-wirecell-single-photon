@@ -1,0 +1,127 @@
+types,n,fraction
+electron shower+electron shower+muon-like,183,0.11282367447595561
+electron shower+muon-like+pion-like,151,0.09309494451294698
+electron shower+electron shower+muon-like+pion-like,101,0.06226880394574599
+electron shower+electron shower+pion-like,94,0.05795314426633785
+electron shower+electron shower+electron shower,93,0.05733662145499383
+electron shower+muon-like,85,0.05240443896424168
+electron shower+electron shower+electron shower+muon-like,68,0.04192355117139334
+electron shower+electron shower+no particle row,54,0.03329223181257707
+electron shower+electron shower,53,0.032675709001233046
+electron shower+pion-like,39,0.02404438964241677
+electron shower+muon-like+pion-like+pion-like,39,0.02404438964241677
+electron shower+electron shower+proton-like,35,0.02157829839704069
+electron shower+muon-like+proton-like,31,0.01911220715166461
+electron shower+pion-like+pion-like,30,0.018495684340320593
+electron shower+no particle row,28,0.01726263871763255
+electron shower+muon-like+no particle row,26,0.016029593094944512
+electron shower+electron shower+muon-like+no particle row,25,0.015413070283600493
+electron shower+no particle row+pion-like,23,0.014180024660912454
+electron shower+electron shower+electron shower+electron shower,23,0.014180024660912454
+electron shower+electron shower+electron shower+pion-like,22,0.013563501849568433
+electron shower+muon-like+pion-like+proton-like,19,0.011713933415536375
+electron shower+pion-like+proton-like,17,0.010480887792848335
+electron shower+electron shower+no particle row+pion-like,17,0.010480887792848335
+electron shower+muon-like+muon-like,17,0.010480887792848335
+electron shower+electron shower+muon-like+proton-like,16,0.009864364981504316
+electron shower+electron shower+electron shower+no particle row,15,0.009247842170160296
+electron shower+electron shower+electron shower+electron shower+muon-like,14,0.008631319358816275
+muon-like+pion-like+pion-like,14,0.008631319358816275
+electron shower+electron shower+pion-like+proton-like,14,0.008631319358816275
+electron shower+muon-like+muon-like+pion-like,13,0.008014796547472256
+muon-like+pion-like,12,0.007398273736128237
+electron shower+electron shower+pion-like+pion-like,12,0.007398273736128237
+electron shower+proton-like,11,0.006781750924784217
+electron shower+electron shower+electron shower+proton-like,11,0.006781750924784217
+electron shower+muon-like+no particle row+pion-like,10,0.006165228113440197
+electron shower+electron shower+muon-like+muon-like,9,0.005548705302096177
+electron shower+electron shower+electron shower+muon-like+pion-like,8,0.004932182490752158
+electron shower+electron shower+muon-like+pion-like+pion-like,8,0.004932182490752158
+electron shower+electron shower+muon-like+pion-like+proton-like,8,0.004932182490752158
+electron shower+electron track+electron track+electron track,6,0.0036991368680641184
+electron shower+electron shower+electron shower+electron shower+pion-like,6,0.0036991368680641184
+pion-like+proton-like,5,0.0030826140567200987
+electron shower+no particle row+proton-like,5,0.0030826140567200987
+pion-like+pion-like,5,0.0030826140567200987
+electron shower+no particle row+pion-like+proton-like,4,0.002466091245376079
+electron shower+electron shower+muon-like+no particle row+pion-like,4,0.002466091245376079
+electron shower+electron shower+electron shower+muon-like+proton-like,4,0.002466091245376079
+muon-like+pion-like+proton-like,4,0.002466091245376079
+electron shower+electron shower+electron shower+muon-like+no particle row,4,0.002466091245376079
+electron shower+muon-like+no particle row+proton-like,4,0.002466091245376079
+electron shower+muon-like+muon-like+proton-like,4,0.002466091245376079
+electron shower+no particle row+pion-like+pion-like,3,0.0018495684340320592
+muon-like+pion-like+pion-like+pion-like,3,0.0018495684340320592
+electron shower+muon-like+pion-like+pion-like+pion-like,3,0.0018495684340320592
+electron shower+electron track+muon-like,3,0.0018495684340320592
+muon-like+no particle row+proton-like,3,0.0018495684340320592
+pion-like+pion-like+proton-like,3,0.0018495684340320592
+electron shower+electron shower+muon-like+muon-like+pion-like,3,0.0018495684340320592
+electron shower+electron track+electron track,3,0.0018495684340320592
+no particle row+pion-like,3,0.0018495684340320592
+electron shower+electron shower+electron shower+muon-like+muon-like,3,0.0018495684340320592
+electron track+electron track+electron track,3,0.0018495684340320592
+muon-like+muon-like,3,0.0018495684340320592
+electron shower+electron track+electron track+muon-like,3,0.0018495684340320592
+muon-like+no particle row,3,0.0018495684340320592
+muon-like+proton-like,2,0.0012330456226880395
+muon-like+no particle row+pion-like,2,0.0012330456226880395
+electron shower+muon-like+no particle row+pion-like+pion-like,2,0.0012330456226880395
+no particle row+pion-like+proton-like,2,0.0012330456226880395
+electron shower+electron shower+electron shower+electron shower+proton-like,2,0.0012330456226880395
+electron shower+proton-like+proton-like,2,0.0012330456226880395
+electron track+muon-like,2,0.0012330456226880395
+muon-like+muon-like+proton-like,2,0.0012330456226880395
+no particle row+proton-like,2,0.0012330456226880395
+electron shower+electron shower+pion-like+pion-like+proton-like,2,0.0012330456226880395
+electron shower+electron shower+electron shower+electron shower+no particle row,2,0.0012330456226880395
+electron shower+muon-like+muon-like+no particle row,2,0.0012330456226880395
+electron shower+electron shower+no particle row+proton-like,2,0.0012330456226880395
+electron shower+electron track,2,0.0012330456226880395
+electron shower+electron shower+pion-like+pion-like+pion-like,2,0.0012330456226880395
+electron shower+electron shower+electron shower+pion-like+pion-like,2,0.0012330456226880395
+electron shower+electron track+muon-like+proton-like,1,0.0006165228113440197
+electron shower+electron shower+pion-like+pion-like+pion-like+proton-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+electron shower+proton-like+proton-like,1,0.0006165228113440197
+muon-like+pion-like+pion-like+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron track+no particle row,1,0.0006165228113440197
+electron shower+electron shower+electron shower+pion-like+proton-like,1,0.0006165228113440197
+electron shower+electron track+electron track+proton-like,1,0.0006165228113440197
+muon-like+pion-like+pion-like+proton-like,1,0.0006165228113440197
+muon-like+no particle row+pion-like+proton-like,1,0.0006165228113440197
+electron shower+electron shower+electron track+muon-like+proton-like,1,0.0006165228113440197
+electron shower+electron track+electron track+muon-like+pion-like,1,0.0006165228113440197
+electron shower+muon-like+pion-like+pion-like+proton-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+electron shower+muon-like+proton-like,1,0.0006165228113440197
+electron shower+muon-like+muon-like+pion-like+proton-like,1,0.0006165228113440197
+electron shower+no particle row+pion-like+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+electron track+electron track,1,0.0006165228113440197
+pion-like+pion-like+pion-like,1,0.0006165228113440197
+muon-like+no particle row+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+electron track+no particle row,1,0.0006165228113440197
+electron shower+electron shower+electron shower+no particle row+proton-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+electron track+electron track+muon-like,1,0.0006165228113440197
+electron shower+electron track+muon-like+pion-like,1,0.0006165228113440197
+electron track+muon-like+muon-like,1,0.0006165228113440197
+electron track+electron track+electron track+proton-like,1,0.0006165228113440197
+electron track+electron track+muon-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+muon-like+no particle row+proton-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+no particle row+pion-like,1,0.0006165228113440197
+electron shower+electron track+no particle row+proton-like,1,0.0006165228113440197
+electron shower+muon-like+proton-like+proton-like,1,0.0006165228113440197
+electron shower+pion-like+pion-like+proton-like,1,0.0006165228113440197
+electron shower+electron shower+muon-like+muon-like+proton-like,1,0.0006165228113440197
+muon-like+muon-like+no particle row+pion-like,1,0.0006165228113440197
+muon-like+muon-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+muon-like+no particle row+pion-like+pion-like+pion-like,1,0.0006165228113440197
+electron track+no particle row,1,0.0006165228113440197
+muon-like+muon-like+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+electron track+electron track+muon-like,1,0.0006165228113440197
+electron track+electron track+electron track+electron track,1,0.0006165228113440197
+electron shower+electron shower+no particle row+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+electron shower+muon-like+pion-like+pion-like,1,0.0006165228113440197
+electron shower+electron shower+proton-like+proton-like,1,0.0006165228113440197
+electron shower+electron track+electron track+electron track+electron track+electron track,1,0.0006165228113440197
+electron shower+electron shower+muon-like+muon-like+muon-like,1,0.0006165228113440197
+electron shower+electron shower+no particle row+pion-like+pion-like+pion-like,1,0.0006165228113440197
+electron shower+muon-like+muon-like+no particle row+pion-like,1,0.0006165228113440197

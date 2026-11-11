@@ -1,0 +1,4 @@
+item,value,n
+Phase-9 fragmented state,"dominant (candidate, T_kine row) holds < 0.5 of the photon's in-candidate charge (T_overlap, signal-photon trackid family)",1622
+"significant piece (Phase 14, descriptive)",">= 0.1 of the photon's in-candidate charge, per (candidate, T_kine row); 5 % and 20 % sensitivities in the multiplicity table",20087
+event population,official Gen2 NC-Delta TPC-box events with a > 20 MeV shower (A_n20mev),8080

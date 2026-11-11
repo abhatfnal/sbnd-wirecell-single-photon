@@ -1,0 +1,21 @@
+pair,metric,value
+kine,n pairs present,1952.0
+kine,"both stored energies equal a stored row energy (exact, rel. 1e-5)",1318.0
+kine,geometry testable (unique configuration with both PF start points),1220.0
+kine,|distance residual| < 1e-3 cm,1198.0
+kine,|distance residual| < 0.05 cm,1199.0
+kine,max |distance residual| cm,273.2015447583925
+kine,median |distance residual| cm,1.0371688961008374e-06
+tagger,n pairs present,271.0
+tagger,"both stored energies equal a stored row energy (exact, rel. 1e-5)",262.0
+tagger,geometry testable (unique configuration with both PF start points),264.0
+tagger,|distance residual| < 1e-3 cm,263.0
+tagger,|distance residual| < 0.05 cm,263.0
+tagger,max |distance residual| cm,29.104108982361176
+tagger,median |distance residual| cm,0.0
+kine,stored mass vs sqrt(4 E1 E2 sin^2(angle/2)) from the stored energies and angle: |diff| < 1 MeV,1293.0
+kine,same: events compared,1946.0
+kine,same: median |diff| MeV,0.004103338860090844
+kine,same: max |diff| MeV,548.6898335263987
+tagger,tagger-selected shower is a member of the recovered pair (events with a unique selected row and configuration),262.0
+tagger,same: events compared,262.0

@@ -1,0 +1,647 @@
+{
+ "population": {
+  "entering": 2781,
+  "passing": 1313,
+  "rejected": 1468,
+  "rejected_finite": 1465,
+  "rejected_nonfinite": 3,
+  "passing_nonfinite": 0,
+  "closure": true
+ },
+ "nonfinite": [
+  {
+   "file_index": 2443,
+   "ev": 1,
+   "c_nu_index": 0,
+   "in_kine_pio_flag": 1.0,
+   "in_kine_pio_mass": 94.79029846191406,
+   "in_kine_pio_dis_1": 17.523447036743164,
+   "in_kine_pio_dis_2": 1.8636051416397095,
+   "in_kine_pio_angle": NaN,
+   "in_shw_sp_pio_flag_pio": 0.0
+  },
+  {
+   "file_index": 4666,
+   "ev": 0,
+   "c_nu_index": 0,
+   "in_kine_pio_flag": 1.0,
+   "in_kine_pio_mass": 118.82333374023438,
+   "in_kine_pio_dis_1": 1.9919899702072144,
+   "in_kine_pio_dis_2": 23.553058624267578,
+   "in_kine_pio_angle": NaN,
+   "in_shw_sp_pio_flag_pio": 1.0
+  },
+  {
+   "file_index": 5633,
+   "ev": 0,
+   "c_nu_index": 0,
+   "in_kine_pio_flag": 1.0,
+   "in_kine_pio_mass": 45.25962829589844,
+   "in_kine_pio_dis_1": 2.073265552520752,
+   "in_kine_pio_dis_2": 10.19002628326416,
+   "in_kine_pio_angle": NaN,
+   "in_shw_sp_pio_flag_pio": 0.0
+  }
+ ],
+ "n_events": 2781,
+ "pair_recovery": [
+  {
+   "pair": "kine",
+   "level": "energy signature + elimination",
+   "recovery_class": "unique_exact",
+   "n": 1318,
+   "fraction": 0.6752049180327869,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "energy signature + elimination",
+   "recovery_class": "unique_by_elimination",
+   "n": 308,
+   "fraction": 0.15778688524590165,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "energy signature + elimination",
+   "recovery_class": "ambiguous",
+   "n": 294,
+   "fraction": 0.15061475409836064,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "energy signature + elimination",
+   "recovery_class": "unresolved",
+   "n": 32,
+   "fraction": 0.01639344262295082,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_exact",
+   "n": 1318,
+   "fraction": 0.6752049180327869,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_by_elimination",
+   "n": 312,
+   "fraction": 0.1598360655737705,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "ambiguous",
+   "n": 191,
+   "fraction": 0.09784836065573771,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_by_geometry",
+   "n": 99,
+   "fraction": 0.0507172131147541,
+   "n_present": 1952
+  },
+  {
+   "pair": "kine",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unresolved",
+   "n": 32,
+   "fraction": 0.01639344262295082,
+   "n_present": 1952
+  },
+  {
+   "pair": "tagger",
+   "level": "energy signature + elimination",
+   "recovery_class": "unique_exact",
+   "n": 262,
+   "fraction": 0.966789667896679,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "energy signature + elimination",
+   "recovery_class": "ambiguous",
+   "n": 7,
+   "fraction": 0.025830258302583026,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "energy signature + elimination",
+   "recovery_class": "unique_by_elimination",
+   "n": 2,
+   "fraction": 0.007380073800738007,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_exact",
+   "n": 262,
+   "fraction": 0.966789667896679,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "ambiguous",
+   "n": 6,
+   "fraction": 0.02214022140221402,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_by_elimination",
+   "n": 2,
+   "fraction": 0.007380073800738007,
+   "n_present": 271
+  },
+  {
+   "pair": "tagger",
+   "level": "+ stored-distance geometry",
+   "recovery_class": "unique_by_geometry",
+   "n": 1,
+   "fraction": 0.0036900369003690036,
+   "n_present": 271
+  }
+ ],
+ "membership": [
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "contains_dominant",
+   "n": 1121,
+   "fraction": 0.40309241280115066,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "contains_fragment_only",
+   "n": 43,
+   "fraction": 0.015462064005753326,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "contains_both_pieces",
+   "n": 635,
+   "fraction": 0.22833513124775262,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "contains_neither",
+   "n": 31,
+   "fraction": 0.011147069399496584,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "indeterminate",
+   "n": 90,
+   "fraction": 0.032362459546925564,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "unresolved",
+   "n": 32,
+   "fraction": 0.011506652283351312,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "all",
+   "membership": "absent",
+   "n": 829,
+   "fraction": 0.29809421071556996,
+   "n_population": 2781
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "contains_dominant",
+   "n": 337,
+   "fraction": 0.25666412795125665,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "contains_fragment_only",
+   "n": 4,
+   "fraction": 0.0030464584920030465,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "contains_both_pieces",
+   "n": 236,
+   "fraction": 0.17974105102817975,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "contains_neither",
+   "n": 4,
+   "fraction": 0.0030464584920030465,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "indeterminate",
+   "n": 34,
+   "fraction": 0.025894897182025894,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "unresolved",
+   "n": 13,
+   "fraction": 0.009900990099009901,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "accepted",
+   "membership": "absent",
+   "n": 685,
+   "fraction": 0.5217060167555218,
+   "n_population": 1313
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "contains_dominant",
+   "n": 784,
+   "fraction": 0.5340599455040872,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "contains_fragment_only",
+   "n": 39,
+   "fraction": 0.02656675749318801,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "contains_both_pieces",
+   "n": 399,
+   "fraction": 0.2717983651226158,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "contains_neither",
+   "n": 27,
+   "fraction": 0.018392370572207085,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "indeterminate",
+   "n": 56,
+   "fraction": 0.03814713896457766,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "unresolved",
+   "n": 19,
+   "fraction": 0.012942779291553134,
+   "n_population": 1468
+  },
+  {
+   "pair": "kine",
+   "population": "rejected",
+   "membership": "absent",
+   "n": 144,
+   "fraction": 0.09809264305177112,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "contains_dominant",
+   "n": 135,
+   "fraction": 0.04854368932038835,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "contains_fragment_only",
+   "n": 9,
+   "fraction": 0.003236245954692557,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "contains_both_pieces",
+   "n": 107,
+   "fraction": 0.038475368572455954,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "contains_neither",
+   "n": 19,
+   "fraction": 0.0068320747932398415,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "indeterminate",
+   "n": 1,
+   "fraction": 0.0003595828838547285,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "unresolved",
+   "n": 0,
+   "fraction": 0.0,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "all",
+   "membership": "absent",
+   "n": 2510,
+   "fraction": 0.9025530384753686,
+   "n_population": 2781
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "contains_dominant",
+   "n": 17,
+   "fraction": 0.012947448591012947,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "contains_fragment_only",
+   "n": 0,
+   "fraction": 0.0,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "contains_both_pieces",
+   "n": 6,
+   "fraction": 0.00456968773800457,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "contains_neither",
+   "n": 2,
+   "fraction": 0.0015232292460015233,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "indeterminate",
+   "n": 0,
+   "fraction": 0.0,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "unresolved",
+   "n": 0,
+   "fraction": 0.0,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "accepted",
+   "membership": "absent",
+   "n": 1288,
+   "fraction": 0.9809596344249809,
+   "n_population": 1313
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "contains_dominant",
+   "n": 118,
+   "fraction": 0.08038147138964577,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "contains_fragment_only",
+   "n": 9,
+   "fraction": 0.006130790190735695,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "contains_both_pieces",
+   "n": 101,
+   "fraction": 0.06880108991825613,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "contains_neither",
+   "n": 17,
+   "fraction": 0.011580381471389645,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "indeterminate",
+   "n": 1,
+   "fraction": 0.0006811989100817438,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "unresolved",
+   "n": 0,
+   "fraction": 0.0,
+   "n_population": 1468
+  },
+  {
+   "pair": "tagger",
+   "population": "rejected",
+   "membership": "absent",
+   "n": 1222,
+   "fraction": 0.832425068119891,
+   "n_population": 1468
+  }
+ ],
+ "stage_fate": [
+  {
+   "population": "fragmented",
+   "stage": "shower stage (> 20 MeV shower)",
+   "n_reaching_or_passing": 1622,
+   "step_survival": NaN,
+   "cumulative": 1.0
+  },
+  {
+   "population": "fragmented",
+   "stage": "BDT evaluable",
+   "n_reaching_or_passing": 1618,
+   "step_survival": 0.9975339087546239,
+   "cumulative": 0.9975339087546239
+  },
+  {
+   "population": "fragmented",
+   "stage": "numu",
+   "n_reaching_or_passing": 582,
+   "step_survival": 0.35970333745364647,
+   "cumulative": 0.3588162762022195
+  },
+  {
+   "population": "fragmented",
+   "stage": "other",
+   "n_reaching_or_passing": 150,
+   "step_survival": 0.25773195876288657,
+   "cumulative": 0.09247842170160296
+  },
+  {
+   "population": "fragmented",
+   "stage": "ncpi0",
+   "n_reaching_or_passing": 24,
+   "step_survival": 0.16,
+   "cumulative": 0.014796547472256474
+  },
+  {
+   "population": "fragmented",
+   "stage": "nue",
+   "n_reaching_or_passing": 24,
+   "step_survival": 1.0,
+   "cumulative": 0.014796547472256474
+  },
+  {
+   "population": "fragmented",
+   "stage": "n_20br1 == 1",
+   "n_reaching_or_passing": 14,
+   "step_survival": 0.5833333333333334,
+   "cumulative": 0.008631319358816275
+  },
+  {
+   "population": "fragmented",
+   "stage": "final",
+   "n_reaching_or_passing": 14,
+   "step_survival": 1.0,
+   "cumulative": 0.008631319358816275
+  }
+ ],
+ "first_loss": [
+  {
+   "population": "fragmented",
+   "first_loss": "numu",
+   "n": 1036,
+   "fraction": 0.6387176325524044
+  },
+  {
+   "population": "fragmented",
+   "first_loss": "other",
+   "n": 432,
+   "fraction": 0.26633785450061653
+  },
+  {
+   "population": "fragmented",
+   "first_loss": "ncpi0",
+   "n": 126,
+   "fraction": 0.07768187422934648
+  },
+  {
+   "population": "fragmented",
+   "first_loss": "final",
+   "n": 14,
+   "fraction": 0.008631319358816275
+  },
+  {
+   "population": "fragmented",
+   "first_loss": "n_20br1 == 1",
+   "n": 10,
+   "fraction": 0.006165228113440197
+  },
+  {
+   "population": "fragmented",
+   "first_loss": "BDT evaluable",
+   "n": 4,
+   "fraction": 0.002466091245376079
+  },
+  {
+   "population": "clean",
+   "first_loss": "other",
+   "n": 1561,
+   "fraction": 0.2878480545823345
+  },
+  {
+   "population": "clean",
+   "first_loss": "numu",
+   "n": 1275,
+   "fraction": 0.23510971786833856
+  },
+  {
+   "population": "clean",
+   "first_loss": "ncpi0",
+   "n": 1273,
+   "fraction": 0.23474091831089802
+  },
+  {
+   "population": "clean",
+   "first_loss": "final",
+   "n": 1131,
+   "fraction": 0.20855614973262032
+  },
+  {
+   "population": "clean",
+   "first_loss": "n_20br1 == 1",
+   "n": 149,
+   "fraction": 0.027475567029319563
+  },
+  {
+   "population": "clean",
+   "first_loss": "BDT evaluable",
+   "n": 34,
+   "fraction": 0.006269592476489028
+  }
+ ]
+}

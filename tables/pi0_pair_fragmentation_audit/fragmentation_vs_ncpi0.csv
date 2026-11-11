@@ -1,0 +1,4 @@
+photon_state,n,survive,rejected,survival,kine_pair,tagger_pair,kine_pair_contains_signal_photon,tagger_pair_contains_signal_photon,kine_pair_has_same_photon_fragment,tagger_pair_has_same_photon_fragment,rejected_with_kine_pair,rejected_with_tagger_pair,rejected_pair_has_same_photon_fragment_either
+clean,2556,1280,1276,0.5007824726134585,1742,230,1636,220,562,92,1141,205,379
+fragmented,150,24,126,0.16,140,27,129,26,87,19,119,27,76
+other non-clean,75,9,66,0.12,70,14,34,5,29,5,64,14,27

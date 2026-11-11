@@ -1,0 +1,16 @@
+dom_type,pf_state,n
+electron shower,root,472
+muon-like,root,295
+electron shower,deeper,278
+pion-like,root,230
+electron shower,photon_node_at_vertex,133
+no particle row,no_kine_row,80
+proton-like,root,58
+muon-like,deeper,29
+muon-like,photon_node_at_vertex,13
+electron track,deeper,13
+pion-like,deeper,12
+proton-like,deeper,4
+electron track,none,2
+proton-like,photon_node_at_vertex,2
+muon-like,none,1
