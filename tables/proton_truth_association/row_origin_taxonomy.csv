@@ -1,0 +1,9 @@
+origin,all_rows,proton_rows,proton_rows_ke35,frac_proton_rows_ke35
+true_primary_signal_proton,6537,4578,3825,0.5510733323728569
+other_neutrino_proton,876,632,567,0.08168851750468233
+geant4_secondary_proton,2817,1740,1250,0.18008932430485522
+signal_nonproton_misidentified,62075,6558,1025,0.14767324592998127
+other_neutrino_nonproton,4442,317,25,0.003601786486097104
+cosmic_or_non_neutrino,4016,557,75,0.010805359458291312
+ambiguous_multiple_truth,751,152,146,0.021034433078807088
+unmatched,1583,199,28,0.004034000864428756

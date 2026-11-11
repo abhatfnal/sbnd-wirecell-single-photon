@@ -1,0 +1,4 @@
+photon_truth_correct,proton_truth_correct,n
+False,True,2
+True,False,63
+True,True,491

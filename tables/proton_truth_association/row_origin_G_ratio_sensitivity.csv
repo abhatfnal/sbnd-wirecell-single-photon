@@ -1,0 +1,6 @@
+ratio,true_primary_signal_proton,other_neutrino_proton,geant4_secondary_proton,signal_nonproton_misidentified,other_neutrino_nonproton,cosmic_or_non_neutrino,ambiguous_multiple_truth,unmatched
+off,3891,570,1305,1042,30,75,0,28
+0.33,3790,565,1225,1015,25,75,218,28
+0.5,3825,567,1250,1025,25,75,146,28
+0.75,3860,568,1288,1035,28,75,59,28
+1.0,3890,570,1305,1042,30,75,1,28

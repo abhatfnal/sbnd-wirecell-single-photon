@@ -1,0 +1,9 @@
+origin,n_hc,n
+ambiguous_multiple_truth,30,146
+cosmic_or_non_neutrino,65,75
+geant4_secondary_proton,1173,1250
+other_neutrino_nonproton,15,25
+other_neutrino_proton,510,567
+signal_nonproton_misidentified,222,1025
+true_primary_signal_proton,3517,3825
+unmatched,0,28

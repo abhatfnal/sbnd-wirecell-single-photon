@@ -1,0 +1,9 @@
+state_ext,n_ke35,n_ke50
+candidate_not_signal_matched,244,193
+in_other_candidate_only,2,1
+matched_nonproton_row,1406,1217
+no_candidate_in_event,541,393
+no_reco_row,854,597
+proton_row_multiple,207,205
+proton_row_single,3558,3211
+subdominant_only,1320,813

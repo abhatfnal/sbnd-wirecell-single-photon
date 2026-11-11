@@ -1,0 +1,4 @@
+truth35,n,both_truth_correct,all_inputs,m2_defined
+truth 0p,50,11,50,50
+truth 1p,471,446,469,469
+truth >=2p,35,34,35,35

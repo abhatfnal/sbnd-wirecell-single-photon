@@ -1,0 +1,13 @@
+stage,thr_mev,top_type_label,n
+A_signal_matched_candidate,35,shower_typed_electron,536
+A_signal_matched_candidate,35,typed_muon,268
+A_signal_matched_candidate,35,typed_pion,79
+A_signal_matched_candidate,50,shower_typed_electron,494
+A_signal_matched_candidate,50,typed_muon,235
+A_signal_matched_candidate,50,typed_pion,73
+B_final_selected,35,shower_typed_electron,4
+B_final_selected,35,typed_muon,23
+B_final_selected,35,typed_pion,10
+B_final_selected,50,shower_typed_electron,4
+B_final_selected,50,typed_muon,22
+B_final_selected,50,typed_pion,7

@@ -1,0 +1,601 @@
+{
+ "baseline_reproduction": {
+  "match": {
+   "events": 10831,
+   "mismatches": 0
+  },
+  "final": {
+   "events": 1153,
+   "mismatches": 0
+  }
+ },
+ "events": {
+  "tpc_box": 12427,
+  "with_file": 12426,
+  "production_missing": 1,
+  "candidate": 11331,
+  "matched": 10831,
+  "final": 1153
+ },
+ "row_uniqueness": {
+  "rows": 83097,
+  "unique_keys": 83097,
+  "proton_typed_rows": 14733,
+  "proton_typed_unique": 14733,
+  "origin_assigned": 83097,
+  "origin_in_taxonomy": 83097,
+  "t_match_top_is_first_stored_partner": true
+ },
+ "config": {
+  "baseline_config_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b"
+ },
+ "semantics": {
+  "rows_total": 83097.0,
+  "rows_proton_typed": 14733.0,
+  "proton_typed_shower_rows": 8356.0,
+  "proton_typed_track_rows": 6377.0,
+  "proton_typed_pool_0": 5965.0,
+  "proton_typed_pool_1": 405.0,
+  "proton_typed_pool_2": 8348.0,
+  "proton_typed_pool_3": 13.0,
+  "proton_typed_pool_4": 2.0,
+  "included3_rows": 43168.0,
+  "included3_rows_in_pool2": 43168.0,
+  "included3_rows_shower": 43168.0,
+  "included3_rows_cluster_not_main": 0.9971738324684952,
+  "included_not_1_or_3_rows": 0.0,
+  "pool2_included1_cluster_not_main": 0.8779003961516695,
+  "pool0_1_cluster_not_main": 0.023131050033044356,
+  "proton_typed_included3_fraction": 0.5591529220118102,
+  "proton_typed_ke35_included3_fraction": 0.18729289727704942,
+  "proton_ke35_shower_fraction": 0.20285261489698891,
+  "rows_without_level1_match_object": 320.0,
+  "level1_key_duplicates": 0.0,
+  "rows_in_unreadable_partner_events": 92.0
+ },
+ "rows": {
+  "total": 83097,
+  "proton_typed": 14733,
+  "proton_typed_ke35": 6941,
+  "proton_typed_shower": 8356,
+  "proton_typed_inc3": 8238,
+  "proton_ke35_inc3": 1300,
+  "no_level1_object": 320,
+  "unreadable_partner_events": 16,
+  "class_counts_all": {
+   "true_primary_signal_proton": 6537,
+   "other_neutrino_proton": 876,
+   "geant4_secondary_proton": 2817,
+   "signal_nonproton_misidentified": 62075,
+   "other_neutrino_nonproton": 4442,
+   "cosmic_or_non_neutrino": 4016,
+   "ambiguous_multiple_truth": 751,
+   "unmatched": 1583
+  },
+  "class_counts_proton_ke35": {
+   "true_primary_signal_proton": 3825,
+   "other_neutrino_proton": 567,
+   "geant4_secondary_proton": 1250,
+   "signal_nonproton_misidentified": 1025,
+   "other_neutrino_nonproton": 25,
+   "cosmic_or_non_neutrino": 75,
+   "ambiguous_multiple_truth": 146,
+   "unmatched": 28
+  }
+ },
+ "quality": {
+  "hc_rows": 5532,
+  "rows": 6941,
+  "composition_hc": {
+   "true_primary_signal_proton": 3517,
+   "other_neutrino_proton": 510,
+   "geant4_secondary_proton": 1173,
+   "signal_nonproton_misidentified": 222,
+   "other_neutrino_nonproton": 15,
+   "cosmic_or_non_neutrino": 65,
+   "ambiguous_multiple_truth": 30,
+   "unmatched": 0
+  },
+  "ov_agree": 0.9757085020242915,
+  "n_ov": 6916
+ },
+ "purity": {
+  "all_candidates": {
+   "10": {
+    "thr_mev": 10,
+    "n_rows": 7719,
+    "true_primary_signal_proton": 4157,
+    "other_neutrino_proton": 593,
+    "geant4_secondary_proton": 1359,
+    "signal_nonproton_misidentified": 1265,
+    "other_neutrino_nonproton": 31,
+    "cosmic_or_non_neutrino": 94,
+    "ambiguous_multiple_truth": 148,
+    "unmatched": 72,
+    "frac_signal_primary": 0.5385412618214794,
+    "lo68": 0.5327940864249137,
+    "hi68": 0.5442783293134589,
+    "frac_any_proton_truth": 0.7914237595543464
+   },
+   "20": {
+    "thr_mev": 20,
+    "n_rows": 7232,
+    "true_primary_signal_proton": 3980,
+    "other_neutrino_proton": 581,
+    "geant4_secondary_proton": 1317,
+    "signal_nonproton_misidentified": 1059,
+    "other_neutrino_nonproton": 27,
+    "cosmic_or_non_neutrino": 83,
+    "ambiguous_multiple_truth": 147,
+    "unmatched": 38,
+    "frac_signal_primary": 0.5503318584070797,
+    "lo68": 0.5444026907490437,
+    "hi68": 0.5562469315060334,
+    "frac_any_proton_truth": 0.8127765486725663
+   },
+   "35": {
+    "thr_mev": 35,
+    "n_rows": 6941,
+    "true_primary_signal_proton": 3825,
+    "other_neutrino_proton": 567,
+    "geant4_secondary_proton": 1250,
+    "signal_nonproton_misidentified": 1025,
+    "other_neutrino_nonproton": 25,
+    "cosmic_or_non_neutrino": 75,
+    "ambiguous_multiple_truth": 146,
+    "unmatched": 28,
+    "frac_signal_primary": 0.5510733323728569,
+    "lo68": 0.5450203533043514,
+    "hi68": 0.5571114060438386,
+    "frac_any_proton_truth": 0.8128511741823945
+   },
+   "50": {
+    "thr_mev": 50,
+    "n_rows": 6605,
+    "true_primary_signal_proton": 3622,
+    "other_neutrino_proton": 557,
+    "geant4_secondary_proton": 1157,
+    "signal_nonproton_misidentified": 1012,
+    "other_neutrino_nonproton": 23,
+    "cosmic_or_non_neutrino": 68,
+    "ambiguous_multiple_truth": 141,
+    "unmatched": 25,
+    "frac_signal_primary": 0.5483724451173354,
+    "lo68": 0.5421624819366324,
+    "hi68": 0.5545675687108751,
+    "frac_any_proton_truth": 0.8078728236184709
+   },
+   "75": {
+    "thr_mev": 75,
+    "n_rows": 5719,
+    "true_primary_signal_proton": 3124,
+    "other_neutrino_proton": 496,
+    "geant4_secondary_proton": 968,
+    "signal_nonproton_misidentified": 906,
+    "other_neutrino_nonproton": 20,
+    "cosmic_or_non_neutrino": 53,
+    "ambiguous_multiple_truth": 136,
+    "unmatched": 16,
+    "frac_signal_primary": 0.54624934429096,
+    "lo68": 0.5395667728198317,
+    "hi68": 0.5529155148004541,
+    "frac_any_proton_truth": 0.8022381535233433
+   },
+   "100": {
+    "thr_mev": 100,
+    "n_rows": 4276,
+    "true_primary_signal_proton": 2349,
+    "other_neutrino_proton": 389,
+    "geant4_secondary_proton": 704,
+    "signal_nonproton_misidentified": 658,
+    "other_neutrino_nonproton": 15,
+    "cosmic_or_non_neutrino": 38,
+    "ambiguous_multiple_truth": 115,
+    "unmatched": 8,
+    "frac_signal_primary": 0.5493451824134705,
+    "lo68": 0.5416035847448368,
+    "hi68": 0.5570633286828852,
+    "frac_any_proton_truth": 0.8049579045837231
+   }
+  },
+  "signal_matched_candidate": {
+   "10": {
+    "thr_mev": 10,
+    "n_rows": 6997,
+    "true_primary_signal_proton": 4129,
+    "other_neutrino_proton": 22,
+    "geant4_secondary_proton": 1347,
+    "signal_nonproton_misidentified": 1258,
+    "other_neutrino_nonproton": 2,
+    "cosmic_or_non_neutrino": 38,
+    "ambiguous_multiple_truth": 140,
+    "unmatched": 61,
+    "frac_signal_primary": 0.5901100471630699,
+    "lo68": 0.5841426393584352,
+    "hi68": 0.5960513651656449,
+    "frac_any_proton_truth": 0.7857653279977133
+   },
+   "20": {
+    "thr_mev": 20,
+    "n_rows": 6545,
+    "true_primary_signal_proton": 3956,
+    "other_neutrino_proton": 20,
+    "geant4_secondary_proton": 1307,
+    "signal_nonproton_misidentified": 1054,
+    "other_neutrino_nonproton": 1,
+    "cosmic_or_non_neutrino": 33,
+    "ambiguous_multiple_truth": 139,
+    "unmatched": 35,
+    "frac_signal_primary": 0.6044308632543927,
+    "lo68": 0.5982908071525889,
+    "hi68": 0.6105385797753722,
+    "frac_any_proton_truth": 0.8071810542398777
+   },
+   "35": {
+    "thr_mev": 35,
+    "n_rows": 6280,
+    "true_primary_signal_proton": 3806,
+    "other_neutrino_proton": 19,
+    "geant4_secondary_proton": 1242,
+    "signal_nonproton_misidentified": 1020,
+    "other_neutrino_nonproton": 1,
+    "cosmic_or_non_neutrino": 29,
+    "ambiguous_multiple_truth": 138,
+    "unmatched": 25,
+    "frac_signal_primary": 0.6060509554140128,
+    "lo68": 0.5997848750685298,
+    "hi68": 0.6122827995631394,
+    "frac_any_proton_truth": 0.8068471337579618
+   },
+   "50": {
+    "thr_mev": 50,
+    "n_rows": 5963,
+    "true_primary_signal_proton": 3606,
+    "other_neutrino_proton": 19,
+    "geant4_secondary_proton": 1151,
+    "signal_nonproton_misidentified": 1007,
+    "other_neutrino_nonproton": 1,
+    "cosmic_or_non_neutrino": 23,
+    "ambiguous_multiple_truth": 133,
+    "unmatched": 23,
+    "frac_signal_primary": 0.6047291631728996,
+    "lo68": 0.5982926323033143,
+    "hi68": 0.6111300757547466,
+    "frac_any_proton_truth": 0.8009391246017106
+   },
+   "75": {
+    "thr_mev": 75,
+    "n_rows": 5151,
+    "true_primary_signal_proton": 3111,
+    "other_neutrino_proton": 17,
+    "geant4_secondary_proton": 964,
+    "signal_nonproton_misidentified": 901,
+    "other_neutrino_nonproton": 1,
+    "cosmic_or_non_neutrino": 14,
+    "ambiguous_multiple_truth": 128,
+    "unmatched": 15,
+    "frac_signal_primary": 0.6039603960396039,
+    "lo68": 0.5970247277996359,
+    "hi68": 0.6108550940603894,
+    "frac_any_proton_truth": 0.7944088526499709
+   },
+   "100": {
+    "thr_mev": 100,
+    "n_rows": 3838,
+    "true_primary_signal_proton": 2342,
+    "other_neutrino_proton": 12,
+    "geant4_secondary_proton": 703,
+    "signal_nonproton_misidentified": 655,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 10,
+    "ambiguous_multiple_truth": 109,
+    "unmatched": 7,
+    "frac_signal_primary": 0.6102136529442418,
+    "lo68": 0.6021778355142965,
+    "hi68": 0.618191046547032,
+    "frac_any_proton_truth": 0.7965085982282438
+   }
+  },
+  "final_selected_candidate": {
+   "10": {
+    "thr_mev": 10,
+    "n_rows": 779,
+    "true_primary_signal_proton": 638,
+    "other_neutrino_proton": 2,
+    "geant4_secondary_proton": 79,
+    "signal_nonproton_misidentified": 40,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 3,
+    "ambiguous_multiple_truth": 14,
+    "unmatched": 3,
+    "frac_signal_primary": 0.8189987163029525,
+    "lo68": 0.8041303439132508,
+    "hi68": 0.8330099187472564,
+    "frac_any_proton_truth": 0.9229781771501926
+   },
+   "20": {
+    "thr_mev": 20,
+    "n_rows": 745,
+    "true_primary_signal_proton": 623,
+    "other_neutrino_proton": 2,
+    "geant4_secondary_proton": 75,
+    "signal_nonproton_misidentified": 28,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 2,
+    "ambiguous_multiple_truth": 14,
+    "unmatched": 1,
+    "frac_signal_primary": 0.836241610738255,
+    "lo68": 0.8215352968695829,
+    "hi68": 0.8500005332565209,
+    "frac_any_proton_truth": 0.9395973154362416
+   },
+   "35": {
+    "thr_mev": 35,
+    "n_rows": 719,
+    "true_primary_signal_proton": 605,
+    "other_neutrino_proton": 1,
+    "geant4_secondary_proton": 69,
+    "signal_nonproton_misidentified": 27,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 2,
+    "ambiguous_multiple_truth": 14,
+    "unmatched": 1,
+    "frac_signal_primary": 0.8414464534075105,
+    "lo68": 0.8266262530836069,
+    "hi68": 0.8552683650618381,
+    "frac_any_proton_truth": 0.9388038942976356
+   },
+   "50": {
+    "thr_mev": 50,
+    "n_rows": 697,
+    "true_primary_signal_proton": 586,
+    "other_neutrino_proton": 1,
+    "geant4_secondary_proton": 66,
+    "signal_nonproton_misidentified": 27,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 2,
+    "ambiguous_multiple_truth": 14,
+    "unmatched": 1,
+    "frac_signal_primary": 0.8407460545193687,
+    "lo68": 0.8256509656783604,
+    "hi68": 0.8548127943346706,
+    "frac_any_proton_truth": 0.9368723098995696
+   },
+   "75": {
+    "thr_mev": 75,
+    "n_rows": 622,
+    "true_primary_signal_proton": 533,
+    "other_neutrino_proton": 1,
+    "geant4_secondary_proton": 51,
+    "signal_nonproton_misidentified": 21,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 1,
+    "ambiguous_multiple_truth": 14,
+    "unmatched": 1,
+    "frac_signal_primary": 0.8569131832797428,
+    "lo68": 0.8414583544055747,
+    "hi68": 0.8711548062012473,
+    "frac_any_proton_truth": 0.9405144694533762
+   },
+   "100": {
+    "thr_mev": 100,
+    "n_rows": 493,
+    "true_primary_signal_proton": 427,
+    "other_neutrino_proton": 1,
+    "geant4_secondary_proton": 36,
+    "signal_nonproton_misidentified": 15,
+    "other_neutrino_nonproton": 0,
+    "cosmic_or_non_neutrino": 0,
+    "ambiguous_multiple_truth": 13,
+    "unmatched": 1,
+    "frac_signal_primary": 0.8661257606490872,
+    "lo68": 0.8489798903578546,
+    "hi68": 0.881688689768564,
+    "frac_any_proton_truth": 0.9411764705882353
+   }
+  }
+ },
+ "truth_proton_dedup_removed": 7,
+ "truth_proton_accounting": {
+  "35": {
+   "events": 12426,
+   "mismatches": 1,
+   "protons": 8132,
+   "baseline_protons": 8131
+  },
+  "50": {
+   "events": 12426,
+   "mismatches": 0,
+   "protons": 6630,
+   "baseline_protons": 6630
+  }
+ },
+ "true_proton_states": {
+  "n_ke35": {
+   "candidate_not_signal_matched": 244,
+   "in_other_candidate_only": 2,
+   "matched_nonproton_row": 1406,
+   "no_candidate_in_event": 541,
+   "no_reco_row": 854,
+   "proton_row_multiple": 207,
+   "proton_row_single": 3558,
+   "subdominant_only": 1320
+  },
+  "n_ke50": {
+   "candidate_not_signal_matched": 193,
+   "in_other_candidate_only": 1,
+   "matched_nonproton_row": 1217,
+   "no_candidate_in_event": 393,
+   "no_reco_row": 597,
+   "proton_row_multiple": 205,
+   "proton_row_single": 3211,
+   "subdominant_only": 813
+  }
+ },
+ "true_proton_efficiency_all": {
+  "35": {
+   "variable": "all",
+   "bin": "all",
+   "thr_mev": 35,
+   "n_true": 8132,
+   "row_found": 5171,
+   "row_found_eff": 0.6358829316281358,
+   "row_found_lo68": 0.6304654910327849,
+   "row_found_hi68": 0.6412665414732839,
+   "proton_id": 3765,
+   "proton_id_eff": 0.46298573536645354,
+   "proton_id_lo68": 0.45739625328661265,
+   "proton_id_hi68": 0.46858442920477533,
+   "threshold_passing": 3611,
+   "threshold_passing_eff": 0.4440482046237088,
+   "threshold_passing_lo68": 0.43848070068581396,
+   "threshold_passing_hi68": 0.4496296338579099
+  },
+  "50": {
+   "variable": "all",
+   "bin": "all",
+   "thr_mev": 50,
+   "n_true": 6630,
+   "row_found": 4633,
+   "row_found_eff": 0.6987933634992458,
+   "row_found_lo68": 0.6930498788919697,
+   "row_found_hi68": 0.7044760312618948,
+   "proton_id": 3416,
+   "proton_id_eff": 0.5152337858220211,
+   "proton_id_lo68": 0.509014794900489,
+   "proton_id_hi68": 0.52144812132577,
+   "threshold_passing": 3262,
+   "threshold_passing_eff": 0.49200603318250374,
+   "threshold_passing_lo68": 0.4857885245860871,
+   "threshold_passing_hi68": 0.49822598471093205
+  }
+ },
+ "ke_response": {
+  "all_A_rows": {
+   "subset": "all_A_rows",
+   "split": "all",
+   "value": "all",
+   "ke_bin": "all",
+   "n": 3915,
+   "median_ratio": 0.9860901711611763,
+   "p16": 0.7505542383451462,
+   "p84": 1.0592484930325174,
+   "resolution_68": 0.1543471273436856,
+   "bias_median_frac": -0.013909828838823716
+  },
+  "hc_rows": {
+   "subset": "hc_rows",
+   "split": "all",
+   "value": "all",
+   "ke_bin": "all",
+   "n": 3537,
+   "median_ratio": 0.9894856149823097,
+   "p16": 0.8659977660698379,
+   "p84": 1.056680021255456,
+   "resolution_68": 0.095341127592809,
+   "bias_median_frac": -0.010514385017690323
+  }
+ },
+ "multiplicity_3x3_final_35": {
+  "0": {
+   "0": 425,
+   "1": 93,
+   ">=2": 9
+  },
+  "1": {
+   "0": 50,
+   "1": 471,
+   ">=2": 35
+  },
+  ">=2": {
+   "0": 1,
+   "1": 30,
+   ">=2": 39
+  }
+ },
+ "anchoring_events": 10831,
+ "other_events": 5007,
+ "included3_diagnostic": [
+  {
+   "thr_mev": 35,
+   "stage": "final_selected",
+   "events": 1153,
+   "events_changing_topology": 77
+  },
+  {
+   "thr_mev": 35,
+   "stage": "signal_matched_candidate",
+   "events": 10831,
+   "events_changing_topology": 1130
+  },
+  {
+   "thr_mev": 50,
+   "stage": "final_selected",
+   "events": 1153,
+   "events_changing_topology": 69
+  },
+  {
+   "thr_mev": 50,
+   "stage": "signal_matched_candidate",
+   "events": 10831,
+   "events_changing_topology": 965
+  }
+ ],
+ "delta_readiness": {
+  "events": 556,
+  "photon_row_found": 554,
+  "photon_truth_correct": 554,
+  "proton_truth_correct": 493,
+  "both_truth_correct": 491,
+  "dirs_available": 554,
+  "all_inputs_available": 554,
+  "m_delta2_defined": 554,
+  "both_correct_and_all_inputs": 491,
+  "photon_dir_cos_median": 0.984960660377637,
+  "photon_dir_cos_gt0p9": 0.855595667870036,
+  "proton_dir_cos_median": 0.9982336275201136,
+  "proton_dir_cos_gt0p9": 0.9330628803245437,
+  "proton_dir_cos_lt0": 0.05273833671399594,
+  "photon_dir_cos_lt0": 0.009025270758122744,
+  "median_photon_pf_len_cm": 91.15017440862678,
+  "median_proton_pf_len_cm": 15.807228573320327
+ },
+ "metadata": {
+  "git_commit_at_run": "fe7f91cb9a9a3b4ccef2696f001affcd5aba2c22",
+  "branch": "analysis/ncdelta-proton-truth-association-20261111",
+  "official_manifest_sha256": "d89f2d12cde09d61a081731bdd5eca62519f6cc7a67634273051453c6053d69d",
+  "signal_truth_master_sha256": "43cc7c647e1db1d074eb593dce9dea082adf6a2c7652d050d979533773542088",
+  "baseline_config_sha256": "f3251b785be6e52ff3e429000a0319a6df8e42d2016ace2f51c7650a38e2fb0b",
+  "event_table_sha256": "da73b57315ea82af49f7c9f2eddf53ac37cb721564db7be11a2b72ebda5e2d0e",
+  "phase9_summary_sha256": "aa14523cc010e1fe078eccf9f4190dbed5ffad06f7639e61ecce7fcadea63623",
+  "phase9_vertex_geometry_sha256": "c188156e7f1ac004d933792e55f859a6564b3888bdb215d4ef353db3a88e2611",
+  "phase8_population_sha256": "a314dfc8279bd3d3acfe02fee74bcf52ac8fbdfe53b2c3505eed8294c5bb38d8",
+  "t_match_source_semantics": "WIRECELL_TRUTH_MATCH_SEMANTICS.md (2026-11-09): T_match level 1 side 0 = one T_kine row; partners ranked by point IoU (source order); top-3",
+  "reco_row_semantics": "RECO_PROTON_ROW_SEMANTICS.md (source commit 4b6853d4)",
+  "raw_sha256": {
+   "rows": "66d2a7ab8affe1fc542dc31e4a241a1253df10e37a1df838457c8ec261c4a326",
+   "tprot": "00e4030e9c26fbf58f5a6ea622f6590600e8efd85d13d3aab484d689b904717f",
+   "evt": "bca90e78e0ed283c5fe9f808a797e4ef31ae69b7fe8f20685a917850ef04384f",
+   "delta_pf": "e3a0c7dfd6ff3ccc3a0ca9b3e21e765925c1ab74f207e772351011fd286c1010",
+   "delta_seg": "f58ea2c7dda94487c92be98cf52b843aa7d455bb8bc5b0082b84ab4f145bf412",
+   "delta_evt": "cfec7680de2f72904d5e449675535b7db9215c0c80c834bc607d56e24d95f0fe"
+  },
+  "origin_per_proton_sha256": "e4153b83e0abb12131a67a97678fb65b40531831b49bb31e6d80c3b237b24f6c",
+  "parameters": {
+   "base_threshold_mev": 35.0,
+   "threshold_scan": [
+    10,
+    20,
+    35,
+    50,
+    75,
+    100
+   ],
+   "ambiguity_ratio": 0.5,
+   "hc_iou_n_min": 0.5,
+   "hc_sep_min": 0.2,
+   "primary_rule": "Geant4 process == 0",
+   "origin_link_tolerance_mev": 0.5
+  }
+ }
+}

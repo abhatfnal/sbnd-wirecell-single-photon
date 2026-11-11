@@ -1,0 +1,7 @@
+thr_mev,truth_multiplicity,total,production_missing,no_candidate,candidate_not_signal_matched,signal_matched,final_selected
+35,0,5863,0,653,284,4926,476
+35,1,5557,1,386,192,4978,594
+35,>=2,1007,0,56,24,927,83
+50,0,6664,0,745,320,5599,527
+50,1,5131,1,320,169,4641,570
+50,>=2,632,0,30,11,591,56

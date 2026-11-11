@@ -1,0 +1,23 @@
+quantity,value,note
+rows_total,83097.0,
+rows_proton_typed,14733.0,
+proton_typed_shower_rows,8356.0,
+proton_typed_track_rows,6377.0,
+proton_typed_pool_0,5965.0,
+proton_typed_pool_1,405.0,
+proton_typed_pool_2,8348.0,
+proton_typed_pool_3,13.0,
+proton_typed_pool_4,2.0,
+included3_rows,43168.0,
+included3_rows_in_pool2,43168.0,
+included3_rows_shower,43168.0,
+included3_rows_cluster_not_main,0.9971738324684952,fraction of included==3 rows whose cluster differs from the main cluster of the candidate (source: connection type 3 = other cluster)
+included_not_1_or_3_rows,0.0,
+pool2_included1_cluster_not_main,0.8779003961516695,"pool-2 leftover showers with connection type != 3 (1, 2 or a kept type 4)"
+pool0_1_cluster_not_main,0.023131050033044356,
+proton_typed_included3_fraction,0.5591529220118102,
+proton_typed_ke35_included3_fraction,0.18729289727704942,
+proton_ke35_shower_fraction,0.20285261489698891,
+rows_without_level1_match_object,320.0,tiny objects (median KE a few MeV); classified `unmatched` (reason no_level1_object)
+level1_key_duplicates,0.0,asserted zero per event in the scan (evt.dup_l1_key)
+rows_in_unreadable_partner_events,92.0,T_match partner lists inconsistent with their ..length in 16 events; those rows keep nmatch but no partners
