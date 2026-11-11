@@ -1,0 +1,27 @@
+quantity,value
+events_any,1153
+events_first,1101
+in_both,1101
+only_any,52
+only_first,0
+same_candidate,1101
+different_candidate,0
+diff_candidates_median_e_gamma_any_minus_first,
+diff_candidates_n_e_gamma,0
+diff_candidates_median_gap_any_minus_first,
+diff_candidates_n_gap,0
+diff_candidates_median_proton_ke_any_minus_first,
+diff_candidates_n_proton_ke,0
+diff_candidates_median_m_delta_any_minus_first,
+diff_candidates_n_m_delta,0
+e_gamma_median_any,317.09197998046875
+e_gamma_median_first,314.240234375
+gap_median_any,0.0
+gap_median_first,0.0
+proton_ke_median_any,156.46149444580078
+proton_ke_median_first,157.25796508789062
+m_delta_median_any,1220.7609339018366
+m_delta_median_first,1221.0836675412338
+truth_topology_any,"{1: 594, 0: 476, 2: 83}"
+truth_topology_first,"{1: 566, 0: 453, 2: 82}"
+only_any_truth35,"{1: 28, 0: 23, 2: 1}"

@@ -35,3 +35,5 @@ Evidence for each item is in the linked audit. Nothing below has been assumed in
 ## Minor (no action unless convenient)
 
 - The `(0,0,0)` vertex is the default of a candidate with `has_vertex == 0`; confirm that is the intended "no main vertex" flag (`VERTEX_SENTINEL_AUDIT.md`).
+
+- **(Phase 11, small) Shower-start dE/dx configuration.** `shw_sp_vec_median_dedx` is computed either through the configured recombination model (`m_sp_dedx_use_recomb_model`) or through the legacy inline uBooNE-field Modified Box, from the MIP-normalised `shw_sp_vec_dQ_dx_*` (`m_mip_dqdx_median`). Which path and which `m_mip_dqdx_median` did the fg1 production use? (Measured consistency only: the nueCC primary-electron median is 2.1 MeV/cm, the MIP value; `NCDELTA_RECO_OBSERVABLE_SEMANTICS.md` section 6.) Also: the first entries of `shw_sp_vec_dQ_dx_*` divide by `dx + 1e-9` and reach 6e9 for a fit point with `dx ~ 0`; is that intended to be left unclipped?
