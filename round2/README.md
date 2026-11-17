@@ -21,6 +21,22 @@ evaluation boundary:
 
 See `docs/SP_BDT_ROUND2_FREEZE_ORDER.md` for the dependency graph, freeze order and per-model decisions.
 
+**Round-2 production is running (2026-11-17 evening).** Haiwang's **WCLocal2026Nov16** uses WCT 0.38.0 with Snehadri's
+DV2-MAX `aurora_space` DL vertex.
+- Aurora (training): NC Δ and BNB are complete, νe CC is resuming.
+- FermiGrid (evaluation): official CV, νe CC, the full beam-off including its odd-run training half, and beam-on.
+- Tracker: `docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`. Registry: `config/samples/round2_training_samples.yaml`
+  (still `active_training_domain: aurora-r2`).
+
+**Ownership.** Avinay owns SP numu / SP other / SP ncpi0 and the SP nue decision. Xuyang and Matteo own the upstream νμ
+(`numu_score`) and νe (`nue_score`) taggers, which are **not** SP numu / SP nue.
+
+**Final-model status.**
+- SP numu: WAITS FOR REFRESH + FROZEN UPSTREAM NUMU.
+- SP other: WAITS FOR REFRESH + FROZEN UPSTREAM NUMU + TRAINING BEAM-OFF.
+- SP ncpi0: WAITS FOR REFRESH (Policy B).
+- SP nue: DECISION PENDING; the domain-shift test runs on the refresh.
+
 **Development training (2026-11-17):** one SP numu and one SP ncpi0 model were trained on aurora-r2
 (`docs/SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`).
 - They are labelled `ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY`, and neither is deployable.
@@ -42,7 +58,8 @@ Aurora merged CAF (recTree + recTreeWireCell)
   -> sp_retrain/devtrain.py       dataset (XML-ordered float32, Policy B, non-finite rows excluded), parameters
   -> tools/train_dev_model.py     XGBoost 3.4.1, binary:logitraw, base_score 0, fixed thesis parameters; repeat check
   -> validation (Aurora test fold only)
-  -> export to TMVA XML (BoostType=Grad) + equivalence test  specified in docs/SP_BDT_DEPLOYMENT_EXPORT_AUDIT.md
+  -> sp_retrain/export_tmva.py    XGBoost JSON -> TMVA Grad XML (inherited xgboost2TMVA layout) + sidecars
+  -> tools/export_equivalence_check.py  native margin = XML forest sum = TMVA response = log10-odds; 0 flips (dev fixtures)
   -> handoff to Haiwang           docs/NCPI0_OTHER_ROUND2_PRODUCTION_HANDOFF_REQUIREMENTS.md
 ```
 
@@ -50,13 +67,15 @@ Aurora merged CAF (recTree + recTreeWireCell)
 
 | path | what |
 |---|---|
+| `config/samples/round2_training_samples.yaml` | training-sample registry: aurora-r2 (active, development) and the WCLocal2026Nov16-Aurora refresh (skeleton, placeholders for lists, upstream model hashes, the vertex-tree confirmation) |
 | `config/features/single_photon_<x>_inputs_v0.json` | ordered inputs of the four frozen single-photon BDTs, from the XML `<Variables>`; branch, type, producer, notes. Made by `tools/make_feature_configs.py` |
-| `specs/single_photon_{ncpi0,other}_training_spec_v0.2.yaml`, `specs/single_photon_numu_training_spec_v0.1.yaml` | current training specs: ncpi0 (v0.2.2) and numu (v0.1.0) `READY_FOR_DEVELOPMENT_TRAINING`; other (v0.2.1) `READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE`. The ncpi0 / other v0.1 files (BLOCKED) are kept for the record |
+| `specs/single_photon_{ncpi0,other}_training_spec_v0.2.yaml`, `specs/single_photon_numu_training_spec_v0.1.yaml` | current training specs: ncpi0 (v0.2.2) and numu (v0.1.0) `READY_FOR_DEVELOPMENT_TRAINING`; other (v0.2.3) `READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE`. The ncpi0 / other v0.1 files (BLOCKED) are kept for the record |
 | `specs/single_photon_{numu,ncpi0}_training_spec_dev_round1_domain_v1.yaml` | frozen DEVELOPMENT specs of the 2026-11-17 campaign (`deployable: false`) |
-| `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `legacy_control` (verified legacy XML bundle, legacy scoring and ROC-equivalent points), `tmva_grad` (TMVA Grad scorer), `readiness`, `manifest` |
-| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance), `check_numu_score_offline.py`, `nue_prefix_test.py`, `beamoff_other_census.py` (evidence audit, no training) |
-| `tests/test_sp_retrain.py` | 37 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping |
+| `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `legacy_control` (verified legacy XML bundle, legacy scoring and ROC-equivalent points), `tmva_grad` (TMVA Grad scorer), `export_tmva` (XGBoost JSON → TMVA Grad XML exporter), `readiness`, `manifest` |
+| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance), `check_numu_score_offline.py`, `nue_prefix_test.py`, `beamoff_other_census.py` (evidence audit, no training), `refresh_smoke_check.py`, `make_refresh_list.py` (read-only smoke and census / list builder for the refreshed production), `ncpi0_negative_learning_curve.py` (diagnostic only), `export_equivalence_check.py` (exporter equivalence on the dev fixtures) |
+| `tests/test_sp_retrain.py`, `tests/test_export_tmva.py` | 49 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping, evidence summaries, the Round-2 registry and provenance, the refresh census, the learning-curve rule, the refresh smoke, and the exporter (margins, exact-threshold routing, base margin, guards, sidecars) |
 | `manifests/aurora_r2_v0/` | input manifests of the three aurora-r2 lists (path, size, mtime; list sha256) |
+| `manifests/wcl1116_aurora_v0/production_provenance.json` | live snapshot of the WCLocal2026Nov16 configuration as run: toolkit, wire-cell-data, DL bundle and file hashes, config md5s, schemas, the 36 booked BDT weight hashes |
 | `manifests/dev_round1domain_v1/` | development campaign: frozen inputs; one manifest per model (model, spec, feature-list, table and code sha256, package versions, counts, post-training provenance); `legacy_controls.json` (verified legacy bundle and the legacy-vs-development results) |
 | `validation/` | scorer bit-check vs the toolkit (423/423), smoke build summaries, builder-vs-spec_v1 comparison, environment freeze; development summary and the ncpi0 non-finite row list |
 | `docs/` | audits, readiness, refresh request, handoff contract, deployment/export, EAF evaluation handoff |
@@ -80,7 +99,7 @@ PY=$SP_WORK/env/bin/python                        # venv on top of frameworks: +
 cd round2
 L=/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists
 python3 tools/make_feature_configs.py --schema /lus/flare/projects/neutrinoGPU/yuhw/sbnd-wirecell-production/aurora/schema/recTreeWireCell-dlvtx-space.schema.json
-$PY -m pytest -q -p no:cacheprovider tests                                   # 37 passed
+$PY -m pytest -q -p no:cacheprovider tests                                   # 49 passed (evening)
 $PY -I tools/check_scorer_vs_stored_nue.py --xml /lus/flare/projects/neutrinoGPU/yuhw/wire-cell-data/uboone/weights/XGB_nue_seed2_0923.xml \
     --out $SP_WORK/scorer_checks/<name>.json <merged CAFs>                   # 232/232 and 191/191 bit-identical
 $PY -m sp_retrain.build_tables aurora-r2-ncdr $SP_WORK/smoke_tables --list $L/ncdr-merged-cafs.txt --slice 0:60 --nproc 8 \
@@ -111,17 +130,34 @@ for m in numu ncpi0; do $PY -I tools/legacy_control_compare.py --bundle-root $SP
     --out-dir $SP_WORK/legacy_controls_results/$m; $PY -I tools/plot_legacy_control.py $SP_WORK/legacy_controls_results/$m; done
 $PY -I tools/record_dev_provenance.py --content-commit c83965c1ee1a5726f7bdcda218d768ad2c4f146b \
     --bundle-root $SP_WORK/legacy_bdt_controls --results-dir $SP_WORK/legacy_controls_results
+# evening: active Round-2 production (read-only), learning curve (diagnostic), exporter
+R=/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full; WD=/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0
+for s in bnb:5 ncdr:20; do $PY tools/refresh_smoke_check.py --sample ${s%:*} --new-root $R/${s%:*} \
+    --old-manifest manifests/aurora_r2_v0/manifest_aurora-r2-${s%:*}.tsv.gz --units ${s#*:} \
+    --numu-xml $WD/uboone/weights/numu_scalars_scores_0923.xml --numu-final-inputs $SP_WORK/external/numu_final_inputs.json \
+    --out $SP_WORK/refresh_smoke/smoke_${s%:*}.json; done                     # -> validation/refresh_smoke_wcl1116_aurora.json
+# census / list builder (read-only; metadata-bound, run on a compute node with --threads; stopped on the login node):
+# $PY tools/make_refresh_list.py --sample ncdr --root $R/ncdr --pairs $R/ncdr-pairs.tsv --census-out <json> --threads 16
+$PY tools/ncpi0_negative_learning_curve.py --tables $SP_WORK/dev_tables --tag dev \
+    --spec specs/single_photon_ncpi0_training_spec_dev_round1_domain_v1.yaml \
+    --out-json validation/ncpi0_negative_learning_curve_dev.json --work-dir $SP_WORK/ncpi0_learning_curve
+$PY tools/export_equivalence_check.py ...                                     # see docs/SP_BDT_EXPORT_EQUIVALENCE_STATUS.md
 ```
 
 ## Documents
 
+- `docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`: live snapshot of Haiwang's WCLocal2026Nov16 rerun (tag, jobs,
+  configs and hashes, the sample table for training and evaluation, the beam-off half, the smoke, handoff conditions).
 - `docs/ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` and `docs/ROUND2_MINIMAL_COLLABORATOR_QUESTIONS.md`: what
-  existing evidence answers, and the questions that remain (one for Xuyang, one for Haiwang).
+  existing evidence answers (§10: the active production), and what remains: one Xuyang/Matteo question, none for
+  Haiwang now.
+- `docs/SP_BDT_EXPORT_EQUIVALENCE_STATUS.md`: the exporter and its equivalence on the development fixtures.
 - `docs/SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`, `docs/SP_NUMU_DEVELOPMENT_TRAINING_REPORT.md`,
   `docs/SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`: the development campaign (DO NOT DEPLOY).
 - `docs/SP_BDT_SCORE_SCALE_AND_EXPORT_REQUIREMENTS.md`: native margin vs production score; what a threshold needs.
-- `docs/SP_BDT_ROUND2_FREEZE_ORDER.md`: the dependency graph, the freeze order, the retrain decision for each of the
-  four SP models, the `kine_pio_flag` decision support, and development readiness.
+- `docs/SP_BDT_ROUND2_FREEZE_ORDER.md`: ownership; the final dependency graph; the freeze order; the final model set;
+  the SP nue domain-shift test plan; the threshold policy; the evaluation firewall; `kine_pio_flag`; the roadmap;
+  readiness, including the ncpi0 learning curve.
 - `docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`: the ncpi0 / other training definitions recovered from the
   thesis, the XML cross-check and Appendix E fingerprint, Aurora data readiness, the ncpi0 dry-run census, and the gate.
 - `docs/SP_NUMU_TRAINING_SOURCE_AUDIT.md`: the same for SP numu.
@@ -129,7 +165,8 @@ $PY -I tools/record_dev_provenance.py --content-commit c83965c1ee1a5726f7bdcda21
   score-convention erratum, and development vs final freeze.
 - `docs/NCPI0_OTHER_CAF_INPUT_READINESS.md` with `docs/tables/READINESS_PER_INPUT.md`.
 - `docs/SP_BDT_DEPLOYMENT_EXPORT_AUDIT.md`: loader, format, exporter and the equivalence test.
-- `docs/HAIWANG_AURORA_TRAINING_REFRESH_REQUEST.md`.
+- `docs/HAIWANG_AURORA_TRAINING_REFRESH_REQUEST.md`: **SUPERSEDED, refresh already in progress**; never sent and
+  kept as provenance.
 - `docs/NCPI0_OTHER_ROUND2_PRODUCTION_HANDOFF_REQUIREMENTS.md`.
 - `docs/EAF_ROUND2_EVALUATION_HANDOFF.md`.
 - `ATTRIBUTION_AND_PROVENANCE.md`.

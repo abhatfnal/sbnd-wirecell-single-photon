@@ -1,0 +1,143 @@
+{
+ "label": "LIVE SNAPSHOT 2026-11-17T19:30Z, read-only audit of Haiwang Yu's active production; nothing in his area was modified",
+ "production": "WCLocal2026Nov16",
+ "sites": {
+  "Aurora": "WCLocal2026Nov16-Aurora (training side)",
+  "FermiGrid": "WCLocal2026Nov16-FermiGrid (evaluation side)"
+ },
+ "sources": {
+  "catalogue": "yuhw/sbnd-wirecell-production main f4f2f93854eae119ec4bf1b7003a7f85d604e84d docs/productions.js (2026-11-17T19:07Z)",
+  "issue": "HaiwangYu/wire-cell-toolkit-ai-helper issue 48, local copy yuhw/wire-cell-toolkit-ai-helper/issues/48-wclocal-2026nov16-productions/ (e75e403)",
+  "aurora_run_dir": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16",
+  "aurora_jobs": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/jobs.txt",
+  "aurora_pbs": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/scripts/p5-full.pbs"
+ },
+ "toolkit": {
+  "tag": "0.38.0",
+  "commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "equals": "master 647b2733 + version.txt",
+  "contains": [
+   "WCT PR #544",
+   "#547 (DV2-MAX aurora_space)",
+   "#548"
+  ],
+  "git_describe": "0.38.0",
+  "worktree": "/lus/flare/projects/neutrinoGPU/yuhw/wct-0.38.0",
+  "worktree_dirty": false,
+  "prefix": "/lus/flare/projects/neutrinoGPU/yuhw/opt-0.38.0",
+  "stored_wct_version_stamp": "0.38.0",
+  "note": "Trun.wct_version is the bare tag \"0.38.0\"; record the commit beside it. 0.38.1 (054f7600) is test-only; productions stay on 0.38.0"
+ },
+ "wire_cell_data": {
+  "commit": "99c6497fad6ba55ecbf53f4c205c5720dba10140",
+  "describe": "0.2.0-29-g99c6497",
+  "pr": "wire-cell-data #8 (dsnehadri/dv2max-sbnd-aurora-space)",
+  "worktree": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0",
+  "untracked": [
+   "uboone/weights/XGB_nue_seed2_0923.xml (site-added, sha256 6199d202..., byte-identical to the aurora-r2 copy)"
+  ]
+ },
+ "larwirecell": {
+  "branch": "HaiwangYu/larwirecell sbnd-wc-flatcaf",
+  "commit": "ad5d9421",
+  "aurora_step1": "not rerun: aurora-r1 step-1 qlpctree tars hardlinked (0.38.0 step 1 reproduced 22/22 test units array by array)"
+ },
+ "sbndcode": "v10_14_02_03 e26:prof (container environment, issue 48 \u00a71); the reco1 inputs are Avinay's gen2 files, as aurora-r1/r2",
+ "workflow": {
+  "repo": "HaiwangYu/sbnd-wirecell-production",
+  "branch": "wclocal-nov16",
+  "aurora_commit": "d05cf47",
+  "fermigrid_commits": [
+   "53a90eb",
+   "f452d76"
+  ]
+ },
+ "dl_vertex": {
+  "model": "DV2-MAX aurora_space",
+  "author": "Snehadri (WireCell PR #547; wire-cell-data #8)",
+  "bundle": "dv2max/sbnd/aurora_space/bundle.json",
+  "bundle_sha256": "51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74",
+  "format": "dv2max-bundle-v2",
+  "created": "2026-11-14T15:08:09+00:00",
+  "files": {
+   "pass1": {
+    "path": "pass1.pt",
+    "sha256": "193ef28d7170c7179148832a585c4dc4eddd84069c0233a0a14c0ac79ec5fa89"
+   },
+   "pass2": {
+    "path": "pass2.pt",
+    "sha256": "bd42b0c3ffecbe62dae606a2110cbf3e2f820e10bdbdb82944ae294945043619"
+   },
+   "ranker": {
+    "path": "ranker_fold0.txt",
+    "sha256": "e536850272bb3e86fec520149a67247ad13e58579d29f79e710279a5b87794ad"
+   },
+   "isotonic": {
+    "path": "isotonic_fold0.json",
+    "sha256": "0ad6bd7f86b8544025ed88ef271c7dd1eee899de5fd1254b5f0792554b5b4760"
+   }
+  },
+  "trained_on": "aurora-r2 BNB + intrinsic nue CC with T_dlvtx_space, fold 1 (477,997 events); hold-out fold 0 = 15,000 events",
+  "stored_in_caf": "Trun.dl_weights = \"<vertex_method>:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842...\"",
+  "passes": {
+   "recTreeWireCell": "vertex_method=dv2_split_move (toolkit 0.38.0 default), dl_vtx_dump_space on, schema af9c87c88815199dccf5204ac71dbe44",
+   "recTreeWireCell_dv2snap": "vertex_method=dv2_snap (same model, snapped to the nearest PR-graph vertex), no space dump, schema d4396a3490ea5aec4b02f0c34fa9db33"
+  },
+  "aurora_r2_previous": "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+ },
+ "compiled_config_md5": {
+  "recipe": "scripts/config-md5.sh (wcsonnet of wct-pr.jsonnet, JSON sort_keys, compact separators)",
+  "sim_split_move": "fa3745b3b49538b845feedb894bc3551",
+  "sim_snap": "91e79e852ac19724fb5f31e66a0b2202",
+  "sim_default": "fa3745b3b49538b845feedb894bc3551",
+  "data_split_move": "5da14b64d454c9b956779e9d73270b4b",
+  "data_snap": "5556ac044bce2af1ef61c81afdb0ea6b",
+  "data_default": "5da14b64d454c9b956779e9d73270b4b",
+  "note": "sim default == sim split_move: dv2_split_move is the 0.38.0 default"
+ },
+ "bdt_weights": {
+  "dir": "uboone/weights (wire-cell-data)",
+  "booked": 36,
+  "identical_to_aurora_r2_copies": true,
+  "status": "SHIPPED MicroBooNE-trained weights; NOT the Round-2 upstream models",
+  "single_photon_scorer": "none booked (no single_photon_* XML in the 0.38.0 config)",
+  "sha256": {
+   "br1_BDT.weights.xml": "b4f100656b8c353976f11e0cfd01811549e9bcd08bbfbf65dac318f87a157d71",
+   "br3_3_BDT.weights.xml": "ec3c504d6e2ed2418c52fc6b1fe1560d37dc03a35cbbac2e0f751f7364c520a5",
+   "br3_5_BDT.weights.xml": "117a1f39155c2ea926ca3102b75ae18dafcf276a601fcc5354e54651c16dbe56",
+   "br3_6_BDT.weights.xml": "a408ff7f1590c1a359c7570893632f696f3bcf9ccf3fd4ce5fa93ac01e6ff64f",
+   "br3_BDT.weights.xml": "a7fd2904f6da42de0f4bc81405e7cbe06ae40f05fb179b25d3a1945d553cc7c0",
+   "br4_tro_BDT.weights.xml": "c80c46fb687598da475d4c09ac739f1839872c138511613d4ee7425258ddbf9d",
+   "cme_anc_BDT.weights.xml": "7307e2b5d24c9b215d90d032c3fd149d80a44a5cd77e27e1c869a2d0e57e38b8",
+   "cos_tagger_10.weights.xml": "a6a8c2227533db4efd1429f5ed494c99723c7fce5ab17112a7210a7fd9e04b36",
+   "gap_BDT.weights.xml": "c6978af6774cf09ac30b7cc8e422f2781ab8de62d59316a39092e856776ad880",
+   "hol_lol_BDT.weights.xml": "b119d234d3d926624c252d863ad2f9821f01f057ed0ea9a718fc84a859d01818",
+   "lol_1_BDT.weights.xml": "4f04e081f45c1bb3c2c6eccba466cc8b3982e98e5cbd10a551a0d50ca633d8b9",
+   "lol_2_BDT.weights.xml": "622ae2e0da1565d6af2c6c238ed913319f0482c8298365a9dc9258beadf41f87",
+   "mgo_mgt_BDT.weights.xml": "f13fc826ec712953c64d7ac5197ac5184f14952391e890ed84b76286c9f6ad24",
+   "mipid_BDT.weights.xml": "72e3167343b8f256b0c692ce7d70ae936a7d97317a58a5a6910c10828e9cf885",
+   "mipquality_BDT.weights.xml": "93edf3ed3ef25766b3cb495315125c338c1c04c81c7950bb6e21c521532dd5a9",
+   "numu_scalars_scores_0923.xml": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773",
+   "numu_tagger1.weights.xml": "4ef4b52d843a188d1b5cdb442b38edae322c066f590780560af59bc5ddebba84",
+   "numu_tagger2.weights.xml": "b027bd7bd5f3d9e1e02fed07885d1432b50d0a5ec2f733c60e2ecba065ce0924",
+   "numu_tagger3.weights.xml": "fda358096093e97ac7e64a1bd2c85e15acf0d9d336a8b0b157f7d13a868e6935",
+   "pio_1_BDT.weights.xml": "b252e0dc97eed8133c725d11ab1928ca64d2110b028a0a524f7e9fee0b366d3c",
+   "pio_2_BDT.weights.xml": "68126970a95a023d10bb5d61f9eb0b9bbb5f460491cf8218a98007f6b0003cae",
+   "sig_1_BDT.weights.xml": "d5dfad3584a22b19c73b44843194a94e29ceb1db14be269d5ba48983682c4364",
+   "sig_2_BDT.weights.xml": "fb50598c1823d67b4bd5ab465c8f865605dd23f8a95f566074b3e01e40ce34df",
+   "stem_dir_br2_BDT.weights.xml": "b6d94ac72fb2abbfbb93306634eea6daac93d9884b48602dced6510d5a8c335d",
+   "stl_lem_brm_BDT.weights.xml": "f647e84a031f505ef7787cd3a2d1b48aa02768d38fb8d78f78361cfd28599764",
+   "stw_2_BDT.weights.xml": "e351d9f8721da01da90f6671a9c425b4e7ea3aa6b70850815dcf2cd7a5c1b653",
+   "stw_3_BDT.weights.xml": "02cf1fa0dad4f24a2ac0b08847fb592f5dc83cff5c9e351ed0b2835cb5d004fb",
+   "stw_4_BDT.weights.xml": "b437e3f36b50ab6362cb945cc3ac891230afef0236c60b3a20567fa7b3a1ccfd",
+   "stw_spt_BDT.weights.xml": "f7736a7d3692d4a91a190fd0a57f3639e8501574e832f85ec78f49b08a10420f",
+   "tro_1_BDT.weights.xml": "87825d895f7c42b40057d6a47b9536d5e66454e03e2bffc651c1f2da07b73479",
+   "tro_2_BDT.weights.xml": "ad10e9afa3c440771e775e654c79e2e76d1b2debd9590eabdd9e8e619defd8a6",
+   "tro_4_BDT.weights.xml": "29dc4128d267b0176f661eedb5aa23acaeb9c3966308707c9daf0a250313a23b",
+   "tro_5_BDT.weights.xml": "865bf7bb057ee57f5ad3f6598e0bcef4d11944928e7c5f0230e980767c4badbb",
+   "vis_1_BDT.weights.xml": "cfae589e199fd619400e814d13f3f40af4cd4f16b773122468265c09a7075c8a",
+   "vis_2_BDT.weights.xml": "4e352709cd989d14d31004aee4186edd233e205baf73c9804c45d82ef68ddebe",
+   "XGB_nue_seed2_0923.xml": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+  }
+ }
+}

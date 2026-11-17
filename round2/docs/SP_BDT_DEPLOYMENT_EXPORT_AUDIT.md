@@ -16,10 +16,13 @@ Date: 2026-11-17. Source audit only; no production code was changed.
 component. Equivalence between the two is not automatic; three differences must be handled:
 1. Missing values. XGBoost sends NaN along `default_left`, while TMVA returns −999 for any NaN input.
 2. Float precision. XGBoost accumulates leaf values in float32, while TMVA sums in double.
-3. Base score. XGBoost may carry a fitted `base_score` that a TMVA XML cannot hold. This disappears with
-   `base_score = 0.5` under `binary:logitraw`, as Xuyang's spec_v1 already requires.
+3. Base score. XGBoost may carry a `base_score` that a TMVA XML cannot hold. **Corrected 2026-11-17:** under
+   `binary:logitraw`, XGBoost 3.4.1 adds `base_score` to the margin unchanged, so `base_score = 0.5` (Xuyang's
+   spec_v1) is a constant +0.5 offset. It disappears only with `base_score = 0`, which is what our SP specs use
+   (`SP_BDT_SCORE_SCALE_AND_EXPORT_REQUIREMENTS.md`; measured again in `SP_BDT_EXPORT_EQUIVALENCE_STATUS.md`).
 
-**Exporter:** **none exists.** Nothing in the toolkit (`xgboost2TMVA` appears only in comments), in Haiwang's `tools/` or
+**Exporter:** none existed at the time of this audit; built since as `sp_retrain/export_tmva.py` (status:
+`SP_BDT_EXPORT_EQUIVALENCE_STATUS.md`). At audit time: Nothing in the toolkit (`xgboost2TMVA` appears only in comments), in Haiwang's `tools/` or
 production repo, or in Xuyang's `bdt-comm` converts an XGBoost model to TMVA XML. Xuyang's step 7 plans JSON plus Python
 inference only. Her wcgpu notes say "We never built or validated such a converter".
 
@@ -28,7 +31,8 @@ inference only. Her wcgpu notes say "We never built or validated such a converte
 `export_tmva_grad.py`: native XGBoost JSON → TMVA BDT XML that both `TMVA::Reader` and `TmvaGradForest` accept.
 
 1. **Refuse** anything other than `gbtree` with numerical splits and objective `binary:logitraw` with
-   `base_score == 0.5`, which gives zero margin offset. Otherwise write the offset as one single-leaf tree.
+   `base_score == 0`, which gives zero margin offset (corrected 2026-11-17; 0.5 is a +0.5 offset). Otherwise refuse,
+   or, on explicit request, write the offset as one single-leaf tree. Built: `sp_retrain/export_tmva.py`.
 2. **Header.**
    - `<MethodSetup Method="BDT::BDT">`.
    - `<GeneralInfo>`: creator, exporter version, training-spec id and version, training commit, sha256 of the source JSON.

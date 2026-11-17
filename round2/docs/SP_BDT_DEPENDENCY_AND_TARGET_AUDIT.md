@@ -95,7 +95,7 @@ CAFs match Round-2.
 **SP numu (now addressed).** The inherited `single_photon_numu` reads `numu_score`, its most-used input (EAF: 7.7 % of
 splits, root of 41 / 300 trees). If Xuyang retrains the νμ final model and SP numu is not retrained, SP numu is
 evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`), and
-`SP_BDT_ROUND2_FREEZE_ORDER.md` §4 proposes retraining it together with SP other.
+`SP_BDT_ROUND2_FREEZE_ORDER.md` §5 proposes retraining it together with SP other.
 
 ## 3. NCPI0: what the frozen model rejects, and what it was trained on
 
@@ -133,7 +133,7 @@ evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRA
 **EXACT MODEL FINGERPRINT MATCH**. 400 trees and depth 6 agree, and all 45 Fig. E.3 F scores equal the XML split counts
 (thesis audit §6.1). `kine_pio_flag` Policy B was decided, and a development model was trained on 2026-11-17
 (`SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`, DO NOT DEPLOY). See also the `kine_pio_flag` options
-(`SP_BDT_ROUND2_FREEZE_ORDER.md` §5).
+(`SP_BDT_ROUND2_FREEZE_ORDER.md` §9).
 
 **Two inherited semantics a retrained model must decide explicitly:**
 - `kine_pio_flag` (input 34). MicroBooNE's scorer sets `temp_kine_pio_flag = 0` before all single-photon evaluations
@@ -141,7 +141,7 @@ evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRA
   fed the real `T_kine` value, which in SBND takes 0, 1 and 2. The thesis model splits on it (Fig. E.3: F score 23,
   10th of 45 by gain), so it was trained with real values. The frozen XML has the same 23 splits on VarIndex 34
   (EAF), so MicroBooNE scored a model trained with real values using 0. Policy options:
-  `SP_BDT_ROUND2_FREEZE_ORDER.md` §5.
+  `SP_BDT_ROUND2_FREEZE_ORDER.md` §9.
 - `shw_sp_pio_1_mass` is NaN on 0.006–0.02 % of filled candidates. TMVA returns −999 for such rows, while XGBoost
   routes NaN as "missing". In the ncpi0 dry-run census, 6 of 2,599 NC Δ positive rows have a non-finite input:
   `kine_pio_angle`, `kine_pio_theta_1/2`, `kine_pio_mass` and `shw_sp_pio_1_mass`.
@@ -207,7 +207,7 @@ If the EAF first-look round reused this scorer, the same three points apply ther
 | ncpi0 | **DONE 2026-11-17**: development model, Policy B, DO NOT DEPLOY (`SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`). Classes recovered from the thesis, exact XML fingerprint; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) ~~the EAF XML check~~ done; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
 | other | **NO**: the EXT sample exists (`fg1-beamoff-train`, 481 rows, statistically limited, fg1 reconstruction) but needs Avinay's approved exception, and `numu_score` is about to change | **NO** | (1) `fg1-beamoff-train` reprocessed in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) ~~the EAF XML check~~ done |
 | numu | **DONE 2026-11-17**: development model, DO NOT DEPLOY (`SP_NUMU_DEVELOPMENT_TRAINING_REPORT.md`). Target recovered, exact fingerprint, both classes in aurora-r2 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md` §7) | **NO** | (1) Xuyang's νμ chain frozen and installed; (2) DL vertex frozen; (3) refresh; (4) exporter and equivalence test |
-| nue | not proposed: decision blocked by the unknown vertex-domain shift only (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4). Thesis Fig. E.4 = the first 200 trees of the frozen XML, exactly | **NO** | the decision itself |
+| nue | not proposed: decision blocked by the unknown vertex-domain shift only (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5–6). Thesis Fig. E.4 = the first 200 trees of the frozen XML, exactly | **NO** | the decision itself |
 
 What would change the input domain of a model trained on today's (Round-1) CAFs:
 

@@ -1,0 +1,180 @@
+{
+ "label": "READ-ONLY SMOKE, not a vertex or physics study",
+ "production": "WCLocal2026Nov16-Aurora",
+ "tool": "round2/tools/refresh_smoke_check.py",
+ "date": "2026-11-17",
+ "numu_xml": "wcd-0.38.0 uboone/weights/numu_scalars_scores_0923.xml (sha256 426e670c...)",
+ "samples": {
+  "bnb": {
+   "units": [
+    "reco2-reco1-detsim-g4-gen-009f-291d-0e01-b672",
+    "reco2-reco1-detsim-g4-gen-00a1-7d07-b07f-dfaf",
+    "reco2-reco1-detsim-g4-gen-00ad-353a-b8af-08e7",
+    "reco2-reco1-detsim-g4-gen-00b4-bb28-8854-b1ce",
+    "reco2-reco1-detsim-g4-gen-00bc-2e00-2b52-1690"
+   ],
+   "summary": {
+    "units": 5,
+    "skipped_units": 0,
+    "events": 250,
+    "all_trees_present": true,
+    "branches_new_equal_old": true,
+    "snap_lacks_only_dlvtx_space": true,
+    "event_keys_equal": true,
+    "builder_errors": 0,
+    "missing_inputs": {
+     "new": [],
+     "snap": []
+    },
+    "wct_versions": [
+     "0.38.0"
+    ],
+    "wct_versions_old": [
+     "sbnd-dlvtx-35-pre-master-merge-54-ga2785870"
+    ],
+    "dl_weights": [
+     "dv2_split_move:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+    ],
+    "dl_weights_snap": [
+     "dv2_snap:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+    ],
+    "dl_weights_old": [
+     "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+    ],
+    "numu_xml": [
+     "uboone/weights/numu_scalars_scores_0923.xml"
+    ],
+    "nue_xml": [
+     "uboone/weights/XGB_nue_seed2_0923.xml"
+    ],
+    "numu_rescore": {
+     "candidates": 122,
+     "bit_identical": 122
+    },
+    "migration_new": {
+     "matched_candidates": 122,
+     "old_non_placeholder": 122,
+     "vertex_moved_gt_0p1cm": 0.8934426229508197,
+     "filled_old": 26,
+     "filled_new": 23,
+     "filled_both": 17,
+     "dist_sce_lt_1cm_old": 0.5175438596491229,
+     "dist_sce_lt_1cm_new": 0.7241379310344828,
+     "neutrino_partner_rows": [
+      114,
+      116
+     ]
+    },
+    "migration_snap": {
+     "matched_candidates": 122,
+     "old_non_placeholder": 122,
+     "vertex_moved_gt_0p1cm": 0.7377049180327869,
+     "filled_old": 26,
+     "filled_new": 26,
+     "filled_both": 20,
+     "dist_sce_lt_1cm_old": 0.5175438596491229,
+     "dist_sce_lt_1cm_new": 0.5517241379310345,
+     "neutrino_partner_rows": [
+      114,
+      116
+     ]
+    }
+   },
+   "full_output": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/refresh_smoke/smoke_bnb.json",
+   "full_output_sha256": "21e377c2a2cbec02a5e6419a7394695c208935a206d8d58b66ce0bc4d61c2930"
+  },
+  "ncdr": {
+   "units": [
+    "reco1-detsim-g4-filter-gen-0019-dc57-75d9-29b4",
+    "reco1-detsim-g4-filter-gen-0039-0863-3b71-412c",
+    "reco1-detsim-g4-filter-gen-0062-fdeb-1f8c-2e3d",
+    "reco1-detsim-g4-filter-gen-007e-3542-f75a-5152",
+    "reco1-detsim-g4-filter-gen-008e-e1b8-9a6d-f1a4",
+    "reco1-detsim-g4-filter-gen-00a9-ad5c-36f9-982f",
+    "reco1-detsim-g4-filter-gen-00bd-b815-d035-312d",
+    "reco1-detsim-g4-filter-gen-00fe-bc02-0abf-2c69",
+    "reco1-detsim-g4-filter-gen-0123-7489-4c2a-8c9b",
+    "reco1-detsim-g4-filter-gen-0131-09e6-18c5-a5a9",
+    "reco1-detsim-g4-filter-gen-0148-9fe3-f20a-3bb5",
+    "reco1-detsim-g4-filter-gen-0158-2101-6aa6-8a50",
+    "reco1-detsim-g4-filter-gen-0170-9c88-af08-588c",
+    "reco1-detsim-g4-filter-gen-019e-d862-dc59-b616",
+    "reco1-detsim-g4-filter-gen-01ba-8a10-5a64-29fa",
+    "reco1-detsim-g4-filter-gen-01d7-b0c2-c4f5-e54a",
+    "reco1-detsim-g4-filter-gen-01f7-034b-e162-b48f",
+    "reco1-detsim-g4-filter-gen-0209-887b-f4ac-10ea",
+    "reco1-detsim-g4-filter-gen-022a-ecbf-7146-4643",
+    "reco1-detsim-g4-filter-gen-0238-e85d-2657-eb11"
+   ],
+   "summary": {
+    "units": 20,
+    "skipped_units": 1,
+    "events": 31,
+    "all_trees_present": true,
+    "branches_new_equal_old": true,
+    "snap_lacks_only_dlvtx_space": true,
+    "event_keys_equal": true,
+    "builder_errors": 0,
+    "missing_inputs": {
+     "new": [],
+     "snap": []
+    },
+    "wct_versions": [
+     "0.38.0"
+    ],
+    "wct_versions_old": [
+     "sbnd-dlvtx-35-pre-master-merge-54-ga2785870"
+    ],
+    "dl_weights": [
+     "dv2_split_move:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+    ],
+    "dl_weights_snap": [
+     "dv2_snap:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+    ],
+    "dl_weights_old": [
+     "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+    ],
+    "numu_xml": [
+     "uboone/weights/numu_scalars_scores_0923.xml"
+    ],
+    "nue_xml": [
+     "uboone/weights/XGB_nue_seed2_0923.xml"
+    ],
+    "numu_rescore": {
+     "candidates": 26,
+     "bit_identical": 26
+    },
+    "migration_new": {
+     "matched_candidates": 26,
+     "old_non_placeholder": 26,
+     "vertex_moved_gt_0p1cm": 1.0,
+     "filled_old": 17,
+     "filled_new": 17,
+     "filled_both": 12,
+     "dist_sce_lt_1cm_old": 0.2,
+     "dist_sce_lt_1cm_new": 0.48,
+     "neutrino_partner_rows": [
+      25,
+      25
+     ]
+    },
+    "migration_snap": {
+     "matched_candidates": 26,
+     "old_non_placeholder": 26,
+     "vertex_moved_gt_0p1cm": 0.7307692307692307,
+     "filled_old": 17,
+     "filled_new": 16,
+     "filled_both": 12,
+     "dist_sce_lt_1cm_old": 0.2,
+     "dist_sce_lt_1cm_new": 0.4,
+     "neutrino_partner_rows": [
+      25,
+      25
+     ]
+    }
+   },
+   "full_output": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/refresh_smoke/smoke_ncdr.json",
+   "full_output_sha256": "bbb3e8a5666e24ae0243eca588737425cb9344689471edf8ca88d015f96ed43a"
+  }
+ }
+}

@@ -1,0 +1,73 @@
+# Round-2 single-photon BDT training-sample registry (Avinay Bhat; prepared with Claude Code).
+# One place to switch the SP training pipeline from aurora-r2 (Round-1 reconstruction) to Haiwang's refreshed
+# Round-2 training CAFs, without changing analysis logic. SKELETON: the refreshed domain is NOT active, no list is
+# frozen, and no final model may be trained from it until every gate below is true.
+# Live tracker: round2/docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md. Provenance: manifests/wcl1116_aurora_v0/.
+registry_id: round2_training_samples
+registry_version: 0.1.0
+date: 2026-11-17
+status: SKELETON_NOT_FOR_FINAL_TRAINING
+active_training_domain: aurora-r2          # switch to wcl1116-aurora only when gates_before_final_training all pass
+
+domains:
+  aurora-r2:
+    role: DEVELOPMENT (Round-1 reconstruction; ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY models)
+    production: aurora-r2 (Haiwang, 2026-11-05)
+    wct_version_stamp: sbnd-dlvtx-35-pre-master-merge-54-ga2785870
+    wc_tree: recTreeWireCell
+    dl_weights: uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth
+    schema_md5: af9c87c88815199dccf5204ac71dbe44
+    manifests: round2/manifests/aurora_r2_v0/
+    samples:
+      aurora-r2-ncdr: {list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt, list_sha256: 8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf, files: 17603}
+      aurora-r2-bnb: {list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt, list_sha256: dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb, files: 11888}
+      aurora-r2-nuecc: {list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/nuecc-merged-cafs.txt, list_sha256: 4d53f0b3d308753ec3981b2a3ee87dc2e29128e5218105d92bcd7856eadcdfb4, files: 61248}
+
+  wcl1116-aurora:
+    role: FINAL TRAINING CANDIDATE (Round-2 reconstruction), training side of the productions catalogue
+    production: WCLocal2026Nov16-Aurora (Haiwang; ai-helper issue 48)
+    output_root: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full
+    toolkit: {tag: 0.38.0, commit: c935e30d44a09bf208f6de2c2968171b01efd63d, stored_wct_version_stamp: "0.38.0"}
+    wire_cell_data_commit: 99c6497fad6ba55ecbf53f4c205c5720dba10140
+    larwirecell_step1: "ad5d942 (aurora-r1 step 1 reused, not rerun)"
+    sbndcode: v10_14_02_03 e26:prof
+    workflow: sbnd-wirecell-production wclocal-nov16 d05cf47
+    vertex:
+      bundle: dv2max/sbnd/aurora_space/bundle.json
+      bundle_sha256: 51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74
+      checkpoints_sha256: {pass1: 193ef28d7170c7179148832a585c4dc4eddd84069c0233a0a14c0ac79ec5fa89, pass2: bd42b0c3ffecbe62dae606a2110cbf3e2f820e10bdbdb82944ae294945043619,
+                           ranker: e536850272bb3e86fec520149a67247ad13e58579d29f79e710279a5b87794ad, isotonic: 0ad6bd7f86b8544025ed88ef271c7dd1eee899de5fd1254b5f0792554b5b4760}
+      trees:
+        recTreeWireCell: {vertex_method: dv2_split_move, default: true, schema_md5: af9c87c88815199dccf5204ac71dbe44}
+        recTreeWireCell_dv2snap: {vertex_method: dv2_snap, default: false, schema_md5: d4396a3490ea5aec4b02f0c34fa9db33}
+      training_tree: recTreeWireCell        # PROVISIONAL: the toolkit default. Must equal the Round-2 production choice
+      training_tree_confirmed: false
+    compiled_config_md5: {sim_split_move: fa3745b3b49538b845feedb894bc3551, sim_snap: 91e79e852ac19724fb5f31e66a0b2202}
+    samples:
+      wcl1116-aurora-ncdr: {pairs: full/ncdr-pairs.tsv, units: 17604, events: 26745, list: null, list_sha256: null, status: "COMPLETE 2026-11-17 (17,604/17,604 OK, both validations PASS)"}
+      wcl1116-aurora-bnb: {pairs: full/bnb-pairs.tsv, units: 11888, events: 627205, list: null, list_sha256: null, status: "COMPLETE 2026-11-17 (11,874 OK + 14 PARTIAL, both validations PASS)"}
+      wcl1116-aurora-nuecc: {pairs: full/nuecc-pairs.tsv, units: 61252, events: 268865, list: null, list_sha256: null, status: "IN PROGRESS (resume 9097990 queued); needed by Xuyang/Matteo, by SP nue if retrained"}
+      wcl1116-fg-beamoff-train:
+        status: "REPROCESSED ON FERMIGRID inside wcl1116-fg-beamoff (evaluation-side entry, both halves); training half not split out, not on Aurora"
+        selection: "pair ids of fg1-beamoff-train (odd runs; xning/bdt-comm/data/fg1-beam-off-train.list.tsv, 572 ids) or run % 2 == 1"
+        location: /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/WCLocal2026Nov16/beam-off/<id>/
+        firewall: "refused (/pnfs/, prod-fermigrid, beam-off markers) unless the SP other final spec lists it in approved_exceptions with approved_by"
+        approved_by: null
+        list: null
+        list_sha256: null
+
+upstream_models:          # placeholders: filled only when the owners freeze them
+  nu_mu_final:   {owner: Xuyang Ning + Matteo Vicenzi, file: null, sha256: null, status: NOT_FROZEN, booked_in_wcl1116: "uboone/weights/numu_scalars_scores_0923.xml sha256 426e670c3a1650ea... (shipped)"}
+  nu_mu_level1:  {owner: Xuyang Ning + Matteo Vicenzi, files: [numu_tagger1, numu_tagger2, numu_tagger3, cos_tagger_10], status: "UNKNOWN whether retrained (shipped today)"}
+  nu_e_final:    {owner: Xuyang Ning + Matteo Vicenzi, file: null, sha256: null, status: NOT_FROZEN, booked_in_wcl1116: "uboone/weights/XGB_nue_seed2_0923.xml sha256 6199d20294f4c20d... (shipped)"}
+  nu_e_level1:   {owner: shipped, files: "15 TMVA level-1 XMLs (br3_3 ... tro_5)", status: "FIXED (Xuyang spec_v1.md:67: used as stored)"}
+  dl_vertex:     {owner: Snehadri, file: dv2max/sbnd/aurora_space/bundle.json, sha256: 51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74, status: "AS RUN in wcl1116"}
+  wct_config:    {owner: Haiwang Yu, compiled_md5_sim_split_move: fa3745b3b49538b845feedb894bc3551, status: "AS RUN in wcl1116"}
+
+gates_before_final_training:
+  - refreshed training lists written by tools/make_refresh_list.py from COMPLETE samples, hashed, manifests committed
+  - training_tree_confirmed true (split-move vs snap = the Round-2 production vertex)
+  - nu_mu chain frozen (final + level-1 decision) and numu_score / numu_*_score recomputed on the refreshed training CAFs (SP numu, SP other)
+  - nu_e level-1 still fixed (SP ncpi0); nu_e final frozen only matters for the nu_e analysis, not for SP ncpi0
+  - SP other: wcl1116-fg-beamoff-train odd-run half available on the training side and approved_by filled
+  - Round-2 production configuration (toolkit, DL bundle, config md5) equals the one recorded above, or the refresh is redone

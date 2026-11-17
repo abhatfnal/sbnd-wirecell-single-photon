@@ -6,6 +6,9 @@ Round-2 architecture (2026-11-17):
     includes the fg1 beam-off "train" half that Xuyang's spec_v1 trains on: here it is refused unless a training spec
     names it under approved_exceptions together with who approved it.
   * Nothing is written into another user's area.
+  * 2026-11-17: Haiwang's WCLocal2026Nov16 refresh. Aurora side (wcl1116-aurora-{bnb,ncdr,nuecc}) = TRAINING;
+    FermiGrid side (wcl1116-fg-*) = EVALUATION ONLY. Its full beam-off (wcl1116-fg-beamoff) holds both run-parity
+    halves: only its odd-run training half may ever enter a training spec, as an approved exception.
 
 Every check raises FirewallError; nothing is silently dropped.
 """
@@ -14,7 +17,11 @@ import os
 # Path fragments that only official evaluation samples (or real data) carry.
 OFFICIAL_MARKERS = ('/pnfs/', 'prod-fermigrid', '/fg1/', 'fg1-', 'fg1_', 'beam-off', 'beamoff', 'run3bnb', 'open-run1',
                     'opendata', 'bnb-data', 'sbnd2026a', 'data_filtered_decoded', 'strmoffbeam', 'strmbnb', 'onbeam',
-                    'offbeam')
+                    'offbeam',
+                    # 2026-11-17: the evaluation side of Haiwang's WCLocal2026Nov16 production (FermiGrid: CV, nueCC,
+                    # beam-off, run3bnb, opendata; catalogue ids wcl1116-fg-*), in case its files are ever copied to a
+                    # path without the markers above. The training side is wcl1116-aurora-* (no marker).
+                    'wcl1116-fg', 'wclocal2026nov16-fermigrid', 'wclocal2026nov16/mc-', 'wclocal2026nov16/beam-off')
 FOREIGN_USER_AREAS = ('/lus/flare/projects/neutrinoGPU/xning', '/lus/flare/projects/neutrinoGPU/yuhw')
 
 

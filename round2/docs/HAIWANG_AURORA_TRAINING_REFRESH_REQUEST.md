@@ -1,12 +1,18 @@
 # Request to Haiwang: a training-only Aurora refresh before the final single-photon BDT freeze
 
+> **SUPERSEDED — REFRESH ALREADY IN PROGRESS (2026-11-17).** Haiwang started the Round-2 refresh himself, before this
+> draft was sent: **WCLocal2026Nov16**, with WCT 0.38.0 and Snehadri's DV2-MAX `aurora_space` DL vertex, on Aurora
+> (training: NC Δ, BNB, νe CC) and FermiGrid (evaluation, including the full fg1 beam-off, hence its odd-run training
+> half). This draft was **never sent** and must not be sent. It is kept unchanged below as provenance of what the SP
+> training needs. The live state is in `HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`.
+
 Draft, 2026-11-17. Not sent. This is **not** the official Round-2 evaluation campaign: it touches only the Aurora
 training/development samples. No official evaluation sample is involved; the only fg1 product is the beam-off half that
 the productions catalogue designates as training side (`fg1-beamoff-train`).
 
 Updated the same day after the thesis audit (`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`) and again after the EAF
 XML fingerprint. The training targets of SP numu, other and ncpi0 are now known, and SP numu is proposed to join
-(`SP_BDT_ROUND2_FREEZE_ORDER.md` §4). SP nue is undecided. The sample table follows the complete model set.
+(`SP_BDT_ROUND2_FREEZE_ORDER.md` §5). SP nue is undecided. The sample table follows the complete model set.
 
 Revised after the evidence audit (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` §8):
 - No new cosmic generation is needed. The existing `fg1-beamoff-train` half should be reprocessed instead.

@@ -9,12 +9,17 @@ complete training machinery before three things exist:
 - Xuyang's frozen νμ chain;
 - Haiwang's Round-2 training refresh.
 
+*Evening update.* Haiwang's refresh is now running with Snehadri's DL vertex: WCLocal2026Nov16, with Aurora NC Δ and
+BNB complete (`HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`). The upstream νμ / νe taggers belong to Xuyang and Matteo
+and are different from SP numu / SP nue, which Avinay owns.
+
 **Not trained:**
 - **SP other:** the EXT sample exists (`fg1-beamoff-train`, 481 usable rows, statistically limited, fg1 reconstruction).
   Waiting for Avinay's approved beam-off exception and Xuyang's νμ freeze. Updated after the evidence audit
-  (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md`).
-- **SP nue:** DECISION BLOCKED — VERTEX DOMAIN SHIFT UNKNOWN. The thesis/XML mismatch is resolved: Fig. E.4 = the first
-  200 trees of the frozen XML.
+  (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md`). The beam-off has since been reprocessed with the Round-2 chain,
+  inside the FermiGrid `wcl1116-fg-beamoff`; its odd-run half still has to reach the training side.
+- **SP nue:** DECISION PENDING. The thesis/XML mismatch is resolved: Fig. E.4 = the first 200 trees of the frozen XML.
+  The domain-shift test is planned on the refresh (`SP_BDT_ROUND2_FREEZE_ORDER.md` §6).
 
 ## 1. Inputs, frozen before training
 
@@ -140,7 +145,8 @@ The native score is the `binary:logitraw` raw margin, `m = Σ leaf` with `base_s
 `output_margin`. It is **not** the production `log10((1+v)/(1−v))`.
 
 Before any threshold can be assigned, an exporter and an equivalence test are required, then final models and a joint
-threshold procedure fixed in advance (`SP_BDT_SCORE_SCALE_AND_EXPORT_REQUIREMENTS.md`). No legacy threshold is drawn on
+threshold procedure fixed in advance (`SP_BDT_SCORE_SCALE_AND_EXPORT_REQUIREMENTS.md`). The exporter now exists. On
+these two models as fixtures it is exact against the double leaf sum, with 0 flips (`SP_BDT_EXPORT_EQUIVALENCE_STATUS.md`). No legacy threshold is drawn on
 any plot.
 
 ## 5. What we learned from development training
@@ -153,7 +159,9 @@ any plot.
 3. **SP ncpi0** reaches test AUC 0.817 with a **large train/test gap** (0.17).
    - On the same held-out rows the legacy MicroBooNE model reaches only 0.754. The development model does not
      generalize worse than the legacy one: the gap is variance, not a loss relative to the inherited model.
-   - Its negative class is 4.5k training rows, against MicroBooNE's 37k.
+   - Its negative class is 4.5k training rows, against MicroBooNE's 37k. A negative-statistics learning curve
+     (diagnostic, same spec and test fold) gives +0.010 test AUC per doubling, against a seed spread of 0.0014, and no
+     plateau: **SOME BENEFIT LIKELY** (`validation/ncpi0_negative_learning_curve_dev.json`).
    - The development model leans less on the 15 νe level-1 scores than the thesis model.
    - The development model makes little use of `kine_pio_flag`, which is largely redundant with `kine_pio_mass` in SBND.
 4. **XGBoost conventions** that the final export must respect:
@@ -167,12 +175,12 @@ any plot.
   - frozen Xuyang νμ chain;
   - Haiwang's Aurora training refresh;
   - retraining on the refreshed values;
-  - exporter and equivalence test.
+  - exporter and equivalence test: Python side done, C++ reader check pending.
 - **SP ncpi0:**
   - frozen DL vertex and reconstruction;
   - confirmation that the 15 νe level-1 models stay fixed;
   - the training refresh;
-  - ideally an NC π⁰-enriched training sample, if the collaboration produces one;
+  - ideally an NC π⁰-enriched training sample: the learning curve says SOME BENEFIT LIKELY. Not requested; Avinay's call;
   - exporter and equivalence test.
 - **Both:**
   - a threshold procedure fixed in advance, on an Aurora validation fold, never on the development test fold or an

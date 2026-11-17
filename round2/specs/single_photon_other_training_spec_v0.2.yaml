@@ -3,8 +3,9 @@
 # Pages are PRINTED pages (PDF = +13). Audit: round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
 # v0.2.1 (same day): thesis/XML fingerprint verified (EAF audit 0148e879 + Fig. E.2). Classes unchanged.
 # v0.2.2 (same day): EXT availability corrected after the evidence audit (ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md).
+# v0.2.3 (same evening): the beam-off was reprocessed in Haiwang's Round-2 production (wcl1116-fg-beamoff); status unchanged.
 spec_id: single_photon_other_training_spec
-spec_version: 0.2.2
+spec_version: 0.2.3
 date: 2026-11-17
 author: Avinay Bhat (prepared with Claude Code)
 status: READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE
@@ -81,6 +82,10 @@ missing_training_sample:
     sha256 acb69100...0ea64). 572 files, 558 after Xin's hold-out; 26,418 events; 481 preselected candidates with all 146
     inputs finite (267 train / 214 test by run % 4). wct_version sbnd-dlvtx-35-pre-master-merge-2026-09-02-424-g78f81c64
     (fg1 chain, not aurora-r2). Census: validation/fg1_beam_off_train_other_census.json.
+    Round-2 reprocessing (2026-11-17): all 1,096 fg1 beam-off pairs rerun with WCT 0.38.0 + DV2-MAX aurora_space in
+    WCLocal2026Nov16-FermiGrid (catalogue wcl1116-fg-beamoff, evaluation-side entry holding both halves; dCache
+    /pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/WCLocal2026Nov16/beam-off/). Pair ids match the training list.
+    The odd-run half is not yet split out or on Aurora (docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md section 5).
   approval_needed: "the Round-2 firewall refuses fg1 paths unless approved_exceptions names this sample and who approved it"
   statistics: "481 rows = 3.1 % of the 15,281 aurora-r2 MC 'other' negative rows; more off-beam data would help"
   required_split: >
@@ -100,10 +105,12 @@ samples:
       components: ["signal"]
       files: 17603
   missing:
-    - "fg1-beamoff-train reprocessed with the Round-2 refresh reconstruction (see missing_training_sample)"
+    - "odd-run (training) half of wcl1116-fg-beamoff (Round-2 reprocessing exists on FermiGrid) on the training side, with approved_exceptions filled"
   class_census: "not run (status not ready). The MC components counted in the ncpi0 dry run are in the audit, section 9.3"
   excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beamoff-eval (even runs), fg1-beamoff (full 50k), run3-bnb-data,
-                                 open-run1-bnb-data, selected-data, official SAM EX_ncdeltarad, Xin hold-out lists]
+                                 open-run1-bnb-data, selected-data, official SAM EX_ncdeltarad, Xin hold-out lists,
+                                 wcl1116-fg-cv, wcl1116-fg-nuecc, wcl1116-fg-run3bnb, wcl1116-fg-opendata,
+                                 wcl1116-fg-beamoff (even runs and as a whole)]
   approved_exceptions: []
 
 split:

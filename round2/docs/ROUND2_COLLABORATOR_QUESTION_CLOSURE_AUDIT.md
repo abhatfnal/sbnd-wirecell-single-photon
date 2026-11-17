@@ -5,6 +5,11 @@ Date: 2026-11-17 (Aurora, `aurora-uan-0012`). Branch `round2/sp-bdt-development-
 This is a read-only evidence audit: nobody was contacted, nothing was trained or launched, and no file of Xuyang or
 Haiwang was changed. Their repositories were read with `git -c safe.directory=… --no-optional-locks`.
 
+**Updated the same evening (§10).** Haiwang's Round-2 refresh is already running: **WCLocal2026Nov16**. The audit
+below had read `sbnd-wirecell-production` `main` at `8edda03`. The production lived on branch `wclocal-nov16`, and its
+catalogue entry landed on `main` as `f4f2f93` at 19:07Z. §10 supersedes rows 8, 12, 17 and 18 of the matrix, and the
+Haiwang question.
+
 ## 0. Sources read
 
 | source | pin | inspected |
@@ -289,3 +294,27 @@ reason only: the vertex-domain shift is unknown.
 | 18 | Is the `wct_version` / catalogue mismatch understood? | `aurora-r8-chain.md:155`; our audit §0 | yes | high | **LIKELY CLOSED — VERIFY INTERNALLY** | — |
 
 The remaining questions are in `ROUND2_MINIMAL_COLLABORATOR_QUESTIONS.md`.
+
+## 10. Update after the audit of the active production (2026-11-17, 19:46 UTC)
+
+Read-only sources:
+- catalogue `f4f2f93`;
+- ai-helper issue 48 (`e75e403`);
+- `yuhw/production-prep/WCLocal2026Nov16/`, `yuhw/wct-0.38.0` (`c935e30d`, clean) and `yuhw/wcd-0.38.0` (`99c6497f`);
+- `qstat`;
+- a smoke read of 25 refreshed units.
+
+Details: `HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`.
+
+| # | question | new evidence | answer | status |
+|---:|---|---|---|---|
+| 8 | Do we need a new cosmic sample? | `wcl1116-fg-beamoff` reprocesses all 1,096 fg1 beam-off pairs with the Round-2 chain; pair ids match `fg1-beam-off-train.list.tsv` | no; the odd-run half is already reprocessed | **CLOSED — DO NOT ASK**. Logistics remain: a training-side split and a copy to Aurora, which the owner note anticipates, plus Avinay's exception |
+| 12 | Is one training refresh enough, and does it include beam-off? | Haiwang runs one refresh for training (Aurora) **and** evaluation (FermiGrid), with the same toolkit, bundle and two passes; booked νμ / νe weights are the shipped ones | yes for MC and beam-off. Upstream scores are recomputed offline: `numu_score` bit-identical on 148 / 148 refreshed candidates | **CLOSED — DO NOT ASK** (the νμ L1 caveat of #3 remains) |
+| 17 | Can toolkit / weight / DL hashes be stored? | `Trun.dl_weights` stores the bundle path **with its sha256**; toolkit tag → `c935e30d`; all 36 booked weights hashed here (`manifests/wcl1116_aurora_v0/production_provenance.json`) | yes | **CLOSED** |
+| 18 | `wct_version` mismatch | the refresh stamps the bare tag `"0.38.0"` | understood; the commit is recorded beside it | **CLOSED** |
+| 3 / 4 | Are the νμ L1 models changing (Xuyang/Matteo)? | no νμ spec, code or model in `xning/bdt-comm@42236ad` or `Ningclover/sbnd-wirecell-bdt@e0ea617`; no Aurora area for Matteo (his role in Xuyang's files is the evaluation standard) | not determinable | **GENUINELY NEEDS XUYANG/MATTEO** |
+| new | Which vertex tree is Round-2's (`dv2_split_move` vs `dv2_snap`)? | both "kept side by side" (issue 48 §0); split-move is the 0.38.0 default and fills `recTreeWireCell` | not decided in the files | **NOT A QUESTION NOW**: needed only at final SP training; the registry assumes the default |
+
+New risk, found here and not a collaborator question: Snehadri's DL vertex was trained on fold 1 of the aurora-r2
+BNB + νe CC events, i.e. on the same events as SP training. A read-only check is planned (tracker §2).
+

@@ -1,29 +1,35 @@
 # Round-2: the questions that existing evidence does not answer
 
-Date: 2026-11-17. Draft, **not sent**. Everything else was closed from existing sources
-(`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md`).
+Date: 2026-11-17. Updated the same evening after the audit of Haiwang's active production
+(`HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`; `ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` §10). Draft, **not sent**.
+Nobody is to be contacted in this phase.
 
-## Questions still required for Xuyang
+## Questions still required for Xuyang / Matteo
 
-1. **νμ level-1 models.** When you retrain the νμ CC BDT (after νe, `PLAN.md:86`), will the four νμ level-1 models stay
-   as shipped, with only the final `numu_score` model retrained?
-   - The level-1 models are `numu_tagger1`, `numu_tagger2`, `numu_tagger3` and `cos_tagger_10`. Their stored scores
-     are `numu_1_score`, `numu_2_score`, `numu_3_score` and `cosmict_10_score`.
-   - The final model is `numu_scalars_scores_0923.xml`, with 74 inputs.
+1. **νμ level-1 models.** When you retrain the νμ CC tagger, will the four νμ level-1 models stay as shipped, with only
+   the final `numu_score` model retrained? The level-1 models are `numu_tagger1`, `numu_tagger2`, `numu_tagger3` and
+   `cos_tagger_10`; their scores are `numu_1_score`, `numu_2_score`, `numu_3_score` and `cosmict_10_score`.
 
-   *Why it matters.* We have shown that the final `numu_score` can be recomputed offline, bit-identical on 320k aurora-r2
-   candidates. A changed level-1 model would need its per-object inputs re-scored through an AdaBoost evaluator with
-   input transforms, or a second WCT rerun.
+   *Why it matters.* SP numu and SP other read `numu_score` and `numu_1_score`. We recompute the final `numu_score`
+   offline, bit-identical on 320,228 aurora-r2 and 148 refreshed candidates. A changed level-1 model needs its stored
+   per-object inputs re-scored through an AdaBoost-with-transforms evaluator, which does not exist yet, or a toolkit
+   rerun.
+
+   *Searched first:* `xning/bdt-comm@42236ad`, `Ningclover/sbnd-wirecell-bdt@e0ea617`, Xuyang's Aurora area, and the
+   project directory list (Matteo has no Aurora area). There is no νμ spec, code or model, so it cannot be determined
+   from files.
 
 ## Questions still required for Haiwang
 
-1. **Beam-off in the training refresh.** Can the Round-2 training refresh also reprocess the `fg1-beamoff-train` half
-   (572 odd-run pairs, InTime Run 1) with the same toolkit and configuration as the MC refresh?
-   - That would be step 2 on its qlpctrees, which were on dCache scratch on 2026-11-09, or step 1+2 from the reco1.
-   - The aim is to keep the EXT component of SP "other" in the training domain. Today those files carry the fg1 stamp
-     `…-g78f81c64`, not aurora-r2's.
-   - Optional: is there any further SBND off-beam data that could be added to the training side? The half gives only
-     481 usable SP-other rows.
+**None now.** The earlier question, whether the refresh could include the beam-off training half, is answered by his
+production: `wcl1116-fg-beamoff` reprocesses the whole fg1 beam-off with the Round-2 chain.
 
-Nothing else is needed from either of them now. In particular, no new cosmic generation, no NC π⁰ production (first an
-internal learning curve), and no question about the deployment route until the models are final.
+These need no question today; raise them only when final SP training is ready to start:
+- the training-side split of `wcl1116-fg-beamoff`, i.e. its odd-run half, and a copy of those merged CAFs to Aurora.
+  The catalogue note already says to split it "the same way";
+- which of the two vertex trees (`recTreeWireCell` = `dv2_split_move`, `recTreeWireCell_dv2snap` = `dv2_snap`) Round-2
+  production uses.
+
+Nothing else is needed from anyone now. In particular, no new cosmic generation and no deployment-route question until
+the models are final. A possible NC π⁰-enriched sample is not to be requested yet: the learning curve says SOME BENEFIT
+LIKELY, which is Avinay's call (`SP_BDT_ROUND2_FREEZE_ORDER.md` §11).

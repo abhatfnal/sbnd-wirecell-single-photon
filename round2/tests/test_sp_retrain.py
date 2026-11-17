@@ -57,7 +57,10 @@ AURORA = '/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace'
 @pytest.mark.parametrize('path', [
     '/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/fg1/mc-cv/x/merged.wc.flat.caf.root',
     '/lus/flare/projects/neutrinoGPU/xning/data/fg1-beam-off-train/data_filtered_decoded_reco1-0003/x.root',
-    AURORA + '/../fg1/beam-off-eval/a.root'])
+    AURORA + '/../fg1/beam-off-eval/a.root',
+    '/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/WCLocal2026Nov16/mc-cv/x/merged.wc.flat.caf.root',
+    '/lus/flare/projects/neutrinoGPU/abhat/sbnd/copies/WCLocal2026Nov16-FermiGrid/x.wc.flat.caf.root',
+    '/lus/flare/projects/neutrinoGPU/abhat/sbnd/copies/wcl1116-fg-cv/x.wc.flat.caf.root'])
 def test_firewall_refuses_official_samples(path):
     with pytest.raises(firewall.FirewallError):
         firewall.check_training_inputs([path], [AURORA, '/lus/flare/projects/neutrinoGPU/xning/data'])
@@ -68,7 +71,12 @@ def test_firewall_accepts_aurora_and_refuses_outside_roots():
     assert firewall.check_training_inputs([ok], [AURORA]) == 1
     with pytest.raises(firewall.FirewallError):
         firewall.check_training_inputs(['/lus/flare/projects/neutrinoGPU/abhat/sbnd/gen2-x/flatcaf/a.root'], [AURORA])
-    for s in ('fg1-mc-ncdr', 'fg1-beam-off-train', 'run3-bnb-data'):
+    refreshed = '/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full'
+    assert firewall.check_training_inputs([refreshed + '/ncdr/node0/reco1-detsim-g4-filter-gen-0019-dc57-75d9-29b4/merged/'
+                                           'reco2-reco1-detsim-g4-filter-gen-0019-dc57-75d9-29b4.wc.flat.caf.root'], [refreshed]) == 1
+    firewall.check_sample_id('wcl1116-aurora-ncdr')
+    for s in ('fg1-mc-ncdr', 'fg1-beam-off-train', 'run3-bnb-data', 'wcl1116-fg-cv', 'wcl1116-fg-nuecc', 'wcl1116-fg-beamoff',
+              'wcl1116-fg-run3bnb', 'wcl1116-fg-opendata'):
         with pytest.raises(firewall.FirewallError):
             firewall.check_sample_id(s)
     firewall.check_sample_id('aurora-r2-ncdr')
@@ -492,3 +500,81 @@ def test_evidence_closure_summaries():
     u = bo['usable_ext_negative_rows']
     assert u['total'] == u['train'] + u['test'] == bo['preselected']
     assert bo['list_sha256'] == 'acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64'
+
+
+# ---------------------------------------------------------------- active Round-2 production (WCLocal2026Nov16)
+def _load_tool(name):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(name, os.path.join(ROUND2, 'tools', name + '.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_round2_training_registry_is_a_safe_skeleton():
+    import yaml
+    d = yaml.safe_load(open(os.path.join(ROUND2, 'config', 'samples', 'round2_training_samples.yaml')))
+    assert d['status'] == 'SKELETON_NOT_FOR_FINAL_TRAINING' and d['active_training_domain'] == 'aurora-r2'
+    w = d['domains']['wcl1116-aurora']
+    assert w['vertex']['training_tree'] == 'recTreeWireCell' and w['vertex']['training_tree_confirmed'] is False
+    assert all(s['list'] is None and s['list_sha256'] is None for s in w['samples'].values())
+    assert w['samples']['wcl1116-fg-beamoff-train']['approved_by'] is None
+    assert d['upstream_models']['nu_mu_final']['sha256'] is None and d['upstream_models']['nu_e_final']['sha256'] is None
+    for sid in ('wcl1116-aurora-ncdr', 'wcl1116-aurora-bnb', 'wcl1116-aurora-nuecc'):
+        firewall.check_sample_id(sid)
+    with pytest.raises(firewall.FirewallError):
+        firewall.check_sample_id('wcl1116-fg-beamoff-train')
+    with pytest.raises(firewall.FirewallError):
+        firewall.check_training_inputs([w['samples']['wcl1116-fg-beamoff-train']['location'].replace('<id>', 'x') + 'a.root'],
+                                       ['/pnfs/sbnd/persistent/users/yuhw'])
+    prov = json.load(open(os.path.join(ROUND2, 'manifests', 'wcl1116_aurora_v0', 'production_provenance.json')))
+    assert prov['dl_vertex']['bundle_sha256'] == w['vertex']['bundle_sha256']
+    assert {k: v['sha256'] for k, v in prov['dl_vertex']['files'].items()} == w['vertex']['checkpoints_sha256']
+    assert prov['toolkit']['commit'] == w['toolkit']['commit'] and prov['bdt_weights']['booked'] == 36
+    assert prov['bdt_weights']['identical_to_aurora_r2_copies'] is True
+    assert prov['compiled_config_md5']['sim_default'] == prov['compiled_config_md5']['sim_split_move']
+
+
+def test_make_refresh_list_census_and_refusal(tmp_path):
+    mk = _load_tool('make_refresh_list')
+    root = tmp_path / 'full' / 'ncdr'
+    units = {'u1': 'OK', 'u2': 'PARTIAL', 'u3': None}
+    for u, st in units.items():
+        d = root / 'node0' / u / 'merged'
+        d.mkdir(parents=True)
+        (d / (u + '.wc.flat.caf.root')).write_text('x')
+        if st:
+            (root / 'node0' / u / 'status').write_text(st + '\n')
+            for v in mk.VALIDATIONS:
+                (root / 'node0' / u / v).write_text(json.dumps({'result': 'PASS'}))
+    pairs = tmp_path / 'pairs.tsv'
+    pairs.write_text('#id\treality\n' + ''.join('%s\tsim\n' % u for u in units))
+    c, rows = mk.census(str(root), str(pairs))
+    assert (c['listed'], c['OK'], c['PARTIAL'], c['no_status'], c['both_validations_pass'], c['complete']) == (3, 1, 1, 1, 2, False)
+    (root / 'node0' / 'u3' / 'status').write_text('FAIL\n')
+    c, rows = mk.census(str(root), str(pairs))
+    assert c['complete'] and c['FAIL'] == 1
+    assert [r['unit'] for r in rows if r['status'] == 'OK' and r['validations_pass']] == ['u1']
+
+
+def test_ncpi0_learning_curve_rule_and_result():
+    lc = _load_tool('ncpi0_negative_learning_curve')
+    assert lc.classify(0.03, 0.001).startswith('STRONG')
+    assert lc.classify(0.01, 0.001) == 'SOME BENEFIT LIKELY'
+    assert lc.classify(0.01, 0.006) == 'CURRENT BNB STATISTICS APPEAR ADEQUATE'
+    assert lc.classify(0.003, 0.0001) == 'CURRENT BNB STATISTICS APPEAR ADEQUATE'
+    r = json.load(open(os.path.join(ROUND2, 'validation', 'ncpi0_negative_learning_curve_dev.json')))
+    assert r['label'] == 'DIAGNOSTIC_ONLY_NOT_A_MODEL' and r['reproduces_development_model']['match']
+    assert r['fixed']['positives_train_rows'] == 8915 and r['fixed']['negatives_train_rows_full'] == 4457
+    assert [p['fraction'] for p in r['per_fraction']] == [0.125, 0.25, 0.5, 0.75, 1.0]
+    assert r['result']['classification'] == lc.classify(r['result']['gain_test_auc_half_to_full'], r['result']['seed_sigma'])
+
+
+def test_refresh_smoke_summary():
+    s = json.load(open(os.path.join(ROUND2, 'validation', 'refresh_smoke_wcl1116_aurora.json')))
+    for name in ('bnb', 'ncdr'):
+        a = s['samples'][name]['summary']
+        assert a['all_trees_present'] and a['branches_new_equal_old'] and a['snap_lacks_only_dlvtx_space'] and a['event_keys_equal']
+        assert a['builder_errors'] == 0 and a['missing_inputs'] == {'new': [], 'snap': []}
+        assert a['wct_versions'] == ['0.38.0'] and a['numu_rescore']['bit_identical'] == a['numu_rescore']['candidates'] > 0
+        assert all('51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74' in x for x in a['dl_weights'] + a['dl_weights_snap'])
