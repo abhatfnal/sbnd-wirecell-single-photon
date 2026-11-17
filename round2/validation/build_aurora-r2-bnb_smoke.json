@@ -1,0 +1,25 @@
+{
+ "sample": "aurora-r2-bnb",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt",
+ "list_sha256": "dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb",
+ "slice": "0:15",
+ "files": 15,
+ "errors": 0,
+ "label_unreadable_files": 0,
+ "truth_pf_unreadable_files": 0,
+ "holdout_files": 0,
+ "events": 784,
+ "candidates": 382,
+ "truth_rows": 1416,
+ "wct_versions": [
+  "sbnd-dlvtx-35-pre-master-merge-54-ga2785870"
+ ],
+ "code": {
+  "commit": "615fe56c327f1aae8165723893653ea153bc40ca",
+  "dirty": true
+ },
+ "python": "3.12.12",
+ "uproot": "5.7.7",
+ "pandas": "3.0.5",
+ "wall_s": 3.4
+}

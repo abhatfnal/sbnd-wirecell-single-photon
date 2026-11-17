@@ -1,0 +1,106 @@
+{
+ "label": "Xuyang spec_v1 merged tables (bdt-comm 2c499b9 builder), full aurora-r2, read-only",
+ "tables": "/lus/flare/projects/neutrinoGPU/xning/BDT/working/step4_tables/output/merged",
+ "tag": "",
+ "samples": {
+  "aurora-r2-ncdr": {
+   "rows": 23965,
+   "shw_sp_filled": 16534,
+   "shw_sp_filled_and_20mev": 16534,
+   "br_filled": 8071,
+   "inputs_present": {
+    "single_photon_ncpi0": 33,
+    "single_photon_other": 145
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [
+     "kine_pio_mass",
+     "kine_pio_flag",
+     "kine_pio_vtx_dis",
+     "kine_pio_energy_1",
+     "kine_pio_theta_1",
+     "kine_pio_phi_1",
+     "kine_pio_dis_1",
+     "kine_pio_energy_2",
+     "kine_pio_theta_2",
+     "kine_pio_phi_2",
+     "kine_pio_dis_2",
+     "kine_pio_angle"
+    ],
+    "single_photon_other": [
+     "reco_nuvtxY"
+    ]
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 0.00018144429660094352,
+    "single_photon_other": 0.0
+   }
+  },
+  "aurora-r2-bnb": {
+   "rows": 296263,
+   "shw_sp_filled": 63581,
+   "shw_sp_filled_and_20mev": 63581,
+   "br_filled": 19943,
+   "inputs_present": {
+    "single_photon_ncpi0": 33,
+    "single_photon_other": 145
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [
+     "kine_pio_mass",
+     "kine_pio_flag",
+     "kine_pio_vtx_dis",
+     "kine_pio_energy_1",
+     "kine_pio_theta_1",
+     "kine_pio_phi_1",
+     "kine_pio_dis_1",
+     "kine_pio_energy_2",
+     "kine_pio_theta_2",
+     "kine_pio_phi_2",
+     "kine_pio_dis_2",
+     "kine_pio_angle"
+    ],
+    "single_photon_other": [
+     "reco_nuvtxY"
+    ]
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 6.291187618942766e-05,
+    "single_photon_other": 0.0
+   }
+  },
+  "aurora-r2-nuecc": {
+   "rows": 264844,
+   "shw_sp_filled": 217481,
+   "shw_sp_filled_and_20mev": 217481,
+   "br_filled": 183762,
+   "inputs_present": {
+    "single_photon_ncpi0": 33,
+    "single_photon_other": 145
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [
+     "kine_pio_mass",
+     "kine_pio_flag",
+     "kine_pio_vtx_dis",
+     "kine_pio_energy_1",
+     "kine_pio_theta_1",
+     "kine_pio_phi_1",
+     "kine_pio_dis_1",
+     "kine_pio_energy_2",
+     "kine_pio_theta_2",
+     "kine_pio_phi_2",
+     "kine_pio_dis_2",
+     "kine_pio_angle"
+    ],
+    "single_photon_other": [
+     "reco_nuvtxY"
+    ]
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 8.736395363273113e-05,
+    "single_photon_other": 0.0
+   }
+  }
+ }
+}

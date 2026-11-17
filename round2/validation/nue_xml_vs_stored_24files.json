@@ -1,0 +1,137 @@
+{
+ "xml": "/lus/flare/projects/neutrinoGPU/yuhw/wire-cell-data/uboone/weights/XGB_nue_seed2_0923.xml",
+ "xml_creator": "xgboost2TMVA",
+ "ntrees": 600,
+ "nvars": 258,
+ "boost_weights_all_one": true,
+ "parse_seconds": 11.3,
+ "files": 24,
+ "candidates": 232,
+ "br_filled": 32,
+ "bit_identical": 232,
+ "max_abs_diff": 0.0,
+ "rows_with_nan_input": 0,
+ "per_file": [
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-000d-92bb-c1b1-01fa.wc.flat.caf.root",
+   "candidates": 5,
+   "br_filled": 4
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0025-e2e4-237b-99c8.wc.flat.caf.root",
+   "candidates": 2,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0033-3b52-9fdb-258d.wc.flat.caf.root",
+   "candidates": 3,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0043-90d1-a4d1-c3fe.wc.flat.caf.root",
+   "candidates": 4,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0056-6c87-64f9-cc92.wc.flat.caf.root",
+   "candidates": 4,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0069-d697-7e14-389b.wc.flat.caf.root",
+   "candidates": 6,
+   "br_filled": 4
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0079-47c5-e779-6860.wc.flat.caf.root",
+   "candidates": 4,
+   "br_filled": 3
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0081-4973-5832-3b73.wc.flat.caf.root",
+   "candidates": 1,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-009f-291d-0e01-b672.wc.flat.caf.root",
+   "candidates": 22,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00a1-7d07-b07f-dfaf.wc.flat.caf.root",
+   "candidates": 22,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00ad-353a-b8af-08e7.wc.flat.caf.root",
+   "candidates": 24,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00b4-bb28-8854-b1ce.wc.flat.caf.root",
+   "candidates": 24,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00bc-2e00-2b52-1690.wc.flat.caf.root",
+   "candidates": 32,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00e2-8508-3e80-ae67.wc.flat.caf.root",
+   "candidates": 21,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00f8-a11f-5a9b-1e7d.wc.flat.caf.root",
+   "candidates": 28,
+   "br_filled": 2
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-gen-00fa-f8ad-950c-34bb.wc.flat.caf.root",
+   "candidates": 18,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0011-dddd-1d03-7a79.wc.flat.caf.root",
+   "candidates": 1,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0019-dc57-75d9-29b4.wc.flat.caf.root",
+   "candidates": 2,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0031-d497-d196-0aad.wc.flat.caf.root",
+   "candidates": 2,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0039-0863-3b71-412c.wc.flat.caf.root",
+   "candidates": 1,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0055-d595-7cf5-0171.wc.flat.caf.root",
+   "candidates": 1,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0062-fdeb-1f8c-2e3d.wc.flat.caf.root",
+   "candidates": 2,
+   "br_filled": 0
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-0070-5ecd-869e-d5ed.wc.flat.caf.root",
+   "candidates": 2,
+   "br_filled": 1
+  },
+  {
+   "file": "reco2-reco1-detsim-g4-filter-gen-007e-3542-f75a-5152.wc.flat.caf.root",
+   "candidates": 1,
+   "br_filled": 0
+  }
+ ],
+ "pass": true
+}

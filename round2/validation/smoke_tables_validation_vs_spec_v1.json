@@ -1,0 +1,153 @@
+{
+ "aurora-r2-ncdr": {
+  "candidates": 86,
+  "placeholders": 0,
+  "truth_rows": 175,
+  "missing_input_columns": {
+   "single_photon_ncpi0": [],
+   "single_photon_other": []
+  },
+  "split_counts": {
+   "train": 41,
+   "test": 33,
+   "validation": 12
+  },
+  "events_subruns_checked": [
+   81,
+   81
+  ],
+  "partner_kind": {
+   "neutrino": 82,
+   "cosmic": 3,
+   "none": 1
+  },
+  "truth_census": {
+   "nc": 114,
+   "cc": 61,
+   "n_prim_pi0": {
+    "0": 159,
+    "1": 15,
+    "2": 1
+   },
+   "n_prim_gamma": {
+    "0": 83,
+    "1": 92
+   },
+   "nc_with_prim_gamma_no_pi0": 90
+  },
+  "reference": {
+   "path": "/lus/flare/projects/neutrinoGPU/xning/BDT/working/step4_tables/output/merged/cands_aurora-r2-ncdr.parquet",
+   "rows_ours": 86,
+   "rows_ref": 86,
+   "matched": 86,
+   "only_ours": 0,
+   "only_ref": 0,
+   "shared_columns": 1057,
+   "differing_columns": {
+    "m_pdg": 4,
+    "m_ccnc": 4
+   }
+  }
+ },
+ "aurora-r2-bnb": {
+  "candidates": 382,
+  "placeholders": 8,
+  "truth_rows": 1416,
+  "missing_input_columns": {
+   "single_photon_ncpi0": [],
+   "single_photon_other": []
+  },
+  "split_counts": {
+   "test": 186,
+   "train": 155,
+   "validation": 41
+  },
+  "events_subruns_checked": [
+   376,
+   216
+  ],
+  "partner_kind": {
+   "neutrino": 357,
+   "cosmic": 16,
+   "none": 9
+  },
+  "truth_census": {
+   "nc": 377,
+   "cc": 1039,
+   "n_prim_pi0": {
+    "0": 1253,
+    "1": 147,
+    "2": 15,
+    "3": 1
+   },
+   "n_prim_gamma": {
+    "0": 1397,
+    "1": 10,
+    "2": 8,
+    "3": 1
+   },
+   "nc_with_prim_gamma_no_pi0": 6
+  },
+  "reference": {
+   "path": "/lus/flare/projects/neutrinoGPU/xning/BDT/working/step4_tables/output/merged/cands_aurora-r2-bnb.parquet",
+   "rows_ours": 382,
+   "rows_ref": 382,
+   "matched": 382,
+   "only_ours": 0,
+   "only_ref": 0,
+   "shared_columns": 1057,
+   "differing_columns": {
+    "m_pdg": 25,
+    "m_ccnc": 25
+   }
+  }
+ },
+ "aurora-r2-nuecc": {
+  "candidates": 90,
+  "placeholders": 0,
+  "truth_rows": 185,
+  "missing_input_columns": {
+   "single_photon_ncpi0": [],
+   "single_photon_other": []
+  },
+  "split_counts": {
+   "test": 48,
+   "train": 31,
+   "validation": 11
+  },
+  "events_subruns_checked": [
+   84,
+   80
+  ],
+  "partner_kind": {
+   "neutrino": 88,
+   "cosmic": 2
+  },
+  "truth_census": {
+   "nc": 25,
+   "cc": 160,
+   "n_prim_pi0": {
+    "0": 161,
+    "1": 22,
+    "2": 2
+   },
+   "n_prim_gamma": {
+    "0": 185
+   },
+   "nc_with_prim_gamma_no_pi0": 0
+  },
+  "reference": {
+   "path": "/lus/flare/projects/neutrinoGPU/xning/BDT/working/step4_tables/output/merged/cands_aurora-r2-nuecc.parquet",
+   "rows_ours": 90,
+   "rows_ref": 90,
+   "matched": 90,
+   "only_ours": 0,
+   "only_ref": 0,
+   "shared_columns": 1057,
+   "differing_columns": {
+    "m_pdg": 2,
+    "m_ccnc": 2
+   }
+  }
+ }
+}

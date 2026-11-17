@@ -1,0 +1,61 @@
+{
+ "label": "own builder smoke slices (ncdr 0:60, bnb 0:15, nuecc 0:20)",
+ "tables": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/smoke_tables",
+ "tag": "smoke",
+ "samples": {
+  "aurora-r2-ncdr": {
+   "rows": 86,
+   "shw_sp_filled": 52,
+   "shw_sp_filled_and_20mev": 52,
+   "br_filled": 26,
+   "inputs_present": {
+    "single_photon_ncpi0": 45,
+    "single_photon_other": 146
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [],
+    "single_photon_other": []
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 0.0,
+    "single_photon_other": 0.0
+   }
+  },
+  "aurora-r2-bnb": {
+   "rows": 374,
+   "shw_sp_filled": 79,
+   "shw_sp_filled_and_20mev": 79,
+   "br_filled": 30,
+   "inputs_present": {
+    "single_photon_ncpi0": 45,
+    "single_photon_other": 146
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [],
+    "single_photon_other": []
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 0.0,
+    "single_photon_other": 0.0
+   }
+  },
+  "aurora-r2-nuecc": {
+   "rows": 90,
+   "shw_sp_filled": 71,
+   "shw_sp_filled_and_20mev": 71,
+   "br_filled": 57,
+   "inputs_present": {
+    "single_photon_ncpi0": 45,
+    "single_photon_other": 146
+   },
+   "inputs_absent": {
+    "single_photon_ncpi0": [],
+    "single_photon_other": []
+   },
+   "max_nonfinite_filled": {
+    "single_photon_ncpi0": 0.0,
+    "single_photon_other": 0.0
+   }
+  }
+ }
+}

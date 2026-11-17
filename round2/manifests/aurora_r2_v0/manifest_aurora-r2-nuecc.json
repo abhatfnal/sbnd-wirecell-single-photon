@@ -1,0 +1,15 @@
+{
+ "sample": "aurora-r2-nuecc",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/nuecc-merged-cafs.txt",
+ "list_sha256": "4d53f0b3d308753ec3981b2a3ee87dc2e29128e5218105d92bcd7856eadcdfb4",
+ "list_mtime_unix": 1794129637,
+ "files": 61248,
+ "missing": 0,
+ "duplicate_file_ids": 0,
+ "total_bytes": 374925260475,
+ "newest_mtime_unix": 1794121994,
+ "oldest_mtime_unix": 1793955198,
+ "manifest": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/manifests/manifest_aurora-r2-nuecc.tsv.gz",
+ "manifest_sha256": "4e8893c6b5600b8ed5970d668d957a8d1db7da6f69294331794fbba5f1c7b976",
+ "stat_seconds": 27.9
+}

@@ -1,0 +1,25 @@
+{
+ "sample": "aurora-r2-nuecc",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/nuecc-merged-cafs.txt",
+ "list_sha256": "4d53f0b3d308753ec3981b2a3ee87dc2e29128e5218105d92bcd7856eadcdfb4",
+ "slice": "0:20",
+ "files": 20,
+ "errors": 0,
+ "label_unreadable_files": 0,
+ "truth_pf_unreadable_files": 0,
+ "holdout_files": 0,
+ "events": 91,
+ "candidates": 90,
+ "truth_rows": 185,
+ "wct_versions": [
+  "sbnd-dlvtx-35-pre-master-merge-54-ga2785870"
+ ],
+ "code": {
+  "commit": "615fe56c327f1aae8165723893653ea153bc40ca",
+  "dirty": true
+ },
+ "python": "3.12.12",
+ "uproot": "5.7.7",
+ "pandas": "3.0.5",
+ "wall_s": 5.9
+}

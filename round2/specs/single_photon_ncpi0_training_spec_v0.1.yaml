@@ -1,0 +1,134 @@
+# Training specification: SBND single-photon NC pi0 background-rejection BDT.
+# Versioned; a change to any field below needs a new spec_version. See round2/docs/SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md.
+spec_id: single_photon_ncpi0_training_spec
+spec_version: 0.1.0
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: BLOCKED     # BLOCKED | READY_FOR_DEVELOPMENT_TRAINING | READY_FOR_FINAL_TRAINING
+status_reason: >
+  The original TRAINING positive/negative classes of single_photon_ncpi0_bdt_final.xml are not source-established.
+  MicroBooNE public note 1125 gives only the intent ("NC pi0 background BDT: Targeting NC events with a pi0 in the
+  final state"), and the inclusive signal definition contains NC pi0 -> 1 gamma events (42 % of the SM signal), so
+  "NC with a pi0" cannot be the negative class as written. No training code for the four single-photon BDTs exists in
+  any repository reachable on 2026-11-17. Final training, and development training with a guessed label, are blocked
+  until Erin Yandel's definition is recovered (thesis, UCSB 2024, or the author) and recorded here.
+
+classifier:
+  name: single_photon_ncpi0
+  purpose: >
+    One of four sibling background-rejection BDTs of the Wire-Cell inclusive single-photon selection. Keeps events with
+    single_photon_ncpi0_score > threshold; rejects NC pi0 events that are not single-photon signal.
+  frozen_predecessor:
+    xml: single_photon_ncpi0_bdt_final.xml
+    sha256: 983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3
+    copied_from: /exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights (FNAL); reference bundle
+      sbnd_single_photon_microboone_reference_20261005.tar.gz (sha256 fcf7666b..., Eagle; not reachable from Aurora)
+    booked_in: brb-rightback/wcp-uboone-bdt-eyandel @ 0100d4b6 apps/bdt_convert.cxx (reader_single_photon_ncpi0, "MyBDT")
+    technology: XGBoost (note 1125) stored as TMVA BDT XML, BoostType=Grad, 300 trees, boostWeight 1
+    stored_score: log10((1+v)/(1-v)), v = TMVA EvaluateMVA = tanh(raw)   # inc/WCPLEEANA/bdt.h cal_single_photon_ncpi0_bdts_xgboost
+    score_direction: higher = more single-photon-like (keep score > threshold)
+    frozen_threshold_log10_odds: -0.05        # inc/WCPLEEANA/cuts.h is_singlephoton_sel; = EvaluateMVA > -0.0575
+    loose_threshold_log10_odds: -0.4          # is_singlephoton_eff_sel
+
+inputs:
+  feature_list: round2/config/features/single_photon_ncpi0_inputs_v0.json
+  feature_list_sha256: 5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb
+  n_inputs: 45
+  order_authority: XML <Variables> VarIndex (baseline_v0/tables/microboone_single_photon_bdt_inputs.csv)
+  source_branch_rule: wc.T_tagger.<name>, except the 12 kine_pio_* inputs -> wc.T_kine.<name>
+  ordered: [shw_sp_pio_1_mass, shw_sp_pio_1_pio_type, shw_sp_pio_1_energy_1, shw_sp_pio_1_energy_2, shw_sp_pio_1_dis_1,
+            shw_sp_pio_1_dis_2, shw_sp_pio_mip_id, shw_sp_pio_flag_pio, shw_sp_n_20br1_showers, shw_sp_n_br1_showers,
+            shw_sp_n_br2_showers, shw_sp_n_br3_showers, shw_sp_n_br4_showers, shw_sp_E_indirect_max_energy,
+            shw_sp_lol_3_vtx_n_segs, shw_sp_hol_1_min_length, shw_sp_hol_2_min_angle, shw_sp_hol_1_min_angle,
+            tro_5_score, tro_4_score, tro_2_score, tro_1_score, stw_4_score, stw_3_score, stw_2_score, sig_2_score,
+            sig_1_score, pio_2_score, lol_2_score, lol_1_score, br3_6_score, br3_5_score, br3_3_score, kine_pio_mass,
+            kine_pio_flag, kine_pio_vtx_dis, kine_pio_energy_1, kine_pio_theta_1, kine_pio_phi_1, kine_pio_dis_1,
+            kine_pio_energy_2, kine_pio_theta_2, kine_pio_phi_2, kine_pio_dis_2, kine_pio_angle]
+  upstream_classifier_inputs: [tro_5_score, tro_4_score, tro_2_score, tro_1_score, stw_4_score, stw_3_score, stw_2_score,
+                               sig_2_score, sig_1_score, pio_2_score, lol_2_score, lol_1_score, br3_6_score, br3_5_score,
+                               br3_3_score]   # nu_e level-1 TMVA scores, UbooneNueBDTScorer; NOT nue_score
+  default_handling:
+    float32: true
+    nan_policy: rows with any non-finite input are not scored (TMVA would return -999); counted per sample
+    unfilled_block: when shw_sp_filled == 0 the shw_sp_* inputs hold tagger defaults; such rows are outside the pool
+    empty_list_defaults: the 15 level-1 scores carry the toolkit's empty-list defaults (e.g. tro_5 0.5, br3_3 0.3)
+    kine_pio_flag: OPEN -- MicroBooNE's reference scorer feeds 0 (bdt_convert.cxx 47b1f0c "break pi0 flag for sp
+      only"); the SBND baseline_v0 scorer fed the real T_kine value. Must be decided (and the frozen XML checked for
+      splits on VarIndex 34) before any comparison to the frozen model.
+
+label:
+  definition: null      # stays null until recovered; sp_retrain.labels refuses to produce labels
+  source_established:
+    - "note 1125 sec 3: four XGBoost BDTs, each trained on statistically separate training samples of both signal and specific backgrounds"
+    - "note 1125 sec 3: NC pi0 background BDT targets NC events with a pi0 in the final state"
+    - "note 1125 sec 2.1: single-photon signal = exactly one true photon > 20 MeV with shower start and end > 3 cm from the TPC walls (or two photons from one source within 20 degrees), no electrons, no muon above 100 MeV; NC pi0 -> 1 gamma is SIGNAL"
+    - "cuts.h (evaluation, not training): NC pi0 background channels = NC, truth_NprimPio == 1, match_completeness_energy > 0.1 truth_energyInside, not a SP*Sig signal"
+  strongly_inferred:
+    - positive class = single-photon signal events; negative class = NC pi0 events that fail the single-photon signal definition
+  unknown:
+    - exact truth expressions of both classes (pi0 multiplicity ==1 or >=1; out-of-FV signal included or not)
+    - preselection applied to the training rows; samples; class balancing / weights; event vs candidate rows
+  question_for_owners: >
+    For single_photon_ncpi0_bdt_final.xml, what exactly were the positive and negative training classes (truth
+    expressions, e.g. SP*Sig vs NC with truth_NprimPio==1 and not signal), the preselection on the training rows, the
+    samples, and any weights / class balancing?
+
+preselection:
+  microboone_reference: [Wire-Cell generic neutrino selection, 5 < reco_nuvtxX < 250 cm, shw_sp_n_20mev_showers > 0]
+  sbnd_development_pool_proposed: [not is_placeholder, shw_sp_filled == 1, shw_sp_n_20mev_showers > 0, label readable]
+  analysis_volume: OPEN (MicroBooNE x cut not ported; baseline_v0 ran pre-FV)
+candidate_policy: >
+  One row per non-placeholder T_tagger candidate of a wc.valid event; truth via the T_match level-2 best partner
+  (Xuyang's spec_v1 rule). MicroBooNE had one candidate per event; whether SBND keeps all pooled candidates or one per
+  event is OPEN and must be decided with the label.
+
+samples:
+  development:           # Aurora = training/development only
+    - {id: aurora-r2-ncdr,  list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt,  files: 17603}
+    - {id: aurora-r2-bnb,   list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt,   files: 11888}
+    - {id: aurora-r2-nuecc, list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/nuecc-merged-cafs.txt, files: 61248}
+  allowed_input_roots: [/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace]
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves, incl. fg1-beam-off-train),
+                                 run3-bnb-data, open-run1-bnb-data, selected-data (prod 7),
+                                 official SAM aurora_SBND2026A_gen2 EX_ncdeltarad (Thomas, twester/), Xin hold-out lists]
+  approved_exceptions: []
+  holdout_policy: Xin's hold-out runs (291-300, 711-720) do not overlap aurora-r2 run ranges (checked, see readiness doc)
+
+split:
+  scheme: subrun_parity_valhash_v1
+  unit: (sample, run, subrun)
+  test: odd subrun (internal development test; never used to tune)
+  validation: even subrun with blake2b(seed|sample|run|subrun) < 0.25
+  train: remaining even subruns
+  seed: 20261117
+
+weights:
+  class_weights: UNKNOWN for the frozen model; development default none
+  event_weights: none
+  exposure: production POT records only; never rec.hdr.pot of filtered Aurora samples (hdr_pot_sum_not_exposure)
+
+xgboost:
+  version: 3.4.1
+  objective: binary:logitraw
+  base_score: 0.5                # no hidden margin offset in an exported file
+  n_estimators: 300              # tree count of the frozen XML
+  max_depth: TO_READ_FROM_FROZEN_XML
+  learning_rate: UNKNOWN
+  tree_method: hist
+  random_state: 20261117
+  early_stopping: on the validation fold only
+
+metrics: [AUC per sample on the test fold, efficiency/rejection at the frozen cut in log10-odds space and at matched efficiency,
+          per truth category (SP categories, NC pi0 by multiplicity), train-validation-test overtraining comparison, score
+          distributions, feature importance, scorer-equivalence (training margin vs exported XML, zero decision flips)]
+
+deployment:
+  native: XGBoost JSON (feature order = feature_list)
+  production: TMVA BDT XML, BoostType=Grad, NTransformations=0, variables in feature_list order, via a validated exporter
+  score: log10((1+tanh(raw))/(1-tanh(raw))) = (2/ln 10) raw
+  proposed_name: single_photon_ncpi0_bdt_sbnd_round2_v1
+
+dependencies:
+  upstream_classifiers: [15 nu_e level-1 TMVA models (UbooneNueBDTScorer) -- unchanged unless Xuyang retrains level 1]
+  vertexing: DL neutrino vertex (T_dlvtx_call / main vertex) -- Snehadri's update changes every input
+  reconstruction: "WCT pin of the training CAFs (aurora-r2 wct_version sbnd-dlvtx-35-pre-master-merge-54-ga2785870)"

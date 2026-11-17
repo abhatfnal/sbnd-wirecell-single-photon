@@ -1,0 +1,15 @@
+{
+ "sample": "aurora-r2-bnb",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt",
+ "list_sha256": "dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb",
+ "list_mtime_unix": 1794130991,
+ "files": 11888,
+ "missing": 0,
+ "duplicate_file_ids": 0,
+ "total_bytes": 421011722147,
+ "newest_mtime_unix": 1793861125,
+ "oldest_mtime_unix": 1793851043,
+ "manifest": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/manifests/manifest_aurora-r2-bnb.tsv.gz",
+ "manifest_sha256": "5857ec8e5c2a57cbf361b9dd79865b3df75e49026a424d2be68358ae513de339",
+ "stat_seconds": 4.2
+}

@@ -1,0 +1,15 @@
+{
+ "sample": "aurora-r2-ncdr",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt",
+ "list_sha256": "8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf",
+ "list_mtime_unix": 1794124205,
+ "files": 17603,
+ "missing": 0,
+ "duplicate_file_ids": 0,
+ "total_bytes": 59697452047,
+ "newest_mtime_unix": 1793892104,
+ "oldest_mtime_unix": 1793862478,
+ "manifest": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/manifests/manifest_aurora-r2-ncdr.tsv.gz",
+ "manifest_sha256": "80509717429480e6b235c2cb3e1ce96150416bfcbaed570a72cf3c78025d89ad",
+ "stat_seconds": 8.3
+}

@@ -1,0 +1,152 @@
+# Training specification: SBND single-photon "other" background-rejection BDT.
+# Versioned; a change to any field below needs a new spec_version. See round2/docs/SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md.
+spec_id: single_photon_other_training_spec
+spec_version: 0.1.0
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: BLOCKED     # BLOCKED | READY_FOR_DEVELOPMENT_TRAINING | READY_FOR_FINAL_TRAINING
+status_reason: >
+  FINAL OTHER RETRAINING IS BLOCKED BY THE UNKNOWN TRAINING TARGET. "Other" is not a self-defining physics class.
+  The only sources (MicroBooNE note 1125, PRL 136 181806) say it targets "remaining backgrounds, primarily cosmic
+  induced events and neutrino events in which the true scattering takes place outside of the TPC but charge scatters
+  in". The exact positive / negative classes, the cosmic sample (EXT beam-off data or MC), whether every background
+  not covered by the numu-CC / NC-pi0 / nue-CC BDTs was included, and any weighting are not recoverable from any
+  reachable source. In addition, its numu_score input will change when Xuyang's nu_mu BDT is retrained.
+
+classifier:
+  name: single_photon_other
+  purpose: Sibling background-rejection BDT; keeps events with single_photon_other_score > threshold.
+  frozen_predecessor:
+    xml: single_photon_other_bdt_final.xml
+    sha256: 8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16
+    copied_from: /exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights (FNAL); reference bundle on Eagle
+    booked_in: brb-rightback/wcp-uboone-bdt-eyandel @ 0100d4b6 apps/bdt_convert.cxx (reader_single_photon_other, "MyBDT")
+    technology: XGBoost (note 1125) stored as TMVA BDT XML, BoostType=Grad, 300 trees, boostWeight 1
+    stored_score: log10((1+v)/(1-v)), v = TMVA EvaluateMVA = tanh(raw)
+    score_direction: higher = more single-photon-like (keep score > threshold)
+    frozen_threshold_log10_odds: 0.2         # inc/WCPLEEANA/cuts.h is_singlephoton_sel; = EvaluateMVA > 0.2263
+    loose_threshold_log10_odds: -0.4
+
+inputs:
+  feature_list: round2/config/features/single_photon_other_inputs_v0.json
+  feature_list_sha256: 0c3d30830719104fb7a25d72943303bf26a28a6f4ea2b5244e614aecfc5f2794
+  n_inputs: 146
+  order_authority: XML <Variables> VarIndex (baseline_v0/tables/microboone_single_photon_bdt_inputs.csv)
+  source_branch_rule: wc.T_tagger.<name>, except reco_nuvtxY -> wc.T_kine.kine_nu_y_corr
+  ordered: [cosmict_flag_2, cosmict_2_filled, cosmict_2_particle_type, cosmict_2_n_muon_tracks, cosmict_2_total_shower_length,
+            cosmict_2_flag_inside, cosmict_2_angle_beam, cosmict_2_flag_dir_weak, cosmict_2_dQ_dx_end, cosmict_2_dQ_dx_front,
+            cosmict_2_theta, cosmict_2_phi, cosmict_2_valid_tracks, cosmict_flag_4, cosmict_4_filled, cosmict_4_flag_inside,
+            cosmict_4_angle_beam, cosmict_4_connected_showers, cosmict_flag_3, cosmict_3_filled, cosmict_3_flag_inside,
+            cosmict_3_angle_beam, cosmict_3_flag_dir_weak, cosmict_3_dQ_dx_end, cosmict_3_dQ_dx_front, cosmict_3_theta,
+            cosmict_3_phi, cosmict_3_valid_tracks, cosmict_flag_5, cosmict_5_filled, cosmict_5_flag_inside, cosmict_5_angle_beam,
+            cosmict_5_connected_showers, cosmict_flag_6, cosmict_6_filled, cosmict_6_flag_dir_weak, cosmict_6_flag_inside,
+            cosmict_6_angle, cosmict_flag_7, cosmict_7_filled, cosmict_7_flag_sec, cosmict_7_n_muon_tracks,
+            cosmict_7_total_shower_length, cosmict_7_flag_inside, cosmict_7_angle_beam, cosmict_7_flag_dir_weak,
+            cosmict_7_dQ_dx_end, cosmict_7_dQ_dx_front, cosmict_7_theta, cosmict_7_phi, cosmict_flag_8, cosmict_8_filled,
+            cosmict_8_flag_out, cosmict_8_muon_length, cosmict_8_acc_length, cosmict_flag_9, cosmic_flag, cosmic_filled,
+            cosmict_flag, numu_cc_flag, shw_sp_br2_num_valid_tracks, shw_sp_br2_n_shower_main_segs, shw_sp_br2_sg_length,
+            shw_sp_br4_1_shower_main_length, shw_sp_br4_1_shower_total_length, shw_sp_br4_1_min_dis,
+            shw_sp_br4_1_flag_avoid_muon_check, shw_sp_br4_1_n_vtx_segs, shw_sp_br4_1_n_main_segs, shw_sp_br4_2_ratio_45,
+            shw_sp_br4_2_ratio_35, shw_sp_br4_2_ratio_25, shw_sp_br4_2_ratio_15, shw_sp_br4_2_ratio1_45, shw_sp_br4_2_ratio1_35,
+            shw_sp_br4_2_ratio1_25, shw_sp_br4_2_ratio1_15, shw_sp_lem_shower_main_length, shw_sp_lem_n_3seg,
+            shw_sp_lem_e_charge, shw_sp_lem_e_dQdx, shw_sp_lem_shower_num_main_segs, shw_sp_max_dQ_dx_sample,
+            shw_sp_n_below_threshold, shw_sp_n_below_zero, shw_sp_n_lowest, shw_sp_n_highest, shw_sp_lowest_dQ_dx,
+            shw_sp_highest_dQ_dx, shw_sp_medium_dQ_dx, shw_sp_stem_length, shw_sp_length_main, shw_sp_length_total,
+            shw_sp_n_vertex, shw_sp_n_good_tracks, shw_sp_E_indirect_max_energy, shw_sp_flag_all_above, shw_sp_min_dQ_dx_5,
+            shw_sp_n_other_vertex, shw_sp_n_stem_size, shw_sp_min_dis, shw_sp_vec_mean_dedx, shw_sp_vec_dQ_dx_0,
+            shw_sp_vec_dQ_dx_1, shw_sp_vec_dQ_dx_2, shw_sp_vec_dQ_dx_3, shw_sp_vec_dQ_dx_4, shw_sp_vec_dQ_dx_5,
+            shw_sp_vec_dQ_dx_6, shw_sp_vec_dQ_dx_7, shw_sp_vec_dQ_dx_8, shw_sp_vec_dQ_dx_9, shw_sp_vec_dQ_dx_10,
+            shw_sp_vec_dQ_dx_11, shw_sp_vec_dQ_dx_12, shw_sp_vec_dQ_dx_13, shw_sp_vec_dQ_dx_14, shw_sp_vec_dQ_dx_15,
+            shw_sp_vec_dQ_dx_16, shw_sp_vec_dQ_dx_17, shw_sp_vec_dQ_dx_18, shw_sp_vec_dQ_dx_19, shw_sp_vec_median_dedx,
+            shw_sp_proton_length_1, shw_sp_proton_dqdx_1, shw_sp_proton_energy_1, shw_sp_proton_length_2, shw_sp_proton_dqdx_2,
+            shw_sp_proton_energy_2, shw_sp_n_good_showers, shw_sp_n_br1_showers, shw_sp_n_br2_showers, shw_sp_n_br3_showers,
+            shw_sp_n_br4_showers, shw_sp_n_20br1_showers, shw_sp_shw_vtx_dis, shw_sp_max_shw_dis, shw_sp_num_mip_tracks,
+            shw_sp_num_muons, shw_sp_num_protons, shw_sp_hol_2_min_angle, cosmict_10_score, numu_1_score, numu_2_score,
+            numu_score, reco_nuvtxY]
+  upstream_classifier_inputs: [cosmict_10_score, numu_1_score, numu_2_score, numu_score]   # UbooneNumuBDTScorer level-1 + final
+  default_handling:
+    float32: true
+    nan_policy: rows with any non-finite input are not scored (TMVA would return -999); counted per sample
+    unfilled_block: shw_sp_* hold tagger defaults when shw_sp_filled == 0; cosmict_<k>_* hold defaults when cosmict_<k>_filled == 0
+    empty_list_defaults: numu_1_score -0.4, numu_2_score -0.1, cosmict_10_score 0.7 (toolkit defaults)
+    shower_charge_scale: MicroBooNE multiplies shw_sp_vec_*dedx / dQ_dx_* by em_charge_scale = 1.0 (no-op) before scoring
+    reco_nuvtxY: T_kine.kine_nu_y_corr (baseline_v0/docs/RECO_NUVTX_MAPPING.md); SBND vs MicroBooNE frame differs
+
+label:
+  definition: null
+  source_established:
+    - "note 1125 sec 3: 'Other' background BDT targets remaining backgrounds, primarily cosmic induced events and neutrino events whose true scattering is outside the TPC but whose charge scatters in and is reconstructed"
+    - "note 1125 sec 4: the 'Other' sideband is primarily non-beam induced (cosmic) events and beam events outside the TPC that scatter in"
+    - "PRL 136 181806: 'other' backgrounds (mainly consisting of cosmic rays and neutrinos interacting outside of the TPC)"
+  strongly_inferred:
+    - positive class = single-photon signal events (same signal sample as the sibling BDTs)
+  unknown:
+    - negative class membership (cosmic-only EXT data? overlay events with poor truth matching? dirt? every background not covered by the other three BDTs?)
+    - whether the class was defined by truth or by reconstruction quantities; preselection; samples; weights / class balancing; event vs candidate rows
+  sbnd_truth_available_if_recovered: [T_match level-2 partner (cosmic = truth_nu_idx < 0 or no partner), T_truth_nu vertex vs active volume (dirt / out-of-TPC), match IoU, T_truth_pf]
+  sbnd_sample_gap: >
+    Cosmic-only real data exist only as official fg1 beam-off (evaluation side under the Round-2 rule). Aurora MC has
+    cosmic-matched candidates (T_match truth_nu_idx < 0) but no cosmic-only sample. A recovered definition that needs
+    EXT-like data needs either an approved exception or a new Aurora cosmic sample.
+  question_for_owners: >
+    For single_photon_other_bdt_final.xml: what exactly was the negative ("other") training class -- which samples
+    (EXT beam-off, overlay cosmics, dirt), which truth or reco expression selected them, was it "everything not numu CC
+    / NC pi0 / nue CC" -- what was the positive class, what preselection was applied to training rows, and were weights
+    or class balancing used?
+
+preselection:
+  microboone_reference: [Wire-Cell generic neutrino selection, 5 < reco_nuvtxX < 250 cm, shw_sp_n_20mev_showers > 0]
+  sbnd_development_pool_proposed: [not is_placeholder, shw_sp_filled == 1, shw_sp_n_20mev_showers > 0, label readable]
+  analysis_volume: OPEN
+candidate_policy: same as single_photon_ncpi0_training_spec v0.1.0 (OPEN, decided with the label)
+
+samples:
+  development:
+    - {id: aurora-r2-bnb,   list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt,   files: 11888}
+    - {id: aurora-r2-ncdr,  list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt,  files: 17603}
+    - {id: aurora-r2-nuecc, list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/nuecc-merged-cafs.txt, files: 61248}
+  allowed_input_roots: [/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace]
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves, incl. fg1-beam-off-train),
+                                 run3-bnb-data, open-run1-bnb-data, selected-data (prod 7),
+                                 official SAM aurora_SBND2026A_gen2 EX_ncdeltarad (Thomas, twester/), Xin hold-out lists]
+  approved_exceptions: []
+
+split:
+  scheme: subrun_parity_valhash_v1
+  unit: (sample, run, subrun)
+  test: odd subrun
+  validation: even subrun with blake2b(seed|sample|run|subrun) < 0.25
+  train: remaining even subruns
+  seed: 20261117
+
+weights:
+  class_weights: UNKNOWN for the frozen model; development default none
+  event_weights: none
+  exposure: production POT records only; never rec.hdr.pot of filtered Aurora samples
+
+xgboost:
+  version: 3.4.1
+  objective: binary:logitraw
+  base_score: 0.5
+  n_estimators: 300
+  max_depth: TO_READ_FROM_FROZEN_XML
+  learning_rate: UNKNOWN
+  tree_method: hist
+  random_state: 20261117
+  early_stopping: on the validation fold only
+
+metrics: [AUC per sample on the test fold, efficiency/rejection at the frozen cut in log10-odds space and at matched efficiency,
+          per background category (cosmic-matched, out-of-active-volume, other), overtraining comparison, score distributions,
+          feature importance, scorer equivalence with zero decision flips]
+
+deployment:
+  native: XGBoost JSON (feature order = feature_list)
+  production: TMVA BDT XML, BoostType=Grad, NTransformations=0, variables in feature_list order, via a validated exporter
+  score: log10((1+tanh(raw))/(1-tanh(raw))) = (2/ln 10) raw
+  proposed_name: single_photon_other_bdt_sbnd_round2_v1
+
+dependencies:
+  upstream_classifiers: [nu_mu level-1 numu_tagger1, numu_tagger2, cos_tagger_10 and nu_mu final numu_scalars_scores_0923
+                         (UbooneNumuBDTScorer) -- the final numu_score changes when Xuyang's nu_mu retrain is installed]
+  vertexing: DL neutrino vertex -- Snehadri's update changes every input
+  reconstruction: "WCT pin of the training CAFs (aurora-r2 wct_version sbnd-dlvtx-35-pre-master-merge-54-ga2785870)"

@@ -1,0 +1,25 @@
+{
+ "sample": "aurora-r2-ncdr",
+ "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt",
+ "list_sha256": "8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf",
+ "slice": "0:60",
+ "files": 60,
+ "errors": 0,
+ "label_unreadable_files": 1,
+ "truth_pf_unreadable_files": 0,
+ "holdout_files": 0,
+ "events": 92,
+ "candidates": 86,
+ "truth_rows": 175,
+ "wct_versions": [
+  "sbnd-dlvtx-35-pre-master-merge-54-ga2785870"
+ ],
+ "code": {
+  "commit": "615fe56c327f1aae8165723893653ea153bc40ca",
+  "dirty": true
+ },
+ "python": "3.12.12",
+ "uproot": "5.7.7",
+ "pandas": "3.0.5",
+ "wall_s": 11.9
+}
