@@ -167,12 +167,128 @@ The Policy-B model was scored twice on the same 13,467 test rows: once with the 
 also carried by `kine_pio_mass` and `kine_pio_energy_2`, which are 0 whenever the flag is 0. Forcing the flag to 0
 therefore moves few scores, and those only slightly.
 
-**What it does not show.** How strongly the legacy MicroBooNE model depends on its forced flag. That model is not on
-Aurora, and in it the flag is the 10th input by gain. Policy B is unchanged.
+**Legacy context.** The legacy XML is always scored with the flag at 0 (§7.2). Policy B is unchanged.
 
-## 7. Legacy control
+## 7. Legacy control: AURORA DEVELOPMENT SAMPLE — LEGACY MICROBOONE CONTROL
 
-**Not available on Aurora** (same reason as SP numu). Not reconstructed.
+**AURORA DEVELOPMENT — NOT OFFICIAL EVALUATION.** These numbers are not SBND performance and set no Round-2 cut.
+
+**Legacy XML.** `single_photon_ncpi0_bdt_final.xml`, sha256 `983a0d82…17c3`, from the verified EAF bundle
+(`manifests/dev_round1domain_v1/legacy_controls.json`).
+- 45 inputs in the feature-list order, 400 trees, depth 6.
+- It is scored with `sp_retrain.tmva_grad`, then `log10((1+v)/(1−v))` once.
+- **`kine_pio_flag` is set to 0 for the legacy model only**, as MicroBooNE production does. The development model keeps
+  the real flag (Policy B).
+
+**Rows:**
+
+| | rows |
+|---|---:|
+| original test rows (odd subrun, classed) | 13,480 (9,012 positive / 4,468 negative) |
+| development-evaluable | 13,467 |
+| legacy-evaluable | 13,467 |
+| **common** | **13,467** (9,000 / 4,467) |
+
+The 13 excluded rows have a NaN input. TMVA returns −999 for them, so they fail every legacy cut; neither model scores
+them. The rebuilt test rows equal the stored ones, and the recomputed development margins equal the stored ones
+exactly.
+
+| model | test AUC (common rows) |
+|---|---:|
+| legacy MicroBooNE XML (flag 0) | 0.7544 |
+| SBND development model (Policy B) | 0.8167 |
+| delta | **+0.0623** |
+
+**Legacy at its historical cut, score > −0.05:**
+
+| | value |
+|---|---|
+| signal efficiency | 39.40 % (TP 3,546, FN 5,454) |
+| background acceptance | 12.58 % (FP 562, TN 3,905) |
+| background rejection | 87.42 % |
+
+**DIAGNOSTIC ROC-EQUIVALENT POINTS — NOT ROUND-2 CUTS:**
+
+| point | development threshold | development | legacy | difference |
+|---|---:|---|---|---|
+| A: same signal efficiency (39.40 %) | m > 2.357 | background acceptance 7.05 % (FP 315) | 12.58 % | −5.53 points (×0.56) |
+| B: same background acceptance (12.58 %) | m > 1.828 | signal efficiency 54.57 % (TP 4,911) | 39.40 % | +15.2 points (×1.39) |
+
+**Event-by-event, at point A:**
+
+| rows | both pass | legacy pass / development fail | legacy fail / development pass | both fail |
+|---|---:|---:|---:|---:|
+| positive | 1,994 | 1,552 | 1,552 | 3,902 |
+| negative | 141 | 421 | 174 | 3,731 |
+
+- **Negatives the legacy model keeps and the development model removes** (421):
+  - 399 with one primary π⁰;
+  - soft, low-mass π⁰ candidates: median `kine_pio_mass` 43 MeV against 101 MeV for all negatives, and energies
+    37 / 44 MeV against 85 / 74 MeV.
+- **Positives that only the development model keeps** (1,552; 1,430 NC Δ 1γ):
+  - an energetic leading shower: median `kine_pio_energy_1` 102 MeV against 46 MeV for all positives;
+  - a soft second shower: `kine_pio_energy_2` 18 MeV.
+- **Positives that only the legacy model keeps** (1,552): NC Δ 1γ 1,166, NC π⁰ → 1γ 175, out-of-FV 168, νμ CC 40;
+  low-energy pairs (median mass 20 MeV).
+- `kine_pio_flag` is 1 for most flipped rows.
+
+**At point B** the development model gains 2,238 and loses 873 positives; the negatives swap 328 / 328.
+
+**Score correlation:**
+- Spearman 0.651 (positive 0.505, negative 0.696);
+- Pearson 0.684.
+
+The two models rank events noticeably differently: the retrained model has learned a different ordering. That is not
+in itself a defect.
+
+**Routing cross-check:** the `<=` routing changes the raw sum of 10 rows.
+
+**Plots:** `$SP_WORK/legacy_controls_results/ncpi0/plots/`.
+
+### 7.1 What the legacy comparison says about the train/test gap
+
+The development model has train AUC 0.985 and test AUC 0.817. On the same held-out SBND rows:
+- the legacy MicroBooNE model reaches only **0.754**;
+- at the legacy working point's signal efficiency, the development model accepts **44 % less background**;
+- at equal background acceptance, it keeps **+15 points** of signal.
+
+So the answer is **A, not B**:
+- the legacy model also performs poorly on the SBND test sample;
+- the development model does **not** generalize worse than the legacy one.
+
+The large train/test gap is the variance of 400 depth-6 trees fitted to 4.5k training negatives. It is not a loss
+relative to the inherited model.
+
+Two caveats:
+- The legacy model is evaluated out of its MicroBooNE domain, so part of its deficit is domain shift.
+- The comparison does not show how much better a model trained on more NC π⁰ negatives would be.
+
+It does support the plan for an NC π⁰-enriched final training sample. Nothing was retrained or tuned.
+
+### 7.2 `kine_pio_flag` context
+
+The legacy XML is **always** scored with the flag forced to 0. That is its source-faithful convention, and all numbers
+above use it.
+
+As a non-source-faithful diagnostic only, scoring the legacy XML with the real SBND flag gives:
+- AUC 0.7557 (against 0.7544 with the flag at 0);
+- Spearman 0.9991 between the two;
+- 120 decision changes at −0.05 (0.9 % of rows).
+
+The new model's Policy-B diagnostic (§6) is similar in size: 11 changes at its native margin 0. In SBND the flag
+carries little information beyond `kine_pio_mass`, for both models. Policy B is unchanged.
+
+**Feature sanity:**
+
+| | legacy XML | development model |
+|---|---|---|
+| 15 νe level-1 scores | 40.6 % of splits | 29.8 % |
+| `kine_pio_*` | 35.5 % | 42.9 % |
+| `kine_pio_flag` | 23 splits, rank 44 | 18 splits, rank 44 |
+| `shw_sp_pio_flag_pio` | highest mean gain (thesis) | highest mean gain |
+
+Split counts correlate at Spearman 0.854. Both models are dominated by π⁰ kinematics. The development model leans less
+on the inherited level-1 scores, which is a plausible effect of the SBND domain. This is a sanity check only.
 
 ## 8. Reproducibility
 

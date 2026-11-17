@@ -89,6 +89,11 @@ These use the native margin and **no threshold**.
 
 **Leakage:** 0 overlapping events, 0 duplicate rows and 0 multi-file events, for both models.
 
+**Provenance:**
+- The manifests' execution record is kept as written: HEAD `6719fce`, with uncommitted training code.
+- A `post_training_provenance` block proves that every training code file, spec and feature list is byte-identical to
+  the files committed in `c83965c`.
+
 **Reproducibility:** a second training with the same spec and seed gave a byte-identical JSON and identical margins,
 for both models.
 
@@ -100,7 +105,25 @@ for both models.
 
 **Policy B is unchanged.**
 
-**Legacy control: not available on Aurora.** The frozen XMLs are not here, and they were not reconstructed.
+**Legacy control (added later the same day).** The verified MicroBooNE XML bundle reached Aurora after the first version
+of this summary, which wrongly said "not available".
+- Bundle: `$SP_WORK/legacy_bdt_controls/`, tarball sha256 `90239e2a…08cd8`, four XMLs OK
+  (`manifests/dev_round1domain_v1/legacy_controls.json`).
+- Evaluated on the **same** test rows: AURORA DEVELOPMENT SAMPLE — LEGACY MICROBOONE CONTROL, not official.
+
+| | numu | ncpi0 |
+|---|---:|---:|
+| common test rows | 28,396 | 13,467 (13 NaN rows excluded by both) |
+| legacy test AUC | 0.9262 | 0.7544 (flag forced to 0) |
+| development test AUC | 0.9592 | 0.8167 |
+| delta | +0.0330 | +0.0623 |
+| legacy at its historical cut: signal efficiency / background acceptance | 62.05 % / 5.81 % (> 0.4) | 39.40 % / 12.58 % (> −0.05) |
+| development at the same signal efficiency: background acceptance | 2.67 % | 7.05 % |
+| development at the same background acceptance: signal efficiency | 79.35 % | 54.57 % |
+| Spearman, legacy score vs development margin | 0.923 | 0.651 |
+
+The last two pairs of rows are DIAGNOSTIC ROC-EQUIVALENT POINTS, NOT ROUND-2 CUTS. Details are in the two model
+reports.
 
 Model reports:
 - `SP_NUMU_DEVELOPMENT_TRAINING_REPORT.md`;
@@ -121,9 +144,12 @@ any plot.
 
 1. **The chain works end to end.** Full-list tables, labels, split, a fixed-parameter fit, manifest and plots are
    deterministic, firewalled and leakage-free.
-2. **SP numu** reaches test AUC 0.959 on aurora-r2. It **still relies most on `numu_score` and `numu_1_score`**, so the
-   final model must be trained on Xuyang's new upstream values.
+2. **SP numu** reaches test AUC 0.959 on aurora-r2, against 0.926 for the legacy XML on the same rows. It **still
+   relies most on `numu_score` and `numu_1_score`**, as the legacy XML does, so the final model must be trained on
+   Xuyang's new upstream values.
 3. **SP ncpi0** reaches test AUC 0.817 with a **large train/test gap** (0.17).
+   - On the same held-out rows the legacy MicroBooNE model reaches only 0.754. The development model does not
+     generalize worse than the legacy one: the gap is variance, not a loss relative to the inherited model.
    - Its negative class is 4.5k training rows, against MicroBooNE's 37k.
    - The development model leans less on the 15 νe level-1 scores than the thesis model.
    - The development model makes little use of `kine_pio_flag`, which is largely redundant with `kine_pio_mass` in SBND.

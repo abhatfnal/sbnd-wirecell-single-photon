@@ -11,6 +11,7 @@
 | this repository, `baseline_v0/tables/microboone_single_photon_bdt_inputs.csv` (2026-10-05) | the XML `<Variables>` order of the four frozen models | input to `tools/make_feature_configs.py`, sha256 recorded in each feature JSON |
 | MicroBooNE public note 1125 (2024-06-07); PRL 136 181806 (arXiv:2502.06064) | documented intent of the four BDTs, the signal definition, cut values | quoted in the audit |
 | E. H. Yandel, *A Search for Anomalous Single Photon Production in Neutrino Interactions with the MicroBooNE Detector*, PhD thesis, UC Santa Barbara, 2024, https://escholarship.org/uc/item/6rq082dr (PDF sha256 `0ad56e36…1465`) | the training classes, sample counts, preselection, split and XGBoost parameters of the four single-photon BDTs (§5.1.2, §5.2, App. E) | cited by page in `docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`. The PDF and its text extraction are **not** in git and must not be added. The PDF is kept at `$SP_WORK/thesis_audit/` |
+| MicroBooNE legacy single-photon XMLs, EAF bundle `legacy_sp_bdt_bundle_20261117` (tarball sha256 `90239e2a…08cd8`; byte-identical copies of `/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_*_bdt_final.xml`) | numu and ncpi0 legacy controls for the development study | scored, never modified, **not** in git (`$SP_WORK/legacy_bdt_controls`); registered in `manifests/dev_round1domain_v1/legacy_controls.json` |
 | this repository, EAF branch `analysis/sp-bdt-thesis-xml-compatibility-20261117` @ `0148e879ae44c0c61f0fb7874079734a4cead3fa` (Avinay, EAF) | frozen-XML trees, depth, per-variable split counts and upstream usage (`tables/sp_bdt_xml_audit/`) | read with `git show`, not merged; compared with the thesis Appendix E F scores |
 
 ## Pins recorded on 2026-11-17
@@ -25,7 +26,8 @@
   | ncpi0 | `983a0d82…` |
   | nue | `8580ba04…` |
 
-  None of the four is on Aurora.
+  They are on Aurora in the verified EAF bundle `$SP_WORK/legacy_bdt_controls/legacy_sp_bdt_bundle_20261117/` (all four
+  sha256 match; not in git).
 - **Shipped νe final model**, used for the scorer check: `uboone/weights/XGB_nue_seed2_0923.xml`, sha256 `6199d202…edd2`.
 - **Input manifests:** `manifests/aurora_r2_v0/*.json` (list sha256, manifest sha256).
 

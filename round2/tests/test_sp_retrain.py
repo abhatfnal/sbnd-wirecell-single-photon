@@ -384,3 +384,95 @@ def test_dev_training_is_reproducible_and_hashed(tmp_path):
     import hashlib
     assert devtrain.sha256_file(paths[0]) == hashlib.sha256(open(paths[0], 'rb').read()).hexdigest()
     assert devtrain.sha256_file(paths[0]) == devtrain.sha256_file(paths[1])
+
+
+# ---------------------------------------------------------------- legacy MicroBooNE controls (aurora development, not official)
+from sp_retrain import legacy_control as lc  # noqa: E402
+
+BUNDLE_ROOT = '/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/legacy_bdt_controls'
+need_bundle = pytest.mark.skipif(not os.path.isdir(BUNDLE_ROOT), reason='legacy bundle not on this machine')
+
+
+@need_bundle
+def test_legacy_bundle_tarball_and_xml_hashes():
+    rec = lc.verify_bundle(BUNDLE_ROOT)
+    assert rec['tarball_sha256'] == '90239e2a1b9357526e962d0f64cf569368d5f4d8a77e41e1412fb4e71c808cd8'
+    assert {m: v['sha256'] for m, v in rec['xml'].items()} == {
+        'single_photon_numu': '5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961',
+        'single_photon_other': '8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16',
+        'single_photon_ncpi0': '983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3',
+        'single_photon_nue': '8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a'}
+    assert all(v['file'].endswith('_bdt_final.xml') and '_test' not in v['file'] for v in rec['xml'].values())
+
+
+def test_legacy_refuses_test_xml_and_non_controls(monkeypatch):
+    monkeypatch.setitem(lc.XML, 'single_photon_numu', ('single_photon_numu_bdt_test.xml',) + lc.XML['single_photon_numu'][1:])
+    with pytest.raises(lc.BundleError):
+        lc.xml_path('/nowhere', 'single_photon_numu')
+    with pytest.raises(lc.BundleError):
+        lc.load_control('/nowhere', 'single_photon_other', [])
+
+
+@need_bundle
+def test_legacy_control_structure_and_feature_order():
+    for m, n, trees, depth in (('single_photon_numu', 73, 300, 5), ('single_photon_ncpi0', 45, 400, 6)):
+        names = features.load(m).names
+        f = lc.load_control(BUNDLE_ROOT, m, names)
+        assert f.names == names and len(names) == n and f.ntrees == trees and lc.max_depth(f) == depth
+
+
+def test_legacy_score_transform_applied_once():
+    class Fake:
+        def evaluate_mva(self, X):
+            return np.tanh(np.asarray(X)[:, 0].astype(np.float64))
+    F = np.array([[-1.2], [-0.03], [0.0], [0.5], [2.0]])
+    v, s = lc.legacy_score(Fake(), F)
+    assert np.allclose(v, np.tanh(F[:, 0])) and np.allclose(s, 2 * F[:, 0] / np.log(10), atol=1e-12)
+    assert np.isclose(tmva_grad.threshold_in_tanh_space(0.4), 0.4305, atol=1e-4)
+
+
+def test_legacy_ncpi0_forces_flag_zero_and_new_model_keeps_it():
+    names = features.load('single_photon_ncpi0').columns
+    c = _dev_cands(names)
+    ds = devtrain.build_dataset(c, _dev('ncpi0'))
+    j = names.index('kine_pio_flag')
+    Xl = lc.legacy_matrix(ds['X'], names, 'single_photon_ncpi0')
+    assert (Xl[:, j] == 0).all() and np.array_equal(np.delete(Xl, j, 1), np.delete(ds['X'], j, 1))
+    assert set(ds['X'][:, j].tolist()) == {0.0, 1.0, 2.0}                    # the new model's matrix is untouched
+    Xn = np.ones((3, 4), np.float32)
+    assert np.array_equal(lc.legacy_matrix(Xn, ['a', 'b', 'c', 'd'], 'single_photon_numu'), Xn)
+
+
+def test_roc_equivalent_points_and_flip_table():
+    rng = np.random.default_rng(5)
+    y = np.r_[np.ones(400, int), np.zeros(600, int)]
+    legacy = np.r_[rng.normal(1, 1, 400), rng.normal(-1, 1, 600)]
+    new = np.r_[rng.normal(2, 1, 400), rng.normal(-1, 1, 600)]
+    op = lc.operating_point(y, legacy, 0.4)
+    assert op['tp'] + op['fn'] == 400 and op['fp'] + op['tn'] == 600
+    tA = lc.threshold_for_rate(new[y == 1], op['signal_efficiency'])
+    assert lc.operating_point(y, new, tA)['tp'] == op['tp']                 # same signal efficiency, exactly
+    tB = lc.threshold_for_rate(new[y == 0], op['background_acceptance'])
+    assert lc.operating_point(y, new, tB)['fp'] == op['fp']                 # same background acceptance, exactly
+    f = lc.flips(legacy > 0.4, new > tA)
+    assert sum(f.values()) == 1000
+
+
+def test_legacy_comparison_uses_common_rows():
+    reg = json.load(open(os.path.join(ROUND2, 'manifests', 'dev_round1domain_v1', 'legacy_controls.json')))
+    for m, r in reg['results'].items():
+        rows = r['rows']
+        assert rows['common'] == rows['new_evaluable'] == rows['common_positive'] + rows['common_negative']
+        assert rows['original_test'] == rows['new_evaluable'] + rows['excluded_nonfinite_test']
+        assert r['alignment']['rebuilt_rows_equal_stored'] and r['alignment']['max_abs_margin_diff_vs_stored'] == 0.0
+
+
+def test_post_training_provenance_maps_execution_head_to_content_commit():
+    for m in ('numu', 'ncpi0'):
+        man = json.load(open(os.path.join(ROUND2, 'manifests', 'dev_round1domain_v1', 'single_photon_%s_dev_manifest.json' % m)))
+        p = man['post_training_provenance']
+        assert man['code']['git']['head'].startswith('6719fce') and p['training_execution_repo_head'] == man['code']['git']['head']
+        assert p['training_execution_worktree_had_uncommitted_training_code'] is True
+        assert p['training_code_content_commit'].startswith('c83965c') and p['training_code_content_hash_match'] is True
+        for f, h in man['code']['sha256'].items():
+            assert lc.sha_of_git_blob(REPO, p['training_code_content_commit'], 'round2/' + f) == h

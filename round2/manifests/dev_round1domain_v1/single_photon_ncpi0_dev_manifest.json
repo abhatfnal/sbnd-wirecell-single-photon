@@ -171,5 +171,64 @@
   "identical_json": true,
   "max_abs_margin_diff_test": 0.0
  },
- "outputs_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/dev_models/ncpi0"
+ "outputs_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/dev_models/ncpi0",
+ "post_training_provenance": {
+  "training_execution_repo_head": "6719fcefa53fd7d845d79efaef21f69ced9dbf25",
+  "training_execution_worktree_had_uncommitted_training_code": true,
+  "training_code_content_commit": "c83965c1ee1a5726f7bdcda218d768ad2c4f146b",
+  "training_code_content_hash_match": true,
+  "files": {
+   "sp_retrain/devtrain.py": {
+    "execution_sha256": "b0d956450036832eca529e1db647d7ac6e381bae78d7ee433bd9415bd094bfb1",
+    "content_commit_sha256": "b0d956450036832eca529e1db647d7ac6e381bae78d7ee433bd9415bd094bfb1",
+    "match": true
+   },
+   "sp_retrain/labels.py": {
+    "execution_sha256": "0dc4b771a97223186b0590eea4387a6cad44f7c2511e169aca3a729feb43b54a",
+    "content_commit_sha256": "0dc4b771a97223186b0590eea4387a6cad44f7c2511e169aca3a729feb43b54a",
+    "match": true
+   },
+   "sp_retrain/sp_truth.py": {
+    "execution_sha256": "01a6b98828879876a0a9824f8cc7707071f7c3e592e2fc594f57cdd6e080b98d",
+    "content_commit_sha256": "01a6b98828879876a0a9824f8cc7707071f7c3e592e2fc594f57cdd6e080b98d",
+    "match": true
+   },
+   "sp_retrain/build_tables.py": {
+    "execution_sha256": "cd290951fef8a7bb190b9bb9895e50ee646496d3487fad3064b9764da5ec4fa8",
+    "content_commit_sha256": "cd290951fef8a7bb190b9bb9895e50ee646496d3487fad3064b9764da5ec4fa8",
+    "match": true
+   },
+   "sp_retrain/split.py": {
+    "execution_sha256": "039436513645e92dd8cdd29cb9ff712c8c92b37627680fbdf3fc590874c19848",
+    "content_commit_sha256": "039436513645e92dd8cdd29cb9ff712c8c92b37627680fbdf3fc590874c19848",
+    "match": true
+   },
+   "sp_retrain/features.py": {
+    "execution_sha256": "2c0e391f65aa8a88adc617c4e54e108112e5d47985f487b4d8ec77bf744314cf",
+    "content_commit_sha256": "2c0e391f65aa8a88adc617c4e54e108112e5d47985f487b4d8ec77bf744314cf",
+    "match": true
+   },
+   "sp_retrain/firewall.py": {
+    "execution_sha256": "03f3f6a09b844a5eda70589065d5c8127fc5650e6f830b70506895474822919e",
+    "content_commit_sha256": "03f3f6a09b844a5eda70589065d5c8127fc5650e6f830b70506895474822919e",
+    "match": true
+   },
+   "tools/train_dev_model.py": {
+    "execution_sha256": "5dadabdcb176c1ca23da1f102cda86174a97d626468f64c173592a87343a6a45",
+    "content_commit_sha256": "5dadabdcb176c1ca23da1f102cda86174a97d626468f64c173592a87343a6a45",
+    "match": true
+   }
+  },
+  "spec": {
+   "path": "specs/single_photon_ncpi0_training_spec_dev_round1_domain_v1.yaml",
+   "execution_sha256": "2b15c6a6a9cc455752d707a5fa6b65cbd2930538e4c3e38b26733404e63b841a",
+   "content_commit_sha256": "2b15c6a6a9cc455752d707a5fa6b65cbd2930538e4c3e38b26733404e63b841a"
+  },
+  "feature_list": {
+   "path": "round2/config/features/single_photon_ncpi0_inputs_v0.json",
+   "execution_sha256": "5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb",
+   "content_commit_sha256": "5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb"
+  },
+  "note": "Training ran before the commit existed: the execution record above is kept as written. Every training code file, the spec and the feature list used at run time are byte-identical to the files committed in c83965c1ee1a5726f7bdcda218d768ad2c4f146b."
+ }
 }

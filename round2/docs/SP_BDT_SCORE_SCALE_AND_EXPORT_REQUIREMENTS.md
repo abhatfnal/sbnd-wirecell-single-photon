@@ -39,6 +39,16 @@ Development models are XGBoost 3.4.1 with `objective = binary:logitraw` (dev spe
 **None of these is the production score.** The native margin, the probability `σ(m)`, the TMVA response `v`, and
 the production `log10((1+v)/(1−v))` are four different numbers.
 
+**Legacy controls (AURORA DEVELOPMENT, NOT OFFICIAL).** The verified legacy XMLs are scored with `sp_retrain.tmva_grad`:
+`v` = TMVA `EvaluateMVA` = `tanh(raw)`, then the production score once. On the development test rows that score equals
+`2·raw / ln 10` to 2e-8 (numu) and 1e-14 (ncpi0), as §1 states. The legacy historical cuts (0.4, −0.05) are applied
+to that score only.
+
+To compare a development model with a legacy cut, the comparison uses **ROC-equivalent diagnostic points**: the
+development-margin threshold at the legacy signal efficiency, or at its background acceptance. It never applies 0.4
+or −0.05 to the native margin. The development margins at those points (numu 1.32 / 0.43, ncpi0 2.36 / 1.83) are not
+Round-2 cuts.
+
 ## 3. The expected chain, a hypothesis to be validated
 
 Suppose an exporter writes every XGBoost leaf value into the TMVA `res` of the same node, with `boostWeight = 1`, the

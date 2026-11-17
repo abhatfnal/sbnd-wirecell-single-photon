@@ -21,7 +21,8 @@ See `docs/SP_BDT_ROUND2_FREEZE_ORDER.md` for the dependency graph, freeze order 
 **Development training (2026-11-17):** one SP numu and one SP ncpi0 model were trained on aurora-r2
 (`docs/SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`).
 - They are labelled `ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY`, and neither is deployable.
-- Test AUC: 0.959 (numu) and 0.817 (ncpi0).
+- Test AUC: 0.959 (numu) and 0.817 (ncpi0). On the same test rows, the verified legacy MicroBooNE XMLs reach 0.926
+  and 0.754 (AURORA DEVELOPMENT, NOT OFFICIAL; `manifests/dev_round1domain_v1/legacy_controls.json`).
 - No final model exists. `sp_retrain.labels` refuses final labels, and refuses any label for a spec that is not ready.
 
 ## Architecture
@@ -49,11 +50,11 @@ Aurora merged CAF (recTree + recTreeWireCell)
 | `config/features/single_photon_<x>_inputs_v0.json` | ordered inputs of the four frozen single-photon BDTs, from the XML `<Variables>`; branch, type, producer, notes. Made by `tools/make_feature_configs.py` |
 | `specs/single_photon_{ncpi0,other}_training_spec_v0.2.yaml`, `specs/single_photon_numu_training_spec_v0.1.yaml` | current training specs: ncpi0 (v0.2.2) and numu (v0.1.0) `READY_FOR_DEVELOPMENT_TRAINING`; other (v0.2.1) `READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE`. The ncpi0 / other v0.1 files (BLOCKED) are kept for the record |
 | `specs/single_photon_{numu,ncpi0}_training_spec_dev_round1_domain_v1.yaml` | frozen DEVELOPMENT specs of the 2026-11-17 campaign (`deployable: false`) |
-| `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `tmva_grad` (TMVA Grad scorer), `readiness`, `manifest` |
-| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign) |
-| `tests/test_sp_retrain.py` | 28 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility |
+| `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `legacy_control` (verified legacy XML bundle, legacy scoring and ROC-equivalent points), `tmva_grad` (TMVA Grad scorer), `readiness`, `manifest` |
+| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance) |
+| `tests/test_sp_retrain.py` | 36 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping |
 | `manifests/aurora_r2_v0/` | input manifests of the three aurora-r2 lists (path, size, mtime; list sha256) |
-| `manifests/dev_round1domain_v1/` | development campaign: frozen inputs, and one manifest per model (model, spec, feature-list, table and code sha256, package versions, counts) |
+| `manifests/dev_round1domain_v1/` | development campaign: frozen inputs; one manifest per model (model, spec, feature-list, table and code sha256, package versions, counts, post-training provenance); `legacy_controls.json` (verified legacy bundle and the legacy-vs-development results) |
 | `validation/` | scorer bit-check vs the toolkit (423/423), smoke build summaries, builder-vs-spec_v1 comparison, environment freeze; development summary and the ncpi0 non-finite row list |
 | `docs/` | audits, readiness, refresh request, handoff contract, deployment/export, EAF evaluation handoff |
 
@@ -76,7 +77,7 @@ PY=$SP_WORK/env/bin/python                        # venv on top of frameworks: +
 cd round2
 L=/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists
 python3 tools/make_feature_configs.py --schema /lus/flare/projects/neutrinoGPU/yuhw/sbnd-wirecell-production/aurora/schema/recTreeWireCell-dlvtx-space.schema.json
-$PY -m pytest -q -p no:cacheprovider tests                                   # 28 passed
+$PY -m pytest -q -p no:cacheprovider tests                                   # 36 passed
 $PY -I tools/check_scorer_vs_stored_nue.py --xml /lus/flare/projects/neutrinoGPU/yuhw/wire-cell-data/uboone/weights/XGB_nue_seed2_0923.xml \
     --out $SP_WORK/scorer_checks/<name>.json <merged CAFs>                   # 232/232 and 191/191 bit-identical
 $PY -m sp_retrain.build_tables aurora-r2-ncdr $SP_WORK/smoke_tables --list $L/ncdr-merged-cafs.txt --slice 0:60 --nproc 8 \
@@ -101,6 +102,12 @@ for m in numu ncpi0; do $PY -I tools/train_dev_model.py --tables $SP_WORK/dev_ta
     --manifest-out manifests/dev_round1domain_v1/single_photon_${m}_dev_manifest.json; $PY -I tools/plot_dev_model.py $SP_WORK/dev_models/$m; done
 $PY -I tools/summarize_dev_models.py --numu $SP_WORK/dev_models/numu --ncpi0 $SP_WORK/dev_models/ncpi0 \
     --legacy-splits $SP_WORK/eaf_xml_audit_0148e879/tables/sp_bdt_xml_audit --out validation/dev_round1domain_v1_summary.json
+# legacy controls on the same test rows (no training), then provenance
+for m in numu ncpi0; do $PY -I tools/legacy_control_compare.py --bundle-root $SP_WORK/legacy_bdt_controls --tables $SP_WORK/dev_tables \
+    --tag dev --spec specs/single_photon_${m}_training_spec_dev_round1_domain_v1.yaml --dev-out $SP_WORK/dev_models/$m \
+    --out-dir $SP_WORK/legacy_controls_results/$m; $PY -I tools/plot_legacy_control.py $SP_WORK/legacy_controls_results/$m; done
+$PY -I tools/record_dev_provenance.py --content-commit c83965c1ee1a5726f7bdcda218d768ad2c4f146b \
+    --bundle-root $SP_WORK/legacy_bdt_controls --results-dir $SP_WORK/legacy_controls_results
 ```
 
 ## Documents

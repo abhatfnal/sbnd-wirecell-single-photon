@@ -159,4 +159,6 @@ the required Xuyang models are frozen, and once Haiwang's training-only refresh 
 **Development results (2026-11-17)** are in `SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`.
 - SP numu still relies most on `numu_score` and `numu_1_score`.
 - SP ncpi0 shows a large train/test gap with BNB-limited negatives.
+- On the same test rows both development models outperform the verified legacy XMLs: numu 0.959 vs 0.926, ncpi0
+  0.817 vs 0.754 (AURORA DEVELOPMENT, NOT OFFICIAL).
 - Neither model is deployable, and final readiness is unchanged.

@@ -101,13 +101,90 @@ The plots are in `$SP_WORK/dev_models/numu/plots/`:
 - Split counts correlate with the legacy XML at Spearman 0.906 over the 73 inputs. Every input is used, as in the
   legacy model.
 
-## 6. Legacy control
+## 6. Legacy control: AURORA DEVELOPMENT SAMPLE — LEGACY MICROBOONE CONTROL
 
-**Not available.** The frozen `single_photon_numu_bdt_final.xml` is not on Aurora: it is in no public repository, not
-in `yuhw/wire-cell-data`, and `/lus/eagle` is not mounted. It was not reconstructed from the audit tables.
+**AURORA DEVELOPMENT — NOT OFFICIAL EVALUATION.** These numbers are not SBND performance and set no Round-2 cut.
 
-A legacy-vs-development comparison on these test events needs the XML scored with the source-faithful scorer on EAF,
-or the XML copied to Aurora with its sha256 checked.
+**Legacy XML.** `single_photon_numu_bdt_final.xml`, sha256 `5886affb…ead961`.
+- It comes from the verified EAF bundle `$SP_WORK/legacy_bdt_controls/legacy_sp_bdt_bundle_20261117/`; tarball sha256
+  `90239e2a…08cd8`, all four XMLs OK (`manifests/dev_round1domain_v1/legacy_controls.json`).
+- 73 inputs in the feature-list order, 300 trees, depth 5.
+- It is scored with the validated `sp_retrain.tmva_grad` (TMVA routing). The production score
+  `log10((1+v)/(1−v))` is applied once, and equals `2·raw/ln 10` to 2e-8.
+
+**Rows.** 28,396 original test rows; all are new-evaluable and legacy-evaluable. Common: 28,396 (9,012 positive /
+19,384 negative).
+
+The test rows rebuilt from the frozen tables equal the stored ones in order. The development margins recomputed from
+the model JSON equal the stored ones exactly.
+
+| model | test AUC (common rows) |
+|---|---:|
+| legacy MicroBooNE XML | 0.9262 |
+| SBND development model | 0.9592 |
+| delta | **+0.0330** |
+
+**Legacy at its historical cut, score > 0.4:**
+
+| | value |
+|---|---|
+| signal efficiency | 62.05 % (TP 5,592, FN 3,420) |
+| background acceptance | 5.81 % (FP 1,127, TN 18,257) |
+| background rejection | 94.19 % |
+
+**DIAGNOSTIC ROC-EQUIVALENT POINTS — NOT ROUND-2 CUTS** (thresholds on the development native margin):
+
+| point | development threshold | development | legacy | difference |
+|---|---:|---|---|---|
+| A: same signal efficiency (62.05 %) | m > 1.319 | background acceptance 2.67 % (FP 518) | 5.81 % | −3.14 points (×0.46) |
+| B: same background acceptance (5.81 %) | m > 0.434 | signal efficiency 79.35 % (TP 7,151) | 62.05 % | +17.3 points (×1.28) |
+
+**Event-by-event, at point A:**
+
+| rows | both pass | legacy pass / development fail | legacy fail / development pass | both fail |
+|---|---:|---:|---:|---:|
+| positive | 4,498 | 1,094 | 1,094 | 2,326 |
+| negative | 349 | 778 | 169 | 18,088 |
+
+- **Negatives the legacy model keeps and the development model removes** (778):
+  - median `numu_score` −0.76, against 2.20 for all negatives;
+  - median `numu_cc_3_track_length` 15 cm against 113 cm, and `numu_cc_3_max_muon_length` 0 against 77 cm;
+  - longer, more segmented showers (`shw_sp_length_total` 27 cm, `br3_1` segments 8).
+
+  These are νμ CC events without a clear muon. The development model rejects them through shower and track variables
+  rather than `numu_score` alone.
+- **Positives that only the development model keeps** (1,094; 989 NC Δ, 274 BNB in that flip class):
+  - `numu_score` −0.02, against −0.53 for all positives;
+  - two ≥ 20 MeV showers;
+  - compact showers (23 cm, 6 segments).
+
+**At point B** the development model gains 1,905 and loses 346 positives, while the negatives swap 530 / 530.
+
+**Score correlation** (legacy production score vs development margin, common rows):
+- Spearman 0.923 (positive 0.675, negative 0.878);
+- Pearson 0.920.
+
+The two models rank events similarly overall.
+
+**Routing cross-check.** The EAF Python-scorer routing (left if `x <= cut`) changes the raw sum of 12 of the 28,396
+rows, by at most 0.17. TMVA routing is used throughout.
+
+**Plots** (`$SP_WORK/legacy_controls_results/numu/plots/`):
+- `roc_legacy_vs_dev.png`;
+- `legacy_score_test.png`, with the historical cut drawn on the legacy production-score axis only;
+- `legacy_vs_dev_2d.png`.
+
+**Feature sanity.**
+
+| | legacy XML | development model |
+|---|---|---|
+| `numu_score` | rank 1 | rank 1 (335 splits) |
+| `numu_1_score` | rank 3 | rank 2 (321 splits) |
+| share of splits held by the pair | 11.5 % | 8.6 % (21.7 % of total gain) |
+
+The split counts correlate at Spearman 0.906, and the event scores at 0.923. The development model is learning
+qualitatively the same structure: upstream νμ score first, then muon-track and shower-quality variables. This is a
+sanity check, not a selection criterion.
 
 ## 7. Reproducibility
 

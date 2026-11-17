@@ -25,7 +25,10 @@ now follow `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`, which has the page c
 | frozen-XML structure | EAF audit, branch `analysis/sp-bdt-thesis-xml-compatibility-20261117`, commit `0148e879ae44c0c61f0fb7874079734a4cead3fa`: trees, depth, splits per variable, upstream usage; all four XML sha256 match | read on Aurora with `git show` (not merged) |
 | Xuyang's nu_e / nu_mu retraining | `xning/bdt-comm` @ `2c499b9`. **Unchanged since the 2026-11-17 audit.** No commit since; no file in `xning/` newer than 2026-11-11 04:43 UTC; `origin/main` last updated 2026-11-11 04:42:48. GitHub is private and was not queried | read-only `git --no-optional-locks` |
 
-The four XMLs are not on Aurora: not in `yuhw/wire-cell-data/uboone/weights/` (43 files), and `/lus/eagle` is not mounted.
+At the time of this audit the four XMLs were not on Aurora: not in `yuhw/wire-cell-data/uboone/weights/` (43 files),
+and `/lus/eagle` is not mounted. They have since been transferred from EAF as the verified bundle
+`$SP_WORK/legacy_bdt_controls/legacy_sp_bdt_bundle_20261117/` (tarball sha256 `90239e2a…08cd8`; not in git;
+`manifests/dev_round1domain_v1/legacy_controls.json`).
 Their sha256s are recorded in `provenance/software_versions.yaml`.
 
 ## 1. The four single-photon classifiers

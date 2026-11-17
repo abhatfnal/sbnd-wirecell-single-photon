@@ -1,0 +1,305 @@
+{
+ "campaign": "development_round1_domain_v1",
+ "label": "AURORA DEVELOPMENT SAMPLE -- LEGACY MICROBOONE CONTROL (not official SBND performance)",
+ "bundle": {
+  "bundle_root": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/legacy_bdt_controls",
+  "tarball": "legacy_sp_bdt_bundle_20261117.tar.gz",
+  "tarball_sha256": "90239e2a1b9357526e962d0f64cf569368d5f4d8a77e41e1412fb4e71c808cd8",
+  "xml": {
+   "single_photon_numu": {
+    "file": "single_photon_numu_bdt_final.xml",
+    "sha256": "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961"
+   },
+   "single_photon_other": {
+    "file": "single_photon_other_bdt_final.xml",
+    "sha256": "8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16"
+   },
+   "single_photon_ncpi0": {
+    "file": "single_photon_ncpi0_bdt_final.xml",
+    "sha256": "983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3"
+   },
+   "single_photon_nue": {
+    "file": "single_photon_nue_bdt_final.xml",
+    "sha256": "8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a"
+   }
+  }
+ },
+ "eaf_thesis_xml_compatibility_audit_commit": "0148e879ae44c0c61f0fb7874079734a4cead3fa",
+ "eaf_corrected_round1_baseline_commit": "daf95442515b601eecda41c6c586931a5ae38c54",
+ "bundle_origin": "EAF staging /exp/uboone/data/users/abhat/single_photon_legacy_bdt_bundle_20261117, byte-identical copies of /exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_*_bdt_final.xml (bundle manifest)",
+ "not_in_git": "the tarball and the XMLs stay under $SP_WORK/legacy_bdt_controls",
+ "evaluator": {
+  "module": "sp_retrain/tmva_grad.py",
+  "sha256": "0e10da6afb8d6f7ae415ac780a54d3f0251b0ec66cb469de900718c0763d47ea",
+  "semantics": "TMVA: right when x >= cut (cType 1), v = tanh(raw), -999 for NaN; score = log10((1+v)/(1-v)) once",
+  "validated": "bit-identical to the toolkit stored nue_score (validation/nue_xml_vs_stored_*.json)"
+ },
+ "controls_used": [
+  "single_photon_numu",
+  "single_photon_ncpi0"
+ ],
+ "not_used": [
+  "single_photon_other",
+  "single_photon_nue"
+ ],
+ "results": {
+  "single_photon_numu": {
+   "label": "AURORA DEVELOPMENT SAMPLE -- LEGACY MICROBOONE CONTROL",
+   "legacy_xml": "single_photon_numu_bdt_final.xml",
+   "legacy_xml_sha256": "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961",
+   "legacy_structure": {
+    "inputs": 73,
+    "trees": 300,
+    "max_depth": 5,
+    "xml_order_equals_feature_list": true
+   },
+   "legacy_convention": "score = log10((1+v)/(1-v)), v = TMVA EvaluateMVA (tmva_grad)",
+   "rows": {
+    "original_test": 28396,
+    "new_evaluable": 28396,
+    "legacy_evaluable": 28396,
+    "common": 28396,
+    "excluded_nonfinite_test": 0,
+    "excluded_nonfinite_test_legacy_evaluable": 0,
+    "common_positive": 9012,
+    "common_negative": 19384
+   },
+   "alignment": {
+    "rebuilt_rows_equal_stored": true,
+    "max_abs_margin_diff_vs_stored": 0.0
+   },
+   "auc": {
+    "legacy": 0.9262384385134033,
+    "dev": 0.959195224109863,
+    "dev_stored_metrics": 0.9591952241098629
+   },
+   "legacy_at_historical_cut": {
+    "cut": 0.4,
+    "tp": 5592,
+    "fn": 3420,
+    "fp": 1127,
+    "tn": 18257,
+    "signal_efficiency": 0.6205059920106525,
+    "background_acceptance": 0.05814073462649608,
+    "background_rejection": 0.941859265373504
+   },
+   "point_A_same_signal_efficiency": {
+    "new_threshold_native_margin": 1.3188493847846985,
+    "new": {
+     "cut": 1.3188493847846985,
+     "tp": 5592,
+     "fn": 3420,
+     "fp": 518,
+     "tn": 18866,
+     "signal_efficiency": 0.6205059920106525,
+     "background_acceptance": 0.026723070573669006,
+     "background_rejection": 0.973276929426331
+    },
+    "background_acceptance_abs_diff": -0.031417664052827074,
+    "background_acceptance_ratio": 0.4596273291925466
+   },
+   "point_B_same_background_acceptance": {
+    "new_threshold_native_margin": 0.4344218373298645,
+    "new": {
+     "cut": 0.4344218373298645,
+     "tp": 7151,
+     "fn": 1861,
+     "fp": 1127,
+     "tn": 18257,
+     "signal_efficiency": 0.7934975588104749,
+     "background_acceptance": 0.05814073462649608,
+     "background_rejection": 0.941859265373504
+    },
+    "signal_efficiency_abs_diff": 0.17299156679982242,
+    "signal_efficiency_ratio": 1.2787911301859798
+   },
+   "flips_A": {
+    "all": {
+     "both_pass": 4847,
+     "legacy_pass_dev_fail": 1872,
+     "legacy_fail_dev_pass": 1263,
+     "both_fail": 20414
+    },
+    "positive": {
+     "both_pass": 4498,
+     "legacy_pass_dev_fail": 1094,
+     "legacy_fail_dev_pass": 1094,
+     "both_fail": 2326
+    },
+    "negative": {
+     "both_pass": 349,
+     "legacy_pass_dev_fail": 778,
+     "legacy_fail_dev_pass": 169,
+     "both_fail": 18088
+    }
+   },
+   "flips_B": {
+    "all": {
+     "both_pass": 5843,
+     "legacy_pass_dev_fail": 876,
+     "legacy_fail_dev_pass": 2435,
+     "both_fail": 19242
+    },
+    "positive": {
+     "both_pass": 5246,
+     "legacy_pass_dev_fail": 346,
+     "legacy_fail_dev_pass": 1905,
+     "both_fail": 1515
+    },
+    "negative": {
+     "both_pass": 597,
+     "legacy_pass_dev_fail": 530,
+     "legacy_fail_dev_pass": 530,
+     "both_fail": 17727
+    }
+   },
+   "correlation": {
+    "spearman_all": 0.9228417556982197,
+    "pearson_all_legacy_score_vs_margin": 0.919788752143061,
+    "spearman_positive": 0.6753028430496176,
+    "spearman_negative": 0.8776903273540425
+   },
+   "routing_check": {
+    "rows_where_le_routing_changes_raw": 12,
+    "max_abs_raw_diff": 0.17235971242189407
+   },
+   "score_check": {
+    "score_equals_2raw_over_ln10_max_abs": 1.9230736114650426e-08
+   },
+   "results_file": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/legacy_controls_results/numu/legacy_vs_dev.json",
+   "results_file_sha256": "acf6ba21dba0e9d89d06d0cd2e74c3265b2eb0cdb4db82bcd53aaf5cd92b551b"
+  },
+  "single_photon_ncpi0": {
+   "label": "AURORA DEVELOPMENT SAMPLE -- LEGACY MICROBOONE CONTROL",
+   "legacy_xml": "single_photon_ncpi0_bdt_final.xml",
+   "legacy_xml_sha256": "983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3",
+   "legacy_structure": {
+    "inputs": 45,
+    "trees": 400,
+    "max_depth": 6,
+    "xml_order_equals_feature_list": true
+   },
+   "legacy_convention": "score = log10((1+v)/(1-v)), v = TMVA EvaluateMVA (tmva_grad); kine_pio_flag forced to 0",
+   "rows": {
+    "original_test": 13480,
+    "new_evaluable": 13467,
+    "legacy_evaluable": 13467,
+    "common": 13467,
+    "excluded_nonfinite_test": 13,
+    "excluded_nonfinite_test_legacy_evaluable": 0,
+    "common_positive": 9000,
+    "common_negative": 4467
+   },
+   "alignment": {
+    "rebuilt_rows_equal_stored": true,
+    "max_abs_margin_diff_vs_stored": 0.0
+   },
+   "auc": {
+    "legacy": 0.7544493321393926,
+    "dev": 0.8167372459766684,
+    "dev_stored_metrics": 0.8167372459766684
+   },
+   "legacy_at_historical_cut": {
+    "cut": -0.05,
+    "tp": 3546,
+    "fn": 5454,
+    "fp": 562,
+    "tn": 3905,
+    "signal_efficiency": 0.394,
+    "background_acceptance": 0.12581150660398477,
+    "background_rejection": 0.8741884933960152
+   },
+   "point_A_same_signal_efficiency": {
+    "new_threshold_native_margin": 2.357259154319763,
+    "new": {
+     "cut": 2.357259154319763,
+     "tp": 3546,
+     "fn": 5454,
+     "fp": 315,
+     "tn": 4152,
+     "signal_efficiency": 0.394,
+     "background_acceptance": 0.07051712558764271,
+     "background_rejection": 0.9294828744123573
+    },
+    "background_acceptance_abs_diff": -0.055294381016342056,
+    "background_acceptance_ratio": 0.5604982206405694
+   },
+   "point_B_same_background_acceptance": {
+    "new_threshold_native_margin": 1.82784503698349,
+    "new": {
+     "cut": 1.82784503698349,
+     "tp": 4911,
+     "fn": 4089,
+     "fp": 562,
+     "tn": 3905,
+     "signal_efficiency": 0.5456666666666666,
+     "background_acceptance": 0.12581150660398477,
+     "background_rejection": 0.8741884933960152
+    },
+    "signal_efficiency_abs_diff": 0.15166666666666662,
+    "signal_efficiency_ratio": 1.3849407783417935
+   },
+   "flips_A": {
+    "all": {
+     "both_pass": 2135,
+     "legacy_pass_dev_fail": 1973,
+     "legacy_fail_dev_pass": 1726,
+     "both_fail": 7633
+    },
+    "positive": {
+     "both_pass": 1994,
+     "legacy_pass_dev_fail": 1552,
+     "legacy_fail_dev_pass": 1552,
+     "both_fail": 3902
+    },
+    "negative": {
+     "both_pass": 141,
+     "legacy_pass_dev_fail": 421,
+     "legacy_fail_dev_pass": 174,
+     "both_fail": 3731
+    }
+   },
+   "flips_B": {
+    "all": {
+     "both_pass": 2907,
+     "legacy_pass_dev_fail": 1201,
+     "legacy_fail_dev_pass": 2566,
+     "both_fail": 6793
+    },
+    "positive": {
+     "both_pass": 2673,
+     "legacy_pass_dev_fail": 873,
+     "legacy_fail_dev_pass": 2238,
+     "both_fail": 3216
+    },
+    "negative": {
+     "both_pass": 234,
+     "legacy_pass_dev_fail": 328,
+     "legacy_fail_dev_pass": 328,
+     "both_fail": 3577
+    }
+   },
+   "correlation": {
+    "spearman_all": 0.6512272027349033,
+    "pearson_all_legacy_score_vs_margin": 0.68375652949582,
+    "spearman_positive": 0.5045992783993866,
+    "spearman_negative": 0.6955847657672584
+   },
+   "routing_check": {
+    "rows_where_le_routing_changes_raw": 10,
+    "max_abs_raw_diff": 0.19118358194828033
+   },
+   "score_check": {
+    "score_equals_2raw_over_ln10_max_abs": 1.4654943925052066e-14
+   },
+   "legacy_with_real_flag_diagnostic": {
+    "auc": 0.7556595652065766,
+    "spearman_vs_forced0": 0.9991140092926692,
+    "decision_changes_at_historical_cut": 120,
+    "note": "not the source-faithful convention; shows how the legacy model reacts to the real SBND flag"
+   },
+   "results_file": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/legacy_controls_results/ncpi0/legacy_vs_dev.json",
+   "results_file_sha256": "9af856845972cee4286d419e5f12ed97b8d5d0bea174928bd726accf4f42bde3"
+  }
+ }
+}

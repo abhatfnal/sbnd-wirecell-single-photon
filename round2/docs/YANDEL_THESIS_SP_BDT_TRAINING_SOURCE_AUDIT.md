@@ -177,7 +177,9 @@ The BDT training is described only in §5.2.1–5.2.3 and Appendix E. No other c
 
 ## 6. Cross-check against the frozen XMLs
 
-The XMLs are not on Aurora; §0 of `SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md` lists where they were looked for. This check
+At the time of this audit the XMLs were not on Aurora; they were later transferred as a verified bundle
+(`manifests/dev_round1domain_v1/legacy_controls.json`). §0 of `SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md` lists where they
+were looked for. This check
 also searched every ref of the four public MicroBooNE clones for any single-photon XML, and found none. The comparison
 below uses the XML `<Variables>` lists (`baseline_v0/tables/microboone_single_photon_bdt_inputs.csv`) and the MicroBooNE
 code at `0100d4b6`.
