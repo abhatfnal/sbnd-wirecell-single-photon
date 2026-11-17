@@ -1,7 +1,8 @@
 # Round-2 production handoff: what Haiwang receives for each single-photon model
 
-Date: 2026-11-17. Status: **contract only. No final model exists, and both training targets are BLOCKED**
-(`SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md`). A model is handed over only when every field below is filled.
+Date: 2026-11-17. Status: **contract only. No final model exists.** After the thesis audit
+(`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`), ncpi0 is ready for development training and other needs an
+in-time-cosmic sample. Neither is ready for final training. A model is handed over only when every field below is filled.
 
 **Naming.** The inherited MicroBooNE files keep their names and their place (`single_photon_<x>_bdt_final.xml`). SBND
 models get versioned names and their own directory, so the two can never be swapped by accident:
@@ -14,7 +15,7 @@ models get versioned names and their own directory, so the two can never be swap
 | 2 | SHA256 | of all three files, in `<name>.sha256`. To be filled at freeze | same |
 | 3 | classifier name | `single_photon_ncpi0` (NC π⁰ background rejection) | `single_photon_other` ("other" background rejection) |
 | 4 | training code commit | commit of `round2/` in `abhatfnal/sbnd-wirecell-single-photon`, clean tree, recorded by the trainer | same |
-| 5 | training spec version | `single_photon_ncpi0_training_spec` ≥ v1.0.0 with status `READY_FOR_FINAL_TRAINING` (today v0.1.0 BLOCKED) | `single_photon_other_training_spec` ≥ v1.0.0 (today v0.1.0 BLOCKED) |
+| 5 | training spec version | `single_photon_ncpi0_training_spec` ≥ v1.0.0 with status `READY_FOR_FINAL_TRAINING` (today v0.2.0 `READY_FOR_DEVELOPMENT_TRAINING`) | `single_photon_other_training_spec` ≥ v1.0.0 (today v0.2.0 `READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE`) |
 | 6 | ordered feature list | 45 names, `round2/config/features/single_photon_ncpi0_inputs_v0.json` (sha256 `5882391f…`), or its successor if inputs change | 146 names, `…_other_inputs_v0.json` (sha256 `0c3d3083…`) |
 | 7 | score direction | higher = more single-photon-like; keep `score > threshold` | same |
 | 8 | operating threshold | in **log10-odds**, chosen on the Aurora validation fold only. Never tuned on official samples. Legacy control cut −0.05 | same; legacy 0.2 |
@@ -27,7 +28,7 @@ models get versioned names and their own directory, so the two can never be swap
 | 15 | scorer-equivalence test result | `SP_BDT_DEPLOYMENT_EXPORT_AUDIT.md` §4: training ↔ XML within 1e-5 with **zero decision flips**; Python ↔ toolkit bit-identical; order and missing-value guards | same |
 | 16 | expected Wire-Cell config key / path | route A: `single_photon_ncpi0_xml = 'sbnd/weights/single_photon/single_photon_ncpi0_bdt_sbnd_round2_v1.xml'`, resolved by `wc.resolve`. Route B: offline score table keyed `(file_id, run, subrun, event, cand)` | `single_photon_other_xml = …_other_bdt_sbnd_round2_v1.xml` |
 | 17 | legacy control model path | `uboone/weights/single_photon_ncpi0_bdt_final.xml`, sha256 `983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3`. **Not in wire-cell-data today**; add it from the reference bundle if a legacy score is wanted in production | `uboone/weights/single_photon_other_bdt_final.xml`, sha256 `8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16`, same remark |
-| 18 | date / frozen status | to be filled at freeze; today **BLOCKED (training target unknown)** | **BLOCKED (training target unknown; `numu_score` input pending Xuyang)** |
+| 18 | date / frozen status | to be filled at freeze; today **not frozen (development only; EAF XML check and Round-2 freezes pending)** | **not frozen (in-time-cosmic sample missing; `numu_score` input pending Xuyang)** |
 
 ## Checklist before Haiwang launches Round-2
 

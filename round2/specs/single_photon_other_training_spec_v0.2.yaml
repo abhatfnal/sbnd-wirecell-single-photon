@@ -1,0 +1,129 @@
+# Training specification: SBND single-photon "Other" (NC, dirt, not in FV, cosmic) background-rejection BDT.
+# v0.2.0 supersedes v0.1.0 (BLOCKED). Thesis = E. H. Yandel, UCSB 2024 (escholarship 6rq082dr; PDF sha256 0ad56e36...1465).
+# Pages are PRINTED pages (PDF = +13). Audit: round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
+spec_id: single_photon_other_training_spec
+spec_version: 0.2.0
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE
+status_reason: >
+  The class membership is source-established by the thesis (pp.129-131, appendix E.2). The negative class includes
+  in-time cosmic rays from off-beam data ("extbnb" / EXT), and no Aurora training sample contains such events. They are
+  NOT substituted by BNB cosmic-matched candidates, which are a separate component of the same class. In addition, its
+  numu_score input changes when Xuyang's nu_mu model is installed.
+
+classifier:
+  name: single_photon_other
+  purpose: >
+    Second of four sibling BDTs: "made to remove four different, but similar, backgrounds" -- NC without pi0, dirt,
+    out of FV, cosmic (thesis p.129). Applied as a cut score > threshold.
+  frozen_predecessor:
+    xml: single_photon_other_bdt_final.xml
+    sha256: 8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16
+    stored_score: log10((1+v)/(1-v)), v = TMVA EvaluateMVA
+    score_direction: higher = more single-photon-like
+    frozen_threshold_log10_odds: 0.2        # thesis Table 5.5 (p.142) = cuts.h is_singlephoton_sel
+    efficient_threshold_log10_odds: -0.4    # thesis Table 5.4
+  thesis_model_vs_xml:
+    matches:
+      - "146 inputs (p.130)"
+      - "names in Fig. E.2 (p.282) agree with the XML list where legible"
+      - "XGBoost with objective binary:logitraw"
+      - "cut values of thesis Table 5.5 = cuts.h"
+    discrepancies:
+      - "thesis features shw_sp_n_20br1_showers_calc and shw_sp_vec_mean_dedx_calc vs XML names without _calc"
+    unverified:
+      - "thesis n_estimators 215 and max_depth 5 vs the XML (not on Aurora; an earlier note says 300 trees for all four models without per-model evidence)"
+    check: "on EAF, count <BinaryTree> elements and the deepest node in single_photon_other_bdt_final.xml (sha256 8c0ac375...)"
+
+inputs:
+  feature_list: round2/config/features/single_photon_other_inputs_v0.json
+  feature_list_sha256: 0c3d30830719104fb7a25d72943303bf26a28a6f4ea2b5244e614aecfc5f2794
+  n_inputs: 146
+  source_branch_rule: wc.T_tagger.<name>, except reco_nuvtxY -> wc.T_kine.kine_nu_y_corr
+  upstream_classifier_inputs: [cosmict_10_score, numu_1_score, numu_2_score, numu_score]
+
+label:
+  definition:
+    implementation: not implemented (status not ready)
+    rows: preselected candidates / events (thesis trains after preselection, p.127)
+    positive: the same inclusive single-photon signal sample as the sibling BDTs (thesis sec. 5.1.2; Fig. 5.8 caption)
+    negative_components:
+      - "NC events with no pi0 in the final state, not signal (cuts.h SPNCBkg: NC, truth_vtxInside, truth_Npi0 == 0)"
+      - "dirt: neutrinos interacting outside the cryostat, not signal"
+      - "out of FV: neutrinos in the cryostat whose true vertex is outside Wire-Cell's 3 cm FV, not signal (cuts.h SPoutFVBkg)"
+      - "cosmic (overlay): BNB events where a cosmic flash-cluster pair was selected as the neutrino candidate -- always background"
+      - "cosmic (EXT): in-time cosmic rays from off-beam data ('extbnb') -- always background, no truth"
+    signal_override: events of the first three components that fit the signal definition are trained as signal (p.129)
+  source_established:
+    - "p.127: 263,120 training background events, split by type, used only on the relevant BDT; preselection first"
+    - "pp.129-130: the four components above; 27,377 background vs 24,936 signal training events; 146 variables"
+    - "Fig. 5.8 caption (p.131): background includes only NC, out of FV, dirt, cosmic and extbnb events"
+  still_unknown:
+    - the split of the 27,377 background events between NC, dirt, out-of-FV, overlay cosmic and EXT; any weights (none stated)
+    - exact truth expressions behind "cosmic" (MicroBooNE badmatch = match_completeness_energy <= 0.1 truth_energyInside)
+    - definitions of the two _calc features
+
+missing_training_sample:
+  what: >
+    In-time cosmic-only events (the MicroBooNE "EXT" component). For SBND: off-beam (beam-off) triggers, or an
+    in-time-cosmic simulation if Avinay and Haiwang decide that is an acceptable stand-in. It must be processed with
+    the same reconstruction as the other training CAFs, i.e. the Round-2 training refresh.
+  availability: none on the Aurora training side. The only beam-off CAFs are the official fg1 halves, evaluation-only
+    under the Round-2 rule; the odd-run half is used by Xuyang only by her own decision.
+  required_split: >
+    By run (every beam-off file has art subrun 1): e.g. run parity, disjoint from any evaluation beam-off. Evaluation
+    beam-off (fg1 even runs) is never in training.
+  normalization: off-beam gates, never POT, kept for evaluation; training uses event counts (no weights stated)
+
+preselection: same as single_photon_ncpi0_training_spec v0.2.0
+candidate_policy: same as single_photon_ncpi0_training_spec v0.2.0
+
+samples:
+  development_mc:
+    - id: aurora-r2-bnb
+      components: ["NC without pi0", "dirt (rockbox interactions outside the TPC)", "out of FV", "overlay-cosmic candidates", "signal"]
+      files: 11888
+    - id: aurora-r2-ncdr
+      components: ["signal"]
+      files: 17603
+  missing:
+    - "in-time cosmic / off-beam sample (see missing_training_sample)"
+  class_census: "not run (status not ready). The MC components counted in the ncpi0 dry run are in the audit, section 9.3"
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves), run3-bnb-data,
+                                 open-run1-bnb-data, selected-data, official SAM EX_ncdeltarad, Xin hold-out lists]
+  approved_exceptions: []
+
+split:
+  scheme: subrun_parity_valhash_v1 (MC); by run for off-beam data
+  seed: 20261117
+
+weights:
+  class_weights: none stated; none
+  event_weights: none stated; none
+
+xgboost:            # thesis appendix E.2 (pp.279-281)
+  version: 3.4.1
+  max_depth: 5
+  n_estimators: 215
+  learning_rate: 0.1
+  objective: binary:logitraw
+  colsample_bytree: 1
+  colsample_bylevel: 0.5
+  colsample_bynode: 0.5
+  subsample: 0.8
+  gamma: 0.2
+  seed_microboone: 1
+  random_state: 20261117
+  eval_metric: [auc, error]
+  base_score: 0.5
+
+deployment:
+  production: TMVA BDT XML, BoostType=Grad, via a validated exporter
+  proposed_name: single_photon_other_bdt_sbnd_round2_v1
+
+dependencies:
+  upstream_classifiers:
+    - "nu_mu level-1 numu_tagger1, numu_tagger2 and cos_tagger_10, and the nu_mu final model, i.e. Xuyang's frozen nu_mu chain"
+  vertexing: DL neutrino vertex
+  reconstruction: "WCT pin of the training CAFs"

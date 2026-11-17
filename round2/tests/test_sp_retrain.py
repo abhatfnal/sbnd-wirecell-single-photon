@@ -187,10 +187,82 @@ def test_truth_summary_counts_pi0_photons_and_leptons():
     assert s['n_prim_mu'] == 1 and abs(s['max_prim_mu_ke_mev'] - 50.0) < 1e-9 and s['n_prim_e'] == 0
 
 
-# ---------------------------------------------------------------- label guard
-def test_labels_refuse_blocked_specs():
+# ---------------------------------------------------------------- single-photon truth classes (thesis sec. 5.1.2)
+def _event(rows):
+    """rows: (nu_row, trackid, parent, pdg, KE_GeV, (px, py, pz), (end_x, end_y, end_z))"""
+    k = ('nu_row', 'trackid', 'parent_trackid', 'pdg', 'KE')
+    pf = {n: np.array([r[i] for r in rows]) for i, n in enumerate(k)}
+    for i, c in enumerate('xyz'):
+        pf['start_p' + c] = np.array([r[5][i] for r in rows], float)
+        pf['end_' + c] = np.array([r[6][i] for r in rows], float)
+    return pf
+
+
+IN = (0.0, 0.0, 250.0)
+NC_IN = dict(ccnc=1, pdg=14, mode=1, vx=0.0, vy=0.0, vz=250.0)
+
+
+def _pi0(g1_ke, g2_ke, g2_dir=(0, 1, 0)):
+    return [(0, 5, 0, 111, 0.3, (0, 0, 1), IN), (0, 6, 5, 22, g1_ke, (1, 0, 0), IN), (0, 7, 5, 22, g2_ke, g2_dir, IN)]
+
+
+def test_sp_truth_nc_pi0_two_visible_photons_is_background():
+    from sp_retrain import sp_truth
+    s = sp_truth.classify(0, _event(_pi0(0.10, 0.08)), NC_IN)
+    assert s['sp_n_photon_fit'] == 2 and s['sp_signal'] == 0 and s['sp_bkg'] == 'NCpi0Bkg'
+
+
+def test_sp_truth_nc_pi0_one_visible_photon_is_signal():
+    from sp_retrain import sp_truth
+    s = sp_truth.classify(0, _event(_pi0(0.10, 0.01)), NC_IN)          # second photon below 20 MeV
+    assert s['sp_signal'] == 1 and s['sp_category'] == 'NCpi0_1g'
+    s = sp_truth.classify(0, _event(_pi0(0.10, 0.08, g2_dir=(1, 0.1, 0))), NC_IN)   # ~5.7 deg: overlapping pair
+    assert s['sp_pair_merged'] == 1 and s['sp_signal'] == 1 and s['sp_category'] == 'NCpi0_1g'
+    exit_pf = _event([(0, 5, 0, 111, 0.3, (0, 0, 1), IN), (0, 6, 5, 22, 0.10, (1, 0, 0), IN),
+                      (0, 7, 5, 22, 0.08, (0, 1, 0), (0.0, 0.0, 600.0))])                # second photon converts outside
+    assert sp_truth.classify(0, exit_pf, NC_IN)['sp_category'] == 'NCpi0_1g'
+
+
+def test_sp_truth_delta_numu_nue_and_out_of_fv():
+    from sp_retrain import sp_truth
+    delta = _event([(0, 3, 0, 22, 0.25, (0, 0, 1), IN), (0, 4, 0, 2212, 0.1, (0, 1, 0), IN)])
+    assert sp_truth.classify(0, delta, NC_IN)['sp_category'] == 'NCDelta_1g'
+    soft_mu = _event([(0, 2, 0, 13, 0.05, (0, 0, 1), IN)] + _pi0(0.10, 0.01))
+    assert sp_truth.classify(0, soft_mu, dict(NC_IN, ccnc=0))['sp_category'] == 'numuCC_1g'
+    hard_mu = _event([(0, 2, 0, 13, 0.30, (0, 0, 1), IN)] + _pi0(0.10, 0.01))
+    s = sp_truth.classify(0, hard_mu, dict(NC_IN, ccnc=0))
+    assert s['sp_signal'] == 0 and s['sp_bkg'] == 'numuCCpi0Bkg'
+    nue = _event([(0, 2, 0, 11, 0.40, (0, 0, 1), IN)])
+    assert sp_truth.classify(0, nue, dict(NC_IN, ccnc=0, pdg=12))['sp_bkg'] == 'nueCCBkg'
+    assert sp_truth.classify(0, delta, dict(NC_IN, vz=600.0))['sp_category'] == 'outFV_1g'
+    assert sp_truth.classify(0, None, NC_IN)['sp_truth_ok'] == 0
+
+
+# ---------------------------------------------------------------- label gating and ncpi0 classes
+def _spec(m, v):
+    return labels.load_spec(os.path.join(ROUND2, 'specs', 'single_photon_%s_training_spec_v%s.yaml' % (m, v)))
+
+
+def test_label_gating_by_spec_status():
     for m in ('ncpi0', 'other'):
-        spec = labels.load_spec(os.path.join(ROUND2, 'specs', 'single_photon_%s_training_spec_v0.1.yaml' % m))
-        assert spec['status'] == 'BLOCKED'
+        s01 = _spec(m, '0.1')
+        assert s01['status'] == 'BLOCKED'
         with pytest.raises(labels.TargetBlockedError):
-            labels.training_labels(None, spec)
+            labels.training_labels(None, s01)
+    assert _spec('ncpi0', '0.2')['status'] == 'READY_FOR_DEVELOPMENT_TRAINING'
+    with pytest.raises(labels.TargetBlockedError):                       # development only, never final
+        labels.training_labels(None, _spec('ncpi0', '0.2'), final=True)
+    other = _spec('other', '0.2')
+    assert other['status'] == 'READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE'
+    with pytest.raises(labels.TargetBlockedError):
+        labels.training_labels(None, other)
+
+
+def test_ncpi0_development_classes():
+    c = pd.DataFrame(dict(
+        is_placeholder=[0, 0, 0, 0, 0, 1], shw_sp_n_20mev_showers=[1, 2, 1, 0, 1, 1], label_unreadable=[0, 0, 0, 0, 0, 0],
+        partner_kind=['neutrino', 'neutrino', 'cosmic', 'neutrino', 'neutrino', 'neutrino'], m_sp_truth_ok=[1, 1, np.nan, 1, 1, 1],
+        m_sp_signal=[1, 0, np.nan, 1, 0, 1], m_sp_bkg=['', 'NCpi0Bkg', None, '', 'NCBkg', ''], nu_x=[50.0] * 6))
+    cls, pre = labels.ncpi0_development_classes(c, _spec('ncpi0', '0.2'))
+    assert cls.tolist() == [1, 0, -1, -1, -1, -1]      # cosmic partner excluded; no 20 MeV shower and placeholder fail preselection
+    assert pre.tolist() == [True, True, True, False, True, False]

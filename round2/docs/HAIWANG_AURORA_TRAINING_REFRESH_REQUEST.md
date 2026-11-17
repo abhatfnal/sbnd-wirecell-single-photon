@@ -3,6 +3,9 @@
 Draft, 2026-11-17. Not sent. This is **not** the official Round-2 evaluation campaign: it touches only the Aurora
 training/development samples, and no official fg1 / FermiGrid sample is involved.
 
+Updated the same day after the thesis audit (`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`). Both training targets
+are now known, so the sample table follows them. "other" needs one new sample: in-time cosmics.
+
 ## Why it is needed
 
 All 45 ncpi0 inputs and all 146 other inputs are computed relative to the reconstructed neutrino vertex and its shower
@@ -15,7 +18,8 @@ aurora-r2 CAFs would be deployed outside its training domain.
 ```
 old Aurora CAFs (aurora-r2, Round-1 reconstruction)
   -> development pipeline ready                   DONE 2026-11-17 (builder, specs, firewall, scorer bit-check)
-  -> new vertex / upstream models frozen           Snehadri (DL vertex); Xuyang (nu_mu, nu_e); targets recovered
+  -> new vertex / upstream models frozen           Snehadri (DL vertex); Xuyang (nu_mu, nu_e)
+                                                  (targets recovered 2026-11-17 from the thesis)
   -> Aurora TRAINING refresh                      Haiwang, this request
   -> final ncpi0 / other training                 Avinay, on the refresh only
   -> production model handoff                     Avinay -> Haiwang (export + equivalence test)
@@ -50,12 +54,14 @@ old Aurora CAFs (aurora-r2, Round-1 reconstruction)
 
 | sample | today (aurora-r2) | refresh | why |
 |---|---|---|---|
-| NC Δ-radiative, configL (signal) | 17,603 units, 26,744 events, 16,534 filled candidates | **all** | signal-limited |
-| BNB CV | 11,888 units, 627,205 events, 63,581 filled candidates | **all** | the NC π⁰, cosmic-matched and out-of-volume negatives come from here |
+| NC Δ-radiative, configL (signal) | 17,603 units, 26,744 events, 16,534 filled candidates | **all** | single-photon signal for both BDTs, about 86 % of the ncpi0 positives |
+| BNB CV | 11,888 units, 627,205 events, 63,581 filled candidates | **all** | ncpi0: NC π⁰ → 1γ and out-of-FV signal, and about 97 % of the NC π⁰ negatives. other: NC without π⁰, dirt, out of FV, cosmic-matched candidates |
 | CC νe, configL | 61,248 units, 268,839 events | all if Xuyang retrains νe on it; otherwise a fixed subset, e.g. the first quarter of the list | not a class of ncpi0 / other |
+| **in-time cosmics (new, required for other)** | none on the training side | SBND off-beam triggers, or an in-time-cosmic simulation if Avinay and Haiwang accept it. Full reconstruction, step 1 included, with the refresh configuration. Split by run. Disjoint from every evaluation beam-off (fg1 halves never used) | the EXT component of the "other" negatives (thesis p.129). BNB cosmic-matched candidates are a different component and do not replace it |
+| NC π⁰-enriched MC (new, optional) | none | only if the final ncpi0 model needs more negatives | the full BNB gives about 9k NC π⁰ negatives; MicroBooNE trained on 37,205 |
 
-A subset of BNB would cut the negative classes in proportion. Both targets are still unknown, so full statistics are
-the safe default.
+A subset of BNB would cut the negative classes in proportion. The ncpi0 negatives are already the limiting class, so
+the full BNB list is needed.
 
 ## Output wanted
 

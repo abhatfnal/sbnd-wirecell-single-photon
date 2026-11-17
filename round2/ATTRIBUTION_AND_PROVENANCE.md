@@ -10,6 +10,7 @@
 | MicroBooNE, `brb-rightback/wcp-uboone-bdt-eyandel` @ `0100d4b62193ef3ccdb7d759ce53eb9c1b4bb541` (public) | single-photon booking (`apps/bdt_convert.cxx`), score transform (`inc/WCPLEEANA/bdt.h`), selection and categories (`inc/WCPLEEANA/cuts.h`) | cited, not copied; sha256-identical to this repo's reference bundle |
 | this repository, `baseline_v0/tables/microboone_single_photon_bdt_inputs.csv` (2026-10-05) | the XML `<Variables>` order of the four frozen models | input to `tools/make_feature_configs.py`, sha256 recorded in each feature JSON |
 | MicroBooNE public note 1125 (2024-06-07); PRL 136 181806 (arXiv:2502.06064) | documented intent of the four BDTs, the signal definition, cut values | quoted in the audit |
+| E. H. Yandel, *A Search for Anomalous Single Photon Production in Neutrino Interactions with the MicroBooNE Detector*, PhD thesis, UC Santa Barbara, 2024, https://escholarship.org/uc/item/6rq082dr (PDF sha256 `0ad56e36…1465`) | the training classes, sample counts, preselection, split and XGBoost parameters of the four single-photon BDTs (§5.1.2, §5.2, App. E) | cited by page in `docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`. The PDF and its text extraction are **not** in git and must not be added |
 
 ## Pins recorded on 2026-11-17
 

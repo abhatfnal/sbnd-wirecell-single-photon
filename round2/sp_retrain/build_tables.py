@@ -31,7 +31,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
-from sp_retrain import firewall  # noqa: E402
+from sp_retrain import firewall, sp_truth  # noqa: E402
 
 WC = 'recTreeWireCell'
 KEY_CLASH = {'run', 'subrun', 'event', 'eventNo', 'runNo', 'subRunNo'}
@@ -165,6 +165,9 @@ def extract(path, sample, file_id, holdout):
         summaries = {}
         for q, ix in enumerate(tn.get('nu_idx', [])):
             s = truth_summary(q, pfi)
+            s.update(sp_truth.classify(q, pfi, dict(ccnc=int(tn['ccnc'][q]), pdg=int(tn['pdg'][q]),
+                                                    mode=int(tn['mode'][q]) if 'mode' in tn else -1, vx=float(tn['vtx_x'][q]),
+                                                    vy=float(tn['vtx_y'][q]), vz=float(tn['vtx_z'][q]))))
             summaries[int(ix)] = s
             r = dict(key, nu_idx=int(ix), pdg=int(tn['pdg'][q]), ccnc=int(tn['ccnc'][q]),
                      mode=int(tn['mode'][q]) if 'mode' in tn else -1, int_type=int(tn['int_type'][q]) if 'int_type' in tn else -1,

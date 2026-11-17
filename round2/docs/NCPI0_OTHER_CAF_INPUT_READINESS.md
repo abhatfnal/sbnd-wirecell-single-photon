@@ -26,10 +26,10 @@ only; the 13 `T_kine` inputs, which those tables do not carry, come from the own
   `prim.start*`).
 
 **What the CAFs cannot provide.**
-- The training target; see the dependency and target audit.
-- MicroBooNE-specific truth summaries (`truth_single_photon`, `truth_showerMother`, `match_completeness_energy`). These
-  must be rebuilt from `T_truth_pf` / `T_match` once the target is known.
-- A cosmic-only sample for the "other" class.
+- MicroBooNE-specific truth summaries (`truth_single_photon`, `truth_showerMother`, `match_completeness_energy`). Since
+  the thesis audit, `sp_retrain/sp_truth.py` rebuilds the single-photon categories from `T_truth_nu` / `T_truth_pf`
+  under assumptions A1–A7 (`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md` §8). The shower end point is not stored.
+- A cosmic-only (in-time cosmic, EXT-like) sample, part of the "other" negative class (thesis p.129).
 
 ## 2. Sample size and the single-photon gate (full aurora-r2, placeholders dropped)
 

@@ -4,6 +4,9 @@ Date: 2026-11-17 (Aurora, `aurora-uan-0010`). Scope: source audit only. No model
 changed. Every statement below cites its source. "SOURCE-ESTABLISHED" means read in code or a document. "STRONGLY
 INFERRED" is a reasoned conclusion that no source states. "UNKNOWN" means not recoverable from anything reachable today.
 
+**Updated later the same day, once E. H. Yandel's thesis was available locally.** §1 (tree counts), §3, §4, §6 and §7
+now follow `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`, which has the page citations.
+
 ## 0. Sources and pins
 
 | what | pin | how it was checked |
@@ -13,6 +16,7 @@ INFERRED" is a reasoned conclusion that no source states. "UNKNOWN" means not re
 | first appearance of the single-photon BDTs | `bf9d7113` (eyandel, 2022-09-21, "add in single photon BDTs"; adds scorer code only) | `git show --stat` |
 | frozen XML input lists | `baseline_v0/tables/microboone_single_photon_bdt_inputs.csv`, taken from each XML's `<Variables>` (2026-10-05) | counts agree with `bdt_convert.cxx` `AddVariable` lines (73, 146, 45 + 1 commented, 56) |
 | public documentation | MicroBooNE public note 1125 (2024-06-07), PRL 136 181806 / arXiv:2502.06064 | text quoted below |
+| training definitions | E. H. Yandel, PhD thesis, UCSB 2024 (escholarship 6rq082dr), PDF sha256 `0ad56e36…1465` | `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md` |
 | Xuyang's nu_e / nu_mu retraining | `xning/bdt-comm` @ `2c499b9`. **Unchanged since the 2026-11-17 audit.** No commit since; no file in `xning/` newer than 2026-11-11 04:43 UTC; `origin/main` last updated 2026-11-11 04:42:48. GitHub is private and was not queried | read-only `git --no-optional-locks` |
 
 The four XMLs are not on Aurora: not in `yuhw/wire-cell-data/uboone/weights/` (43 files), and `/lus/eagle` is not mounted.
@@ -28,7 +32,9 @@ Their sha256s are recorded in `provenance/software_versions.yaml`.
 | `single_photon_nue` | 56 | none | 56 `shw_sp_*` | `single_photon_nue_bdt_final.xml` sha256 `8580ba04…a758a` | > −1.0 |
 
 The ordered lists are in `round2/config/features/single_photon_*_inputs_v0.json`; each input records its branch, type
-and producer. All four XMLs are `BoostType=Grad`, 300 trees, `boostWeight` 1 (baseline_v0 TMVA validation).
+and producer. All four XMLs are `BoostType=Grad` with `boostWeight` 1 (baseline_v0 TMVA validation). That note also
+says 300 trees for all four, but records no per-model count. The thesis gives 300 / 215 / 400 / 300 trees for numu /
+other / ncpi0 / nue (Appendix E), so the other and ncpi0 counts must be checked on EAF (thesis audit §6).
 
 **Thresholds are on the log10-odds score.** MicroBooNE stores `single_photon_*_score = log10((1+v)/(1−v))` with
 `v = EvaluateMVA = tanh(raw)` (`inc/WCPLEEANA/bdt.h` `cal_single_photon_*_bdts_xgboost`, present since `bf9d7113`). The
@@ -99,30 +105,33 @@ retrain SP numu, or accept and measure the shift.
   and no muon above 100 MeV.
   - **NC π⁰ → 1γ is part of the signal** (42 % of the expected SM signal).
   - Analysis categories `SPNCDeltaSig`, `SPNCPi0Sig`, `SPNCOtherSig`, `SPNumuCCSig` and `SPOutFVSig` (`cuts.h:2807-2819`).
-- **STRONGLY INFERRED:**
-  - Positive class = single-photon signal events.
-  - Negative class = NC π⁰ events that fail the single-photon definition, because the same event cannot be in both classes.
-  - Event-level rows, since MicroBooNE Wire-Cell had one candidate per event.
-- **UNKNOWN:**
-  - the exact truth expression of each class, including π⁰ multiplicity (`== 1` or `≥ 1`) and whether out-of-FV signal was positive;
-  - the preselection applied to training rows;
-  - the samples, weights and class balancing.
-- **Not available:** no training code for these models exists in `wcp-uboone-bdt-eyandel` (all 12 branches),
-  `eyandel/wcp-uboone-bdt`, `eyandel/LEEana` or `brb-rightback/wire-cell-pid`. The PRL defers to its Supplemental
-  Material and to E. H. Yandel's PhD thesis ("A Search for Anomalous Single Photon Production in Neutrino Interactions
-  with the MicroBooNE Detector", UCSB 2024, https://escholarship.org/uc/item/6rq082dr). The thesis PDF could not be
-  fetched from Aurora: CloudFront refused scripted access, and WebFetch has a 10 MB limit.
+- **SOURCE-ESTABLISHED by the thesis** (printed pages; audit §3):
+  - The positive class is the inclusive single-photon signal, all five categories: 24,936 training and 25,389 test
+    events, shared by all four BDTs (p.127; Fig. 5.9 caption, p.132).
+  - The negative class is NC π⁰ background, "background NC events with a π0 in the final state": 37,205 training
+    events (p.131). It is the same expression as `cuts.h` `SPNCpi0Bkg` (line 2855).
+  - Rows passed the preselection first (p.127): generic selection, 5 < x < 250 cm, ≥ 1 shower > 20 MeV (Table 5.2).
+  - Split: shared Wire-Cell list, otherwise even subrun = train (p.128). XGBoost parameters: App. E.3 (p.281).
+- **THESIS-IMPLIED:** the negatives are inside the FV (out-of-FV events go to "other"); background counts are enriched,
+  not natural; one row per event.
+- **STILL UNKNOWN:** primary or any π⁰; a completeness requirement on the training rows; the samples behind the
+  negatives; `shw_sp_n_20br1_showers_calc`. No weights are stated.
+- No training code exists in `wcp-uboone-bdt-eyandel` (all 12 branches), `eyandel/wcp-uboone-bdt`, `eyandel/LEEana` or
+  `brb-rightback/wire-cell-pid`.
 
-**Verdict: final NCPI0 training is BLOCKED.** Development training with a guessed label is also not done; Task 11 was
-skipped. What unblocks it: the thesis chapter on the BDTs, or an answer to the question in §6.
+**Verdict (thesis audit §10): READY FOR DEVELOPMENT TRAINING** (spec v0.2.0). Not started: it waits for Avinay's
+review of the definitions. Final training also needs the EAF XML check (tree count, depth and split counts against
+thesis Fig. E.3). If that check fails, the gate becomes **BLOCKED — THESIS/XML VERSION MISMATCH**.
 
 **Two inherited semantics a retrained model must decide explicitly:**
 - `kine_pio_flag` (input 34). MicroBooNE's scorer sets `temp_kine_pio_flag = 0` before all single-photon evaluations
   (eyandel `47b1f0c`, 2024-02-26, "break pi0 flag for sp only", comment "uncomment to match old files"). baseline_v0
-  fed the real `T_kine` value, which in SBND takes 0, 1 and 2. Whether the frozen XML splits on VarIndex 34 is not
-  known; it can be checked by reading the XML on Eagle/EAF.
+  fed the real `T_kine` value, which in SBND takes 0, 1 and 2. The thesis model splits on it (Fig. E.3: F score 23,
+  10th of 45 by gain), so it was trained with real values. Whether the frozen XML splits on VarIndex 34 is part of the
+  EAF check.
 - `shw_sp_pio_1_mass` is NaN on 0.006–0.02 % of filled candidates. TMVA returns −999 for such rows, while XGBoost
-  routes NaN as "missing".
+  routes NaN as "missing". In the ncpi0 dry-run census, 6 of 2,599 NC Δ positive rows have a non-finite input:
+  `kine_pio_angle`, `kine_pio_theta_1/2`, `kine_pio_mass` and `shw_sp_pio_1_mass`.
 
 ## 4. OTHER: the training target
 
@@ -133,17 +142,22 @@ skipped. What unblocks it: the thesis chapter on the BDTs, or an answer to the q
     events that take place outside of the TPC and scatter in".
   - PRL: "'other' backgrounds (mainly consisting of cosmic rays and neutrinos interacting outside of the TPC)".
   - Score direction: higher means more signal-like; cut `> 0.2`.
-- **STRONGLY INFERRED:** the positive class is the same single-photon signal used by the sibling BDTs.
-- **UNKNOWN:**
-  - which samples formed the negative class: EXT beam-off data, overlay cosmics, dirt, or "everything not νμ CC / NC π⁰
-    / νe CC";
-  - whether membership was defined by truth (for example match completeness or vertex outside the TPC) or by reconstruction;
-  - the preselection, and any weights or class balancing.
+- **SOURCE-ESTABLISHED by the thesis** (pp.129–131; audit §4):
+  - The positive class is the same single-photon signal sample as the sibling BDTs.
+  - The negative class has four background types: NC with no π⁰; dirt (outside the cryostat); out of the 3 cm FV inside
+    the cryostat; and cosmic rays. The cosmic rays are **both** in-time cosmics from off-beam data ("extbnb" / EXT) and
+    overlay events where a cosmic flash-cluster pair was selected.
+  - Signal-fitting events of the first three types are trained as signal. EXT is always background.
+  - 27,377 background and 24,936 signal events, 146 variables. XGBoost parameters: App. E.2 (depth 5, 215 trees).
+- **STILL UNKNOWN:** how the 27,377 events divide between the types; the truth expression for "cosmic"; the two `_calc`
+  inputs. No weights are stated.
 - **SBND gap.** Cosmic-only real data exist only as official fg1 beam-off, which is evaluation-side under the Round-2
   rule. Aurora MC has cosmic-matched candidates (`T_match` partner with `truth_nu_idx < 0`) but no cosmic-only sample.
+  The cosmic-matched candidates are the overlay-cosmic component, not a substitute for EXT.
 
-**FINAL OTHER RETRAINING IS BLOCKED BY THE UNKNOWN TRAINING TARGET.** It is also blocked by its `numu_score` input,
-which changes when Xuyang's νμ model is installed.
+**Verdict (thesis audit §10): READY ONLY AFTER ADDITIONAL TRAINING SAMPLE.** It needs an in-time-cosmic sample
+processed with the training-refresh reconstruction and split by run. It is also held by its `numu_score` input, which
+changes when Xuyang's νμ model is installed.
 
 ## 5. Erratum for `baseline_v0` (score convention and routing)
 
@@ -171,8 +185,8 @@ If the EAF first-look round reused this scorer, the same three points apply ther
 
 | classifier | development training now? | final freeze now? | must wait for |
 |---|---|---|---|
-| ncpi0 | **CONDITIONAL**, not done. All 45 inputs exist in the current Aurora CAFs. Blocked only by the training target | **NO** | (1) recovered target; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
-| other | **NO**: target unknown, and `numu_score` is about to change | **NO** | (1) recovered target, including which cosmic sample; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) a decision on cosmic-only training data |
+| ncpi0 | **YES, after Avinay's review** (spec v0.2.0 `READY_FOR_DEVELOPMENT_TRAINING`; not started). Classes recovered from the thesis; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) the EAF XML check (thesis audit §6); (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
+| other | **NO**: the EXT (in-time cosmic) negative component has no training-side sample, and `numu_score` is about to change | **NO** | (1) an in-time-cosmic sample in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) the EAF XML check |
 
 What would change the input domain of a model trained on today's (Round-1) CAFs:
 
@@ -192,14 +206,20 @@ The `status` field of each training spec prevents freezing one by accident.
 
 ## 7. The questions to send (Haiwang / Xin / Xuyang, to forward to Erin Yandel if needed)
 
-1. **ncpi0.** For `single_photon_ncpi0_bdt_final.xml`: what exactly were the positive and negative training classes?
-   (Truth expressions: e.g. `SP*Sig` vs NC with `truth_NprimPio == 1` and not signal? π⁰ multiplicity? Out-of-FV
-   signal?) What preselection was applied to the training rows, which samples, and were there weights or class balancing?
-2. **other.** For `single_photon_other_bdt_final.xml`: which events formed the negative class? (EXT beam-off, overlay
-   cosmics, dirt, or everything not νμ CC / NC π⁰ / νe CC.) Was membership defined by truth or by reconstruction, and
-   was the positive class the same signal sample?
-3. **kine_pio_flag.** Were the single-photon BDTs trained with `kine_pio_flag` effectively constant (0 or −1)? This is
-   what "uncomment to match old files" implies.
+Not sent. Questions 1–2 are mostly answered by the thesis (audit §3–4); only the residuals are listed.
+
+1. **ncpi0 (residual).** Was `truth_Npi0` primary π⁰ or π⁰ from any stage? Did the training rows also need
+   `match_completeness_energy > 0.1·truth_energyInside`? Which samples gave the 37,205 negatives? What is
+   `shw_sp_n_20br1_showers_calc`?
+2. **other (residual).** How did the 27,377 negatives divide between NC, dirt, out of FV, overlay cosmic and EXT? Was
+   "cosmic" defined by `badmatch`? What is `shw_sp_vec_mean_dedx_calc`?
+3. **kine_pio_flag.** The thesis model splits on it (Fig. E.3), but MicroBooNE scored with it forced to 0 ("uncomment to
+   match old files"). Was that deliberate? Does the frozen XML split on it?
 4. **Xuyang.** Will Round-2 keep the 15 νe level-1 and the νμ level-1 TMVA models as shipped? Will `numu_score` be
    retrained, and when is it frozen?
 5. **Haiwang.** Which route will compute single-photon scores in Round-2: a new toolkit scorer or offline post-processing?
+6. **EAF (Avinay).** In the reference bundle, count the `<BinaryTree>` elements, the maximum depth and the splits per
+   variable of the other and ncpi0 XMLs. Compare them with thesis App. E: 215 / 5 and 400 / 6 trees / depth, and the F
+   scores of Figs. E.2 and E.3.
+7. **Haiwang / Avinay.** Which in-time-cosmic sample for "other": SBND off-beam triggers, or an in-time-cosmic
+   simulation, processed with the training-refresh reconstruction?

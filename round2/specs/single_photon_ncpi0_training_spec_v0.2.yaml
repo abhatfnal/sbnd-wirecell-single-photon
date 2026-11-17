@@ -1,0 +1,181 @@
+# Training specification: SBND single-photon NC pi0 background-rejection BDT.
+# v0.2.0 supersedes v0.1.0 (BLOCKED). Thesis = E. H. Yandel, "A Search for Anomalous Single Photon Production in Neutrino
+# Interactions with the MicroBooNE Detector", PhD thesis, UC Santa Barbara, June 2024, escholarship.org/uc/item/6rq082dr,
+# PDF sha256 0ad56e360170aa6d15954c7926c7909352cc9e67e8bcfb1b8db3b113cf5d1465. Pages below are PRINTED pages (PDF = +13).
+# Audit: round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
+spec_id: single_photon_ncpi0_training_spec
+spec_version: 0.2.0
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: READY_FOR_DEVELOPMENT_TRAINING   # development only; final training needs READY_FOR_FINAL_TRAINING
+status_reason: >
+  The training classes are source-established by the thesis (sec. 5.2.2, pp.127-132; appendix E.3, p.281). The class
+  expressions agree with MicroBooNE's own SP background flags (cuts.h @ 0100d4b6:2842-2856). Current Aurora samples hold
+  both classes. NOT final: the Round-2 dependencies (DL vertex, nu_e level-1 status, training refresh, exporter) are
+  open, and the thesis-to-XML link has one outstanding check (NTrees = 400, max depth = 6 in the frozen XML).
+
+classifier:
+  name: single_photon_ncpi0
+  purpose: >
+    Third of four sibling background-rejection BDTs of the inclusive single-photon selection: "made to remove
+    background NC events with a pi0 in the final state" (thesis p.131). Applied as a cut score > threshold.
+  frozen_predecessor:
+    xml: single_photon_ncpi0_bdt_final.xml
+    sha256: 983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3
+    booked_in: brb-rightback/wcp-uboone-bdt-eyandel @ 0100d4b6 apps/bdt_convert.cxx (reader_single_photon_ncpi0, "MyBDT")
+    stored_score: log10((1+v)/(1-v)), v = TMVA EvaluateMVA    # bdt.h; grid ranges of thesis p.141 are on this scale
+    score_direction: higher = more single-photon-like (keep score > threshold)
+    frozen_threshold_log10_odds: -0.05      # thesis Table 5.5 (p.142), "more pure" selection = cuts.h is_singlephoton_sel
+    efficient_threshold_log10_odds: -0.4    # thesis Table 5.4 (p.142), "more efficient" selection, used for sidebands
+    legacy_scoring_note: MicroBooNE's scorer forces kine_pio_flag = 0 before scoring (EAF Round-1 baseline does the same)
+  thesis_model_vs_xml:
+    matches:
+      - "45 inputs (p.131)"
+      - "the same 45 names as the XML except one (Fig. E.3, p.283)"
+      - "XGBoost with objective binary:logitraw, stored as a TMVA Grad XML"
+      - "cut values of thesis Table 5.5 = cuts.h at the reference commit = public note 1125 and the PRL"
+    discrepancies:
+      - "thesis feature shw_sp_n_20br1_showers_calc vs XML / C++ shw_sp_n_20br1_showers (definition of _calc not public)"
+    unverified:
+      - "thesis n_estimators 400 and max_depth 6 vs the XML's NTrees and node depths (XML not on Aurora; an earlier note says 300 trees for all four models without per-model evidence)"
+    check: "on EAF, count <BinaryTree> elements and the deepest node in single_photon_ncpi0_bdt_final.xml (sha256 983a0d82...)"
+    if_mismatch: "400 trees / depth <= 6 confirms the link. 300 trees means the thesis hyperparameters do not describe the frozen XML: final training becomes BLOCKED (THESIS/XML VERSION MISMATCH) until a second source ties the classes to that XML"
+
+inputs:
+  feature_list: round2/config/features/single_photon_ncpi0_inputs_v0.json
+  feature_list_sha256: 5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb
+  n_inputs: 45
+  order_authority: XML <Variables> VarIndex (unchanged from v0.1.0)
+  source_branch_rule: wc.T_tagger.<name>, except the 12 kine_pio_* -> wc.T_kine.<name>
+  upstream_classifier_inputs:
+    - "15 nu_e level-1 TMVA scores br3_3 ... tro_5 (UbooneNueBDTScorer); NOT nue_score"
+  default_handling:
+    float32: true
+    nan_policy: "rows with any non-finite input are not used. Dry-run census 2026-11-17: 6 of 2,599 NC Delta positive
+      rows (kine_pio_angle 4, kine_pio_theta_1 2, kine_pio_theta_2 2, kine_pio_mass 1, shw_sp_pio_1_mass 1); 0 of the
+      other 1,209 class rows"
+    kine_pio_flag: training uses the stored T_kine value. The thesis model splits on it (F score 23; 10th of 45 by gain,
+      Fig. E.3). Legacy-control scoring feeds 0, as MicroBooNE's scorer does. PROPOSED, to be signed off.
+    shw_sp_n_20br1_showers: the stored branch, as the deployed reader binds it (thesis trained on a "_calc" column; OPEN)
+
+label:
+  definition:
+    implementation: sp_retrain.labels.ncpi0_development_classes (truth from sp_retrain.sp_truth.classify)
+    rows: preselected candidates (see preselection); one class per candidate from its T_match level-2 partner neutrino
+    positive: >
+      the partner neutrino fits the inclusive single-photon signal definition (thesis sec. 5.1.2, p.121): exactly one
+      true photon with KE > 20 MeV whose shower starts (and ends) > 3 cm inside the TPC walls, or two such photons from
+      one source within 20 deg; no electron; no muon above 100 MeV. All five signal categories, NC pi0 -> 1 gamma and
+      out-of-FV 1 gamma included. "Signal includes events fitting the inclusive single photon signal definition"
+      (Fig. 5.9 caption, p.132); the same 24,936-event signal sample trains every BDT (p.127).
+    negative: >
+      the partner neutrino is NC pi0 background. That is NC with a pi0 in the final state (p.131), not signal (it
+      "is different from [the NC pi0 1 gamma signal] only by the number of theoretically reconstruct-able showers"),
+      true vertex in the 3 cm FV. Expression = cuts.h SPNCpi0Bkg: !SP*Sig && NC && truth_vtxInside && truth_Npi0 > 0.
+    excluded: every other preselected row (nu_mu CC, NC without pi0, nu_e CC, out-of-FV background, cosmic / no partner)
+      -- "split up by type and used only on the relevant BDT" (p.127)
+  source_established:
+    - "p.127: four BDTs, XGBoost; 24,936 training / 25,389 test signal events (Runs 1 and 3 general BNB and inclusive single photon enhanced MC); 263,120 training / 246,876 test background events split by type, used only on the relevant BDT; all training events passed the preselection first"
+    - "p.131: NC pi0 BDT trained on 37,205 NC pi0 background events and 24,936 signal events, 45 variables"
+    - "p.121: signal definition and categories; Fig. 5.4 caption: NC pi0 background = 2 showers > 20 MeV in the TPC active volume (opening-angle study)"
+    - "pp.134-139: training is done right after preselection (sec. 5.2.3)"
+  sbnd_mapping_assumptions:
+    - "A1 a true photon is primary or from the decay of a primary pi0 / eta / eta' / omega / Sigma0"
+    - "A2 shower start = photon conversion point; shower end (last visible charge) not checked (not in the CAF)"
+    - "A3 no electron = no primary e+-; no muon above 100 MeV = primary mu+- only"
+    - "A4 candidate-to-neutrino link = T_match level-2 partner"
+    - "A5 NC Delta 1 gamma = NC, GENIE mode 1, primary photon"
+    - "A6 truth_Npi0 = number of primary pi0"
+    - "A7 FV = TPC active volume minus 3 cm on every face"
+  still_unknown:
+    - exact MicroBooNE implementations of truth_single_photon, truth_Npi0 (primary or all), truth_vtxInside, match completeness
+    - whether MicroBooNE's training rows also required match_completeness > 0.1 for the negative class (the code flag does)
+    - definition of shw_sp_n_20br1_showers_calc
+    - relative sample composition beyond the stated totals; any event weights (none stated)
+
+preselection:
+  thesis_table_5_2:
+    - "Wire-Cell generic neutrino selection"
+    - "reco vertex x 5 cm from the TPC walls (5 < x < 250 cm)"
+    - "at least one reco shower above 20 MeV"
+  microboone_code: "cuts.h is_singlephoton_pre = shw_sp_n_20mev_showers > 0 && 5 < reco_nuvtxX < 250 (generic selection applied separately)"
+  sbnd_mapping:
+    - "candidate exists: every non-placeholder SBND candidate has numu_cc_flag >= 0, the generic-selection flag"
+    - "shw_sp_n_20mev_showers > 0"
+    - "label readable"
+  x_cut: OPEN -- MicroBooNE's cut corrects a MicroBooNE trigger-timing offset (p.125); no SBND equivalent is defined
+candidate_policy: >
+  All preselected candidates are rows (SBND events can hold several candidates). MicroBooNE had one candidate per event.
+  The split keeps every candidate of an event on one side. OPEN: whether to keep one candidate per event.
+
+samples:
+  development:
+    - id: aurora-r2-ncdr
+      role: "signal-enhanced sample, the analog of the thesis's 'inclusive single photon enhanced' MC (NC Delta radiative, configL)"
+      files: 17603
+    - id: aurora-r2-bnb
+      role: "the analog of the thesis's 'general BNB' MC: signal and NC pi0 background"
+      files: 11888
+  not_used_for_this_classifier: [aurora-r2-nuecc -- its nu_e CC are never positive or negative; its pileup spills are filter-biased]
+  class_census: "dry run 2026-11-17, no training: YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md section 9"
+  statistics_note: >
+    Linear extrapolation of the census to the full lists: about 17.8k positive and 9.2k negative rows, half of them on
+    the even-subrun (train + validation) side. MicroBooNE trained on 24,936 signal and 37,205 NC pi0 events (p.127,
+    p.131), so the negative class is the limiting one. Enough for development; final training may want an NC pi0
+    enriched sample (see the audit, section 10).
+  open:
+    - "NC Delta negatives (49 of 952 in the census) are pileup neutrinos in the filtered NC Delta spills; keep or drop"
+  allowed_input_roots: [/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace]
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves), run3-bnb-data,
+                                 open-run1-bnb-data, selected-data, official SAM EX_ncdeltarad, Xin hold-out lists]
+  approved_exceptions: []
+
+split:
+  microboone: shared Wire-Cell training list; otherwise even subrun = train, odd = test (p.128)
+  scheme: subrun_parity_valhash_v1        # odd subrun = test; even subrun = train / validation by seeded hash
+  unit: (sample, run, subrun)
+  seed: 20261117
+
+weights:
+  class_weights: none stated in the thesis; development default none (natural counts; MicroBooNE trained 37,205 vs 24,936)
+  event_weights: none stated; none
+  exposure: production POT records only; never rec.hdr.pot of filtered Aurora samples
+
+xgboost:            # thesis appendix E.3 (p.281); MicroBooNE values reproduced, base_score added for export
+  version: 3.4.1
+  max_depth: 6
+  n_estimators: 400
+  learning_rate: 0.1
+  objective: binary:logitraw
+  colsample_bytree: 1
+  colsample_bylevel: 0.5
+  colsample_bynode: 0.5
+  subsample: 0.8
+  gamma: 0.2
+  seed_microboone: 1
+  random_state: 20261117    # SBND development runs record their own seed
+  eval_metric: [auc, error]
+  base_score: 0.5
+  early_stopping: not stated in the thesis; not used for the reproduction run
+
+metrics:
+  - "test-fold score distributions by class (thesis Fig. 5.9)"
+  - "AUC and error"
+  - "efficiency and purity at the frozen and efficient cuts in log10-odds space"
+  - "per truth category"
+  - "overtraining: train vs validation vs test"
+  - "feature importance by F score and gain (thesis Fig. E.3)"
+  - "scorer equivalence with zero decision flips"
+working_point: thesis p.140-142 -- simultaneous 4x4 BDT grid maximizing E x P^2 (pure) or S/sqrt(B) (efficient); the
+               NC pi0 grid spans -2.0 to 1.2 in steps of 0.05. A Round-2 working point needs the same joint scan.
+
+deployment:
+  native: XGBoost JSON (feature order = feature_list)
+  production: TMVA BDT XML, BoostType=Grad, NTransformations=0, via a validated exporter
+  score: log10((1+tanh(raw))/(1-tanh(raw)))
+  proposed_name: single_photon_ncpi0_bdt_sbnd_round2_v1
+
+dependencies:
+  upstream_classifiers: [15 nu_e level-1 TMVA models -- Xuyang to confirm unchanged in Round-2]
+  vertexing: DL neutrino vertex -- Snehadri's update changes every input
+  reconstruction: "WCT pin of the training CAFs (aurora-r2 wct_version sbnd-dlvtx-35-pre-master-merge-54-ga2785870)"
