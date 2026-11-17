@@ -5,8 +5,9 @@
 # Audit: round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
 # v0.2.1 (same day): thesis/XML fingerprint verified (EAF audit 0148e879 + Fig. E.3); kine_pio_flag policy made an
 # explicit open decision; nu_e level-1 status from Xuyang's spec. Classes unchanged.
+# v0.2.2 (same day): kine_pio_flag Policy B decided by Avinay before the development training. Classes unchanged.
 spec_id: single_photon_ncpi0_training_spec
-spec_version: 0.2.1
+spec_version: 0.2.2
 date: 2026-11-17
 author: Avinay Bhat (prepared with Claude Code)
 status: READY_FOR_DEVELOPMENT_TRAINING   # development only; final training needs READY_FOR_FINAL_TRAINING
@@ -14,8 +15,7 @@ status_reason: >
   The training classes are source-established by the thesis (sec. 5.2.2, pp.127-132; appendix E.3, p.281). The class
   expressions agree with MicroBooNE's own SP background flags (cuts.h @ 0100d4b6:2842-2856). Current Aurora samples hold
   both classes. The frozen XML is the thesis model (exact F-score fingerprint, section thesis_model_vs_xml). NOT final:
-  the Round-2 dependencies (DL vertex, training refresh, exporter) are open. Development training also waits for
-  Avinay's kine_pio_flag policy (inputs.default_handling.kine_pio_flag).
+  the Round-2 dependencies (DL vertex, training refresh, exporter) are open. kine_pio_flag: Policy B (decided).
 
 classifier:
   name: single_photon_ncpi0
@@ -58,7 +58,7 @@ inputs:
       rows (kine_pio_angle 4, kine_pio_theta_1 2, kine_pio_theta_2 2, kine_pio_mass 1, shw_sp_pio_1_mass 1); 0 of the
       other 1,209 class rows"
     kine_pio_flag:
-      policy: UNDECIDED          # Avinay chooses A / B / C / D before any development training (audit SP_BDT_ROUND2_FREEZE_ORDER.md sec. 5)
+      policy: B                  # decided by Avinay, 2026-11-17, before the development training (SP_BDT_ROUND2_FREEZE_ORDER.md sec. 5)
       options:
         A: "train with the stored value, score with 0 (MicroBooNE historical behaviour)"
         B: "train and score with the stored value"

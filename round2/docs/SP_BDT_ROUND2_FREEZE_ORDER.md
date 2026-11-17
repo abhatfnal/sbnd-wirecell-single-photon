@@ -89,7 +89,7 @@ kept as a control.
   17.9 % → 10.8 % efficiency (thesis Table 5.5).
 - Its 15 νe level-1 inputs (40.6 % of its splits) **stay as shipped** in Xuyang's plan, so ncpi0 does **not** wait for
   her. If she alters any of the 15 level-1 models, ncpi0 must wait for them too.
-- It waits for the reconstruction freeze, the refresh, and Avinay's `kine_pio_flag` policy (§5).
+- It waits for the reconstruction freeze and the refresh. The `kine_pio_flag` policy is decided: B (§5).
 
 **SP nue: DECISION BLOCKED.** Until the decision is made, the legacy model stays in use. Reasons:
 - It reads no classifier output, so neither of Xuyang's changes affects it.
@@ -137,19 +137,26 @@ What would unblock SP nue:
 **Recommended default: B.** It is the only option faithful to the thesis training and consistent between training and
 scoring. Keep A only for the legacy XML control, and run C as a development ablation to measure what the flag adds.
 
-**Development training of ncpi0 waits for Avinay's choice.** The spec records `policy: UNDECIDED`.
+**Decided by Avinay on 2026-11-17, before the development training: Policy B.** It is recorded in
+`specs/single_photon_ncpi0_training_spec_dev_round1_domain_v1.yaml`. The legacy XML control keeps 0, and the two
+conventions are not mixed.
 
 ## 6. Development-training readiness
 
 | classifier | target known? | data available? | upstream frozen? | development training now? | final training now? |
 |---|---|---|---|---|---|
-| SP numu | **yes**: thesis + exact fingerprint (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`) | **yes**: BNB νμ CC (≈ 39k rows on the full lists) + signal | **no**: `numu_score` / `numu_1_score` from Xuyang's νμ chain (development uses the shipped models) | **yes, after Avinay's review** (spec v0.1.0) | no |
-| SP other | **yes**: thesis + exact fingerprint | **no**: no EXT / in-time-cosmic sample | **no**: νμ chain | **no** | no |
-| SP ncpi0 | **yes**: thesis + exact fingerprint | **yes** | νe level-1 unchanged in Xuyang's plan (re-confirm); reconstruction not frozen | **yes, after Avinay's review and his `kine_pio_flag` choice** (spec v0.2.1) | no |
-| SP nue | thesis target known for the thesis model; frozen XML fingerprint MISMATCH | yes (`aurora-r2-nuecc`, BNB νe) | no upstream classifier | **not proposed** (decision blocked, §4) | no |
+| SP numu | **yes**: thesis + exact fingerprint (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`) | **yes**: BNB νμ CC (38,888 rows) + signal (17,941) | **no**: `numu_score` / `numu_1_score` from Xuyang's νμ chain (development uses the shipped models) | **DONE 2026-11-17**: development model, DO NOT DEPLOY (test AUC 0.959) | no |
+| SP other | **yes**: thesis + exact fingerprint | **no**: no EXT / in-time-cosmic sample | **no**: νμ chain | **no**: WAITING FOR IN-TIME COSMIC TRAINING SAMPLE + XUYANG NUMU FREEZE | no |
+| SP ncpi0 | **yes**: thesis + exact fingerprint | **yes** (8,933 negative, 17,941 positive rows) | νe level-1 unchanged in Xuyang's plan (re-confirm); reconstruction not frozen | **DONE 2026-11-17**: development model, Policy B, DO NOT DEPLOY (test AUC 0.817) | no |
+| SP nue | thesis target known for the thesis model; frozen XML fingerprint MISMATCH | yes (`aurora-r2-nuecc`, BNB νe) | no upstream classifier | **no**: DECISION BLOCKED — THESIS/XML VERSION MISMATCH + VERTEX DOMAIN SHIFT UNKNOWN | no |
 
 **Development model:** trained on aurora-r2 only, to validate the machinery (splits, labels, export and equivalence).
 It is never deployed.
 
 **Final Round-2 model:** trained on the refreshed training sample, after the DL vertex and reconstruction freeze, after
 the required Xuyang models are frozen, and once Haiwang's training-only refresh exists.
+
+**Development results (2026-11-17)** are in `SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`.
+- SP numu still relies most on `numu_score` and `numu_1_score`.
+- SP ncpi0 shows a large train/test gap with BNB-limited negatives.
+- Neither model is deployable, and final readiness is unchanged.

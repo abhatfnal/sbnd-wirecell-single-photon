@@ -126,9 +126,10 @@ evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRA
 - No training code exists in `wcp-uboone-bdt-eyandel` (all 12 branches), `eyandel/wcp-uboone-bdt`, `eyandel/LEEana` or
   `brb-rightback/wire-cell-pid`.
 
-**Verdict (thesis audit §10): READY FOR DEVELOPMENT TRAINING** (spec v0.2.1). The EAF XML check is done:
+**Verdict (thesis audit §10): READY FOR DEVELOPMENT TRAINING** (spec v0.2.2). The EAF XML check is done:
 **EXACT MODEL FINGERPRINT MATCH**. 400 trees and depth 6 agree, and all 45 Fig. E.3 F scores equal the XML split counts
-(thesis audit §6.1). Not started: it waits for Avinay's review and his `kine_pio_flag` policy
+(thesis audit §6.1). `kine_pio_flag` Policy B was decided, and a development model was trained on 2026-11-17
+(`SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`, DO NOT DEPLOY). See also the `kine_pio_flag` options
 (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5).
 
 **Two inherited semantics a retrained model must decide explicitly:**
@@ -195,9 +196,9 @@ If the EAF first-look round reused this scorer, the same three points apply ther
 
 | classifier | development training now? | final freeze now? | must wait for |
 |---|---|---|---|
-| ncpi0 | **YES, after Avinay's review and `kine_pio_flag` policy** (spec v0.2.1 `READY_FOR_DEVELOPMENT_TRAINING`; not started). Classes recovered from the thesis, exact XML fingerprint; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) ~~the EAF XML check~~ done; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
+| ncpi0 | **DONE 2026-11-17**: development model, Policy B, DO NOT DEPLOY (`SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`). Classes recovered from the thesis, exact XML fingerprint; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) ~~the EAF XML check~~ done; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
 | other | **NO**: the EXT (in-time cosmic) negative component has no training-side sample, and `numu_score` is about to change | **NO** | (1) an in-time-cosmic sample in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) ~~the EAF XML check~~ done |
-| numu | **YES, after Avinay's review** (spec v0.1.0; not started). Target recovered, exact fingerprint, both classes in aurora-r2 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md` §7) | **NO** | (1) Xuyang's νμ chain frozen and installed; (2) DL vertex frozen; (3) refresh; (4) exporter and equivalence test |
+| numu | **DONE 2026-11-17**: development model, DO NOT DEPLOY (`SP_NUMU_DEVELOPMENT_TRAINING_REPORT.md`). Target recovered, exact fingerprint, both classes in aurora-r2 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md` §7) | **NO** | (1) Xuyang's νμ chain frozen and installed; (2) DL vertex frozen; (3) refresh; (4) exporter and equivalence test |
 | nue | not proposed: decision blocked (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4; thesis Fig. E.4 does not fingerprint-match the frozen XML) | **NO** | the decision itself |
 
 What would change the input domain of a model trained on today's (Round-1) CAFs:

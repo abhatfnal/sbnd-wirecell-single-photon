@@ -1,5 +1,7 @@
 """Unit tests for round2/sp_retrain. Run: python -m pytest -q round2/tests"""
+import copy
 import csv
+import json
 import math
 import os
 import sys
@@ -260,7 +262,7 @@ def test_label_gating_by_spec_status():
     assert numu['status'] == 'READY_FOR_DEVELOPMENT_TRAINING'
     with pytest.raises(labels.TargetBlockedError):
         labels.training_labels(None, numu, final=True)
-    assert _spec('ncpi0', '0.2')['inputs']['default_handling']['kine_pio_flag']['policy'] == 'UNDECIDED'
+    assert _spec('ncpi0', '0.2')['inputs']['default_handling']['kine_pio_flag']['policy'] == 'B'
 
 
 def test_ncpi0_development_classes():
@@ -283,3 +285,102 @@ def test_numu_development_classes():
     assert cls.tolist() == [1, 0, 0, -1, -1, -1]       # nu_mu CC with and without pi0 are negative; NC pi0, out of FV excluded
     with pytest.raises(ValueError):
         labels.ncpi0_development_classes(c, _spec('numu', '0.1'))
+
+
+# ---------------------------------------------------------------- development training (round-1 domain, do not deploy)
+from sp_retrain import devtrain  # noqa: E402
+
+
+def _dev(m):
+    return labels.load_spec(os.path.join(ROUND2, 'specs', 'single_photon_%s_training_spec_dev_round1_domain_v1.yaml' % m))
+
+
+def _dev_cands(names, n=12, seed=3):
+    rng = np.random.default_rng(seed)
+    c = pd.DataFrame(rng.normal(size=(n, len(names))).astype(np.float64), columns=names)
+    c['kine_pio_flag'] = np.tile([0.0, 1.0, 2.0], n // 3) if 'kine_pio_flag' in names else 0
+    c = c.assign(sample='aurora-r2-bnb', file_id=['f%d' % (i // 2) for i in range(n)], run=7000,
+                 subrun=[i // 2 for i in range(n)], event=[i // 2 for i in range(n)], cand=[i % 2 for i in range(n)],
+                 is_placeholder=0, shw_sp_n_20mev_showers=1, label_unreadable=0, partner_kind='neutrino', m_sp_truth_ok=1,
+                 m_sp_signal=[1, 0] * (n // 2), m_sp_bkg=['', 'NCpi0Bkg'] * (n // 2), nu_x=50.0)
+    return c
+
+
+def test_parity_split_is_deterministic_and_event_safe():
+    sub = np.array([0, 1, 2, 3, 3, 10, 11])
+    s1, s2 = split.assign_parity(sub), split.assign_parity(sub)
+    assert s1.tolist() == s2.tolist() == ['train', 'test', 'train', 'test', 'test', 'train', 'test']
+    keys = pd.DataFrame(dict(sample='s', file_id='f', run=1, subrun=sub, event=[1, 2, 3, 4, 4, 5, 6], cand=[0, 0, 0, 0, 1, 0, 0], split=s1, cls=1))
+    leak = devtrain.leakage_check(keys)
+    assert leak['overlapping_events'] == 0 and leak['duplicate_rows'] == 0 and leak['events_in_more_than_one_file'] == 0
+    bad = keys.assign(split=['train', 'test', 'train', 'test', 'train', 'train', 'test'])   # one event on both sides
+    with pytest.raises(AssertionError):
+        devtrain.leakage_check(bad)
+
+
+def test_dev_dataset_feature_order_labels_nonfinite_and_policy_b():
+    spec = _dev('ncpi0')
+    names = features.load('single_photon_ncpi0').columns
+    assert names == [r['name'] for r in json.load(open(os.path.join(ROUND2, 'config', 'features', 'single_photon_ncpi0_inputs_v0.json')))['inputs']]
+    c = _dev_cands(names)
+    c.loc[3, 'kine_pio_angle'] = np.nan                                        # one non-finite negative row
+    ds = devtrain.build_dataset(c, spec)
+    assert ds['names'] == names
+    assert len(ds['nonfinite']) == 1 and ds['nonfinite'].iloc[0]['features'] == 'kine_pio_angle' and ds['nonfinite'].iloc[0]['cls'] == 0
+    keep = [i for i in range(12) if i != 3]
+    assert ds['y'].tolist() == [[1, 0][i % 2] for i in keep]
+    j = names.index('kine_pio_flag')
+    assert ds['X'][:, j].tolist() == c.loc[keep, 'kine_pio_flag'].tolist()        # Policy B: the stored flag, unchanged
+    Xf = devtrain.forced_flag_matrix(ds['X'], names)
+    assert (Xf[:, j] == 0).all() and np.array_equal(np.delete(Xf, j, 1), np.delete(ds['X'], j, 1))
+    assert set(ds['split']) == {'train', 'test'}
+
+
+def test_dev_specs_hyperparameters_and_policy_guard():
+    for m, depth, trees in (('numu', 5, 300), ('ncpi0', 6, 400)):
+        spec = _dev(m)
+        devtrain.require_development_spec(spec)
+        params, rounds = devtrain.xgb_params(spec)
+        assert rounds == trees and params == dict(max_depth=depth, eta=0.1, objective='binary:logitraw', colsample_bytree=1,
+                                                   colsample_bylevel=0.5, colsample_bynode=0.5, subsample=0.8, gamma=0.2,
+                                                   seed=1, eval_metric=['auc', 'error'], base_score=0.0, tree_method='hist', nthread=8)
+        bad = copy.deepcopy(spec); bad['xgboost']['max_depth'] += 1
+        with pytest.raises(ValueError):
+            devtrain.require_development_spec(bad)
+    assert _dev('ncpi0')['inputs']['kine_pio_flag_policy'] == 'B'
+    a = _dev('ncpi0'); a['inputs']['kine_pio_flag_policy'] = 'A'
+    with pytest.raises(ValueError):
+        devtrain.require_development_spec(a)
+    with pytest.raises(labels.TargetBlockedError):                       # a non-development spec is refused
+        devtrain.require_development_spec(_spec('ncpi0', '0.2'))
+
+
+def test_dev_manifests_hold_no_official_paths():
+    d = os.path.join(ROUND2, 'manifests', 'dev_round1domain_v1')
+    files = [f for f in os.listdir(d) if f.endswith('.json')]
+    assert files
+    def strings(o):
+        if isinstance(o, dict):
+            for v in o.values(): yield from strings(v)
+        elif isinstance(o, list):
+            for v in o: yield from strings(v)
+        elif isinstance(o, str):
+            yield o
+    for f in files:
+        for s in strings(json.load(open(os.path.join(d, f)))):
+            if s.startswith('/'):
+                assert firewall.official_marker(s) is None, (f, s)
+
+
+def test_dev_training_is_reproducible_and_hashed(tmp_path):
+    xgb = pytest.importorskip('xgboost')
+    params, _ = devtrain.xgb_params(_dev('numu'))
+    rng = np.random.default_rng(1)
+    X = rng.normal(size=(400, 6)).astype(np.float32); y = (X[:, 0] > 0).astype(int)
+    paths = []
+    for k in range(2):
+        b = xgb.train(params, xgb.DMatrix(X, label=y), num_boost_round=5)
+        p = str(tmp_path / ('m%d.json' % k)); b.save_model(p); paths.append(p)
+    import hashlib
+    assert devtrain.sha256_file(paths[0]) == hashlib.sha256(open(paths[0], 'rb').read()).hexdigest()
+    assert devtrain.sha256_file(paths[0]) == devtrain.sha256_file(paths[1])

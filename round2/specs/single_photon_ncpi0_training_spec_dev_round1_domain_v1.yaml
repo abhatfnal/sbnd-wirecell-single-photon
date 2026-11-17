@@ -1,0 +1,108 @@
+# DEVELOPMENT training specification: SBND single-photon NC pi0 background-rejection BDT, Round-1 domain.
+# NOT a final spec. The model it produces is ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY: it validates the training
+# machinery on aurora-r2 before the Round-2 reconstruction and the training refresh exist.
+# Target, sources and mapping: single_photon_ncpi0_training_spec_v0.2.yaml and docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
+spec_id: single_photon_ncpi0_training_spec
+spec_version: dev-round1-domain-v1
+campaign: development_round1_domain_v1
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: READY_FOR_DEVELOPMENT_TRAINING
+deployable: false
+derived_from:
+  spec: round2/specs/single_photon_ncpi0_training_spec_v0.2.yaml
+  sha256: 8054168dc29c88b7dc87d2fc7de88be08e680c11e0a63a9efb2ac8c21a4cf0e2
+
+classifier:
+  name: single_photon_ncpi0
+  model_name: single_photon_ncpi0_sbnd_dev_round1domain_v1_DO_NOT_DEPLOY
+  thesis_xml_fingerprint: "EXACT MODEL FINGERPRINT MATCH (Fig. E.3 = XML split counts; EAF audit 0148e879)"
+
+source:
+  thesis: "E. H. Yandel, UCSB 2024 (escholarship 6rq082dr), PDF sha256 0ad56e360170aa6d15954c7926c7909352cc9e67e8bcfb1b8db3b113cf5d1465"
+  pages: "p.121-122 (signal), p.127 (shared procedure), pp.131-132 (NC pi0 BDT, Fig. 5.9), pp.281-283 App. E.3, p.142 Tables 5.4 / 5.5"
+
+inputs:
+  feature_list: round2/config/features/single_photon_ncpi0_inputs_v0.json
+  feature_list_sha256: 5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb
+  n_inputs: 45
+  order: XML <Variables> VarIndex (the feature list order; the model is trained with exactly these names in this order)
+  dtype: float32
+  preprocessing: none (stored values; no scaling, clipping or imputation)
+  non_finite_policy: >
+    exclude_row -- a candidate with any non-finite input is not used for training or development evaluation, and is
+    listed. Production reference: TMVA Reader returns -999 for NaN inputs, so such rows fail every legacy cut.
+  kine_pio_flag_policy: B
+  kine_pio_flag: >
+    POLICY B (Avinay, 2026-11-17, decided before training): the real reconstructed T_kine.kine_pio_flag in BOTH
+    training and inference, as in Yandel's training (the frozen model splits on it 23 times). The legacy MicroBooNE XML
+    is a different convention: as a control it is scored with kine_pio_flag = 0, as MicroBooNE production does. The
+    two conventions are never mixed. Development performance is not used to revisit this choice.
+  upstream_scores: "15 nu_e level-1 scores as stored in aurora-r2 (shipped models; unchanged in Xuyang's plan)"
+
+label:
+  definition:
+    implementation: sp_retrain.labels.development_classes (truth from sp_retrain.sp_truth.classify, assumptions A1-A7)
+    positive: "T_match level-2 partner neutrino fits the inclusive single-photon signal (all 5 categories)"
+    negative: "partner is NC pi0 background: not signal, NC, true vertex in the 3 cm FV, >= 1 PRIMARY pi0 (A6; NCpi0Bkg)"
+    excluded: "every other preselected row, and rows with a non-finite input"
+    fv: "SBND GDML volTPCActive box (x +-201.3, y +-203.73, z 0-501 cm; Matteo Vicenzi's cuts.ACTIVE) shrunk by 3 cm (A7)"
+    pi0_sensitivity: "A6b (any pi0 instead of primary pi0) adds +5.9 % negatives on BNB (census); not used"
+
+preselection:
+  rule: "non-placeholder candidate (numu_cc_flag >= 0 for every such SBND candidate) and shw_sp_n_20mev_showers > 0 and label readable"
+  reco_vertex_geometry_cut: >
+    NONE -- DEVELOPMENT convention. MicroBooNE's 5 < x < 250 cm corrects a MicroBooNE trigger-timing offset (thesis
+    Table 5.2) and has no SBND equivalent; the SBND choice is OPEN. Census: an illustrative 5 < |x| < 196.3 cm would
+    remove 3.7 % (NC Delta) / 5.7 % (BNB) of preselected rows. Not the final analysis FV.
+
+split:
+  scheme: subrun_parity_v1     # even subrun = train, odd = test (thesis p.128; Xuyang spec_v1 sec. 6); no validation fold
+  unit: (sample, run, subrun)
+
+samples:
+  development:
+    - id: aurora-r2-ncdr
+      list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt
+      list_sha256: 8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf
+      files: 17603
+    - id: aurora-r2-bnb
+      list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt
+      list_sha256: dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb
+      files: 11888
+  input_manifest: round2/manifests/dev_round1domain_v1/inputs.json
+  enriched_ncpi0_sample: none exists (negatives are BNB-limited)
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves), run3-bnb-data,
+                                 open-run1-bnb-data, official Gen2 NC Delta, official SAM EX_ncdeltarad, Xin hold-out lists]
+
+weights:
+  class_weights: none (not source-established; classes are not balanced to MicroBooNE proportions)
+  event_weights: none
+
+xgboost:
+  # source-established (thesis App. E.3, pp.281-283)
+  max_depth: 6
+  n_estimators: 400
+  learning_rate: 0.1
+  objective: binary:logitraw
+  colsample_bytree: 1
+  colsample_bylevel: 0.5
+  colsample_bynode: 0.5
+  subsample: 0.8
+  gamma: 0.2
+  seed: 1
+  eval_metric: [auc, error]
+  # development conventions (not stated in the thesis)
+  base_score: 0.0          # base MARGIN 0 (start p = 0.5). Under binary:logitraw XGBoost 3.4.1 adds base_score as a raw
+                           # margin (smoke test 2026-11-17: base_score 0.5 gave margin = leaf sum + 0.5), so 0.0 makes the
+                           # native margin exactly the sum of leaf values, the quantity a leaf-copy TMVA export carries.
+                           # Fixed before the development training; not a performance choice.
+  tree_method: hist
+  nthread: 8
+  early_stopping: none
+  version: 3.4.1
+
+round2_domain_differences:
+  - "reconstruction: aurora-r2 wct_version sbnd-dlvtx-35-pre-master-merge-54-ga2785870, before Snehadri's vertex freeze"
+  - "nu_e level-1 scores: shipped models evaluated on Round-1 reconstruction (models unchanged in Round 2; values will change)"
+  - "training sample: aurora-r2, not the Round-2 training refresh; no NC pi0-enriched sample"

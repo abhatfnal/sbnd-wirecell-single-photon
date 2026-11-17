@@ -1,0 +1,32 @@
+{
+ "campaign": "development_round1_domain_v1",
+ "label": "ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY",
+ "date": "2026-11-17",
+ "role": "Aurora TRAINING / DEVELOPMENT inputs only. No official fg1 / FermiGrid / SAM sample (Gen2 NC Delta fg1, fg1 BNB CV, fg1 beam-off, open beam-on, fg1 nue CC) is an input; those stay independent evaluation / control data.",
+ "production_tag": "aurora-r2 (Haiwang Yu, Aurora Wire-Cell step-2 rerun of aurora-r1 step-1 qlpctrees, merged into flat CAFs: recTree + recTreeWireCell)",
+ "reconstruction": {
+  "wct_version_stamp": "sbnd-dlvtx-35-pre-master-merge-54-ga2785870",
+  "toolkit_commit": "a2785870df4079d602775bfea2547b869d9215ce",
+  "note": "Haiwang's catalogue lists 55177882, the same change rebased; the stamp in every training file is the a2785870 one (SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md sec. 0). Before Snehadri's Round-2 vertex freeze."
+ },
+ "schema": {"file": "recTreeWireCell-dlvtx-space.schema.json", "md5": "af9c87c88815199dccf5204ac71dbe44", "branches": 2416},
+ "pot_caveat": "rec.hdr.pot is NOT the physical exposure of the filtered NC Delta sample (it undercounts by about x112; the nue CC filter by about x12). The development training is unweighted, so POT does not enter the fit. Exposure, when needed, comes from production POT records only.",
+ "samples": [
+  {"id": "aurora-r2-ncdr", "content": "NC Delta radiative, configL (signal-enhanced)",
+   "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt",
+   "list_sha256": "8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf", "files": 17603,
+   "missing": 0, "duplicate_file_ids": 0, "total_bytes": 59697452047,
+   "file_manifest": "round2/manifests/aurora_r2_v0/manifest_aurora-r2-ncdr.tsv.gz",
+   "file_manifest_content_sha256": "efd23941b170080a59d48b69b814dd5deb9f8b2c816ebad73f2f29c8443b0d07",
+   "restat_2026_11_17": "identical (path, size, mtime of every file)"},
+  {"id": "aurora-r2-bnb", "content": "BNB CV (truth includes interactions outside the TPC active volume)",
+   "list": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt",
+   "list_sha256": "dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb", "files": 11888,
+   "missing": 0, "duplicate_file_ids": 0, "total_bytes": 421011722147,
+   "file_manifest": "round2/manifests/aurora_r2_v0/manifest_aurora-r2-bnb.tsv.gz",
+   "file_manifest_content_sha256": "1c2061387462140e325fe28eafcb6cbf8006a9503b08f11ab48adbcc677024d7",
+   "restat_2026_11_17": "identical (path, size, mtime of every file)"}
+ ],
+ "not_used": ["aurora-r2-nuecc (no class of SP numu / ncpi0)"],
+ "file_manifest_content_sha256_note": "sha256 of the decompressed TSV (the gzip header carries a timestamp)"
+}

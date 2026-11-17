@@ -43,6 +43,17 @@ def assign(sample, run, subrun, seed=DEFAULT_SEED, val_fraction=DEFAULT_VAL_FRAC
     return out
 
 
+PARITY_SCHEME = 'subrun_parity_v1'
+
+
+def assign_parity(subrun):
+    """Scheme 'subrun_parity_v1': even subrun -> 'train', odd subrun -> 'test', no validation fold. It is the thesis
+    rule (Yandel p.128: "even subrun numbers were used for training, and odd subrun numbers were used for testing") and
+    Xuyang's spec_v1 sec. 6 MC split, so the two retrainings share one test half."""
+    subrun = np.asarray(subrun, dtype=np.int64)
+    return np.where(subrun % 2 == 1, 'test', 'train').astype(object)
+
+
 def check_event_safe(frame, split_col='split', event_key=('sample', 'file_id', 'run', 'subrun', 'event'),
                      subrun_key=('sample', 'run', 'subrun')):
     """Raise if any event or subrun has rows on more than one side. Returns (n_events, n_subruns) checked."""

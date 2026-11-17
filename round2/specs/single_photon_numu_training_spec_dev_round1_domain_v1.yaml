@@ -1,0 +1,100 @@
+# DEVELOPMENT training specification: SBND single-photon nu_mu CC background-rejection BDT, Round-1 domain.
+# NOT a final spec. The model it produces is ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY: it validates the training
+# machinery on aurora-r2 before the Round-2 reconstruction, Xuyang's nu_mu chain and the training refresh exist.
+# Target, sources and mapping: single_photon_numu_training_spec_v0.1.yaml and docs/SP_NUMU_TRAINING_SOURCE_AUDIT.md.
+spec_id: single_photon_numu_training_spec
+spec_version: dev-round1-domain-v1
+campaign: development_round1_domain_v1
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: READY_FOR_DEVELOPMENT_TRAINING
+deployable: false
+derived_from:
+  spec: round2/specs/single_photon_numu_training_spec_v0.1.yaml
+  sha256: c7970ed27d03732e9269724c9c6d33e3fe340b41d618a5f30f51951a970141a8
+
+classifier:
+  name: single_photon_numu
+  model_name: single_photon_numu_sbnd_dev_round1domain_v1_DO_NOT_DEPLOY
+  thesis_xml_fingerprint: "THESIS/XML MATCH - TARGET ACCEPTED (Fig. E.1 = XML split counts; EAF audit 0148e879)"
+
+source:
+  thesis: "E. H. Yandel, UCSB 2024 (escholarship 6rq082dr), PDF sha256 0ad56e360170aa6d15954c7926c7909352cc9e67e8bcfb1b8db3b113cf5d1465"
+  pages: "p.127 (shared procedure), p.128 (nu_mu CC BDT), p.129 Fig. 5.7, pp.278-280 App. E.1, p.142 Tables 5.4 / 5.5"
+
+inputs:
+  feature_list: round2/config/features/single_photon_numu_inputs_v0.json
+  feature_list_sha256: 688cde8f62fd416b36c5ee1afc259246c1f6dc636414285b21bd2a4b56806c7f
+  n_inputs: 73
+  order: XML <Variables> VarIndex (the feature list order; the model is trained with exactly these names in this order)
+  dtype: float32
+  preprocessing: none (stored values; no scaling, clipping or imputation)
+  non_finite_policy: >
+    exclude_row -- a candidate with any non-finite input is not used for training or development evaluation, and is
+    listed. Production reference: TMVA Reader returns -999 for NaN inputs, so such rows fail every legacy cut.
+  upstream_scores: "numu_score, numu_1_score as stored in aurora-r2 (the shipped MicroBooNE nu_mu models): OLD upstream values"
+
+label:
+  definition:
+    implementation: sp_retrain.labels.development_classes (truth from sp_retrain.sp_truth.classify, assumptions A1-A7)
+    positive: "T_match level-2 partner neutrino fits the inclusive single-photon signal (all 5 categories)"
+    negative: "partner is nu_mu CC background with or without pi0: not signal, |pdg| 14, CC, true vertex in the 3 cm FV (numuCCBkg + numuCCpi0Bkg)"
+    excluded: "every other preselected row, and rows with a non-finite input"
+    fv: "SBND GDML volTPCActive box (x +-201.3, y +-203.73, z 0-501 cm; Matteo Vicenzi's cuts.ACTIVE) shrunk by 3 cm (A7)"
+
+preselection:
+  rule: "non-placeholder candidate (numu_cc_flag >= 0 for every such SBND candidate) and shw_sp_n_20mev_showers > 0 and label readable"
+  reco_vertex_geometry_cut: >
+    NONE -- DEVELOPMENT convention. MicroBooNE's 5 < x < 250 cm corrects a MicroBooNE trigger-timing offset (thesis
+    Table 5.2) and has no SBND equivalent; the SBND choice is OPEN. Census: an illustrative 5 < |x| < 196.3 cm would
+    remove 3.7 % (NC Delta) / 5.7 % (BNB) of preselected rows. Not the final analysis FV.
+
+split:
+  scheme: subrun_parity_v1     # even subrun = train, odd = test (thesis p.128; Xuyang spec_v1 sec. 6); no validation fold
+  unit: (sample, run, subrun)
+
+samples:
+  development:
+    - id: aurora-r2-ncdr
+      list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/ncdr-merged-cafs.txt
+      list_sha256: 8895a65e698fe07c3412bb38ba1c0c2a9541cc1687530d37688feabefd4c5ecf
+      files: 17603
+    - id: aurora-r2-bnb
+      list: /lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists/bnb-merged-cafs.txt
+      list_sha256: dfbb5240ffc684dc1cb417b339bb61721da3aab712c40b71087f8eacdec5c6bb
+      files: 11888
+  input_manifest: round2/manifests/dev_round1domain_v1/inputs.json
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves), run3-bnb-data,
+                                 open-run1-bnb-data, official Gen2 NC Delta, official SAM EX_ncdeltarad, Xin hold-out lists]
+
+weights:
+  class_weights: none (not source-established; classes are not balanced to MicroBooNE proportions)
+  event_weights: none
+
+xgboost:
+  # source-established (thesis App. E.1, pp.278-279)
+  max_depth: 5
+  n_estimators: 300
+  learning_rate: 0.1
+  objective: binary:logitraw
+  colsample_bytree: 1
+  colsample_bylevel: 0.5
+  colsample_bynode: 0.5
+  subsample: 0.8
+  gamma: 0.2
+  seed: 1
+  eval_metric: [auc, error]
+  # development conventions (not stated in the thesis)
+  base_score: 0.0          # base MARGIN 0 (start p = 0.5). Under binary:logitraw XGBoost 3.4.1 adds base_score as a raw
+                           # margin (smoke test 2026-11-17: base_score 0.5 gave margin = leaf sum + 0.5), so 0.0 makes the
+                           # native margin exactly the sum of leaf values, the quantity a leaf-copy TMVA export carries.
+                           # Fixed before the development training; not a performance choice.
+  tree_method: hist        # XGBoost 3.4.1 default
+  nthread: 8               # fixed for reproducibility
+  early_stopping: none
+  version: 3.4.1
+
+round2_domain_differences:
+  - "numu_score / numu_1_score: OLD shipped nu_mu models; Xuyang retrains the nu_mu chain"
+  - "reconstruction: aurora-r2 wct_version sbnd-dlvtx-35-pre-master-merge-54-ga2785870, before Snehadri's vertex freeze"
+  - "training sample: aurora-r2, not the Round-2 training refresh"

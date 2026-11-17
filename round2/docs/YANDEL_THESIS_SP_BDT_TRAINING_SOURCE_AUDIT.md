@@ -396,6 +396,6 @@ Neither gate permits final training. The §6 XML check is done (§6.1: exact fin
 1. ~~The §6 XML check~~: done, exact fingerprint for both (§6.1).
 2. A1–A7, in particular A1 (photon origin; 8.6 % of BNB positive rows change) and A6 (primary π⁰; +5.9 % negatives).
 3. The SBND x cut, and whether to keep one candidate per event.
-4. `kine_pio_flag`: choose A / B / C / D (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5; B recommended). Development training of ncpi0 waits for this choice.
+4. ~~`kine_pio_flag`~~: Policy B decided on 2026-11-17 (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5).
 5. Whether to keep NC Δ-spill pileup negatives (49 of 952 in the census).
 6. Which in-time-cosmic sample to use for "other", and who produces it.
