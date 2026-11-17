@@ -1,0 +1,24 @@
+{
+ "model": "numu_scalars_scores_0923.xml",
+ "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773",
+ "inputs": 74,
+ "trees": 400,
+ "upstream_score_inputs": [
+  "cosmict_10_score",
+  "numu_1_score",
+  "numu_2_score"
+ ],
+ "evaluator": "sp_retrain.tmva_grad",
+ "samples": {
+  "aurora-r2-bnb": {
+   "non_placeholder_candidates": 296263,
+   "bit_identical": 296263,
+   "max_abs_diff": 0.0
+  },
+  "aurora-r2-ncdr": {
+   "non_placeholder_candidates": 23965,
+   "bit_identical": 23965,
+   "max_abs_diff": 0.0
+  }
+ }
+}

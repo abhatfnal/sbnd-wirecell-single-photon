@@ -10,8 +10,11 @@ complete training machinery before three things exist:
 - Haiwang's Round-2 training refresh.
 
 **Not trained:**
-- **SP other:** WAITING FOR IN-TIME COSMIC TRAINING SAMPLE + XUYANG NUMU FREEZE.
-- **SP nue:** DECISION BLOCKED — THESIS/XML VERSION MISMATCH + VERTEX DOMAIN SHIFT UNKNOWN.
+- **SP other:** the EXT sample exists (`fg1-beamoff-train`, 481 usable rows, statistically limited, fg1 reconstruction).
+  Waiting for Avinay's approved beam-off exception and Xuyang's νμ freeze. Updated after the evidence audit
+  (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md`).
+- **SP nue:** DECISION BLOCKED — VERTEX DOMAIN SHIFT UNKNOWN. The thesis/XML mismatch is resolved: Fig. E.4 = the first
+  200 trees of the frozen XML.
 
 ## 1. Inputs, frozen before training
 

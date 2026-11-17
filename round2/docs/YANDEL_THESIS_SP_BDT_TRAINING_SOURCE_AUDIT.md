@@ -220,7 +220,7 @@ must equal the XML split count exactly. The "Gain" panels (average gain per spli
 | ncpi0 (Fig. E.3) | 400 / 6 / 45 = XML | **44 EXACT MATCH, 1 NAME ALIAS ONLY** (`shw_sp_n_20br1_showers_calc` = 210), 0 MISMATCH, 0 NOT READABLE. `kine_pio_flag` 23 = 23 (rank 44 of 45 by count, 10th by gain) | **EXACT MODEL FINGERPRINT MATCH** |
 | other (Fig. E.2) | 215 / 5 / 146 = XML | 133 bars plotted = the 133 inputs with ≥ 1 XML split. **131 EXACT MATCH, 2 NAME ALIAS ONLY** (`shw_sp_vec_mean_dedx_calc` 66, `shw_sp_n_20br1_showers_calc` 47). The 13 never-split `cosmict_*` inputs are absent, as XGBoost omits zero-weight features. 0 MISMATCH, 0 NOT READABLE | **EXACT MODEL FINGERPRINT MATCH** |
 | numu (Fig. E.1) | 300 / 5 / 73 = XML | 71 EXACT, 2 ALIAS; total 8,103 = 8,103 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`) | EXACT |
-| nue (Fig. E.4) | 300 / 5 / 56 = XML | all 56 thesis values are **lower** than the XML counts (total 5,721 vs 8,236); labels agree with the bar lengths | **VERSION MISMATCH** for nue only (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4) |
+| nue (Fig. E.4) | 300 / 5 / 56 = XML | all 56 thesis values are **lower** than the XML counts (total 5,721 vs 8,236); labels agree with the bar lengths | first thought a VERSION MISMATCH. **Resolved**: the vector equals the first **200** trees of the XML exactly (`tools/nue_prefix_test.py`) — same forest |
 
 **Consequences:**
 - For ncpi0 and other, the thesis describes the frozen XMLs exactly, so neither is blocked by a version mismatch.
@@ -278,7 +278,7 @@ low-KE and exiting photons, and the status gate (22 tests).
 | dirt (outside the cryostat) | n/a | YES | BNB truth includes interactions outside the active volume (73.2 % of BNB truth vertices) |
 | out of FV, inside the cryostat | n/a | YES | `aurora-r2-bnb` (the class is `outFVBkg`, which also holds dirt) |
 | overlay cosmic (cosmic flash-cluster pair selected) | n/a | YES (simulated CORSIKA cosmics, not data) | BNB / NC Δ candidates whose `T_match` partner is cosmic |
-| **EXT: in-time cosmic rays from off-beam data** | n/a | **NO** | none on the training side. The only beam-off CAFs are the official fg1 halves (evaluation only) |
+| **EXT: in-time cosmic rays from off-beam data** | n/a | **YES, statistically limited** (corrected after the evidence audit) | `fg1-beamoff-train`: odd-run half of fg1 InTime Run 1, training side in Haiwang's catalogue, on Aurora; 481 usable rows; fg1 reconstruction. Needs Avinay's approved exception |
 | preselection variables | YES | YES | `shw_sp_n_20mev_showers`, tagger vertex |
 | classifier inputs | 45 / 45 | 146 / 146; 4 classifier inputs change with Xuyang's νμ model | `NCPI0_OTHER_CAF_INPUT_READINESS.md` |
 | event-safe split keys | YES | YES for MC; off-beam needs a split by run | `(sample, run, subrun)` |
@@ -362,14 +362,14 @@ above show:
 - out of FV / dirt: 788 and 56;
 - cosmic partner: 348 and 47.
 
-The EXT component has no Aurora source.
+The EXT component: `fg1-beamoff-train`, 481 usable rows (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` §2).
 
 ## 10. Gate
 
 | classifier | gate | reason |
 |---|---|---|
 | ncpi0 | **READY FOR DEVELOPMENT TRAINING** | Classes SOURCE-ESTABLISHED (§3). Both are present in aurora-r2 (§9.1). Spec `single_photon_ncpi0_training_spec_v0.2.yaml` |
-| other | **READY ONLY AFTER ADDITIONAL TRAINING SAMPLE** | Classes SOURCE-ESTABLISHED (§4), but the EXT negative component has no training-side sample. BNB cosmic-matched candidates are a different component and are **not** substituted. Spec `single_photon_other_training_spec_v0.2.yaml` |
+| other | **READY ONLY AFTER ADDITIONAL TRAINING SAMPLE** | Classes SOURCE-ESTABLISHED (§4). The EXT component exists (`fg1-beamoff-train`, 481 rows, statistically limited) but needs an approved exception and reprocessing; this corrects the original "no training-side sample". BNB cosmic-matched candidates are a different component and are **not** substituted. Spec `single_photon_other_training_spec_v0.2.yaml` |
 
 Neither gate permits final training. The §6 XML check is done (§6.1: exact fingerprint for both). Final training needs:
 - the Round-2 freezes (`SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md` §6);
@@ -378,8 +378,8 @@ Neither gate permits final training. The §6 XML check is done (§6.1: exact fin
 **Nothing is trained until Avinay has reviewed these definitions.**
 
 **Additional samples:**
-- **other (required).** In-time cosmic events: SBND off-beam triggers, or an in-time-cosmic simulation if Avinay and
-  Haiwang accept it as a stand-in.
+- **other (required).** In-time cosmic events. The existing `fg1-beamoff-train` half (corrected later the same day)
+  must be reprocessed in the refresh.
   - Processed with exactly the training-refresh reconstruction.
   - Split by run, because every beam-off file has art subrun 1.
   - Disjoint from any evaluation beam-off. The fg1 beam-off halves are never used.
@@ -390,7 +390,7 @@ Neither gate permits final training. The §6 XML check is done (§6.1: exact fin
 **Consequence for Haiwang's refresh** (`HAIWANG_AURORA_TRAINING_REFRESH_REQUEST.md`, updated):
 - NC Δ and BNB CV in full serve both classifiers.
 - CC νe is not a class of either; it is in the refresh only for Xuyang.
-- The off-beam / in-time-cosmic sample must be added for "other".
+- `fg1-beamoff-train` must be reprocessed for "other".
 - An NC π⁰-enriched sample is optional, for the final ncpi0 model.
 
 ## 11. Still open for Avinay's review
@@ -400,4 +400,4 @@ Neither gate permits final training. The §6 XML check is done (§6.1: exact fin
 3. The SBND x cut, and whether to keep one candidate per event.
 4. ~~`kine_pio_flag`~~: Policy B decided on 2026-11-17 (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5).
 5. Whether to keep NC Δ-spill pileup negatives (49 of 952 in the census).
-6. Which in-time-cosmic sample to use for "other", and who produces it.
+6. ~~Which in-time-cosmic sample~~: `fg1-beamoff-train` (evidence audit). Open: its reprocessing (Haiwang).

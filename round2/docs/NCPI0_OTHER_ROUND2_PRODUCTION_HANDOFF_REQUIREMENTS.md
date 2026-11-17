@@ -1,8 +1,8 @@
 # Round-2 production handoff: what Haiwang receives for each single-photon model
 
 Date: 2026-11-17. Status: **contract only. No final model exists.** After the thesis audit
-(`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`), ncpi0 is ready for development training and other needs an
-in-time-cosmic sample. Neither is ready for final training. SP numu is proposed to join Round 2 under the same contract
+(`YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`), ncpi0 is ready for development training. For other, the EXT sample
+exists (`fg1-beamoff-train`) but is statistically limited and needs reprocessing. Neither is ready for final training. SP numu is proposed to join Round 2 under the same contract
 (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4; spec `single_photon_numu_training_spec` v0.1.0). A model is handed over only when every field below is filled.
 
 **Naming.** The inherited MicroBooNE files keep their names and their place (`single_photon_<x>_bdt_final.xml`). SBND

@@ -1,0 +1,13 @@
+{
+ "xml": "single_photon_nue_bdt_final.xml",
+ "trees": 300,
+ "inputs": 56,
+ "thesis_total": 5721,
+ "xml_total": 8236,
+ "best_prefix_N": 200,
+ "best_l1_distance": 0,
+ "exact_prefixes": [
+  200
+ ],
+ "l1_distance_at_300": 2515
+}

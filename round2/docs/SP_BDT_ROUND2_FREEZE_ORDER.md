@@ -21,7 +21,7 @@ Sources:
 | **SP numu** (73) | `numu_score` (72), `numu_1_score` (71) | **11.5 %** (`numu_score` 7.7 %: rank 1, root of 41 / 300 trees) | 71 `T_tagger` reco (`numu_cc_3_*`, `numu_cc_flag_3`, `shw_sp_*`) | **EXACT** |
 | **SP other** (146) | `numu_score` (144), `numu_1_score` (142), `numu_2_score`, `cosmict_10_score` | **8.7 %** (νμ pair 7.9 %; `numu_score` rank 1, root of 15 / 215 trees) | 142 reco: cosmic taggers, `numu_cc_flag`, `shw_sp_*`, `reco_nuvtxY` = `kine_nu_y_corr` | **EXACT** |
 | **SP ncpi0** (45) | the 15 νe level-1 scores (18–32); **not** `nue_score` | **40.6 %** | 18 `shw_sp_*`, 12 `kine_pio_*` (`kine_pio_flag` 0.13 %) | **EXACT** |
-| **SP nue** (56) | none | 0 | 56 `shw_sp_*` | **MISMATCH** (§4) |
+| **SP nue** (56) | none | 0 | 56 `shw_sp_*` | **EXACT 200-tree prefix** (§4) |
 
 No SP model reads another SP score, and none reads `nue_score`. The SP cut order `numu → other → ncpi0 → nue` is the order
 in which the cuts are applied, **not** a training dependency. The four SP models are siblings, each trained on the same
@@ -36,7 +36,7 @@ signal sample against its own background (thesis p.127).
    +--> nu_mu level-1: numu_1/2/3_score, cosmict_10_score --> nu_mu final: numu_score    [Xuyang: nu_mu CC "after nu_e"]
    |        |                                                   |
    |        +-- numu_1_score ------------+----------------------+--> SP numu   (+71 reco)
-   |        +-- numu_1/2, cosmict_10 ----+----------------------+--> SP other  (+142 reco)  <- also an in-time-cosmic sample
+   |        +-- numu_1/2, cosmict_10 ----+----------------------+--> SP other  (+142 reco)  <- also EXT: fg1-beamoff-train, reprocessed
    |
    +--> nu_e level-1: 15 scores (br3_3 ... tro_5) ---------------> nu_e final: nue_score   [Xuyang: retrained; read by no SP model]
    |        |
@@ -58,11 +58,14 @@ models, even where the upstream classifier weights stay the same: the level-1 sc
      (`steps/step3_spec/spec_v1.md:67`). Re-confirm at the freeze.
    - `nue_score` is not needed by any SP model.
 3. **Aurora training refresh** (Haiwang; `HAIWANG_AURORA_TRAINING_REFRESH_REQUEST.md`). If only the νμ *final* model
-   changes after the refresh, `numu_score` can be recomputed offline from stored inputs. That needs the same bit check
-   that `tmva_grad` passed for νe. A νμ level-1 change needs a second rerun.
+   changes after the refresh, `numu_score` can be recomputed offline from stored inputs. **Proven**: `tmva_grad`
+   reproduces the stored `numu_score` bit for bit on 320,228 / 320,228 aurora-r2 candidates
+   (`validation/numu_score_offline_bitcheck_aurora_r2.json`). A νμ level-1 change would need an AdaBoost evaluator with
+   input transforms on the stored per-object inputs, or a second rerun. That is the one open Xuyang question.
 4. **SP training, final:**
    - **ncpi0** after steps 1 and 3;
-   - **numu and other together** after steps 1, 2 (νμ) and 3. "other" also needs the in-time-cosmic sample.
+   - **numu and other together** after steps 1, 2 (νμ) and 3. "other" also needs the existing `fg1-beamoff-train`
+     half reprocessed in the refresh (`ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` §2).
    - Training numu and other on the same frozen `numu_score` keeps every SP input in one domain.
 5. Export, equivalence test, handoff, official Round-2 generation, then the independent EAF evaluation.
 
@@ -78,10 +81,14 @@ models, even where the upstream classifier weights stay the same: the level-1 sc
 - The target is source-established, the thesis model is the frozen XML (exact fingerprint), and aurora-r2 holds both
   classes (≈ 39k νμ CC negatives on the full lists). No extra sample is needed.
 
-**SP other: RETRAIN FOR ROUND 2,** after the in-time-cosmic sample exists and the νμ chain is frozen. The legacy XML is
-kept as a control.
+**SP other: RETRAIN FOR ROUND 2,** after the νμ chain is frozen. The legacy XML is kept as a control.
 - Same νμ argument as SP numu (7.9 % of splits).
-- The target is source-established with an exact fingerprint, but EXT is part of its negative class (thesis p.129).
+- The target is source-established with an exact fingerprint. EXT is part of its negative class (thesis p.129).
+- **The EXT sample exists.** `fg1-beamoff-train` is the odd-run half of the fg1 InTime Run-1 beam-off, on Aurora and
+  designated training side in Haiwang's catalogue. It gives 481 usable rows with all 146 inputs (267 train).
+  - **The statistics may be insufficient**: 3.1 % of the "other" negatives.
+  - It was reconstructed with the fg1 chain (`…-g78f81c64`). For development it needs Avinay's approved exception in
+    the spec; for the final model it needs reprocessing in the refresh.
 
 **SP ncpi0: RETRAIN FOR ROUND 2.** The legacy XML is kept as a control.
 - It is in the Round-2 plan from the start.
@@ -96,19 +103,15 @@ kept as a control.
 - All 56 inputs are vertex-relative shower variables (`shw_vtx_dis`, `min_dis`, the dQ/dx vector from the shower start,
   …). The DL vertex moves them by construction, but by an amount that cannot be measured before the refresh exists.
   The same is true of every MicroBooNE model applied to SBND reconstruction in Round 1.
-- **Thesis/XML fingerprint MISMATCH.** Trees, depth and inputs agree (300 / 5 / 56), and the printed labels agree with
-  the bar lengths. But every one of the 56 Fig. E.4 F scores is lower than the frozen-XML split count: 5,721 against
-  8,236 in total, for example `shw_sp_length_total` 324 against 424.
-  - The thesis's νe BDT is therefore not exactly the frozen `single_photon_nue_bdt_final.xml`.
-  - One hypothesis fits: an earlier prefix of the same forest. That is testable on EAF by counting splits per variable
-    over the first N trees, for N = 1 … 300, against the Fig. E.4 vector.
-  - Until then, the thesis target for SP nue (νe CC background, 100,958 events, p.133) is source-established for the
-    *thesis* model only.
+- **Thesis/XML: same model (resolved 2026-11-17).** The Fig. E.4 F scores equal **exactly** the split counts of the
+  **first 200 trees** of the frozen `single_photon_nue_bdt_final.xml`: all 56 inputs, 5,721 = 5,721, and no other N
+  (`tools/nue_prefix_test.py`, `validation/nue_appendixE_prefix_test.json`).
+  - The thesis plot was drawn at round 200 of the same forest, and the XML holds all 300 trees.
+  - The thesis target (νe CC background, 100,958 events, p.133) therefore applies to the frozen model.
 
 What would unblock SP nue:
 1. Measure, on the refresh, how far its 56 inputs and its cut decision move relative to aurora-r2.
-2. Run the EAF prefix test.
-3. Get an analysis-group decision on whether Round 2 includes it. If retrained, `aurora-r2-nuecc` (or its refresh)
+2. Get an analysis-group decision on whether Round 2 includes it. If retrained, `aurora-r2-nuecc` (or its refresh)
    provides the negatives.
 
 ## 5. `kine_pio_flag` (ncpi0): decision support
@@ -146,9 +149,9 @@ conventions are not mixed.
 | classifier | target known? | data available? | upstream frozen? | development training now? | final training now? |
 |---|---|---|---|---|---|
 | SP numu | **yes**: thesis + exact fingerprint (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`) | **yes**: BNB νμ CC (38,888 rows) + signal (17,941) | **no**: `numu_score` / `numu_1_score` from Xuyang's νμ chain (development uses the shipped models) | **DONE 2026-11-17**: development model, DO NOT DEPLOY (test AUC 0.959) | no |
-| SP other | **yes**: thesis + exact fingerprint | **no**: no EXT / in-time-cosmic sample | **no**: νμ chain | **no**: WAITING FOR IN-TIME COSMIC TRAINING SAMPLE + XUYANG NUMU FREEZE | no |
+| SP other | **yes**: thesis + exact fingerprint | **sample exists, statistics limited**: MC components + `fg1-beamoff-train` (481 EXT rows, fg1 reconstruction) | **no**: νμ chain | **no**: needs Avinay's approved beam-off exception; not trained | no |
 | SP ncpi0 | **yes**: thesis + exact fingerprint | **yes** (8,933 negative, 17,941 positive rows) | νe level-1 unchanged in Xuyang's plan (re-confirm); reconstruction not frozen | **DONE 2026-11-17**: development model, Policy B, DO NOT DEPLOY (test AUC 0.817) | no |
-| SP nue | thesis target known for the thesis model; frozen XML fingerprint MISMATCH | yes (`aurora-r2-nuecc`, BNB νe) | no upstream classifier | **no**: DECISION BLOCKED — THESIS/XML VERSION MISMATCH + VERTEX DOMAIN SHIFT UNKNOWN | no |
+| SP nue | **yes**: thesis target applies (frozen XML = thesis forest, 200-tree-prefix fingerprint) | yes (`aurora-r2-nuecc`, BNB νe) | no upstream classifier | **no**: DECISION BLOCKED — VERTEX DOMAIN SHIFT UNKNOWN | no |
 
 **Development model:** trained on aurora-r2 only, to validate the machinery (splits, labels, export and equivalence).
 It is never deployed.

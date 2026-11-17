@@ -164,13 +164,18 @@ evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRA
   - 27,377 background and 24,936 signal events, 146 variables. XGBoost parameters: App. E.2 (depth 5, 215 trees).
 - **STILL UNKNOWN:** how the 27,377 events divide between the types; the truth expression for "cosmic"; the two `_calc`
   inputs. No weights are stated.
-- **SBND gap.** Cosmic-only real data exist only as official fg1 beam-off, which is evaluation-side under the Round-2
-  rule. Aurora MC has cosmic-matched candidates (`T_match` partner with `truth_nu_idx < 0`) but no cosmic-only sample.
-  The cosmic-matched candidates are the overlay-cosmic component, not a substitute for EXT.
+- **EXT on the training side (corrected after the evidence audit, `ROUND2_COLLABORATOR_QUESTION_CLOSURE_AUDIT.md` §2).**
+  - The odd-run half of the fg1 InTime Run-1 beam-off, `fg1-beamoff-train`, is designated **training side** in
+    Haiwang's productions catalogue and is on Aurora in Xuyang's area. It has 558 files after the hold-out, and 481
+    usable SP-other rows (267 train).
+  - It is disjoint from the even-run evaluation half in runs and files.
+  - Under our firewall it still needs Avinay's approved exception.
+  - It is **statistically limited** (3.1 % of the "other" negatives) and reconstructed with the fg1 chain, not aurora-r2.
+  - Aurora MC cosmic-matched candidates are the overlay-cosmic component, not a substitute for EXT.
 
 **Verdict (thesis audit §10): READY ONLY AFTER ADDITIONAL TRAINING SAMPLE.** The thesis/XML link holds, with an
-exact fingerprint: 215 trees, depth 5, and all 133 split-on inputs (thesis audit §6.1). It needs an in-time-cosmic sample
-processed with the training-refresh reconstruction and split by run. It is also held by its `numu_score` input, which
+exact fingerprint: 215 trees, depth 5, and all 133 split-on inputs (thesis audit §6.1). The EXT sample exists
+(`fg1-beamoff-train`) but must be reprocessed with the training-refresh reconstruction and split by run. It is also held by its `numu_score` input, which
 changes when Xuyang's νμ model is installed.
 
 ## 5. Erratum for `baseline_v0` (score convention and routing)
@@ -200,9 +205,9 @@ If the EAF first-look round reused this scorer, the same three points apply ther
 | classifier | development training now? | final freeze now? | must wait for |
 |---|---|---|---|
 | ncpi0 | **DONE 2026-11-17**: development model, Policy B, DO NOT DEPLOY (`SP_NCPI0_DEVELOPMENT_TRAINING_REPORT.md`). Classes recovered from the thesis, exact XML fingerprint; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) ~~the EAF XML check~~ done; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
-| other | **NO**: the EXT (in-time cosmic) negative component has no training-side sample, and `numu_score` is about to change | **NO** | (1) an in-time-cosmic sample in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) ~~the EAF XML check~~ done |
+| other | **NO**: the EXT sample exists (`fg1-beamoff-train`, 481 rows, statistically limited, fg1 reconstruction) but needs Avinay's approved exception, and `numu_score` is about to change | **NO** | (1) `fg1-beamoff-train` reprocessed in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) ~~the EAF XML check~~ done |
 | numu | **DONE 2026-11-17**: development model, DO NOT DEPLOY (`SP_NUMU_DEVELOPMENT_TRAINING_REPORT.md`). Target recovered, exact fingerprint, both classes in aurora-r2 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md` §7) | **NO** | (1) Xuyang's νμ chain frozen and installed; (2) DL vertex frozen; (3) refresh; (4) exporter and equivalence test |
-| nue | not proposed: decision blocked (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4; thesis Fig. E.4 does not fingerprint-match the frozen XML) | **NO** | the decision itself |
+| nue | not proposed: decision blocked by the unknown vertex-domain shift only (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4). Thesis Fig. E.4 = the first 200 trees of the frozen XML, exactly | **NO** | the decision itself |
 
 What would change the input domain of a model trained on today's (Round-1) CAFs:
 
@@ -232,11 +237,11 @@ Not sent. Questions 1–2 are mostly answered by the thesis (audit §3–4); onl
 3. **kine_pio_flag.** The thesis model and the frozen XML both split on it, 23 times. MicroBooNE nevertheless scored with
    it forced to 0 ("uncomment to match old files"). Was that deliberate?
 4. **Xuyang.** Her spec uses the 15 νe level-1 scores as stored (`spec_v1.md:67`), and her plan retrains the νμ CC BDT
-   after νe (`PLAN.md:86`). Still to confirm: do the νμ level-1 models stay as shipped, and when is `numu_score`
-   frozen?
-5. **Haiwang.** Which route will compute single-photon scores in Round-2: a new toolkit scorer or offline post-processing?
+   after νe (`PLAN.md:86`). Still open: do the νμ level-1 models stay as shipped? (The final `numu_score` is proven
+   recomputable offline.)
+5. ~~**Haiwang.** Which route will compute single-photon scores?~~ Offline score tables suffice for analysis and
+   evaluation. Toolkit integration is a later step, as in Xuyang's plan (`PLAN.md:78`). Not asked now.
 6. ~~**EAF (Avinay).** Count trees, depth and splits per variable~~. Done (`0148e879`): exact fingerprint for numu,
-   other and ncpi0. **New (EAF):** for nue, count splits per variable over the first N trees (N = 1 … 300) and compare
-   with the thesis Fig. E.4 vector (total 5,721), to test whether the thesis nue model is a prefix of the frozen forest.
-7. **Haiwang / Avinay.** Which in-time-cosmic sample for "other": SBND off-beam triggers, or an in-time-cosmic
-   simulation, processed with the training-refresh reconstruction?
+   other and ncpi0. ~~nue prefix test~~: done on Aurora with the verified bundle. N = 200 matches exactly.
+7. ~~**Haiwang / Avinay.** Which in-time-cosmic sample?~~ The existing `fg1-beamoff-train`. Remaining Haiwang question:
+   can the refresh reprocess it (`ROUND2_MINIMAL_COLLABORATOR_QUESTIONS.md`).

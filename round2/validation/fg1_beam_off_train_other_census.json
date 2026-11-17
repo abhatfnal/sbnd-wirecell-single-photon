@@ -1,0 +1,49 @@
+{
+ "label": "CENSUS ONLY (no training): SP-other readiness of a beam-off sample",
+ "approved_by": "Avinay Bhat, 2026-11-17 evidence-closure audit (read-only census, no training)",
+ "firewall_note": "training firewall not applied: read-only census of the fg1 beam-off TRAINING half; no training table written",
+ "list": "/lus/flare/projects/neutrinoGPU/xning/bdt-comm/data/fg1-beam-off-train.list.tsv",
+ "list_sha256": "acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64",
+ "root": "/lus/flare/projects/neutrinoGPU/xning/data/fg1-beam-off-train",
+ "list_files": 572,
+ "holdout_files_dropped": 14,
+ "files_used": 558,
+ "runs": {
+  "n": 80,
+  "min": 18253,
+  "max": 18591,
+  "all_odd": true
+ },
+ "files_read": 558,
+ "file_errors": [],
+ "wct_versions": [
+  "sbnd-dlvtx-35-pre-master-merge-2026-09-02-424-g78f81c64"
+ ],
+ "ismc": [
+  0
+ ],
+ "events": 26418,
+ "wc_events": 26409,
+ "candidates": 2494,
+ "placeholders": 1047,
+ "non_placeholder": 1447,
+ "br_filled_1": 116,
+ "shw_sp_filled_1": 449,
+ "shw_sp_n_20mev_showers_gt0": 481,
+ "preselected": 481,
+ "other_inputs_expected": 146,
+ "other_inputs_present": 146,
+ "other_inputs_missing": [],
+ "preselected_with_all_inputs_finite": 481,
+ "preselected_with_nonfinite": 0,
+ "nonfinite_by_input": {},
+ "usable_ext_negative_rows": {
+  "total": 481,
+  "train": 267,
+  "test": 214
+ },
+ "usable_events": 481,
+ "partner_kinds": {
+  "none": 2494
+ }
+}

@@ -476,3 +476,19 @@ def test_post_training_provenance_maps_execution_head_to_content_commit():
         assert p['training_code_content_commit'].startswith('c83965c') and p['training_code_content_hash_match'] is True
         for f, h in man['code']['sha256'].items():
             assert lc.sha_of_git_blob(REPO, p['training_code_content_commit'], 'round2/' + f) == h
+
+
+# ---------------------------------------------------------------- evidence-closure results (no training)
+def test_evidence_closure_summaries():
+    V = os.path.join(ROUND2, 'validation')
+    nue = json.load(open(os.path.join(V, 'nue_appendixE_prefix_test.json')))
+    assert nue['exact_prefixes'] == [200] and nue['thesis_total'] == 5721 and nue['xml_total'] == 8236
+    numu = json.load(open(os.path.join(V, 'numu_score_offline_bitcheck_aurora_r2.json')))
+    assert numu['inputs'] == 74 and numu['upstream_score_inputs'] == ['cosmict_10_score', 'numu_1_score', 'numu_2_score']
+    assert all(r['bit_identical'] == r['non_placeholder_candidates'] > 0 for r in numu['samples'].values())
+    bo = json.load(open(os.path.join(V, 'fg1_beam_off_train_other_census.json')))
+    assert bo['runs']['all_odd'] and bo['holdout_files_dropped'] == 14 and bo['files_used'] == 558 and bo['ismc'] == [0]
+    assert bo['other_inputs_present'] == 146 and bo['preselected_with_nonfinite'] == 0
+    u = bo['usable_ext_negative_rows']
+    assert u['total'] == u['train'] + u['test'] == bo['preselected']
+    assert bo['list_sha256'] == 'acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64'
