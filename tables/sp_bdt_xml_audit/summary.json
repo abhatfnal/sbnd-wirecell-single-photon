@@ -1,0 +1,171 @@
+{
+ "numu": {
+  "path": "/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_numu_bdt_final.xml",
+  "sha256": "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961",
+  "recorded": "5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961",
+  "sha_match": true,
+  "n_trees": 300,
+  "NTrees_attr": 300,
+  "n_vars": 73,
+  "max_depth_splitlevels": 5,
+  "depth_dist": {
+   "5": 300
+  },
+  "total_splits": 8103,
+  "n_vars_used": 73,
+  "mean_leaves": 28.01,
+  "options": {
+   "NodePurityLimit": "No",
+   "BoostType": "Yes"
+  },
+  "creator": [
+   "xgboost2TMVA"
+  ],
+  "boostweights": [
+   "1.0e+00"
+  ],
+  "max_abs_leaf": 0.422875077
+ },
+ "other": {
+  "path": "/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_other_bdt_final.xml",
+  "sha256": "8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16",
+  "recorded": "8c0ac375e957f5b332bc35339e4ebcbfef35bb778fb73315b06a814e600dbb16",
+  "sha_match": true,
+  "n_trees": 215,
+  "NTrees_attr": 215,
+  "n_vars": 146,
+  "max_depth_splitlevels": 5,
+  "depth_dist": {
+   "5": 215
+  },
+  "total_splits": 6036,
+  "n_vars_used": 133,
+  "mean_leaves": 29.074418604651164,
+  "options": {
+   "NodePurityLimit": "No",
+   "BoostType": "Yes"
+  },
+  "creator": [
+   "xgboost2TMVA"
+  ],
+  "boostweights": [
+   "1.0e+00"
+  ],
+  "max_abs_leaf": 0.396472901
+ },
+ "ncpi0": {
+  "path": "/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_ncpi0_bdt_final.xml",
+  "sha256": "983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3",
+  "recorded": "983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3",
+  "sha_match": true,
+  "n_trees": 400,
+  "NTrees_attr": 400,
+  "n_vars": 45,
+  "max_depth_splitlevels": 6,
+  "depth_dist": {
+   "6": 400
+  },
+  "total_splits": 18222,
+  "n_vars_used": 45,
+  "mean_leaves": 46.555,
+  "options": {
+   "NodePurityLimit": "No",
+   "BoostType": "Yes"
+  },
+  "creator": [
+   "xgboost2TMVA"
+  ],
+  "boostweights": [
+   "1.0e+00"
+  ],
+  "max_abs_leaf": 0.253928572
+ },
+ "nue": {
+  "path": "/exp/uboone/app/users/uboonepro/bbogart/wcp-uboone-bdt/weights/single_photon_nue_bdt_final.xml",
+  "sha256": "8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a",
+  "recorded": "8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a",
+  "sha_match": true,
+  "n_trees": 300,
+  "NTrees_attr": 300,
+  "n_vars": 56,
+  "max_depth_splitlevels": 5,
+  "depth_dist": {
+   "5": 300
+  },
+  "total_splits": 8236,
+  "n_vars_used": 56,
+  "mean_leaves": 28.453333333333333,
+  "options": {
+   "NodePurityLimit": "No",
+   "BoostType": "Yes"
+  },
+  "creator": [
+   "xgboost2TMVA"
+  ],
+  "boostweights": [
+   "1.0e+00"
+  ],
+  "max_abs_leaf": 0.388883829
+ },
+ "_dependency": {
+  "numu": {
+   "n_score_inputs": 2,
+   "score_inputs": [
+    "numu_1_score",
+    "numu_score"
+   ],
+   "score_split_share_pct": 11.53,
+   "numu_pair_split_share_pct": 11.53
+  },
+  "other": {
+   "n_score_inputs": 4,
+   "score_inputs": [
+    "cosmict_10_score",
+    "numu_1_score",
+    "numu_2_score",
+    "numu_score"
+   ],
+   "score_split_share_pct": 8.7,
+   "numu_pair_split_share_pct": 7.87
+  },
+  "ncpi0": {
+   "n_score_inputs": 15,
+   "score_inputs": [
+    "tro_5_score",
+    "tro_4_score",
+    "tro_2_score",
+    "tro_1_score",
+    "stw_4_score",
+    "stw_3_score",
+    "stw_2_score",
+    "sig_2_score",
+    "sig_1_score",
+    "pio_2_score",
+    "lol_2_score",
+    "lol_1_score",
+    "br3_6_score",
+    "br3_5_score",
+    "br3_3_score"
+   ],
+   "score_split_share_pct": 40.63,
+   "numu_pair_split_share_pct": 0.0,
+   "kine_pio_flag": {
+    "splits": 23,
+    "trees": 20,
+    "depth": {
+     "0": 1,
+     "2": 1,
+     "3": 3,
+     "4": 6,
+     "5": 12
+    }
+   }
+  },
+  "nue": {
+   "n_score_inputs": 0,
+   "score_inputs": [],
+   "score_split_share_pct": 0.0,
+   "numu_pair_split_share_pct": 0.0
+  }
+ }
+}
