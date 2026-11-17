@@ -1,0 +1,34 @@
+{
+ "config": "D_full",
+ "official_final_any": 833,
+ "official_final_first": 795,
+ "reco_channel": {
+  "0p": 408,
+  "1p": 377,
+  ">=2p": 48
+ },
+ "natural_final_any": 8,
+ "bnb_accounting": {
+  "total": 291,
+  "signal_like": 9,
+  "background": 282,
+  "mixed": 0,
+  "background_by_channel": {
+   "1g0p": 150,
+   "1g1p": 93,
+   "ge2p_diag": 39
+  },
+  "background_by_category": {
+   "NC_PI0": 116,
+   "OUTSIDE_TPC_NU": 62,
+   "CC_PI0": 60,
+   "NUMU_CC": 14,
+   "OTHER_NC": 13,
+   "COSMIC_OR_UNMATCHED": 13,
+   "MULTI_OR_AMBIGUOUS": 3,
+   "NUE_CC": 1
+  }
+ },
+ "filter_box_final_any": 846,
+ "accounting_ok": true
+}

@@ -1,0 +1,4 @@
+,reco 0p,reco 1p,reco >=2p,no candidate/unreco,row_total
+truth 0p,33.0,14.0,2.0,10.0,59.0
+truth 1p,13.0,22.0,5.0,6.0,46.0
+truth >=2p,7.0,2.0,2.0,1.0,12.0

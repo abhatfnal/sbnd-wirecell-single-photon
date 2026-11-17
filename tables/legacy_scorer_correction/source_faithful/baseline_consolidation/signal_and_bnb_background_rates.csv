@@ -1,0 +1,4 @@
+channel,signal_rate_per_1e20,signal_unc,bnb_neutrino_background_rate_per_1e20,bnb_unc,signal_over_beam_neutrino_background_reference_ratio
+1g0p,14.37363,0.69336,551.59183,45.03728,0.02606
+1g1p,13.28152,0.66509,341.98693,35.46239,0.03884
+ge2p,1.69102,0.24192,143.41388,22.9646,0.01179

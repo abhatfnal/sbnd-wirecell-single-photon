@@ -8,15 +8,26 @@ NO new analysis, NO threshold / weight / policy change.  Every number is read fr
 numbers.  Output: tables/baseline_consolidation/*.csv + summary.json, plots/baseline_consolidation/{fig_cutflow_loss_budget,fig_signal_vs_background_rates}.png.
 """
 from __future__ import annotations
-import hashlib, json, math, subprocess, sys
+import hashlib, json, math, os, subprocess, sys
 from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(REPO / "src"))
 import numpy as np, pandas as pd
 from sbnd_single_photon import numu_audit as NA, plotstyle as PS
 import matplotlib.pyplot as plt
 
-T = REPO / "tables"; OUT = T / "baseline_consolidation"; PLT = REPO / "plots" / "baseline_consolidation"; OUT.mkdir(parents=True, exist_ok=True); PLT.mkdir(parents=True, exist_ok=True)
-SIG = T / "official_signal" / "official_active_tpc"
+T = REPO / "tables"
+# Scorer-correction rebuild: SP_TABLES_OVERLAY=<dir> reads every table found under <dir> (same relative path as under tables/) in preference to the committed as-run table, and
+# SP_CONSOLIDATION_OUT=<dir> / SP_CONSOLIDATION_PLOTS=<dir> redirect the outputs, so the historical as-run products stay untouched. Unset: exactly the Phase-19 behaviour.
+OVERLAY = Path(os.environ["SP_TABLES_OVERLAY"]) if os.environ.get("SP_TABLES_OVERLAY") else None
+
+
+def tb(*parts):
+    q = (OVERLAY.joinpath(*parts) if OVERLAY else None)
+    return q if q is not None and q.exists() else T.joinpath(*parts)
+
+
+OUT = Path(os.environ.get("SP_CONSOLIDATION_OUT", T / "baseline_consolidation")); PLT = Path(os.environ.get("SP_CONSOLIDATION_PLOTS", REPO / "plots" / "baseline_consolidation")); OUT.mkdir(parents=True, exist_ok=True); PLT.mkdir(parents=True, exist_ok=True)
+SIG = tb("official_signal", "official_active_tpc")
 S: dict = {}
 
 
@@ -67,16 +78,20 @@ S["first_failure_cumulative_mismatch"] = dict(numu=int(LB.set_index("stage").loc
 byt = ff.drop(index=["wc_invalid"]).reset_index().rename(columns={"reason": "first_failure"}); wr(byt, "first_failure_by_truth.csv")
 
 # ------------------------------------------------------------------------------------------------------ Phase-18 denominator correction
-p18 = pd.read_csv(T / "numu_compact_shower_audit" / "numu_loss_budget.csv"); s18 = json.load(open(T / "numu_compact_shower_audit" / "summary.json"))["loss_budget"]
-lost_true = N0 - S["signal"]["final_any"]; corr = []
-for r in p18.itertuples():
-    corr.append(dict(group=r.group, n=int(r.n), phase18_share_of_loss=float(r.share_of_total_baseline_loss), phase18_denominator=int(s18["n_lost"]), corrected_share_of_loss=r.n / lost_true, corrected_denominator=int(lost_true), share_of_truth_denominator=r.n / N0))
-wr(pd.DataFrame(corr), "phase18_loss_share_correction.csv")
-S["phase18_correction"] = dict(phase18_denominator_events=int(s18["n_signal_box_events"]), phase18_lost=int(s18["n_lost"]), true_denominator=N0, true_lost=int(lost_true), missing_from_phase18=int(N0 - s18["n_signal_box_events"]),
-                               numu_fail_share_phase18=float(s18["numu_fail_share_of_total_loss"]), numu_fail_share_corrected=float(s18["n_fail_numu"] / lost_true), compact_fail=int(s18["n_fail_numu_compact"]), compact_share_corrected=float(s18["n_fail_numu_compact"] / lost_true))
+if OVERLAY is None:
+    p18 = pd.read_csv(tb("numu_compact_shower_audit", "numu_loss_budget.csv")); s18 = json.load(open(tb("numu_compact_shower_audit", "summary.json")))["loss_budget"]
+    lost_true = N0 - S["signal"]["final_any"]; corr = []
+    for r in p18.itertuples():
+        corr.append(dict(group=r.group, n=int(r.n), phase18_share_of_loss=float(r.share_of_total_baseline_loss), phase18_denominator=int(s18["n_lost"]), corrected_share_of_loss=r.n / lost_true, corrected_denominator=int(lost_true), share_of_truth_denominator=r.n / N0))
+    wr(pd.DataFrame(corr), "phase18_loss_share_correction.csv")
+    S["phase18_correction"] = dict(phase18_denominator_events=int(s18["n_signal_box_events"]), phase18_lost=int(s18["n_lost"]), true_denominator=N0, true_lost=int(lost_true), missing_from_phase18=int(N0 - s18["n_signal_box_events"]),
+                                   numu_fail_share_phase18=float(s18["numu_fail_share_of_total_loss"]), numu_fail_share_corrected=float(s18["n_fail_numu"] / lost_true), compact_fail=int(s18["n_fail_numu_compact"]), compact_share_corrected=float(s18["n_fail_numu_compact"] / lost_true))
+
+else:      # the Phase-18 audit counts are as-run (v-space scorer); they are not recomputed for the corrected scorer
+    S["phase18_correction"] = dict(note="historical as-run Phase-18 audit; not recomputed for the source-faithful scorer; do not combine its counts with the corrected denominator")
 
 # ------------------------------------------------------------------------------------------------------ background (Tasks 11-12)
-bg = json.load(open(T / "official_signal" / "background_rate_model.json")); comp = pd.read_csv(T / "background_mechanisms" / "background_composition_by_channel.csv")
+bg = json.load(open(tb("official_signal", "background_rate_model.json"))); comp = pd.read_csv(tb("background_mechanisms", "background_composition_by_channel.csv"))
 wr(comp, "bnb_background_composition_by_channel.csv")
 S["background"] = dict(pot_cv=bg["pot_cv"], selected_nonsignal=bg["background_events"], signal_like_removed=bg["signal_like_removed"], by_channel={k: [v["count"], v["rate_per_1e20_POT"], v["stat_unc_per_1e20_POT"]] for k, v in bg["by_reco_channel"].items()},
                        total_rate_per_1e20=float(sum(v["rate_per_1e20_POT"] for v in bg["by_reco_channel"].values())))
@@ -86,16 +101,16 @@ rate = pd.DataFrame([dict(channel=c, signal_rate_per_1e20=ey["by_reco_channel"][
 rate["signal_over_beam_neutrino_background_reference_ratio"] = rate.signal_rate_per_1e20 / rate.bnb_neutrino_background_rate_per_1e20; wr(rate, "signal_and_bnb_background_rates.csv")
 
 # ------------------------------------------------------------------------------------------------------ natural CV (Task 13)
-nat = json.load(open(T / "natural_ncdelta" / "natural_ncdelta_crosscheck.json")); nc = pd.read_csv(T / "official_signal" / "official_baseline" / "natural_cv_cutflow_comparison.csv"); wr(nc, "natural_cv_cutflow.csv")
+nat = json.load(open(tb("natural_ncdelta", "natural_ncdelta_crosscheck.json"))); nc = pd.read_csv(tb("official_signal", "official_baseline", "natural_cv_cutflow_comparison.csv")); wr(nc, "natural_cv_cutflow.csv")
 S["natural_cv"] = dict(n_events=nat["natural_cv"]["n_events"], in_filter_box=nat["natural_cv"]["in_filter_box"], in_tpc_box=nat["natural_cv"]["in_provisional_tpc"], selected_any=int(nc[nc.stage == "final"].rehearsal.iloc[0].split("/")[0]),
                        rate_ratio_cv_over_dedicated=nat["comparison_tpc_box"]["rate_ratio_cv_over_dedicated"], ratio_95ci=nat["comparison_tpc_box"]["ratio_95ci"], binomial_p_equal_rates=nat["comparison_tpc_box"]["binomial_p_equal_rates"],
                        final_p_binom=float(nc[nc.stage == "final"].p_binom.iloc[0]), natural_final_fraction=float(nc[nc.stage == "final"].rehearsal_frac.iloc[0]), official_final_fraction=float(nc[nc.stage == "final"].official_frac.iloc[0]))
 
 # ------------------------------------------------------------------------------------------------------ frozen conventions (Task 14 / tests)
-cfg = REPO / "configs" / "baseline_selection.yaml"; dec = json.load(open(T / "analysis_definition_decisions" / "summary.json"))
-S["frozen"] = dict(baseline_config_sha256=sha(cfg), numu_xml_sha256="5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961", candidates_config_sha256=sha(REPO / "configs" / "analysis_definition_candidates.yaml"),
+cfg = REPO / "configs" / "baseline_selection.yaml"; dec = json.load(open(tb("analysis_definition_decisions", "summary.json")))
+S["frozen"] = dict(**({"scorer_mode": "legacy_source_faithful"} if OVERLAY else {}), baseline_config_sha256=sha(cfg), numu_xml_sha256="5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961", candidates_config_sha256=sha(REPO / "configs" / "analysis_definition_candidates.yaml"),
                    thresholds=dict(numu=0.4, other=0.2, ncpi0=-0.05), proton_threshold_mev=35, candidate_policy="any", truth_region="provisional TPC box |x|,|y| < 200 cm, 0 < z < 500 cm (12,427 events); characterisation convention, not an FV")
-S["harmonized"] = {r.denominator_set: [int(r.numerator), int(r.denominator), float(r.efficiency)] for r in pd.read_csv(T / "spine_harmonization" / "wc_efficiency_on_harmonized.csv").query("policy == 'any'").itertuples()}
+S["harmonized"] = {r.denominator_set: [int(r.numerator), int(r.denominator), float(r.efficiency)] for r in pd.read_csv(tb("spine_harmonization", "wc_efficiency_on_harmonized.csv")).query("policy == 'any'").itertuples()}
 S["metadata"] = dict(git_head_at_run=subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip(), note="reads committed tables only")
 (OUT / "summary.json").write_text(json.dumps(S, indent=1, default=float))
 
@@ -108,7 +123,7 @@ b = ax[0, 1]; ffr = LB[LB.stage != "wc.valid"]; colr = ["#56B4E9", "#0072B2", "#
 b.barh(range(len(ffr)), ffr.first_failure_fraction, color=colr[:len(ffr)]); b.set_yticks(range(len(ffr))); b.set_yticklabels([("selected" if s == "final" else "fail " + s) for s in ffr.stage], fontsize=8); b.invert_yaxis()
 for yi, (n, f) in enumerate(zip(ffr.first_failure_count, ffr.first_failure_fraction)): b.text(f + 0.003, yi, f"{n:,} ({100 * f:.1f} %)", va="center", fontsize=7)
 b.set_xlabel("first-failure fraction of 12,427 truth events"); b.set_xlim(0, 0.36); b.grid(alpha=.25, axis="x")
-fig.subplots_adjust(bottom=0.25); PS.annotate(fig, "official Gen2 NC-Delta | provisional TPC box | frozen selection, policy any | characterisation convention, not an approved definition"); fig.savefig(PLT / "fig_cutflow_loss_budget.png", dpi=150, bbox_inches="tight"); plt.close(fig)
+fig.subplots_adjust(bottom=0.25); PS.annotate(fig, "official Gen2 NC-Delta | provisional TPC box | frozen selection, policy any" + (" | SOURCE-FAITHFUL legacy scorer (corrected)" if OVERLAY else "") + " | characterisation convention, not an approved definition"); fig.savefig(PLT / "fig_cutflow_loss_budget.png", dpi=150, bbox_inches="tight"); plt.close(fig)
 
 fig, ax = PS.figure(1, 1, size=(6.4, 4.2)); a = ax[0, 0]; w = 0.35; xs = np.arange(3); lab = ["1g0p", "1g1p", ">=2p"]
 a.bar(xs - w / 2, rate.signal_rate_per_1e20, w, yerr=rate.signal_unc, color="#0072B2", label="NC-Delta signal (official, provisional TPC box)", capsize=2)

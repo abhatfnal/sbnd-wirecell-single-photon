@@ -1,5 +1,7 @@
 # NC Delta -> N gamma, frozen Wire-Cell first look: presentation outline
 
+> **SUPERSEDED NUMBERS (2026-11-17).** The selection numbers below were produced by the as-run scorer, which applied the frozen cuts on the bare TMVA response instead of `log10((1+v)/(1-v))` and fed the real `kine_pio_flag`. The corrected (source-faithful) Round-1 baseline is 833 / 12,427 = 6.70 % (as run: 9.28 %); this document is the HISTORICAL AS-RUN BASELINE. See `docs/analysis/LEGACY_SCORER_CORRECTION_IMPACT.md` and, for the deck, `docs/presentation/ROUND1_SCORER_CORRECTION_PRESENTATION_IMPACT.md`. Taxonomy and mechanism sections that do not depend on the BDT decision are unchanged (impact document, section 6).
+
 Prepared for Avinay (2026-11-11). **No PPTX yet.** Audience: SBND collaborators, Haiwang / Hanyu, Seokju, Nate, Wire-Cell and reconstruction analysts. Register: **first-look baseline, not a final analysis result.**
 
 How to use this file: every slide below gives the central message, the asset (ready in `presentation_assets/ncdelta_baseline/`, original in `plots/`), the headline numbers, 2-4 slide bullets, a callout, a 30-60 s speaker note and the caveat that must stay visible on the slide. **Every number on a slide must be a row of `NCDELTA_BASELINE_SLIDE_NUMBERS.md`** (generated from `tables/baseline_consolidation/summary.json` and the consolidated baseline text; the Phase-19 value wins over any earlier phase report). Asset roles, crops and provenance: `NCDELTA_BASELINE_SLIDE_ASSETS.csv`.

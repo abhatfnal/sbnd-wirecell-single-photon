@@ -1,0 +1,31 @@
+{
+ "component": "B_BNB_NEUTRINO",
+ "sample": "bnb_cv",
+ "pot_cv": 2.719402147414874e+19,
+ "event_classes_in_table": {
+  "background": 282,
+  "signal_like": 9
+ },
+ "signal_like_removed": 9,
+ "background_events": 282,
+ "by_reco_channel": {
+  "1g0p": {
+   "count": 150,
+   "rate_per_1e20_POT": 551.5918274264563,
+   "stat_unc_per_1e20_POT": 45.03728411613779
+  },
+  "1g1p": {
+   "count": 93,
+   "rate_per_1e20_POT": 341.98693300440294,
+   "stat_unc_per_1e20_POT": 35.462392975457604
+  },
+  "ge2p": {
+   "count": 39,
+   "rate_per_1e20_POT": 143.41387513087867,
+   "stat_unc_per_1e20_POT": 22.964599054740898
+  }
+ },
+ "uncertainty": "statistical (Poisson) only; no cosmic-only component, no flux/xsec/detector systematics",
+ "nueCC_dedicated_sample": "NOT included (control sample only)",
+ "note": "rate of selected non-signal CV events per 1e20 POT; the natural NC-Delta signal-like events are excluded"
+}

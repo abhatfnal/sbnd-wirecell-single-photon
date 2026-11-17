@@ -1,0 +1,68 @@
+{
+ "configs": [
+  {
+   "config": "A_old",
+   "official_selected_any": 1153,
+   "official_selected_first": 1101,
+   "N_truth": 12427,
+   "bnb_selected_events": 649,
+   "bnb_selected_labelled_nonsignal": 635,
+   "bnb_selected_signal_like": 14,
+   "bnb_new_unlabelled": 0,
+   "natural_selected": 13,
+   "natural_N": 117,
+   "reco_1g0p": 527,
+   "reco_1g1p": 556,
+   "reco_ge2p": 70,
+   "efficiency": 0.09278184598052627
+  },
+  {
+   "config": "B_score_only",
+   "official_selected_any": 831,
+   "official_selected_first": 793,
+   "N_truth": 12427,
+   "bnb_selected_events": 286,
+   "bnb_selected_labelled_nonsignal": 274,
+   "bnb_selected_signal_like": 9,
+   "bnb_new_unlabelled": 3,
+   "natural_selected": 8,
+   "natural_N": 117,
+   "reco_1g0p": 406,
+   "reco_1g1p": 378,
+   "reco_ge2p": 47,
+   "efficiency": 0.06687052385933853
+  },
+  {
+   "config": "C_pio_only",
+   "official_selected_any": 1161,
+   "official_selected_first": 1109,
+   "N_truth": 12427,
+   "bnb_selected_events": 656,
+   "bnb_selected_labelled_nonsignal": 632,
+   "bnb_selected_signal_like": 14,
+   "bnb_new_unlabelled": 10,
+   "natural_selected": 13,
+   "natural_N": 117,
+   "reco_1g0p": 531,
+   "reco_1g1p": 560,
+   "reco_ge2p": 70,
+   "efficiency": 0.09342560553633218
+  },
+  {
+   "config": "D_full",
+   "official_selected_any": 833,
+   "official_selected_first": 795,
+   "N_truth": 12427,
+   "bnb_selected_events": 291,
+   "bnb_selected_labelled_nonsignal": 274,
+   "bnb_selected_signal_like": 9,
+   "bnb_new_unlabelled": 8,
+   "natural_selected": 8,
+   "natural_N": 117,
+   "reco_1g0p": 408,
+   "reco_1g1p": 377,
+   "reco_ge2p": 48,
+   "efficiency": 0.06703146374829001
+  }
+ ]
+}

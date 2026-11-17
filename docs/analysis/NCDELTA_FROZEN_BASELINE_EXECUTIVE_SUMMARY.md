@@ -1,5 +1,7 @@
 # NC-Delta -> N gamma in SBND with the frozen Wire-Cell chain: first-look summary
 
+> **SUPERSEDED NUMBERS (2026-11-17).** The selection numbers below were produced by the as-run scorer, which applied the frozen cuts on the bare TMVA response instead of `log10((1+v)/(1-v))` and fed the real `kine_pio_flag`. The corrected (source-faithful) Round-1 baseline is 833 / 12,427 = 6.70 % (as run: 9.28 %); this document is the HISTORICAL AS-RUN BASELINE. See `docs/analysis/LEGACY_SCORER_CORRECTION_IMPACT.md` and, for the deck, `docs/presentation/ROUND1_SCORER_CORRECTION_PRESENTATION_IMPACT.md`. Taxonomy and mechanism sections that do not depend on the BDT decision are unchanged (impact document, section 6).
+
 Date: 2026-11-11. Source of every number: `NCDELTA_FROZEN_WIRECELL_BASELINE.md`. **Characterisation, not an analysis result**: no optimisation, no retraining, no approved fiducial volume, no purity, no S/B, no significance.
 
 **What is the analysis?** A search for NC Delta radiative decay (Delta -> N gamma) as a single photon with zero (1g0p) or one (1g1p) reconstructed proton. The baseline is the unmodified production fg1 Wire-Cell reconstruction with the inherited MicroBooNE-derived single-photon BDT chain, run on the official Gen2 `EX_ncdeltarad` signal. Characterisation conventions (not approved definitions): candidate policy `any`, truth denominator = provisional TPC box (12,427 events), 35 MeV truth proton threshold.

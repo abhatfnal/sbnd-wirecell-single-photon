@@ -1,0 +1,120 @@
+slide,displayed_old,meaning,source,old_value,corrected_value,status
+"1,2","12,427",official Gen2 signal events in the provisional TPC box (truth denominator),$['signal']['truth_denominator'],12427,12427,UNCHANGED
+2,"5,863 / 5,557 / 1,007",truth 0p / 1p / >=2p in the box (0p),$['signal']['truth_by_class']['0p'],5863,5863,UNCHANGED
+2,"5,557",truth 1p,$['signal']['truth_by_class']['1p'],5557,5557,UNCHANGED
+2,"1,007",truth >=2p,$['signal']['truth_by_class']['>=2p'],1007,1007,UNCHANGED
+2,"1,153","selected events, policy any",$['signal']['final_any'],1153,833,UPDATE
+2,"1,101","selected events, policy first",$['signal']['final_first'],1101,795,UPDATE
+2,9.28 %,"efficiency any, total (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|all'][2],0.09278184598052627,0.06703146374829001,UPDATE
+2,8.86 %,"efficiency first, total (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['first|all'][2],0.08859740886778789,0.06397360585821196,UPDATE
+2,8.12 %,"efficiency any, truth 0p (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|0p'][2],0.08118710557734948,0.06361930752174655,UPDATE
+2,10.69 %,"efficiency any, truth 1p (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|1p'][2],0.10689220802591326,0.07486053626057225,UPDATE
+2,8.24 %,"efficiency any, truth >=2p (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|>=2p'][2],0.08242303872889771,0.04369414101290963,UPDATE
+backup,7.61 %,"efficiency any, Delta0 -> n gamma (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|Delta0'][2],0.07610283377154543,0.057551855097867366,UPDATE
+backup,11.32 %,"efficiency any, Delta+ -> p gamma (value index 2 of [selected, truth, eff, lo68, hi68])",$['signal']['eff']['any|Delta+'][2],0.11324135459595054,0.07865973839813653,UPDATE
+3,8.8 %,"first-failure fraction of the 12,427, stage candidate (index 3)",$['loss_budget']['candidate'][3],0.08811458920093346,0.08811458920093346,UNCHANGED
+3,26.2 %,"first-failure fraction of the 12,427, stage > 20 MeV shower (index 3)",$['loss_budget']['> 20 MeV shower'][3],0.26160778949062524,0.26160778949062524,UNCHANGED
+3,24.4 %,"first-failure fraction of the 12,427, stage numu (index 3)",$['loss_budget']['numu'][3],0.2438239317614871,0.24897400820793433,UPDATE
+3,17.9 %,"first-failure fraction of the 12,427, stage other (index 3)",$['loss_budget']['other'][3],0.17912609640299348,0.17912609640299348,UNCHANGED
+3,11.8 %,"first-failure fraction of the 12,427, stage ncpi0 (index 3)",$['loss_budget']['ncpi0'][3],0.11788846865695662,0.11338215176631528,UPDATE
+3,1.3 %,"first-failure fraction of the 12,427, stage n_20br1 (index 3)",$['loss_budget']['n_20br1'][3],0.01287519111611813,0.004828196668544299,UPDATE
+"2,backup","11,331",cumulative surviving events after stage candidate (index 0),$['loss_budget']['candidate'][0],11331,11331,UNCHANGED
+"2,backup","8,080",cumulative surviving events after stage > 20 MeV shower (index 0),$['loss_budget']['> 20 MeV shower'][0],8080,8080,UNCHANGED
+"2,backup","8,034",cumulative surviving events after stage BDT evaluable (index 0),$['loss_budget']['BDT evaluable'][0],8034,8034,UNCHANGED
+"2,backup","5,007",cumulative surviving events after stage numu (index 0),$['loss_budget']['numu'][0],5007,4943,UPDATE
+"2,backup","2,781",cumulative surviving events after stage other (index 0),$['loss_budget']['other'][0],2781,2717,UPDATE
+"2,backup","1,313",cumulative surviving events after stage ncpi0 (index 0),$['loss_budget']['ncpi0'][0],1313,1305,UPDATE
+"2,backup","1,153",cumulative surviving events after stage n_20br1 (index 0),$['loss_budget']['n_20br1'][0],1153,833,UPDATE
+3,"3,030","first-failure count at numu (exclusive; 3,027 by cumulative difference, documented 3-event bookkeeping difference)",$['loss_budget']['numu'][2],3030,3094,UPDATE
+"3,5",26.9 %,"numu failures as a share of the total baseline loss (11,274 of 12,427) - CORRECTED Phase-19 value",$['phase18_correction']['numu_fail_share_corrected'],0.2688486783750222,,REVIEW (key absent in corrected summary)
+backup,12.8 %,compact (< 20 cm) numu failures as a share of the total loss (corrected),$['phase18_correction']['compact_share_corrected'],0.1281710129501508,,REVIEW (key absent in corrected summary)
+"3,5",29.8 %,"SUPERSEDED Phase-18 share (denominator 11,331 omitted the 1,096 events without a candidate); NEVER show on a slide",$['phase18_correction']['numu_fail_share_phase18'],0.2977991746905089,,REVIEW (key absent in corrected summary)
+8,425,truth 0p -> reco 0p (selected events),$['migration_final']['truth 0p'][0],425,342,UPDATE
+8,50,truth 0p -> reco 1p (selected events),$['migration_final']['truth 0p'][1],50,30,UPDATE
+8,1,truth 0p -> reco >=2p (selected events),$['migration_final']['truth 0p'][2],1,1,UNCHANGED
+8,93,truth 1p -> reco 0p (selected events),$['migration_final']['truth 1p'][0],93,61,UPDATE
+8,471,truth 1p -> reco 1p (selected events),$['migration_final']['truth 1p'][1],471,336,UPDATE
+8,30,truth 1p -> reco >=2p (selected events),$['migration_final']['truth 1p'][2],30,19,UPDATE
+8,9,truth >=2p -> reco 0p (selected events),$['migration_final']['truth >=2p'][0],9,5,UPDATE
+8,35,truth >=2p -> reco 1p (selected events),$['migration_final']['truth >=2p'][1],35,11,UPDATE
+8,39,truth >=2p -> reco >=2p (selected events),$['migration_final']['truth >=2p'][2],39,28,UPDATE
+8,527 / 556 / 70,reco 1g0p / 1g1p / >=2p totals (column sums of migration_final),summary.json: sum over $['migration_final'][*][0..2],"[527, 556, 70]",,REVIEW (text-sourced; not auto-recomputed)
+10,635,selected non-signal BNB-CV events,$['background']['selected_nonsignal'],635,282,UPDATE
+10,310,"selected non-signal events, reco 1g0p (index 0)",$['background']['by_channel']['1g0p'][0],310,150,UPDATE
+10,230,"selected non-signal events, reco 1g1p (index 0)",$['background']['by_channel']['1g1p'][0],230,93,UPDATE
+10,95,"selected non-signal events, reco ge2p (index 0)",$['background']['by_channel']['ge2p'][0],95,39,UPDATE
+11,"1,140","beam-neutrino selected rate per 1e20 POT, reco 1g0p (index 1; stat. only)",$['background']['by_channel']['1g0p'][1],1139.9564433480098,551.5918274264563,UPDATE
+11,846,"beam-neutrino selected rate per 1e20 POT, reco 1g1p (index 1; stat. only)",$['background']['by_channel']['1g1p'][1],845.7741353872331,341.98693300440294,UPDATE
+11,349,"beam-neutrino selected rate per 1e20 POT, reco ge2p (index 1; stat. only)",$['background']['by_channel']['ge2p'][1],349.3414907034224,143.41387513087867,UPDATE
+11,40.6,"signal selected rate per 1e20 POT, provisional TPC box, policy any (total)",$['signal_rate']['total_per_1e20'],40.61959445410989,29.34615974004643,UPDATE
+11,18.57 / 19.59 / 2.47,signal rate per 1e20 POT by reco channel (1g0p),$['signal_rate']['by_reco_channel']['1g0p'],18.565937794723254,14.373629260430906,UPDATE
+11,19.59,"signal rate, reco 1g1p",$['signal_rate']['by_reco_channel']['1g1p'],19.587592815685248,13.281515272506006,UPDATE
+11,2.47,"signal rate, reco >=2p",$['signal_rate']['by_reco_channel']['ge2p'],2.466063843701381,1.6910152071095181,UPDATE
+14,416 / 128 / 117,natural NC-Delta events in the BNB CV (total),$['natural_cv']['n_events'],416,416,UNCHANGED
+14,128,natural events in the filter box,$['natural_cv']['in_filter_box'],128,128,UNCHANGED
+14,117,natural events in the provisional TPC box,$['natural_cv']['in_tpc_box'],117,117,UNCHANGED
+14,13,"natural events selected, policy any",$['natural_cv']['selected_any'],13,8,UPDATE
+14,11.1 %,13 / 117,$['natural_cv']['natural_final_fraction'],0.1111111111111111,0.06837606837606838,UPDATE
+14,p = 0.52,"binomial p, natural 13/117 vs official 9.28 %",$['natural_cv']['final_p_binom'],0.5216034435290675,0.8538643688825839,UPDATE
+14,0.98,TPC-box rate ratio natural CV / dedicated (95 % interval 0.81-1.18),$['natural_cv']['rate_ratio_cv_over_dedicated'],0.982742762627524,0.982742762627524,UNCHANGED
+15,"947 / 8,668 = 10.93 %","Wire-Cell efficiency on the SPINE-harmonised denominator (selected, index 0)",$['harmonized']['B spine_technote_strict = HARMONIZED ALL'][0],947,685,UPDATE
+15,"8,668",harmonised denominator (index 1),$['harmonized']['B spine_technote_strict = HARMONIZED ALL'][1],8668,8668,UNCHANGED
+15,9.38 %,harmonised 0p50 (index 2),$['harmonized']['harmonized 0p50'][2],0.09382871536523929,0.07178841309823678,UPDATE
+15,12.81 %,harmonised Np50 (index 2),$['harmonized']['harmonized Np50'][2],0.12807377049180327,0.08785860655737705,UPDATE
+1,0.4 / 0.2 / -0.05,frozen thresholds numu / other / ncpi0 (numu),$['frozen']['thresholds']['numu'],0.4,0.4,UNCHANGED
+1,35 MeV,provisional truth proton threshold,$['frozen']['proton_threshold_mev'],35,35,UNCHANGED
+1,any,candidate policy used for characterisation,$['frozen']['candidate_policy'],"""any""","""any""",UNCHANGED
+4,27.6 %,signal photons with a track-typed dominant object,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6, PID mis-typing",27.6 %,,REVIEW (text-sourced; not auto-recomputed)
+4,~3,median number of pieces of a fragmented photon,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6, Fragmentation",median 3,,REVIEW (text-sourced; not auto-recomputed)
+4,567,events with a good electron shower outside the main-vertex shower set,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6, last bullet",567 events,,REVIEW (text-sourced; not auto-recomputed)
+4,17.4 %,share of the shower-stage failures that are the 567,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, > 20 MeV shower",17.4 %,,REVIEW (text-sourced; not auto-recomputed)
+4,29.6 %,share of shower-stage failures typed muon / pion / proton,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, > 20 MeV shower",29.6 %,,REVIEW (text-sourced; not auto-recomputed)
+4,1.2 %,shower-stage failures that are genuinely below 20 MeV,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, > 20 MeV shower",1.2 %,,REVIEW (text-sourced; not auto-recomputed)
+5,29 % vs 74 %,numu survival for total shower length < 20 cm vs above,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",survival 29 % for total shower length < 20 cm vs 74 % above,,REVIEW (text-sourced; not auto-recomputed)
+5,25 % vs 73 %,numu survival for < 5 vs >= 5 segments,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",25 % for < 5 segments vs 73 %,,REVIEW (text-sourced; not auto-recomputed)
+5,76 %,"numu survival, clean electron shower","NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",clean electron shower 76 %,,REVIEW (text-sourced; not auto-recomputed)
+5,36 %,"numu survival, fragmented","NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",fragmented 36 %,,REVIEW (text-sourced; not auto-recomputed)
+5,22-25 %,"numu survival, muon-/pion-typed","NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",muon-/pion-typed 22-25 %,,REVIEW (text-sourced; not auto-recomputed)
+5,44 %,share of the raw compact-vs-extended difference shared with the photon reco class,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",About 44 %,,REVIEW (text-sourced; not auto-recomputed)
+5,25-32 pp,association that remains after control,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, numu",25-32 pp,,REVIEW (text-sourced; not auto-recomputed)
+5,65-79 % vs 33-46 %,"other-stage survival, anchored vs not anchored vertex","NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, other","65-79 %, not anchored 33-46 %",,REVIEW (text-sourced; not auto-recomputed)
+5,94.2 % / 88.0 %,ncpi0-rejected events with a pair flag / with a pair containing the signal photon,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4, ncpi0",94.2 %,,REVIEW (text-sourced; not auto-recomputed)
+6,0.93 cm vs 11.6 cm,"|V_reco - V_true| median, truth 1p vs truth 0p (final selected)",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 7,truth 1p 0.93 cm,,REVIEW (text-sourced; not auto-recomputed)
+6,11.6 cm,truth 0p vertex distance,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 7,truth 0p 11.6 cm,,REVIEW (text-sourced; not auto-recomputed)
+6,+25.8 / +36 / +24.5 cm,median photon-line displacement for truth 0p: traditional / raw network / DL-stage,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 7,"+25.8 cm in the traditional vertex, +36 cm in the raw network output and +24.5 cm at the DL-stage vertex",,REVIEW (text-sourced; not auto-recomputed)
+6,0.25 cm,median move of the late refinement,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 7,median 0.25 cm,,REVIEW (text-sourced; not auto-recomputed)
+6,42 % -> 67.5 %,DL-stage anchoring when a true proton is reco-typed,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 7,42 % to 67.5 %,,REVIEW (text-sourced; not auto-recomputed)
+7,46 % / 67 % / 22 %,proton typing efficiency above 35 MeV / at 200-300 MeV / above 500 MeV,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 8,"46 % overall, 67 % at 200-300 MeV and 22 % above 500 MeV",,REVIEW (text-sourced; not auto-recomputed)
+7,17 %,protons above 35 MeV with a row typed muon / pion / electron-shower,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 8,17 % of the protons above 35 MeV,,REVIEW (text-sourced; not auto-recomputed)
+7,65 %,merged truth-1p protons merged into the signal photon,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 8,65 % of the merged truth-1p protons,,REVIEW (text-sourced; not auto-recomputed)
+7,883 -> 37,truth 1p -> reco 0p: matched row typed non-proton (matched candidate -> final),"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 2, mechanisms",883 -> 37,,REVIEW (text-sourced; not auto-recomputed)
+7,468 -> 11 / 319 -> 26,truth 0p -> reco 1p: signal photon typed proton / Geant4 secondary (matched -> final),"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 2, mechanisms",468 -> 11,,REVIEW (text-sourced; not auto-recomputed)
+9,"+2.8 MeV, [-44, +34] MeV",M_reco - M_true_decay for 348 truth-matched Delta+ decay pairs,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 9,"median **+2.8 MeV, 68 % interval [-44, +34] MeV**",,REVIEW (text-sourced; not auto-recomputed)
+9,1.034 / 12.7 %,"photon E_reco / E_true median and 68 % half-width (1,148 truth-correct selected photons)",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 9,1.034 +/- 12.7 %,,REVIEW (text-sourced; not auto-recomputed)
+9,348,selected Delta+ decay pairs in the headline resolution,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 9,348 selected **Delta+ decay pairs**,,REVIEW (text-sourced; not auto-recomputed)
+10,~33 / 24 / 17 %,1g0p: NC pi0 / outside-TPC / nue CC share of the 310,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 10,"NC pi0 102 (32.9 %), outside-TPC neutrinos 75 (24.2 %), nue CC 53 (17.1 %)",,REVIEW (text-sourced; not auto-recomputed)
+10,~37 / 30 / 18 %,1g1p: nue CC / NC pi0 / CC pi0 share of the 230,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 10,nue CC 86 (37.4 %,,REVIEW (text-sourced; not auto-recomputed)
+13a,2.4 % -> ~15 %,"final efficiency vs true photon energy, 50-100 MeV to above 400 MeV",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 5,2.4 % (50-100 MeV) to about 15 % above 400 MeV,,REVIEW (text-sourced; not auto-recomputed)
+13b,3.0 % -> 12.8 %,"final efficiency vs photon cos(theta), backward to forward",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 5,"3.0 % (cos in [-1,-0.75]) to 12.8 %",,REVIEW (text-sourced; not auto-recomputed)
+13c,4.4 %,final efficiency in the last 50 cm in z (450-500 cm),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 5,4.4 % at 450-500 cm,,REVIEW (text-sourced; not auto-recomputed)
+13c,11.4 % vs 7.3 %,interior diagnostic box vs outside (not a proposed FV),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 5,11.4 % vs 7.3 % outside,,REVIEW (text-sourced; not auto-recomputed)
+"2,5",+3 / -3,exclusive first failure minus cumulative difference at numu / ncpi0 (bookkeeping),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 3 bookkeeping note,+3 at `numu`,,REVIEW (text-sourced; not auto-recomputed)
+B03,52 events,any minus first: real signal events whose candidate 0 belongs to another interaction,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 1,52 events,,REVIEW (text-sourced; not auto-recomputed)
+B03,22,extra background events selected by any,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 14, F",adds 22 background events,,REVIEW (text-sourced; not auto-recomputed)
+B04,9.28 % / 10.1-10.6 % / 9.92 %,efficiency with no FV / 175-190 cm families / with the high-y carve-out (decision support only; no recommendation),"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 14, D",10.1-10.6 % for the 175-190 cm families,,REVIEW (text-sourced; not auto-recomputed)
+B05,63 events,1g1p -> 1g0p when included == 3 rows are excluded,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 14, E2",63 events 1g1p -> 1g0p,,REVIEW (text-sourced; not auto-recomputed)
+B05,"1,072",truth events that change truth category between 35 and 50 MeV,"NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 14, E1","1,072 truth events",,REVIEW (text-sourced; not auto-recomputed)
+B05,84.7 -> 89.7 %,"truth-1p fraction of the reco 1g1p channel, included == 3 counted vs excluded (a truth-composition number)","NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 14, E2",84.7 -> 89.7 %,,REVIEW (text-sourced; not auto-recomputed)
+B06,"11,512",events with a defined true conversion distance (92.6 % of the box),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6,"11,512 events",,REVIEW (text-sourced; not auto-recomputed)
+B06,0.975,Spearman of the reco gap with the true conversion distance for detached showers with an anchored vertex,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6,Spearman 0.975,,REVIEW (text-sourced; not auto-recomputed)
+B07,15.1 % / 13.0 %,shower-stage failures that are fragmented / track-typed,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4,fragmented 15.1 %,,REVIEW (text-sourced; not auto-recomputed)
+B07,13.0 %,shower-stage failures that are track-typed,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 4,track 13.0 %,,REVIEW (text-sourced; not auto-recomputed)
+B09,62 % / 15 % / 6 %,parent of the 567 shower-not-in-main-vertex-set events: true signal proton / mis-typed photon piece / pi0 pair,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 6,a true signal proton 62 %,,REVIEW (text-sourced; not auto-recomputed)
+B11,+12.7 pp -> +0.7 pp,"decay-vs-FSI difference at other, before and after proton KE alone",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 1,+12.7 pp falls to +0.7 pp,,REVIEW (text-sourced; not auto-recomputed)
+B11,+3.8 pp / +5.2 pp,residual final-efficiency differences (decay minus FSI-created; Delta+ minus Delta0 after adjustment),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 1,decay minus FSI-created +3.8 pp,,REVIEW (text-sourced; not auto-recomputed)
+B12,182 of 362,protons above 500 MeV with a row typed muon / pion / electron-shower,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 8,182 of 362,,REVIEW (text-sourced; not auto-recomputed)
+B12,55-66 cm vs 122 cm,length of mistyped protons vs correctly typed,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 8,55-66 cm vs 122 cm,,REVIEW (text-sourced; not auto-recomputed)
+B14,"9,206 of 13,773",official events inside the SPINE truth FV,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 16,"9,206 of 13,773",,REVIEW (text-sourced; not auto-recomputed)
+B15,A B C O P Q T U V Y,roadmap items DONE,NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 17,A B C O P Q T U V Y,,REVIEW (text-sourced; not auto-recomputed)
+9,10.4 %,photon-energy half-width of the Delta-mass width (proton KE 3 %),NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 9,photon energy (half-width 10.4 %),,REVIEW (text-sourced; not auto-recomputed)
+9,1220.8 MeV,"median M_Delta of all 554 usable events (context only; includes policy-dependent wrong-pair tails, NOT the headline resolution)",NCDELTA_FROZEN_WIRECELL_BASELINE.md: section 9,median 1220.8 MeV,,REVIEW (text-sourced; not auto-recomputed)

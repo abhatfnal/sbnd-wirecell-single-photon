@@ -1,0 +1,95 @@
+sample,config,flip,dimension,value,N
+official,B_score_only,old_fail_new_pass,stage,fail_ncpi0,9
+official,B_score_only,old_fail_new_pass,truth,0p,5
+official,B_score_only,old_fail_new_pass,truth,1p,4
+official,B_score_only,old_fail_new_pass,delta,Delta0,7
+official,B_score_only,old_fail_new_pass,delta,Delta+,2
+official,B_score_only,old_pass_new_fail,stage,fail_nue,312
+official,B_score_only,old_pass_new_fail,stage,fail_other,14
+official,B_score_only,old_pass_new_fail,stage,fail_numu,5
+official,B_score_only,old_pass_new_fail,truth,1p,183
+official,B_score_only,old_pass_new_fail,truth,0p,108
+official,B_score_only,old_pass_new_fail,truth,>=2p,40
+official,B_score_only,old_pass_new_fail,delta,Delta+,198
+official,B_score_only,old_pass_new_fail,delta,Delta0,133
+official,C_pio_only,old_fail_new_pass,stage,fail_ncpi0,12
+official,C_pio_only,old_fail_new_pass,truth,1p,7
+official,C_pio_only,old_fail_new_pass,truth,0p,4
+official,C_pio_only,old_fail_new_pass,truth,>=2p,1
+official,C_pio_only,old_fail_new_pass,delta,Delta0,6
+official,C_pio_only,old_fail_new_pass,delta,Delta+,6
+official,C_pio_only,old_pass_new_fail,stage,fail_ncpi0,4
+official,C_pio_only,old_pass_new_fail,truth,1p,2
+official,C_pio_only,old_pass_new_fail,truth,>=2p,1
+official,C_pio_only,old_pass_new_fail,truth,0p,1
+official,C_pio_only,old_pass_new_fail,delta,Delta0,3
+official,C_pio_only,old_pass_new_fail,delta,Delta+,1
+official,D_full,old_fail_new_pass,stage,fail_ncpi0,15
+official,D_full,old_fail_new_pass,truth,1p,7
+official,D_full,old_fail_new_pass,truth,0p,6
+official,D_full,old_fail_new_pass,truth,>=2p,2
+official,D_full,old_fail_new_pass,delta,Delta0,9
+official,D_full,old_fail_new_pass,delta,Delta+,6
+official,D_full,old_pass_new_fail,stage,fail_nue,312
+official,D_full,old_pass_new_fail,stage,fail_other,14
+official,D_full,old_pass_new_fail,stage,fail_numu,5
+official,D_full,old_pass_new_fail,stage,fail_ncpi0,4
+official,D_full,old_pass_new_fail,truth,1p,185
+official,D_full,old_pass_new_fail,truth,0p,109
+official,D_full,old_pass_new_fail,truth,>=2p,41
+official,D_full,old_pass_new_fail,delta,Delta+,199
+official,D_full,old_pass_new_fail,delta,Delta0,136
+bnb_cv,B_score_only,old_fail_new_pass,stage,ncpi0,3
+bnb_cv,B_score_only,old_fail_new_pass,bkg_class,(not in Phase-4 selected table: newly selected),3
+bnb_cv,B_score_only,old_fail_new_pass,bkg_channel,(not in Phase-4 selected table: newly selected),3
+bnb_cv,B_score_only,old_fail_new_pass,bkg_cand_category,(not in Phase-4 selected table: newly selected),3
+bnb_cv,B_score_only,old_pass_new_fail,stage,nue,349
+bnb_cv,B_score_only,old_pass_new_fail,stage,other,10
+bnb_cv,B_score_only,old_pass_new_fail,stage,numu,7
+bnb_cv,B_score_only,old_pass_new_fail,bkg_class,background,361
+bnb_cv,B_score_only,old_pass_new_fail,bkg_class,signal_like,5
+bnb_cv,B_score_only,old_pass_new_fail,bkg_channel,1g0p,164
+bnb_cv,B_score_only,old_pass_new_fail,bkg_channel,1g1p,143
+bnb_cv,B_score_only,old_pass_new_fail,bkg_channel,ge2p_diag,59
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,NUE_CC,174
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,NC_PI0,78
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,CC_PI0,49
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,OUTSIDE_TPC_NU,35
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,NUMU_CC,10
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,OTHER_NC,7
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,SIGNAL_NCDELTA,5
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,MULTI_OR_AMBIGUOUS,4
+bnb_cv,B_score_only,old_pass_new_fail,bkg_cand_category,COSMIC_OR_UNMATCHED,4
+bnb_cv,C_pio_only,old_fail_new_pass,stage,ncpi0,10
+bnb_cv,C_pio_only,old_fail_new_pass,bkg_class,(not in Phase-4 selected table: newly selected),10
+bnb_cv,C_pio_only,old_fail_new_pass,bkg_channel,(not in Phase-4 selected table: newly selected),10
+bnb_cv,C_pio_only,old_fail_new_pass,bkg_cand_category,(not in Phase-4 selected table: newly selected),10
+bnb_cv,C_pio_only,old_pass_new_fail,stage,ncpi0,3
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_class,background,3
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_channel,1g0p,2
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_channel,1g1p,1
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_cand_category,CC_PI0,1
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_cand_category,OTHER_NC,1
+bnb_cv,C_pio_only,old_pass_new_fail,bkg_cand_category,OUTSIDE_TPC_NU,1
+bnb_cv,D_full,old_fail_new_pass,stage,ncpi0,8
+bnb_cv,D_full,old_fail_new_pass,bkg_class,(not in Phase-4 selected table: newly selected),8
+bnb_cv,D_full,old_fail_new_pass,bkg_channel,(not in Phase-4 selected table: newly selected),8
+bnb_cv,D_full,old_fail_new_pass,bkg_cand_category,(not in Phase-4 selected table: newly selected),8
+bnb_cv,D_full,old_pass_new_fail,stage,nue,348
+bnb_cv,D_full,old_pass_new_fail,stage,other,10
+bnb_cv,D_full,old_pass_new_fail,stage,numu,7
+bnb_cv,D_full,old_pass_new_fail,stage,ncpi0,1
+bnb_cv,D_full,old_pass_new_fail,bkg_class,background,361
+bnb_cv,D_full,old_pass_new_fail,bkg_class,signal_like,5
+bnb_cv,D_full,old_pass_new_fail,bkg_channel,1g0p,164
+bnb_cv,D_full,old_pass_new_fail,bkg_channel,1g1p,143
+bnb_cv,D_full,old_pass_new_fail,bkg_channel,ge2p_diag,59
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,NUE_CC,174
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,NC_PI0,78
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,CC_PI0,49
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,OUTSIDE_TPC_NU,35
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,NUMU_CC,10
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,OTHER_NC,7
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,SIGNAL_NCDELTA,5
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,MULTI_OR_AMBIGUOUS,4
+bnb_cv,D_full,old_pass_new_fail,bkg_cand_category,COSMIC_OR_UNMATCHED,4

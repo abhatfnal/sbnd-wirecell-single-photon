@@ -44,3 +44,6 @@ patched/
 *~
 .vscode/
 .idea/
+
+# Jupyter autosave copies
+**/.ipynb_checkpoints/

@@ -1,0 +1,5 @@
+config,official_selected_any,official_selected_first,N_truth,bnb_selected_events,bnb_selected_labelled_nonsignal,bnb_selected_signal_like,bnb_new_unlabelled,natural_selected,natural_N,reco_1g0p,reco_1g1p,reco_ge2p,efficiency
+A_old,1153,1101,12427,649,635,14,0,13,117,527,556,70,0.09278184598052627
+B_score_only,831,793,12427,286,274,9,3,8,117,406,378,47,0.06687052385933853
+C_pio_only,1161,1109,12427,656,632,14,10,13,117,531,560,70,0.09342560553633218
+D_full,833,795,12427,291,274,9,8,8,117,408,377,48,0.06703146374829001

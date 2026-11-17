@@ -1,0 +1,12 @@
+stage,A_old,B_score_only,C_pio_only,D_full
+truth_denominator,117,117,117,117
+wc_valid,117,117,117,117
+candidate,105,105,105,105
+n20mev,70,70,70,70
+bdt_evaluable,70,70,70,70
+numu,47,46,47,46
+other,31,31,31,31
+ncpi0,13,13,13,13
+nue,13,8,13,8
+n20br1,13,8,13,8
+final,13,8,13,8

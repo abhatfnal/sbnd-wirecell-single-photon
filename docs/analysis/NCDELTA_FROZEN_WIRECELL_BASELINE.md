@@ -1,5 +1,7 @@
 # The frozen Wire-Cell NC-Delta baseline: single source of truth
 
+> **SUPERSEDED NUMBERS (2026-11-17).** The selection numbers below were produced by the as-run scorer, which applied the frozen cuts on the bare TMVA response instead of `log10((1+v)/(1-v))` and fed the real `kine_pio_flag`. The corrected (source-faithful) Round-1 baseline is 833 / 12,427 = 6.70 % (as run: 9.28 %); this document is the HISTORICAL AS-RUN BASELINE. See `docs/analysis/LEGACY_SCORER_CORRECTION_IMPACT.md` and, for the deck, `docs/presentation/ROUND1_SCORER_CORRECTION_PRESENTATION_IMPACT.md`. Taxonomy and mechanism sections that do not depend on the BDT decision are unchanged (impact document, section 6).
+
 Date: 2026-11-11. Branch `analysis/ncdelta-frozen-baseline-consolidation-20261111` (cut from the pushed Phase-18 head `a3e2ee52`). **Consolidation only**: no new analysis, optimisation, threshold change, retraining, reconstruction or policy decision. Every number below is read from a committed table of an earlier phase (`tables/baseline_consolidation/summary.json` collects them; `scripts/baseline_consolidation.py` rebuilds that file from the committed tables, with no ROOT access). Companions: `NCDELTA_FROZEN_BASELINE_EXECUTIVE_SUMMARY.md` (one page), `BASELINE_FIGURE_MANIFEST.md` (15 figures), `NCDELTA_BASELINE_TECHNICAL_INDEX.md` (phase map).
 
 Four categories are kept apart throughout and tagged: **[A] ESTABLISHED BASELINE RESULT**, **[B] PROVISIONAL CONVENTION**, **[C] EXTERNALLY BLOCKED**, **[D] FUTURE WORK / OPTIMISATION**.

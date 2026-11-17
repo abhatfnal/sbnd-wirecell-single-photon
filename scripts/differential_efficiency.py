@@ -22,6 +22,17 @@ import matplotlib.pyplot as plt
 
 SPD = Path(os.environ["SP_DATA"]); OUT = SPD / "differential_efficiency" / "official_ncdelta"; TABD = OUT / "tables"; PLD = REPO / "plots" / "differential_efficiency"
 SUMD = REPO / "tables" / "differential_efficiency"
+# Scorer-correction rebuild: SP_LEGACY_CONFIG=D_full re-runs this script on the rescored candidate tables ($SP_DATA/legacy_scorer_correction/*_candidates_<config>.parquet) and writes ONLY to
+# separate directories; unset = the original as-run behaviour, byte for byte.
+LEG = os.environ.get("SP_LEGACY_CONFIG")
+EXPECT = dict(any=1153, first=1101, natural=13)
+if LEG:
+    EXPECT = dict(zip(("any", "first", "natural"), (int(x) for x in os.environ["SP_LEGACY_EXPECT"].split(","))))
+    _src = OUT; OUT = SPD / "differential_efficiency_source_faithful" / "official_ncdelta"; TABD = OUT / "tables"; OUT.mkdir(parents=True, exist_ok=True)
+    for _n in ("truth_extra.parquet",):
+        if not (OUT / _n).exists():
+            (OUT / _n).symlink_to(_src / _n)
+    PLD = REPO / "plots" / "legacy_scorer_correction" / "differential_efficiency_source_faithful"; SUMD = REPO / "tables" / "legacy_scorer_correction" / "source_faithful" / "differential_efficiency"
 for d in (TABD, PLD, SUMD):
     d.mkdir(parents=True, exist_ok=True)
 GROUPS4 = ["all", "truth_0p", "truth_1p", "truth_ge2p"]; GROUPS_D = ["Delta0", "Delta+"]
@@ -48,12 +59,12 @@ def git_commit():
 # ---------------------------------------------------------------------------------------------------------------- load / build
 def load():
     cfg = SEL.load_config(); T = SPD / "analysis_tables" / "official_gen2_ncdelta"; B = SPD / "official_signal_baseline"
-    ev = pd.read_parquet(T / "events.parquet"); ca = pd.read_parquet(T / "candidates.parquet")
+    ev = pd.read_parquet(T / "events.parquet"); ca = pd.read_parquet(SPD / "legacy_scorer_correction" / f"official_candidates_{LEG}.parquet" if LEG else T / "candidates.parquet")
     arr = pd.read_parquet(B / "signal_joined_active_tpc.parquet"); mis = pd.read_parquet(B / "signal_missing_active_tpc.parquet")
     te = pd.read_parquet(OUT / "truth_extra.parquet")
     tab = DF.build_event_table(arr, mis, ev, ca, cfg, te, "any"); tf = DF.build_event_table(arr, mis, ev, ca, cfg, None, "first")
     tab = tab.merge(tf[DF.RSE + ["A_final"]].rename(columns={"A_final": "A_final_first"}), on=DF.RSE, how="left", validate="one_to_one")
-    assert len(tab) == 12427 and int(tab.A_final.sum()) == 1153 and int(tab.A_final_first.sum()) == 1101 and int((~tab.arrived).sum()) == 1
+    assert len(tab) == 12427 and int(tab.A_final.sum()) == EXPECT["any"] and int(tab.A_final_first.sum()) == EXPECT["first"] and int((~tab.arrived).sum()) == 1
     assert not tab.photon_energy_mev.isna().any() and tab.cos_theta_beam.notna().all()
     assert (tab.scan_n_p35 == tab.n_p35).all() and (abs(tab.photon_e_mev - tab.photon_energy_mev) < 1e-3).all()      # extra scan agrees with the master
     return cfg, tab, ev, ca
@@ -490,13 +501,13 @@ def resolution(tab, V):
 
 
 def natural_crosscheck(cfg, tab, V):
-    T = SPD / "analysis_tables" / "bnb_cv"; events = pd.read_parquet(T / "events.parquet"); cands = pd.read_parquet(T / "candidates.parquet")
+    T = SPD / "analysis_tables" / "bnb_cv"; events = pd.read_parquet(T / "events.parquet"); cands = pd.read_parquet(SPD / "legacy_scorer_correction" / f"bnb_candidates_{LEG}.parquet" if LEG else T / "candidates.parquet")
     sn = pd.read_parquet(SPD / "natural_ncdelta_bnb_cv" / "signal_neutrinos.parquet"); sig_all = NS.to_signal_truth_table(sn); sig = sig_all[sig_all.in_region].reset_index(drop=True)
     ex = pd.read_parquet(SPD / "differential_efficiency" / "natural_cv_truth_extra.parquet")[["file_index", "ev", "photon_px", "photon_py", "photon_pz", "photon_e_mev"]]
     sig = sig.merge(ex, on=["file_index", "ev"], how="left", validate="one_to_one"); assert sig.photon_px.notna().all()
     assert (abs(sig.photon_e_mev - sig.photon_mev) < 1e-3).all()
     sig["cos_theta_beam"] = sig.photon_pz / np.sqrt(sig.photon_px ** 2 + sig.photon_py ** 2 + sig.photon_pz ** 2)
-    t = X.signal_event_table(sig, events, cands, cfg, policy="any"); assert len(t) == 117 and int(t.A_final.sum()) == 13
+    t = X.signal_event_table(sig, events, cands, cfg, policy="any"); assert len(t) == 117 and int(t.A_final.sum()) == EXPECT["natural"]
     t["photon_energy_mev"] = t.photon_mev
     out = {"n": len(t), "final": int(t.A_final.sum())}
     rows = []

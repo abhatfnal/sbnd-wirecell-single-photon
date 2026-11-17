@@ -1,0 +1,49 @@
+item,group,scorer,n,passing,value
+numu_survival,compact (length < 20 cm),as_run_v>0.4,2044,599,0.2930528375733855
+numu_survival,compact (length < 20 cm),corrected_score>0.4 (v>0.4305),2044,578,0.2827788649706458
+numu_survival,not compact (>= 20 cm),as_run_v>0.4,5994,4408,0.735402068735402
+numu_survival,not compact (>= 20 cm),corrected_score>0.4 (v>0.4305),5994,4365,0.7282282282282282
+numu_survival,few-segment (< 5),as_run_v>0.4,1794,445,0.2480490523968785
+numu_survival,few-segment (< 5),corrected_score>0.4 (v>0.4305),1794,430,0.23968784838350055
+numu_survival,not few-segment,as_run_v>0.4,6244,4562,0.730621396540679
+numu_survival,not few-segment,corrected_score>0.4 (v>0.4305),6244,4513,0.7227738629083921
+stage_conditional_survival,numu | truth all,as_run,8034,5007,0.623226288274832
+stage_conditional_survival,other | truth all,as_run,5007,2781,0.5554224086279209
+stage_conditional_survival,ncpi0 | truth all,as_run,2781,1313,0.4721323265012585
+stage_conditional_survival,nue | truth all,as_run,1313,1313,1.0
+stage_conditional_survival,n20br1 | truth all,as_run,1313,1153,0.8781416603198782
+stage_conditional_survival,numu | truth 0p,as_run,3936,2446,0.6214430894308943
+stage_conditional_survival,other | truth 0p,as_run,2446,1157,0.473017170891251
+stage_conditional_survival,ncpi0 | truth 0p,as_run,1157,574,0.4961106309420916
+stage_conditional_survival,nue | truth 0p,as_run,574,574,1.0
+stage_conditional_survival,n20br1 | truth 0p,as_run,574,476,0.8292682926829268
+stage_conditional_survival,numu | truth 1p,as_run,3447,2174,0.6306933565419205
+stage_conditional_survival,other | truth 1p,as_run,2174,1373,0.6315547378104875
+stage_conditional_survival,ncpi0 | truth 1p,as_run,1373,647,0.4712308812818645
+stage_conditional_survival,nue | truth 1p,as_run,647,647,1.0
+stage_conditional_survival,n20br1 | truth 1p,as_run,647,594,0.9180834621329211
+stage_conditional_survival,numu | truth >=2p,as_run,651,387,0.5944700460829493
+stage_conditional_survival,other | truth >=2p,as_run,387,251,0.648578811369509
+stage_conditional_survival,ncpi0 | truth >=2p,as_run,251,92,0.3665338645418327
+stage_conditional_survival,nue | truth >=2p,as_run,92,92,1.0
+stage_conditional_survival,n20br1 | truth >=2p,as_run,92,83,0.9021739130434783
+stage_conditional_survival,numu | truth all,source_faithful,8034,4943,0.615260144386358
+stage_conditional_survival,other | truth all,source_faithful,4943,2717,0.5496661946186526
+stage_conditional_survival,ncpi0 | truth all,source_faithful,2717,1305,0.48030916451969086
+stage_conditional_survival,nue | truth all,source_faithful,1305,893,0.6842911877394636
+stage_conditional_survival,n20br1 | truth all,source_faithful,893,833,0.9328107502799552
+stage_conditional_survival,numu | truth 0p,source_faithful,3936,2415,0.6135670731707317
+stage_conditional_survival,other | truth 0p,source_faithful,2415,1130,0.46790890269151136
+stage_conditional_survival,ncpi0 | truth 0p,source_faithful,1130,572,0.5061946902654867
+stage_conditional_survival,nue | truth 0p,source_faithful,572,412,0.7202797202797203
+stage_conditional_survival,n20br1 | truth 0p,source_faithful,412,373,0.9053398058252428
+stage_conditional_survival,numu | truth 1p,source_faithful,3447,2150,0.6237307803887439
+stage_conditional_survival,other | truth 1p,source_faithful,2150,1348,0.6269767441860465
+stage_conditional_survival,ncpi0 | truth 1p,source_faithful,1348,646,0.4792284866468843
+stage_conditional_survival,nue | truth 1p,source_faithful,646,436,0.6749226006191951
+stage_conditional_survival,n20br1 | truth 1p,source_faithful,436,416,0.9541284403669725
+stage_conditional_survival,numu | truth >=2p,source_faithful,651,378,0.5806451612903226
+stage_conditional_survival,other | truth >=2p,source_faithful,378,239,0.6322751322751323
+stage_conditional_survival,ncpi0 | truth >=2p,source_faithful,239,87,0.36401673640167365
+stage_conditional_survival,nue | truth >=2p,source_faithful,87,45,0.5172413793103449
+stage_conditional_survival,n20br1 | truth >=2p,source_faithful,45,44,0.9777777777777777
