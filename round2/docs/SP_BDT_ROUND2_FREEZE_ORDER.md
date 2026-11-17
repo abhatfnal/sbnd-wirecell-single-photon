@@ -86,6 +86,40 @@ Haiwang refreshed reconstruction
 
 ## 4. Freeze order
 
+**Updated the same night: the WCL1116 development campaign** (`SP_BDT_WCL1116_DEVELOPMENT_PLAN.md`, results in
+`SP_BDT_WCL1116_DEVELOPMENT_RESULTS.md`, policy in `AURORA_UMBRELLA_MODEL_TRAINING_AND_EVALUATION_POLICY.md`).
+WCLocal2026Nov16 is the **current SBND development domain**, not automatically the final Round-2 training domain:
+Haiwang plans a later production with more realistic cosmic-tagger boundaries. The intended sequence is now:
+
+```text
+WCL1116 reconstruction development
+  |
+  +-- compare DV2 split_move vs snap            (Xuyang: upstream BDTs; Matteo: downstream; Avinay: SP BDTs)
+  |
+  +-- develop SP-numu / SP-ncpi0 / SP-other     (DEV_DO_NOT_DEPLOY; development holdout; shipped upstream nu_mu)
+  |
+  +-- quantify SP-nue domain shift              (no SP-nue training)
+  |
+  +-- Xuyang/Matteo freeze upstream nu_mu / nu_e
+  |
+  +-- cosmic-boundary reconstruction decision / final production
+  |
+  +-- freeze final reconstruction domain        (vertex mode + toolkit + DL bundle)
+  |
+  +-- FINAL Avinay SP retraining                (SP-numu, SP-other, SP-ncpi0; SP-nue if the shift study says so)
+  |
+  +-- export + equivalence                      (Python done; C++ fixture)
+  |
+  +-- validation-only threshold freeze
+  |
+  +-- model / selection freeze
+  |
+  +-- independent FermiGrid evaluation          (the first and only use of FermiGrid evaluation products)
+```
+
+The numbered steps below are the earlier, coarser version and stay valid within it.
+
+
 1. **Reconstruction: running now.** Haiwang's WCLocal2026Nov16. Aurora NC Δ and BNB are complete; νe CC is resuming.
    Open: which of the two stored vertex trees is the Round-2 vertex (tracker §2). The registry provisionally takes the
    default `recTreeWireCell` (`dv2_split_move`).
@@ -255,6 +289,17 @@ Avinay is not waiting passively. Steps 1–3 run now and in parallel with the up
 the moment its gate (§5) opens.
 
 ## 11. Readiness
+
+**WCL1116 development (2026-11-17 night).**
+- Development models now exist in the refreshed domain for both vertex modes:
+  - SP numu: holdout AUC 0.976 / 0.974;
+  - SP ncpi0: 0.899 / 0.897;
+  - all `DEV_DO_NOT_DEPLOY`; numu with `UPSTREAM_NUMU = SHIPPED_CONTROL`.
+- SP other is blocked only on staging the refreshed beam-off half.
+- SP nue domain shift: LARGE, so its retraining should be developed once νe CC completes.
+- The final-training gates below are unchanged: vertex mode, frozen νμ, the cosmic-boundary production, then the
+  final reconstruction domain (`SP_BDT_WCL1116_DEVELOPMENT_RESULTS.md`).
+
 
 | classifier | target known? | refreshed data | upstream frozen? | development model | final training now? |
 |---|---|---|---|---|---|

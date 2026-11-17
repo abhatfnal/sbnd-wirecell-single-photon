@@ -28,6 +28,16 @@ DV2-MAX `aurora_space` DL vertex.
 - Tracker: `docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`. Registry: `config/samples/round2_training_samples.yaml`
   (still `active_training_domain: aurora-r2`).
 
+**WCL1116 development campaign (2026-11-17 night).** Branch `round2/sp-bdt-wcl1116-development-20261117`; plan, results
+and policy in `docs/SP_BDT_WCL1116_DEVELOPMENT_{PLAN,RESULTS}.md` and
+`docs/AURORA_UMBRELLA_MODEL_TRAINING_AND_EVALUATION_POLICY.md`.
+- Tables of NC Δ and BNB from **both** vertex trees (split-move and snap) on compute nodes.
+- SP numu and SP ncpi0 developed per mode (`DEV_DO_NOT_DEPLOY`). Development-holdout AUC: numu 0.976 / 0.974, ncpi0
+  0.899 / 0.897, against legacy 0.958 / 0.954 and 0.849 / 0.847.
+- SP other is blocked only on staging the beam-off half.
+- SP nue shift LARGE: retraining should be developed.
+- Exporter verified in C++ (TMVA::Reader = toolkit TmvaGradForest, bit for bit).
+
 **Ownership.** Avinay owns SP numu / SP other / SP ncpi0 and the SP nue decision. Xuyang and Matteo own the upstream νμ
 (`numu_score`) and νe (`nue_score`) taggers, which are **not** SP numu / SP nue.
 
@@ -73,7 +83,7 @@ Aurora merged CAF (recTree + recTreeWireCell)
 | `specs/single_photon_{numu,ncpi0}_training_spec_dev_round1_domain_v1.yaml` | frozen DEVELOPMENT specs of the 2026-11-17 campaign (`deployable: false`) |
 | `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `legacy_control` (verified legacy XML bundle, legacy scoring and ROC-equivalent points), `tmva_grad` (TMVA Grad scorer), `export_tmva` (XGBoost JSON → TMVA Grad XML exporter), `readiness`, `manifest` |
 | `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance), `check_numu_score_offline.py`, `nue_prefix_test.py`, `beamoff_other_census.py` (evidence audit, no training), `refresh_smoke_check.py`, `make_refresh_list.py` (read-only smoke and census / list builder for the refreshed production), `ncpi0_negative_learning_curve.py` (diagnostic only), `export_equivalence_check.py` (exporter equivalence on the dev fixtures) |
-| `tests/test_sp_retrain.py`, `tests/test_export_tmva.py` | 49 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping, evidence summaries, the Round-2 registry and provenance, the refresh census, the learning-curve rule, the refresh smoke, and the exporter (margins, exact-threshold routing, base margin, guards, sidecars) |
+| `tests/test_sp_retrain.py`, `tests/test_export_tmva.py`, `tests/test_wcl1116_dev.py` | 67 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping, evidence summaries, the Round-2 registry and provenance, the refresh census, the learning-curve rule, the refresh smoke, and the exporter (margins, exact-threshold routing, base margin, guards, sidecars) |
 | `manifests/aurora_r2_v0/` | input manifests of the three aurora-r2 lists (path, size, mtime; list sha256) |
 | `manifests/wcl1116_aurora_v0/production_provenance.json` | live snapshot of the WCLocal2026Nov16 configuration as run: toolkit, wire-cell-data, DL bundle and file hashes, config md5s, schemas, the 36 booked BDT weight hashes |
 | `manifests/dev_round1domain_v1/` | development campaign: frozen inputs; one manifest per model (model, spec, feature-list, table and code sha256, package versions, counts, post-training provenance); `legacy_controls.json` (verified legacy bundle and the legacy-vs-development results) |
@@ -99,7 +109,7 @@ PY=$SP_WORK/env/bin/python                        # venv on top of frameworks: +
 cd round2
 L=/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace/lists
 python3 tools/make_feature_configs.py --schema /lus/flare/projects/neutrinoGPU/yuhw/sbnd-wirecell-production/aurora/schema/recTreeWireCell-dlvtx-space.schema.json
-$PY -m pytest -q -p no:cacheprovider tests                                   # 49 passed (evening)
+$PY -m pytest -q -p no:cacheprovider tests                                   # 67 passed (night)
 $PY -I tools/check_scorer_vs_stored_nue.py --xml /lus/flare/projects/neutrinoGPU/yuhw/wire-cell-data/uboone/weights/XGB_nue_seed2_0923.xml \
     --out $SP_WORK/scorer_checks/<name>.json <merged CAFs>                   # 232/232 and 191/191 bit-identical
 $PY -m sp_retrain.build_tables aurora-r2-ncdr $SP_WORK/smoke_tables --list $L/ncdr-merged-cafs.txt --slice 0:60 --nproc 8 \

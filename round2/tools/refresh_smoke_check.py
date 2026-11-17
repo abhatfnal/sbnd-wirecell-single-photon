@@ -9,7 +9,7 @@ is looked up in our aurora-r2 manifest, and both are read with uproot (nothing i
   branches   new recTreeWireCell vs aurora-r2 recTreeWireCell; dv2snap tree vs split-move tree
   keys       (run, subrun, event) sets of recTree and of both Wire-Cell trees, new vs old
   provenance Trun.wct_version, dl_weights, numu / nue XML names (as booked)
-  builder    sp_retrain.build_tables.extract on old, new split-move and new snap (module constant WC switched in memory)
+  builder    sp_retrain.build_tables.extract on old, new split-move and new snap (wc_tree argument)
   vertex     per matched candidate (run, subrun, event, cand): |delta T_tagger nu_xyz|; fraction of neutrino-partner
              candidates with dist_sce_cm < 1 cm (a smoke number, not a vertex study: BNB fold-1 events trained the DL)
   inputs     every SP numu / other / ncpi0 / nue input and the 74 nu_mu final inputs present; finite on filled rows;
@@ -60,11 +60,7 @@ def strs(t, name):
 
 
 def extract(path, tree):
-    build_tables.WC = tree
-    try:
-        info, cands, truth = build_tables.extract(path, 'smoke', os.path.basename(path), 0)
-    finally:
-        build_tables.WC = 'recTreeWireCell'
+    info, cands, truth = build_tables.extract(path, 'smoke', os.path.basename(path), 0, wc_tree=tree)
     return info, pd.DataFrame(cands)
 
 

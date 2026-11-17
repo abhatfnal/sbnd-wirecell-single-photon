@@ -103,12 +103,15 @@ def equality_test(bst, xgb, forest, order, trees, X, names, rng, n_nodes=400, ro
 
 
 def run_model(short, a, xgb):
-    spec_path = os.path.join(ROUND2, 'specs', 'single_photon_%s_training_spec_dev_round1_domain_v1.yaml' % short)
+    spec_path = os.path.join(ROUND2, a.spec_template % short)
     spec = labels.load_spec(spec_path)
     devtrain.require_development_spec(spec)
-    clf = spec['classifier']['name']; model_name = spec['classifier']['model_name']
+    clf = spec['classifier']['name']
     fl = features.load(clf); cols = fl.columns
-    man = json.load(open(os.path.join(ROUND2, 'manifests', 'dev_round1domain_v1', 'single_photon_%s_dev_manifest.json' % short)))
+    man = json.load(open(os.path.join(ROUND2, a.manifest_template % short)))
+    model_name = man['model']['name']
+    if model_name != spec['classifier']['model_name']:
+        raise SystemExit('%s: manifest model %s != spec model %s' % (clf, model_name, spec['classifier']['model_name']))
     mdir = os.path.join(a.dev_models, short)
     mjson = os.path.join(mdir, model_name + '.json')
     model_sha = devtrain.sha256_file(mjson)
@@ -132,7 +135,8 @@ def run_model(short, a, xgb):
     out_dir = os.path.join(a.out_root, short)
     info = dict(SpecId=spec['spec_id'], SpecVersion=str(spec['spec_version']), Campaign=spec['campaign'],
                 Deployable=str(spec['deployable']).lower(),
-                TrainingCommit=man['post_training_provenance']['training_code_content_commit'])
+                TrainingCommit=(man.get('post_training_provenance', {}).get('training_code_content_commit')
+                                or man['code']['git']['head']))
     rec = export_tmva.export(mjson, fl, out_dir, model_name, info=info)
     order = rec['node_order']
     forest = tmva_grad.GradForest(rec['paths']['xml'], expected_names=fl.names)
@@ -274,9 +278,12 @@ def main():
     for k in ('--tables', '--tag', '--dev-models', '--out-root', '--summary-out'):
         ap.add_argument(k, required=True)
     ap.add_argument('--models', nargs='+', default=['numu', 'ncpi0'])
+    ap.add_argument('--spec-template', default='specs/single_photon_%s_training_spec_dev_round1_domain_v1.yaml')
+    ap.add_argument('--manifest-template', default='manifests/dev_round1domain_v1/single_photon_%s_dev_manifest.json')
+    ap.add_argument('--label', default=None, help='fixture label (default: the Round-1 development fixtures)')
     a = ap.parse_args()
     import xgboost as xgb
-    res = dict(label=LABEL, exporter=export_tmva.EXPORTER, exporter_version=export_tmva.EXPORTER_VERSION,
+    res = dict(label=a.label or LABEL, exporter=export_tmva.EXPORTER, exporter_version=export_tmva.EXPORTER_VERSION,
                evaluator='sp_retrain.tmva_grad.GradForest', packages=devtrain.package_versions(), models={})
     for s in a.models:
         r = run_model(s, a, xgb)

@@ -1,0 +1,41 @@
+{
+ "source_list": "/lus/flare/projects/neutrinoGPU/xning/bdt-comm/data/fg1-beam-off-train.list.tsv",
+ "source_list_sha256": "acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64",
+ "frozen_before_campaign": "2026-11-09 (owner split)",
+ "pairs": 572,
+ "unique_ids": 572,
+ "holdout_files_removed": 14,
+ "kept": 558,
+ "runs": 80,
+ "all_runs_odd": true,
+ "even_runs": [],
+ "overlap_with_even_run_evaluation_half": 0,
+ "wcl1116_location": "/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/WCLocal2026Nov16/beam-off",
+ "accessible_from_aurora": false,
+ "status": "SP-OTHER DEVELOPMENT BLOCKED ONLY ON DATA ACCESS/STAGING",
+ "wcl1116_id_lists_on_aurora": {
+  "pairs-beam-off-full.tsv": {
+   "ids": 42,
+   "in_training_half": 3
+  },
+  "pilot-beam-off-step2.tsv": {
+   "ids": 11,
+   "in_training_half": 9
+  }
+ },
+ "membership_tsv": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sbnd-wirecell-single-photon/round2/manifests/wcl1116_dev_v1/beamoff_train_membership.tsv.gz",
+ "membership_tsv_content_sha256": "2f2133926e4b7f36f500faffe036642121f27263fb1f94caf758a0025cedbfd2",
+ "firewall_exception": {
+  "sample": "wcl1116-fg-beamoff-train",
+  "approved_by": "Avinay Bhat",
+  "date": "2026-11-17",
+  "scope": "development_wcl1116_v1 only: the pre-designated odd-run fg1-beamoff-train membership, hold-out files removed",
+  "not_permitted": [
+   "the even-run evaluation half (fg1-beamoff-eval)",
+   "the full 50k beam-off as a whole",
+   "Xin's hold-out events / files",
+   "any other wcl1116-fg-* sample"
+  ]
+ },
+ "split": "by run: run % 4 == 1 -> development holdout, else train (every beam-off file has art subrun 1)"
+}

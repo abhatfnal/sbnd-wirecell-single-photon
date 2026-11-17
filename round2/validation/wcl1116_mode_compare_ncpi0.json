@@ -1,0 +1,147 @@
+{
+ "label": "DEVELOPMENT HOLDOUT (Aurora WCL1116) -- not independent end-to-end performance; no threshold",
+ "model": "ncpi0",
+ "modes": {
+  "dv2_split_move": {
+   "model": "single_photon_ncpi0_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_split_move",
+   "wc_tree": "recTreeWireCell",
+   "train_rows": {
+    "pos": 8760,
+    "neg": 4757
+   },
+   "holdout_rows": {
+    "pos": 8820,
+    "neg": 4790
+   },
+   "train_auc": 0.988067032673791,
+   "holdout_auc": 0.8992353447990191,
+   "holdout_auc_stored": 0.8992353447990191,
+   "legacy_holdout_auc": 0.8484650561686051,
+   "train_holdout_gap": 0.08883168787477191,
+   "top10_by_splits": [
+    "kine_pio_energy_2",
+    "kine_pio_angle",
+    "kine_pio_mass",
+    "kine_pio_dis_2",
+    "kine_pio_theta_1",
+    "kine_pio_theta_2",
+    "kine_pio_energy_1",
+    "kine_pio_phi_1",
+    "kine_pio_phi_2",
+    "shw_sp_E_indirect_max_energy"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.8157981421701034,
+    "top10_overlap_with_legacy": 9,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "nue_L1_scores": {
+      "dev": 0.2572044697118212,
+      "legacy": 0.4063220283174185
+     },
+     "pi0_kinematics": {
+      "dev": 0.4912108736848984,
+      "legacy": 0.35544945670069145
+     }
+    },
+    "dev_rank": {
+     "kine_pio_mass": 3,
+     "kine_pio_flag": 45,
+     "kine_pio_vtx_dis": 39,
+     "kine_pio_energy_1": 7,
+     "kine_pio_theta_1": 5,
+     "kine_pio_phi_1": 8,
+     "kine_pio_dis_1": 11,
+     "kine_pio_energy_2": 1,
+     "kine_pio_theta_2": 6,
+     "kine_pio_phi_2": 9,
+     "kine_pio_dis_2": 4,
+     "kine_pio_angle": 2
+    }
+   }
+  },
+  "dv2_snap": {
+   "model": "single_photon_ncpi0_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_snap",
+   "wc_tree": "recTreeWireCell_dv2snap",
+   "train_rows": {
+    "pos": 8666,
+    "neg": 4751
+   },
+   "holdout_rows": {
+    "pos": 8744,
+    "neg": 4770
+   },
+   "train_auc": 0.9887386177350981,
+   "holdout_auc": 0.8973667597883233,
+   "holdout_auc_stored": 0.8973667597883233,
+   "legacy_holdout_auc": 0.8468597934061044,
+   "train_holdout_gap": 0.09137185794677483,
+   "top10_by_splits": [
+    "kine_pio_energy_2",
+    "kine_pio_theta_1",
+    "kine_pio_energy_1",
+    "kine_pio_dis_2",
+    "kine_pio_angle",
+    "kine_pio_phi_1",
+    "kine_pio_mass",
+    "kine_pio_phi_2",
+    "kine_pio_theta_2",
+    "shw_sp_E_indirect_max_energy"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.799696916741302,
+    "top10_overlap_with_legacy": 9,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "nue_L1_scores": {
+      "dev": 0.2505776636713736,
+      "legacy": 0.4063220283174185
+     },
+     "pi0_kinematics": {
+      "dev": 0.49653401797175867,
+      "legacy": 0.35544945670069145
+     }
+    },
+    "dev_rank": {
+     "kine_pio_mass": 7,
+     "kine_pio_flag": 45,
+     "kine_pio_vtx_dis": 39,
+     "kine_pio_energy_1": 3,
+     "kine_pio_theta_1": 2,
+     "kine_pio_phi_1": 6,
+     "kine_pio_dis_1": 11,
+     "kine_pio_energy_2": 1,
+     "kine_pio_theta_2": 9,
+     "kine_pio_phi_2": 8,
+     "kine_pio_dis_2": 4,
+     "kine_pio_angle": 4
+    }
+   }
+  }
+ },
+ "matched_common_population": {
+  "definition": "holdout candidates present in both modes with the same key, the same class and finite inputs in both",
+  "rows": 13223,
+  "pos": 8539,
+  "neg": 4684,
+  "class_disagreement_rows": 0,
+  "only_split_holdout_rows": 387,
+  "only_snap_holdout_rows": 291,
+  "dev_auc_split": 0.900462690949618,
+  "dev_auc_snap": 0.8993393350987466,
+  "legacy_auc_split": 0.8502818459213961,
+  "legacy_auc_snap": 0.8489045189655261,
+  "spearman_dev_margin_split_vs_snap": 0.9338195141755418,
+  "spearman_legacy_split_vs_snap": 0.949788230825738,
+  "bootstrap_200_snap_minus_split": {
+   "dev_auc_mean": -0.000957425317785589,
+   "dev_auc_std": 0.0014833255364818476,
+   "legacy_auc_mean": -0.0012090867380426568,
+   "legacy_auc_std": 0.0014875628486119743
+  }
+ }
+}

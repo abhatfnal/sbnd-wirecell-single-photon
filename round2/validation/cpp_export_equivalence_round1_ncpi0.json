@@ -1,0 +1,71 @@
+{
+ "label": "DEVELOPMENT FIXTURE -- C++ EXPORTER EQUIVALENCE (not deployable, not a cut)",
+ "classifier": "single_photon_ncpi0",
+ "xml": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/export_equivalence/ncpi0/single_photon_ncpi0_sbnd_dev_round1domain_v1_DO_NOT_DEPLOY.xml",
+ "xml_sha256": "3b1b211052a43a852b8d5b1964c978c0ad484ee54ad7370b796fb2a2bfb97aa4",
+ "model_json": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/dev_models/ncpi0/single_photon_ncpi0_sbnd_dev_round1domain_v1_DO_NOT_DEPLOY.json",
+ "spec": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sbnd-wirecell-single-photon/round2/specs/single_photon_ncpi0_training_spec_dev_round1_domain_v1.yaml",
+ "rows": {
+  "holdout": 3000,
+  "equality": 300,
+  "nan": 5,
+  "extreme": 5,
+  "total": 3310
+ },
+ "rows_compared": 3310,
+ "reader_equals_forest_bitwise": 3310,
+ "reader_vs_python_max_abs": 4.440892098500626e-16,
+ "forest_vs_python_max_abs": 4.440892098500626e-16,
+ "forest_equals_python_bitwise": 3283,
+ "finite_rows": 3305,
+ "tanh_native_vs_forest_max_abs": 9.618548338918842e-07,
+ "raw_python_vs_native_margin_rows_beyond_1em5_rel": 0,
+ "nan_rows_reader": [
+  -999.0,
+  -999.0,
+  -999.0,
+  -999.0,
+  -999.0
+ ],
+ "nan_rows_forest": [
+  -999.0,
+  -999.0,
+  -999.0,
+  -999.0,
+  -999.0
+ ],
+ "swapped_names_refused": true,
+ "flips": [
+  {
+   "name": "fixture_cut",
+   "cut": -0.05,
+   "flips": 0
+  },
+  {
+   "name": "quantile_0.05_midpoint",
+   "cut": -2.2143788161850617,
+   "flips": 0
+  },
+  {
+   "name": "quantile_0.25_midpoint",
+   "cut": -0.19921145535024487,
+   "flips": 0
+  },
+  {
+   "name": "quantile_0.5_midpoint",
+   "cut": 1.0010553848152335,
+   "flips": 0
+  },
+  {
+   "name": "quantile_0.75_midpoint",
+   "cut": 2.184812795062812,
+   "flips": 0
+  },
+  {
+   "name": "quantile_0.95_midpoint",
+   "cut": 3.765214737044192,
+   "flips": 0
+  }
+ ],
+ "all_pass": true
+}

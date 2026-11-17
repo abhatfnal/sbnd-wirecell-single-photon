@@ -25,7 +25,8 @@ XML = {  # model: (filename, sha256, n inputs, n trees, max depth in split level
     'single_photon_ncpi0': ('single_photon_ncpi0_bdt_final.xml', '983a0d829aafdb4cb10afa273287cacab1cc27223bd46d3df5a2ebac1b3217c3', 45, 400, 6),
     'single_photon_nue': ('single_photon_nue_bdt_final.xml', '8580ba04b4a9e3c7aefbb4d5da5006cff2a131804a7b594843461a7cd6f3758a', 56, 300, 5),
 }
-CONTROL_MODELS = ('single_photon_numu', 'single_photon_ncpi0')
+CONTROL_MODELS = ('single_photon_numu', 'single_photon_ncpi0',
+                  'single_photon_other', 'single_photon_nue')   # 2026-11-17: other / nue added as DIAGNOSTIC controls (WCL1116 domain study)
 LEGACY_CUT = {'single_photon_numu': 0.4, 'single_photon_other': 0.2, 'single_photon_ncpi0': -0.05, 'single_photon_nue': -1.0}
 EAF_AUDIT_COMMIT = '0148e879ae44c0c61f0fb7874079734a4cead3fa'
 EAF_BASELINE_COMMIT = 'daf95442515b601eecda41c6c586931a5ae38c54'

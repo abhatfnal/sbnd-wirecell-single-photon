@@ -87,16 +87,15 @@ event is rejected.
 
 ## 3. Not yet verified
 
-- **C++ readers.** The exported XML has not been read by `TMVA::Reader` or by the toolkit's `TmvaGradForest`. The
-  readers here have no ROOT (`import ROOT` fails in the frameworks env), and apptainer does not run on login nodes.
-  - The layout is the one both readers already accept, and `GradForest` copies `TmvaGradForest`'s parsing and
-    arithmetic (bit-identical on 423 nue and 320,228 numu candidates).
-  - Still, this is an argument, not a measurement. The test to add, inside the SL7 container on a compute node, is a
-    toolkit doctest `root/test/doctest_single_photon_export.cxx`, modelled on `doctest_tmva_grad_forest.cxx`. It should:
-    - load an exported fixture XML (`$W/export_equivalence/{numu,ncpi0}/*.xml`) and about 1,000 test rows with their
-      Python `GradForest` raw sums;
-    - require `TMVA::Reader::EvaluateMVA` == `TmvaGradForest::evaluate` == `tanh(raw_python)`, bit for bit;
-    - check that a swapped variable list is refused by both.
+- ~~**C++ readers.**~~ **VERIFIED the same night** (`SP_BDT_WCL1116_DEVELOPMENT_RESULTS.md` §12;
+  `validation/cpp_export_equivalence_*.json`).
+  - Method: `cpp/sp_export_regression.cxx` in the SL7 WCT 0.38.0 container on a compute node.
+  - Result on both Round-1 fixtures here and the 4 WCL1116 development models, 3,310 rows each (holdout,
+    exact-threshold, NaN and ±FLT_MAX rows):
+    - `TMVA::Reader` is bit-identical to the toolkit `TmvaGradForest`;
+    - both are within 4.4e-16 of Python `GradForest`;
+    - NaN gives −999; the swapped order is refused; 0 flips.
+  - A toolkit-side doctest would still be the natural permanent home for this check; that is optional now.
 - **Production scorer.** No production scorer for single-photon scores exists, so no end-to-end toolkit check has
   been done.
 - **Fixtures only.** Only the development fixtures were exported. The final models will be exported only after

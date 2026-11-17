@@ -1,0 +1,119 @@
+{
+ "label": "DEVELOPMENT HOLDOUT (Aurora WCL1116) -- not independent end-to-end performance; no threshold",
+ "model": "numu",
+ "modes": {
+  "dv2_split_move": {
+   "model": "single_photon_numu_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_split_move",
+   "wc_tree": "recTreeWireCell",
+   "train_rows": {
+    "pos": 8761,
+    "neg": 19180
+   },
+   "holdout_rows": {
+    "pos": 8821,
+    "neg": 19066
+   },
+   "train_auc": 0.9944636053540438,
+   "holdout_auc": 0.9759319987195239,
+   "holdout_auc_stored": 0.9759319987195239,
+   "legacy_holdout_auc": 0.958405359324794,
+   "train_holdout_gap": 0.018531606634519915,
+   "top10_by_splits": [
+    "numu_score",
+    "shw_sp_E_indirect_max_energy",
+    "numu_1_score",
+    "numu_cc_3_track_length",
+    "shw_sp_shw_vtx_dis",
+    "numu_cc_3_max_length_all",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_br1_2_max_length_ratio",
+    "shw_sp_br3_8_max_dQ_dx",
+    "shw_sp_vec_mean_dedx"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.8758554179946664,
+    "top10_overlap_with_legacy": 6,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "upstream_numu": {
+      "dev": 0.0836491608012994,
+      "legacy": 0.11526595088238924
+     }
+    },
+    "dev_rank": {
+     "numu_1_score": 3,
+     "numu_score": 1
+    }
+   }
+  },
+  "dv2_snap": {
+   "model": "single_photon_numu_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_snap",
+   "wc_tree": "recTreeWireCell_dv2snap",
+   "train_rows": {
+    "pos": 8667,
+    "neg": 19408
+   },
+   "holdout_rows": {
+    "pos": 8745,
+    "neg": 19240
+   },
+   "train_auc": 0.993213846601055,
+   "holdout_auc": 0.9739390254484592,
+   "holdout_auc_stored": 0.9739390254484595,
+   "legacy_holdout_auc": 0.9536035352544787,
+   "train_holdout_gap": 0.019274821152595822,
+   "top10_by_splits": [
+    "numu_score",
+    "shw_sp_E_indirect_max_energy",
+    "numu_1_score",
+    "shw_sp_shw_vtx_dis",
+    "numu_cc_3_track_length",
+    "numu_cc_3_max_length_all",
+    "shw_sp_max_shw_dis",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_vec_mean_dedx",
+    "shw_sp_br3_8_max_dQ_dx"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.8981994379712251,
+    "top10_overlap_with_legacy": 6,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "upstream_numu": {
+      "dev": 0.08738664468260511,
+      "legacy": 0.11526595088238924
+     }
+    },
+    "dev_rank": {
+     "numu_1_score": 3,
+     "numu_score": 1
+    }
+   }
+  }
+ },
+ "matched_common_population": {
+  "definition": "holdout candidates present in both modes with the same key, the same class and finite inputs in both",
+  "rows": 26333,
+  "pos": 8541,
+  "neg": 17792,
+  "class_disagreement_rows": 0,
+  "only_split_holdout_rows": 1554,
+  "only_snap_holdout_rows": 1652,
+  "dev_auc_split": 0.9758610656258977,
+  "dev_auc_snap": 0.9743967931555703,
+  "legacy_auc_split": 0.9582275433604643,
+  "legacy_auc_snap": 0.9548393259838915,
+  "spearman_dev_margin_split_vs_snap": 0.9706809009579732,
+  "spearman_legacy_split_vs_snap": 0.9723032864870151,
+  "bootstrap_200_snap_minus_split": {
+   "dev_auc_mean": -0.0014552970243963104,
+   "dev_auc_std": 0.0003981469702626928,
+   "legacy_auc_mean": -0.0034112671013848163,
+   "legacy_auc_std": 0.0005383087755210317
+  }
+ }
+}

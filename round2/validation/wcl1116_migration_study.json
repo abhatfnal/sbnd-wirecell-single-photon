@@ -1,0 +1,3851 @@
+{
+ "label": "AURORA TRAINING-SIDE DEVELOPMENT STUDY (aurora-r2 vs WCL1116); no FermiGrid product; historical cuts are diagnostics",
+ "domains": {
+  "old": "aurora-r2 (Round-1 reconstruction)",
+  "split": "WCL1116 recTreeWireCell (dv2_split_move)",
+  "snap": "WCL1116 recTreeWireCell_dv2snap (dv2_snap)"
+ },
+ "samples": {
+  "ncdr": {
+   "files": {
+    "old": 17603,
+    "split": 17604,
+    "snap": 17604,
+    "common": 17603
+   },
+   "reconstruction": {
+    "old": {
+     "events": 26744,
+     "wc_events": 26744,
+     "candidates": 23965,
+     "filled": 16534,
+     "preselected": 16615,
+     "events_with_candidate": 23102,
+     "cands_per_event_mean": 1.0373560730672668,
+     "events_with_2plus": 857,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 15326,
+       "negative": 334,
+       "positive_finite": 15326,
+       "negative_finite": 334
+      },
+      "single_photon_ncpi0": {
+       "positive": 15326,
+       "negative": 270,
+       "positive_finite": 15304,
+       "negative_finite": 270
+      },
+      "single_photon_other": {
+       "positive": 15326,
+       "negative": 671,
+       "positive_finite": 15326,
+       "negative_finite": 671
+      },
+      "single_photon_nue": {
+       "positive": 15326,
+       "negative": 14,
+       "positive_finite": 15326,
+       "negative_finite": 14
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 24,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 22653,
+      "with_candidate": 20540,
+      "with_filled": 15230,
+      "with_preselected": 15322,
+      "with_candidate_frac": 0.9067231713238865,
+      "with_filled_frac": 0.6723171323886461,
+      "with_preselected_frac": 0.6763784046263188,
+      "preselected_best_dist_lt_1cm_frac": 0.24311447591698213,
+      "preselected_best_dist_lt_3cm_frac": 0.2910194491580734,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.6775107374577355,
+       "NCpi0_1g": 0.38095238095238093,
+       "numuCC_1g": 0.75,
+       "outFV_1g": 0.6509433962264151
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.25021344066349555
+    },
+    "split": {
+     "events": 26744,
+     "wc_events": 26744,
+     "candidates": 23981,
+     "filled": 16085,
+     "preselected": 16212,
+     "events_with_candidate": 23116,
+     "cands_per_event_mean": 1.0374199688527428,
+     "events_with_2plus": 859,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 14971,
+       "negative": 323,
+       "positive_finite": 14971,
+       "negative_finite": 323
+      },
+      "single_photon_ncpi0": {
+       "positive": 14971,
+       "negative": 285,
+       "positive_finite": 14969,
+       "negative_finite": 285
+      },
+      "single_photon_other": {
+       "positive": 14971,
+       "negative": 620,
+       "positive_finite": 14971,
+       "negative_finite": 620
+      },
+      "single_photon_nue": {
+       "positive": 14971,
+       "negative": 13,
+       "positive_finite": 14971,
+       "negative_finite": 13
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 2,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 22653,
+      "with_candidate": 20660,
+      "with_filled": 14837,
+      "with_preselected": 14969,
+      "with_candidate_frac": 0.9120204829382422,
+      "with_filled_frac": 0.6549684368516311,
+      "with_preselected_frac": 0.6607954796274225,
+      "preselected_best_dist_lt_1cm_frac": 0.5707796111964727,
+      "preselected_best_dist_lt_3cm_frac": 0.6115973010889171,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.6629809010326236,
+       "NCpi0_1g": 0.42857142857142855,
+       "numuCC_1g": 1.0,
+       "outFV_1g": 0.601078167115903
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.5732261882514171
+    },
+    "snap": {
+     "events": 26744,
+     "wc_events": 26744,
+     "candidates": 23981,
+     "filled": 15934,
+     "preselected": 16064,
+     "events_with_candidate": 23116,
+     "cands_per_event_mean": 1.0374199688527428,
+     "events_with_2plus": 859,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 14813,
+       "negative": 326,
+       "positive_finite": 14813,
+       "negative_finite": 326
+      },
+      "single_photon_ncpi0": {
+       "positive": 14813,
+       "negative": 288,
+       "positive_finite": 14811,
+       "negative_finite": 288
+      },
+      "single_photon_other": {
+       "positive": 14813,
+       "negative": 625,
+       "positive_finite": 14813,
+       "negative_finite": 625
+      },
+      "single_photon_nue": {
+       "positive": 14813,
+       "negative": 12,
+       "positive_finite": 14813,
+       "negative_finite": 12
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 2,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 22653,
+      "with_candidate": 20657,
+      "with_filled": 14671,
+      "with_preselected": 14811,
+      "with_candidate_frac": 0.9118880501478833,
+      "with_filled_frac": 0.6476404891184391,
+      "with_preselected_frac": 0.6538206860018541,
+      "preselected_best_dist_lt_1cm_frac": 0.5163729660387549,
+      "preselected_best_dist_lt_3cm_frac": 0.6000945243400175,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.6555789088915288,
+       "NCpi0_1g": 0.47619047619047616,
+       "numuCC_1g": 1.0,
+       "outFV_1g": 0.605121293800539
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.5141438270052804
+    }
+   },
+   "migration": {
+    "old_to_split": {
+     "matched": 23965,
+     "only_in_first": 0,
+     "only_in_second": 16,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 14,
+     "cluster_id_same_frac": 0.6546630502816607,
+     "vertex_shift_median_cm": 6.874163979743718,
+     "vertex_shift_gt": {
+      "0.1": 0.9777592322136449,
+      "1.0": 0.6334654704777801,
+      "3.0": 0.57020655122053,
+      "10.0": 0.4589192572501565
+     },
+     "filled_flip_0_to_1": 2422,
+     "filled_flip_1_to_0": 2877,
+     "preselection_flip_in": 2431,
+     "preselection_flip_out": 2840,
+     "filled_both": 13657,
+     "n20mev_showers_changed_frac": 0.33945961777842865,
+     "main_shower_energy_changed_gt1pct_frac": 0.6119938493080471
+    },
+    "old_to_snap": {
+     "matched": 23965,
+     "only_in_first": 0,
+     "only_in_second": 16,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 14,
+     "cluster_id_same_frac": 0.6539954099728771,
+     "vertex_shift_median_cm": 6.522732830753341,
+     "vertex_shift_gt": {
+      "0.1": 0.7591070310870018,
+      "1.0": 0.6158564573336115,
+      "3.0": 0.5585228458168162,
+      "10.0": 0.4553724181097434
+     },
+     "filled_flip_0_to_1": 2358,
+     "filled_flip_1_to_0": 2964,
+     "preselection_flip_in": 2364,
+     "preselection_flip_out": 2921,
+     "filled_both": 13570,
+     "n20mev_showers_changed_frac": 0.3342667649226234,
+     "main_shower_energy_changed_gt1pct_frac": 0.6008843036109064
+    },
+    "split_to_snap": {
+     "matched": 23981,
+     "only_in_first": 0,
+     "only_in_second": 0,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 0,
+     "cluster_id_same_frac": 0.9982903131645886,
+     "vertex_shift_median_cm": 0.35177382833037346,
+     "vertex_shift_gt": {
+      "0.1": 0.9238563863058254,
+      "1.0": 0.10708477544722905,
+      "3.0": 0.02881447812851841,
+      "10.0": 0.007214044451857721
+     },
+     "filled_flip_0_to_1": 372,
+     "filled_flip_1_to_0": 523,
+     "preselection_flip_in": 370,
+     "preselection_flip_out": 518,
+     "filled_both": 15562,
+     "n20mev_showers_changed_frac": 0.03559953733453284,
+     "main_shower_energy_changed_gt1pct_frac": 0.12369875337360237
+    }
+   },
+   "feature_shift": {
+    "single_photon_numu": {
+     "old_to_split": {
+      "features": 73,
+      "median_ks": 0.142422252877332,
+      "max_ks": 0.4479021606506447,
+      "frac_ks_gt_0p1": 0.7123287671232876,
+      "median_abs_std_mean_shift": 0.24421872860037888,
+      "median_matched_changed_frac": 0.5192014519056262,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.09340708045421936,
+        "max_ks": 0.2721825779828645
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.1091544724990921,
+        "max_ks": 0.23402288768015783
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.15946549403075516,
+        "max_ks": 0.2591774953874405
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.17498777483329334,
+        "max_ks": 0.24155741421649163
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.15536682776562935,
+        "max_ks": 0.4479021606506447
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br1_1_vtx_n_segs": {
+        "std_mean_shift": -0.7958,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4479,
+        "wasserstein_over_sd": 0.7958,
+        "matched_changed_frac": 0.5088,
+        "family": "vertex_distance"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.5419,
+        "median_shift_over_iqr": -0.4176,
+        "ks": 0.2722,
+        "wasserstein_over_sd": 0.542,
+        "matched_changed_frac": 0.9734,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.1825,
+        "median_shift_over_iqr": 0.5729,
+        "ks": 0.2592,
+        "wasserstein_over_sd": 0.1829,
+        "matched_changed_frac": 0.705,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_br1_2_n_connected": {
+        "std_mean_shift": 0.4897,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2416,
+        "wasserstein_over_sd": 0.4897,
+        "matched_changed_frac": 0.438,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4772,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.238,
+        "wasserstein_over_sd": 0.4772,
+        "matched_changed_frac": 0.4356,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_medium_dQ_dx": {
+        "std_mean_shift": 0.4657,
+        "median_shift_over_iqr": 0.6184,
+        "ks": 0.234,
+        "wasserstein_over_sd": 0.467,
+        "matched_changed_frac": 0.7037,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_br1_3_n_shower_main_segs": {
+        "std_mean_shift": 0.476,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2328,
+        "wasserstein_over_sd": 0.4779,
+        "matched_changed_frac": 0.5192,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br3_8_n_main_segs": {
+        "std_mean_shift": 0.476,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2328,
+        "wasserstein_over_sd": 0.4779,
+        "matched_changed_frac": 0.5192,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lem_shower_num_main_segs": {
+        "std_mean_shift": 0.476,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2328,
+        "wasserstein_over_sd": 0.4779,
+        "matched_changed_frac": 0.5192,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_lem_n_3seg": {
+        "std_mean_shift": 0.4863,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.2248,
+        "wasserstein_over_sd": 0.4863,
+        "matched_changed_frac": 0.3906,
+        "family": "shower_topology_energy"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 73,
+      "median_ks": 0.1394285969273672,
+      "max_ks": 0.46449960015490255,
+      "frac_ks_gt_0p1": 0.6712328767123288,
+      "median_abs_std_mean_shift": 0.22673903683226254,
+      "median_matched_changed_frac": 0.5026288885643347,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.09013103656694321,
+        "max_ks": 0.2867322127379738
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.07682686160264149,
+        "max_ks": 0.23609987150405298
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.15875019332840168,
+        "max_ks": 0.2682317412564608
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.17685011159095193,
+        "max_ks": 0.23797628474965626
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.15931498576863176,
+        "max_ks": 0.46449960015490255
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br1_1_vtx_n_segs": {
+        "std_mean_shift": -0.8044,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4645,
+        "wasserstein_over_sd": 0.8044,
+        "matched_changed_frac": 0.5026,
+        "family": "vertex_distance"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.5788,
+        "median_shift_over_iqr": -0.47,
+        "ks": 0.2867,
+        "wasserstein_over_sd": 0.5788,
+        "matched_changed_frac": 0.7554,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.226,
+        "median_shift_over_iqr": 0.6396,
+        "ks": 0.2682,
+        "wasserstein_over_sd": 0.226,
+        "matched_changed_frac": 0.6463,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4788,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.2451,
+        "wasserstein_over_sd": 0.4788,
+        "matched_changed_frac": 0.4296,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_br1_2_n_connected": {
+        "std_mean_shift": 0.4851,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.238,
+        "wasserstein_over_sd": 0.4851,
+        "matched_changed_frac": 0.4289,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_medium_dQ_dx": {
+        "std_mean_shift": 0.4702,
+        "median_shift_over_iqr": 0.6363,
+        "ks": 0.2361,
+        "wasserstein_over_sd": 0.472,
+        "matched_changed_frac": 0.6444,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_br1_3_n_shower_main_segs": {
+        "std_mean_shift": 0.4694,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2303,
+        "wasserstein_over_sd": 0.4716,
+        "matched_changed_frac": 0.5131,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br3_8_n_main_segs": {
+        "std_mean_shift": 0.4694,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2303,
+        "wasserstein_over_sd": 0.4716,
+        "matched_changed_frac": 0.5131,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lem_shower_num_main_segs": {
+        "std_mean_shift": 0.4694,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.2303,
+        "wasserstein_over_sd": 0.4716,
+        "matched_changed_frac": 0.5131,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_lem_n_3seg": {
+        "std_mean_shift": 0.4801,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.2235,
+        "wasserstein_over_sd": 0.4801,
+        "matched_changed_frac": 0.3848,
+        "family": "shower_topology_energy"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 73,
+      "median_ks": 0.004696133428290283,
+      "max_ks": 0.06225345349418998,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.005770279070454604,
+      "median_matched_changed_frac": 0.09468586721039887,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.005473525955393799,
+        "max_ks": 0.036147416256513576
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.006781764503790866,
+        "max_ks": 0.04669878344996531
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.003367574606582324,
+        "max_ks": 0.06225345349418998
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.004522581706236983,
+        "max_ks": 0.012908672489907125
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.0051042053719491665,
+        "max_ks": 0.01659743950425785
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_n_highest": {
+        "std_mean_shift": 0.1205,
+        "median_shift_over_iqr": 0.2222,
+        "ks": 0.0623,
+        "wasserstein_over_sd": 0.1205,
+        "matched_changed_frac": 0.273,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.1124,
+        "median_shift_over_iqr": 0.1667,
+        "ks": 0.0598,
+        "wasserstein_over_sd": 0.1124,
+        "matched_changed_frac": 0.1999,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.04,
+        "median_shift_over_iqr": 0.0649,
+        "ks": 0.056,
+        "wasserstein_over_sd": 0.04,
+        "matched_changed_frac": 0.3931,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_flag_all_above": {
+        "std_mean_shift": 0.1049,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.05,
+        "wasserstein_over_sd": 0.1049,
+        "matched_changed_frac": 0.1079,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_max_dQ_dx_sample": {
+        "std_mean_shift": -0.0005,
+        "median_shift_over_iqr": -0.0784,
+        "ks": 0.0467,
+        "wasserstein_over_sd": 0.0005,
+        "matched_changed_frac": 0.3916,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_below_threshold": {
+        "std_mean_shift": 0.0392,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0386,
+        "wasserstein_over_sd": 0.0491,
+        "matched_changed_frac": 0.2691,
+        "family": "shower_topology_energy"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.0377,
+        "median_shift_over_iqr": -0.0584,
+        "ks": 0.0361,
+        "wasserstein_over_sd": 0.0383,
+        "matched_changed_frac": 0.9091,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": 0.0392,
+        "median_shift_over_iqr": 0.0157,
+        "ks": 0.0346,
+        "wasserstein_over_sd": 0.0392,
+        "matched_changed_frac": 0.3305,
+        "family": "shower_start_dQdx"
+       },
+       "numu_cc_3_track_length": {
+        "std_mean_shift": 0.0004,
+        "median_shift_over_iqr": -0.0007,
+        "ks": 0.0274,
+        "wasserstein_over_sd": 0.0033,
+        "matched_changed_frac": 0.6991,
+        "family": "numu_cosmic_tagging"
+       },
+       "numu_cc_3_max_length_all": {
+        "std_mean_shift": 0.003,
+        "median_shift_over_iqr": 0.0035,
+        "ks": 0.0273,
+        "wasserstein_over_sd": 0.0045,
+        "matched_changed_frac": 0.6984,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     }
+    },
+    "single_photon_ncpi0": {
+     "old_to_split": {
+      "features": 45,
+      "median_ks": 0.1026928259246892,
+      "max_ks": 0.4479021606506447,
+      "frac_ks_gt_0p1": 0.5111111111111111,
+      "median_abs_std_mean_shift": 0.18967259469458994,
+      "median_matched_changed_frac": 0.4756442831215971,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.07117056769397417,
+        "max_ks": 0.23721815941780733
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.17825992070607635,
+        "max_ks": 0.19938878621431833
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.12035103417188397,
+        "max_ks": 0.23641697849566068
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.09500325917821195,
+        "max_ks": 0.2760568420875996
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.4479021606506447,
+        "max_ks": 0.4479021606506447
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": -0.7958,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4479,
+        "wasserstein_over_sd": 0.7958,
+        "matched_changed_frac": 0.5088,
+        "family": "vertex_distance"
+       },
+       "lol_2_score": {
+        "std_mean_shift": 0.4564,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2761,
+        "wasserstein_over_sd": 0.4564,
+        "matched_changed_frac": 0.3691,
+        "family": "upstream_scores"
+       },
+       "kine_pio_energy_2": {
+        "std_mean_shift": -0.2737,
+        "median_shift_over_iqr": -0.2583,
+        "ks": 0.2372,
+        "wasserstein_over_sd": 0.2737,
+        "matched_changed_frac": 0.5469,
+        "family": "pi0"
+       },
+       "shw_sp_hol_1_min_length": {
+        "std_mean_shift": -0.3918,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2364,
+        "wasserstein_over_sd": 0.3918,
+        "matched_changed_frac": 0.2686,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_n_br3_showers": {
+        "std_mean_shift": -0.4079,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2094,
+        "wasserstein_over_sd": 0.408,
+        "matched_changed_frac": 0.4144,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_pio_mip_id": {
+        "std_mean_shift": -0.3983,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2065,
+        "wasserstein_over_sd": 0.3983,
+        "matched_changed_frac": 0.3812,
+        "family": "pi0"
+       },
+       "shw_sp_n_20br1_showers": {
+        "std_mean_shift": -0.3789,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1994,
+        "wasserstein_over_sd": 0.3789,
+        "matched_changed_frac": 0.3403,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_2_min_angle": {
+        "std_mean_shift": 0.244,
+        "median_shift_over_iqr": -0.1755,
+        "ks": 0.1842,
+        "wasserstein_over_sd": 0.3417,
+        "matched_changed_frac": 0.5273,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_1_min_angle": {
+        "std_mean_shift": -0.0469,
+        "median_shift_over_iqr": -0.125,
+        "ks": 0.1723,
+        "wasserstein_over_sd": 0.1222,
+        "matched_changed_frac": 0.4446,
+        "family": "shower_topology_energy"
+       },
+       "kine_pio_mass": {
+        "std_mean_shift": -0.2953,
+        "median_shift_over_iqr": -0.162,
+        "ks": 0.1604,
+        "wasserstein_over_sd": 0.2964,
+        "matched_changed_frac": 0.8145,
+        "family": "pi0"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 45,
+      "median_ks": 0.10638806923807143,
+      "max_ks": 0.46449960015490255,
+      "frac_ks_gt_0p1": 0.5111111111111111,
+      "median_abs_std_mean_shift": 0.17987718948422862,
+      "median_matched_changed_frac": 0.43624945231488244,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.07289828610625215,
+        "max_ks": 0.2390514079702855
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.18243046097284052,
+        "max_ks": 0.19861706124643763
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.11837253378900886,
+        "max_ks": 0.23925468379266557
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.09991766308224825,
+        "max_ks": 0.284898522821144
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.46449960015490255,
+        "max_ks": 0.46449960015490255
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": -0.8044,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4645,
+        "wasserstein_over_sd": 0.8044,
+        "matched_changed_frac": 0.5026,
+        "family": "vertex_distance"
+       },
+       "lol_2_score": {
+        "std_mean_shift": 0.4797,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2849,
+        "wasserstein_over_sd": 0.4797,
+        "matched_changed_frac": 0.3575,
+        "family": "upstream_scores"
+       },
+       "shw_sp_hol_1_min_length": {
+        "std_mean_shift": -0.3952,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2393,
+        "wasserstein_over_sd": 0.3952,
+        "matched_changed_frac": 0.2617,
+        "family": "track_shower_relation"
+       },
+       "kine_pio_energy_2": {
+        "std_mean_shift": -0.2903,
+        "median_shift_over_iqr": -0.2582,
+        "ks": 0.2391,
+        "wasserstein_over_sd": 0.2903,
+        "matched_changed_frac": 0.5346,
+        "family": "pi0"
+       },
+       "shw_sp_pio_mip_id": {
+        "std_mean_shift": -0.4323,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2213,
+        "wasserstein_over_sd": 0.4323,
+        "matched_changed_frac": 0.3658,
+        "family": "pi0"
+       },
+       "shw_sp_n_br3_showers": {
+        "std_mean_shift": -0.4089,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2097,
+        "wasserstein_over_sd": 0.4089,
+        "matched_changed_frac": 0.4067,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_n_20br1_showers": {
+        "std_mean_shift": -0.3798,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1986,
+        "wasserstein_over_sd": 0.3798,
+        "matched_changed_frac": 0.335,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_2_min_angle": {
+        "std_mean_shift": 0.2363,
+        "median_shift_over_iqr": -0.1755,
+        "ks": 0.1845,
+        "wasserstein_over_sd": 0.3404,
+        "matched_changed_frac": 0.5158,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_1_min_angle": {
+        "std_mean_shift": -0.0617,
+        "median_shift_over_iqr": -0.125,
+        "ks": 0.1803,
+        "wasserstein_over_sd": 0.1242,
+        "matched_changed_frac": 0.4362,
+        "family": "shower_topology_energy"
+       },
+       "stw_4_score": {
+        "std_mean_shift": 0.3246,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1603,
+        "wasserstein_over_sd": 0.3746,
+        "matched_changed_frac": 0.332,
+        "family": "upstream_scores"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 45,
+      "median_ks": 0.004799885897495804,
+      "max_ks": 0.01989855468331464,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.008793560596203653,
+      "median_matched_changed_frac": 0.08640244679495349,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.003875243536094919,
+        "max_ks": 0.014794449146419475
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.0054981698545074065,
+        "max_ks": 0.008073768336473996
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.002900884126951331,
+        "max_ks": 0.0033058151062171246
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.005903661445999853,
+        "max_ks": 0.01989855468331464
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.01659743950425785,
+        "max_ks": 0.01659743950425785
+       }
+      },
+      "top10_by_ks": {
+       "sig_2_score": {
+        "std_mean_shift": 0.0355,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0199,
+        "wasserstein_over_sd": 0.0359,
+        "matched_changed_frac": 0.3688,
+        "family": "upstream_scores"
+       },
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": -0.02,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0166,
+        "wasserstein_over_sd": 0.0449,
+        "matched_changed_frac": 0.0244,
+        "family": "vertex_distance"
+       },
+       "shw_sp_pio_mip_id": {
+        "std_mean_shift": -0.0416,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0148,
+        "wasserstein_over_sd": 0.0416,
+        "matched_changed_frac": 0.0811,
+        "family": "pi0"
+       },
+       "kine_pio_dis_2": {
+        "std_mean_shift": 0.0125,
+        "median_shift_over_iqr": 0.0189,
+        "ks": 0.0133,
+        "wasserstein_over_sd": 0.0125,
+        "matched_changed_frac": 0.6253,
+        "family": "pi0"
+       },
+       "lol_2_score": {
+        "std_mean_shift": 0.043,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0113,
+        "wasserstein_over_sd": 0.043,
+        "matched_changed_frac": 0.0772,
+        "family": "upstream_scores"
+       },
+       "br3_6_score": {
+        "std_mean_shift": 0.0155,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0098,
+        "wasserstein_over_sd": 0.016,
+        "matched_changed_frac": 0.3362,
+        "family": "upstream_scores"
+       },
+       "kine_pio_dis_1": {
+        "std_mean_shift": -0.0056,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0096,
+        "wasserstein_over_sd": 0.0086,
+        "matched_changed_frac": 0.4752,
+        "family": "pi0"
+       },
+       "kine_pio_theta_1": {
+        "std_mean_shift": 0.014,
+        "median_shift_over_iqr": 0.0108,
+        "ks": 0.0092,
+        "wasserstein_over_sd": 0.0141,
+        "matched_changed_frac": 0.6573,
+        "family": "pi0"
+       },
+       "kine_pio_energy_1": {
+        "std_mean_shift": 0.0129,
+        "median_shift_over_iqr": 0.0202,
+        "ks": 0.0091,
+        "wasserstein_over_sd": 0.0133,
+        "matched_changed_frac": 0.1689,
+        "family": "pi0"
+       },
+       "tro_5_score": {
+        "std_mean_shift": 0.0191,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0089,
+        "wasserstein_over_sd": 0.0194,
+        "matched_changed_frac": 0.3305,
+        "family": "upstream_scores"
+       }
+      }
+     }
+    },
+    "single_photon_other": {
+     "old_to_split": {
+      "features": 146,
+      "median_ks": 0.10807844250559415,
+      "max_ks": 0.4479021606506447,
+      "frac_ks_gt_0p1": 0.5068493150684932,
+      "median_abs_std_mean_shift": 0.08777104592549131,
+      "median_matched_changed_frac": 0.35524500907441015,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.025894011257251215,
+        "max_ks": 0.2721825779828645
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.12086914661208448,
+        "max_ks": 0.24580329294684738
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.15946549403075516,
+        "max_ks": 0.26329399079411164
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.1116992877773057,
+        "max_ks": 0.23790838943433745
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.1240874096820796,
+        "max_ks": 0.4479021606506447
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br4_1_n_vtx_segs": {
+        "std_mean_shift": -0.7958,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4479,
+        "wasserstein_over_sd": 0.7958,
+        "matched_changed_frac": 0.5088,
+        "family": "vertex_distance"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.5419,
+        "median_shift_over_iqr": -0.4176,
+        "ks": 0.2722,
+        "wasserstein_over_sd": 0.542,
+        "matched_changed_frac": 0.9734,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.329,
+        "median_shift_over_iqr": 0.6912,
+        "ks": 0.2633,
+        "wasserstein_over_sd": 0.329,
+        "matched_changed_frac": 0.7048,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.1825,
+        "median_shift_over_iqr": 0.5729,
+        "ks": 0.2592,
+        "wasserstein_over_sd": 0.1829,
+        "matched_changed_frac": 0.705,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": 401654.4655,
+        "median_shift_over_iqr": 0.596,
+        "ks": 0.2458,
+        "wasserstein_over_sd": 401654.4659,
+        "matched_changed_frac": 0.7055,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_3": {
+        "std_mean_shift": 0.0161,
+        "median_shift_over_iqr": 0.6266,
+        "ks": 0.2451,
+        "wasserstein_over_sd": 0.0161,
+        "matched_changed_frac": 0.7053,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_4": {
+        "std_mean_shift": 0.0059,
+        "median_shift_over_iqr": 0.5977,
+        "ks": 0.2392,
+        "wasserstein_over_sd": 0.0059,
+        "matched_changed_frac": 0.7052,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4772,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.238,
+        "wasserstein_over_sd": 0.4772,
+        "matched_changed_frac": 0.4356,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_br2_num_valid_tracks": {
+        "std_mean_shift": -0.4837,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2379,
+        "wasserstein_over_sd": 0.4837,
+        "matched_changed_frac": 0.2302,
+        "family": "track_shower_relation"
+       },
+       "cosmict_2_n_muon_tracks": {
+        "std_mean_shift": -0.3711,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2365,
+        "wasserstein_over_sd": 0.3934,
+        "matched_changed_frac": 0.2999,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 146,
+      "median_ks": 0.0992022149889758,
+      "max_ks": 0.46449960015490255,
+      "frac_ks_gt_0p1": 0.4863013698630137,
+      "median_abs_std_mean_shift": 0.08534213610757976,
+      "median_matched_changed_frac": 0.3553015919380751,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.025791069097069408,
+        "max_ks": 0.2867322127379738
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.11564909111672483,
+        "max_ks": 0.25291116604901487
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.15875019332840168,
+        "max_ks": 0.2682317412564608
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.112974550039385,
+        "max_ks": 0.23907254296086788
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.12685342365116725,
+        "max_ks": 0.46449960015490255
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br4_1_n_vtx_segs": {
+        "std_mean_shift": -0.8044,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.4645,
+        "wasserstein_over_sd": 0.8044,
+        "matched_changed_frac": 0.5026,
+        "family": "vertex_distance"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.5788,
+        "median_shift_over_iqr": -0.47,
+        "ks": 0.2867,
+        "wasserstein_over_sd": 0.5788,
+        "matched_changed_frac": 0.7554,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.226,
+        "median_shift_over_iqr": 0.6396,
+        "ks": 0.2682,
+        "wasserstein_over_sd": 0.226,
+        "matched_changed_frac": 0.6463,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.3529,
+        "median_shift_over_iqr": 0.7214,
+        "ks": 0.2674,
+        "wasserstein_over_sd": 0.3529,
+        "matched_changed_frac": 0.6456,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": 0.4653,
+        "median_shift_over_iqr": 0.5686,
+        "ks": 0.2529,
+        "wasserstein_over_sd": 0.4659,
+        "matched_changed_frac": 0.6466,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": 0.4542,
+        "median_shift_over_iqr": 0.6074,
+        "ks": 0.2475,
+        "wasserstein_over_sd": 0.4556,
+        "matched_changed_frac": 0.6468,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4788,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.2451,
+        "wasserstein_over_sd": 0.4788,
+        "matched_changed_frac": 0.4296,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_br2_num_valid_tracks": {
+        "std_mean_shift": -0.4835,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2391,
+        "wasserstein_over_sd": 0.4835,
+        "matched_changed_frac": 0.2251,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_vec_dQ_dx_3": {
+        "std_mean_shift": 0.0243,
+        "median_shift_over_iqr": 0.6141,
+        "ks": 0.2388,
+        "wasserstein_over_sd": 0.0243,
+        "matched_changed_frac": 0.6469,
+        "family": "shower_start_dQdx"
+       },
+       "cosmict_2_n_muon_tracks": {
+        "std_mean_shift": -0.3721,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2372,
+        "wasserstein_over_sd": 0.3946,
+        "matched_changed_frac": 0.2937,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 146,
+      "median_ks": 0.0027047236049633216,
+      "max_ks": 0.12911283560551778,
+      "frac_ks_gt_0p1": 0.0136986301369863,
+      "median_abs_std_mean_shift": 0.005961768462174787,
+      "median_matched_changed_frac": 0.03982413661271823,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.0008988149916986377,
+        "max_ks": 0.042515187829977874
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.010241003049239028,
+        "max_ks": 0.12911283560551778
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.003367574606582324,
+        "max_ks": 0.06225345349418998
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.004799792932882352,
+        "max_ks": 0.03896646635761414
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.004030863346515257,
+        "max_ks": 0.01659743950425785
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_vec_dQ_dx_0": {
+        "std_mean_shift": 0.0259,
+        "median_shift_over_iqr": 0.2599,
+        "ks": 0.1291,
+        "wasserstein_over_sd": 0.0259,
+        "matched_changed_frac": 0.3934,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": 0.1259,
+        "median_shift_over_iqr": 0.2247,
+        "ks": 0.1111,
+        "wasserstein_over_sd": 0.1315,
+        "matched_changed_frac": 0.3934,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_highest": {
+        "std_mean_shift": 0.1205,
+        "median_shift_over_iqr": 0.2222,
+        "ks": 0.0623,
+        "wasserstein_over_sd": 0.1205,
+        "matched_changed_frac": 0.273,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.1124,
+        "median_shift_over_iqr": 0.1667,
+        "ks": 0.0598,
+        "wasserstein_over_sd": 0.1124,
+        "matched_changed_frac": 0.1999,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.04,
+        "median_shift_over_iqr": 0.0649,
+        "ks": 0.056,
+        "wasserstein_over_sd": 0.04,
+        "matched_changed_frac": 0.3931,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_flag_all_above": {
+        "std_mean_shift": 0.1049,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.05,
+        "wasserstein_over_sd": 0.1049,
+        "matched_changed_frac": 0.1079,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_max_dQ_dx_sample": {
+        "std_mean_shift": -0.0005,
+        "median_shift_over_iqr": -0.0784,
+        "ks": 0.0467,
+        "wasserstein_over_sd": 0.0005,
+        "matched_changed_frac": 0.3916,
+        "family": "shower_start_dQdx"
+       },
+       "cosmict_2_angle_beam": {
+        "std_mean_shift": 0.0607,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0425,
+        "wasserstein_over_sd": 0.063,
+        "matched_changed_frac": 0.2585,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_theta": {
+        "std_mean_shift": 0.0607,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0425,
+        "wasserstein_over_sd": 0.063,
+        "matched_changed_frac": 0.2585,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_4_angle_beam": {
+        "std_mean_shift": 0.0607,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0425,
+        "wasserstein_over_sd": 0.063,
+        "matched_changed_frac": 0.2585,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     }
+    },
+    "single_photon_nue": {
+     "old_to_split": {
+      "features": 56,
+      "median_ks": 0.1279366944262967,
+      "max_ks": 0.26329399079411164,
+      "frac_ks_gt_0p1": 0.6607142857142857,
+      "median_abs_std_mean_shift": 0.07889518652282324,
+      "median_matched_changed_frac": 0.6442468239564427,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.12086914661208448,
+        "max_ks": 0.24580329294684738
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.142422252877332,
+        "max_ks": 0.26329399079411164
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.11741645956647695,
+        "max_ks": 0.20939138568644955
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.1240874096820796,
+        "max_ks": 0.1866462458491791
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.329,
+        "median_shift_over_iqr": 0.6912,
+        "ks": 0.2633,
+        "wasserstein_over_sd": 0.329,
+        "matched_changed_frac": 0.7048,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.1825,
+        "median_shift_over_iqr": 0.5729,
+        "ks": 0.2592,
+        "wasserstein_over_sd": 0.1829,
+        "matched_changed_frac": 0.705,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": 401654.4655,
+        "median_shift_over_iqr": 0.596,
+        "ks": 0.2458,
+        "wasserstein_over_sd": 401654.4659,
+        "matched_changed_frac": 0.7055,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_3": {
+        "std_mean_shift": 0.0161,
+        "median_shift_over_iqr": 0.6266,
+        "ks": 0.2451,
+        "wasserstein_over_sd": 0.0161,
+        "matched_changed_frac": 0.7053,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_4": {
+        "std_mean_shift": 0.0059,
+        "median_shift_over_iqr": 0.5977,
+        "ks": 0.2392,
+        "wasserstein_over_sd": 0.0059,
+        "matched_changed_frac": 0.7052,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4772,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.238,
+        "wasserstein_over_sd": 0.4772,
+        "matched_changed_frac": 0.4356,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_medium_dQ_dx": {
+        "std_mean_shift": 0.4657,
+        "median_shift_over_iqr": 0.6184,
+        "ks": 0.234,
+        "wasserstein_over_sd": 0.467,
+        "matched_changed_frac": 0.7037,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_5": {
+        "std_mean_shift": 0.0141,
+        "median_shift_over_iqr": 0.5695,
+        "ks": 0.2226,
+        "wasserstein_over_sd": 0.0141,
+        "matched_changed_frac": 0.704,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_br3_showers": {
+        "std_mean_shift": -0.4079,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2094,
+        "wasserstein_over_sd": 0.408,
+        "matched_changed_frac": 0.4144,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_vec_dQ_dx_6": {
+        "std_mean_shift": 0.0059,
+        "median_shift_over_iqr": 0.5201,
+        "ks": 0.204,
+        "wasserstein_over_sd": 0.0059,
+        "matched_changed_frac": 0.7026,
+        "family": "shower_start_dQdx"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 56,
+      "median_ks": 0.12314106311737699,
+      "max_ks": 0.2682317412564608,
+      "frac_ks_gt_0p1": 0.6071428571428571,
+      "median_abs_std_mean_shift": 0.03224728678351719,
+      "median_matched_changed_frac": 0.5799255148240106,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.11564909111672483,
+        "max_ks": 0.25291116604901487
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.1394285969273672,
+        "max_ks": 0.2682317412564608
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.11837253378900886,
+        "max_ks": 0.20970520565945672
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.12685342365116725,
+        "max_ks": 0.19177654788609627
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.226,
+        "median_shift_over_iqr": 0.6396,
+        "ks": 0.2682,
+        "wasserstein_over_sd": 0.226,
+        "matched_changed_frac": 0.6463,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.3529,
+        "median_shift_over_iqr": 0.7214,
+        "ks": 0.2674,
+        "wasserstein_over_sd": 0.3529,
+        "matched_changed_frac": 0.6456,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": 0.4653,
+        "median_shift_over_iqr": 0.5686,
+        "ks": 0.2529,
+        "wasserstein_over_sd": 0.4659,
+        "matched_changed_frac": 0.6466,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": 0.4542,
+        "median_shift_over_iqr": 0.6074,
+        "ks": 0.2475,
+        "wasserstein_over_sd": 0.4556,
+        "matched_changed_frac": 0.6468,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.4788,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.2451,
+        "wasserstein_over_sd": 0.4788,
+        "matched_changed_frac": 0.4296,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_3": {
+        "std_mean_shift": 0.0243,
+        "median_shift_over_iqr": 0.6141,
+        "ks": 0.2388,
+        "wasserstein_over_sd": 0.0243,
+        "matched_changed_frac": 0.6469,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_medium_dQ_dx": {
+        "std_mean_shift": 0.4702,
+        "median_shift_over_iqr": 0.6363,
+        "ks": 0.2361,
+        "wasserstein_over_sd": 0.472,
+        "matched_changed_frac": 0.6444,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_4": {
+        "std_mean_shift": 0.0117,
+        "median_shift_over_iqr": 0.5823,
+        "ks": 0.229,
+        "wasserstein_over_sd": 0.0117,
+        "matched_changed_frac": 0.6466,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_5": {
+        "std_mean_shift": 0.0144,
+        "median_shift_over_iqr": 0.5507,
+        "ks": 0.2119,
+        "wasserstein_over_sd": 0.0144,
+        "matched_changed_frac": 0.6458,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_br3_showers": {
+        "std_mean_shift": -0.4089,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.2097,
+        "wasserstein_over_sd": 0.4089,
+        "matched_changed_frac": 0.4067,
+        "family": "track_shower_relation"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 56,
+      "median_ks": 0.006733290745235182,
+      "max_ks": 0.12911283560551778,
+      "frac_ks_gt_0p1": 0.03571428571428571,
+      "median_abs_std_mean_shift": 0.004410604890495473,
+      "median_matched_changed_frac": 0.352555116605072,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.010241003049239028,
+        "max_ks": 0.12911283560551778
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.006411038549969883,
+        "max_ks": 0.06225345349418998
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.003216869752669549,
+        "max_ks": 0.006354132569155901
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.004030863346515257,
+        "max_ks": 0.006177547397383076
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_vec_dQ_dx_0": {
+        "std_mean_shift": 0.0259,
+        "median_shift_over_iqr": 0.2599,
+        "ks": 0.1291,
+        "wasserstein_over_sd": 0.0259,
+        "matched_changed_frac": 0.3934,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": 0.1259,
+        "median_shift_over_iqr": 0.2247,
+        "ks": 0.1111,
+        "wasserstein_over_sd": 0.1315,
+        "matched_changed_frac": 0.3934,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_highest": {
+        "std_mean_shift": 0.1205,
+        "median_shift_over_iqr": 0.2222,
+        "ks": 0.0623,
+        "wasserstein_over_sd": 0.1205,
+        "matched_changed_frac": 0.273,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.1124,
+        "median_shift_over_iqr": 0.1667,
+        "ks": 0.0598,
+        "wasserstein_over_sd": 0.1124,
+        "matched_changed_frac": 0.1999,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.04,
+        "median_shift_over_iqr": 0.0649,
+        "ks": 0.056,
+        "wasserstein_over_sd": 0.04,
+        "matched_changed_frac": 0.3931,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_flag_all_above": {
+        "std_mean_shift": 0.1049,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.05,
+        "wasserstein_over_sd": 0.1049,
+        "matched_changed_frac": 0.1079,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_max_dQ_dx_sample": {
+        "std_mean_shift": -0.0005,
+        "median_shift_over_iqr": -0.0784,
+        "ks": 0.0467,
+        "wasserstein_over_sd": 0.0005,
+        "matched_changed_frac": 0.3916,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_below_threshold": {
+        "std_mean_shift": 0.0392,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0386,
+        "wasserstein_over_sd": 0.0491,
+        "matched_changed_frac": 0.2691,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": 0.0392,
+        "median_shift_over_iqr": 0.0157,
+        "ks": 0.0346,
+        "wasserstein_over_sd": 0.0392,
+        "matched_changed_frac": 0.3305,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.021,
+        "median_shift_over_iqr": 0.0278,
+        "ks": 0.0327,
+        "wasserstein_over_sd": 0.0257,
+        "matched_changed_frac": 0.3924,
+        "family": "shower_topology_energy"
+       }
+      }
+     }
+    }
+   },
+   "legacy": {
+    "single_photon_numu": {
+     "old": {
+      "scored": 16615,
+      "positive": 15326,
+      "negative": 334,
+      "pass_rate_positive": 0.6252773065379095,
+      "pass_rate_negative": 0.04491017964071856,
+      "score_quantiles_positive": [
+       -1.2794284428089455,
+       0.9170463777329971,
+       2.4612499906934406
+      ],
+      "auc": 0.944223975382134
+     },
+     "split": {
+      "scored": 16212,
+      "positive": 14971,
+      "negative": 323,
+      "pass_rate_positive": 0.8457016899338722,
+      "pass_rate_negative": 0.04643962848297214,
+      "score_quantiles_positive": [
+       -0.08492143498266247,
+       1.7906482018594925,
+       2.86704872478616
+      ],
+      "auc": 0.969810157222436
+     },
+     "snap": {
+      "scored": 16064,
+      "positive": 14813,
+      "negative": 326,
+      "pass_rate_positive": 0.8449335043542834,
+      "pass_rate_negative": 0.05214723926380368,
+      "score_quantiles_positive": [
+       -0.11957038370509471,
+       1.7600839086492048,
+       2.8551313517417527
+      ],
+      "auc": 0.964803963025348
+     },
+     "migration_old_to_split": {
+      "matched_scored": 13775,
+      "pass_to_fail": 599,
+      "fail_to_pass": 3170,
+      "positive_pass_to_fail": 525,
+      "positive_fail_to_pass": 2988,
+      "spearman": 0.44736566301540104
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 13694,
+      "pass_to_fail": 555,
+      "fail_to_pass": 3093,
+      "positive_pass_to_fail": 486,
+      "positive_fail_to_pass": 2917,
+      "spearman": 0.47109007630830446
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 15694,
+      "pass_to_fail": 389,
+      "fail_to_pass": 386,
+      "positive_pass_to_fail": 349,
+      "positive_fail_to_pass": 348,
+      "spearman": 0.9080291953233744
+     }
+    },
+    "single_photon_ncpi0": {
+     "old": {
+      "scored": 16591,
+      "positive": 15304,
+      "negative": 270,
+      "pass_rate_positive": 0.3980658651332985,
+      "pass_rate_negative": 0.1,
+      "score_quantiles_positive": [
+       -1.1529540998875818,
+       -0.2334825734403957,
+       0.5874338425384447
+      ],
+      "auc": 0.7767107606822714
+     },
+     "split": {
+      "scored": 16210,
+      "positive": 14969,
+      "negative": 285,
+      "pass_rate_positive": 0.525085176030463,
+      "pass_rate_negative": 0.06666666666666667,
+      "score_quantiles_positive": [
+       -0.8291317996162816,
+       -0.0018818109004237933,
+       0.8447760324091883
+      ],
+      "auc": 0.8810183150440736
+     },
+     "snap": {
+      "scored": 16062,
+      "positive": 14811,
+      "negative": 288,
+      "pass_rate_positive": 0.5217068395111741,
+      "pass_rate_negative": 0.06944444444444445,
+      "score_quantiles_positive": [
+       -0.8427426080923023,
+       -0.005334280724705548,
+       0.8484639531944553
+      ],
+      "auc": 0.8715657563072491
+     },
+     "migration_old_to_split": {
+      "matched_scored": 13756,
+      "pass_to_fail": 1210,
+      "fail_to_pass": 2796,
+      "positive_pass_to_fail": 1101,
+      "positive_fail_to_pass": 2697,
+      "spearman": 0.43982003341339393
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 13675,
+      "pass_to_fail": 1166,
+      "fail_to_pass": 2664,
+      "positive_pass_to_fail": 1055,
+      "positive_fail_to_pass": 2564,
+      "spearman": 0.4517667054284735
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 15691,
+      "pass_to_fail": 525,
+      "fail_to_pass": 490,
+      "positive_pass_to_fail": 484,
+      "positive_fail_to_pass": 457,
+      "spearman": 0.9245903253715795
+     }
+    },
+    "single_photon_other": {
+     "old": {
+      "scored": 16615,
+      "positive": 15326,
+      "negative": 671,
+      "pass_rate_positive": 0.41341511157510114,
+      "pass_rate_negative": 0.14008941877794337,
+      "score_quantiles_positive": [
+       -1.7349291199594736,
+       -0.047370532588936656,
+       1.3241147879444721
+      ],
+      "auc": 0.7327422322566115
+     },
+     "split": {
+      "scored": 16212,
+      "positive": 14971,
+      "negative": 620,
+      "pass_rate_positive": 0.596419744840024,
+      "pass_rate_negative": 0.18064516129032257,
+      "score_quantiles_positive": [
+       -1.1603092182398538,
+       0.47524614871490395,
+       1.6651629731741373
+      ],
+      "auc": 0.779387514786652
+     },
+     "snap": {
+      "scored": 16064,
+      "positive": 14813,
+      "negative": 625,
+      "pass_rate_positive": 0.594747856612435,
+      "pass_rate_negative": 0.1808,
+      "score_quantiles_positive": [
+       -1.1493102062492317,
+       0.4609417639538554,
+       1.653786208736745
+      ],
+      "auc": 0.7796429622628772
+     },
+     "migration_old_to_split": {
+      "matched_scored": 13775,
+      "pass_to_fail": 886,
+      "fail_to_pass": 3033,
+      "positive_pass_to_fail": 823,
+      "positive_fail_to_pass": 2878,
+      "spearman": 0.5569245928701259
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 13694,
+      "pass_to_fail": 816,
+      "fail_to_pass": 2913,
+      "positive_pass_to_fail": 755,
+      "positive_fail_to_pass": 2758,
+      "spearman": 0.5668328224202284
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 15694,
+      "pass_to_fail": 649,
+      "fail_to_pass": 626,
+      "positive_pass_to_fail": 610,
+      "positive_fail_to_pass": 586,
+      "spearman": 0.9368633446122313
+     }
+    },
+    "single_photon_nue": {
+     "old": {
+      "scored": 16615,
+      "positive": 15326,
+      "negative": 14,
+      "pass_rate_positive": 0.6108573665666188,
+      "pass_rate_negative": 0.07142857142857142,
+      "score_quantiles_positive": [
+       -2.199130942638315,
+       -0.6825050630384799,
+       0.8790745852781012
+      ],
+      "auc": 0.8373189351428945
+     },
+     "split": {
+      "scored": 16212,
+      "positive": 14971,
+      "negative": 13,
+      "pass_rate_positive": 0.7845835281544319,
+      "pass_rate_negative": 0.07692307692307693,
+      "score_quantiles_positive": [
+       -1.538790141279374,
+       -0.030631086518079262,
+       1.3900413868942605
+      ],
+      "auc": 0.9316730293952925
+     },
+     "snap": {
+      "scored": 16064,
+      "positive": 14813,
+      "negative": 12,
+      "pass_rate_positive": 0.7833659623303855,
+      "pass_rate_negative": 0.0,
+      "score_quantiles_positive": [
+       -1.567437344350211,
+       -0.02001560688089048,
+       1.4776516552985515
+      ],
+      "auc": 0.960580796147528
+     },
+     "migration_old_to_split": {
+      "matched_scored": 13775,
+      "pass_to_fail": 758,
+      "fail_to_pass": 2897,
+      "positive_pass_to_fail": 678,
+      "positive_fail_to_pass": 2733,
+      "spearman": 0.4522786245448277
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 13694,
+      "pass_to_fail": 712,
+      "fail_to_pass": 2756,
+      "positive_pass_to_fail": 637,
+      "positive_fail_to_pass": 2609,
+      "spearman": 0.46084850689838486
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 15694,
+      "pass_to_fail": 391,
+      "fail_to_pass": 340,
+      "positive_pass_to_fail": 343,
+      "positive_fail_to_pass": 306,
+      "spearman": 0.9204068471621925
+     }
+    }
+   }
+  },
+  "bnb": {
+   "files": {
+    "old": 11888,
+    "split": 11874,
+    "snap": 11874,
+    "common": 11874
+   },
+   "reconstruction": {
+    "old": {
+     "events": 626441,
+     "wc_events": 626385,
+     "candidates": 295928,
+     "filled": 63502,
+     "preselected": 65905,
+     "events_with_candidate": 290760,
+     "cands_per_event_mean": 1.0177741092309809,
+     "events_with_2plus": 5141,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 2614,
+       "negative": 38509,
+       "positive_finite": 2614,
+       "negative_finite": 38509
+      },
+      "single_photon_ncpi0": {
+       "positive": 2614,
+       "negative": 8653,
+       "positive_finite": 2610,
+       "negative_finite": 8645
+      },
+      "single_photon_other": {
+       "positive": 2614,
+       "negative": 14662,
+       "positive_finite": 2614,
+       "negative_finite": 14662
+      },
+      "single_photon_nue": {
+       "positive": 2614,
+       "negative": 1238,
+       "positive_finite": 2614,
+       "negative_finite": 1238
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 51,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 4585,
+      "with_candidate": 3584,
+      "with_filled": 2590,
+      "with_preselected": 2614,
+      "with_candidate_frac": 0.7816793893129771,
+      "with_filled_frac": 0.5648854961832062,
+      "with_preselected_frac": 0.5701199563794984,
+      "preselected_best_dist_lt_1cm_frac": 0.23718439173680184,
+      "preselected_best_dist_lt_3cm_frac": 0.30642693190512627,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.725,
+       "NCother_1g": 0.75,
+       "NCpi0_1g": 0.5998052580331061,
+       "numuCC_1g": 0.6742268041237114,
+       "outFV_1g": 0.4907103825136612
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.4516005060129065
+    },
+    "split": {
+     "events": 626441,
+     "wc_events": 626441,
+     "candidates": 296409,
+     "filled": 62630,
+     "preselected": 65792,
+     "events_with_candidate": 291222,
+     "cands_per_event_mean": 1.0178111543770731,
+     "events_with_2plus": 5160,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 2610,
+       "negative": 37923,
+       "positive_finite": 2610,
+       "negative_finite": 37923
+      },
+      "single_photon_ncpi0": {
+       "positive": 2610,
+       "negative": 9267,
+       "positive_finite": 2610,
+       "negative_finite": 9262
+      },
+      "single_photon_other": {
+       "positive": 2610,
+       "negative": 14500,
+       "positive_finite": 2610,
+       "negative_finite": 14500
+      },
+      "single_photon_nue": {
+       "positive": 2610,
+       "negative": 1239,
+       "positive_finite": 2610,
+       "negative_finite": 1239
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 52,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 4585,
+      "with_candidate": 3599,
+      "with_filled": 2587,
+      "with_preselected": 2610,
+      "with_candidate_frac": 0.7849509269356597,
+      "with_filled_frac": 0.5642311886586696,
+      "with_preselected_frac": 0.569247546346783,
+      "preselected_best_dist_lt_1cm_frac": 0.4888888888888889,
+      "preselected_best_dist_lt_3cm_frac": 0.5344827586206896,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.66,
+       "NCother_1g": 0.75,
+       "NCpi0_1g": 0.6139240506329114,
+       "numuCC_1g": 0.6577319587628866,
+       "outFV_1g": 0.48415300546448087
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.7664239391959718
+    },
+    "snap": {
+     "events": 626441,
+     "wc_events": 626441,
+     "candidates": 296409,
+     "filled": 63121,
+     "preselected": 66214,
+     "events_with_candidate": 291222,
+     "cands_per_event_mean": 1.0178111543770731,
+     "events_with_2plus": 5160,
+     "classes": {
+      "single_photon_numu": {
+       "positive": 2598,
+       "negative": 38322,
+       "positive_finite": 2598,
+       "negative_finite": 38322
+      },
+      "single_photon_ncpi0": {
+       "positive": 2598,
+       "negative": 9236,
+       "positive_finite": 2598,
+       "negative_finite": 9233
+      },
+      "single_photon_other": {
+       "positive": 2598,
+       "negative": 14563,
+       "positive_finite": 2598,
+       "negative_finite": 14563
+      },
+      "single_photon_nue": {
+       "positive": 2598,
+       "negative": 1231,
+       "positive_finite": 2598,
+       "negative_finite": 1231
+      }
+     },
+     "nonfinite_preselected": {
+      "single_photon_numu": 0,
+      "single_photon_ncpi0": 24,
+      "single_photon_other": 0,
+      "single_photon_nue": 0
+     },
+     "ceiling": {
+      "truth_signal_neutrinos": 4585,
+      "with_candidate": 3598,
+      "with_filled": 2579,
+      "with_preselected": 2598,
+      "with_candidate_frac": 0.7847328244274809,
+      "with_filled_frac": 0.5624863685932389,
+      "with_preselected_frac": 0.5666303162486369,
+      "preselected_best_dist_lt_1cm_frac": 0.3995381062355658,
+      "preselected_best_dist_lt_3cm_frac": 0.5100076982294073,
+      "by_category_with_preselected_frac": {
+       "NCDelta_1g": 0.64,
+       "NCother_1g": 0.75,
+       "NCpi0_1g": 0.6131386861313869,
+       "numuCC_1g": 0.6721649484536083,
+       "outFV_1g": 0.476763258611263
+      }
+     },
+     "preselected_nu_partner_dist_lt_1cm": 0.5703047091412743
+    }
+   },
+   "migration": {
+    "old_to_split": {
+     "matched": 295928,
+     "only_in_first": 0,
+     "only_in_second": 481,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 462,
+     "cluster_id_same_frac": 0.886675137195534,
+     "vertex_shift_median_cm": 0.4400956467687688,
+     "vertex_shift_gt": {
+      "0.1": 0.9140230055959557,
+      "1.0": 0.35471803952312725,
+      "3.0": 0.2565961990754508,
+      "10.0": 0.16658781865859262
+     },
+     "filled_flip_0_to_1": 11855,
+     "filled_flip_1_to_0": 12745,
+     "preselection_flip_in": 12312,
+     "preselection_flip_out": 12447,
+     "filled_both": 50757,
+     "n20mev_showers_changed_frac": 0.2868569852434147,
+     "main_shower_energy_changed_gt1pct_frac": 0.5257402919794314
+    },
+    "old_to_snap": {
+     "matched": 295928,
+     "only_in_first": 0,
+     "only_in_second": 481,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 462,
+     "cluster_id_same_frac": 0.8819949447162824,
+     "vertex_shift_median_cm": 0.44227174458506147,
+     "vertex_shift_gt": {
+      "0.1": 0.7357600497418291,
+      "1.0": 0.335838447189857,
+      "3.0": 0.23838906761104053,
+      "10.0": 0.16103579249006514
+     },
+     "filled_flip_0_to_1": 11697,
+     "filled_flip_1_to_0": 12093,
+     "preselection_flip_in": 12125,
+     "preselection_flip_out": 11832,
+     "filled_both": 51409,
+     "n20mev_showers_changed_frac": 0.2757688342508121,
+     "main_shower_energy_changed_gt1pct_frac": 0.5117197377891031
+    },
+    "split_to_snap": {
+     "matched": 296409,
+     "only_in_first": 0,
+     "only_in_second": 0,
+     "events_with_candidates_only_in_first": 0,
+     "events_with_candidates_only_in_second": 0,
+     "cluster_id_same_frac": 0.9921021291526235,
+     "vertex_shift_median_cm": 0.3776123619252191,
+     "vertex_shift_gt": {
+      "0.1": 0.9154445377839404,
+      "1.0": 0.17358784652287887,
+      "3.0": 0.054019952160696875,
+      "10.0": 0.01505352401580249
+     },
+     "filled_flip_0_to_1": 3882,
+     "filled_flip_1_to_0": 3391,
+     "preselection_flip_in": 3887,
+     "preselection_flip_out": 3465,
+     "filled_both": 59239,
+     "n20mev_showers_changed_frac": 0.0948530528874559,
+     "main_shower_energy_changed_gt1pct_frac": 0.29632505612856397
+    }
+   },
+   "feature_shift": {
+    "single_photon_numu": {
+     "old_to_split": {
+      "features": 73,
+      "median_ks": 0.05238230953896328,
+      "max_ks": 0.15276719390817817,
+      "frac_ks_gt_0p1": 0.136986301369863,
+      "median_abs_std_mean_shift": 0.07529379846287661,
+      "median_matched_changed_frac": 0.41204309925549026,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.06209809807319788,
+        "max_ks": 0.116991624368601
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.01957321392685999,
+        "max_ks": 0.08235018428505303
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.04811702305663701,
+        "max_ks": 0.12203446875690954
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.054180247933073133,
+        "max_ks": 0.1226324242431846
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.0472704645744213,
+        "max_ks": 0.15276719390817817
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br1_1_vtx_n_segs": {
+        "std_mean_shift": -0.3471,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1528,
+        "wasserstein_over_sd": 0.3471,
+        "matched_changed_frac": 0.4036,
+        "family": "vertex_distance"
+       },
+       "shw_sp_br1_2_n_connected": {
+        "std_mean_shift": 0.2207,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1226,
+        "wasserstein_over_sd": 0.2215,
+        "matched_changed_frac": 0.2858,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_n_other_vertex": {
+        "std_mean_shift": 0.2208,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.122,
+        "wasserstein_over_sd": 0.2326,
+        "matched_changed_frac": 0.2634,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_br1_3_n_shower_main_segs": {
+        "std_mean_shift": 0.132,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1175,
+        "wasserstein_over_sd": 0.1386,
+        "matched_changed_frac": 0.3285,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br3_8_n_main_segs": {
+        "std_mean_shift": 0.132,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1175,
+        "wasserstein_over_sd": 0.1386,
+        "matched_changed_frac": 0.3285,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lem_shower_num_main_segs": {
+        "std_mean_shift": 0.132,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1175,
+        "wasserstein_over_sd": 0.1386,
+        "matched_changed_frac": 0.3285,
+        "family": "shower_topology_energy"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.2629,
+        "median_shift_over_iqr": -0.2881,
+        "ks": 0.117,
+        "wasserstein_over_sd": 0.2629,
+        "matched_changed_frac": 0.946,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_n_good_tracks": {
+        "std_mean_shift": -0.2389,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.115,
+        "wasserstein_over_sd": 0.2389,
+        "matched_changed_frac": 0.2135,
+        "family": "track_shower_relation"
+       },
+       "numu_cc_3_max_length": {
+        "std_mean_shift": 0.1643,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1077,
+        "wasserstein_over_sd": 0.1643,
+        "matched_changed_frac": 0.4975,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.2517,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.1011,
+        "wasserstein_over_sd": 0.2517,
+        "matched_changed_frac": 0.3016,
+        "family": "shower_topology_energy"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 73,
+      "median_ks": 0.04787416038246939,
+      "max_ks": 0.17240708168421093,
+      "frac_ks_gt_0p1": 0.1095890410958904,
+      "median_abs_std_mean_shift": 0.06724460272833067,
+      "median_matched_changed_frac": 0.39537292179091227,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.05995753591589112,
+        "max_ks": 0.11103053384708861
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.019864664548500076,
+        "max_ks": 0.06311615080416211
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.031808796919613136,
+        "max_ks": 0.11428062609911527
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.048217180330798415,
+        "max_ks": 0.11583200878506444
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.05046737276308702,
+        "max_ks": 0.17240708168421093
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br1_1_vtx_n_segs": {
+        "std_mean_shift": -0.3458,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1724,
+        "wasserstein_over_sd": 0.3458,
+        "matched_changed_frac": 0.3887,
+        "family": "vertex_distance"
+       },
+       "shw_sp_br1_2_n_connected": {
+        "std_mean_shift": 0.2067,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1158,
+        "wasserstein_over_sd": 0.2075,
+        "matched_changed_frac": 0.2755,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_n_other_vertex": {
+        "std_mean_shift": 0.2069,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.1143,
+        "wasserstein_over_sd": 0.2215,
+        "matched_changed_frac": 0.2526,
+        "family": "shower_topology_energy"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.2648,
+        "median_shift_over_iqr": -0.2708,
+        "ks": 0.111,
+        "wasserstein_over_sd": 0.2648,
+        "matched_changed_frac": 0.846,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_br1_3_n_shower_main_segs": {
+        "std_mean_shift": 0.12,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1091,
+        "wasserstein_over_sd": 0.1258,
+        "matched_changed_frac": 0.3159,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br3_8_n_main_segs": {
+        "std_mean_shift": 0.12,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1091,
+        "wasserstein_over_sd": 0.1258,
+        "matched_changed_frac": 0.3159,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lem_shower_num_main_segs": {
+        "std_mean_shift": 0.12,
+        "median_shift_over_iqr": 0.5,
+        "ks": 0.1091,
+        "wasserstein_over_sd": 0.1258,
+        "matched_changed_frac": 0.3159,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.2379,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.1065,
+        "wasserstein_over_sd": 0.2379,
+        "matched_changed_frac": 0.2908,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_good_tracks": {
+        "std_mean_shift": -0.2048,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0964,
+        "wasserstein_over_sd": 0.2048,
+        "matched_changed_frac": 0.2032,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.0293,
+        "median_shift_over_iqr": 0.1588,
+        "ks": 0.0848,
+        "wasserstein_over_sd": 0.0335,
+        "matched_changed_frac": 0.5411,
+        "family": "shower_topology_energy"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 73,
+      "median_ks": 0.007752124706425889,
+      "max_ks": 0.03756342628705722,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.009793666698992759,
+      "median_matched_changed_frac": 0.15476438782550098,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 10,
+        "median_ks": 0.008057317251991158,
+        "max_ks": 0.03126692241780826
+       },
+       "shower_start_dQdx": {
+        "n": 8,
+        "median_ks": 0.010764284316628521,
+        "max_ks": 0.024847389908314033
+       },
+       "shower_topology_energy": {
+        "n": 17,
+        "median_ks": 0.007753842657794274,
+        "max_ks": 0.022763240356789116
+       },
+       "track_shower_relation": {
+        "n": 34,
+        "median_ks": 0.006584671617755375,
+        "max_ks": 0.03341502365017612
+       },
+       "vertex_distance": {
+        "n": 4,
+        "median_ks": 0.005712828744088683,
+        "max_ks": 0.03756342628705722
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br1_1_vtx_n_segs": {
+        "std_mean_shift": 0.0016,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0376,
+        "wasserstein_over_sd": 0.0743,
+        "matched_changed_frac": 0.0688,
+        "family": "vertex_distance"
+       },
+       "shw_sp_br1_2_max_length_ratio": {
+        "std_mean_shift": -0.037,
+        "median_shift_over_iqr": -0.0621,
+        "ks": 0.0334,
+        "wasserstein_over_sd": 0.037,
+        "matched_changed_frac": 0.3804,
+        "family": "track_shower_relation"
+       },
+       "numu_cc_3_max_length": {
+        "std_mean_shift": -0.0482,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0313,
+        "wasserstein_over_sd": 0.0482,
+        "matched_changed_frac": 0.4412,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_br3_2_n_other": {
+        "std_mean_shift": -0.0319,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.028,
+        "wasserstein_over_sd": 0.0322,
+        "matched_changed_frac": 0.1479,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": 0.0208,
+        "median_shift_over_iqr": -0.0403,
+        "ks": 0.0248,
+        "wasserstein_over_sd": 0.0208,
+        "matched_changed_frac": 0.3946,
+        "family": "shower_start_dQdx"
+       },
+       "numu_cc_3_particle_type": {
+        "std_mean_shift": -0.0106,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0232,
+        "wasserstein_over_sd": 0.0106,
+        "matched_changed_frac": 0.0225,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.0101,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0228,
+        "wasserstein_over_sd": 0.0118,
+        "matched_changed_frac": 0.2911,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": 0.0176,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0227,
+        "wasserstein_over_sd": 0.0413,
+        "matched_changed_frac": 0.0621,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_below_threshold": {
+        "std_mean_shift": 0.0207,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0221,
+        "wasserstein_over_sd": 0.0224,
+        "matched_changed_frac": 0.3082,
+        "family": "shower_topology_energy"
+       },
+       "numu_cc_flag_3": {
+        "std_mean_shift": -0.0547,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0213,
+        "wasserstein_over_sd": 0.0547,
+        "matched_changed_frac": 0.0199,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     }
+    },
+    "single_photon_ncpi0": {
+     "old_to_split": {
+      "features": 45,
+      "median_ks": 0.03231001843496284,
+      "max_ks": 0.15276719390817817,
+      "frac_ks_gt_0p1": 0.044444444444444446,
+      "median_abs_std_mean_shift": 0.06988185139975972,
+      "median_matched_changed_frac": 0.31720228964794794,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.03309201859595157,
+        "max_ks": 0.1008796902347649
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.04682816029041337,
+        "max_ks": 0.07361621912155725
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.008749582474420092,
+        "max_ks": 0.05937508233353517
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.023811569386589057,
+        "max_ks": 0.06308887642667182
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.15276719390817817,
+        "max_ks": 0.15276719390817817
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": -0.3471,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1528,
+        "wasserstein_over_sd": 0.3471,
+        "matched_changed_frac": 0.4036,
+        "family": "vertex_distance"
+       },
+       "kine_pio_dis_2": {
+        "std_mean_shift": 0.0725,
+        "median_shift_over_iqr": 0.1336,
+        "ks": 0.1009,
+        "wasserstein_over_sd": 0.0725,
+        "matched_changed_frac": 0.8308,
+        "family": "pi0"
+       },
+       "shw_sp_hol_1_min_angle": {
+        "std_mean_shift": -0.0699,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0736,
+        "wasserstein_over_sd": 0.0699,
+        "matched_changed_frac": 0.2897,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_2_min_angle": {
+        "std_mean_shift": 0.0418,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0734,
+        "wasserstein_over_sd": 0.0928,
+        "matched_changed_frac": 0.4364,
+        "family": "shower_topology_energy"
+       },
+       "kine_pio_dis_1": {
+        "std_mean_shift": -0.0708,
+        "median_shift_over_iqr": -0.1215,
+        "ks": 0.0657,
+        "wasserstein_over_sd": 0.0726,
+        "matched_changed_frac": 0.7024,
+        "family": "pi0"
+       },
+       "kine_pio_energy_1": {
+        "std_mean_shift": 0.1137,
+        "median_shift_over_iqr": 0.1061,
+        "ks": 0.0636,
+        "wasserstein_over_sd": 0.1141,
+        "matched_changed_frac": 0.5514,
+        "family": "pi0"
+       },
+       "tro_5_score": {
+        "std_mean_shift": -0.2047,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0631,
+        "wasserstein_over_sd": 0.2047,
+        "matched_changed_frac": 0.2771,
+        "family": "upstream_scores"
+       },
+       "br3_6_score": {
+        "std_mean_shift": -0.1277,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0604,
+        "wasserstein_over_sd": 0.1277,
+        "matched_changed_frac": 0.284,
+        "family": "upstream_scores"
+       },
+       "shw_sp_hol_1_min_length": {
+        "std_mean_shift": -0.151,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0594,
+        "wasserstein_over_sd": 0.1528,
+        "matched_changed_frac": 0.1663,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_pio_mip_id": {
+        "std_mean_shift": -0.1299,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0586,
+        "wasserstein_over_sd": 0.1299,
+        "matched_changed_frac": 0.2949,
+        "family": "pi0"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 45,
+      "median_ks": 0.02694291920617589,
+      "max_ks": 0.17240708168421093,
+      "frac_ks_gt_0p1": 0.06666666666666667,
+      "median_abs_std_mean_shift": 0.06731410737902237,
+      "median_matched_changed_frac": 0.3041998779427811,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.030553232974010747,
+        "max_ks": 0.1475244715273486
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.04765197352262973,
+        "max_ks": 0.07627110498920553
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.00925829191835359,
+        "max_ks": 0.07255147169713283
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.02219939056476461,
+        "max_ks": 0.05771724337971845
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.17240708168421093,
+        "max_ks": 0.17240708168421093
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": -0.3458,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1724,
+        "wasserstein_over_sd": 0.3458,
+        "matched_changed_frac": 0.3887,
+        "family": "vertex_distance"
+       },
+       "kine_pio_dis_2": {
+        "std_mean_shift": 0.121,
+        "median_shift_over_iqr": 0.2028,
+        "ks": 0.1475,
+        "wasserstein_over_sd": 0.1214,
+        "matched_changed_frac": 0.7336,
+        "family": "pi0"
+       },
+       "kine_pio_dis_1": {
+        "std_mean_shift": -0.1131,
+        "median_shift_over_iqr": -0.2008,
+        "ks": 0.1041,
+        "wasserstein_over_sd": 0.1135,
+        "matched_changed_frac": 0.5916,
+        "family": "pi0"
+       },
+       "kine_pio_energy_1": {
+        "std_mean_shift": 0.152,
+        "median_shift_over_iqr": 0.1494,
+        "ks": 0.0867,
+        "wasserstein_over_sd": 0.1521,
+        "matched_changed_frac": 0.5452,
+        "family": "pi0"
+       },
+       "shw_sp_hol_1_min_angle": {
+        "std_mean_shift": -0.0599,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0763,
+        "wasserstein_over_sd": 0.0599,
+        "matched_changed_frac": 0.2754,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_2_min_angle": {
+        "std_mean_shift": 0.0637,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0761,
+        "wasserstein_over_sd": 0.1135,
+        "matched_changed_frac": 0.4278,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_hol_1_min_length": {
+        "std_mean_shift": -0.1595,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0726,
+        "wasserstein_over_sd": 0.1623,
+        "matched_changed_frac": 0.1555,
+        "family": "track_shower_relation"
+       },
+       "kine_pio_energy_2": {
+        "std_mean_shift": -0.1037,
+        "median_shift_over_iqr": -0.1032,
+        "ks": 0.0714,
+        "wasserstein_over_sd": 0.1037,
+        "matched_changed_frac": 0.4202,
+        "family": "pi0"
+       },
+       "shw_sp_pio_mip_id": {
+        "std_mean_shift": -0.138,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0594,
+        "wasserstein_over_sd": 0.138,
+        "matched_changed_frac": 0.2826,
+        "family": "pi0"
+       },
+       "lol_2_score": {
+        "std_mean_shift": 0.1697,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0577,
+        "wasserstein_over_sd": 0.1697,
+        "matched_changed_frac": 0.2995,
+        "family": "upstream_scores"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 45,
+      "median_ks": 0.005754957576095343,
+      "max_ks": 0.046911257404948864,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.012173781304838734,
+      "median_matched_changed_frac": 0.1978917644038699,
+      "by_family": {
+       "pi0": {
+        "n": 20,
+        "median_ks": 0.005190408777226763,
+        "max_ks": 0.046911257404948864
+       },
+       "shower_topology_energy": {
+        "n": 4,
+        "median_ks": 0.00693517432723742,
+        "max_ks": 0.013793779993539479
+       },
+       "track_shower_relation": {
+        "n": 5,
+        "median_ks": 0.005308556039085199,
+        "max_ks": 0.013176467545862103
+       },
+       "upstream_scores": {
+        "n": 15,
+        "median_ks": 0.008096816819570626,
+        "max_ks": 0.018657316385945394
+       },
+       "vertex_distance": {
+        "n": 1,
+        "median_ks": 0.03756342628705722,
+        "max_ks": 0.03756342628705722
+       }
+      },
+      "top10_by_ks": {
+       "kine_pio_dis_2": {
+        "std_mean_shift": 0.0464,
+        "median_shift_over_iqr": 0.0623,
+        "ks": 0.0469,
+        "wasserstein_over_sd": 0.0482,
+        "matched_changed_frac": 0.7609,
+        "family": "pi0"
+       },
+       "kine_pio_dis_1": {
+        "std_mean_shift": -0.043,
+        "median_shift_over_iqr": -0.0991,
+        "ks": 0.0406,
+        "wasserstein_over_sd": 0.043,
+        "matched_changed_frac": 0.5314,
+        "family": "pi0"
+       },
+       "shw_sp_lol_3_vtx_n_segs": {
+        "std_mean_shift": 0.0016,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0376,
+        "wasserstein_over_sd": 0.0743,
+        "matched_changed_frac": 0.0688,
+        "family": "vertex_distance"
+       },
+       "kine_pio_energy_1": {
+        "std_mean_shift": 0.0327,
+        "median_shift_over_iqr": 0.0357,
+        "ks": 0.0287,
+        "wasserstein_over_sd": 0.0328,
+        "matched_changed_frac": 0.3616,
+        "family": "pi0"
+       },
+       "kine_pio_energy_2": {
+        "std_mean_shift": -0.0505,
+        "median_shift_over_iqr": -0.0363,
+        "ks": 0.0216,
+        "wasserstein_over_sd": 0.0506,
+        "matched_changed_frac": 0.1651,
+        "family": "pi0"
+       },
+       "lol_2_score": {
+        "std_mean_shift": 0.0604,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0187,
+        "wasserstein_over_sd": 0.0604,
+        "matched_changed_frac": 0.2084,
+        "family": "upstream_scores"
+       },
+       "kine_pio_theta_2": {
+        "std_mean_shift": 0.0296,
+        "median_shift_over_iqr": 0.0268,
+        "ks": 0.0149,
+        "wasserstein_over_sd": 0.0296,
+        "matched_changed_frac": 0.7981,
+        "family": "pi0"
+       },
+       "shw_sp_hol_2_min_angle": {
+        "std_mean_shift": 0.0199,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0138,
+        "wasserstein_over_sd": 0.0205,
+        "matched_changed_frac": 0.2878,
+        "family": "shower_topology_energy"
+       },
+       "tro_5_score": {
+        "std_mean_shift": 0.0389,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0135,
+        "wasserstein_over_sd": 0.039,
+        "matched_changed_frac": 0.2226,
+        "family": "upstream_scores"
+       },
+       "shw_sp_hol_1_min_length": {
+        "std_mean_shift": -0.0129,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0132,
+        "wasserstein_over_sd": 0.0183,
+        "matched_changed_frac": 0.0726,
+        "family": "track_shower_relation"
+       }
+      }
+     }
+    },
+    "single_photon_other": {
+     "old_to_split": {
+      "features": 146,
+      "median_ks": 0.025104372054627344,
+      "max_ks": 0.15276719390817817,
+      "frac_ks_gt_0p1": 0.14383561643835616,
+      "median_abs_std_mean_shift": 0.02964653023500835,
+      "median_matched_changed_frac": 0.2759923678401736,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.017632574795934608,
+        "max_ks": 0.14459039868840512
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.024851038801059877,
+        "max_ks": 0.10403549727573319
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.04811702305663701,
+        "max_ks": 0.12203446875690954
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.021828998616464534,
+        "max_ks": 0.11764985469076616
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.038332191165018514,
+        "max_ks": 0.15276719390817817
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br4_1_n_vtx_segs": {
+        "std_mean_shift": -0.3471,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1528,
+        "wasserstein_over_sd": 0.3471,
+        "matched_changed_frac": 0.4036,
+        "family": "vertex_distance"
+       },
+       "cosmict_2_n_muon_tracks": {
+        "std_mean_shift": -0.178,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1446,
+        "wasserstein_over_sd": 0.2223,
+        "matched_changed_frac": 0.2595,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_dQ_dx_front": {
+        "std_mean_shift": -0.0822,
+        "median_shift_over_iqr": -0.7859,
+        "ks": 0.1359,
+        "wasserstein_over_sd": 0.1998,
+        "matched_changed_frac": 0.6453,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_dQ_dx_end": {
+        "std_mean_shift": -0.1341,
+        "median_shift_over_iqr": -0.5096,
+        "ks": 0.1358,
+        "wasserstein_over_sd": 0.2146,
+        "matched_changed_frac": 0.4749,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_particle_type": {
+        "std_mean_shift": 0.1167,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1352,
+        "wasserstein_over_sd": 0.124,
+        "matched_changed_frac": 0.2805,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_flag_dir_weak": {
+        "std_mean_shift": -0.2753,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1352,
+        "wasserstein_over_sd": 0.2753,
+        "matched_changed_frac": 0.2481,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_angle_beam": {
+        "std_mean_shift": -0.2448,
+        "median_shift_over_iqr": -0.4058,
+        "ks": 0.1304,
+        "wasserstein_over_sd": 0.2448,
+        "matched_changed_frac": 0.6531,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_theta": {
+        "std_mean_shift": -0.2448,
+        "median_shift_over_iqr": -0.4058,
+        "ks": 0.1304,
+        "wasserstein_over_sd": 0.2448,
+        "matched_changed_frac": 0.6531,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_4_angle_beam": {
+        "std_mean_shift": -0.2448,
+        "median_shift_over_iqr": -0.4058,
+        "ks": 0.1304,
+        "wasserstein_over_sd": 0.2448,
+        "matched_changed_frac": 0.6531,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_filled": {
+        "std_mean_shift": -0.2643,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1295,
+        "wasserstein_over_sd": 0.2643,
+        "matched_changed_frac": 0.2464,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 146,
+      "median_ks": 0.027590335495074003,
+      "max_ks": 0.17240708168421093,
+      "frac_ks_gt_0p1": 0.1232876712328767,
+      "median_abs_std_mean_shift": 0.024528650328702384,
+      "median_matched_changed_frac": 0.26562239934902815,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.01781624722190664,
+        "max_ks": 0.13171392025122725
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.02669495879296424,
+        "max_ks": 0.08433100132343035
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.031808796919613136,
+        "max_ks": 0.11428062609911527
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.047990070849790206,
+        "max_ks": 0.10912107701850149
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.03941253471285494,
+        "max_ks": 0.17240708168421093
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br4_1_n_vtx_segs": {
+        "std_mean_shift": -0.3458,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.1724,
+        "wasserstein_over_sd": 0.3458,
+        "matched_changed_frac": 0.3887,
+        "family": "vertex_distance"
+       },
+       "cosmict_2_n_muon_tracks": {
+        "std_mean_shift": -0.1624,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1317,
+        "wasserstein_over_sd": 0.2022,
+        "matched_changed_frac": 0.2416,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_dQ_dx_end": {
+        "std_mean_shift": -0.1226,
+        "median_shift_over_iqr": -0.5096,
+        "ks": 0.1157,
+        "wasserstein_over_sd": 0.1694,
+        "matched_changed_frac": 0.4605,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_dQ_dx_front": {
+        "std_mean_shift": -0.0815,
+        "median_shift_over_iqr": -0.7859,
+        "ks": 0.1156,
+        "wasserstein_over_sd": 0.1624,
+        "matched_changed_frac": 0.6079,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_particle_type": {
+        "std_mean_shift": 0.0836,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1147,
+        "wasserstein_over_sd": 0.0898,
+        "matched_changed_frac": 0.2592,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_flag_dir_weak": {
+        "std_mean_shift": -0.2335,
+        "median_shift_over_iqr": -1.0,
+        "ks": 0.1147,
+        "wasserstein_over_sd": 0.2335,
+        "matched_changed_frac": 0.2317,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_n_other_vertex": {
+        "std_mean_shift": 0.2069,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.1143,
+        "wasserstein_over_sd": 0.2215,
+        "matched_changed_frac": 0.2526,
+        "family": "shower_topology_energy"
+       },
+       "cosmict_2_valid_tracks": {
+        "std_mean_shift": -0.222,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.1114,
+        "wasserstein_over_sd": 0.222,
+        "matched_changed_frac": 0.2996,
+        "family": "numu_cosmic_tagging"
+       },
+       "numu_1_score": {
+        "std_mean_shift": -0.2648,
+        "median_shift_over_iqr": -0.2708,
+        "ks": 0.111,
+        "wasserstein_over_sd": 0.2648,
+        "matched_changed_frac": 0.846,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_angle_beam": {
+        "std_mean_shift": -0.187,
+        "median_shift_over_iqr": -0.4058,
+        "ks": 0.1097,
+        "wasserstein_over_sd": 0.187,
+        "matched_changed_frac": 0.6166,
+        "family": "numu_cosmic_tagging"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 146,
+      "median_ks": 0.00929040255624114,
+      "max_ks": 0.0471094668475015,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.011513264952173315,
+      "median_matched_changed_frac": 0.09819179488825068,
+      "by_family": {
+       "numu_cosmic_tagging": {
+        "n": 64,
+        "median_ks": 0.009406195554439112,
+        "max_ks": 0.028899277835315096
+       },
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.009147671419482917,
+        "max_ks": 0.024847389908314033
+       },
+       "shower_topology_energy": {
+        "n": 21,
+        "median_ks": 0.007753842657794274,
+        "max_ks": 0.022763240356789116
+       },
+       "track_shower_relation": {
+        "n": 29,
+        "median_ks": 0.009265224835778962,
+        "max_ks": 0.0471094668475015
+       },
+       "vertex_distance": {
+        "n": 5,
+        "median_ks": 0.005964045387882144,
+        "max_ks": 0.03756342628705722
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_br4_2_ratio_15": {
+        "std_mean_shift": -0.0349,
+        "median_shift_over_iqr": -0.0716,
+        "ks": 0.0471,
+        "wasserstein_over_sd": 0.0351,
+        "matched_changed_frac": 0.325,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br4_2_ratio_25": {
+        "std_mean_shift": -0.0217,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0456,
+        "wasserstein_over_sd": 0.0218,
+        "matched_changed_frac": 0.2305,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_br4_1_n_vtx_segs": {
+        "std_mean_shift": 0.0016,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0376,
+        "wasserstein_over_sd": 0.0743,
+        "matched_changed_frac": 0.0688,
+        "family": "vertex_distance"
+       },
+       "shw_sp_br4_2_ratio_35": {
+        "std_mean_shift": -0.0126,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0318,
+        "wasserstein_over_sd": 0.0128,
+        "matched_changed_frac": 0.1659,
+        "family": "track_shower_relation"
+       },
+       "cosmict_2_angle_beam": {
+        "std_mean_shift": 0.0659,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0289,
+        "wasserstein_over_sd": 0.0659,
+        "matched_changed_frac": 0.4857,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_2_theta": {
+        "std_mean_shift": 0.0659,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0289,
+        "wasserstein_over_sd": 0.0659,
+        "matched_changed_frac": 0.4857,
+        "family": "numu_cosmic_tagging"
+       },
+       "cosmict_4_angle_beam": {
+        "std_mean_shift": 0.0659,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0289,
+        "wasserstein_over_sd": 0.0659,
+        "matched_changed_frac": 0.4857,
+        "family": "numu_cosmic_tagging"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": 0.0208,
+        "median_shift_over_iqr": -0.0403,
+        "ks": 0.0248,
+        "wasserstein_over_sd": 0.0208,
+        "matched_changed_frac": 0.3946,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.0101,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0228,
+        "wasserstein_over_sd": 0.0118,
+        "matched_changed_frac": 0.2911,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": 0.0176,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0227,
+        "wasserstein_over_sd": 0.0413,
+        "matched_changed_frac": 0.0621,
+        "family": "shower_topology_energy"
+       }
+      }
+     }
+    },
+    "single_photon_nue": {
+     "old_to_split": {
+      "features": 56,
+      "median_ks": 0.024813480294895912,
+      "max_ks": 0.12203446875690954,
+      "frac_ks_gt_0p1": 0.07142857142857142,
+      "median_abs_std_mean_shift": 0.012170966788659365,
+      "median_matched_changed_frac": 0.4812750196415878,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.024851038801059877,
+        "max_ks": 0.10403549727573319
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.021838449906672164,
+        "max_ks": 0.12203446875690954
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.022920348766884424,
+        "max_ks": 0.11501820253780282
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.03494146279376603,
+        "max_ks": 0.05959946635507657
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_n_other_vertex": {
+        "std_mean_shift": 0.2208,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.122,
+        "wasserstein_over_sd": 0.2326,
+        "matched_changed_frac": 0.2634,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_good_tracks": {
+        "std_mean_shift": -0.2389,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.115,
+        "wasserstein_over_sd": 0.2389,
+        "matched_changed_frac": 0.2135,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": 0.0,
+        "median_shift_over_iqr": 0.232,
+        "ks": 0.104,
+        "wasserstein_over_sd": 0.0,
+        "matched_changed_frac": 0.5768,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.2517,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.1011,
+        "wasserstein_over_sd": 0.2517,
+        "matched_changed_frac": 0.3016,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.0431,
+        "median_shift_over_iqr": 0.1945,
+        "ks": 0.0983,
+        "wasserstein_over_sd": 0.0547,
+        "matched_changed_frac": 0.5759,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_0": {
+        "std_mean_shift": -0.018,
+        "median_shift_over_iqr": 0.1867,
+        "ks": 0.0917,
+        "wasserstein_over_sd": 0.018,
+        "matched_changed_frac": 0.5762,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.1116,
+        "median_shift_over_iqr": 0.1642,
+        "ks": 0.0886,
+        "wasserstein_over_sd": 0.116,
+        "matched_changed_frac": 0.5736,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": 0.001,
+        "median_shift_over_iqr": 0.1782,
+        "ks": 0.0872,
+        "wasserstein_over_sd": 0.001,
+        "matched_changed_frac": 0.5767,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": -3.0572,
+        "median_shift_over_iqr": 0.1316,
+        "ks": 0.0824,
+        "wasserstein_over_sd": 3.0587,
+        "matched_changed_frac": 0.551,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_3": {
+        "std_mean_shift": -0.0021,
+        "median_shift_over_iqr": 0.1436,
+        "ks": 0.0742,
+        "wasserstein_over_sd": 0.0021,
+        "matched_changed_frac": 0.5762,
+        "family": "shower_start_dQdx"
+       }
+      }
+     },
+     "old_to_snap": {
+      "features": 56,
+      "median_ks": 0.026679350269553204,
+      "max_ks": 0.11428062609911527,
+      "frac_ks_gt_0p1": 0.03571428571428571,
+      "median_abs_std_mean_shift": 0.011965546435090228,
+      "median_matched_changed_frac": 0.4532298929225307,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.02669495879296424,
+        "max_ks": 0.08433100132343035
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.021264297179319325,
+        "max_ks": 0.11428062609911527
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.02254630319124884,
+        "max_ks": 0.0964271154266978
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.03941253471285494,
+        "max_ks": 0.0615222108133191
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_n_other_vertex": {
+        "std_mean_shift": 0.2069,
+        "median_shift_over_iqr": 1.0,
+        "ks": 0.1143,
+        "wasserstein_over_sd": 0.2215,
+        "matched_changed_frac": 0.2526,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": -0.2379,
+        "median_shift_over_iqr": -0.5,
+        "ks": 0.1065,
+        "wasserstein_over_sd": 0.2379,
+        "matched_changed_frac": 0.2908,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_good_tracks": {
+        "std_mean_shift": -0.2048,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0964,
+        "wasserstein_over_sd": 0.2048,
+        "matched_changed_frac": 0.2032,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": 0.0293,
+        "median_shift_over_iqr": 0.1588,
+        "ks": 0.0848,
+        "wasserstein_over_sd": 0.0335,
+        "matched_changed_frac": 0.5411,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": -0.0,
+        "median_shift_over_iqr": 0.19,
+        "ks": 0.0843,
+        "wasserstein_over_sd": 0.0,
+        "matched_changed_frac": 0.5428,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_0": {
+        "std_mean_shift": -0.0037,
+        "median_shift_over_iqr": 0.1591,
+        "ks": 0.0788,
+        "wasserstein_over_sd": 0.0037,
+        "matched_changed_frac": 0.5413,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_median_dedx": {
+        "std_mean_shift": 0.0682,
+        "median_shift_over_iqr": 0.1306,
+        "ks": 0.0744,
+        "wasserstein_over_sd": 0.0742,
+        "matched_changed_frac": 0.539,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": -0.0001,
+        "median_shift_over_iqr": 0.1337,
+        "ks": 0.0687,
+        "wasserstein_over_sd": 0.0001,
+        "matched_changed_frac": 0.5427,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_stem_length": {
+        "std_mean_shift": -0.1195,
+        "median_shift_over_iqr": -0.0937,
+        "ks": 0.0652,
+        "wasserstein_over_sd": 0.1197,
+        "matched_changed_frac": 0.5294,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": -0.0394,
+        "median_shift_over_iqr": 0.0945,
+        "ks": 0.0622,
+        "wasserstein_over_sd": 0.0401,
+        "matched_changed_frac": 0.5181,
+        "family": "shower_start_dQdx"
+       }
+      }
+     },
+     "split_to_snap": {
+      "features": 56,
+      "median_ks": 0.007139465923645914,
+      "max_ks": 0.024847389908314033,
+      "frac_ks_gt_0p1": 0.0,
+      "median_abs_std_mean_shift": 0.004385767774741898,
+      "median_matched_changed_frac": 0.32496349896513554,
+      "by_family": {
+       "shower_start_dQdx": {
+        "n": 27,
+        "median_ks": 0.009147671419482917,
+        "max_ks": 0.024847389908314033
+       },
+       "shower_topology_energy": {
+        "n": 15,
+        "median_ks": 0.007753842657794274,
+        "max_ks": 0.022763240356789116
+       },
+       "track_shower_relation": {
+        "n": 11,
+        "median_ks": 0.005754957576095343,
+        "max_ks": 0.01859108711110502
+       },
+       "vertex_distance": {
+        "n": 3,
+        "median_ks": 0.005461612100295221,
+        "max_ks": 0.005964045387882144
+       }
+      },
+      "top10_by_ks": {
+       "shw_sp_lowest_dQ_dx": {
+        "std_mean_shift": 0.0208,
+        "median_shift_over_iqr": -0.0403,
+        "ks": 0.0248,
+        "wasserstein_over_sd": 0.0208,
+        "matched_changed_frac": 0.3946,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_lowest": {
+        "std_mean_shift": 0.0101,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0228,
+        "wasserstein_over_sd": 0.0118,
+        "matched_changed_frac": 0.2911,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_vertex": {
+        "std_mean_shift": 0.0176,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0227,
+        "wasserstein_over_sd": 0.0413,
+        "matched_changed_frac": 0.0621,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_n_below_threshold": {
+        "std_mean_shift": 0.0207,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0221,
+        "wasserstein_over_sd": 0.0224,
+        "matched_changed_frac": 0.3082,
+        "family": "shower_topology_energy"
+       },
+       "shw_sp_vec_dQ_dx_1": {
+        "std_mean_shift": -0.0,
+        "median_shift_over_iqr": -0.0395,
+        "ks": 0.0216,
+        "wasserstein_over_sd": 0.0,
+        "matched_changed_frac": 0.4277,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_dQ_dx_2": {
+        "std_mean_shift": -0.0011,
+        "median_shift_over_iqr": -0.0429,
+        "ks": 0.021,
+        "wasserstein_over_sd": 0.0011,
+        "matched_changed_frac": 0.4275,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_medium_dQ_dx": {
+        "std_mean_shift": -0.0,
+        "median_shift_over_iqr": -0.018,
+        "ks": 0.0189,
+        "wasserstein_over_sd": 0.0,
+        "matched_changed_frac": 0.4268,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_n_good_tracks": {
+        "std_mean_shift": 0.0443,
+        "median_shift_over_iqr": 0.0,
+        "ks": 0.0186,
+        "wasserstein_over_sd": 0.0443,
+        "matched_changed_frac": 0.0508,
+        "family": "track_shower_relation"
+       },
+       "shw_sp_highest_dQ_dx": {
+        "std_mean_shift": 0.0448,
+        "median_shift_over_iqr": 0.0156,
+        "ks": 0.0176,
+        "wasserstein_over_sd": 0.0448,
+        "matched_changed_frac": 0.4035,
+        "family": "shower_start_dQdx"
+       },
+       "shw_sp_vec_mean_dedx": {
+        "std_mean_shift": -0.0141,
+        "median_shift_over_iqr": -0.0328,
+        "ks": 0.0175,
+        "wasserstein_over_sd": 0.0225,
+        "matched_changed_frac": 0.4268,
+        "family": "shower_topology_energy"
+       }
+      }
+     }
+    }
+   },
+   "legacy": {
+    "single_photon_numu": {
+     "old": {
+      "scored": 65905,
+      "positive": 2614,
+      "negative": 38509,
+      "pass_rate_positive": 0.5673297628156083,
+      "pass_rate_negative": 0.05832402814926381,
+      "score_quantiles_positive": [
+       -1.6126968614682655,
+       0.658349266117737,
+       2.4138784886965
+      ],
+      "auc": 0.913372236456693
+     },
+     "split": {
+      "scored": 65792,
+      "positive": 2610,
+      "negative": 37923,
+      "pass_rate_positive": 0.70727969348659,
+      "pass_rate_negative": 0.06354982464467474,
+      "score_quantiles_positive": [
+       -1.0550985101497183,
+       1.3131550180352645,
+       2.781896356884667
+      ],
+      "auc": 0.9335522685966917
+     },
+     "snap": {
+      "scored": 66214,
+      "positive": 2598,
+      "negative": 38322,
+      "pass_rate_positive": 0.7109314857582756,
+      "pass_rate_negative": 0.07155158916549241,
+      "score_quantiles_positive": [
+       -1.0410250262045486,
+       1.312021432527106,
+       2.778941267936395
+      ],
+      "auc": 0.9289725340625861
+     },
+     "migration_old_to_split": {
+      "matched_scored": 53458,
+      "pass_to_fail": 2716,
+      "fail_to_pass": 4824,
+      "positive_pass_to_fail": 163,
+      "positive_fail_to_pass": 450,
+      "spearman": 0.8781923226654686
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 54073,
+      "pass_to_fail": 2439,
+      "fail_to_pass": 4764,
+      "positive_pass_to_fail": 140,
+      "positive_fail_to_pass": 443,
+      "spearman": 0.8821748370555907
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 62327,
+      "pass_to_fail": 1615,
+      "fail_to_pass": 1823,
+      "positive_pass_to_fail": 95,
+      "positive_fail_to_pass": 106,
+      "spearman": 0.9650453710453987
+     }
+    },
+    "single_photon_ncpi0": {
+     "old": {
+      "scored": 65854,
+      "positive": 2610,
+      "negative": 8645,
+      "pass_rate_positive": 0.41455938697318007,
+      "pass_rate_negative": 0.12631578947368421,
+      "score_quantiles_positive": [
+       -1.306503344078492,
+       -0.23051868651032936,
+       0.7322781173550773
+      ],
+      "auc": 0.7412995353104246
+     },
+     "split": {
+      "scored": 65740,
+      "positive": 2610,
+      "negative": 9262,
+      "pass_rate_positive": 0.4582375478927203,
+      "pass_rate_negative": 0.10796804145972792,
+      "score_quantiles_positive": [
+       -1.3475275183846096,
+       -0.1419137895539136,
+       0.9783567179502165
+      ],
+      "auc": 0.7927606187189281
+     },
+     "snap": {
+      "scored": 66190,
+      "positive": 2598,
+      "negative": 9233,
+      "pass_rate_positive": 0.44803695150115475,
+      "pass_rate_negative": 0.1055994801256363,
+      "score_quantiles_positive": [
+       -1.354010642037639,
+       -0.16733987653318533,
+       0.9905469220147464
+      ],
+      "auc": 0.7914880411470487
+     },
+     "migration_old_to_split": {
+      "matched_scored": 53385,
+      "pass_to_fail": 3899,
+      "fail_to_pass": 3571,
+      "positive_pass_to_fail": 209,
+      "positive_fail_to_pass": 342,
+      "spearman": 0.7904709908853047
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 54021,
+      "pass_to_fail": 3896,
+      "fail_to_pass": 3334,
+      "positive_pass_to_fail": 202,
+      "positive_fail_to_pass": 318,
+      "spearman": 0.7990054968053107
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 62274,
+      "pass_to_fail": 2199,
+      "fail_to_pass": 1938,
+      "positive_pass_to_fail": 102,
+      "positive_fail_to_pass": 76,
+      "spearman": 0.9361904397716834
+     }
+    },
+    "single_photon_other": {
+     "old": {
+      "scored": 65905,
+      "positive": 2614,
+      "negative": 14662,
+      "pass_rate_positive": 0.3339709257842387,
+      "pass_rate_negative": 0.09841767835220297,
+      "score_quantiles_positive": [
+       -2.0173499745036065,
+       -0.3646495062138614,
+       1.2311828151673736
+      ],
+      "auc": 0.7429464802235364
+     },
+     "split": {
+      "scored": 65792,
+      "positive": 2610,
+      "negative": 14500,
+      "pass_rate_positive": 0.42452107279693485,
+      "pass_rate_negative": 0.12089655172413794,
+      "score_quantiles_positive": [
+       -1.6896274183394,
+       -0.028493224472140883,
+       1.5583759167775448
+      ],
+      "auc": 0.776582401902497
+     },
+     "snap": {
+      "scored": 66214,
+      "positive": 2598,
+      "negative": 14563,
+      "pass_rate_positive": 0.42994611239414937,
+      "pass_rate_negative": 0.11948087619309208,
+      "score_quantiles_positive": [
+       -1.6867523917882759,
+       -0.023864577374802815,
+       1.5189152732925808
+      ],
+      "auc": 0.7747216085435281
+     },
+     "migration_old_to_split": {
+      "matched_scored": 53458,
+      "pass_to_fail": 2824,
+      "fail_to_pass": 4926,
+      "positive_pass_to_fail": 163,
+      "positive_fail_to_pass": 357,
+      "spearman": 0.8280004563486613
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 54073,
+      "pass_to_fail": 2773,
+      "fail_to_pass": 4753,
+      "positive_pass_to_fail": 150,
+      "positive_fail_to_pass": 347,
+      "spearman": 0.8368513930353461
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 62327,
+      "pass_to_fail": 2023,
+      "fail_to_pass": 1910,
+      "positive_pass_to_fail": 106,
+      "positive_fail_to_pass": 110,
+      "spearman": 0.9478375605707624
+     }
+    },
+    "single_photon_nue": {
+     "old": {
+      "scored": 65905,
+      "positive": 2614,
+      "negative": 1238,
+      "pass_rate_positive": 0.6216526396327468,
+      "pass_rate_negative": 0.14135702746365106,
+      "score_quantiles_positive": [
+       -2.498951815506354,
+       -0.5353145752696816,
+       0.9433821533504111
+      ],
+      "auc": 0.8541799283836383
+     },
+     "split": {
+      "scored": 65792,
+      "positive": 2610,
+      "negative": 1239,
+      "pass_rate_positive": 0.7697318007662836,
+      "pass_rate_negative": 0.13720742534301855,
+      "score_quantiles_positive": [
+       -1.8673591642580896,
+       0.02835234359783783,
+       1.3520844634324705
+      ],
+      "auc": 0.9033272104867662
+     },
+     "snap": {
+      "scored": 66214,
+      "positive": 2598,
+      "negative": 1231,
+      "pass_rate_positive": 0.7825250192455735,
+      "pass_rate_negative": 0.13809910641754672,
+      "score_quantiles_positive": [
+       -1.8467017341760124,
+       0.06322883981687474,
+       1.3947904170718415
+      ],
+      "auc": 0.9070548237755844
+     },
+     "migration_old_to_split": {
+      "matched_scored": 53458,
+      "pass_to_fail": 3361,
+      "fail_to_pass": 5905,
+      "positive_pass_to_fail": 88,
+      "positive_fail_to_pass": 387,
+      "spearman": 0.7088507786721928
+     },
+     "migration_old_to_snap": {
+      "matched_scored": 54073,
+      "pass_to_fail": 3132,
+      "fail_to_pass": 5655,
+      "positive_pass_to_fail": 64,
+      "positive_fail_to_pass": 389,
+      "spearman": 0.7266204543852862
+     },
+     "migration_split_to_snap": {
+      "matched_scored": 62327,
+      "pass_to_fail": 2497,
+      "fail_to_pass": 2564,
+      "positive_pass_to_fail": 65,
+      "positive_fail_to_pass": 96,
+      "spearman": 0.9058115515928319
+     }
+    }
+   }
+  }
+ }
+}

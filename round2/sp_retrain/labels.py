@@ -13,8 +13,12 @@ MicroBooNE cuts.h @ 0100d4b6:2849-2856. All four BDTs share one positive class; 
   rows: candidates after the preselection (not a placeholder; shw_sp_n_20mev_showers > 0; label readable), which
         is where the thesis trains (sec. 5.2.1, 5.2.3: "right after preselection, which is also where BDT training is done")
 
-single_photon_other: not implemented. Its negative class needs in-time cosmic (EXT, off-beam data) events, which no
-Aurora training sample holds (round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md).
+single_photon_other (development definition, 2026-11-17; thesis pp.129-131, App. E.2; cuts.h SPNCBkg / SPoutFVBkg):
+  negative (0): partner neutrino of type NCBkg (NC, no primary pi0, in FV, not signal) or outFVBkg (true vertex outside
+                the 3 cm FV, dirt included, not signal); a cosmic-matched or unmatched MC candidate (partner_kind cosmic
+                / none); every preselected row of an EXT sample (spec samples.development entries with role ext_beam_off:
+                off-beam data, no truth, always background). Signal rows of any component stay positive (p.129).
+  Trainable only from a spec whose status allows it; the EXT sample is an approved, named exception of that spec.
 """
 import numpy as np
 import yaml
@@ -23,7 +27,14 @@ READY_STATES = ('READY_FOR_DEVELOPMENT_TRAINING', 'READY_FOR_FINAL_TRAINING')
 NEGATIVE_BKG = {
     'single_photon_ncpi0': ('NCpi0Bkg',),
     'single_photon_numu': ('numuCCBkg', 'numuCCpi0Bkg'),
+    'single_photon_other': ('NCBkg', 'outFVBkg'),
 }
+NEGATIVE_COSMIC_PARTNER = ('single_photon_other',)     # cosmic-matched / unmatched MC candidates are negatives
+EXT_ROLE = 'ext_beam_off'
+
+
+def ext_sample_ids(spec):
+    return tuple(s['id'] for s in spec.get('samples', {}).get('development', []) if s.get('role') == EXT_ROLE)
 
 
 class TargetBlockedError(RuntimeError):
@@ -46,12 +57,15 @@ def require_ready(spec, final=False):
         raise TargetBlockedError('%s has no label.definition' % spec.get('spec_id'))
 
 
-def preselection(cands, x_cut=None):
+def preselection(cands, x_cut=None, ext_ids=()):
     """Thesis Table 5.2 / cuts.h is_singlephoton_pre, SBND mapping: every non-placeholder SBND candidate already has
     numu_cc_flag >= 0 (the MicroBooNE generic-selection flag); shw_sp_n_20mev_showers > 0; label readable.
     x_cut: optional (inner, outer) |x| bounds on the tagger vertex, an SBND stand-in for MicroBooNE's 5-250 cm cut
     (detector-specific; OPEN in the spec)."""
-    m = (cands.is_placeholder.to_numpy() == 0) & (cands.shw_sp_n_20mev_showers.to_numpy() > 0) & (cands.label_unreadable.to_numpy() == 0)
+    readable = cands.label_unreadable.to_numpy() == 0
+    if ext_ids:   # off-beam data carry no truth: no label to read
+        readable = readable | cands['sample'].astype(str).isin(ext_ids).to_numpy()
+    m = (cands.is_placeholder.to_numpy() == 0) & (cands.shw_sp_n_20mev_showers.to_numpy() > 0) & readable
     if x_cut is not None:
         ax = np.abs(cands.nu_x.to_numpy())
         m &= (ax > x_cut[0]) & (ax < x_cut[1])
@@ -64,10 +78,17 @@ def development_classes(cands, spec, x_cut=None):
     if name not in NEGATIVE_BKG:
         raise TargetBlockedError('%s: no implemented label definition' % spec.get('spec_id'))
     require_ready(spec, final=False)
-    pre = preselection(cands, x_cut)
-    nu = (cands.partner_kind.astype(str).to_numpy() == 'neutrino') & (cands.m_sp_truth_ok.fillna(0).to_numpy() == 1)
+    ext_ids = ext_sample_ids(spec)
+    if ext_ids and name not in NEGATIVE_COSMIC_PARTNER:
+        raise TargetBlockedError('%s: EXT samples are a class of single_photon_other only' % name)
+    pre = preselection(cands, x_cut, ext_ids)
+    is_ext = cands['sample'].astype(str).isin(ext_ids).to_numpy() if ext_ids else np.zeros(len(cands), bool)
+    pk = cands.partner_kind.astype(str).to_numpy()
+    nu = (pk == 'neutrino') & (cands.m_sp_truth_ok.fillna(0).to_numpy() == 1) & ~is_ext
     pos = nu & (cands.m_sp_signal.fillna(0).to_numpy() == 1)
     neg = nu & np.isin(cands.m_sp_bkg.astype(str).to_numpy(), NEGATIVE_BKG[name])
+    if name in NEGATIVE_COSMIC_PARTNER:
+        neg = neg | (np.isin(pk, ('cosmic', 'none')) & ~is_ext) | is_ext
     cls = np.full(len(cands), -1, dtype=np.int8)
     cls[pos] = 1
     cls[neg] = 0

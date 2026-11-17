@@ -59,6 +59,7 @@ def event_u(keys, seed):
 
 
 def load(a, spec):
+    roots = a.allowed_input_root or ALLOWED_INPUT
     stamp = json.load(open(os.path.join(os.path.dirname(ROUND2), spec['samples']['input_manifest'])))['reconstruction']['wct_version_stamp']
     C = []
     for s in spec['samples']['development']:
@@ -67,7 +68,7 @@ def load(a, spec):
         if b['list_sha256'] != s['list_sha256'] or b['files'] != s['files'] or b.get('slice'):
             raise SystemExit('%s: table build does not match the spec list' % sid)
         F = pd.read_parquet(os.path.join(a.tables, 'files_%s_%s.parquet' % (sid, a.tag)))
-        firewall.check_training_inputs(F.path.tolist(), ALLOWED_INPUT)
+        firewall.check_training_inputs(F.path.tolist(), roots)
         off = set(F[F.wct_version.fillna('') != stamp].file_id)
         cs = pd.read_parquet(os.path.join(a.tables, 'cands_%s_%s.parquet' % (sid, a.tag)))
         C.append(cs[~cs.file_id.isin(off)])
@@ -78,6 +79,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('--tables', required=True); ap.add_argument('--tag', required=True); ap.add_argument('--spec', required=True)
     ap.add_argument('--out-json', required=True); ap.add_argument('--work-dir', default=None)
+    ap.add_argument('--dev-manifest', default=DEV_MANIFEST, help='manifest of the model the f = 1 run must reproduce')
+    ap.add_argument('--allowed-input-root', action='append', default=None)
     a = ap.parse_args()
     import xgboost as xgb
     from sklearn.metrics import log_loss, roc_auc_score, roc_curve
@@ -132,7 +135,7 @@ def main():
     sub = A.loc[[0.25, 0.5, 0.75, 1.0]]
     slope = float(np.polyfit(np.log2(sub.neg_rows_mean.to_numpy()), sub.test_auc_mean.to_numpy(), 1)[0])
     ref = R[(R.seed == spec['xgboost']['seed']) & (R.fraction == 1.0)].test_auc.iloc[0]
-    dev_auc = json.load(open(os.path.join(ROUND2, DEV_MANIFEST)))['metrics']['test_auc']
+    dev_auc = json.load(open(os.path.join(ROUND2, a.dev_manifest)))['metrics']['test_auc']
     out = dict(
         label='DIAGNOSTIC_ONLY_NOT_A_MODEL', spec=os.path.relpath(os.path.abspath(a.spec), ROUND2),
         spec_sha256=devtrain.sha256_file(a.spec), tables=os.path.abspath(a.tables), tag=a.tag,
@@ -142,7 +145,7 @@ def main():
                    test_pos=int((y[te] == 1).sum()), test_neg=int((y[te] == 0).sum())),
         varied=dict(fractions=list(FRACTIONS), seeds=list(SEEDS), selection='per event, sha256(seed|key) < f, nested in f',
                     xgboost_seed='= seed'),
-        reproduces_development_model=dict(test_auc_f1_spec_seed=float(ref), development_manifest_test_auc=float(dev_auc),
+        reproduces_development_model=dict(manifest=a.dev_manifest, test_auc_f1_spec_seed=float(ref), development_manifest_test_auc=float(dev_auc),
                                           abs_diff=float(abs(ref - dev_auc)), match=bool(abs(ref - dev_auc) < 1e-9)),
         per_fraction=agg, runs=runs,
         result=dict(gain_test_auc_half_to_full=gain, gain_test_auc_three_quarter_to_full=gain_last, seed_sigma=sigma,

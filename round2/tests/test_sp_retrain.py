@@ -418,7 +418,9 @@ def test_legacy_refuses_test_xml_and_non_controls(monkeypatch):
     with pytest.raises(lc.BundleError):
         lc.xml_path('/nowhere', 'single_photon_numu')
     with pytest.raises(lc.BundleError):
-        lc.load_control('/nowhere', 'single_photon_other', [])
+        lc.load_control('/nowhere', 'single_photon_foo', [])
+    # 2026-11-17: SP other / nue are DIAGNOSTIC controls (WCL1116 domain study); every control has a pinned XML hash
+    assert set(lc.CONTROL_MODELS) == set(lc.XML) and all(len(lc.XML[m][1]) == 64 for m in lc.CONTROL_MODELS)
 
 
 @need_bundle

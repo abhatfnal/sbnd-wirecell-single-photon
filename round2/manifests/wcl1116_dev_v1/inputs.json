@@ -1,0 +1,186 @@
+{
+ "campaign": "development_wcl1116_v1",
+ "label": "WCL1116_DEVELOPMENT_DO_NOT_DEPLOY",
+ "date": "2026-11-17",
+ "role": "Aurora TRAINING / DEVELOPMENT inputs only (catalogue side \"training\"). No WCLocal2026Nov16-FermiGrid, fg1 or other official evaluation product is an input.",
+ "production_tag": "WCLocal2026Nov16-Aurora (Haiwang Yu; ai-helper issue 48)",
+ "reconstruction": {
+  "wct_version_stamp": "0.38.0",
+  "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "wire_cell_data_commit": "99c6497fad6ba55ecbf53f4c205c5720dba10140",
+  "larwirecell": "ad5d9421 (step 1 of aurora-r1, reused)",
+  "sbndcode": "v10_14_02_03 e26:prof (container environment, issue 48 \u00a71); the reco1 inputs are Avinay's gen2 files, as aurora-r1/r2",
+  "dl_bundle": "dv2max/sbnd/aurora_space/bundle.json",
+  "dl_bundle_sha256": "51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74",
+  "modes": {
+   "dv2_split_move": {
+    "wc_tree": "recTreeWireCell",
+    "schema_md5": "af9c87c88815199dccf5204ac71dbe44"
+   },
+   "dv2_snap": {
+    "wc_tree": "recTreeWireCell_dv2snap",
+    "schema_md5": "d4396a3490ea5aec4b02f0c34fa9db33"
+   }
+  },
+  "upstream_bdt_weights": "shipped MicroBooNE-trained (36 files, = aurora-r2); numu_score / nu_e L1 are SHIPPED_CONTROL"
+ },
+ "provenance_manifest": "round2/manifests/wcl1116_aurora_v0/production_provenance.json",
+ "provenance_manifest_sha256": "33024f619661f3529cce5feca6215d5fbef3ab99bfd1482553cde5227b259fce",
+ "pot_caveat": "rec.hdr.pot is not the exposure of the filtered NC Delta sample; the fit is unweighted.",
+ "samples": [
+  {
+   "id": "wcl1116-aurora-ncdr",
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-ncdr.txt",
+   "list_sha256": "c72481ef80dd5ce7469c6785b3f21206fdc43dd0594d0d5f3799e31c7e32ad06",
+   "files": 17604,
+   "selection": "status OK, both validations PASS, both trees merged",
+   "units_listed": 17604,
+   "units_OK": 17604,
+   "units_PARTIAL": 0,
+   "units_FAIL": 0,
+   "caf_events": 26745,
+   "wc_events_split": 26745,
+   "wc_events_snap": 26745,
+   "excluded_units": 0,
+   "excluded_caf_events": 0,
+   "excluded": [],
+   "file_manifest": "round2/manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-ncdr.tsv.gz",
+   "file_manifest_content_sha256": "4b00f5a88b8f4390434590f1d510c6d68ae01608e68655568388dd5800759637",
+   "total_bytes": 66721841104,
+   "pairs": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full/ncdr-pairs.tsv",
+   "pairs_sha256": "f963abbc44c69fed718da20fde029f8bce87514195f18c51396a660b0812f762",
+   "census_utc": "2026-11-17T21:07:26Z"
+  },
+  {
+   "id": "wcl1116-aurora-bnb",
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-bnb.txt",
+   "list_sha256": "4d37964dc39d3bf0a5ab70d1c831e7dee56068ba7195d1d192c3e4bdfbeef821",
+   "files": 11874,
+   "selection": "status OK, both validations PASS, both trees merged",
+   "units_listed": 11888,
+   "units_OK": 11874,
+   "units_PARTIAL": 14,
+   "units_FAIL": 0,
+   "caf_events": 626441,
+   "wc_events_split": 626441,
+   "wc_events_snap": 626441,
+   "excluded_units": 14,
+   "excluded_caf_events": 764,
+   "excluded": [
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-c66b-68d3-da48-f711",
+     "status": "PARTIAL",
+     "n_caf_events": 55,
+     "n_wc_events_split": 54
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-14e7-4cfa-8ed6-9be8",
+     "status": "PARTIAL",
+     "n_caf_events": 53,
+     "n_wc_events_split": 52
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-eb42-73cd-76d2-dd4f",
+     "status": "PARTIAL",
+     "n_caf_events": 42,
+     "n_wc_events_split": 20
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-476a-f511-0adf-2efc",
+     "status": "PARTIAL",
+     "n_caf_events": 61,
+     "n_wc_events_split": 60
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-e5fd-0f26-795a-bfd9",
+     "status": "PARTIAL",
+     "n_caf_events": 61,
+     "n_wc_events_split": 60
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-e5e0-ceac-2a9a-ec50",
+     "status": "PARTIAL",
+     "n_caf_events": 45,
+     "n_wc_events_split": 44
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-e3e0-3290-8946-ca65",
+     "status": "PARTIAL",
+     "n_caf_events": 48,
+     "n_wc_events_split": 47
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-e588-8e0c-a689-da26",
+     "status": "PARTIAL",
+     "n_caf_events": 54,
+     "n_wc_events_split": 53
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-767c-03db-5015-665f",
+     "status": "PARTIAL",
+     "n_caf_events": 66,
+     "n_wc_events_split": 65
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-6aef-1095-71f7-d0a3",
+     "status": "PARTIAL",
+     "n_caf_events": 59,
+     "n_wc_events_split": 58
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-c673-66bc-2e23-5890",
+     "status": "PARTIAL",
+     "n_caf_events": 49,
+     "n_wc_events_split": 48
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-31ba-8720-e633-8a0e",
+     "status": "PARTIAL",
+     "n_caf_events": 66,
+     "n_wc_events_split": 65
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-e643-6b8f-590d-2076",
+     "status": "PARTIAL",
+     "n_caf_events": 56,
+     "n_wc_events_split": 55
+    },
+    {
+     "unit": "reco2-reco1-detsim-g4-gen-07ff-0767-90d5-5d0d",
+     "status": "PARTIAL",
+     "n_caf_events": 49,
+     "n_wc_events_split": 48
+    }
+   ],
+   "file_manifest": "round2/manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-bnb.tsv.gz",
+   "file_manifest_content_sha256": "72b967debfccbc438e0e7b64719c7c24cdfeaa5e680b4230013a9cf41cbb8e5c",
+   "total_bytes": 475349671573,
+   "pairs": "/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full/bnb-pairs.tsv",
+   "pairs_sha256": "9fb695e3dc8dcf30ff563bb1e5b13d0419853b3de56b69be8bb8890f76db209d",
+   "census_utc": "2026-11-17T21:07:20Z"
+  }
+ ],
+ "beam_off_training_half": {
+  "source_list_sha256": "acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64",
+  "pairs": 572,
+  "holdout_files_removed": 14,
+  "kept": 558,
+  "all_runs_odd": true,
+  "overlap_with_even_run_evaluation_half": 0,
+  "accessible_from_aurora": false,
+  "status": "SP-OTHER DEVELOPMENT BLOCKED ONLY ON DATA ACCESS/STAGING",
+  "membership_tsv_content_sha256": "2f2133926e4b7f36f500faffe036642121f27263fb1f94caf758a0025cedbfd2",
+  "firewall_exception": {
+   "sample": "wcl1116-fg-beamoff-train",
+   "approved_by": "Avinay Bhat",
+   "date": "2026-11-17",
+   "scope": "development_wcl1116_v1 only: the pre-designated odd-run fg1-beamoff-train membership, hold-out files removed",
+   "not_permitted": [
+    "the even-run evaluation half (fg1-beamoff-eval)",
+    "the full 50k beam-off as a whole",
+    "Xin's hold-out events / files",
+    "any other wcl1116-fg-* sample"
+   ]
+  }
+ }
+}

@@ -166,6 +166,14 @@ validations, and it writes no list.
 - The tool now uses `scandir` and has `--threads`. Run it on a compute node when the lists are actually built.
 - Unit test: `test_make_refresh_list_census_and_refusal`.
 
+## 7b. Update, 2026-11-17 night: development lists
+
+`tools/make_refresh_list.py` ran on compute nodes (PBS 9099500).
+- Development lists and manifests for `wcl1116-aurora-ncdr` (17,604 / 17,604 OK) and `wcl1116-aurora-bnb` (11,874 OK;
+  14 PARTIAL excluded, 729 Wire-Cell events) are in `manifests/wcl1116_dev_v1/`.
+- They serve the WCL1116 **development** campaign (`SP_BDT_WCL1116_DEVELOPMENT_RESULTS.md`). The final-training
+  registry stays on aurora-r2 until §8 holds.
+
 ## 8. Handoff conditions: when Avinay's pipeline switches to the refresh
 
 The registry `config/samples/round2_training_samples.yaml` keeps `active_training_domain: aurora-r2` until all of these

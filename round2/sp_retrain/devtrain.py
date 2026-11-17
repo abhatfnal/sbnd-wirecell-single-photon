@@ -17,6 +17,8 @@ import pandas as pd
 from sp_retrain import features, labels, split
 
 CAMPAIGN = 'development_round1_domain_v1'
+CAMPAIGN_WCL1116 = 'development_wcl1116_v1'     # 2026-11-17: Haiwang's WCLocal2026Nov16 refresh, both vertex trees
+CAMPAIGNS = (CAMPAIGN, CAMPAIGN_WCL1116)
 EV = ['sample', 'file_id', 'run', 'subrun', 'event']
 ROW_KEY = EV + ['cand']
 SOURCE_XGB = ('max_depth', 'n_estimators', 'learning_rate', 'objective', 'colsample_bytree', 'colsample_bylevel',
@@ -24,6 +26,7 @@ SOURCE_XGB = ('max_depth', 'n_estimators', 'learning_rate', 'objective', 'colsam
 THESIS_XGB = {  # Yandel thesis appendix E (E.1 p.278-279, E.3 p.281-283)
     'single_photon_numu': dict(max_depth=5, n_estimators=300),
     'single_photon_ncpi0': dict(max_depth=6, n_estimators=400),
+    'single_photon_other': dict(max_depth=5, n_estimators=215),   # App. E.2 (pp.279-281)
 }
 THESIS_COMMON = dict(learning_rate=0.1, objective='binary:logitraw', colsample_bytree=1, colsample_bylevel=0.5,
                      colsample_bynode=0.5, subsample=0.8, gamma=0.2, seed=1, eval_metric=['auc', 'error'])
@@ -38,8 +41,8 @@ def sha256_file(path):
 
 
 def require_development_spec(spec):
-    if spec.get('campaign') != CAMPAIGN or spec.get('deployable') is not False:
-        raise labels.TargetBlockedError('%s is not a %s (non-deployable) spec' % (spec.get('spec_id'), CAMPAIGN))
+    if spec.get('campaign') not in CAMPAIGNS or spec.get('deployable') is not False:
+        raise labels.TargetBlockedError('%s is not a development (non-deployable) spec of %s' % (spec.get('spec_id'), CAMPAIGNS))
     labels.require_ready(spec, final=False)
     name = spec['classifier']['name']
     if name not in THESIS_XGB:
@@ -85,6 +88,9 @@ def build_dataset(cands, spec):
     keep = np.flatnonzero(finite)
     keys = keys.iloc[keep].reset_index(drop=True)
     sp = split.assign_parity(keys.subrun.to_numpy())
+    ext = keys['sample'].astype(str).isin(labels.ext_sample_ids(spec)).to_numpy()
+    if ext.any():   # off-beam data: every file has art subrun 1, so the established split is by run (run % 4 == 1 -> holdout)
+        sp = np.where(ext, np.where(keys.run.to_numpy() % 4 == 1, 'test', 'train'), sp).astype(object)
     keys = keys.assign(split=sp, cls=y[keep])
     return dict(X=X[keep], y=y[keep], split=sp, keys=keys, names=names,
                 nonfinite=pd.DataFrame(bad, columns=['model', 'features', 'cls'] + ROW_KEY),

@@ -34,6 +34,10 @@ sys.path.insert(0, os.path.dirname(HERE))
 from sp_retrain import firewall, sp_truth  # noqa: E402
 
 WC = 'recTreeWireCell'
+# Wire-Cell trees a merged CAF may carry. WCLocal2026Nov16 (2026-11-17) writes two per file: recTreeWireCell
+# (vertex_method dv2_split_move, the 0.38.0 default) and recTreeWireCell_dv2snap (dv2_snap). The tree is chosen per build
+# (--wc-tree) and recorded in every files row and in the build summary; the default is unchanged.
+WC_TREES = {'recTreeWireCell': 'dv2_split_move_or_single', 'recTreeWireCell_dv2snap': 'dv2_snap'}
 KEY_CLASH = {'run', 'subrun', 'event', 'eventNo', 'runNo', 'subRunNo'}
 HDR = ['rec.hdr.run', 'rec.hdr.subrun', 'rec.hdr.evt', 'rec.hdr.first_in_subrun', 'rec.hdr.pot', 'rec.hdr.ismc']
 MATCH = ['level', 'side', 'obj', 'nu_index', 'truth_nu_idx', 'nmatch', 'mutual', 'match_obj', 'match_iou_n',
@@ -104,13 +108,15 @@ def truth_summary(q, pf):
     return out
 
 
-def extract(path, sample, file_id, holdout):
+def extract(path, sample, file_id, holdout, wc_tree=WC):
     import uproot
+    if wc_tree not in WC_TREES:
+        raise ValueError('unknown Wire-Cell tree %r' % wc_tree)
     st = os.stat(path)
     info = dict(sample=sample, file_id=file_id, path=path, size_bytes=st.st_size,
                 mtime_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(st.st_mtime)), holdout=int(holdout), events=0,
                 wc_events=0, candidates=0, truth_rows=0, wct_version='', label_unreadable=0, truth_pf_unreadable=0,
-                partner_missing=0, hdr_pot_sum_not_exposure=float('nan'), ismc=-1, error='')
+                partner_missing=0, hdr_pot_sum_not_exposure=float('nan'), ismc=-1, error='', wc_tree=wc_tree)
     cands, truth = [], []
     f = uproot.open(path)
     try:
@@ -120,7 +126,7 @@ def extract(path, sample, file_id, holdout):
                     ismc=int(h['rec.hdr.ismc'][0]) if len(h['rec.hdr.ismc']) else -1)
     except Exception as e:
         info['error'] = 'HDR_FAIL ' + str(e).splitlines()[0][:120]
-    t = f[WC]
+    t = f[wc_tree]
     keys = set(t.keys())
     tag = [k for k in _scalar_branches(keys, 'wc.T_tagger.') if k.split('.', 2)[2] not in KEY_CLASH]
     tag_names = {k.split('.', 2)[2] for k in tag}
@@ -235,9 +241,10 @@ def extract(path, sample, file_id, holdout):
 
 
 def _worker(job):
-    path, sample, fid, hold = job
+    path, sample, fid, hold = job[:4]
+    wc_tree = job[4] if len(job) > 4 else WC
     try:
-        return extract(path, sample, fid, hold)
+        return extract(path, sample, fid, hold, wc_tree)
     except Exception as e:
         return dict(sample=sample, file_id=fid, path=path, error='EXC ' + str(e).splitlines()[0][:160]), [], []
 
@@ -272,6 +279,7 @@ def main():
     ap.add_argument('--allowed-output-root', action='append', required=True)
     ap.add_argument('--holdout-file-ids', default=None, help='file ids (basenames) that are never trained on; flagged, kept')
     ap.add_argument('--tag', default='')
+    ap.add_argument('--wc-tree', default=WC, choices=sorted(WC_TREES), help='Wire-Cell tree to read (default recTreeWireCell)')
     a = ap.parse_args()
     firewall.check_sample_id(a.sample)
     out_dir = firewall.check_output_path(a.out_dir, a.allowed_output_root)
@@ -280,7 +288,7 @@ def main():
         s0, s1 = a.slice.split(':'); lines = lines[int(s0 or 0):(int(s1) if s1 else None)]
     firewall.check_training_inputs(lines, a.allowed_input_root)
     hold = set(l.strip() for l in open(a.holdout_file_ids)) if a.holdout_file_ids else set()
-    jobs = [(p, a.sample, os.path.basename(p), os.path.basename(p) in hold) for p in lines]
+    jobs = [(p, a.sample, os.path.basename(p), os.path.basename(p) in hold, a.wc_tree) for p in lines]
     t0 = time.time()
     if a.nproc > 1:
         import multiprocessing as mp
@@ -293,7 +301,7 @@ def main():
     F = pd.DataFrame([r[0] for r in res]); C = pd.DataFrame([x for r in res for x in r[1]]); T = pd.DataFrame([x for r in res for x in r[2]])
     for name, df in (('files', F), ('cands', C), ('truth', T)):
         df.to_parquet(os.path.join(out_dir, '%s_%s%s.parquet' % (name, a.sample, sfx)))
-    summ = dict(sample=a.sample, list=os.path.abspath(a.list), list_sha256=_sha256(a.list), slice=a.slice, files=len(lines),
+    summ = dict(sample=a.sample, wc_tree=a.wc_tree, list=os.path.abspath(a.list), list_sha256=_sha256(a.list), slice=a.slice, files=len(lines),
                 errors=int((F.get('error', pd.Series(dtype=str)).fillna('') != '').sum()),
                 label_unreadable_files=int(F.get('label_unreadable', pd.Series(dtype=float)).fillna(0).sum()),
                 truth_pf_unreadable_files=int(F.get('truth_pf_unreadable', pd.Series(dtype=float)).fillna(0).sum()),

@@ -1,0 +1,200 @@
+{
+ "campaign": "development_wcl1116_v1",
+ "deployable": false,
+ "label": "WCL1116_DEVELOPMENT_DO_NOT_DEPLOY",
+ "upstream_numu": "NOT_A_DIRECT_INPUT",
+ "holdout_kind": "DEVELOPMENT HOLDOUT (not an independent end-to-end test)",
+ "reconstruction": {
+  "production": "WCLocal2026Nov16-Aurora",
+  "vertex_mode": "dv2_snap",
+  "wc_tree": "recTreeWireCell_dv2snap",
+  "wct_version_stamp": "0.38.0",
+  "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "dl_bundle_sha256": "51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+ },
+ "classifier": "single_photon_ncpi0",
+ "model": {
+  "name": "single_photon_ncpi0_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+  "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_snap/ncpi0/single_photon_ncpi0_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY.json",
+  "sha256": "23fb495d31fc11ac90a461957d8268c2b0a5c3843653928f027c96cea90f25d0",
+  "format": "xgboost JSON"
+ },
+ "spec": {
+  "path": "specs/single_photon_ncpi0_training_spec_dev_wcl1116_dv2_snap.yaml",
+  "sha256": "fa4f5b2d37545621558ab4ec956d62913a0830993326c1dcd64ff6669feefef1"
+ },
+ "feature_list": {
+  "path": "round2/config/features/single_photon_ncpi0_inputs_v0.json",
+  "sha256": "5882391ffb4affdfb1ff164f2b0097323f88368e948701f6b472efb2301dd0eb",
+  "n": 45
+ },
+ "xgboost_params": {
+  "max_depth": 6,
+  "eta": 0.1,
+  "objective": "binary:logitraw",
+  "colsample_bytree": 1,
+  "colsample_bylevel": 0.5,
+  "colsample_bynode": 0.5,
+  "subsample": 0.8,
+  "gamma": 0.2,
+  "seed": 1,
+  "eval_metric": [
+   "auc",
+   "error"
+  ],
+  "base_score": 0.0,
+  "tree_method": "hist",
+  "nthread": 8
+ },
+ "num_boost_round": 400,
+ "seed": 1,
+ "inputs": {
+  "wcl1116-aurora-ncdr": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-ncdr.txt",
+   "list_sha256": "c72481ef80dd5ce7469c6785b3f21206fdc43dd0594d0d5f3799e31c7e32ad06",
+   "files": 17604,
+   "errors": 0,
+   "events": 26745,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 44,
+   "truth_pf_unreadable_files": 0,
+   "cands_sha256": "b0e08fe0b8d7390c45fe5a6a8ccde880fea56e0a1a5632bf35079438eb63c6f7",
+   "truth_sha256": "6c21542119ff334b589f7cef577bfaf703439fd17d59d36f18d30f9379a3e96c",
+   "files_sha256": "e8ce506fe03a739136e0b100e9ad211c844b6d9d5783f3d816a0d8a0d29b2b54",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  },
+  "wcl1116-aurora-bnb": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-bnb.txt",
+   "list_sha256": "4d37964dc39d3bf0a5ab70d1c831e7dee56068ba7195d1d192c3e4bdfbeef821",
+   "files": 11874,
+   "errors": 0,
+   "events": 626441,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 0,
+   "truth_pf_unreadable_files": 49,
+   "cands_sha256": "600b115e527e4cb1aa82a30ec468c5f71382f8eae2cfe77601f7283feae5c47e",
+   "truth_sha256": "b8df308c8500b60a3681e9e763402d959beac0f58942422f7334e531fc51addf",
+   "files_sha256": "cf1e9ec415c4731332902a71abb2123c403b0993946f4facf417bc86e3d78d68",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  }
+ },
+ "tables_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_tables/dv2_snap",
+ "tag": "dev",
+ "code": {
+  "git": {
+   "head": "6247137ece7d9eff3c74e8b5953cb740d51f21b2",
+   "dirty_paths": [
+    "round2/docs/SP_BDT_ROUND2_FREEZE_ORDER.md",
+    "round2/sp_retrain/build_tables.py",
+    "round2/sp_retrain/devtrain.py",
+    "round2/sp_retrain/labels.py",
+    "round2/sp_retrain/legacy_control.py",
+    "round2/tools/export_equivalence_check.py",
+    "round2/tools/make_refresh_list.py",
+    "round2/tools/ncpi0_negative_learning_curve.py",
+    "round2/tools/refresh_smoke_check.py",
+    "round2/cpp/",
+    "round2/docs/AURORA_UMBRELLA_MODEL_TRAINING_AND_EVALUATION_POLICY.md",
+    "round2/docs/SP_BDT_WCL1116_DEVELOPMENT_PLAN.md",
+    "round2/manifests/wcl1116_dev_v1/",
+    "round2/specs/single_photon_ncpi0_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_ncpi0_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/specs/single_photon_numu_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_numu_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/tests/test_wcl1116_dev.py",
+    "round2/tools/cpp_equivalence_check.py",
+    "round2/tools/make_beamoff_train_membership.py",
+    "round2/tools/make_wcl1116_dev_specs.py",
+    "round2/tools/summarize_wcl1116_dev.py",
+    "round2/tools/train_wcl1116_dev_model.py",
+    "round2/tools/wcl1116_migration_study.py",
+    "round2/tools/wcl1116_mode_compare.py",
+    "round2/validation/wcl1116_export_equivalence_dv2_split_move.json"
+   ]
+  },
+  "sha256": {
+   "sp_retrain/devtrain.py": "7d915ef5cabffbd540d4fe00907cc7de1361a63390575f7e985d5bf64743f7dd",
+   "sp_retrain/labels.py": "8d8b69feb54014f581d1fde05b93cbf96d530197fc6dfa8bf01bab7de2888183",
+   "sp_retrain/sp_truth.py": "01a6b98828879876a0a9824f8cc7707071f7c3e592e2fc594f57cdd6e080b98d",
+   "sp_retrain/build_tables.py": "8c4fc8594dabb00c748a91f99b97b1282ff5d6e0d7fa1ce3f284bf0e05eab686",
+   "sp_retrain/split.py": "039436513645e92dd8cdd29cb9ff712c8c92b37627680fbdf3fc590874c19848",
+   "sp_retrain/features.py": "2c0e391f65aa8a88adc617c4e54e108112e5d47985f487b4d8ec77bf744314cf",
+   "sp_retrain/firewall.py": "9c1d7fc3abe848a287f0240a957d7bb5b22bf668cf1c35fc850ec0eab39dde51",
+   "tools/train_wcl1116_dev_model.py": "ec6f0453099469dfa642a3f2210ce6a1b94123845767109333b86fddc27b317d"
+  }
+ },
+ "packages": {
+  "python": "3.12.12",
+  "numpy": "2.3.5",
+  "pandas": "3.0.5",
+  "xgboost": "3.4.1",
+  "scikit_learn": "1.9.0"
+ },
+ "counts": {
+  "train": {
+   "rows": 13417,
+   "positive_rows": 8666,
+   "negative_rows": 4751,
+   "events": 13394,
+   "positive_events": 8664,
+   "negative_events": 4744,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1290,
+     "negative": 4614
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7376,
+     "negative": 137
+    }
+   }
+  },
+  "test": {
+   "rows": 13514,
+   "positive_rows": 8744,
+   "negative_rows": 4770,
+   "events": 13497,
+   "positive_events": 8741,
+   "negative_events": 4764,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1308,
+     "negative": 4619
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7436,
+     "negative": 151
+    }
+   }
+  }
+ },
+ "leakage": {
+  "train_events": 13394,
+  "test_events": 13497,
+  "overlapping_events": 0,
+  "duplicate_rows": 0,
+  "events_in_more_than_one_file": 0
+ },
+ "nonfinite_excluded": 5,
+ "metrics": {
+  "train_auc": 0.9887386177350981,
+  "test_auc": 0.8973667597883233,
+  "train_error": 0.04099277036595364,
+  "test_error": 0.16109220068077548
+ },
+ "reproducibility": {
+  "model_sha256": "23fb495d31fc11ac90a461957d8268c2b0a5c3843653928f027c96cea90f25d0",
+  "repeat_sha256": "23fb495d31fc11ac90a461957d8268c2b0a5c3843653928f027c96cea90f25d0",
+  "identical_json": true,
+  "max_abs_margin_diff_test": 0.0
+ },
+ "outputs_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_snap/ncpi0"
+}
