@@ -1,0 +1,1617 @@
+{
+ "authority": "tables/legacy_scorer_correction/ (commit daf95442515b601eecda41c6c586931a5ae38c54)",
+ "statuses": [
+  "AUTHORITATIVE CORRECTED",
+  "RECONSTRUCTION-ONLY UNCHANGED",
+  "HISTORICAL AS-RUN",
+  "REVIEW / DO NOT USE"
+ ],
+ "numbers": [
+  {
+   "slide": "4",
+   "quantity": "truth denominator (provisional TPC box)",
+   "value": 12427,
+   "display": "12,427",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.truth_denominator",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "2,4",
+   "quantity": "truth 0p / 1p / >=2p events",
+   "value": "5,863 / 5,557 / 1,007",
+   "display": "5,863 / 5,557 / 1,007",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.truth_by_class",
+   "status": "RECONSTRUCTION-ONLY UNCHANGED"
+  },
+  {
+   "slide": "2",
+   "quantity": "Delta0 / Delta+ events",
+   "value": "6,846 / 5,581",
+   "display": "6,846 / 5,581",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.delta",
+   "status": "RECONSTRUCTION-ONLY UNCHANGED"
+  },
+  {
+   "slide": "4",
+   "quantity": "selected events, policy any",
+   "value": 833,
+   "display": "833",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.final_any",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "efficiency, policy any",
+   "value": 0.06703146374829001,
+   "display": "6.70 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|all'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "68 % interval of the efficiency",
+   "value": "6.48-6.94 %",
+   "display": "6.48-6.94 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|all'][3:5]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "selected events, policy first",
+   "value": 795,
+   "display": "795",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.final_first",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "efficiency, policy first",
+   "value": 0.06397360585821196,
+   "display": "6.40 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['first|all'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "efficiency, truth 0p",
+   "value": 0.06361930752174655,
+   "display": "6.36 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|0p'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "selected, truth 0p",
+   "value": 373,
+   "display": "373",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|0p'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "efficiency, truth 1p",
+   "value": 0.07486053626057225,
+   "display": "7.49 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|1p'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "selected, truth 1p",
+   "value": 416,
+   "display": "416",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|1p'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "efficiency, truth >=2p",
+   "value": 0.04369414101290963,
+   "display": "4.37 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|>=2p'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "4",
+   "quantity": "selected, truth >=2p",
+   "value": 44,
+   "display": "44",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|>=2p'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "efficiency, Delta0 (entangled with topology and proton origin)",
+   "value": 0.057551855097867366,
+   "display": "5.76 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|Delta0'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "efficiency, Delta+ (entangled with topology and proton origin)",
+   "value": 0.07865973839813653,
+   "display": "7.87 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|Delta+'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: wc.valid",
+   "value": 12426,
+   "display": "12,426",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['wc.valid'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: candidate",
+   "value": 11331,
+   "display": "11,331",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['candidate'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: > 20 MeV shower",
+   "value": 8080,
+   "display": "8,080",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['> 20 MeV shower'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: BDT evaluable",
+   "value": 8034,
+   "display": "8,034",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['BDT evaluable'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: numu",
+   "value": 4943,
+   "display": "4,943",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['numu'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: other",
+   "value": 2717,
+   "display": "2,717",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['other'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: ncpi0",
+   "value": 1305,
+   "display": "1,305",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['ncpi0'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: nue",
+   "value": 893,
+   "display": "893",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['nue'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: n_20br1",
+   "value": 833,
+   "display": "833",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['n_20br1'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,B",
+   "quantity": "cumulative surviving: final",
+   "value": 833,
+   "display": "833",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['final'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: candidate",
+   "value": 0.08811458920093346,
+   "display": "8.8 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['candidate'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: candidate",
+   "value": 1095,
+   "display": "1,095",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['candidate'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: shower",
+   "value": 0.26160778949062524,
+   "display": "26.2 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['> 20 MeV shower'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: shower",
+   "value": 3251,
+   "display": "3,251",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['> 20 MeV shower'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: numu",
+   "value": 0.24897400820793433,
+   "display": "24.9 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['numu'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: numu",
+   "value": 3094,
+   "display": "3,094",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['numu'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: other",
+   "value": 0.17912609640299348,
+   "display": "17.9 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['other'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: other",
+   "value": 2226,
+   "display": "2,226",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['other'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: ncpi0",
+   "value": 0.11338215176631528,
+   "display": "11.3 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['ncpi0'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: ncpi0",
+   "value": 1409,
+   "display": "1,409",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['ncpi0'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: nue",
+   "value": 0.033153617124004185,
+   "display": "3.3 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['nue'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: nue",
+   "value": 412,
+   "display": "412",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['nue'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "exclusive first failure: n_20br1",
+   "value": 0.004828196668544299,
+   "display": "0.5 %",
+   "unit": "fraction of 12,427",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['n_20br1'][3]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure events: n_20br1",
+   "value": 60,
+   "display": "60",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['n_20br1'][2]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "nue cumulative-stage signal loss",
+   "value": 412,
+   "display": "412",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/loss_budget.csv",
+   "locator": "stage == nue, step_loss_cumulative",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5,9",
+   "quantity": "events reaching nue / passing nue",
+   "value": "1,305 -> 893 (survival 68.4 %)",
+   "display": "1,305 -> 893 (survival 68.4 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['ncpi0'][0], ['nue'][0]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "9",
+   "quantity": "nue survival by truth class (0p / 1p / >=2p)",
+   "value": "72.0 % / 67.5 % / 51.7 %",
+   "display": "72.0 % / 67.5 % / 51.7 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "stage_conditional_survival, nue | truth g, source_faithful",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "9",
+   "quantity": "signal events that were selected as run and leave through nue",
+   "value": 312,
+   "display": "312",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/flip_summary.csv",
+   "locator": "official, D_full, old_pass_new_fail, stage, fail_nue",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "9",
+   "quantity": "intrinsic nue-CC events selected, as run (historical)",
+   "value": 175,
+   "display": "175",
+   "unit": "events",
+   "source": "tables/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == NUE_CC",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "9,12",
+   "quantity": "intrinsic nue-CC events selected, corrected",
+   "value": 1,
+   "display": "1",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == NUE_CC",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "9",
+   "quantity": "as-run nue-CC events that leave the selection",
+   "value": 174,
+   "display": "174",
+   "unit": "events (of 175)",
+   "source": "tables/legacy_scorer_correction/flip_summary.csv",
+   "locator": "bnb_cv, D_full, old_pass_new_fail, bkg_cand_category, NUE_CC",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "numu failures as a share of the total loss",
+   "value": 0.2668621700879765,
+   "display": "26.7 % (3,094 of 11,594)",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.loss_budget['numu'][2] / (12,427 - 833)",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "5",
+   "quantity": "first-failure vs cumulative bookkeeping difference at numu / ncpi0",
+   "value": "+3 / -3",
+   "display": "+3 / -3",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.first_failure_cumulative_mismatch",
+   "status": "RECONSTRUCTION-ONLY UNCHANGED"
+  },
+  {
+   "slide": "7",
+   "quantity": "numu survival, compact < 20 cm",
+   "value": 0.2827788649706458,
+   "display": "28.3 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "numu_survival, compact (length < 20 cm), corrected",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7",
+   "quantity": "numu survival, not compact >= 20 cm",
+   "value": 0.7282282282282282,
+   "display": "72.8 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "numu_survival, not compact (>= 20 cm), corrected",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7",
+   "quantity": "numu survival, few-segment (< 5)",
+   "value": 0.23968784838350055,
+   "display": "24.0 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "numu_survival, few-segment (< 5), corrected",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7",
+   "quantity": "numu survival, not few-segment",
+   "value": 0.7227738629083921,
+   "display": "72.3 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "numu_survival, not few-segment, corrected",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7,8",
+   "quantity": "other survival given numu, truth 0p",
+   "value": 0.46790890269151136,
+   "display": "46.8 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "other | truth 0p, source_faithful",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7,8",
+   "quantity": "other survival given numu, truth 1p",
+   "value": 0.6269767441860465,
+   "display": "62.7 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "other | truth 1p, source_faithful",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "7",
+   "quantity": "ncpi0 survival given other",
+   "value": 0.48030916451969086,
+   "display": "48.0 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/mechanism_recheck.csv",
+   "locator": "ncpi0 | truth all, source_faithful",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "8",
+   "quantity": "median |V_reco - V_true|, truth 0p (objects with a stored row)",
+   "value": 11.296095315128579,
+   "display": "11.30 cm (n = 367)",
+   "unit": "cm",
+   "source": "tables/legacy_scorer_correction/vertex_resolution_subset.csv",
+   "locator": "D_full, truth 0p",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "8",
+   "quantity": "median |V_reco - V_true|, truth 1p (objects with a stored row)",
+   "value": 0.8701751962049765,
+   "display": "0.87 cm (n = 409)",
+   "unit": "cm",
+   "source": "tables/legacy_scorer_correction/vertex_resolution_subset.csv",
+   "locator": "D_full, truth 1p",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "8",
+   "quantity": "number of selected objects with a stored vertex row (of 833)",
+   "value": 818,
+   "display": "818",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/vertex_resolution_subset.csv",
+   "locator": "D_full, all",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "final migration truth 0p -> reco 0p / 1p / >=2p",
+   "value": "342 / 30 / 1",
+   "display": "342 / 30 / 1",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth 0p']",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "final migration truth 1p -> reco 0p / 1p / >=2p",
+   "value": "61 / 336 / 19",
+   "display": "61 / 336 / 19",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth 1p']",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "final migration truth >=2p -> reco 0p / 1p / >=2p",
+   "value": "5 / 11 / 28",
+   "display": "5 / 11 / 28",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth >=2p']",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "diagonal fraction truth 0p",
+   "value": 0.9168900804289544,
+   "display": "91.7 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth 0p'][0] / sum",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "diagonal fraction truth 1p",
+   "value": 0.8076923076923077,
+   "display": "80.8 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth 1p'][1] / sum",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "diagonal fraction truth >=2p",
+   "value": 0.6363636363636364,
+   "display": "63.6 %",
+   "unit": "fraction",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.migration_final['truth >=2p'][2] / sum",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "reco totals 1g0p / 1g1p / >=2p",
+   "value": "408 / 377 / 48",
+   "display": "408 / 377 / 48",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "column sums of $.migration_final",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "not selected: truth 0p / 1p / >=2p",
+   "value": "5,490 / 5,141 / 963",
+   "display": "5,490 / 5,141 / 963",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.not_selected",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "10",
+   "quantity": "matched-candidate migration (pre-BDT) truth 1p -> reco 0p / 1p / >=2p / none",
+   "value": "1739 / 2643 / 596 / 579 / 5557",
+   "display": "1739 / 2643 / 596 / 579 / 5557",
+   "unit": "events",
+   "source": "tables/baseline_consolidation/summary.json",
+   "locator": "$.migration_matched_candidate['truth 1p']",
+   "status": "RECONSTRUCTION-ONLY UNCHANGED"
+  },
+  {
+   "slide": "11",
+   "quantity": "selected truth-matched decay pairs",
+   "value": 251,
+   "display": "251",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/delta_mass_subset.csv",
+   "locator": "D_full, decay_pairs",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "11",
+   "quantity": "median(M_reco - M_true_decay)",
+   "value": "-0.1",
+   "display": "-0.1",
+   "unit": "MeV",
+   "source": "tables/legacy_scorer_correction/delta_mass_subset.csv",
+   "locator": "D_full, median_mev",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "11",
+   "quantity": "68 % interval of M_reco - M_true_decay",
+   "value": "[-44.5, +23.4]",
+   "display": "[-44.5, +23.4]",
+   "unit": "MeV",
+   "source": "tables/legacy_scorer_correction/delta_mass_subset.csv",
+   "locator": "D_full, p16_mev / p84_mev",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "11",
+   "quantity": "half-width / RMS",
+   "value": "34.0 / 62.8",
+   "display": "34.0 / 62.8",
+   "unit": "MeV",
+   "source": "tables/legacy_scorer_correction/delta_mass_subset.csv",
+   "locator": "D_full, half68_mev / rms_mev",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "11",
+   "quantity": "decay-pair headline of the as-run chain (historical)",
+   "value": "348 pairs, median +2.8 MeV, [-44.1, +33.7] MeV",
+   "display": "348 pairs, median +2.8 MeV, [-44.1, +33.7] MeV",
+   "unit": "MeV",
+   "source": "tables/legacy_scorer_correction/delta_mass_subset.csv",
+   "locator": "A_old",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "12",
+   "quantity": "selected non-signal BNB-CV events",
+   "value": 282,
+   "display": "282",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.background.selected_nonsignal",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12",
+   "quantity": "by reco channel 1g0p / 1g1p / >=2p",
+   "value": "150 / 93 / 39",
+   "display": "150 / 93 / 39",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.background.by_channel",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12",
+   "quantity": "non-signal rate per 1e20 POT by channel (stat. only)",
+   "value": "552 / 342 / 143",
+   "display": "552 / 342 / 143",
+   "unit": "per 1e20 POT",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.background.by_channel[*][1]",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12",
+   "quantity": "signal-like (natural NC-Delta) events removed from the background",
+   "value": 9,
+   "display": "9",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.background.signal_like_removed",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category NC_PI0 (all channels)",
+   "value": 116,
+   "display": "116 (41.1 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == NC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category OUTSIDE_TPC_NU (all channels)",
+   "value": 62,
+   "display": "62 (22.0 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == OUTSIDE_TPC_NU",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category CC_PI0 (all channels)",
+   "value": 60,
+   "display": "60 (21.3 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == CC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category NUMU_CC (all channels)",
+   "value": 14,
+   "display": "14 (5.0 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == NUMU_CC",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category OTHER_NC (all channels)",
+   "value": 13,
+   "display": "13 (4.6 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == OTHER_NC",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category COSMIC_OR_UNMATCHED (all channels)",
+   "value": 13,
+   "display": "13 (4.6 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == COSMIC_OR_UNMATCHED",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category MULTI_OR_AMBIGUOUS (all channels)",
+   "value": 3,
+   "display": "3 (1.1 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == MULTI_OR_AMBIGUOUS",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "background category NUE_CC (all channels)",
+   "value": 1,
+   "display": "1 (0.4 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "sum count, category == NUE_CC",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g0p: NC_PI0",
+   "value": 56,
+   "display": "56 (37 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g0p, category == NC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g0p: OUTSIDE_TPC_NU",
+   "value": 53,
+   "display": "53 (35 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g0p, category == OUTSIDE_TPC_NU",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g0p: CC_PI0",
+   "value": 20,
+   "display": "20 (13 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g0p, category == CC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g1p: NC_PI0",
+   "value": 46,
+   "display": "46 (49 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g1p, category == NC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g1p: OUTSIDE_TPC_NU",
+   "value": 9,
+   "display": "9 (10 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g1p, category == OUTSIDE_TPC_NU",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": "1g1p: CC_PI0",
+   "value": 24,
+   "display": "24 (26 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == 1g1p, category == CC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": ">=2p: NC_PI0",
+   "value": 14,
+   "display": "14 (36 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == ge2p_diag, category == NC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": ">=2p: OUTSIDE_TPC_NU",
+   "value": 0,
+   "display": "0",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == ge2p_diag, category == OUTSIDE_TPC_NU",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12,B",
+   "quantity": ">=2p: CC_PI0",
+   "value": 16,
+   "display": "16 (41 %)",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/background_mechanisms/background_composition_by_channel.csv",
+   "locator": "channel == ge2p_diag, category == CC_PI0",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12",
+   "quantity": "signal rate per 1e20 POT, provisional TPC box (total)",
+   "value": 29.34615974004643,
+   "display": "29.3",
+   "unit": "per 1e20 POT",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal_rate.total_per_1e20",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "12",
+   "quantity": "signal rate by reco channel 1g0p / 1g1p / >=2p",
+   "value": "14.4 / 13.3 / 1.7",
+   "display": "14.4 / 13.3 / 1.7",
+   "unit": "per 1e20 POT",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.signal_rate.by_reco_channel",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "natural NC-Delta selected / in the TPC box",
+   "value": "8 / 117",
+   "display": "8 / 117",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.natural_cv.selected_any, in_tpc_box",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "natural fraction vs dedicated efficiency",
+   "value": "6.8 % vs 6.70 %",
+   "display": "6.8 % vs 6.70 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.natural_cv.natural_final_fraction, official_final_fraction",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "binomial compatibility p-value",
+   "value": "0.85",
+   "display": "0.85",
+   "unit": "p",
+   "source": "tables/legacy_scorer_correction/source_faithful/baseline_consolidation/summary.json",
+   "locator": "$.natural_cv.final_p_binom",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "scorer decomposition: A_old selected",
+   "value": 1153,
+   "display": "1,153",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/impact_configurations.csv",
+   "locator": "config == A_old, official_selected_any",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "backup",
+   "quantity": "scorer decomposition: B_score_only selected",
+   "value": 831,
+   "display": "831",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/impact_configurations.csv",
+   "locator": "config == B_score_only, official_selected_any",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "scorer decomposition: C_pio_only selected",
+   "value": 1161,
+   "display": "1,161",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/impact_configurations.csv",
+   "locator": "config == C_pio_only, official_selected_any",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "scorer decomposition: D_full selected",
+   "value": 833,
+   "display": "833",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/impact_configurations.csv",
+   "locator": "config == D_full, official_selected_any",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "historical as-run efficiency (the superseded headline)",
+   "value": 0.09278184598052627,
+   "display": "9.28 %",
+   "unit": "fraction",
+   "source": "tables/baseline_consolidation/summary.json",
+   "locator": "$.signal.eff['any|all'][2]",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "backup",
+   "quantity": "historical as-run selected non-signal BNB-CV",
+   "value": 635,
+   "display": "635 = 310 / 230 / 95",
+   "unit": "events",
+   "source": "tables/baseline_consolidation/summary.json",
+   "locator": "$.background.selected_nonsignal",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "backup",
+   "quantity": "historical signal rate per 1e20 POT",
+   "value": 40.61959445410989,
+   "display": "40.6",
+   "unit": "per 1e20 POT",
+   "source": "tables/baseline_consolidation/summary.json",
+   "locator": "$.signal_rate.total_per_1e20",
+   "status": "HISTORICAL AS-RUN"
+  },
+  {
+   "slide": "backup",
+   "quantity": "threshold translation: v at the frozen cuts numu / other / ncpi0 / nue",
+   "value": "0.4305 / 0.2263 / -0.0575 / -0.8182",
+   "display": "0.4305 / 0.2263 / -0.0575 / -0.8182",
+   "unit": "response v",
+   "source": "tables/legacy_scorer_correction/threshold_translation.csv",
+   "locator": "equivalent_cut_on_v",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "WC efficiency on SPINE-harmonised denominator: B spine_technote_strict = HARMONIZED ALL",
+   "value": "685 / 8,668 = 7.90 %",
+   "display": "685 / 8,668 = 7.90 %",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/spine_harmonization/wc_efficiency_on_harmonized.csv",
+   "locator": "B spine_technote_strict = HARMONIZED ALL",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "WC efficiency on SPINE-harmonised denominator: harmonized 0p50",
+   "value": "342 / 4,764 = 7.18 %",
+   "display": "342 / 4,764 = 7.18 %",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/spine_harmonization/wc_efficiency_on_harmonized.csv",
+   "locator": "harmonized 0p50",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "WC efficiency on SPINE-harmonised denominator: harmonized Np50",
+   "value": "343 / 3,904 = 8.79 %",
+   "display": "343 / 3,904 = 8.79 %",
+   "unit": "events",
+   "source": "tables/legacy_scorer_correction/source_faithful/spine_harmonization/wc_efficiency_on_harmonized.csv",
+   "locator": "harmonized Np50",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "efficiency vs true photon energy: lowest / highest populated bin (>= 100 events)",
+   "value": "1.8 % (50-100 MeV) / 9.0 % (400-500 MeV)",
+   "display": "1.8 % (50-100 MeV) / 9.0 % (400-500 MeV)",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/differential_efficiency/slide_extract.csv",
+   "locator": "D_full, photon_energy_mev",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "efficiency vs cos(theta_beam): most backward / most forward bin",
+   "value": "2.8 % / 8.4 %",
+   "display": "2.8 % / 8.4 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/differential_efficiency/slide_extract.csv",
+   "locator": "D_full, cos_theta_beam",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "efficiency in the last 50 cm in z (bin 9)",
+   "value": "3.4 %",
+   "display": "3.4 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/differential_efficiency/slide_extract.csv",
+   "locator": "D_full, vtx_z, last bin",
+   "status": "AUTHORITATIVE CORRECTED"
+  },
+  {
+   "slide": "backup",
+   "quantity": "interior diagnostic box vs edge complement (not a proposed FV)",
+   "value": "8.4 % vs 5.1 %",
+   "display": "8.4 % vs 5.1 %",
+   "unit": "%",
+   "source": "tables/legacy_scorer_correction/source_faithful/differential_efficiency/slide_extract.csv",
+   "locator": "D_full, interior / edge",
+   "status": "AUTHORITATIVE CORRECTED"
+  }
+ ],
+ "review_classification": [
+  {
+   "slide": "3,5",
+   "old_displayed": "26.9 %",
+   "meaning": "numu failures as a share of the total baseline loss (11,274 of 12,427) - CORRECTED Phase-19 value",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "26.7 % (3,094 of 11,594); the old 26.9 % / 29.8 % are retired",
+   "reason": "unaffected denominators changed (833 selected)"
+  },
+  {
+   "slide": "backup",
+   "old_displayed": "12.8 %",
+   "meaning": "compact (< 20 cm) numu failures as a share of the total loss (corrected)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "compact numu failures as a share of the loss: as-run population; not recomputed"
+  },
+  {
+   "slide": "3,5",
+   "old_displayed": "29.8 %",
+   "meaning": "SUPERSEDED Phase-18 share (denominator 11,331 omitted the 1,096 events without a candidate); NEVER show on a slide",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "superseded Phase-18 erratum; must not appear"
+  },
+  {
+   "slide": "8",
+   "old_displayed": "527 / 556 / 70",
+   "meaning": "reco 1g0p / 1g1p / >=2p totals (column sums of migration_final)",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "408 / 377 / 48",
+   "reason": "corrected reco totals"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "27.6 %",
+   "meaning": "signal photons with a track-typed dominant object",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failure taxonomy, defined before the BDTs"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "~3",
+   "meaning": "median number of pieces of a fragmented photon",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "fragmentation of the photon, before the BDTs"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "567",
+   "meaning": "events with a good electron shower outside the main-vertex shower set",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower attachment, before the BDTs"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "17.4 %",
+   "meaning": "share of the shower-stage failures that are the 567",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failures"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "29.6 %",
+   "meaning": "share of shower-stage failures typed muon / pion / proton",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failures"
+  },
+  {
+   "slide": "4",
+   "old_displayed": "1.2 %",
+   "meaning": "shower-stage failures that are genuinely below 20 MeV",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failures"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "29 % vs 74 %",
+   "meaning": "numu survival for total shower length < 20 cm vs above",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "28.3 % vs 72.8 %",
+   "reason": "mechanism_recheck.csv"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "25 % vs 73 %",
+   "meaning": "numu survival for < 5 vs >= 5 segments",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "24.0 % vs 72.3 %",
+   "reason": "mechanism_recheck.csv"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "76 %",
+   "meaning": "numu survival, clean electron shower",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "numu survival by photon-object class under the corrected cut was not recomputed; state qualitatively"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "36 %",
+   "meaning": "numu survival, fragmented",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "same"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "22-25 %",
+   "meaning": "numu survival, muon-/pion-typed",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "same"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "44 %",
+   "meaning": "share of the raw compact-vs-extended difference shared with the photon reco class",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "share of the compact-vs-extended difference shared with object class; not recomputed"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "25-32 pp",
+   "meaning": "association that remains after control",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "association after control; not recomputed (say: persists, magnitude not recomputed)"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "65-79 % vs 33-46 %",
+   "meaning": "other-stage survival, anchored vs not anchored vertex",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "replace by other survival given numu: truth 0p 46.8 % vs truth 1p 62.7 %",
+   "reason": "anchored-vs-unanchored split was not recomputed"
+  },
+  {
+   "slide": "5",
+   "old_displayed": "94.2 % / 88.0 %",
+   "meaning": "ncpi0-rejected events with a pair flag / with a pair containing the signal photon",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "ncpi0-rejected pair-flag percentages; the rejected set changes slightly; not recomputed; keep the qualitative fake-pair statement"
+  },
+  {
+   "slide": "6",
+   "old_displayed": "0.93 cm vs 11.6 cm",
+   "meaning": "|V_reco - V_true| median, truth 1p vs truth 0p (final selected)",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "0.87 cm vs 11.3 cm (truth 1p vs truth 0p; objects with a stored row)",
+   "reason": "vertex_resolution_subset.csv"
+  },
+  {
+   "slide": "6",
+   "old_displayed": "11.6 cm",
+   "meaning": "truth 0p vertex distance",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "11.3 cm",
+   "reason": "vertex_resolution_subset.csv"
+  },
+  {
+   "slide": "6",
+   "old_displayed": "+25.8 / +36 / +24.5 cm",
+   "meaning": "median photon-line displacement for truth 0p: traditional / raw network / DL-stage",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "population of the photon-line displacement not established as selection-independent; do not show"
+  },
+  {
+   "slide": "6",
+   "old_displayed": "0.25 cm",
+   "meaning": "median move of the late refinement",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "population not established; say only that the late refinement moves the vertex by a small amount"
+  },
+  {
+   "slide": "6",
+   "old_displayed": "42 % -> 67.5 %",
+   "meaning": "DL-stage anchoring when a true proton is reco-typed",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "population not established; do not show"
+  },
+  {
+   "slide": "7",
+   "old_displayed": "46 % / 67 % / 22 %",
+   "meaning": "proton typing efficiency above 35 MeV / at 200-300 MeV / above 500 MeV",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "proton typing vs KE at the matched candidate, before the BDTs"
+  },
+  {
+   "slide": "7",
+   "old_displayed": "17 %",
+   "meaning": "protons above 35 MeV with a row typed muon / pion / electron-shower",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "proton typing, before the BDTs"
+  },
+  {
+   "slide": "7",
+   "old_displayed": "65 %",
+   "meaning": "merged truth-1p protons merged into the signal photon",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "proton merge, before the BDTs"
+  },
+  {
+   "slide": "7",
+   "old_displayed": "883 -> 37",
+   "meaning": "truth 1p -> reco 0p: matched row typed non-proton (matched candidate -> final)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "keep only 883 (matched candidate, pre-BDT, unchanged)",
+   "reason": "the '-> 37' final-subset count is as-run; the final matrix replaces it"
+  },
+  {
+   "slide": "7",
+   "old_displayed": "468 -> 11 / 319 -> 26",
+   "meaning": "truth 0p -> reco 1p: signal photon typed proton / Geant4 secondary (matched -> final)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "keep only 468 / 319 (matched candidate, pre-BDT, unchanged)",
+   "reason": "the '-> 11 / 26' final-subset counts are as-run; the final matrix replaces them"
+  },
+  {
+   "slide": "9",
+   "old_displayed": "+2.8 MeV, [-44, +34] MeV",
+   "meaning": "M_reco - M_true_decay for 348 truth-matched Delta+ decay pairs",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "-0.1 MeV, [-44.5, +23.4] MeV",
+   "reason": "delta_mass_subset.csv"
+  },
+  {
+   "slide": "9",
+   "old_displayed": "1.034 / 12.7 %",
+   "meaning": "photon E_reco / E_true median and 68 % half-width (1,148 truth-correct selected photons)",
+   "classification": "NEEDS RECOMPUTE",
+   "corrected_value": "",
+   "reason": "photon energy response of the 1,148 truth-correct selected photons is an as-run selected sample; the corrected subset was not computed; omit the number or recompute from the Phase-11 object table"
+  },
+  {
+   "slide": "9",
+   "old_displayed": "348",
+   "meaning": "selected Delta+ decay pairs in the headline resolution",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "251",
+   "reason": "delta_mass_subset.csv"
+  },
+  {
+   "slide": "10",
+   "old_displayed": "~33 / 24 / 17 %",
+   "meaning": "1g0p: NC pi0 / outside-TPC / nue CC share of the 310",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "1g0p: NC_PI0 37 %, OUTSIDE_TPC_NU 35 %, CC_PI0 13 %",
+   "reason": "composition table"
+  },
+  {
+   "slide": "10",
+   "old_displayed": "~37 / 30 / 18 %",
+   "meaning": "1g1p: nue CC / NC pi0 / CC pi0 share of the 230",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "1g1p: NC_PI0 49 %, CC_PI0 26 %, OUTSIDE_TPC_NU 10 %",
+   "reason": "composition table"
+  },
+  {
+   "slide": "13a",
+   "old_displayed": "2.4 % -> ~15 %",
+   "meaning": "final efficiency vs true photon energy, 50-100 MeV to above 400 MeV",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "1.8 % -> 9.0 %",
+   "reason": "slide_extract.csv"
+  },
+  {
+   "slide": "13b",
+   "old_displayed": "3.0 % -> 12.8 %",
+   "meaning": "final efficiency vs photon cos(theta), backward to forward",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "2.8 % -> 8.4 %",
+   "reason": "slide_extract.csv"
+  },
+  {
+   "slide": "13c",
+   "old_displayed": "4.4 %",
+   "meaning": "final efficiency in the last 50 cm in z (450-500 cm)",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "3.4 %",
+   "reason": "slide_extract.csv"
+  },
+  {
+   "slide": "13c",
+   "old_displayed": "11.4 % vs 7.3 %",
+   "meaning": "interior diagnostic box vs outside (not a proposed FV)",
+   "classification": "CORRECTED VALUE EXISTS",
+   "corrected_value": "8.4 % vs 5.1 %",
+   "reason": "slide_extract.csv"
+  },
+  {
+   "slide": "2,5",
+   "old_displayed": "+3 / -3",
+   "meaning": "exclusive first failure minus cumulative difference at numu / ncpi0 (bookkeeping)",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "still +3 / -3 in the corrected cutflow"
+  },
+  {
+   "slide": "B03",
+   "old_displayed": "52 events",
+   "meaning": "any minus first: real signal events whose candidate 0 belongs to another interaction",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "any-minus-first counts are as-run; not recomputed"
+  },
+  {
+   "slide": "B03",
+   "old_displayed": "22",
+   "meaning": "extra background events selected by any",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "same"
+  },
+  {
+   "slide": "B04",
+   "old_displayed": "9.28 % / 10.1-10.6 % / 9.92 %",
+   "meaning": "efficiency with no FV / 175-190 cm families / with the high-y carve-out (decision support only; no recommendation)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "as-run FV decision support (starts from the superseded 9.28 %); not recomputed; the decision stays open"
+  },
+  {
+   "slide": "B05",
+   "old_displayed": "63 events",
+   "meaning": "1g1p -> 1g0p when included == 3 rows are excluded",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "included == 3 counts at the final selection are as-run; not recomputed"
+  },
+  {
+   "slide": "B05",
+   "old_displayed": "1,072",
+   "meaning": "truth events that change truth category between 35 and 50 MeV",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "truth-only count of events changing truth category between 35 and 50 MeV"
+  },
+  {
+   "slide": "B05",
+   "old_displayed": "84.7 -> 89.7 %",
+   "meaning": "truth-1p fraction of the reco 1g1p channel, included == 3 counted vs excluded (a truth-composition number)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "as-run reco composition; not recomputed"
+  },
+  {
+   "slide": "B06",
+   "old_displayed": "11,512",
+   "meaning": "events with a defined true conversion distance (92.6 % of the box)",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "truth quantity"
+  },
+  {
+   "slide": "B06",
+   "old_displayed": "0.975",
+   "meaning": "Spearman of the reco gap with the true conversion distance for detached showers with an anchored vertex",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "truth / reco-geometry quantity"
+  },
+  {
+   "slide": "B07",
+   "old_displayed": "15.1 % / 13.0 %",
+   "meaning": "shower-stage failures that are fragmented / track-typed",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failures"
+  },
+  {
+   "slide": "B07",
+   "old_displayed": "13.0 %",
+   "meaning": "shower-stage failures that are track-typed",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "shower-stage failures"
+  },
+  {
+   "slide": "B09",
+   "old_displayed": "62 % / 15 % / 6 %",
+   "meaning": "parent of the 567 shower-not-in-main-vertex-set events: true signal proton / mis-typed photon piece / pi0 pair",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "567-event attachment audit, before the BDTs"
+  },
+  {
+   "slide": "B11",
+   "old_displayed": "+12.7 pp -> +0.7 pp",
+   "meaning": "decay-vs-FSI difference at other, before and after proton KE alone",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "decay-vs-FSI difference at other: as-run; not recomputed"
+  },
+  {
+   "slide": "B11",
+   "old_displayed": "+3.8 pp / +5.2 pp",
+   "meaning": "residual final-efficiency differences (decay minus FSI-created; Delta+ minus Delta0 after adjustment)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "residual final-efficiency differences: as-run; not recomputed"
+  },
+  {
+   "slide": "B12",
+   "old_displayed": "182 of 362",
+   "meaning": "protons above 500 MeV with a row typed muon / pion / electron-shower",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "proton PID, before the BDTs"
+  },
+  {
+   "slide": "B12",
+   "old_displayed": "55-66 cm vs 122 cm",
+   "meaning": "length of mistyped protons vs correctly typed",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "proton PID, before the BDTs"
+  },
+  {
+   "slide": "B14",
+   "old_displayed": "9,206 of 13,773",
+   "meaning": "official events inside the SPINE truth FV",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "truth quantity"
+  },
+  {
+   "slide": "B15",
+   "old_displayed": "A B C O P Q T U V Y",
+   "meaning": "roadmap items DONE",
+   "classification": "SAFE UNCHANGED",
+   "corrected_value": "",
+   "reason": "roadmap bookkeeping"
+  },
+  {
+   "slide": "9",
+   "old_displayed": "10.4 %",
+   "meaning": "photon-energy half-width of the Delta-mass width (proton KE 3 %)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "photon-energy contribution to the Delta-mass width: as-run; not recomputed"
+  },
+  {
+   "slide": "9",
+   "old_displayed": "1220.8 MeV",
+   "meaning": "median M_Delta of all 554 usable events (context only; includes policy-dependent wrong-pair tails, NOT the headline resolution)",
+   "classification": "DROP FROM PRESENTATION",
+   "corrected_value": "",
+   "reason": "as-run context median"
+  }
+ ]
+}
