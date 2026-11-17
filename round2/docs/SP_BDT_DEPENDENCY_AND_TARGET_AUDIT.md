@@ -7,6 +7,11 @@ INFERRED" is a reasoned conclusion that no source states. "UNKNOWN" means not re
 **Updated later the same day, once E. H. Yandel's thesis was available locally.** §1 (tree counts), §3, §4, §6 and §7
 now follow `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`, which has the page citations.
 
+**Second update, after the EAF XML audit** (`analysis/sp-bdt-thesis-xml-compatibility-20261117` @ `0148e879`):
+- The Appendix E F scores fingerprint-match the frozen numu, other and ncpi0 XMLs exactly; nue does not.
+- SP numu now has a recovered target (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`).
+- The complete graph, freeze order and per-model decisions are in `SP_BDT_ROUND2_FREEZE_ORDER.md`.
+
 ## 0. Sources and pins
 
 | what | pin | how it was checked |
@@ -17,6 +22,7 @@ now follow `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md`, which has the page c
 | frozen XML input lists | `baseline_v0/tables/microboone_single_photon_bdt_inputs.csv`, taken from each XML's `<Variables>` (2026-10-05) | counts agree with `bdt_convert.cxx` `AddVariable` lines (73, 146, 45 + 1 commented, 56) |
 | public documentation | MicroBooNE public note 1125 (2024-06-07), PRL 136 181806 / arXiv:2502.06064 | text quoted below |
 | training definitions | E. H. Yandel, PhD thesis, UCSB 2024 (escholarship 6rq082dr), PDF sha256 `0ad56e36…1465` | `YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md` |
+| frozen-XML structure | EAF audit, branch `analysis/sp-bdt-thesis-xml-compatibility-20261117`, commit `0148e879ae44c0c61f0fb7874079734a4cead3fa`: trees, depth, splits per variable, upstream usage; all four XML sha256 match | read on Aurora with `git show` (not merged) |
 | Xuyang's nu_e / nu_mu retraining | `xning/bdt-comm` @ `2c499b9`. **Unchanged since the 2026-11-17 audit.** No commit since; no file in `xning/` newer than 2026-11-11 04:43 UTC; `origin/main` last updated 2026-11-11 04:42:48. GitHub is private and was not queried | read-only `git --no-optional-locks` |
 
 The four XMLs are not on Aurora: not in `yuhw/wire-cell-data/uboone/weights/` (43 files), and `/lus/eagle` is not mounted.
@@ -32,9 +38,9 @@ Their sha256s are recorded in `provenance/software_versions.yaml`.
 | `single_photon_nue` | 56 | none | 56 `shw_sp_*` | `single_photon_nue_bdt_final.xml` sha256 `8580ba04…a758a` | > −1.0 |
 
 The ordered lists are in `round2/config/features/single_photon_*_inputs_v0.json`; each input records its branch, type
-and producer. All four XMLs are `BoostType=Grad` with `boostWeight` 1 (baseline_v0 TMVA validation). That note also
-says 300 trees for all four, but records no per-model count. The thesis gives 300 / 215 / 400 / 300 trees for numu /
-other / ncpi0 / nue (Appendix E), so the other and ncpi0 counts must be checked on EAF (thesis audit §6).
+and producer. All four XMLs are `BoostType=Grad` with `boostWeight` 1. They have 300 / 215 / 400 / 300 trees and
+depth 5 / 5 / 6 / 5 for numu / other / ncpi0 / nue (EAF audit `0148e879`), which equals thesis Appendix E. The older
+"300 trees for all four" note was wrong for other and ncpi0.
 
 **Thresholds are on the log10-odds score.** MicroBooNE stores `single_photon_*_score = log10((1+v)/(1−v))` with
 `v = EvaluateMVA = tanh(raw)` (`inc/WCPLEEANA/bdt.h` `cal_single_photon_*_bdts_xgboost`, present since `bf9d7113`). The
@@ -83,9 +89,10 @@ DL vertex + pattern recognition + hand-written taggers (Wire-Cell step 2)      <
 Xuyang's νe final model is not upstream of any single-photon BDT. It only has to be in the refresh so that the refresh
 CAFs match Round-2.
 
-**Not covered by the Round-2 plan.** The inherited `single_photon_numu` reads `numu_score`. If Xuyang retrains the νμ
-final model and SP numu is not retrained, SP numu will be evaluated outside its training domain. Someone has to decide:
-retrain SP numu, or accept and measure the shift.
+**SP numu (now addressed).** The inherited `single_photon_numu` reads `numu_score`, its most-used input (EAF: 7.7 % of
+splits, root of 41 / 300 trees). If Xuyang retrains the νμ final model and SP numu is not retrained, SP numu is
+evaluated outside its training domain. Its target is now recovered (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`), and
+`SP_BDT_ROUND2_FREEZE_ORDER.md` §4 proposes retraining it together with SP other.
 
 ## 3. NCPI0: what the frozen model rejects, and what it was trained on
 
@@ -119,16 +126,18 @@ retrain SP numu, or accept and measure the shift.
 - No training code exists in `wcp-uboone-bdt-eyandel` (all 12 branches), `eyandel/wcp-uboone-bdt`, `eyandel/LEEana` or
   `brb-rightback/wire-cell-pid`.
 
-**Verdict (thesis audit §10): READY FOR DEVELOPMENT TRAINING** (spec v0.2.0). Not started: it waits for Avinay's
-review of the definitions. Final training also needs the EAF XML check (tree count, depth and split counts against
-thesis Fig. E.3). If that check fails, the gate becomes **BLOCKED — THESIS/XML VERSION MISMATCH**.
+**Verdict (thesis audit §10): READY FOR DEVELOPMENT TRAINING** (spec v0.2.1). The EAF XML check is done:
+**EXACT MODEL FINGERPRINT MATCH**. 400 trees and depth 6 agree, and all 45 Fig. E.3 F scores equal the XML split counts
+(thesis audit §6.1). Not started: it waits for Avinay's review and his `kine_pio_flag` policy
+(`SP_BDT_ROUND2_FREEZE_ORDER.md` §5).
 
 **Two inherited semantics a retrained model must decide explicitly:**
 - `kine_pio_flag` (input 34). MicroBooNE's scorer sets `temp_kine_pio_flag = 0` before all single-photon evaluations
   (eyandel `47b1f0c`, 2024-02-26, "break pi0 flag for sp only", comment "uncomment to match old files"). baseline_v0
   fed the real `T_kine` value, which in SBND takes 0, 1 and 2. The thesis model splits on it (Fig. E.3: F score 23,
-  10th of 45 by gain), so it was trained with real values. Whether the frozen XML splits on VarIndex 34 is part of the
-  EAF check.
+  10th of 45 by gain), so it was trained with real values. The frozen XML has the same 23 splits on VarIndex 34
+  (EAF), so MicroBooNE scored a model trained with real values using 0. Policy options:
+  `SP_BDT_ROUND2_FREEZE_ORDER.md` §5.
 - `shw_sp_pio_1_mass` is NaN on 0.006–0.02 % of filled candidates. TMVA returns −999 for such rows, while XGBoost
   routes NaN as "missing". In the ncpi0 dry-run census, 6 of 2,599 NC Δ positive rows have a non-finite input:
   `kine_pio_angle`, `kine_pio_theta_1/2`, `kine_pio_mass` and `shw_sp_pio_1_mass`.
@@ -155,7 +164,8 @@ thesis Fig. E.3). If that check fails, the gate becomes **BLOCKED — THESIS/XML
   rule. Aurora MC has cosmic-matched candidates (`T_match` partner with `truth_nu_idx < 0`) but no cosmic-only sample.
   The cosmic-matched candidates are the overlay-cosmic component, not a substitute for EXT.
 
-**Verdict (thesis audit §10): READY ONLY AFTER ADDITIONAL TRAINING SAMPLE.** It needs an in-time-cosmic sample
+**Verdict (thesis audit §10): READY ONLY AFTER ADDITIONAL TRAINING SAMPLE.** The thesis/XML link holds, with an
+exact fingerprint: 215 trees, depth 5, and all 133 split-on inputs (thesis audit §6.1). It needs an in-time-cosmic sample
 processed with the training-refresh reconstruction and split by run. It is also held by its `numu_score` input, which
 changes when Xuyang's νμ model is installed.
 
@@ -185,8 +195,10 @@ If the EAF first-look round reused this scorer, the same three points apply ther
 
 | classifier | development training now? | final freeze now? | must wait for |
 |---|---|---|---|
-| ncpi0 | **YES, after Avinay's review** (spec v0.2.0 `READY_FOR_DEVELOPMENT_TRAINING`; not started). Classes recovered from the thesis; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) the EAF XML check (thesis audit §6); (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
-| other | **NO**: the EXT (in-time cosmic) negative component has no training-side sample, and `numu_score` is about to change | **NO** | (1) an in-time-cosmic sample in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) the EAF XML check |
+| ncpi0 | **YES, after Avinay's review and `kine_pio_flag` policy** (spec v0.2.1 `READY_FOR_DEVELOPMENT_TRAINING`; not started). Classes recovered from the thesis, exact XML fingerprint; both present in aurora-r2 (dry-run census: thesis audit §9.1) | **NO** | (1) ~~the EAF XML check~~ done; (2) Snehadri's DL vertex frozen; (3) confirmation that the νe level-1 models stay shipped; (4) any shower or candidate reconstruction change for Round-2 decided, for example the Fix2-v2 fallback; (5) Aurora training refresh with 2–4 installed; (6) exporter and scorer-equivalence test; (7) the deployment route for single-photon scores decided |
+| other | **NO**: the EXT (in-time cosmic) negative component has no training-side sample, and `numu_score` is about to change | **NO** | (1) an in-time-cosmic sample in the refresh, split by run; (2) Xuyang's νμ chain frozen and installed; (3) DL vertex frozen; (4) refresh; (5) exporter and equivalence test; (6) ~~the EAF XML check~~ done |
+| numu | **YES, after Avinay's review** (spec v0.1.0; not started). Target recovered, exact fingerprint, both classes in aurora-r2 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md` §7) | **NO** | (1) Xuyang's νμ chain frozen and installed; (2) DL vertex frozen; (3) refresh; (4) exporter and equivalence test |
+| nue | not proposed: decision blocked (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4; thesis Fig. E.4 does not fingerprint-match the frozen XML) | **NO** | the decision itself |
 
 What would change the input domain of a model trained on today's (Round-1) CAFs:
 
@@ -213,13 +225,14 @@ Not sent. Questions 1–2 are mostly answered by the thesis (audit §3–4); onl
    `shw_sp_n_20br1_showers_calc`?
 2. **other (residual).** How did the 27,377 negatives divide between NC, dirt, out of FV, overlay cosmic and EXT? Was
    "cosmic" defined by `badmatch`? What is `shw_sp_vec_mean_dedx_calc`?
-3. **kine_pio_flag.** The thesis model splits on it (Fig. E.3), but MicroBooNE scored with it forced to 0 ("uncomment to
-   match old files"). Was that deliberate? Does the frozen XML split on it?
-4. **Xuyang.** Will Round-2 keep the 15 νe level-1 and the νμ level-1 TMVA models as shipped? Will `numu_score` be
-   retrained, and when is it frozen?
+3. **kine_pio_flag.** The thesis model and the frozen XML both split on it, 23 times. MicroBooNE nevertheless scored with
+   it forced to 0 ("uncomment to match old files"). Was that deliberate?
+4. **Xuyang.** Her spec uses the 15 νe level-1 scores as stored (`spec_v1.md:67`), and her plan retrains the νμ CC BDT
+   after νe (`PLAN.md:86`). Still to confirm: do the νμ level-1 models stay as shipped, and when is `numu_score`
+   frozen?
 5. **Haiwang.** Which route will compute single-photon scores in Round-2: a new toolkit scorer or offline post-processing?
-6. **EAF (Avinay).** In the reference bundle, count the `<BinaryTree>` elements, the maximum depth and the splits per
-   variable of the other and ncpi0 XMLs. Compare them with thesis App. E: 215 / 5 and 400 / 6 trees / depth, and the F
-   scores of Figs. E.2 and E.3.
+6. ~~**EAF (Avinay).** Count trees, depth and splits per variable~~. Done (`0148e879`): exact fingerprint for numu,
+   other and ncpi0. **New (EAF):** for nue, count splits per variable over the first N trees (N = 1 … 300) and compare
+   with the thesis Fig. E.4 vector (total 5,721), to test whether the thesis nue model is a prefix of the frozen forest.
 7. **Haiwang / Avinay.** Which in-time-cosmic sample for "other": SBND off-beam triggers, or an in-time-cosmic
    simulation, processed with the training-refresh reconstruction?

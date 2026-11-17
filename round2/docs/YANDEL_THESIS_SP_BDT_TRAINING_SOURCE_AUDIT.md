@@ -17,7 +17,7 @@ Conventions:
 
 | field | value |
 |---|---|
-| file | `round2/docs/qt6rq082dr.pdf`. Untracked, not in git, not modified |
+| file | provided at `round2/docs/qt6rq082dr.pdf`. Moved on 2026-11-17 (same sha256) to `$SP_WORK/thesis_audit/qt6rq082dr.pdf`, outside the git tree. Never committed, never modified |
 | size, mtime | 31,127,968 bytes; 2026-11-17 04:56:26 UTC |
 | sha256 | `0ad56e360170aa6d15954c7926c7909352cc9e67e8bcfb1b8db3b113cf5d1465` |
 | title | *A Search for Anomalous Single Photon Production in Neutrino Interactions with the MicroBooNE Detector* |
@@ -193,20 +193,42 @@ code at `0100d4b6`.
 | cut values | Table 5.5: 0.4 / 0.2 / −0.05 / −1.0 | `cuts.h` `is_singlephoton_sel`; note 1125; PRL | MATCH |
 | cut scale | grids reach −3 and −4 (p.141) | stored score `log10((1+v)/(1−v))` (`bdt.h`) | CONSISTENT. Cuts are in log10-odds, as in EAF's corrected scorer |
 | `kine_pio_flag` (ncpi0) | the model splits on it 23 times (F score 23, gain 9.19, 10th of 45 by gain) | the scorer reads the T_kine value (line 4067), then sets it to 0 before the single-photon scores ("uncomment to match old files", lines 4166–4167) | if the XML is the thesis model, MicroBooNE scored it with a value the training did not use. Check below |
-| ncpi0 trees / depth | 400 / 6 (p.281) | **unverified.** `analysis/microboone_1gamma_v0/docs/TMVA_VALIDATION.md` (2026-10-05) says "all 300 trees in all four" models, with no per-model count recorded | **POTENTIAL CONFLICT** |
-| other trees / depth | 215 / 5 (p.279) | unverified; the same note | **POTENTIAL CONFLICT** |
+| ncpi0 trees / depth | 400 / 6 (p.281) | 400 / 6 (EAF audit `0148e879`) | MATCH. The older "300 trees in all four" note was wrong for ncpi0 and other |
+| other trees / depth | 215 / 5 (p.279) | 215 / 5 (EAF audit) | MATCH |
 
-**The check that settles it, on EAF** (the XMLs are in the reference bundle there, sha256 in
-`provenance/microboone_reference_SHA256SUMS.txt`):
-1. Count the `<BinaryTree>` elements and find the deepest node in each XML. The thesis gives
-   400 / ≤ 6 (ncpi0) and 215 / ≤ 5 (other).
-2. Count the splits on each `IVar` and compare with the XGBoost F scores of Figs. E.3 and E.2. A converted forest keeps
-   every split, so the counts should match exactly. In particular, `kine_pio_flag` should have 23 splits.
+### 6.1 Appendix E fingerprint (done 2026-11-17)
 
-If both agree, the thesis describes the frozen XMLs. If they disagree, the thesis and the frozen XMLs are different
-model versions. The ncpi0 / other final gate then becomes **BLOCKED — THESIS/XML VERSION MISMATCH** until another
-source ties the classes to the frozen files. Development training (§10) does not depend on the result. Its classes are
-the analysis definitions, and the code that books these XMLs uses the same category flags.
+The EAF audit counted trees, depth and splits per variable in the four frozen XMLs: branch
+`analysis/sp-bdt-thesis-xml-compatibility-20261117`, commit `0148e879ae44c0c61f0fb7874079734a4cead3fa`, read on Aurora
+with `git show` and not merged. All four sha256s match the recorded ones.
+
+**Metric.** The Appendix E captions define the plotted "F score" as "the sum of how many times the feature is split on"
+(pp.279, 282, 283). That is XGBoost `weight`, the split count. A converted forest keeps every split, so the F score
+must equal the XML split count exactly. The "Gain" panels (average gain per split) are not comparable with the XML.
+
+**Method:**
+1. Transcribe the printed labels where they are legible (Figs. E.1, E.3, E.4).
+2. Measure every bar's length on the embedded figure images (2880 × 1440 px). The scale is fitted to the figure's own
+   axis gridlines only. Residuals to the nearest integer are ≤ 0.41 (ncpi0) and ≤ 0.13 (other).
+3. For Fig. E.2, whose 146-row labels overlap at native resolution, read each label from 4×-zoomed strips and check it
+   against the XML names with the same split count.
+
+| model | trees / depth / inputs | per-feature F score vs XML split count | verdict |
+|---|---|---|---|
+| ncpi0 (Fig. E.3) | 400 / 6 / 45 = XML | **44 EXACT MATCH, 1 NAME ALIAS ONLY** (`shw_sp_n_20br1_showers_calc` = 210), 0 MISMATCH, 0 NOT READABLE. `kine_pio_flag` 23 = 23 (rank 44 of 45 by count, 10th by gain) | **EXACT MODEL FINGERPRINT MATCH** |
+| other (Fig. E.2) | 215 / 5 / 146 = XML | 133 bars plotted = the 133 inputs with ≥ 1 XML split. **131 EXACT MATCH, 2 NAME ALIAS ONLY** (`shw_sp_vec_mean_dedx_calc` 66, `shw_sp_n_20br1_showers_calc` 47). The 13 never-split `cosmict_*` inputs are absent, as XGBoost omits zero-weight features. 0 MISMATCH, 0 NOT READABLE | **EXACT MODEL FINGERPRINT MATCH** |
+| numu (Fig. E.1) | 300 / 5 / 73 = XML | 71 EXACT, 2 ALIAS; total 8,103 = 8,103 (`SP_NUMU_TRAINING_SOURCE_AUDIT.md`) | EXACT |
+| nue (Fig. E.4) | 300 / 5 / 56 = XML | all 56 thesis values are **lower** than the XML counts (total 5,721 vs 8,236); labels agree with the bar lengths | **VERSION MISMATCH** for nue only (`SP_BDT_ROUND2_FREEZE_ORDER.md` §4) |
+
+**Consequences:**
+- For ncpi0 and other, the thesis describes the frozen XMLs exactly, so neither is blocked by a version mismatch.
+- The `_calc` names are aliases of the stored branches: same split count, same XML index.
+- One EAF observation stays open: the "other" first-tree leaf magnitude, which is consistent with a non-0.5
+  `base_score`. It cannot be checked from the XML.
+
+The transcriptions and per-feature comparisons are outside git in `$SP_WORK/thesis_audit/appendixE/`:
+`ncpi0_thesis_vs_xml.csv`, `other_thesis_vs_xml.csv`, `numu_thesis_vs_xml.csv` and `nue_thesis_vs_xml.csv`, with the
+label readings.
 
 ## 7. References and repositories
 
@@ -272,6 +294,20 @@ have an unreadable label branch, and 4 BNB files have an unreadable `T_truth_pf`
 The result is `$SP_WORK/census_tables/census.json` (sha256 `653a1df9…6110`), kept outside git. It records the spec
 sha256 (`a69bbd37…a0aa`, the committed v0.2.0) and the code sha256s.
 
+The census tool is now the generic `tools/sp_class_census.py` (formerly `tools/ncpi0_class_census.py`). It was re-run
+on the same tables with spec v0.2.1 into `$SP_WORK/census_tables/census_ncpi0.json` (sha256 `ada74dbd…0f98`; spec sha256
+`8054168d…`), with identical class counts. It
+adds the `kine_pio_flag` distribution:
+
+| | flag 0 | flag 1 | flag 2 |
+|---|---:|---:|---:|
+| NC Δ positive | 580 | 1,989 | 30 |
+| NC Δ negative | 5 | 44 | 0 |
+| BNB positive | 40 | 211 | 6 |
+| BNB negative | 75 | 804 | 24 |
+
+Every flag-0 row has `kine_pio_mass` = 0.
+
 | | NC Δ (3,000 files) | BNB (1,200 files) |
 |---|---:|---:|
 | events / candidates | 4,579 / 4,136 | 63,431 / 30,685 |
@@ -333,8 +369,7 @@ The EXT component has no Aurora source.
 | ncpi0 | **READY FOR DEVELOPMENT TRAINING** | Classes SOURCE-ESTABLISHED (§3). Both are present in aurora-r2 (§9.1). Spec `single_photon_ncpi0_training_spec_v0.2.yaml` |
 | other | **READY ONLY AFTER ADDITIONAL TRAINING SAMPLE** | Classes SOURCE-ESTABLISHED (§4), but the EXT negative component has no training-side sample. BNB cosmic-matched candidates are a different component and are **not** substituted. Spec `single_photon_other_training_spec_v0.2.yaml` |
 
-Neither gate permits final training. Final training needs:
-- the §6 XML check;
+Neither gate permits final training. The §6 XML check is done (§6.1: exact fingerprint for both). Final training needs:
 - the Round-2 freezes (`SP_BDT_DEPENDENCY_AND_TARGET_AUDIT.md` §6);
 - the training refresh.
 
@@ -358,9 +393,9 @@ Neither gate permits final training. Final training needs:
 
 ## 11. Still open for Avinay's review
 
-1. The §6 XML check on EAF (tree count, depth, split counts against Figs. E.2 / E.3).
+1. ~~The §6 XML check~~: done, exact fingerprint for both (§6.1).
 2. A1–A7, in particular A1 (photon origin; 8.6 % of BNB positive rows change) and A6 (primary π⁰; +5.9 % negatives).
 3. The SBND x cut, and whether to keep one candidate per event.
-4. `kine_pio_flag`: train with the stored value (proposed), with the legacy control fed 0.
+4. `kine_pio_flag`: choose A / B / C / D (`SP_BDT_ROUND2_FREEZE_ORDER.md` §5; B recommended). Development training of ncpi0 waits for this choice.
 5. Whether to keep NC Δ-spill pileup negatives (49 of 952 in the census).
 6. Which in-time-cosmic sample to use for "other", and who produces it.

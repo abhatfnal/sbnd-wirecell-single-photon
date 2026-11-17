@@ -1,8 +1,9 @@
 # Training specification: SBND single-photon "Other" (NC, dirt, not in FV, cosmic) background-rejection BDT.
 # v0.2.0 supersedes v0.1.0 (BLOCKED). Thesis = E. H. Yandel, UCSB 2024 (escholarship 6rq082dr; PDF sha256 0ad56e36...1465).
 # Pages are PRINTED pages (PDF = +13). Audit: round2/docs/YANDEL_THESIS_SP_BDT_TRAINING_SOURCE_AUDIT.md.
+# v0.2.1 (same day): thesis/XML fingerprint verified (EAF audit 0148e879 + Fig. E.2). Classes unchanged.
 spec_id: single_photon_other_training_spec
-spec_version: 0.2.0
+spec_version: 0.2.1
 date: 2026-11-17
 author: Avinay Bhat (prepared with Claude Code)
 status: READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE
@@ -32,9 +33,10 @@ classifier:
       - "cut values of thesis Table 5.5 = cuts.h"
     discrepancies:
       - "thesis features shw_sp_n_20br1_showers_calc and shw_sp_vec_mean_dedx_calc vs XML names without _calc"
-    unverified:
-      - "thesis n_estimators 215 and max_depth 5 vs the XML (not on Aurora; an earlier note says 300 trees for all four models without per-model evidence)"
-    check: "on EAF, count <BinaryTree> elements and the deepest node in single_photon_other_bdt_final.xml (sha256 8c0ac375...)"
+    verified:
+      - "215 trees and depth 5 in the XML = App. E.2 (EAF audit, commit 0148e879)"
+      - "Fig. E.2: 133 plotted features = the 133 XML inputs with >= 1 split; every F score = XML split count (131 names identical, 2 _calc aliases); the 13 never-split cosmict_* inputs are not plotted (XGBoost omits zero-weight features)"
+    verdict: "EXACT MODEL FINGERPRINT MATCH"
 
 inputs:
   feature_list: round2/config/features/single_photon_other_inputs_v0.json

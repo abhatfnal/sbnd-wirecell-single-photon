@@ -256,6 +256,11 @@ def test_label_gating_by_spec_status():
     assert other['status'] == 'READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE'
     with pytest.raises(labels.TargetBlockedError):
         labels.training_labels(None, other)
+    numu = _spec('numu', '0.1')
+    assert numu['status'] == 'READY_FOR_DEVELOPMENT_TRAINING'
+    with pytest.raises(labels.TargetBlockedError):
+        labels.training_labels(None, numu, final=True)
+    assert _spec('ncpi0', '0.2')['inputs']['default_handling']['kine_pio_flag']['policy'] == 'UNDECIDED'
 
 
 def test_ncpi0_development_classes():
@@ -266,3 +271,15 @@ def test_ncpi0_development_classes():
     cls, pre = labels.ncpi0_development_classes(c, _spec('ncpi0', '0.2'))
     assert cls.tolist() == [1, 0, -1, -1, -1, -1]      # cosmic partner excluded; no 20 MeV shower and placeholder fail preselection
     assert pre.tolist() == [True, True, True, False, True, False]
+
+
+def test_numu_development_classes():
+    c = pd.DataFrame(dict(
+        is_placeholder=[0] * 6, shw_sp_n_20mev_showers=[1] * 6, label_unreadable=[0] * 6,
+        partner_kind=['neutrino'] * 5 + ['none'], m_sp_truth_ok=[1, 1, 1, 1, 1, np.nan],
+        m_sp_signal=[1, 0, 0, 0, 0, np.nan], m_sp_bkg=['', 'numuCCBkg', 'numuCCpi0Bkg', 'NCpi0Bkg', 'outFVBkg', None],
+        nu_x=[50.0] * 6))
+    cls, _ = labels.development_classes(c, _spec('numu', '0.1'))
+    assert cls.tolist() == [1, 0, 0, -1, -1, -1]       # nu_mu CC with and without pi0 are negative; NC pi0, out of FV excluded
+    with pytest.raises(ValueError):
+        labels.ncpi0_development_classes(c, _spec('numu', '0.1'))

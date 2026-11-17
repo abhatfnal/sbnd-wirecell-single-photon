@@ -1,0 +1,136 @@
+# Training specification: SBND single-photon nu_mu CC background-rejection BDT.
+# v0.1.0, the first spec for this classifier. Thesis = E. H. Yandel, UCSB 2024 (escholarship 6rq082dr; PDF sha256
+# 0ad56e36...1465). Pages are PRINTED pages (PDF = +13). Audit: round2/docs/SP_NUMU_TRAINING_SOURCE_AUDIT.md.
+spec_id: single_photon_numu_training_spec
+spec_version: 0.1.0
+date: 2026-11-17
+author: Avinay Bhat (prepared with Claude Code)
+status: READY_FOR_DEVELOPMENT_TRAINING   # development only; final training needs READY_FOR_FINAL_TRAINING
+status_reason: >
+  The training classes are source-established by the thesis (sec. 5.2.2, p.128; Fig. 5.7 caption, p.129; appendix
+  E.1, pp.278-280). The frozen XML is the thesis model: 300 trees, depth 5, 73 inputs, and every Fig. E.1 F score equals
+  the XML split count (EAF audit 0148e879). Current Aurora samples hold both classes. NOT final: its two heaviest inputs,
+  numu_score and numu_1_score, come from the nu_mu chain that Xuyang retrains, and the Round-2 reconstruction is open.
+
+classifier:
+  name: single_photon_numu
+  purpose: >
+    First of four sibling background-rejection BDTs: "made to remove the remaining nu_mu CC background, which includes
+    nu_mu CC events with and without a pi0 in the final state" (thesis p.128). Applied as a cut score > threshold.
+  frozen_predecessor:
+    xml: single_photon_numu_bdt_final.xml
+    sha256: 5886affbdb3a4499a4515ecc8d354eb1449e7c204d32f1cc54c1ec8868ead961
+    booked_in: brb-rightback/wcp-uboone-bdt-eyandel @ 0100d4b6 apps/bdt_convert.cxx (reader_single_photon_numu, "MyBDT")
+    stored_score: log10((1+v)/(1-v)), v = TMVA EvaluateMVA
+    score_direction: higher = more single-photon-like (keep score > threshold)
+    frozen_threshold_log10_odds: 0.4        # thesis Table 5.5 (p.142), "more pure" selection = cuts.h is_singlephoton_sel
+    efficient_threshold_log10_odds: 0.1     # thesis Table 5.4 (p.142); also the nu_mu CC sideband (score < 0.1, p.148)
+  thesis_model_vs_xml:
+    matches:
+      - "300 trees, depth 5 (App. E.1, p.278) = XML (EAF audit 0148e879)"
+      - "73 inputs (p.128) = XML"
+      - "Fig. E.1 (p.280): 73 features, every F score equal to the XML split count (71 names identical, 2 _calc aliases); total 8,103 splits"
+      - "cut values of thesis Table 5.5 = cuts.h"
+    discrepancies:
+      - "thesis feature names shw_sp_n_20br1_showers_calc and shw_sp_vec_mean_dedx_calc vs XML names without _calc (same split counts)"
+    verdict: "THESIS/XML MATCH - TARGET ACCEPTED"
+
+inputs:
+  feature_list: round2/config/features/single_photon_numu_inputs_v0.json
+  feature_list_sha256: 688cde8f62fd416b36c5ee1afc259246c1f6dc636414285b21bd2a4b56806c7f
+  n_inputs: 73
+  order_authority: XML <Variables> VarIndex
+  source_branch_rule: wc.T_tagger.<name> for all 73
+  upstream_classifier_inputs:
+    - "numu_score: Wire-Cell inclusive nu_mu CC BDT (thesis p.128, refs [62, 68]; Fig. 5.12, p.135), XML index 72; 623 splits, root of 41 / 300 trees"
+    - "numu_1_score: nu_mu level-1 numu_tagger1, XML index 71; 311 splits"
+  default_handling:
+    float32: true
+    nan_policy: "rows with any non-finite input are not used (census in the audit)"
+
+label:
+  definition:
+    implementation: sp_retrain.labels.development_classes (truth from sp_retrain.sp_truth.classify)
+    rows: preselected candidates; one class per candidate from its T_match level-2 partner neutrino
+    positive: >
+      the partner neutrino fits the inclusive single-photon signal definition (thesis sec. 5.1.2, p.121), all five
+      categories, nu_mu CC 1 gamma with a muon below 100 MeV included. The same 24,936-event signal sample trains every
+      BDT (p.127); "Signal includes events fitting the inclusive single photon signal definition" (Fig. 5.7 caption).
+    negative: >
+      the partner neutrino is nu_mu CC background "with and without a pi0 in the final state" (p.128; Fig. 5.7 caption:
+      "Background includes only nu_mu CC events"): not signal, |pdg| 14, CC, true vertex in the 3 cm FV. Expression =
+      cuts.h SPnumuCCBkg (Npi0 == 0) + SPnumuCCpi0Bkg (Npi0 > 0). 97,580 training events in MicroBooNE.
+    excluded: every other preselected row (NC, nu_e CC, out-of-FV background, cosmic / no partner)
+  source_established:
+    - "p.127: four XGBoost BDTs; 24,936 / 25,389 signal; backgrounds split by type, used only on the relevant BDT; preselection first"
+    - "p.128: nu_mu CC BDT, 97,580 nu_mu CC events with and without a pi0, 24,936 signal, 73 variables"
+    - "p.129, Fig. 5.7 caption: background includes only nu_mu CC events"
+  thesis_implied:
+    - "nu_mu CC events that fit the signal are positive (nu_mu CC 1 gamma is a signal category, p.122)"
+    - "negatives are inside the FV (out-of-FV events belong to the Other BDT; the per-BDT counts sum to 263,120)"
+  not_stated:
+    - "whether an enriched nu_mu CC sample was used. None is needed: nu_mu CC is ~67 % of the events after preselection in general BNB MC (p.127)"
+  sbnd_mapping_assumptions: same A1-A7 as single_photon_ncpi0_training_spec v0.2
+  still_unknown:
+    - which MC files gave the 97,580 events (only "Runs 1 and 3 MC samples", p.127)
+    - whether MicroBooNE's training rows also needed match_completeness_energy > 0.1 truth_energyInside
+    - definitions of the two _calc inputs
+    - any event or class weights (none stated)
+
+preselection: same as single_photon_ncpi0_training_spec v0.2
+candidate_policy: same as single_photon_ncpi0_training_spec v0.2
+
+samples:
+  development:
+    - id: aurora-r2-bnb
+      role: "the analog of the thesis 'general BNB' MC: nu_mu CC negatives and the NC pi0 / out-of-FV / nu_mu CC signal"
+      files: 11888
+    - id: aurora-r2-ncdr
+      role: "signal-enhanced sample (NC Delta radiative, configL)"
+      files: 17603
+  not_used_for_this_classifier: [aurora-r2-nuecc -- its nu_e CC are never positive or negative]
+  enriched_sample_needed: no -- the thesis states none, and BNB CV is nu_mu CC dominated (census in the audit)
+  class_census: "dry run 2026-11-17, no training: SP_NUMU_TRAINING_SOURCE_AUDIT.md section 7"
+  allowed_input_roots: [/lus/flare/projects/neutrinoGPU/yuhw/production-prep/dlspace]
+  excluded_official_evaluation: [fg1-mc-cv, fg1-mc-nuecc, fg1-mc-ncdr, fg1-beam-off (both halves), run3-bnb-data,
+                                 open-run1-bnb-data, selected-data, official SAM EX_ncdeltarad, Xin hold-out lists]
+  approved_exceptions: []
+
+split:
+  microboone: shared Wire-Cell training list; otherwise even subrun = train, odd = test (pp.127-128)
+  scheme: subrun_parity_valhash_v1
+  unit: (sample, run, subrun)
+  seed: 20261117
+
+weights:
+  class_weights: none stated; development default none
+  event_weights: none stated; none
+  exposure: production POT records only; never rec.hdr.pot of filtered Aurora samples
+
+xgboost:            # thesis appendix E.1 (pp.278-279)
+  version: 3.4.1
+  max_depth: 5
+  n_estimators: 300
+  learning_rate: 0.1
+  objective: binary:logitraw
+  colsample_bytree: 1
+  colsample_bylevel: 0.5
+  colsample_bynode: 0.5
+  subsample: 0.8
+  gamma: 0.2
+  seed_microboone: 1
+  random_state: 20261117
+  eval_metric: [auc, error]
+  base_score: 0.5
+
+working_point: thesis pp.140-142 -- simultaneous 4x4 grid; the nu_mu CC grid spans -2.0 to 2.0 in steps of 0.1.
+
+deployment:
+  production: TMVA BDT XML, BoostType=Grad, via a validated exporter
+  proposed_name: single_photon_numu_bdt_sbnd_round2_v1
+
+dependencies:
+  upstream_classifiers:
+    - "nu_mu final model (numu_score) and nu_mu level-1 numu_tagger1 (numu_1_score): Xuyang's frozen nu_mu chain"
+  vertexing: DL neutrino vertex
+  reconstruction: "WCT pin of the training CAFs"

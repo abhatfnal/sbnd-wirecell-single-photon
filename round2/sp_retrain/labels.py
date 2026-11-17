@@ -1,11 +1,14 @@
 """Training classes for the single-photon BDTs, gated by the training spec.
 
-single_photon_ncpi0 (spec v0.2.0, READY_FOR_DEVELOPMENT_TRAINING). Source: E. H. Yandel, PhD thesis, UCSB 2024,
-sec. 5.2.2 (printed pp.127-132) and appendix E.3 (p.281); class expressions as in MicroBooNE cuts.h @ 0100d4b6:2849-2855.
+Source: E. H. Yandel, PhD thesis, UCSB 2024, sec. 5.2.2 (printed pp.127-133) and appendix E; class expressions as in
+MicroBooNE cuts.h @ 0100d4b6:2849-2856. All four BDTs share one positive class; each has its own background type,
+"split up by type and used only on the relevant BDT" (p.127).
   positive (1): the candidate's T_match level-2 partner is a neutrino that fits the inclusive single-photon signal
                 definition (sec. 5.1.2; sp_truth.classify sp_signal == 1), any category, out-of-FV signal included
-  negative (0): the partner is a neutrino in the NC pi0 background (not signal, NC, vertex in the 3 cm FV, >= 1 primary
-                pi0; sp_bkg == 'NCpi0Bkg')
+  negative (0): the partner is a neutrino of the classifier's background type (NEGATIVE_BKG):
+                single_photon_ncpi0  NC pi0 background: not signal, NC, vertex in the 3 cm FV, >= 1 primary pi0 (p.131)
+                single_photon_numu   nu_mu CC background with and without a pi0: not signal, |pdg| 14, CC, vertex in
+                                     the 3 cm FV (p.128)
   excluded (-1): every other row (other backgrounds, cosmic / no partner, unreadable truth or label)
   rows: candidates after the preselection (not a placeholder; shw_sp_n_20mev_showers > 0; label readable), which
         is where the thesis trains (sec. 5.2.1, 5.2.3: "right after preselection, which is also where BDT training is done")
@@ -17,6 +20,10 @@ import numpy as np
 import yaml
 
 READY_STATES = ('READY_FOR_DEVELOPMENT_TRAINING', 'READY_FOR_FINAL_TRAINING')
+NEGATIVE_BKG = {
+    'single_photon_ncpi0': ('NCpi0Bkg',),
+    'single_photon_numu': ('numuCCBkg', 'numuCCpi0Bkg'),
+}
 
 
 class TargetBlockedError(RuntimeError):
@@ -51,15 +58,16 @@ def preselection(cands, x_cut=None):
     return m
 
 
-def ncpi0_development_classes(cands, spec, x_cut=None):
+def development_classes(cands, spec, x_cut=None):
     """1 / 0 / -1 per candidate row (see module docstring) and the preselection mask."""
-    if spec.get('classifier', {}).get('name') != 'single_photon_ncpi0':
-        raise ValueError('not the ncpi0 spec')
+    name = spec.get('classifier', {}).get('name')
+    if name not in NEGATIVE_BKG:
+        raise TargetBlockedError('%s: no implemented label definition' % spec.get('spec_id'))
     require_ready(spec, final=False)
     pre = preselection(cands, x_cut)
     nu = (cands.partner_kind.astype(str).to_numpy() == 'neutrino') & (cands.m_sp_truth_ok.fillna(0).to_numpy() == 1)
     pos = nu & (cands.m_sp_signal.fillna(0).to_numpy() == 1)
-    neg = nu & (cands.m_sp_bkg.astype(str).to_numpy() == 'NCpi0Bkg')
+    neg = nu & np.isin(cands.m_sp_bkg.astype(str).to_numpy(), NEGATIVE_BKG[name])
     cls = np.full(len(cands), -1, dtype=np.int8)
     cls[pos] = 1
     cls[neg] = 0
@@ -67,9 +75,13 @@ def ncpi0_development_classes(cands, spec, x_cut=None):
     return cls, pre
 
 
+def ncpi0_development_classes(cands, spec, x_cut=None):
+    if spec.get('classifier', {}).get('name') != 'single_photon_ncpi0':
+        raise ValueError('not the ncpi0 spec')
+    return development_classes(cands, spec, x_cut)
+
+
 def training_labels(cands, spec, final=False):
-    """Training target per candidate row. Final labels need READY_FOR_FINAL_TRAINING; only ncpi0 is implemented."""
+    """Training target per candidate row. Final labels need READY_FOR_FINAL_TRAINING."""
     require_ready(spec, final=final)
-    if spec.get('classifier', {}).get('name') == 'single_photon_ncpi0':
-        return ncpi0_development_classes(cands, spec)[0]
-    raise TargetBlockedError('%s: no implemented label definition' % spec.get('spec_id'))
+    return development_classes(cands, spec)[0]
