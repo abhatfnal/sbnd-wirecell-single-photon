@@ -111,6 +111,16 @@ def _work(job):
                 cd.setdefault("c_" + b.split(".")[-1], flat(b))
             for m in models:
                 cd[f"c_score_{m}"] = flat(f"derived.single_photon_{m}_score")
+            # legacy source-faithful control: ncpi0 response with kine_pio_flag = 0 (bdt_convert.cxx:3958). Same masking as the stored as-run score (NaN where it is NaN). Additive column.
+            if "ncpi0" in models:
+                from sbnd_single_photon import legacy_scorer as _L
+                _pairs = BL.bdt_input_map(models)["ncpi0"]
+                if len(ev_of):
+                    _X = _L.ncpi0_input_matrix(np.column_stack([flat(b) for _, b in _pairs]), [n for n, _ in _pairs], "zero")
+                    _v0 = models["ncpi0"].decision(_X)
+                    cd["c_score_ncpi0_pio0"] = np.where(np.isfinite(cd["c_score_ncpi0"]), _v0, np.nan)
+                else:
+                    cd["c_score_ncpi0_pio0"] = np.zeros(0)
             cd["c_bdt_n_nonfinite_inputs"] = np.zeros(len(ev_of), np.int16)
             for m, pairs in BL.bdt_input_map(models).items():
                 X = np.column_stack([flat(b) for _, b in pairs]) if len(ev_of) else np.zeros((0, len(pairs)))

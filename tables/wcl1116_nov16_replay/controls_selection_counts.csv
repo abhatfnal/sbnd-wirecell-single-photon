@@ -1,0 +1,8 @@
+events_in_tables,usable_events_wc_valid,candidates,events_candidate,events_n20mev,events_bdt_evaluable,events_numu,events_other,events_ncpi0,events_nue,events_n20br1,selected_events,selected_candidates,selected_per_1000_usable_events,sample,what,production,total_pot
+100003,99987,98617,94889,81072,80253,45700,32840,26635,873,680,680,680,6.8008841149349415,nuecc,intrinsic nueCC MC (control),nov16,2.0582728730174035e+21
+100003,99946,98576,94849,80728,79976,39723,28408,22115,554,381,381,381,3.812058511596262,nuecc,intrinsic nueCC MC (control),old (fg1 / open-data production),2.0582728730174035e+21
+49970,49968,4741,4705,981,872,404,25,12,6,6,6,6,0.12007684918347743,beam_off,beam-off data,nov16,0.0
+49970,49917,4733,4697,899,820,349,24,9,5,4,4,4,0.08013302081455216,beam_off,beam-off data,old (fg1 / open-data production),0.0
+89946,89946,42328,41795,8920,8321,2164,725,200,96,81,81,81,0.9005403241945167,beam_on_open,open BNB data (older production for OLD),nov16,4.62125261085646e+18
+89946,89921,42316,41783,8936,8480,1856,490,130,35,26,26,26,0.28914269191846176,beam_on_open,open BNB data (older production for OLD),old (fg1 / open-data production),4.62125261085646e+18
+109487,109485,46682,46238,9862,9198,2505,790,226,106,96,96,96,0.8768324428003836,run3bnb,Run-3 BNB beam-on data,nov16,4.94737230969266e+18

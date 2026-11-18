@@ -1,0 +1,38 @@
+{
+ "old": {
+  "selected": 291,
+  "non_signal": 282,
+  "classes": {
+   "background": 282,
+   "signal_like": 9
+  },
+  "channels": {
+   "1g0p": 150,
+   "1g1p": 93,
+   "ge2p": 39
+  }
+ },
+ "nov16": {
+  "selected": 704,
+  "non_signal": 685,
+  "classes": {
+   "background": 685,
+   "signal_like": 19
+  },
+  "channels": {
+   "1g0p": 453,
+   "1g1p": 178,
+   "ge2p": 54
+  }
+ },
+ "pot": 2.719402147414874e+19,
+ "movement": {
+  "ENTERS (new selected, old not)": 532,
+  "stays selected": 172,
+  "LEAVES (old selected -> new not)": 119
+ },
+ "events_old": 500000,
+ "events_new": 500000,
+ "wc_valid_old": 499899,
+ "wc_valid_new": 499968
+}

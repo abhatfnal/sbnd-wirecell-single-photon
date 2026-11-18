@@ -6,7 +6,7 @@ from sbnd_single_photon import samples as S, xrd
 def test_registry_parsing():
     reg = S.load_samples()
     assert set(reg) == {"bnb_cv", "nuecc", "beam_off", "beam_on_open",
-                       "official_gen2_ncdelta", "aurora_ncdelta_training"}
+                       "official_gen2_ncdelta", "aurora_ncdelta_training", "run3bnb"}
     cv = reg["bnb_cv"]
     assert cv.available and cv.is_mc and cv.n_files_listed == 37742 and cv.n_wc_valid_events == 499899
     assert reg["beam_on_open"].schema_md5.startswith("c845fe94fbe5") and reg["beam_on_open"].is_mc is False

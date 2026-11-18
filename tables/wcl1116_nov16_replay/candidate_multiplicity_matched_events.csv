@@ -1,0 +1,6 @@
+sample,matched_events,same,more_in_new,fewer_in_new,only_old,only_new,total_candidates_old,total_candidates_new
+official_gen2_ncdelta,13772,13772,0,0,0,0,12409,12409
+nuecc,100041,99993,44,4,0,0,98576,98617
+bnb_cv,500000,499946,45,9,0,0,241845,241882
+beam_off,49970,49962,8,0,0,0,4733,4741
+beam_on_open,89946,89934,12,0,0,0,42316,42328

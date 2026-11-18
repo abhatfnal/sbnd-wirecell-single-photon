@@ -1,0 +1,13 @@
+,N,N,pct,pct
+production,nov16,old_fg1,nov16,old_fg1
+first_fail,,,,
+bdt_not_evaluable,80.0,46.0,0.644,0.37
+fail_n20br1,64.0,60.0,0.515,0.483
+fail_ncpi0,1836.0,1409.0,14.774,11.338
+fail_nue,451.0,412.0,3.629,3.315
+fail_numu,1368.0,3094.0,11.008,24.897
+fail_other,2101.0,2226.0,16.907,17.913
+missing_from_merged_caf,1.0,1.0,0.008,0.008
+no_20mev_shower,3493.0,3251.0,28.108,26.161
+no_candidate,1095.0,1095.0,8.811,8.811
+selected,1938.0,833.0,15.595,6.703

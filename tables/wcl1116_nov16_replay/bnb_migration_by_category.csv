@@ -1,0 +1,17 @@
+movement,klass,category,N
+"ENTERS (new selected, old not)",background,CC_PI0,61
+"ENTERS (new selected, old not)",background,COSMIC_OR_UNMATCHED,23
+"ENTERS (new selected, old not)",background,MULTI_OR_AMBIGUOUS,4
+"ENTERS (new selected, old not)",background,NC_PI0,243
+"ENTERS (new selected, old not)",background,NUE_CC,11
+"ENTERS (new selected, old not)",background,NUMU_CC,8
+"ENTERS (new selected, old not)",background,OTHER_NC,15
+"ENTERS (new selected, old not)",background,OUTSIDE_TPC_NU,157
+"ENTERS (new selected, old not)",signal_like,SIGNAL_NCDELTA,10
+LEAVES (old selected -> new not),background,CC_PI0,27
+LEAVES (old selected -> new not),background,COSMIC_OR_UNMATCHED,11
+LEAVES (old selected -> new not),background,MULTI_OR_AMBIGUOUS,2
+LEAVES (old selected -> new not),background,NC_PI0,43
+LEAVES (old selected -> new not),background,NUMU_CC,7
+LEAVES (old selected -> new not),background,OTHER_NC,6
+LEAVES (old selected -> new not),background,OUTSIDE_TPC_NU,23

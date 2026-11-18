@@ -1,0 +1,8 @@
+split,cls,n_events,old_selected,new_selected,old_eff_pct,new_eff_pct,old_pass_new_fail,old_fail_new_pass
+vertex_change,improved (>1 cm closer),6355,128,1128,2.014162077104642,17.749803304484658,89,1089
+vertex_change,no valid vertex in one production,1121,0,0,0.0,0.0,0,0
+vertex_change,unchanged (within 1 cm),4319,669,772,15.48969668904839,17.874507987960175,87,190
+vertex_change,worsened (>1 cm farther),632,36,38,5.69620253164557,6.012658227848101,29,31
+new_within_5cm,new vertex < 5 cm,7312,566,1076,7.740700218818381,14.715536105032822,128,638
+new_within_5cm,new vertex >= 5 cm,3997,267,862,6.680010007505629,21.56617463097323,77,672
+new_within_5cm,no vertex,1118,0,0,0.0,0.0,0,0

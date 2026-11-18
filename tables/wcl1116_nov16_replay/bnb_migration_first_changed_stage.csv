@@ -1,0 +1,13 @@
+movement,first_changed_stage,N
+"ENTERS (new selected, old not)",bdt_evaluable,1
+"ENTERS (new selected, old not)",n20br1,9
+"ENTERS (new selected, old not)",n20mev,93
+"ENTERS (new selected, old not)",ncpi0,74
+"ENTERS (new selected, old not)",nue,37
+"ENTERS (new selected, old not)",numu,187
+"ENTERS (new selected, old not)",other,131
+LEAVES (old selected -> new not),n20mev,16
+LEAVES (old selected -> new not),ncpi0,27
+LEAVES (old selected -> new not),nue,7
+LEAVES (old selected -> new not),numu,36
+LEAVES (old selected -> new not),other,33

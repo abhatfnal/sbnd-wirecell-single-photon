@@ -1,0 +1,58 @@
+{
+ "samples": {
+  "bnb_cv": {
+   "pairs": 37742,
+   "pairs_OK": 37728,
+   "pairs_PARTIAL": 14,
+   "pairs_EMPTY": 0,
+   "merged_cafs": 37742,
+   "caf_events": 500000,
+   "wc_valid_split": 499968
+  },
+  "nuecc": {
+   "pairs": 11445,
+   "pairs_OK": 11430,
+   "pairs_PARTIAL": 11,
+   "pairs_EMPTY": 4,
+   "merged_cafs": 11441,
+   "caf_events": 100003,
+   "wc_valid_split": 99987
+  },
+  "official_gen2_ncdelta": {
+   "pairs": 15776,
+   "pairs_OK": 9150,
+   "pairs_PARTIAL": 0,
+   "pairs_EMPTY": 6626,
+   "merged_cafs": 9150,
+   "caf_events": 13772,
+   "wc_valid_split": 13772
+  },
+  "beam_off": {
+   "pairs": 1096,
+   "pairs_OK": 1056,
+   "pairs_PARTIAL": 2,
+   "pairs_EMPTY": 38,
+   "merged_cafs": 1058,
+   "caf_events": 49970,
+   "wc_valid_split": 49968
+  },
+  "run3bnb": {
+   "pairs": 2208,
+   "pairs_OK": 2206,
+   "pairs_PARTIAL": 2,
+   "pairs_EMPTY": 0,
+   "merged_cafs": 2208,
+   "caf_events": 109487,
+   "wc_valid_split": 109485
+  },
+  "beam_on_open": {
+   "pairs": 1817,
+   "pairs_OK": 1817,
+   "pairs_PARTIAL": 0,
+   "pairs_EMPTY": 0,
+   "merged_cafs": 1817,
+   "caf_events": 89946,
+   "wc_valid_split": 89946
+  }
+ }
+}

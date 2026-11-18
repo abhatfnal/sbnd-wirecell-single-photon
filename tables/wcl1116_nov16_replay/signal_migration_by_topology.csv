@@ -1,0 +1,13 @@
+migration,topology,N
+old fail -> new fail,0p,4665
+old fail -> new fail,1p,4698
+old fail -> new fail,>=2p,921
+old fail -> new pass,0p,825
+old fail -> new pass,1p,443
+old fail -> new pass,>=2p,42
+old pass -> new fail,0p,127
+old pass -> new fail,1p,65
+old pass -> new fail,>=2p,13
+old pass -> new pass,0p,246
+old pass -> new pass,1p,351
+old pass -> new pass,>=2p,31

@@ -1,0 +1,9 @@
+migration,delta,N
+old fail -> new fail,Delta+,4640
+old fail -> new fail,Delta0,5644
+old fail -> new pass,Delta+,502
+old fail -> new pass,Delta0,808
+old pass -> new fail,Delta+,87
+old pass -> new fail,Delta0,118
+old pass -> new pass,Delta+,352
+old pass -> new pass,Delta0,276

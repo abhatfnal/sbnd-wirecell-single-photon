@@ -1,0 +1,111 @@
+sample,variable,old,new,N,n_matched_candidates
+official_gen2_ncdelta,shw_sp_filled,filled,filled,6966,12409
+official_gen2_ncdelta,shw_sp_filled,filled,not filled,1516,12409
+official_gen2_ncdelta,shw_sp_filled,not filled,filled,1251,12409
+official_gen2_ncdelta,shw_sp_filled,not filled,not filled,2676,12409
+official_gen2_ncdelta,>20 MeV shower count,0,0,2625,12409
+official_gen2_ncdelta,>20 MeV shower count,0,1,1092,12409
+official_gen2_ncdelta,>20 MeV shower count,0,2+,158,12409
+official_gen2_ncdelta,>20 MeV shower count,1,0,928,12409
+official_gen2_ncdelta,>20 MeV shower count,1,1,4016,12409
+official_gen2_ncdelta,>20 MeV shower count,1,2+,353,12409
+official_gen2_ncdelta,>20 MeV shower count,2+,0,555,12409
+official_gen2_ncdelta,>20 MeV shower count,2+,1,1758,12409
+official_gen2_ncdelta,>20 MeV shower count,2+,2+,924,12409
+official_gen2_ncdelta,n_20br1 count,0,0,2676,12409
+official_gen2_ncdelta,n_20br1 count,0,1,1100,12409
+official_gen2_ncdelta,n_20br1 count,0,2+,151,12409
+official_gen2_ncdelta,n_20br1 count,1,0,951,12409
+official_gen2_ncdelta,n_20br1 count,1,1,4004,12409
+official_gen2_ncdelta,n_20br1 count,1,2+,341,12409
+official_gen2_ncdelta,n_20br1 count,2+,0,565,12409
+official_gen2_ncdelta,n_20br1 count,2+,1,1726,12409
+official_gen2_ncdelta,n_20br1 count,2+,2+,895,12409
+nuecc,shw_sp_filled,filled,filled,75246,98606
+nuecc,shw_sp_filled,filled,not filled,5555,98606
+nuecc,shw_sp_filled,not filled,filled,5798,98606
+nuecc,shw_sp_filled,not filled,not filled,12007,98606
+nuecc,>20 MeV shower count,0,0,11456,98606
+nuecc,>20 MeV shower count,0,1,4359,98606
+nuecc,>20 MeV shower count,0,2+,1233,98606
+nuecc,>20 MeV shower count,1,0,3673,98606
+nuecc,>20 MeV shower count,1,1,38703,98606
+nuecc,>20 MeV shower count,1,2+,5016,98606
+nuecc,>20 MeV shower count,2+,0,1593,98606
+nuecc,>20 MeV shower count,2+,1,11064,98606
+nuecc,>20 MeV shower count,2+,2+,21509,98606
+nuecc,n_20br1 count,0,0,12007,98606
+nuecc,n_20br1 count,0,1,4564,98606
+nuecc,n_20br1 count,0,2+,1234,98606
+nuecc,n_20br1 count,1,0,3898,98606
+nuecc,n_20br1 count,1,1,38642,98606
+nuecc,n_20br1 count,1,2+,4917,98606
+nuecc,n_20br1 count,2+,0,1657,98606
+nuecc,n_20br1 count,2+,1,10893,98606
+nuecc,n_20br1 count,2+,2+,20794,98606
+bnb_cv,shw_sp_filled,filled,filled,41003,241836
+bnb_cv,shw_sp_filled,filled,not filled,10007,241836
+bnb_cv,shw_sp_filled,not filled,filled,9533,241836
+bnb_cv,shw_sp_filled,not filled,not filled,181293,241836
+bnb_cv,>20 MeV shower count,0,0,178977,241836
+bnb_cv,>20 MeV shower count,0,1,7825,241836
+bnb_cv,>20 MeV shower count,0,2+,2111,241836
+bnb_cv,>20 MeV shower count,1,0,8294,241836
+bnb_cv,>20 MeV shower count,1,1,20449,241836
+bnb_cv,>20 MeV shower count,1,2+,3950,241836
+bnb_cv,>20 MeV shower count,2+,0,1509,241836
+bnb_cv,>20 MeV shower count,2+,1,4168,241836
+bnb_cv,>20 MeV shower count,2+,2+,14553,241836
+bnb_cv,n_20br1 count,0,0,181293,241836
+bnb_cv,n_20br1 count,0,1,7530,241836
+bnb_cv,n_20br1 count,0,2+,2003,241836
+bnb_cv,n_20br1 count,1,0,8511,241836
+bnb_cv,n_20br1 count,1,1,19203,241836
+bnb_cv,n_20br1 count,1,2+,3747,241836
+bnb_cv,n_20br1 count,2+,0,1496,241836
+bnb_cv,n_20br1 count,2+,1,4115,241836
+bnb_cv,n_20br1 count,2+,2+,13938,241836
+beam_off,shw_sp_filled,filled,filled,606,4733
+beam_off,shw_sp_filled,filled,not filled,216,4733
+beam_off,shw_sp_filled,not filled,filled,267,4733
+beam_off,shw_sp_filled,not filled,not filled,3644,4733
+beam_off,>20 MeV shower count,0,0,3552,4733
+beam_off,>20 MeV shower count,0,1,226,4733
+beam_off,>20 MeV shower count,0,2+,55,4733
+beam_off,>20 MeV shower count,1,0,166,4733
+beam_off,>20 MeV shower count,1,1,404,4733
+beam_off,>20 MeV shower count,1,2+,57,4733
+beam_off,>20 MeV shower count,2+,0,36,4733
+beam_off,>20 MeV shower count,2+,1,79,4733
+beam_off,>20 MeV shower count,2+,2+,158,4733
+beam_off,n_20br1 count,0,0,3644,4733
+beam_off,n_20br1 count,0,1,217,4733
+beam_off,n_20br1 count,0,2+,50,4733
+beam_off,n_20br1 count,1,0,181,4733
+beam_off,n_20br1 count,1,1,345,4733
+beam_off,n_20br1 count,1,2+,52,4733
+beam_off,n_20br1 count,2+,0,35,4733
+beam_off,n_20br1 count,2+,1,72,4733
+beam_off,n_20br1 count,2+,2+,137,4733
+beam_on_open,shw_sp_filled,filled,filled,6692,42316
+beam_on_open,shw_sp_filled,filled,not filled,1817,42316
+beam_on_open,shw_sp_filled,not filled,filled,1652,42316
+beam_on_open,shw_sp_filled,not filled,not filled,32155,42316
+beam_on_open,>20 MeV shower count,0,0,31607,42316
+beam_on_open,>20 MeV shower count,0,1,1435,42316
+beam_on_open,>20 MeV shower count,0,2+,315,42316
+beam_on_open,>20 MeV shower count,1,0,1489,42316
+beam_on_open,>20 MeV shower count,1,1,3795,42316
+beam_on_open,>20 MeV shower count,1,2+,617,42316
+beam_on_open,>20 MeV shower count,2+,0,279,42316
+beam_on_open,>20 MeV shower count,2+,1,608,42316
+beam_on_open,>20 MeV shower count,2+,2+,2171,42316
+beam_on_open,n_20br1 count,0,0,32155,42316
+beam_on_open,n_20br1 count,0,1,1351,42316
+beam_on_open,n_20br1 count,0,2+,301,42316
+beam_on_open,n_20br1 count,1,0,1546,42316
+beam_on_open,n_20br1 count,1,1,3445,42316
+beam_on_open,n_20br1 count,1,2+,581,42316
+beam_on_open,n_20br1 count,2+,0,271,42316
+beam_on_open,n_20br1 count,2+,1,603,42316
+beam_on_open,n_20br1 count,2+,2+,2063,42316

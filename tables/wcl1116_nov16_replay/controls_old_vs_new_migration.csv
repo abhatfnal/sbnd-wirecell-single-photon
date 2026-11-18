@@ -1,0 +1,4 @@
+sample,events_old,events_new,matched_events,only_old,only_new,old_pass_new_pass,old_pass_new_fail,old_fail_new_pass,wc_valid_lost,wc_valid_gained,ncand_more,ncand_fewer,ncand_same,cand_present_to_absent,cand_absent_to_present
+nuecc,99984,99984,99984,0,0,148,233,532,0,41,44,4,99993,4,44
+beam_off,49970,49970,49970,0,0,2,2,4,0,51,8,0,49962,0,8
+beam_on_open,89946,89946,89946,0,0,18,8,63,0,25,12,0,89934,0,12

@@ -1,0 +1,14 @@
+item,old production (fg1 / ncdr),WCLocal2026Nov16,status
+wire-cell-toolkit,"4b6853d4 (fg1, ncdr, run3bnb); f6fd2209 (open data)","0.38.0, c935e30d (= master 647b2733 + version.txt)",CHANGED
+larwirecell,sbnd-wc-flatcaf ad5d9421 (fg1/run3bnb/ncdr); 3b54651 (open data),sbnd-wc-flatcaf ad5d9421,same (fg1/ncdr/run3bnb)
+wire-cell-data,9e2f4b8 (run3bnb README); fg1/ncdr: not stated,99c6497f (master with dv2max/sbnd/aurora_space) + XGB/SCN weights,CHANGED
+DL vertex model / bundle,not stated,"DV2-MAX aurora_space, dv2max/sbnd/aurora_space/bundle.json (sha256 51588842...)",CHANGED or unknown (old not stated)
+DL vertex mode of recTreeWireCell,not named,dv2_split_move (default); a second tree uses dv2_snap,unknown (old not named)
+step 1 (imaging/clustering/matching),fg1 / ncdr / run3bnb step-1 tars,"the same tars reused (array-by-array identical on 25/25 files, issue 48 P2)",unchanged
+step 2 chain,"wct-pr.jsonnet, dual chain in the old 'original' step 2","wct-pr.jsonnet, single chain per mode",CHANGED
+flat-tree schema md5 of recTreeWireCell,"d4396a3490ea (2,401 branches)","af9c87c8 (2,416 branches; adds the DL-vertex space dump)",CHANGED (extra branches)
+booked numu / nue BDT weights,not stated,not stated (uboone BDT weights listed),not established
+cosmic boundary configuration,box boundary (stated for Nov16 by Haiwang),box boundary (current treatment),same as stated; not independently verified
+SCE policy,not stated,no SCE-back correction (stated by Haiwang),not established for old
+sbndcode,v10_14_02_03 e26:prof,v10_14_02_03 e26:prof,same
+input reco1 / CAF files,fg1 / ncdr SAM selections,"the same SAM selections (NC-Delta-rad: every pair; same 13,772 events)",same input events

@@ -1,0 +1,4 @@
+movement,N
+"ENTERS (new selected, old not)",532
+stays selected,172
+LEAVES (old selected -> new not),119

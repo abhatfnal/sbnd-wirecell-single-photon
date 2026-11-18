@@ -1,0 +1,5 @@
+migration,N,pct
+old fail -> new fail,10284,82.75529089884928
+old fail -> new pass,1310,10.541562726321718
+old pass -> new fail,205,1.6496338617526354
+old pass -> new pass,628,5.053512513076366

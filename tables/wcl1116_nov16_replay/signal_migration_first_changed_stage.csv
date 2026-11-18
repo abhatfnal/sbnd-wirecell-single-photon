@@ -1,0 +1,15 @@
+migration,first_changed_stage,N
+old fail -> new pass,bdt_evaluable,5
+old fail -> new pass,n20br1,15
+old fail -> new pass,n20mev,265
+old fail -> new pass,ncpi0,184
+old fail -> new pass,nue,99
+old fail -> new pass,numu,436
+old fail -> new pass,other,306
+old pass -> new fail,n20br1,2
+old pass -> new fail,n20mev,42
+old pass -> new fail,ncpi0,56
+old pass -> new fail,nue,26
+old pass -> new fail,numu,19
+old pass -> new fail,other,60
+old pass -> new pass,,628

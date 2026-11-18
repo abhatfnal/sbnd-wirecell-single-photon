@@ -1,0 +1,13 @@
+topology,vertex_change,n_events,old_eff_pct,new_eff_pct
+0p,improved (>1 cm closer),3204,2.1223470661672907,21.473158551810236
+0p,no valid vertex in one production,669,0.0,0.0
+0p,unchanged (within 1 cm),1536,18.229166666666664,23.6328125
+0p,worsened (>1 cm farther),454,5.506607929515418,4.405286343612335
+1p,improved (>1 cm closer),2700,1.925925925925926,14.962962962962964
+1p,no valid vertex in one production,395,0.0,0.0
+1p,unchanged (within 1 cm),2308,15.294627383015596,16.11785095320624
+1p,worsened (>1 cm farther),154,7.142857142857142,11.688311688311687
+>=2p,improved (>1 cm closer),451,1.7738359201773837,7.982261640798225
+>=2p,no valid vertex in one production,57,0.0,0.0
+>=2p,unchanged (within 1 cm),475,7.578947368421053,7.7894736842105265
+>=2p,worsened (>1 cm farther),24,0.0,0.0

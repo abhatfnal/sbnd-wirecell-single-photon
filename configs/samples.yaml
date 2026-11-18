@@ -74,6 +74,21 @@ samples:
     schema_md5: c845fe94fbe59b507ef50ea87417c3f9
     provenance_note: "older schema: use ONLY branches common with MC; no MC truth/matching trees"
 
+  run3bnb:
+    status: available
+    role: data_validation
+    may_train: false
+    may_evaluate: true
+    is_mc: false
+    label: "Run-3 BNB beam-on data (FixedDev, runs 20586-20597); WCLocal2026Nov16 only (no Round-1 analysis table exists)"
+    production: "WCLocal2026Nov16-FermiGrid, WCT 0.38.0 c935e30d"
+    manifest: manifests/wcl1116/run3bnb.tsv.gz
+    n_files_listed: 2208          # WCLocal2026Nov16 README: 2,206 OK + 2 PARTIAL
+    n_caf_events: 109487
+    n_wc_valid_events: 109485
+    schema_md5: af9c87c88815199dccf5204ac71dbe44
+    provenance_note: "registered for the Nov16 frozen-selection replay; diagnostic only"
+
   # ---------------------------------------------------------------------------------------------------------
   # Signal samples. official_gen2_ncdelta: every number below was MEASURED (SAM census 2026-11-06; merged CAFs 2026-11-10). aurora_ncdelta_training: nothing recorded.
   # Dataset roles (Haiwang): official Gen2 samples on Fermilab = EVALUATION; Aurora isolated samples = training/development.
