@@ -43,7 +43,7 @@ from sp_retrain import devtrain, export_tmva, features, labels, legacy_control a
 from legacy_control_compare import load_cands  # noqa: E402
 
 LABEL = 'DEVELOPMENT FIXTURES (ROUND1_DOMAIN_DEVELOPMENT_DO_NOT_DEPLOY) -- EXPORT INFRASTRUCTURE CHECK, NOT A CUT'
-FIXTURE_CUT = {'single_photon_numu': 0.4, 'single_photon_ncpi0': -0.05}
+FIXTURE_CUT = {'single_photon_numu': 0.4, 'single_photon_ncpi0': -0.05, 'single_photon_other': 0.2, 'single_photon_nue': -1.0}
 QUANTILES = (0.05, 0.25, 0.5, 0.75, 0.95)
 SEED = 20261117
 K = 2.0 / math.log(10.0)

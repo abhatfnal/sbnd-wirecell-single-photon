@@ -113,10 +113,10 @@ def test_wcl1116_specs_keep_the_round1_training_definition(model):
     devtrain.require_development_spec(new)
 
 
-def test_other_spec_is_blocked_on_staging_with_a_narrow_exception():
+def test_other_spec_is_blocked_on_transfer_with_a_narrow_exception():
     for mode in MODES:
         s = _spec('other', mode)
-        assert s['status'] == 'BLOCKED_DATA_STAGING' and 'BLOCKED ONLY ON DATA ACCESS/STAGING' in s['status_reason']
+        assert s['status'] == 'BLOCKED_TRANSFER_EXECUTION' and 'BLOCKED ONLY ON TRANSFER EXECUTION' in s['status_reason']
         with pytest.raises(labels.TargetBlockedError):
             labels.require_ready(s)
         ext = [d for d in s['samples']['development'] if d.get('role') == labels.EXT_ROLE]
@@ -181,3 +181,123 @@ def test_cpp_equivalence_if_run():
         r = json.load(open(p))
         assert r['all_pass'], p
         assert r['reader_equals_forest_bitwise'] == r['rows_compared'] and r['swapped_names_refused']
+
+
+# ---------------------------------------------------------------- SP other / SP nue campaign (2026-11-18)
+def test_spec_scoped_firewall_exceptions():
+    spec = dict(samples=dict(approved_exceptions=[
+        dict(sample='wcl1116-fg-beamoff-train', approved_by='Avinay Bhat', path_prefix='/pnfs/x/beam-off/', path_prefixes=['/lus/stage/']),
+        dict(sample='wcl1116-fg-cv', path_prefix='/pnfs/x/mc-cv/')]))           # no approved_by -> ignored
+    ids, pre = firewall.spec_exceptions(spec)
+    assert ids == ('wcl1116-fg-beamoff-train',) and pre == ('/pnfs/x/beam-off/', '/lus/stage/')
+    with pytest.raises(firewall.FirewallError):
+        firewall.check_sample_id('wcl1116-fg-beamoff-train')
+    firewall.check_sample_id('wcl1116-fg-beamoff-train', approved_exceptions=ids)
+    with pytest.raises(firewall.FirewallError):
+        firewall.check_sample_id('wcl1116-fg-cv', approved_exceptions=ids)
+    with pytest.raises(firewall.FirewallError):
+        firewall.check_training_inputs(['/pnfs/x/mc-cv/a.root'], ['/pnfs/x'], approved_exceptions=pre)
+    assert firewall.check_training_inputs(['/lus/stage/data_filtered_decoded_reco1-1/a.root'], ['/lus'], approved_exceptions=pre) == 1
+
+
+def test_staging_verifier_pieces_and_old_fg1_rejection(tmp_path):
+    v = _tool('verify_staged_beamoff')
+    m = v.RUN.search('reco2_data_EventBuilder5_p2_art1_run18459_7_strmOffBeamLight_x.wc.flat.caf.root')
+    assert m and int(m.group(1)) == 18459
+    p = tmp_path / 'f.bin'; p.write_bytes(b'abc' * 1000)
+    import zlib, hashlib
+    ad, sha = v.checksums(str(p))
+    assert ad == '%08x' % (zlib.adler32(b'abc' * 1000) & 0xffffffff) and sha == hashlib.sha256(b'abc' * 1000).hexdigest()
+    st = json.load(open(os.path.join(ROUND2, 'validation', 'beamoff_staging_verifier_selftest_old_fg1.json')))
+    assert st['status'] == 'NOT VERIFIED' and st['expect_reco'] == 'wcl1116'
+    assert st['reco_failures'] == st['staged_files'] == 6 and st['checksum_failures'] == 0
+    assert st['evaluation_half_files'] == st['holdout_files'] == st['unknown_files'] == st['duplicate_ids'] == 0
+    assert all('not WCL1116' in f['fails'] for f in st['failures'])
+
+
+def test_sp_other_census_composition():
+    c = json.load(open(os.path.join(ROUND2, 'validation', 'sp_other_census_wcl1116_mc_only.json')))
+    for mode in MODES:
+        r = c['modes'][mode]
+        comp = r['negative_by_component']
+        assert sum(v['rows'] for v in comp.values()) == r['negative']['rows']
+        assert r['negative']['rows'] == r['negative']['train'] + r['negative']['holdout']
+        assert r['nonfinite_classed_rows'] == 0 and r['mc_only'] and r['samples_missing'] == ['wcl1116-fg-beamoff-train']
+        assert comp['beam_off_ext']['rows'] == 0 and r['beam_off_fraction_of_negatives'] == 0
+        numu = json.load(open(os.path.join(MAN, 'single_photon_numu_%s_dev_manifest.json' % mode)))
+        assert (r['positive']['train'], r['positive']['holdout']) == (numu['counts']['train']['positive_rows'], numu['counts']['test']['positive_rows'])
+
+
+def test_nue_spec_source_consistency():
+    from sp_retrain import legacy_control as lc
+    a, b = _spec('nue', 'dv2_split_move'), _spec('nue', 'dv2_snap')
+    for s in (a, b):
+        x = s['xgboost']
+        assert (x['max_depth'], x['n_estimators'], x['learning_rate'], x['objective'], x['subsample'], x['gamma'], x['seed'], x['base_score']) == \
+               (5, 300, 0.1, 'binary:logitraw', 0.8, 0.2, 1, 0.0)
+        assert (x['colsample_bytree'], x['colsample_bylevel'], x['colsample_bynode']) == (1, 0.5, 0.5)
+        assert s['inputs']['n_inputs'] == 56 == len(features.load('single_photon_nue').columns)
+        assert s['inputs']['feature_list_sha256'] == devtrain.sha256_file(os.path.join(REPO, s['inputs']['feature_list']))
+        lg = s['classifier']['legacy_control']
+        assert lg['sha256'] == lc.XML['single_photon_nue'][1] and (lg['trees'], lg['depth'], lg['inputs']) == (300, 5, 56)
+        assert lg['historical_cut_log10_odds'] == lc.LEGACY_CUT['single_photon_nue'] == -1.0
+        assert 'nueCCBkg' in s['label']['definition']['negative'] and s['deployable'] is False
+        assert s['status'] in ('READY_FOR_DEVELOPMENT_TRAINING', 'WAITING_FOR_NUECC_PRODUCTION')
+        ids = [d['id'] for d in s['samples']['development']]
+        assert ids[:2] == ['wcl1116-aurora-ncdr', 'wcl1116-aurora-bnb']
+        assert (s['status'] == 'READY_FOR_DEVELOPMENT_TRAINING') == ('wcl1116-aurora-nuecc' in ids)
+    assert labels.NEGATIVE_BKG['single_photon_nue'] == ('nueCCBkg',)
+    assert devtrain.THESIS_XGB['single_photon_nue'] == dict(max_depth=5, n_estimators=300)
+    strip = lambda s: {k: v for k, v in s.items() if k not in ('reconstruction', 'spec_version', 'classifier', 'round2_domain_differences')}
+    assert strip(a) == strip(b)
+
+
+def test_legacy_nue_control_is_the_300_tree_production_xml():
+    from sp_retrain import legacy_control as lc
+    root = '/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/legacy_bdt_controls'
+    if not os.path.isdir(root):
+        pytest.skip('legacy bundle not on this machine')
+    f = lc.load_control(root, 'single_photon_nue', features.load('single_photon_nue').names)
+    assert (len(f.names), f.ntrees, lc.max_depth(f)) == (56, 300, 5)
+
+
+@pytest.mark.parametrize('mode', list(MODES))
+def test_nue_model_provenance_and_export_if_trained(mode):
+    p = os.path.join(MAN, 'single_photon_nue_%s_dev_manifest.json' % mode)
+    if not os.path.exists(p):
+        pytest.skip('SP nue not trained (nuecc production incomplete)')
+    m = json.load(open(p))
+    assert m['model']['name'] == 'single_photon_nue_sbnd_wcl1116_%s_DEV_DO_NOT_DEPLOY' % mode and m['reconstruction']['wc_tree'] == MODES[mode]
+    assert m['xgboost_params']['base_score'] == 0.0 and m['num_boost_round'] == 300 and m['xgboost_params']['max_depth'] == 5
+    assert m['leakage']['overlapping_events'] == 0 and m['reproducibility']['identical_json']
+    e = json.load(open(os.path.join(ROUND2, 'validation', 'wcl1116_export_equivalence_nue_%s.json' % mode)))
+    assert e['all_pass'] and e['models']['single_photon_nue']['model_sha256'] == m['model']['sha256']
+
+
+def test_nue_inputs_census_and_manifests_agree():
+    p = os.path.join(ROUND2, 'validation', 'sp_nue_census_wcl1116.json')
+    if not os.path.exists(os.path.join(MAN, 'single_photon_nue_dv2_split_move_dev_manifest.json')):
+        pytest.skip('SP nue not trained')
+    nue = [s for s in json.load(open(os.path.join(MAN, 'inputs_nue.json')))['samples'] if s['id'] == 'wcl1116-aurora-nuecc']
+    assert len(nue) == 1
+    s = nue[0]
+    # the whole completed production under the fixed rule: every unit final, only PARTIAL / FAIL units excluded
+    assert s['units_listed'] == s['files'] + s['excluded_units'] and s['files'] == s['units_OK']
+    assert all(x['status'] == 'PARTIAL' or x['status'].startswith('FAIL') for x in s['excluded'])
+    for mode in MODES:
+        sp = _spec('nue', mode)
+        assert sp['status'] == 'READY_FOR_DEVELOPMENT_TRAINING'
+        assert [d for d in sp['samples']['development'] if d['id'] == 'wcl1116-aurora-nuecc'][0]['list_sha256'] == s['list_sha256']
+        m = json.load(open(os.path.join(MAN, 'single_photon_nue_%s_dev_manifest.json' % mode)))
+        assert m['inputs']['wcl1116-aurora-nuecc']['list_sha256'] == s['list_sha256'] and m['inputs']['wcl1116-aurora-nuecc']['files'] == s['files']
+        c = json.load(open(p))['modes'][mode]
+        assert c['nonfinite_classed_rows'] == 0
+        for half, k in (('train', 'train'), ('test', 'holdout')):
+            assert m['counts'][half]['positive_rows'] == c['positive'][k]
+            assert m['counts'][half]['negative_rows'] == c['negative'][k]
+        # the shared signal sample: SP numu development positives + the nu_e CC-sample signal rows
+        mu = json.load(open(os.path.join(MAN, 'single_photon_numu_%s_dev_manifest.json' % mode)))
+        assert m['counts']['train']['positive_rows'] == mu['counts']['train']['positive_rows'] + c['per_sample']['wcl1116-aurora-nuecc']['positive']['train']
+    v = json.load(open(os.path.join(ROUND2, 'validation', 'wcl1116_mode_compare_nue.json')))
+    assert v['retraining_verdict']['verdict'] == _tool('wcl1116_mode_compare').verdict(
+        [(v['modes'][md]['dev_minus_legacy_auc']['gain'], v['modes'][md]['dev_minus_legacy_auc']['bootstrap_sd']) for md in MODES])

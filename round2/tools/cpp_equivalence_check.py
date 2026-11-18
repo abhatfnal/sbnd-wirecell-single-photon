@@ -27,7 +27,7 @@ sys.path.insert(0, ROUND2)
 sys.path.insert(0, os.path.join(ROUND2, 'tools'))
 from sp_retrain import devtrain, features, labels, tmva_grad  # noqa: E402
 
-FIXTURE_CUT = {'single_photon_numu': 0.4, 'single_photon_ncpi0': -0.05, 'single_photon_other': 0.2}
+FIXTURE_CUT = {'single_photon_numu': 0.4, 'single_photon_ncpi0': -0.05, 'single_photon_other': 0.2, 'single_photon_nue': -1.0}
 SEED = 20261117
 
 

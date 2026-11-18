@@ -27,6 +27,7 @@ THESIS_XGB = {  # Yandel thesis appendix E (E.1 p.278-279, E.3 p.281-283)
     'single_photon_numu': dict(max_depth=5, n_estimators=300),
     'single_photon_ncpi0': dict(max_depth=6, n_estimators=400),
     'single_photon_other': dict(max_depth=5, n_estimators=215),   # App. E.2 (pp.279-281)
+    'single_photon_nue': dict(max_depth=5, n_estimators=300),     # App. E.4 (p.284) = the 300-tree production XML
 }
 THESIS_COMMON = dict(learning_rate=0.1, objective='binary:logitraw', colsample_bytree=1, colsample_bylevel=0.5,
                      colsample_bynode=0.5, subsample=0.8, gamma=0.2, seed=1, eval_metric=['auc', 'error'])

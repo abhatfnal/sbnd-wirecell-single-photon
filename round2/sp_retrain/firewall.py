@@ -58,6 +58,19 @@ def check_training_inputs(paths, allowed_roots, approved_exceptions=()):
     return len(paths)
 
 
+def spec_exceptions(spec):
+    """(sample ids, path prefixes) a training spec explicitly approves: samples.approved_exceptions entries that carry
+    approved_by. Anything else stays refused."""
+    ids, prefixes = [], []
+    for e in (spec or {}).get('samples', {}).get('approved_exceptions', []) or []:
+        if not e.get('approved_by'):
+            continue
+        if e.get('sample'):
+            ids.append(e['sample'])
+        prefixes += [p for p in [e.get('path_prefix')] + list(e.get('path_prefixes', []) or []) if p]
+    return tuple(ids), tuple(prefixes)
+
+
 def check_sample_id(sample_id, approved_exceptions=()):
     if sample_id in approved_exceptions:
         return

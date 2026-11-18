@@ -1,0 +1,222 @@
+{
+ "campaign": "development_wcl1116_v1",
+ "deployable": false,
+ "label": "WCL1116_DEVELOPMENT_DO_NOT_DEPLOY",
+ "upstream_numu": "NOT_AN_INPUT",
+ "holdout_kind": "DEVELOPMENT HOLDOUT (not an independent end-to-end test)",
+ "reconstruction": {
+  "production": "WCLocal2026Nov16-Aurora",
+  "vertex_mode": "dv2_snap",
+  "wc_tree": "recTreeWireCell_dv2snap",
+  "wct_version_stamp": "0.38.0",
+  "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "dl_bundle_sha256": "51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+ },
+ "classifier": "single_photon_nue",
+ "model": {
+  "name": "single_photon_nue_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+  "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_snap/nue/single_photon_nue_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY.json",
+  "sha256": "6b3282cc2737f9bd7eed732764983ae0dad835eb6cc879255fcd20c4bfa0fac5",
+  "format": "xgboost JSON"
+ },
+ "spec": {
+  "path": "specs/single_photon_nue_training_spec_dev_wcl1116_dv2_snap.yaml",
+  "sha256": "923aea52a8644aaadf6ca3abf57777fea2aa63d52adadcb13c1d255afb2139ac"
+ },
+ "feature_list": {
+  "path": "round2/config/features/single_photon_nue_inputs_v0.json",
+  "sha256": "9a1a2446e8a12325ee915732c4f4b3d41448c9ff25e817f8d4ac29d70050ffa5",
+  "n": 56
+ },
+ "xgboost_params": {
+  "max_depth": 5,
+  "eta": 0.1,
+  "objective": "binary:logitraw",
+  "colsample_bytree": 1,
+  "colsample_bylevel": 0.5,
+  "colsample_bynode": 0.5,
+  "subsample": 0.8,
+  "gamma": 0.2,
+  "seed": 1,
+  "eval_metric": [
+   "auc",
+   "error"
+  ],
+  "base_score": 0.0,
+  "tree_method": "hist",
+  "nthread": 8
+ },
+ "num_boost_round": 300,
+ "seed": 1,
+ "inputs": {
+  "wcl1116-aurora-ncdr": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-ncdr.txt",
+   "list_sha256": "c72481ef80dd5ce7469c6785b3f21206fdc43dd0594d0d5f3799e31c7e32ad06",
+   "files": 17604,
+   "errors": 0,
+   "events": 26745,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 44,
+   "truth_pf_unreadable_files": 0,
+   "cands_sha256": "b0e08fe0b8d7390c45fe5a6a8ccde880fea56e0a1a5632bf35079438eb63c6f7",
+   "truth_sha256": "6c21542119ff334b589f7cef577bfaf703439fd17d59d36f18d30f9379a3e96c",
+   "files_sha256": "e8ce506fe03a739136e0b100e9ad211c844b6d9d5783f3d816a0d8a0d29b2b54",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  },
+  "wcl1116-aurora-bnb": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-bnb.txt",
+   "list_sha256": "4d37964dc39d3bf0a5ab70d1c831e7dee56068ba7195d1d192c3e4bdfbeef821",
+   "files": 11874,
+   "errors": 0,
+   "events": 626441,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 0,
+   "truth_pf_unreadable_files": 49,
+   "cands_sha256": "600b115e527e4cb1aa82a30ec468c5f71382f8eae2cfe77601f7283feae5c47e",
+   "truth_sha256": "b8df308c8500b60a3681e9e763402d959beac0f58942422f7334e531fc51addf",
+   "files_sha256": "cf1e9ec415c4731332902a71abb2123c403b0993946f4facf417bc86e3d78d68",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  },
+  "wcl1116-aurora-nuecc": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-nuecc.txt",
+   "list_sha256": "ca9ebd3b4e0afd76013d3c39a921e78779e00f7b5ddfd7311e96f48aaf72cc9d",
+   "files": 61238,
+   "errors": 0,
+   "events": 268783,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 14,
+   "truth_pf_unreadable_files": 0,
+   "cands_sha256": "552b30e589a52a032d15d5a0cde73202fb746c8a4a497696f9bdb5f232070fdb",
+   "truth_sha256": "01247ba7da94fa288febdbc037c4bb1b75d0cae44015c0fa2fbe8bab7eb87d28",
+   "files_sha256": "f48d56fbbe974ebd5b267937ff851f54b097874b6f8cae9c3f85a02a0324051b",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  }
+ },
+ "tables_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_tables/dv2_snap",
+ "tag": "dev",
+ "code": {
+  "git": {
+   "head": "a6556cfe20344d3cd78ef9ad60c172526eed2a22",
+   "dirty_paths": [
+    "round2/sp_retrain/build_tables.py",
+    "round2/sp_retrain/devtrain.py",
+    "round2/sp_retrain/firewall.py",
+    "round2/sp_retrain/labels.py",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/tests/test_wcl1116_dev.py",
+    "round2/tools/cpp_equivalence_check.py",
+    "round2/tools/export_equivalence_check.py",
+    "round2/tools/legacy_control_compare.py",
+    "round2/tools/make_wcl1116_dev_specs.py",
+    "round2/tools/train_wcl1116_dev_model.py",
+    "round2/tools/wcl1116_mode_compare.py",
+    "round2/docs/SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md",
+    "round2/manifests/wcl1116_dev_v1/inputs_nue.json",
+    "round2/manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-nuecc.tsv.gz",
+    "round2/manifests/wcl1116_dev_v1/single_photon_nue_dv2_split_move_dev_manifest.json",
+    "round2/specs/single_photon_nue_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_nue_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/tools/beamoff_staging/",
+    "round2/tools/sp_other_census.py",
+    "round2/tools/verify_staged_beamoff.py",
+    "round2/validation/beamoff_staging_verifier_selftest_old_fg1.json",
+    "round2/validation/sp_other_census_wcl1116_mc_only.json",
+    "round2/validation/wcl1116_export_equivalence_nue_dv2_split_move.json"
+   ]
+  },
+  "sha256": {
+   "sp_retrain/devtrain.py": "92210746f8cd8b5589476a7128497a54cf2a10d8b45f53d13573543ba66912e7",
+   "sp_retrain/labels.py": "4ac7721e2298251fb679942af6b0c77128615c079c90919ab2e4cdc444cfa0ca",
+   "sp_retrain/sp_truth.py": "01a6b98828879876a0a9824f8cc7707071f7c3e592e2fc594f57cdd6e080b98d",
+   "sp_retrain/build_tables.py": "53ee5da93e5ef4ab2072721e01635403512f45ce83d223381c919920385b253f",
+   "sp_retrain/split.py": "039436513645e92dd8cdd29cb9ff712c8c92b37627680fbdf3fc590874c19848",
+   "sp_retrain/features.py": "2c0e391f65aa8a88adc617c4e54e108112e5d47985f487b4d8ec77bf744314cf",
+   "sp_retrain/firewall.py": "dae8b6dfbdf04b6c26d34ea7cf8dc4a2974c47ab692f16e04c07d127eedbea56",
+   "tools/train_wcl1116_dev_model.py": "e57a3107396b8efcd170bfdbda61750d24738292367ccdcecac265dc53768f86"
+  }
+ },
+ "packages": {
+  "python": "3.12.12",
+  "numpy": "2.3.5",
+  "pandas": "3.0.5",
+  "xgboost": "3.4.1",
+  "scikit_learn": "1.9.0"
+ },
+ "counts": {
+  "train": {
+   "rows": 115398,
+   "positive_rows": 8722,
+   "negative_rows": 106676,
+   "events": 115295,
+   "positive_events": 8720,
+   "negative_events": 106605,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1290,
+     "negative": 622
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7377,
+     "negative": 8
+    },
+    "wcl1116-aurora-nuecc": {
+     "positive": 55,
+     "negative": 106046
+    }
+   }
+  },
+  "test": {
+   "rows": 115601,
+   "positive_rows": 8791,
+   "negative_rows": 106810,
+   "events": 115472,
+   "positive_events": 8788,
+   "negative_events": 106717,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1308,
+     "negative": 609
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7437,
+     "negative": 4
+    },
+    "wcl1116-aurora-nuecc": {
+     "positive": 46,
+     "negative": 106197
+    }
+   }
+  }
+ },
+ "leakage": {
+  "train_events": 115295,
+  "test_events": 115472,
+  "overlapping_events": 0,
+  "duplicate_rows": 0,
+  "events_in_more_than_one_file": 0
+ },
+ "nonfinite_excluded": 0,
+ "metrics": {
+  "train_auc": 0.97628624214597,
+  "test_auc": 0.9524241434501975,
+  "train_error": 0.03811157905682941,
+  "test_error": 0.04759474399010389
+ },
+ "reproducibility": {
+  "model_sha256": "6b3282cc2737f9bd7eed732764983ae0dad835eb6cc879255fcd20c4bfa0fac5",
+  "repeat_sha256": "6b3282cc2737f9bd7eed732764983ae0dad835eb6cc879255fcd20c4bfa0fac5",
+  "identical_json": true,
+  "max_abs_margin_diff_test": 0.0
+ },
+ "outputs_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_snap/nue"
+}

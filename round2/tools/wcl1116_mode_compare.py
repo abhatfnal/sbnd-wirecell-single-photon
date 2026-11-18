@@ -25,11 +25,42 @@ sys.path.insert(0, os.path.join(ROUND2, 'tools'))
 from sp_retrain import devtrain, features, labels, legacy_control as lc  # noqa: E402
 from legacy_control_compare import load_cands  # noqa: E402
 
+# Retraining verdict (Task 14), FIXED BEFORE the SP nue / SP other fits (2026-11-17 23:5xZ), on identical holdout rows:
+#   RETRAINING CLEARLY BENEFICIAL            in BOTH modes: dev - legacy AUC >= 0.010 and > 3 sigma (event bootstrap)
+#   LEGACY MODEL REMAINS COMPETITIVE         in BOTH modes: dev - legacy AUC <= 0.002
+#   RETRAINING NEUTRAL / NOT RESOLVED        otherwise
+VERDICT_RULE = 'BENEFICIAL: both modes gain >= 0.010 and > 3 sigma; COMPETITIVE: both modes gain <= 0.002; else NEUTRAL / NOT RESOLVED'
+
+
+def verdict(gains):
+    """gains: list of (mean, sd) of dev - legacy AUC, one per vertex mode."""
+    if all(m >= 0.010 and m > 3 * sd for m, sd in gains):
+        return 'RETRAINING CLEARLY BENEFICIAL'
+    if all(m <= 0.002 for m, _ in gains):
+        return 'LEGACY MODEL REMAINS COMPETITIVE'
+    return 'RETRAINING NEUTRAL / NOT RESOLVED'
+
+
+def boot_gain(hold, roc_auc_score, n=200, seed=20261117):
+    rng = np.random.default_rng(seed)
+    ev = hold[devtrain.EV].astype(str).agg('|'.join, axis=1).to_numpy()
+    uev, inv = np.unique(ev, return_inverse=True)
+    g = []
+    for _ in range(n):
+        w = np.bincount(rng.integers(0, len(uev), len(uev)), minlength=len(uev))[inv]
+        s = hold.iloc[np.repeat(np.arange(len(hold)), w)]
+        if s.y.nunique() < 2:
+            continue
+        g.append(roc_auc_score(s.y, s.margin) - roc_auc_score(s.y, s.legacy))
+    return float(roc_auc_score(hold.y, hold.margin) - roc_auc_score(hold.y, hold.legacy)), float(np.std(g))
+
+
 BOOKKEEPING = {'run', 'subrun', 'event', 'cand', 'file_id', 'sample', 'cluster_id', 'nu_index', 'eventNo', 'runNo', 'subRunNo'}
 GROUPS = {'single_photon_numu': {'upstream_numu': ('numu_score', 'numu_1_score')},
           'single_photon_ncpi0': {'nue_L1_scores': ('_score',), 'pi0_kinematics': ('kine_pio_',)},
           'single_photon_other': {'upstream_numu': ('numu_score', 'numu_1_score', 'numu_2_score', 'cosmict_10_score'),
-                                  'cosmic_tagger': ('cosmict_', 'cosmic_')}}
+                                  'cosmic_tagger': ('cosmict_', 'cosmic_')},
+          'single_photon_nue': {'shower_stem_dQdx': ('dQ_dx', 'dedx', 'dqdx', 'stem'), 'conversion_distance': ('vtx_dis', 'shw_dis', 'min_dis')}}
 
 
 def legacy_splits(forest):
@@ -74,6 +105,10 @@ def mode_block(tables, tag, spec_path, mdir, bundle, xgb, roc_auc_score):
                            for g, pats in GROUPS.get(clf, {}).items()},
         dev_rank={c: int(r) for c, r in zip(imp.feature, imp.rank_weight) if c in sum(GROUPS.get(clf, {}).values(), ()) or c.startswith('kine_pio')})
     hold = keys[te].reset_index(drop=True).assign(margin=m_te, legacy=s_leg, y=y[te])
+    gm, gsd = boot_gain(hold, roc_auc_score)
+    out['dev_minus_legacy_auc'] = dict(gain=gm, bootstrap_sd=gsd, n_bootstrap=200)
+    from scipy.stats import spearmanr as _sp
+    out['spearman_dev_vs_legacy'] = float(_sp(m_te, s_leg).correlation)
     return out, hold, clf
 
 
@@ -120,6 +155,8 @@ def main():
         dl.append(roc_auc_score(s.y_split, s.legacy_snap) - roc_auc_score(s.y_split, s.legacy_split))
     res['matched_common_population']['bootstrap_200_snap_minus_split'] = dict(
         dev_auc_mean=float(np.mean(dd)), dev_auc_std=float(np.std(dd)), legacy_auc_mean=float(np.mean(dl)), legacy_auc_std=float(np.std(dl)))
+    res['retraining_verdict'] = dict(rule=VERDICT_RULE, verdict=verdict([(v['dev_minus_legacy_auc']['gain'], v['dev_minus_legacy_auc']['bootstrap_sd'])
+                                                                         for v in res['modes'].values()]))
     json.dump(res, open(a.out_json, 'w'), indent=1)
     print(json.dumps({kk: (vv if kk != 'modes' else {mm: {x: vv[mm][x] for x in ('train_rows', 'holdout_rows', 'train_auc', 'holdout_auc', 'legacy_holdout_auc')} for mm in vv})
                       for kk, vv in res.items()}, indent=1, default=str))

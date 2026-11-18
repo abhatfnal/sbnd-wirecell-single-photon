@@ -1,0 +1,232 @@
+{
+ "label": "SP nue CENSUS (WCL1116 development tables; no training)",
+ "thesis_reference": {
+  "negative_events": 100958,
+  "positive_events": 24936,
+  "source": "Yandel thesis p.133 (training counts of the nu_e CC BDT)"
+ },
+ "modes": {
+  "dv2_split_move": {
+   "spec_status": "READY_FOR_DEVELOPMENT_TRAINING",
+   "samples": [
+    "wcl1116-aurora-ncdr",
+    "wcl1116-aurora-bnb",
+    "wcl1116-aurora-nuecc"
+   ],
+   "per_sample": {
+    "wcl1116-aurora-bnb": {
+     "candidates": 296409,
+     "events_with_candidate": 291222,
+     "preselected": 65792,
+     "events_with_preselected": 65433,
+     "positive": {
+      "rows": 2610,
+      "train": 1296,
+      "holdout": 1314,
+      "events": 2610
+     },
+     "negative": {
+      "rows": 1239,
+      "train": 623,
+      "holdout": 616,
+      "events": 1238
+     },
+     "excluded_preselected_by_truth": {
+      "numuCCBkg": 21525,
+      "numuCCpi0Bkg": 16398,
+      "NCpi0Bkg": 9267,
+      "outFVBkg": 7776,
+      "NCBkg": 3691,
+      "partner_cosmic": 2972,
+      "": 253,
+      "partner_none": 61
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 626441,
+     "fraction_events_with_negative_row": 0.0019762435728185096
+    },
+    "wcl1116-aurora-ncdr": {
+     "candidates": 23982,
+     "events_with_candidate": 23117,
+     "preselected": 16213,
+     "events_with_preselected": 16057,
+     "positive": {
+      "rows": 14972,
+      "train": 7465,
+      "holdout": 7507,
+      "events": 14967
+     },
+     "negative": {
+      "rows": 13,
+      "train": 8,
+      "holdout": 5,
+      "events": 13
+     },
+     "excluded_preselected_by_truth": {
+      "outFVBkg": 330,
+      "NCpi0Bkg": 285,
+      "numuCCBkg": 216,
+      "partner_cosmic": 159,
+      "NCBkg": 131,
+      "numuCCpi0Bkg": 107
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 26745,
+     "fraction_events_with_negative_row": 0.00048607216302112545
+    },
+    "wcl1116-aurora-nuecc": {
+     "candidates": 264940,
+     "events_with_candidate": 255013,
+     "preselected": 220503,
+     "events_with_preselected": 218316,
+     "positive": {
+      "rows": 108,
+      "train": 58,
+      "holdout": 50,
+      "events": 108
+     },
+     "negative": {
+      "rows": 212179,
+      "train": 105992,
+      "holdout": 106187,
+      "events": 212020
+     },
+     "excluded_preselected_by_truth": {
+      "outFVBkg": 4852,
+      "numuCCBkg": 1345,
+      "numuCCpi0Bkg": 901,
+      "partner_cosmic": 578,
+      "NCpi0Bkg": 374,
+      "NCBkg": 159,
+      "partner_none": 7
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 268783,
+     "fraction_events_with_negative_row": 0.788814768791181
+    }
+   },
+   "nonfinite_classed_rows": 0,
+   "positive": {
+    "rows": 17690,
+    "train": 8819,
+    "holdout": 8871
+   },
+   "negative": {
+    "rows": 213431,
+    "train": 106623,
+    "holdout": 106808
+   }
+  },
+  "dv2_snap": {
+   "spec_status": "READY_FOR_DEVELOPMENT_TRAINING",
+   "samples": [
+    "wcl1116-aurora-ncdr",
+    "wcl1116-aurora-bnb",
+    "wcl1116-aurora-nuecc"
+   ],
+   "per_sample": {
+    "wcl1116-aurora-bnb": {
+     "candidates": 296409,
+     "events_with_candidate": 291222,
+     "preselected": 66214,
+     "events_with_preselected": 65859,
+     "positive": {
+      "rows": 2598,
+      "train": 1290,
+      "holdout": 1308,
+      "events": 2598
+     },
+     "negative": {
+      "rows": 1231,
+      "train": 622,
+      "holdout": 609,
+      "events": 1230
+     },
+     "excluded_preselected_by_truth": {
+      "numuCCBkg": 21834,
+      "numuCCpi0Bkg": 16488,
+      "NCpi0Bkg": 9236,
+      "outFVBkg": 7806,
+      "NCBkg": 3718,
+      "partner_cosmic": 2981,
+      "": 264,
+      "partner_none": 58
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 626441,
+     "fraction_events_with_negative_row": 0.001963473016612897
+    },
+    "wcl1116-aurora-ncdr": {
+     "candidates": 23982,
+     "events_with_candidate": 23117,
+     "preselected": 16065,
+     "events_with_preselected": 15905,
+     "positive": {
+      "rows": 14814,
+      "train": 7377,
+      "holdout": 7437,
+      "events": 14809
+     },
+     "negative": {
+      "rows": 12,
+      "train": 8,
+      "holdout": 4,
+      "events": 12
+     },
+     "excluded_preselected_by_truth": {
+      "outFVBkg": 338,
+      "NCpi0Bkg": 288,
+      "numuCCBkg": 216,
+      "partner_cosmic": 156,
+      "NCBkg": 131,
+      "numuCCpi0Bkg": 110
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 26745,
+     "fraction_events_with_negative_row": 0.000448681996634885
+    },
+    "wcl1116-aurora-nuecc": {
+     "candidates": 264940,
+     "events_with_candidate": 255013,
+     "preselected": 220561,
+     "events_with_preselected": 218370,
+     "positive": {
+      "rows": 101,
+      "train": 55,
+      "holdout": 46,
+      "events": 101
+     },
+     "negative": {
+      "rows": 212243,
+      "train": 106046,
+      "holdout": 106197,
+      "events": 212080
+     },
+     "excluded_preselected_by_truth": {
+      "outFVBkg": 4852,
+      "numuCCBkg": 1342,
+      "numuCCpi0Bkg": 900,
+      "partner_cosmic": 597,
+      "NCpi0Bkg": 371,
+      "NCBkg": 149,
+      "partner_none": 6
+     },
+     "nonfinite_classed_rows": 0,
+     "events": 268783,
+     "fraction_events_with_negative_row": 0.7890379971947631
+    }
+   },
+   "nonfinite_classed_rows": 0,
+   "positive": {
+    "rows": 17513,
+    "train": 8722,
+    "holdout": 8791
+   },
+   "negative": {
+    "rows": 213486,
+    "train": 106676,
+    "holdout": 106810
+   }
+  }
+ }
+}

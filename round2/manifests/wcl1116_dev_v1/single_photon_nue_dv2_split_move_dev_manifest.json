@@ -1,0 +1,220 @@
+{
+ "campaign": "development_wcl1116_v1",
+ "deployable": false,
+ "label": "WCL1116_DEVELOPMENT_DO_NOT_DEPLOY",
+ "upstream_numu": "NOT_AN_INPUT",
+ "holdout_kind": "DEVELOPMENT HOLDOUT (not an independent end-to-end test)",
+ "reconstruction": {
+  "production": "WCLocal2026Nov16-Aurora",
+  "vertex_mode": "dv2_split_move",
+  "wc_tree": "recTreeWireCell",
+  "wct_version_stamp": "0.38.0",
+  "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "dl_bundle_sha256": "51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74"
+ },
+ "classifier": "single_photon_nue",
+ "model": {
+  "name": "single_photon_nue_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY",
+  "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_split_move/nue/single_photon_nue_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY.json",
+  "sha256": "d3bd3b5e53d3034b709d58ab0ea442021446045288fbc649dc576610131b79ef",
+  "format": "xgboost JSON"
+ },
+ "spec": {
+  "path": "specs/single_photon_nue_training_spec_dev_wcl1116_dv2_split_move.yaml",
+  "sha256": "17a64c92564d2247bb7611de1ee6cbde35e8bfca59e62334040d8a7eaebe38d8"
+ },
+ "feature_list": {
+  "path": "round2/config/features/single_photon_nue_inputs_v0.json",
+  "sha256": "9a1a2446e8a12325ee915732c4f4b3d41448c9ff25e817f8d4ac29d70050ffa5",
+  "n": 56
+ },
+ "xgboost_params": {
+  "max_depth": 5,
+  "eta": 0.1,
+  "objective": "binary:logitraw",
+  "colsample_bytree": 1,
+  "colsample_bylevel": 0.5,
+  "colsample_bynode": 0.5,
+  "subsample": 0.8,
+  "gamma": 0.2,
+  "seed": 1,
+  "eval_metric": [
+   "auc",
+   "error"
+  ],
+  "base_score": 0.0,
+  "tree_method": "hist",
+  "nthread": 8
+ },
+ "num_boost_round": 300,
+ "seed": 1,
+ "inputs": {
+  "wcl1116-aurora-ncdr": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-ncdr.txt",
+   "list_sha256": "c72481ef80dd5ce7469c6785b3f21206fdc43dd0594d0d5f3799e31c7e32ad06",
+   "files": 17604,
+   "errors": 0,
+   "events": 26745,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 38,
+   "truth_pf_unreadable_files": 0,
+   "cands_sha256": "526cf8fd0133aa3e53710d999a913b257e865cda5207b5af79127cdc26011492",
+   "truth_sha256": "7e94e54634085a489569f4f344c190270c14f81195939175f68b94738ab38d6a",
+   "files_sha256": "7e8c187af0ea56c812a06f67c2b6794548c2036689e36a98a667d580714629f7",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  },
+  "wcl1116-aurora-bnb": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-bnb.txt",
+   "list_sha256": "4d37964dc39d3bf0a5ab70d1c831e7dee56068ba7195d1d192c3e4bdfbeef821",
+   "files": 11874,
+   "errors": 0,
+   "events": 626441,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 0,
+   "truth_pf_unreadable_files": 48,
+   "cands_sha256": "c861ab44559e1414a4023dba402731bebe50d5e321a57759ea38790fe9afc53e",
+   "truth_sha256": "d849e4ddf430bf9ad9222931624751dd46491629e087dfae379e627aa8e9fd05",
+   "files_sha256": "51261d73058a89f6a091218018f1ab7313ab9710ab626fcf7f842008e610b114",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  },
+  "wcl1116-aurora-nuecc": {
+   "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-aurora-nuecc.txt",
+   "list_sha256": "ca9ebd3b4e0afd76013d3c39a921e78779e00f7b5ddfd7311e96f48aaf72cc9d",
+   "files": 61238,
+   "errors": 0,
+   "events": 268783,
+   "wct_versions": [
+    "0.38.0"
+   ],
+   "label_unreadable_files": 19,
+   "truth_pf_unreadable_files": 0,
+   "cands_sha256": "cc4a3d4b7fac9b4f1cf31b6b767265429061d6693f33ef1b390d1fbfd9cd6088",
+   "truth_sha256": "471fb022244706a4fb01f4da2b73f2b3afa28513f1eaafc2527eeb55424f08d5",
+   "files_sha256": "d64e41d8fe4acefbcea27c2b01178be1621f0d0884e8d759636fed9fe527762e",
+   "files_without_stamp": [],
+   "candidates_dropped_without_stamp": 0
+  }
+ },
+ "tables_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_tables/dv2_split_move",
+ "tag": "dev",
+ "code": {
+  "git": {
+   "head": "a6556cfe20344d3cd78ef9ad60c172526eed2a22",
+   "dirty_paths": [
+    "round2/sp_retrain/build_tables.py",
+    "round2/sp_retrain/devtrain.py",
+    "round2/sp_retrain/firewall.py",
+    "round2/sp_retrain/labels.py",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/tests/test_wcl1116_dev.py",
+    "round2/tools/cpp_equivalence_check.py",
+    "round2/tools/export_equivalence_check.py",
+    "round2/tools/legacy_control_compare.py",
+    "round2/tools/make_wcl1116_dev_specs.py",
+    "round2/tools/train_wcl1116_dev_model.py",
+    "round2/tools/wcl1116_mode_compare.py",
+    "round2/docs/SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md",
+    "round2/manifests/wcl1116_dev_v1/inputs_nue.json",
+    "round2/manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-nuecc.tsv.gz",
+    "round2/specs/single_photon_nue_training_spec_dev_wcl1116_dv2_snap.yaml",
+    "round2/specs/single_photon_nue_training_spec_dev_wcl1116_dv2_split_move.yaml",
+    "round2/tools/beamoff_staging/",
+    "round2/tools/sp_other_census.py",
+    "round2/tools/verify_staged_beamoff.py",
+    "round2/validation/beamoff_staging_verifier_selftest_old_fg1.json",
+    "round2/validation/sp_other_census_wcl1116_mc_only.json"
+   ]
+  },
+  "sha256": {
+   "sp_retrain/devtrain.py": "92210746f8cd8b5589476a7128497a54cf2a10d8b45f53d13573543ba66912e7",
+   "sp_retrain/labels.py": "4ac7721e2298251fb679942af6b0c77128615c079c90919ab2e4cdc444cfa0ca",
+   "sp_retrain/sp_truth.py": "01a6b98828879876a0a9824f8cc7707071f7c3e592e2fc594f57cdd6e080b98d",
+   "sp_retrain/build_tables.py": "53ee5da93e5ef4ab2072721e01635403512f45ce83d223381c919920385b253f",
+   "sp_retrain/split.py": "039436513645e92dd8cdd29cb9ff712c8c92b37627680fbdf3fc590874c19848",
+   "sp_retrain/features.py": "2c0e391f65aa8a88adc617c4e54e108112e5d47985f487b4d8ec77bf744314cf",
+   "sp_retrain/firewall.py": "dae8b6dfbdf04b6c26d34ea7cf8dc4a2974c47ab692f16e04c07d127eedbea56",
+   "tools/train_wcl1116_dev_model.py": "e57a3107396b8efcd170bfdbda61750d24738292367ccdcecac265dc53768f86"
+  }
+ },
+ "packages": {
+  "python": "3.12.12",
+  "numpy": "2.3.5",
+  "pandas": "3.0.5",
+  "xgboost": "3.4.1",
+  "scikit_learn": "1.9.0"
+ },
+ "counts": {
+  "train": {
+   "rows": 115442,
+   "positive_rows": 8819,
+   "negative_rows": 106623,
+   "events": 115334,
+   "positive_events": 8817,
+   "negative_events": 106551,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1296,
+     "negative": 623
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7465,
+     "negative": 8
+    },
+    "wcl1116-aurora-nuecc": {
+     "positive": 58,
+     "negative": 105992
+    }
+   }
+  },
+  "test": {
+   "rows": 115679,
+   "positive_rows": 8871,
+   "negative_rows": 106808,
+   "events": 115553,
+   "positive_events": 8868,
+   "negative_events": 106720,
+   "by_sample": {
+    "wcl1116-aurora-bnb": {
+     "positive": 1314,
+     "negative": 616
+    },
+    "wcl1116-aurora-ncdr": {
+     "positive": 7507,
+     "negative": 5
+    },
+    "wcl1116-aurora-nuecc": {
+     "positive": 50,
+     "negative": 106187
+    }
+   }
+  }
+ },
+ "leakage": {
+  "train_events": 115334,
+  "test_events": 115553,
+  "overlapping_events": 0,
+  "duplicate_rows": 0,
+  "events_in_more_than_one_file": 0
+ },
+ "nonfinite_excluded": 0,
+ "metrics": {
+  "train_auc": 0.9790588264303378,
+  "test_auc": 0.9587876830235784,
+  "train_error": 0.03555031964103186,
+  "test_error": 0.04560896964876944
+ },
+ "reproducibility": {
+  "model_sha256": "d3bd3b5e53d3034b709d58ab0ea442021446045288fbc649dc576610131b79ef",
+  "repeat_sha256": "d3bd3b5e53d3034b709d58ab0ea442021446045288fbc649dc576610131b79ef",
+  "identical_json": true,
+  "max_abs_margin_diff_test": 0.0
+ },
+ "outputs_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev_models/dv2_split_move/nue"
+}

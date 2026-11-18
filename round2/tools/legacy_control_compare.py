@@ -29,6 +29,11 @@ VARS = {
                            'shw_sp_E_indirect_max_energy', 'shw_sp_n_20mev_showers'],
     'single_photon_ncpi0': ['kine_pio_flag', 'kine_pio_mass', 'kine_pio_energy_1', 'kine_pio_energy_2', 'kine_pio_angle',
                             'shw_sp_pio_flag_pio', 'shw_sp_E_indirect_max_energy', 'shw_sp_n_20mev_showers'],
+    'single_photon_other': ['numu_score', 'numu_1_score', 'cosmict_10_score', 'cosmict_flag', 'cosmic_flag', 'numu_cc_flag',
+                            'shw_sp_E_indirect_max_energy', 'shw_sp_n_20mev_showers', 'kine_nu_y_corr'],
+    'single_photon_nue': ['shw_sp_vec_mean_dedx', 'shw_sp_vec_median_dedx', 'shw_sp_vec_dQ_dx_0', 'shw_sp_vec_dQ_dx_1',
+                          'shw_sp_stem_length', 'shw_sp_shw_vtx_dis', 'shw_sp_min_dis', 'shw_sp_E_indirect_max_energy',
+                          'shw_sp_n_20mev_showers'],
 }
 LABEL = 'AURORA DEVELOPMENT SAMPLE -- LEGACY MICROBOONE CONTROL'
 
@@ -91,7 +96,9 @@ def main():
     # legacy on the same rows (ncpi0: flag forced to 0), plus the excluded non-finite test rows as a diagnostic
     v_leg, s_leg = lc.legacy_score(forest, lc.legacy_matrix(X, cols, clf))
     legacy_ok = v_leg != -999.0
-    nf = ds['nonfinite'].copy(); nf['split'] = np.where(nf.subrun % 2 == 1, 'test', 'train'); nft = nf[nf.split == 'test']
+    nf = ds['nonfinite'].copy(); nf['split'] = np.where(nf.subrun % 2 == 1, 'test', 'train')
+    ext = nf['sample'].astype(str).isin(labels.ext_sample_ids(spec)).to_numpy()   # EXT: by run, as in devtrain
+    nf.loc[ext, 'split'] = np.where(nf.run[ext] % 4 == 1, 'test', 'train'); nft = nf[nf.split == 'test']
     if len(nft):
         Xn = nft[devtrain.ROW_KEY].merge(C, on=devtrain.ROW_KEY, how='left')[cols].to_numpy(np.float64).astype(np.float32)
         vn, _ = lc.legacy_score(forest, lc.legacy_matrix(Xn, cols, clf)); nf_legacy_evaluable = int((vn != -999.0).sum())

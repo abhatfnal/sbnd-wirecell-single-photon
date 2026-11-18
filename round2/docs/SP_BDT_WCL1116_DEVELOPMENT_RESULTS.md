@@ -1,6 +1,7 @@
 # SP BDT development on the WCL1116 vertex refresh: results
 
-Date: 2026-11-17. Campaign `development_wcl1116_v1`; plan in `SP_BDT_WCL1116_DEVELOPMENT_PLAN.md`.
+Date: 2026-11-17; SP nue / SP other status updated 2026-11-18. Campaign `development_wcl1116_v1`; plan in
+`SP_BDT_WCL1116_DEVELOPMENT_PLAN.md`. Four-model view: `SP_BDT_WCL1116_FOUR_MODEL_DEVELOPMENT_SUMMARY.md`.
 - Every model is **`…_DEV_DO_NOT_DEPLOY`**.
 - Every number below is an **Aurora DEVELOPMENT HOLDOUT** result (odd subruns), conditional on an upstream DL vertex
   trained on Aurora events. None is an independent end-to-end measurement
@@ -16,7 +17,7 @@ Compact machine summary: `validation/wcl1116_dev_summary.json`.
 | `wcl1116-aurora-ncdr` | `manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-ncdr.tsv.gz` (content sha256 in `inputs.json`) | 17,604 | 26,745 | none | 24,031 candidates; 0 errors; 38 / 44 files with an unreadable label branch (split / snap) |
 | `wcl1116-aurora-bnb` | `…/manifest_wcl1116-aurora-bnb.tsv.gz` | 11,874 | 626,441 | **14 PARTIAL units** (764 CAF events, 729 Wire-Cell events, 0.12 %), recorded in `inputs.json` | 301,830 candidates; 0 errors; 48 / 49 files with an unreadable `T_truth_pf` |
 | `wcl1116-fg-beamoff-train` | `…/beamoff_train_membership.{json,tsv.gz}` | 558 (572 − 14 hold-out) | — | — | **not built**: the files exist only on FermiGrid dCache (§9) |
-| `wcl1116-aurora-nuecc` | — | — | — | — | not used: 45,174 / 61,252 units done at 21:2xZ; resume 9097990 running |
+| `wcl1116-aurora-nuecc` | `…/manifest_wcl1116-aurora-nuecc.tsv.gz` (`inputs_nue.json`) | 61,238 | 268,783 | 11 PARTIAL + 3 FAIL units (63 CAF events) | 265,367 candidates; 0 errors; PBS 9100111 (2026-11-18); SP nue only |
 
 **Selection rule.** Status OK, both of Haiwang's validations PASS, and both trees merged.
 - Lists and manifests were written read-only on Haiwang's area by `tools/make_refresh_list.py`.
@@ -110,8 +111,9 @@ checks: 0 overlapping events, 0 duplicate rows, 0 multi-file events.
 | SP numu | dv2_snap | 8,667 / 19,408 | 8,745 / 19,240 | 0.9536 | **0.9739** | DEV_DO_NOT_DEPLOY; UPSTREAM_NUMU = SHIPPED_CONTROL |
 | SP ncpi0 | dv2_split_move | 8,760 / 4,757 | 8,820 / 4,790 | 0.8485 | **0.8992** | DEV_DO_NOT_DEPLOY; Policy B; νe L1 as stored |
 | SP ncpi0 | dv2_snap | 8,666 / 4,751 | 8,744 / 4,770 | 0.8469 | **0.8974** | DEV_DO_NOT_DEPLOY; Policy B; νe L1 as stored |
-| SP other | both | — | — | — | — | **not trained: blocked only on data access / staging (§9)** |
-| SP nue | both | — | — | — | — | not trained by design (§10) |
+| SP other | both | — | — | — | — | **not trained: BLOCKED ONLY ON TRANSFER EXECUTION (§9)** |
+| SP nue | dv2_split_move | 8,819 / 106,623 | 8,871 / 106,808 | 0.9176 | **0.9588** | DEV_DO_NOT_DEPLOY (2026-11-18; `SP_NUE_WCL1116_DEVELOPMENT_REPORT.md`) |
+| SP nue | dv2_snap | 8,722 / 106,676 | 8,791 / 106,810 | 0.9143 | **0.9524** | DEV_DO_NOT_DEPLOY |
 
 - **Train / holdout gap:** numu 0.019 (split) / 0.019 (snap); ncpi0 0.089 / 0.091. For reference, the Round-1-domain
   development models had 0.028 and 0.17.
@@ -182,7 +184,15 @@ Details: `$SP_WORK/wcl1116_legacy_controls/<mode>/<model>/legacy_vs_dev.json`.
 No bookkeeping identifier (run, subrun, event, file, cluster or candidate index) is an input, so none can gain
 importance. Both models learned physically sensible structures close to the legacy fingerprints.
 
-## 9. SP other: SP-OTHER DEVELOPMENT BLOCKED ONLY ON DATA ACCESS/STAGING
+## 9. SP other: SP-OTHER DEVELOPMENT BLOCKED ONLY ON TRANSFER EXECUTION
+
+Updated 2026-11-18 in `SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`:
+- the established route was found (Xuyang's gpvm rsync push, ALCF passcode);
+- the staging script and verifier are ready, and the verifier rejects the old fg1 copy;
+- the target audit is frozen;
+- the MC census is done.
+
+The transfer itself needs Avinay's gpvm session. The text below is the original 2026-11-17 status.
 
 - **Membership.** The frozen `fg1-beamoff-train` list (sha256 `acb69100…`, 572 pairs, 80 runs, all odd) minus the 14
   hold-out files gives **558** pairs. There is zero overlap with the even-run evaluation half by construction.
@@ -219,6 +229,12 @@ importance. Both models learned physically sensible structures close to the lega
 - moderate otherwise.
 
 SP nue fails "small" on every axis: ΔAUC +0.05, Δ signal efficiency +15–17 points, and NC Δ median KS 0.12–0.13.
+
+**Developed 2026-11-18** (`SP_NUE_WCL1116_DEVELOPMENT_REPORT.md`):
+- holdout AUC 0.959 / 0.952 against legacy 0.918 / 0.914 on identical rows;
+- pre-registered verdict **RETRAINING CLEARLY BENEFICIAL** (+0.041 ± 0.0008 / +0.038 ± 0.0009).
+
+The recommendation as written before training:
 
 **Recommendation (not a freeze decision): SP-NUE RETRAINING SHOULD BE DEVELOPED.**
 - The inherited response improved, but its operating point is no longer the thesis one.
@@ -288,10 +304,13 @@ clusters are tagged or separated at the clustering / flash-matching stage, candi
 The exporter chain is now verified end to end, from native XGBoost JSON through the exported TMVA Grad XML to the
 production C++ readers. These are development fixtures only; none of these models is deployable.
 
+**2026-11-18:** the two SP nue development models pass the same C++ check (PBS 9100172): bit-identical on 3,310 / 3,310
+rows per mode, C++ vs Python ≤ 4.4e-16, 0 flips (`validation/cpp_export_equivalence_wcl1116_<mode>_nue.json`).
+
 ## 13. Not done; what comes next
 
 - No final SP model, threshold, vertex-mode choice or FermiGrid use.
-- No SP nue training and no enriched-sample request.
+- No enriched-sample request. SP nue was developed on 2026-11-18 (§10); SP other waits on the transfer (§9).
 - **NC π⁰ statistics on WCL1116** (`validation/ncpi0_negative_learning_curve_wcl1116_{mode}.json`; f = 1 reproduces each
   development model exactly):
   - holdout AUC 0.867 → 0.881 → 0.892 → 0.896 → 0.899 (split-move), and similarly for snap;
@@ -300,7 +319,8 @@ production C++ readers. These are development fixtures only; none of these model
   - the refresh changes the available negatives only from 4,457 to 4,757 training rows (+7 %): the same BNB events with
     a different NC π⁰ class migration.
 - **Next, with no question to anyone yet:**
-  - stage the refreshed beam-off training half and develop SP other;
-  - develop SP nue when νe CC completes;
+  - stage the refreshed beam-off training half (Avinay's gpvm session; `tools/beamoff_staging/README.md`) and develop
+    SP other;
+  - ~~develop SP nue when νe CC completes~~: done 2026-11-18;
   - re-run this campaign on the final reconstruction (vertex mode, cosmic-boundary production) and on Xuyang/Matteo's
     frozen νμ.

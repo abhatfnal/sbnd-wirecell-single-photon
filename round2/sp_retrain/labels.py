@@ -9,6 +9,7 @@ MicroBooNE cuts.h @ 0100d4b6:2849-2856. All four BDTs share one positive class; 
                 single_photon_ncpi0  NC pi0 background: not signal, NC, vertex in the 3 cm FV, >= 1 primary pi0 (p.131)
                 single_photon_numu   nu_mu CC background with and without a pi0: not signal, |pdg| 14, CC, vertex in
                                      the 3 cm FV (p.128)
+                single_photon_nue    nu_e CC background: not signal, |pdg| 12, CC, vertex in the 3 cm FV (p.133)
   excluded (-1): every other row (other backgrounds, cosmic / no partner, unreadable truth or label)
   rows: candidates after the preselection (not a placeholder; shw_sp_n_20mev_showers > 0; label readable), which
         is where the thesis trains (sec. 5.2.1, 5.2.3: "right after preselection, which is also where BDT training is done")
@@ -28,6 +29,9 @@ NEGATIVE_BKG = {
     'single_photon_ncpi0': ('NCpi0Bkg',),
     'single_photon_numu': ('numuCCBkg', 'numuCCpi0Bkg'),
     'single_photon_other': ('NCBkg', 'outFVBkg'),
+    # thesis p.133 / Fig. 5.10 caption: "Background includes only nu_e CC background events" (not signal, |pdg| 12, CC,
+    # true vertex in the 3 cm FV: out-of-FV belongs to Other, the per-BDT counts sum to 263,120); cuts.h 0100d4b6:2856
+    'single_photon_nue': ('nueCCBkg',),
 }
 NEGATIVE_COSMIC_PARTNER = ('single_photon_other',)     # cosmic-matched / unmatched MC candidates are negatives
 EXT_ROLE = 'ext_beam_off'

@@ -74,7 +74,7 @@ def main():
     reco = spec['reconstruction']; tree = reco['wc_tree']; mode = reco['vertex_mode']
     if mode not in model_name or 'DO_NOT_DEPLOY' not in model_name:
         raise SystemExit('model name %s must carry the vertex mode and DO_NOT_DEPLOY' % model_name)
-    exc = [e['path_prefix'] for e in spec['samples'].get('approved_exceptions', []) if e.get('approved_by')]
+    exc_ids, exc = firewall.spec_exceptions(spec)
     firewall.check_output_path(a.out_dir, ALLOWED_OUTPUT)
     os.makedirs(a.out_dir, exist_ok=True)
 
@@ -82,7 +82,7 @@ def main():
     stamp = json.load(open(os.path.join(os.path.dirname(ROUND2), spec['samples']['input_manifest'])))['reconstruction']['wct_version_stamp']
     C, builds = [], {}
     for s in spec['samples']['development']:
-        sid = s['id']; firewall.check_sample_id(sid)
+        sid = s['id']; firewall.check_sample_id(sid, approved_exceptions=exc_ids)
         p = lambda t: os.path.join(a.tables, '%s_%s_%s.parquet' % (t, sid, a.tag))
         b = json.load(open(os.path.join(a.tables, 'build_%s_%s.json' % (sid, a.tag))))
         if b['list_sha256'] != s['list_sha256'] or (not a.smoke and (b['files'] != s['files'] or b.get('slice'))):

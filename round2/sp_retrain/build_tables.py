@@ -280,13 +280,18 @@ def main():
     ap.add_argument('--holdout-file-ids', default=None, help='file ids (basenames) that are never trained on; flagged, kept')
     ap.add_argument('--tag', default='')
     ap.add_argument('--wc-tree', default=WC, choices=sorted(WC_TREES), help='Wire-Cell tree to read (default recTreeWireCell)')
+    ap.add_argument('--approved-exceptions-spec', default=None, help='training spec whose samples.approved_exceptions (with approved_by) may name this sample and its paths')
     a = ap.parse_args()
-    firewall.check_sample_id(a.sample)
+    exc_ids, exc_paths = (), ()
+    if a.approved_exceptions_spec:
+        import yaml
+        exc_ids, exc_paths = firewall.spec_exceptions(yaml.safe_load(open(a.approved_exceptions_spec)))
+    firewall.check_sample_id(a.sample, approved_exceptions=exc_ids)
     out_dir = firewall.check_output_path(a.out_dir, a.allowed_output_root)
     lines = [l.strip() for l in open(a.list) if l.strip() and not l.startswith('#')]
     if a.slice:
         s0, s1 = a.slice.split(':'); lines = lines[int(s0 or 0):(int(s1) if s1 else None)]
-    firewall.check_training_inputs(lines, a.allowed_input_root)
+    firewall.check_training_inputs(lines, a.allowed_input_root, approved_exceptions=exc_paths)
     hold = set(l.strip() for l in open(a.holdout_file_ids)) if a.holdout_file_ids else set()
     jobs = [(p, a.sample, os.path.basename(p), os.path.basename(p) in hold, a.wc_tree) for p in lines]
     t0 = time.time()
@@ -301,7 +306,7 @@ def main():
     F = pd.DataFrame([r[0] for r in res]); C = pd.DataFrame([x for r in res for x in r[1]]); T = pd.DataFrame([x for r in res for x in r[2]])
     for name, df in (('files', F), ('cands', C), ('truth', T)):
         df.to_parquet(os.path.join(out_dir, '%s_%s%s.parquet' % (name, a.sample, sfx)))
-    summ = dict(sample=a.sample, wc_tree=a.wc_tree, list=os.path.abspath(a.list), list_sha256=_sha256(a.list), slice=a.slice, files=len(lines),
+    summ = dict(sample=a.sample, wc_tree=a.wc_tree, approved_exceptions_spec=a.approved_exceptions_spec, list=os.path.abspath(a.list), list_sha256=_sha256(a.list), slice=a.slice, files=len(lines),
                 errors=int((F.get('error', pd.Series(dtype=str)).fillna('') != '').sum()),
                 label_unreadable_files=int(F.get('label_unreadable', pd.Series(dtype=float)).fillna(0).sum()),
                 truth_pf_unreadable_files=int(F.get('truth_pf_unreadable', pd.Series(dtype=float)).fillna(0).sum()),

@@ -23,7 +23,7 @@ See `docs/SP_BDT_ROUND2_FREEZE_ORDER.md` for the dependency graph, freeze order 
 
 **Round-2 production is running (2026-11-17 evening).** Haiwang's **WCLocal2026Nov16** uses WCT 0.38.0 with Snehadri's
 DV2-MAX `aurora_space` DL vertex.
-- Aurora (training): NC Δ and BNB are complete, νe CC is resuming.
+- Aurora (training): NC Δ, BNB and νe CC are complete (νe CC: 2026-11-18, 61,238 / 61,252 units OK).
 - FermiGrid (evaluation): official CV, νe CC, the full beam-off including its odd-run training half, and beam-on.
 - Tracker: `docs/HAIWANG_ROUND2_ACTIVE_PRODUCTION_TRACKER.md`. Registry: `config/samples/round2_training_samples.yaml`
   (still `active_training_domain: aurora-r2`).
@@ -38,6 +38,17 @@ and policy in `docs/SP_BDT_WCL1116_DEVELOPMENT_{PLAN,RESULTS}.md` and
 - SP nue shift LARGE: retraining should be developed.
 - Exporter verified in C++ (TMVA::Reader = toolkit TmvaGradForest, bit for bit).
 
+**Remaining SP models (2026-11-18).** Branch `round2/sp-other-nue-wcl1116-development-20261117`. Four-model view:
+`docs/SP_BDT_WCL1116_FOUR_MODEL_DEVELOPMENT_SUMMARY.md`.
+- **SP nue** (`docs/SP_NUE_WCL1116_DEVELOPMENT_REPORT.md`):
+  - developed per mode on the complete WCL1116 νe CC;
+  - holdout AUC 0.959 / 0.952 against legacy 0.918 / 0.914;
+  - pre-registered verdict RETRAINING CLEARLY BENEFICIAL.
+- **SP other** (`docs/SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`): BLOCKED ONLY ON TRANSFER EXECUTION.
+  - Ready: the target audit, the specs, the MC census, the gpvm staging script (`tools/beamoff_staging/`) and the
+    verifier (`tools/verify_staged_beamoff.py`).
+  - Waiting on the 558-pair beam-off training half, pushed from Avinay's gpvm session.
+
 **Ownership.** Avinay owns SP numu / SP other / SP ncpi0 and the SP nue decision. Xuyang and Matteo own the upstream νμ
 (`numu_score`) and νe (`nue_score`) taggers, which are **not** SP numu / SP nue.
 
@@ -45,7 +56,8 @@ and policy in `docs/SP_BDT_WCL1116_DEVELOPMENT_{PLAN,RESULTS}.md` and
 - SP numu: WAITS FOR REFRESH + FROZEN UPSTREAM NUMU.
 - SP other: WAITS FOR REFRESH + FROZEN UPSTREAM NUMU + TRAINING BEAM-OFF.
 - SP ncpi0: WAITS FOR REFRESH (Policy B).
-- SP nue: DECISION PENDING; the domain-shift test runs on the refresh.
+- SP nue: RETRAIN RECOMMENDED (development verdict CLEARLY BENEFICIAL); final training waits for the final reconstruction
+  domain.
 
 **Development training (2026-11-17):** one SP numu and one SP ncpi0 model were trained on aurora-r2
 (`docs/SP_BDT_DEVELOPMENT_TRAINING_SUMMARY.md`).
@@ -82,8 +94,8 @@ Aurora merged CAF (recTree + recTreeWireCell)
 | `specs/single_photon_{ncpi0,other}_training_spec_v0.2.yaml`, `specs/single_photon_numu_training_spec_v0.1.yaml` | current training specs: ncpi0 (v0.2.2) and numu (v0.1.0) `READY_FOR_DEVELOPMENT_TRAINING`; other (v0.2.3) `READY_ONLY_AFTER_ADDITIONAL_TRAINING_SAMPLE`. The ncpi0 / other v0.1 files (BLOCKED) are kept for the record |
 | `specs/single_photon_{numu,ncpi0}_training_spec_dev_round1_domain_v1.yaml` | frozen DEVELOPMENT specs of the 2026-11-17 campaign (`deployable: false`) |
 | `sp_retrain/` | `build_tables`, `features`, `firewall`, `split`, `sp_truth` (single-photon truth categories), `labels` (classes + status gate), `devtrain` (development training library), `legacy_control` (verified legacy XML bundle, legacy scoring and ROC-equivalent points), `tmva_grad` (TMVA Grad scorer), `export_tmva` (XGBoost JSON → TMVA Grad XML exporter), `readiness`, `manifest` |
-| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance), `check_numu_score_offline.py`, `nue_prefix_test.py`, `beamoff_other_census.py` (evidence audit, no training), `refresh_smoke_check.py`, `make_refresh_list.py` (read-only smoke and census / list builder for the refreshed production), `ncpi0_negative_learning_curve.py` (diagnostic only), `export_equivalence_check.py` (exporter equivalence on the dev fixtures) |
-| `tests/test_sp_retrain.py`, `tests/test_export_tmva.py`, `tests/test_wcl1116_dev.py` | 67 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping, evidence summaries, the Round-2 registry and provenance, the refresh census, the learning-curve rule, the refresh smoke, and the exporter (margins, exact-threshold routing, base margin, guards, sidecars) |
+| `tools/` | `make_feature_configs.py`, `check_scorer_vs_stored_nue.py`, `validate_smoke_tables.py`, `render_readiness_tables.py`, `sp_class_census.py` (dry-run class census for ncpi0 / numu), `train_dev_model.py`, `plot_dev_model.py`, `summarize_dev_models.py` (development campaign), `legacy_control_compare.py`, `plot_legacy_control.py`, `record_dev_provenance.py` (legacy controls and post-training provenance), `check_numu_score_offline.py`, `nue_prefix_test.py`, `beamoff_other_census.py` (evidence audit, no training), `refresh_smoke_check.py`, `make_refresh_list.py` (read-only smoke and census / list builder for the refreshed production), `ncpi0_negative_learning_curve.py` (diagnostic only), `export_equivalence_check.py` (exporter equivalence on the dev fixtures), `make_wcl1116_dev_specs.py`, `train_wcl1116_dev_model.py`, `wcl1116_mode_compare.py` (WCL1116 development specs, training, mode comparison with the pre-registered retraining verdict), `sp_other_census.py`, `sp_nue_census.py` (class censuses), `verify_staged_beamoff.py` + `beamoff_staging/` (beam-off training-half staging and verification), `cpp_equivalence_check.py` (C++ fixtures) |
+| `tests/test_sp_retrain.py`, `tests/test_export_tmva.py`, `tests/test_wcl1116_dev.py` | 75 unit tests: feature order, dependencies, firewall, split safety, TMVA routing and score conventions, builder truth ingredients, single-photon truth categories, ncpi0 and numu classes, status gate, development split / leakage / Policy B / hyperparameters / manifests / reproducibility, legacy bundle hashes / structure / score transform / forced flag / ROC-equivalent points / provenance mapping, evidence summaries, the Round-2 registry and provenance, the refresh census, the learning-curve rule, the refresh smoke, the exporter (margins, exact-threshold routing, base margin, guards, sidecars), and the WCL1116 campaign (tree selection, spec-scoped firewall exceptions, beam-off staging verifier, SP other census, SP nue source / census / provenance / verdict) |
 | `manifests/aurora_r2_v0/` | input manifests of the three aurora-r2 lists (path, size, mtime; list sha256) |
 | `manifests/wcl1116_aurora_v0/production_provenance.json` | live snapshot of the WCLocal2026Nov16 configuration as run: toolkit, wire-cell-data, DL bundle and file hashes, config md5s, schemas, the 36 booked BDT weight hashes |
 | `manifests/dev_round1domain_v1/` | development campaign: frozen inputs; one manifest per model (model, spec, feature-list, table and code sha256, package versions, counts, post-training provenance); `legacy_controls.json` (verified legacy bundle and the legacy-vs-development results) |

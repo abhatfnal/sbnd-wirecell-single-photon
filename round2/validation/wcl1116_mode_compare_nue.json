@@ -1,0 +1,137 @@
+{
+ "label": "DEVELOPMENT HOLDOUT (Aurora WCL1116) -- not independent end-to-end performance; no threshold",
+ "model": "nue",
+ "modes": {
+  "dv2_split_move": {
+   "model": "single_photon_nue_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_split_move",
+   "wc_tree": "recTreeWireCell",
+   "train_rows": {
+    "pos": 8819,
+    "neg": 106623
+   },
+   "holdout_rows": {
+    "pos": 8871,
+    "neg": 106808
+   },
+   "train_auc": 0.9790588264303378,
+   "holdout_auc": 0.9587876830235785,
+   "holdout_auc_stored": 0.9587876830235784,
+   "legacy_holdout_auc": 0.9176238471048179,
+   "train_holdout_gap": 0.020271143406759284,
+   "top10_by_splits": [
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_length_total",
+    "shw_sp_length_main",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_stem_length",
+    "shw_sp_max_shw_dis",
+    "shw_sp_max_dQ_dx_sample"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.8630738747823317,
+    "top10_overlap_with_legacy": 8,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "shower_stem_dQdx": {
+      "dev": 0.6177487040236979,
+      "legacy": 0.6086692569208354
+     },
+     "conversion_distance": {
+      "dev": 0.09195260429523575,
+      "legacy": 0.07904322486644003
+     }
+    },
+    "dev_rank": {}
+   },
+   "dev_minus_legacy_auc": {
+    "gain": 0.041163835918760605,
+    "bootstrap_sd": 0.0008036873425143849,
+    "n_bootstrap": 200
+   },
+   "spearman_dev_vs_legacy": 0.8783520502050339
+  },
+  "dv2_snap": {
+   "model": "single_photon_nue_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_snap",
+   "wc_tree": "recTreeWireCell_dv2snap",
+   "train_rows": {
+    "pos": 8722,
+    "neg": 106676
+   },
+   "holdout_rows": {
+    "pos": 8791,
+    "neg": 106810
+   },
+   "train_auc": 0.97628624214597,
+   "holdout_auc": 0.9524241434501974,
+   "holdout_auc_stored": 0.9524241434501975,
+   "legacy_holdout_auc": 0.9142819860993795,
+   "train_holdout_gap": 0.023862098695772604,
+   "top10_by_splits": [
+    "shw_sp_length_total",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_length_main",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_stem_length",
+    "shw_sp_max_shw_dis",
+    "shw_sp_vec_dQ_dx_7"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.8902145127505716,
+    "top10_overlap_with_legacy": 8,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "shower_stem_dQdx": {
+      "dev": 0.6215473065866767,
+      "legacy": 0.6086692569208354
+     },
+     "conversion_distance": {
+      "dev": 0.09648793900762405,
+      "legacy": 0.07904322486644003
+     }
+    },
+    "dev_rank": {}
+   },
+   "dev_minus_legacy_auc": {
+    "gain": 0.03814215735081794,
+    "bootstrap_sd": 0.0009174662060903591,
+    "n_bootstrap": 200
+   },
+   "spearman_dev_vs_legacy": 0.8767074098474705
+  }
+ },
+ "matched_common_population": {
+  "definition": "holdout candidates present in both modes with the same key, the same class and finite inputs in both",
+  "rows": 112544,
+  "pos": 8587,
+  "neg": 103957,
+  "class_disagreement_rows": 0,
+  "only_split_holdout_rows": 3135,
+  "only_snap_holdout_rows": 3057,
+  "dev_auc_split": 0.959880513410984,
+  "dev_auc_snap": 0.953906465136357,
+  "legacy_auc_split": 0.9197087342144321,
+  "legacy_auc_snap": 0.9162405409043681,
+  "spearman_dev_margin_split_vs_snap": 0.8606021454790233,
+  "spearman_legacy_split_vs_snap": 0.8828720863372137,
+  "bootstrap_200_snap_minus_split": {
+   "dev_auc_mean": -0.005920004388891196,
+   "dev_auc_std": 0.0006157513347602796,
+   "legacy_auc_mean": -0.00340949624969528,
+   "legacy_auc_std": 0.0006549513944923122
+  }
+ },
+ "retraining_verdict": {
+  "rule": "BENEFICIAL: both modes gain >= 0.010 and > 3 sigma; COMPETITIVE: both modes gain <= 0.002; else NEUTRAL / NOT RESOLVED",
+  "verdict": "RETRAINING CLEARLY BENEFICIAL"
+ }
+}
