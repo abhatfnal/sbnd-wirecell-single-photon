@@ -78,11 +78,15 @@ samples:
     files: 11874
   - id: wcl1116-fg-beamoff-train
     role: ext_beam_off
-    list: null
-    list_sha256: null
-    files: null
+    list: /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-fg-beamoff-train.txt
+    list_sha256: 8f2ea60117070a6585f004e65898d5f2b8170788fd1a8a10eba46a697b5e9cca
+    files: 558
     membership: round2/manifests/wcl1116_dev_v1/beamoff_train_membership.tsv.gz
     staging_record: round2/manifests/wcl1116_dev_v1/beamoff_train_staging.json
+    wct_version_stamp: HEAD-0.38.0
+    toolkit_commit: c935e30d44a09bf208f6de2c2968171b01efd63d
+    provenance_note: stored stamp 'HEAD-0.38.0' = campaign build of toolkit c935e30d44a09bf208f6de2c2968171b01efd63d (tag
+      0.38.0); sp_retrain.provenance
   input_manifest: round2/manifests/wcl1116_dev_v1/inputs.json
   excluded_official_evaluation:
   - wcl1116-fg-cv
@@ -108,10 +112,8 @@ samples:
     path_prefixes:
     - /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_beamoff_train/
     membership_list_sha256: acb69100fc1bb337de01748e823ba8c811522306cc8675231b2c198b7160ea64
-status: BLOCKED_TRANSFER_EXECUTION
-status_reason: 'SP-OTHER DEVELOPMENT BLOCKED ONLY ON TRANSFER EXECUTION: the refreshed odd-run beam-off half exists only on
-  FermiGrid dCache; the established route (rsync pushed from a gpvm in a user-opened ALCF ssh session, round2/tools/beamoff_staging/)
-  has not been executed. Evaluation beam-off is never a substitute.'
+status: READY_FOR_DEVELOPMENT_TRAINING
+status_reason: ''
 spec_version: dev-wcl1116-v1-dv2_snap
 reconstruction:
   production: WCLocal2026Nov16-Aurora

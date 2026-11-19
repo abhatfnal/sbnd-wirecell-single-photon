@@ -1,6 +1,6 @@
 # SP BDT development on the WCL1116 vertex refresh: results
 
-Date: 2026-11-17; SP nue / SP other status updated 2026-11-18. Campaign `development_wcl1116_v1`; plan in
+Date: 2026-11-17; SP nue developed 2026-11-18; SP other developed 2026-11-19 (the campaign is complete). Campaign `development_wcl1116_v1`; plan in
 `SP_BDT_WCL1116_DEVELOPMENT_PLAN.md`. Four-model view: `SP_BDT_WCL1116_FOUR_MODEL_DEVELOPMENT_SUMMARY.md`.
 - Every model is **`…_DEV_DO_NOT_DEPLOY`**.
 - Every number below is an **Aurora DEVELOPMENT HOLDOUT** result (odd subruns), conditional on an upstream DL vertex
@@ -16,7 +16,7 @@ Compact machine summary: `validation/wcl1116_dev_summary.json`.
 |---|---|---:|---:|---|---|
 | `wcl1116-aurora-ncdr` | `manifests/wcl1116_dev_v1/manifest_wcl1116-aurora-ncdr.tsv.gz` (content sha256 in `inputs.json`) | 17,604 | 26,745 | none | 24,031 candidates; 0 errors; 38 / 44 files with an unreadable label branch (split / snap) |
 | `wcl1116-aurora-bnb` | `…/manifest_wcl1116-aurora-bnb.tsv.gz` | 11,874 | 626,441 | **14 PARTIAL units** (764 CAF events, 729 Wire-Cell events, 0.12 %), recorded in `inputs.json` | 301,830 candidates; 0 errors; 48 / 49 files with an unreadable `T_truth_pf` |
-| `wcl1116-fg-beamoff-train` | `…/beamoff_train_membership.{json,tsv.gz}` | 558 (572 − 14 hold-out) | — | — | **not built**: the files exist only on FermiGrid dCache (§9) |
+| `wcl1116-fg-beamoff-train` | `…/beamoff_train_membership.{json,tsv.gz}`; staging record `…/beamoff_train_staging.{json,tsv.gz}` | 558 (572 − 14 hold-out), verified 558 / 558 | 26,418 | none | 2,495 candidates; 0 errors; stamp `HEAD-0.38.0` (= toolkit c935e30d; `WCL1116_TOOLKIT_PROVENANCE_NOTE.md`); PBS 9102859 (2026-11-19); SP other EXT only |
 | `wcl1116-aurora-nuecc` | `…/manifest_wcl1116-aurora-nuecc.tsv.gz` (`inputs_nue.json`) | 61,238 | 268,783 | 11 PARTIAL + 3 FAIL units (63 CAF events) | 265,367 candidates; 0 errors; PBS 9100111 (2026-11-18); SP nue only |
 
 **Selection rule.** Status OK, both of Haiwang's validations PASS, and both trees merged.
@@ -111,7 +111,8 @@ checks: 0 overlapping events, 0 duplicate rows, 0 multi-file events.
 | SP numu | dv2_snap | 8,667 / 19,408 | 8,745 / 19,240 | 0.9536 | **0.9739** | DEV_DO_NOT_DEPLOY; UPSTREAM_NUMU = SHIPPED_CONTROL |
 | SP ncpi0 | dv2_split_move | 8,760 / 4,757 | 8,820 / 4,790 | 0.8485 | **0.8992** | DEV_DO_NOT_DEPLOY; Policy B; νe L1 as stored |
 | SP ncpi0 | dv2_snap | 8,666 / 4,751 | 8,744 / 4,770 | 0.8469 | **0.8974** | DEV_DO_NOT_DEPLOY; Policy B; νe L1 as stored |
-| SP other | both | — | — | — | — | **not trained: BLOCKED ONLY ON TRANSFER EXECUTION (§9)** |
+| SP other | dv2_split_move | 8,761 / 7,881 | 8,821 / 7,748 | 0.8398 | **0.9153** | DEV_DO_NOT_DEPLOY; UPSTREAM_NUMU = SHIPPED_CONTROL (2026-11-19; `SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`) |
+| SP other | dv2_snap | 8,667 / 7,939 | 8,745 / 7,757 | 0.8360 | **0.9121** | DEV_DO_NOT_DEPLOY; UPSTREAM_NUMU = SHIPPED_CONTROL |
 | SP nue | dv2_split_move | 8,819 / 106,623 | 8,871 / 106,808 | 0.9176 | **0.9588** | DEV_DO_NOT_DEPLOY (2026-11-18; `SP_NUE_WCL1116_DEVELOPMENT_REPORT.md`) |
 | SP nue | dv2_snap | 8,722 / 106,676 | 8,791 / 106,810 | 0.9143 | **0.9524** | DEV_DO_NOT_DEPLOY |
 
@@ -184,9 +185,15 @@ Details: `$SP_WORK/wcl1116_legacy_controls/<mode>/<model>/legacy_vs_dev.json`.
 No bookkeeping identifier (run, subrun, event, file, cluster or candidate index) is an input, so none can gain
 importance. Both models learned physically sensible structures close to the legacy fingerprints.
 
-## 9. SP other: SP-OTHER DEVELOPMENT BLOCKED ONLY ON TRANSFER EXECUTION
+## 9. SP other
 
-Updated 2026-11-18 in `SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`:
+**Developed 2026-11-19** (`SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`):
+- the beam-off training half was pushed by Avinay and verified 558 / 558;
+- 509 / 508 EXT rows (old reconstruction: 481);
+- holdout AUC 0.915 / 0.912 against legacy 0.840 / 0.836;
+- pre-registered verdict **RETRAINING CLEARLY BENEFICIAL** (+0.076 in both modes).
+
+History: updated 2026-11-18 in `SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`:
 - the established route was found (Xuyang's gpvm rsync push, ALCF passcode);
 - the staging script and verifier are ready, and the verifier rejects the old fg1 copy;
 - the target audit is frozen;
@@ -307,10 +314,14 @@ production C++ readers. These are development fixtures only; none of these model
 **2026-11-18:** the two SP nue development models pass the same C++ check (PBS 9100172): bit-identical on 3,310 / 3,310
 rows per mode, C++ vs Python ≤ 4.4e-16, 0 flips (`validation/cpp_export_equivalence_wcl1116_<mode>_nue.json`).
 
+**2026-11-19:** the two SP other development models pass the same C++ check (PBS 9102928): bit-identical on
+3,310 / 3,310 rows per mode, C++ vs Python ≤ 4.4e-16, 0 flips (`validation/cpp_export_equivalence_wcl1116_<mode>_other.json`).
+All eight WCL1116 development models are now verified end to end.
+
 ## 13. Not done; what comes next
 
 - No final SP model, threshold, vertex-mode choice or FermiGrid use.
-- No enriched-sample request. SP nue was developed on 2026-11-18 (§10); SP other waits on the transfer (§9).
+- No enriched-sample request. SP nue was developed on 2026-11-18 (§10), and SP other on 2026-11-19 (§9).
 - **NC π⁰ statistics on WCL1116** (`validation/ncpi0_negative_learning_curve_wcl1116_{mode}.json`; f = 1 reproduces each
   development model exactly):
   - holdout AUC 0.867 → 0.881 → 0.892 → 0.896 → 0.899 (split-move), and similarly for snap;
@@ -319,8 +330,7 @@ rows per mode, C++ vs Python ≤ 4.4e-16, 0 flips (`validation/cpp_export_equiva
   - the refresh changes the available negatives only from 4,457 to 4,757 training rows (+7 %): the same BNB events with
     a different NC π⁰ class migration.
 - **Next, with no question to anyone yet:**
-  - stage the refreshed beam-off training half (Avinay's gpvm session; `tools/beamoff_staging/README.md`) and develop
-    SP other;
+  - ~~stage the refreshed beam-off training half and develop SP other~~: done 2026-11-19;
   - ~~develop SP nue when νe CC completes~~: done 2026-11-18;
   - re-run this campaign on the final reconstruction (vertex mode, cosmic-boundary production) and on Xuyang/Matteo's
     frozen νμ.

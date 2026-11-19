@@ -10,7 +10,8 @@ Classes from sp_retrain.labels.development_classes (single_photon_other). Negati
   out-of-FV (in TPC)   outFVBkg with the true vertex inside the active volume but outside the 3 cm FV
   cosmic-matched MC    T_match partner is a cosmic, or there is no partner (assumption A4: no completeness cut)
   beam-off / EXT       every preselected row of an ext_beam_off sample (only if its tables exist)
-Rows with a non-finite input are counted and excluded, as in training. The split is the training split (odd subrun ->
+Rows with a non-finite input are counted and excluded, as in training; so are rows of files without the sample's expected
+wct_version stamp (sp_retrain.provenance). The split is the training split (odd subrun ->
 development holdout; EXT: run % 4 == 1). If the EXT tables are absent the census is MC-only and says so.
 """
 import argparse
@@ -24,7 +25,7 @@ import pandas as pd
 
 ROUND2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROUND2)
-from sp_retrain import build_tables, devtrain, features, labels  # noqa: E402
+from sp_retrain import build_tables, devtrain, features, labels, provenance  # noqa: E402
 
 MODES = ('dv2_split_move', 'dv2_snap')
 
@@ -61,7 +62,16 @@ def main():
             (present if os.path.exists(os.path.join(tables, 'cands_%s_%s.parquet' % (s['id'], a.tag))) else missing).append(s['id'])
         s2['samples']['development'] = [s for s in spec['samples']['development'] if s['id'] in present]
         s2['status'] = 'READY_FOR_DEVELOPMENT_TRAINING'     # CENSUS ONLY, in memory; the on-disk spec status is unchanged
-        C = pd.concat([pd.read_parquet(os.path.join(tables, 'cands_%s_%s.parquet' % (sid, a.tag))) for sid in present], ignore_index=True)
+        stamp = json.load(open(os.path.join(os.path.dirname(ROUND2), spec['samples']['input_manifest'])))['reconstruction']['wct_version_stamp']
+        parts, dropped = [], {}
+        for s in s2['samples']['development']:      # rows only from files with the sample's expected stamp, as in training
+            st = provenance.expected_sample_stamp(s, stamp)
+            F = pd.read_parquet(os.path.join(tables, 'files_%s_%s.parquet' % (s['id'], a.tag)))
+            cs = pd.read_parquet(os.path.join(tables, 'cands_%s_%s.parquet' % (s['id'], a.tag)))
+            off = set(F[F.wct_version.fillna('') != st].file_id)
+            dropped[s['id']] = dict(expected_wct_version_stamp=st, files_without_stamp=len(off), candidates_dropped=int(cs.file_id.isin(off).sum()))
+            parts.append(cs[~cs.file_id.isin(off)])
+        C = pd.concat(parts, ignore_index=True)
         C = C[C.is_placeholder == 0].reset_index(drop=True)
         cls, pre = labels.development_classes(C, s2)
         ext = C['sample'].astype(str).isin(labels.ext_sample_ids(s2)).to_numpy()
@@ -83,7 +93,7 @@ def main():
         mult = ku.groupby('ev').size()
         cats = ku.groupby('ev').comp.nunique()
         out['modes'][mode] = dict(
-            samples_present=present, samples_missing=missing, mc_only=bool(missing),
+            samples_present=present, samples_missing=missing, mc_only=bool(missing), stamp_filter=dropped,
             candidates=int(len(C)), preselected=int(pre.sum()), classed=int((cls >= 0).sum()),
             nonfinite_classed_rows=int(((cls >= 0) & ~fin).sum()),
             positive=dict(rows=per['signal']['rows'], events=per['signal']['events'], train=per['signal']['train'], holdout=per['signal']['holdout']),

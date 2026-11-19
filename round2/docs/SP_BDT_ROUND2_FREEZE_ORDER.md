@@ -97,14 +97,18 @@ WCL1116 reconstruction development
   +-- compare DV2 split_move vs snap            (Xuyang: upstream BDTs; Matteo: downstream; Avinay: SP BDTs)
   |
   +-- develop SP-numu / SP-ncpi0 / SP-other     (DEV_DO_NOT_DEPLOY; development holdout; shipped upstream nu_mu)
-  |                                             (SP-other: blocked only on the beam-off transfer, 2026-11-18)
+  |                                             (SP-other: DONE 2026-11-19 with the verified beam-off half:
+  |                                              RETRAINING CLEARLY BENEFICIAL, both modes)
   +-- quantify SP-nue domain shift: LARGE       (2026-11-17)
   |
   +-- develop SP-nue                            (DONE 2026-11-18: RETRAINING CLEARLY BENEFICIAL, both modes)
   |
   +-- Xuyang/Matteo freeze upstream nu_mu / nu_e
   |
+  +-- WCL1116 = COMPLETE DEVELOPMENT DOMAIN     (all four SP models; not the final training domain)
+  |
   +-- cosmic-boundary reconstruction decision / final production
+  |                                             (measured non-box / effective boundary: SP-other MUST be retrained)
   |
   +-- freeze final reconstruction domain        (vertex mode + toolkit + DL bundle)
   |
@@ -144,7 +148,7 @@ The numbered steps below are the earlier, coarser version and stay valid within 
 | model | owner | status | waits for |
 |---|---|---|---|
 | **SP numu** | Avinay | **FINAL TRAINING WAITS FOR REFRESH + FROZEN UPSTREAM NUMU** | refreshed training lists; Xuyang/Matteo's frozen νμ, recomputed on them |
-| **SP other** | Avinay | **FINAL TRAINING WAITS FOR REFRESH + FROZEN UPSTREAM NUMU + TRAINING BEAM-OFF** | as SP numu, plus the odd-run beam-off half from `wcl1116-fg-beamoff` on the training side with an approved exception. Development: **BLOCKED ONLY ON TRANSFER EXECUTION** (route, script and verifier ready: `SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`) |
+| **SP other** | Avinay | **FINAL TRAINING WAITS FOR REFRESH + FROZEN UPSTREAM NUMU + TRAINING BEAM-OFF** | as SP numu, plus the odd-run beam-off half on the training side with an approved exception, **reprocessed in the final reconstruction**. **MUST be retrained in the final domain**: 60 / 146 cosmic-tagger inputs plus `numu_score`. Development DONE 2026-11-19: holdout AUC 0.915 / 0.912 against legacy 0.840 / 0.836, RETRAINING CLEARLY BENEFICIAL (`SP_OTHER_WCL1116_DEVELOPMENT_REPORT.md`) |
 | **SP ncpi0** | Avinay | **FINAL TRAINING WAITS FOR REFRESH** | refreshed training lists. The 15 νe L1 scores stay fixed, or are frozen first. **Policy B** (`kine_pio_flag` as stored) stays the SBND policy unless changed explicitly |
 | **SP nue** | Avinay (**not** Xuyang/Matteo) | **RETRAIN RECOMMENDED; FINAL TRAINING WAITS FOR THE FINAL RECONSTRUCTION DOMAIN** | domain shift LARGE (§6) and development verdict RETRAINING CLEARLY BENEFICIAL (+0.041 / +0.038 AUC on identical holdout rows; `SP_NUE_WCL1116_DEVELOPMENT_REPORT.md`). Needs no upstream freeze; the keep / retrain call stays Avinay's |
 
@@ -304,8 +308,10 @@ the moment its gate (§5) opens.
   - SP numu: holdout AUC 0.976 / 0.974;
   - SP ncpi0: 0.899 / 0.897;
   - all `DEV_DO_NOT_DEPLOY`; numu with `UPSTREAM_NUMU = SHIPPED_CONTROL`.
-- SP other is blocked only on transfer execution: the refreshed beam-off training half has to be pushed from Avinay's
-  gpvm (2026-11-18: route, script, verifier and MC census ready).
+- SP other (2026-11-19): beam-off training half pushed by Avinay and verified 558 / 558 (`HEAD-0.38.0` = toolkit c935e30d,
+  `WCL1116_TOOLKIT_PROVENANCE_NOTE.md`). Developed in both modes: holdout AUC 0.915 / 0.912 (legacy 0.840 / 0.836),
+  RETRAINING CLEARLY BENEFICIAL. It MUST be retrained in the final (boundary) reconstruction.
+- **WCL1116 is a complete development domain** (all four SP models), not the final training domain.
 - SP nue (2026-11-18): developed on the complete νe CC, holdout AUC 0.959 / 0.952 (legacy 0.918 / 0.914):
   RETRAINING CLEARLY BENEFICIAL.
 - Four-model view: `SP_BDT_WCL1116_FOUR_MODEL_DEVELOPMENT_SUMMARY.md`.
@@ -316,7 +322,7 @@ the moment its gate (§5) opens.
 | classifier | target known? | refreshed data | upstream frozen? | development model | final training now? |
 |---|---|---|---|---|---|
 | SP numu | yes: thesis + exact fingerprint | NC Δ + BNB **complete** (lists not yet written) | **no**: νμ (Xuyang/Matteo) | DONE, DO NOT DEPLOY (test AUC 0.959; legacy 0.926) | **no** |
-| SP other | yes: thesis + exact fingerprint | MC complete; beam-off odd-run half **reprocessed on FermiGrid, not yet on the training side** | **no**: νμ | not trained (needs the exception) | **no** |
+| SP other | yes: thesis + exact fingerprint | WCL1116 MC + verified beam-off training half (558 files) | **no**: νμ | DONE on WCL1116, both modes, DO NOT DEPLOY (holdout AUC 0.915 / 0.912; legacy 0.840 / 0.836) | **no**: νμ, final (boundary) reconstruction, beam-off in that reconstruction |
 | SP ncpi0 | yes: thesis + exact fingerprint | NC Δ + BNB **complete** | νe L1 fixed (stored) | DONE, Policy B, DO NOT DEPLOY (test AUC 0.817; legacy 0.754) | **no**: waits for lists and the vertex-tree confirmation |
 | SP nue | yes: frozen XML = thesis forest (200-tree prefix) | yes: WCL1116 νe CC complete (61,238 files) | none needed | DONE on WCL1116, both modes, DO NOT DEPLOY (holdout AUC 0.959 / 0.952; legacy 0.918 / 0.914) | **no**: waits for the final reconstruction domain |
 

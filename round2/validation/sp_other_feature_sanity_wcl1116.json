@@ -1,0 +1,571 @@
+{
+ "label": "SP other FEATURE SANITY (WCL1116 development models; DEV_DO_NOT_DEPLOY)",
+ "n_inputs": 146,
+ "inputs_per_family": {
+  "shower": 81,
+  "cosmic_tagger": 59,
+  "upstream_scores": 4,
+  "numu_tagger": 1,
+  "vertex": 1
+ },
+ "bookkeeping_inputs": [],
+ "legacy_top20_by_splits": [
+  "numu_score",
+  "shw_sp_E_indirect_max_energy",
+  "kine_nu_y_corr",
+  "numu_1_score",
+  "shw_sp_lem_e_charge",
+  "shw_sp_shw_vtx_dis",
+  "shw_sp_br4_2_ratio1_15",
+  "shw_sp_highest_dQ_dx",
+  "shw_sp_vec_dQ_dx_1",
+  "shw_sp_max_dQ_dx_sample",
+  "shw_sp_br4_1_shower_total_length",
+  "shw_sp_lowest_dQ_dx",
+  "shw_sp_vec_dQ_dx_2",
+  "shw_sp_vec_dQ_dx_4",
+  "shw_sp_stem_length",
+  "shw_sp_lem_e_dQdx",
+  "shw_sp_max_shw_dis",
+  "shw_sp_vec_dQ_dx_11",
+  "shw_sp_vec_dQ_dx_0",
+  "shw_sp_vec_median_dedx"
+ ],
+ "legacy_family_split_share": {
+  "cosmic_tagger": 0.10337972166998012,
+  "numu_tagger": 0.006792577866136514,
+  "shower": 0.7662359178263751,
+  "upstream_scores": 0.08697813121272366,
+  "vertex": 0.03661365142478463
+ },
+ "modes": {
+  "dv2_split_move": {
+   "top20_by_splits": [
+    {
+     "feature": "shw_sp_E_indirect_max_energy",
+     "splits": 174,
+     "legacy_splits": 224,
+     "legacy_rank": 2
+    },
+    {
+     "feature": "numu_1_score",
+     "splits": 173,
+     "legacy_splits": 194,
+     "legacy_rank": 4
+    },
+    {
+     "feature": "numu_score",
+     "splits": 156,
+     "legacy_splits": 281,
+     "legacy_rank": 1
+    },
+    {
+     "feature": "kine_nu_y_corr",
+     "splits": 142,
+     "legacy_splits": 221,
+     "legacy_rank": 3
+    },
+    {
+     "feature": "shw_sp_shw_vtx_dis",
+     "splits": 132,
+     "legacy_splits": 114,
+     "legacy_rank": 6
+    },
+    {
+     "feature": "shw_sp_medium_dQ_dx",
+     "splits": 108,
+     "legacy_splits": 70,
+     "legacy_rank": 30
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_0",
+     "splits": 99,
+     "legacy_splits": 80,
+     "legacy_rank": 19
+    },
+    {
+     "feature": "shw_sp_max_shw_dis",
+     "splits": 99,
+     "legacy_splits": 80,
+     "legacy_rank": 17
+    },
+    {
+     "feature": "shw_sp_stem_length",
+     "splits": 92,
+     "legacy_splits": 84,
+     "legacy_rank": 15
+    },
+    {
+     "feature": "shw_sp_br4_1_shower_total_length",
+     "splits": 92,
+     "legacy_splits": 100,
+     "legacy_rank": 11
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_2",
+     "splits": 92,
+     "legacy_splits": 88,
+     "legacy_rank": 13
+    },
+    {
+     "feature": "shw_sp_max_dQ_dx_sample",
+     "splits": 92,
+     "legacy_splits": 105,
+     "legacy_rank": 10
+    },
+    {
+     "feature": "shw_sp_lem_e_charge",
+     "splits": 89,
+     "legacy_splits": 174,
+     "legacy_rank": 5
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_1",
+     "splits": 89,
+     "legacy_splits": 106,
+     "legacy_rank": 9
+    },
+    {
+     "feature": "shw_sp_lowest_dQ_dx",
+     "splits": 88,
+     "legacy_splits": 89,
+     "legacy_rank": 12
+    },
+    {
+     "feature": "shw_sp_br4_2_ratio1_15",
+     "splits": 87,
+     "legacy_splits": 109,
+     "legacy_rank": 7
+    },
+    {
+     "feature": "shw_sp_lem_e_dQdx",
+     "splits": 85,
+     "legacy_splits": 83,
+     "legacy_rank": 16
+    },
+    {
+     "feature": "shw_sp_highest_dQ_dx",
+     "splits": 84,
+     "legacy_splits": 108,
+     "legacy_rank": 8
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_5",
+     "splits": 83,
+     "legacy_splits": 71,
+     "legacy_rank": 27
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_6",
+     "splits": 81,
+     "legacy_splits": 73,
+     "legacy_rank": 24
+    }
+   ],
+   "top20_by_gain": [
+    {
+     "feature": "shw_sp_lem_e_charge",
+     "total_gain_share": 0.13792744205677435,
+     "split_rank": 13
+    },
+    {
+     "feature": "shw_sp_length_total",
+     "total_gain_share": 0.06755643069771931,
+     "split_rank": 21
+    },
+    {
+     "feature": "cosmict_flag",
+     "total_gain_share": 0.066799208712352,
+     "split_rank": 40
+    },
+    {
+     "feature": "shw_sp_E_indirect_max_energy",
+     "total_gain_share": 0.05903040871826113,
+     "split_rank": 1
+    },
+    {
+     "feature": "shw_sp_br4_1_shower_total_length",
+     "total_gain_share": 0.04954186748793255,
+     "split_rank": 10
+    },
+    {
+     "feature": "cosmict_10_score",
+     "total_gain_share": 0.036818416149007556,
+     "split_rank": 22
+    },
+    {
+     "feature": "numu_score",
+     "total_gain_share": 0.033597842983642705,
+     "split_rank": 3
+    },
+    {
+     "feature": "shw_sp_shw_vtx_dis",
+     "total_gain_share": 0.0292136745724728,
+     "split_rank": 5
+    },
+    {
+     "feature": "numu_1_score",
+     "total_gain_share": 0.027303566115292346,
+     "split_rank": 2
+    },
+    {
+     "feature": "shw_sp_n_20br1_showers",
+     "total_gain_share": 0.027043494843740367,
+     "split_rank": 61
+    },
+    {
+     "feature": "shw_sp_lem_e_dQdx",
+     "total_gain_share": 0.02096708752461557,
+     "split_rank": 17
+    },
+    {
+     "feature": "shw_sp_length_main",
+     "total_gain_share": 0.020617631855584764,
+     "split_rank": 45
+    },
+    {
+     "feature": "shw_sp_lem_shower_main_length",
+     "total_gain_share": 0.01663594859614169,
+     "split_rank": 51
+    },
+    {
+     "feature": "shw_sp_medium_dQ_dx",
+     "total_gain_share": 0.015849781801482044,
+     "split_rank": 6
+    },
+    {
+     "feature": "kine_nu_y_corr",
+     "total_gain_share": 0.01446809550873297,
+     "split_rank": 4
+    },
+    {
+     "feature": "shw_sp_n_br3_showers",
+     "total_gain_share": 0.011908532859016807,
+     "split_rank": 41
+    },
+    {
+     "feature": "shw_sp_min_dis",
+     "total_gain_share": 0.011375516905126845,
+     "split_rank": 31
+    },
+    {
+     "feature": "shw_sp_max_shw_dis",
+     "total_gain_share": 0.011026963702006813,
+     "split_rank": 8
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_2",
+     "total_gain_share": 0.010617824465927747,
+     "split_rank": 11
+    },
+    {
+     "feature": "shw_sp_br4_1_min_dis",
+     "total_gain_share": 0.010231783231597394,
+     "split_rank": 24
+    }
+   ],
+   "family_split_share": {
+    "cosmic_tagger": 0.09821260583254939,
+    "numu_tagger": 0.0024459078080903106,
+    "shower": 0.7954844778927563,
+    "upstream_scores": 0.07714016933207903,
+    "vertex": 0.02671683913452493
+   },
+   "family_gain_share": {
+    "cosmic_tagger": 0.1108858428147635,
+    "numu_tagger": 0.009001471408542894,
+    "shower": 0.7671726592772763,
+    "upstream_scores": 0.09847193099068431,
+    "vertex": 0.01446809550873297
+   },
+   "upstream_ranks": {
+    "numu_score": {
+     "split_rank": 3,
+     "gain_rank": 7,
+     "legacy_rank": 1
+    },
+    "numu_1_score": {
+     "split_rank": 2,
+     "gain_rank": 9,
+     "legacy_rank": 4
+    },
+    "numu_2_score": {
+     "split_rank": 93,
+     "gain_rank": 90,
+     "legacy_rank": 92
+    },
+    "cosmict_10_score": {
+     "split_rank": 22,
+     "gain_rank": 6,
+     "legacy_rank": 69
+    }
+   },
+   "top20_split_overlap_with_legacy": 17,
+   "inputs_never_split": 18
+  },
+  "dv2_snap": {
+   "top20_by_splits": [
+    {
+     "feature": "numu_1_score",
+     "splits": 173,
+     "legacy_splits": 194,
+     "legacy_rank": 4
+    },
+    {
+     "feature": "numu_score",
+     "splits": 172,
+     "legacy_splits": 281,
+     "legacy_rank": 1
+    },
+    {
+     "feature": "shw_sp_E_indirect_max_energy",
+     "splits": 146,
+     "legacy_splits": 224,
+     "legacy_rank": 2
+    },
+    {
+     "feature": "shw_sp_shw_vtx_dis",
+     "splits": 127,
+     "legacy_splits": 114,
+     "legacy_rank": 6
+    },
+    {
+     "feature": "kine_nu_y_corr",
+     "splits": 125,
+     "legacy_splits": 221,
+     "legacy_rank": 3
+    },
+    {
+     "feature": "shw_sp_lem_e_charge",
+     "splits": 109,
+     "legacy_splits": 174,
+     "legacy_rank": 5
+    },
+    {
+     "feature": "shw_sp_max_dQ_dx_sample",
+     "splits": 106,
+     "legacy_splits": 105,
+     "legacy_rank": 10
+    },
+    {
+     "feature": "shw_sp_max_shw_dis",
+     "splits": 95,
+     "legacy_splits": 80,
+     "legacy_rank": 17
+    },
+    {
+     "feature": "shw_sp_medium_dQ_dx",
+     "splits": 94,
+     "legacy_splits": 70,
+     "legacy_rank": 30
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_1",
+     "splits": 92,
+     "legacy_splits": 106,
+     "legacy_rank": 9
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_3",
+     "splits": 86,
+     "legacy_splits": 64,
+     "legacy_rank": 39
+    },
+    {
+     "feature": "shw_sp_highest_dQ_dx",
+     "splits": 84,
+     "legacy_splits": 108,
+     "legacy_rank": 8
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_0",
+     "splits": 84,
+     "legacy_splits": 80,
+     "legacy_rank": 19
+    },
+    {
+     "feature": "shw_sp_br4_2_ratio1_15",
+     "splits": 83,
+     "legacy_splits": 109,
+     "legacy_rank": 7
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_2",
+     "splits": 83,
+     "legacy_splits": 88,
+     "legacy_rank": 13
+    },
+    {
+     "feature": "shw_sp_br4_1_shower_main_length",
+     "splits": 77,
+     "legacy_splits": 69,
+     "legacy_rank": 34
+    },
+    {
+     "feature": "shw_sp_stem_length",
+     "splits": 77,
+     "legacy_splits": 84,
+     "legacy_rank": 15
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_6",
+     "splits": 75,
+     "legacy_splits": 73,
+     "legacy_rank": 24
+    },
+    {
+     "feature": "shw_sp_br4_1_shower_total_length",
+     "splits": 75,
+     "legacy_splits": 100,
+     "legacy_rank": 11
+    },
+    {
+     "feature": "shw_sp_lem_e_dQdx",
+     "splits": 74,
+     "legacy_splits": 83,
+     "legacy_rank": 16
+    }
+   ],
+   "top20_by_gain": [
+    {
+     "feature": "shw_sp_lem_e_charge",
+     "total_gain_share": 0.14211420282006515,
+     "split_rank": 6
+    },
+    {
+     "feature": "cosmict_flag",
+     "total_gain_share": 0.0643620647069933,
+     "split_rank": 38
+    },
+    {
+     "feature": "shw_sp_length_total",
+     "total_gain_share": 0.05489088857842826,
+     "split_rank": 22
+    },
+    {
+     "feature": "shw_sp_E_indirect_max_energy",
+     "total_gain_share": 0.052866382915486794,
+     "split_rank": 3
+    },
+    {
+     "feature": "shw_sp_br4_1_shower_total_length",
+     "total_gain_share": 0.05060292100535477,
+     "split_rank": 19
+    },
+    {
+     "feature": "numu_score",
+     "total_gain_share": 0.03463523678910785,
+     "split_rank": 2
+    },
+    {
+     "feature": "cosmict_10_score",
+     "total_gain_share": 0.03270520556179957,
+     "split_rank": 28
+    },
+    {
+     "feature": "shw_sp_n_20br1_showers",
+     "total_gain_share": 0.029791319792757245,
+     "split_rank": 59
+    },
+    {
+     "feature": "numu_1_score",
+     "total_gain_share": 0.029510234906949106,
+     "split_rank": 1
+    },
+    {
+     "feature": "shw_sp_lem_e_dQdx",
+     "total_gain_share": 0.02873150177157356,
+     "split_rank": 20
+    },
+    {
+     "feature": "shw_sp_shw_vtx_dis",
+     "total_gain_share": 0.024864183170368936,
+     "split_rank": 4
+    },
+    {
+     "feature": "shw_sp_length_main",
+     "total_gain_share": 0.02010873335039756,
+     "split_rank": 48
+    },
+    {
+     "feature": "shw_sp_lem_shower_main_length",
+     "total_gain_share": 0.017418691180033943,
+     "split_rank": 32
+    },
+    {
+     "feature": "shw_sp_medium_dQ_dx",
+     "total_gain_share": 0.016819805232564062,
+     "split_rank": 9
+    },
+    {
+     "feature": "shw_sp_hol_2_min_angle",
+     "total_gain_share": 0.013912602122528343,
+     "split_rank": 40
+    },
+    {
+     "feature": "shw_sp_br4_1_min_dis",
+     "total_gain_share": 0.013887295477475574,
+     "split_rank": 39
+    },
+    {
+     "feature": "kine_nu_y_corr",
+     "total_gain_share": 0.013540266005119171,
+     "split_rank": 5
+    },
+    {
+     "feature": "shw_sp_vec_dQ_dx_2",
+     "total_gain_share": 0.013060482959159765,
+     "split_rank": 15
+    },
+    {
+     "feature": "shw_sp_min_dis",
+     "total_gain_share": 0.012872189105211774,
+     "split_rank": 34
+    },
+    {
+     "feature": "shw_sp_n_br3_showers",
+     "total_gain_share": 0.011868005864749993,
+     "split_rank": 29
+    }
+   ],
+   "family_split_share": {
+    "cosmic_tagger": 0.0923933922397234,
+    "numu_tagger": 0.003073376872839032,
+    "shower": 0.800230503265463,
+    "upstream_scores": 0.08029197080291971,
+    "vertex": 0.024010756819054936
+   },
+   "family_gain_share": {
+    "cosmic_tagger": 0.10782779012019118,
+    "numu_tagger": 0.007760929152862482,
+    "shower": 0.7735629120085628,
+    "upstream_scores": 0.0973081027132644,
+    "vertex": 0.013540266005119171
+   },
+   "upstream_ranks": {
+    "numu_score": {
+     "split_rank": 2,
+     "gain_rank": 6,
+     "legacy_rank": 1
+    },
+    "numu_1_score": {
+     "split_rank": 1,
+     "gain_rank": 9,
+     "legacy_rank": 4
+    },
+    "numu_2_score": {
+     "split_rank": 107,
+     "gain_rank": 103,
+     "legacy_rank": 92
+    },
+    "cosmict_10_score": {
+     "split_rank": 28,
+     "gain_rank": 7,
+     "legacy_rank": 69
+    }
+   },
+   "top20_split_overlap_with_legacy": 16,
+   "inputs_never_split": 20
+  }
+ }
+}

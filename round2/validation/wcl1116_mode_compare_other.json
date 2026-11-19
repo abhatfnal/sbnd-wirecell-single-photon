@@ -1,0 +1,147 @@
+{
+ "label": "DEVELOPMENT HOLDOUT (Aurora WCL1116) -- not independent end-to-end performance; no threshold",
+ "model": "other",
+ "modes": {
+  "dv2_split_move": {
+   "model": "single_photon_other_sbnd_wcl1116_dv2_split_move_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_split_move",
+   "wc_tree": "recTreeWireCell",
+   "train_rows": {
+    "pos": 8761,
+    "neg": 7881
+   },
+   "holdout_rows": {
+    "pos": 8821,
+    "neg": 7748
+   },
+   "train_auc": 0.9686807924074234,
+   "holdout_auc": 0.9153023724828995,
+   "holdout_auc_stored": 0.9153023724828996,
+   "legacy_holdout_auc": 0.8397569289085036,
+   "train_holdout_gap": 0.05337841992452397,
+   "top10_by_splits": [
+    "shw_sp_E_indirect_max_energy",
+    "numu_1_score",
+    "numu_score",
+    "kine_nu_y_corr",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_max_shw_dis",
+    "shw_sp_stem_length",
+    "shw_sp_br4_1_shower_total_length"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.9332712204605946,
+    "top10_overlap_with_legacy": 5,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "upstream_numu": {
+      "dev": 0.07714016933207903,
+      "legacy": 0.08697813121272366
+     },
+     "cosmic_tagger": {
+      "dev": 0.11194731890874883,
+      "legacy": 0.10934393638170974
+     }
+    },
+    "dev_rank": {
+     "cosmict_10_score": 22,
+     "numu_1_score": 2,
+     "numu_2_score": 93,
+     "numu_score": 3
+    }
+   },
+   "dev_minus_legacy_auc": {
+    "gain": 0.07554544357439585,
+    "bootstrap_sd": 0.002523482429254769,
+    "n_bootstrap": 200
+   },
+   "spearman_dev_vs_legacy": 0.7768385926427133
+  },
+  "dv2_snap": {
+   "model": "single_photon_other_sbnd_wcl1116_dv2_snap_DEV_DO_NOT_DEPLOY",
+   "vertex_mode": "dv2_snap",
+   "wc_tree": "recTreeWireCell_dv2snap",
+   "train_rows": {
+    "pos": 8667,
+    "neg": 7939
+   },
+   "holdout_rows": {
+    "pos": 8745,
+    "neg": 7757
+   },
+   "train_auc": 0.9670464460659872,
+   "holdout_auc": 0.9120808568265643,
+   "holdout_auc_stored": 0.9120808568265643,
+   "legacy_holdout_auc": 0.8359730855614063,
+   "train_holdout_gap": 0.05496558923942296,
+   "top10_by_splits": [
+    "numu_1_score",
+    "numu_score",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_shw_vtx_dis",
+    "kine_nu_y_corr",
+    "shw_sp_lem_e_charge",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_max_shw_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_vec_dQ_dx_1"
+   ],
+   "holdout_auc_matches_stored": true,
+   "feature_sanity": {
+    "spearman_split_counts_vs_legacy": 0.9311865708584224,
+    "top10_overlap_with_legacy": 8,
+    "bookkeeping_inputs": [],
+    "group_split_share": {
+     "upstream_numu": {
+      "dev": 0.08029197080291971,
+      "legacy": 0.08697813121272366
+     },
+     "cosmic_tagger": {
+      "dev": 0.10545524394928928,
+      "legacy": 0.10934393638170974
+     }
+    },
+    "dev_rank": {
+     "cosmict_10_score": 28,
+     "numu_1_score": 1,
+     "numu_2_score": 106,
+     "numu_score": 2
+    }
+   },
+   "dev_minus_legacy_auc": {
+    "gain": 0.076107771265158,
+    "bootstrap_sd": 0.0027705390878105724,
+    "n_bootstrap": 200
+   },
+   "spearman_dev_vs_legacy": 0.7731118728345239
+  }
+ },
+ "matched_common_population": {
+  "definition": "holdout candidates present in both modes with the same key, the same class and finite inputs in both",
+  "rows": 15901,
+  "pos": 8541,
+  "neg": 7360,
+  "class_disagreement_rows": 4,
+  "only_split_holdout_rows": 664,
+  "only_snap_holdout_rows": 597,
+  "dev_auc_split": 0.9154860204359534,
+  "dev_auc_snap": 0.912482533101205,
+  "legacy_auc_split": 0.8382896056362404,
+  "legacy_auc_snap": 0.8346354922292981,
+  "spearman_dev_margin_split_vs_snap": 0.956552170353945,
+  "spearman_legacy_split_vs_snap": 0.9568735667779572,
+  "bootstrap_200_snap_minus_split": {
+   "dev_auc_mean": -0.002901825514421129,
+   "dev_auc_std": 0.0010164568151728877,
+   "legacy_auc_mean": -0.0036232146963471384,
+   "legacy_auc_std": 0.0012311849439788267
+  }
+ },
+ "retraining_verdict": {
+  "rule": "BENEFICIAL: both modes gain >= 0.010 and > 3 sigma; COMPETITIVE: both modes gain <= 0.002; else NEUTRAL / NOT RESOLVED",
+  "verdict": "RETRAINING CLEARLY BENEFICIAL"
+ }
+}

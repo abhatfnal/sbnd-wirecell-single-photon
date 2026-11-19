@@ -11,10 +11,14 @@ Every staged file must:
   * carry an ODD run in its name and in its recTree header, equal to the membership run (even run = evaluation half);
   * match the source manifest written on the gpvm (bytes, dCache ADLER32), and get a sha256 here;
   * be refreshed WCL1116 reconstruction (--expect-reco wcl1116): recTree, recTreeWireCell AND recTreeWireCell_dv2snap
-    present, wct_version "0.38.0" in both Wire-Cell trees, dl_weights naming the aurora_space bundle 51588842...,
-    rec.hdr.ismc == 0 (real off-beam data).
-The old fg1 reconstruction (one Wire-Cell tree, wct_version ...-g78f81c64) fails the reco check, so the two can never
-mix. Only files that pass every check enter --write-list. Nothing is written next to the staged files.
+    present; in both Wire-Cell trees a wct_version that is EXACTLY one of the WCLocal2026Nov16 strings of toolkit
+    c935e30d ("0.38.0" Aurora build, "HEAD-0.38.0" FermiGrid/gpVM build; sp_retrain.provenance, approved 2026-11-19),
+    the same string in both trees, and dl_weights EXACTLY "<mode>:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842..."
+    for that tree's vertex mode; rec.hdr.ismc == 0 (real off-beam data).
+Every staged file must carry the same stamp (one build per sample); that stamp and the campaign provenance are written
+to the record. The old fg1 reconstruction (one Wire-Cell tree, wct_version ...-g78f81c64) and any post-tag or branch
+stamp fail the reco check, so reconstructions can never mix. Only if every file passes is --write-list written; the
+JSON record is written either way. Nothing is written next to the staged files.
 """
 import argparse
 import gzip
@@ -27,9 +31,10 @@ import zlib
 
 ROUND2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROUND2)
-from sp_retrain import firewall  # noqa: E402
+from sp_retrain import firewall, provenance  # noqa: E402
 
-BUNDLE_SHA = '51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74'
+BUNDLE_SHA = provenance.WCL1116_BUNDLE_SHA256
+MODE_OF_TREE = {'recTreeWireCell': 'dv2_split_move', 'recTreeWireCell_dv2snap': 'dv2_snap'}
 RUN = re.compile(r'_run(\d+)_')
 TREES = ('recTree', 'recTreeWireCell', 'recTreeWireCell_dv2snap')
 
@@ -84,16 +89,28 @@ def reco_check(path, expect):
     for t in ('recTreeWireCell', 'recTreeWireCell_dv2snap'):
         if t in f:
             r[t] = dict(wct_version=text(f[t], 'wc.Trun.wct_version'), dl_weights=text(f[t], 'wc.Trun.dl_weights'))
-    bad = []
-    if expect == 'wcl1116':
-        if not all(r['trees'].values()):
-            bad.append('missing tree %s' % [t for t, ok in r['trees'].items() if not ok])
-        for t in ('recTreeWireCell', 'recTreeWireCell_dv2snap'):
-            if t in r and (r[t]['wct_version'] != '0.38.0' or BUNDLE_SHA not in r[t]['dl_weights']):
-                bad.append('%s not WCL1116 (%s)' % (t, r[t]['wct_version']))
+    bad = wcl1116_problems(r) if expect == 'wcl1116' else []
     if r['ismc'] != [0]:
         bad.append('not real data (ismc %s)' % r['ismc'])
     return r, bad
+
+
+def wcl1116_problems(r):
+    """Reconstruction problems of one file's metadata r (trees present; per Wire-Cell tree wct_version, dl_weights)."""
+    bad = []
+    if not all(r['trees'].values()):
+        bad.append('missing tree %s' % [t for t, ok in r['trees'].items() if not ok])
+    for t, mode in MODE_OF_TREE.items():
+        if t not in r:
+            continue
+        if not provenance.wcl1116_stamp_ok(r[t]['wct_version']):
+            bad.append('%s not WCL1116 (wct_version %r)' % (t, r[t]['wct_version']))
+        if r[t]['dl_weights'] != provenance.wcl1116_dl_weights(mode):
+            bad.append('%s not WCL1116 (dl_weights %r)' % (t, r[t]['dl_weights'][:80]))
+    st = [r[t]['wct_version'] for t in MODE_OF_TREE if t in r]
+    if len(set(st)) > 1:
+        bad.append('trees carry different stamps %s' % st)
+    return bad
 
 
 def main():
@@ -156,6 +173,7 @@ def main():
             reco = {}; fails.append('unreadable: %s' % str(e).splitlines()[0][:80])
         rows.append(dict(pair_id=pid, file=fn, run=run, bytes=size, adler32=ad, sha256=sha, role='training_ext_beam_off',
                          source=(s or {}).get('caf', ''), wct_version=(reco.get('recTreeWireCell') or {}).get('wct_version', ''),
+                         wct_version_snap=(reco.get('recTreeWireCell_dv2snap') or {}).get('wct_version', ''),
                          trees=','.join(t for t, ok in reco.get('trees', {}).items() if ok), ok=not fails, fails=';'.join(fails)))
     dup = sorted(k for k, v in seen.items() if v > 1)
     for r in rows:
@@ -167,25 +185,36 @@ def main():
                missing=sorted(expected - set(r['pair_id'] for r in rows))[:600], n_missing=len(expected - set(r['pair_id'] for r in rows)),
                evaluation_half_files=sum('even or unknown run' in r['fails'] for r in rows),
                holdout_files=sum('hold-out' in r['fails'] for r in rows), unknown_files=sum('not in the frozen membership' in r['fails'] for r in rows),
-               duplicate_ids=len(dup), reco_failures=sum(('not WCL1116' in r['fails']) or ('missing tree' in r['fails']) for r in rows),
+               duplicate_ids=len(dup), reco_failures=sum(('not WCL1116' in r['fails']) or ('missing tree' in r['fails']) or ('different stamps' in r['fails']) for r in rows),
                checksum_failures=sum(('adler32' in r['fails']) or ('size' in r['fails']) for r in rows),
+               data_mc_failures=sum('not real data' in r['fails'] for r in rows),
                expect_reco=a.expect_reco, source_manifest=a.source_manifest, failures=[dict(pair_id=r['pair_id'], fails=r['fails']) for r in rows if not r['ok']][:50])
-    res['status'] = 'VERIFIED' if (res['verified'] == res['expected'] == res['staged_files'] and not res['failures']) else 'NOT VERIFIED'
+    stamps = {}
+    for r in rows:
+        stamps[r['wct_version']] = stamps.get(r['wct_version'], 0) + 1
+    res['wct_version_stamps'] = stamps
+    res['wct_version_stamp'] = next(iter(stamps)) if len(stamps) == 1 else None    # one build per sample
+    res['uniform_stamp'] = len(stamps) == 1
+    if a.expect_reco == 'wcl1116':
+        res['wct_provenance'] = provenance.WCL1116_PROVENANCE
+        res['toolkit_commit'] = provenance.WCL1116_TOOLKIT_COMMIT
+    res['status'] = 'VERIFIED' if (res['verified'] == res['expected'] == res['staged_files'] and not res['failures'] and res['uniform_stamp']) else 'NOT VERIFIED'
     if a.out_tsv:
-        cols = ['pair_id', 'file', 'run', 'bytes', 'adler32', 'sha256', 'role', 'source', 'wct_version', 'trees', 'ok', 'fails']
+        cols = ['pair_id', 'file', 'run', 'bytes', 'adler32', 'sha256', 'role', 'source', 'wct_version', 'wct_version_snap', 'trees', 'ok', 'fails']
         body = '\t'.join(cols) + '\n' + ''.join('\t'.join(str(r[c]) for c in cols) + '\n' for r in rows)
         with gzip.open(a.out_tsv, 'wt') as f:
             f.write(body)
         res['out_tsv_content_sha256'] = hashlib.sha256(body.encode()).hexdigest()
-    if a.write_list:
-        if res['status'] != 'VERIFIED':
-            raise SystemExit('staging NOT VERIFIED: no training list written (%s)' % json.dumps({k: res[k] for k in ('expected', 'staged_files', 'verified', 'n_missing')}))
+    if a.write_list and res['status'] == 'VERIFIED':
         open(a.write_list, 'w').write(''.join(os.path.join(a.staged, r['pair_id'], r['file']) + '\n' for r in good))
+        res['list'] = os.path.abspath(a.write_list)
         res['list_sha256'] = hashlib.sha256(open(a.write_list, 'rb').read()).hexdigest()
-    json.dump(res, open(a.out_json, 'w'), indent=1)
-    print(json.dumps({k: v for k, v in res.items() if k not in ('missing', 'failures')}, indent=1))
+    json.dump(res, open(a.out_json, 'w'), indent=1)        # the record is written whether or not the staging verifies
+    print(json.dumps({k: v for k, v in res.items() if k not in ('missing', 'failures', 'wct_provenance')}, indent=1))
     if res['failures']:
         print('first failures:', res['failures'][:3])
+    if a.write_list and res['status'] != 'VERIFIED':
+        raise SystemExit('staging NOT VERIFIED: no training list written (%s)' % json.dumps({k: res[k] for k in ('expected', 'staged_files', 'verified', 'n_missing')}))
 
 
 if __name__ == '__main__':

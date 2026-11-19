@@ -21,6 +21,8 @@ import yaml
 
 ROUND2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = os.path.dirname(ROUND2)
+sys.path.insert(0, ROUND2)
+from sp_retrain import provenance  # noqa: E402
 CAMPAIGN = 'development_wcl1116_v1'
 MODES = {'dv2_split_move': 'recTreeWireCell', 'dv2_snap': 'recTreeWireCell_dv2snap'}
 SAMPLES = ('wcl1116-aurora-ncdr', 'wcl1116-aurora-bnb')
@@ -111,8 +113,20 @@ STAGED = '/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117
 STAGING = os.path.join(ROUND2, 'manifests', 'wcl1116_dev_v1', 'beamoff_train_staging.json')
 
 
+EXT_LIST = '/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-fg-beamoff-train.txt'
+
+
 def other_spec(mode, man):
     stg = json.load(open(STAGING)) if os.path.exists(STAGING) else {}
+    if stg.get('status') == 'VERIFIED':
+        # the list written by the verifier's --write-list: its recorded path, or (older records store only the hash) the
+        # standard path. Either way it is accepted only if its content hash equals the verified list_sha256.
+        lp = stg.get('list') or EXT_LIST
+        if not os.path.exists(lp) or sha(lp) != stg.get('list_sha256'):
+            raise SystemExit('beam-off training list %s missing or != verified list_sha256' % lp)
+        if not provenance.wcl1116_stamp_ok(stg.get('wct_version_stamp')):
+            raise SystemExit('staging record carries no single WCLocal2026Nov16 wct_version stamp: %r' % stg.get('wct_version_stamp'))
+        stg = dict(stg, list=lp)
     base = yaml.safe_load(open(os.path.join(ROUND2, 'specs', 'single_photon_other_training_spec_v0.2.yaml')))
     ncpi0 = yaml.safe_load(open(os.path.join(ROUND2, 'specs', 'single_photon_ncpi0_training_spec_dev_round1_domain_v1.yaml')))
     sp = dict(spec_id='single_photon_other_training_spec', campaign=CAMPAIGN, date='2026-11-17',
@@ -135,7 +149,11 @@ def other_spec(mode, man):
     sp['samples'] = dict(development=[dict(id=s['id'], list=s['list'], list_sha256=s['list_sha256'], files=s['files']) for s in man['samples']]
                          + [dict(id='wcl1116-fg-beamoff-train', role='ext_beam_off', list=stg.get('list'), list_sha256=stg.get('list_sha256'),
                                  files=stg.get('verified'), membership='round2/manifests/wcl1116_dev_v1/beamoff_train_membership.tsv.gz',
-                                 staging_record='round2/manifests/wcl1116_dev_v1/beamoff_train_staging.json')],
+                                 staging_record='round2/manifests/wcl1116_dev_v1/beamoff_train_staging.json',
+                                 **(dict(wct_version_stamp=stg['wct_version_stamp'], toolkit_commit=provenance.WCL1116_TOOLKIT_COMMIT,
+                                         provenance_note='stored stamp %r = campaign build of toolkit %s (tag %s); sp_retrain.provenance'
+                                         % (stg['wct_version_stamp'], provenance.WCL1116_TOOLKIT_COMMIT, provenance.WCL1116_TAG))
+                                    if stg.get('status') == 'VERIFIED' else {}))],
                          input_manifest=rel(OUT_MAN), excluded_official_evaluation=EVAL_EXCLUDED,
                          approved_exceptions=[dict(man['beam_off_training_half']['firewall_exception'],
                                                    path_prefix='/pnfs/sbnd/persistent/users/yuhw/prod-fermigrid/WCLocal2026Nov16/beam-off/',

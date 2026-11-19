@@ -27,7 +27,7 @@ import pandas as pd
 
 ROUND2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROUND2)
-from sp_retrain import devtrain, features, firewall, labels  # noqa: E402
+from sp_retrain import devtrain, features, firewall, labels, provenance  # noqa: E402
 
 ALLOWED_INPUT = ['/lus/flare/projects/neutrinoGPU/yuhw/production-prep/WCLocal2026Nov16/full']
 ALLOWED_OUTPUT = ['/lus/flare/projects/neutrinoGPU/abhat/sbnd']
@@ -98,7 +98,9 @@ def main():
                            label_unreadable_files=int((F.label_unreadable > 0).sum()), truth_pf_unreadable_files=int((F.truth_pf_unreadable > 0).sum()),
                            cands_sha256=devtrain.sha256_file(p('cands')), truth_sha256=devtrain.sha256_file(p('truth')),
                            files_sha256=devtrain.sha256_file(p('files')))
-        off = set(F[F.wct_version.fillna('') != stamp].file_id)
+        st = provenance.expected_sample_stamp(s, stamp)     # the manifest stamp, or the sample's own verified stamp
+        builds[sid]['expected_wct_version_stamp'] = st
+        off = set(F[F.wct_version.fillna('') != st].file_id)
         cs = pd.read_parquet(p('cands'))
         builds[sid]['files_without_stamp'] = sorted(off)
         builds[sid]['candidates_dropped_without_stamp'] = int(cs.file_id.isin(off).sum())

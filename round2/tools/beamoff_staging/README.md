@@ -1,8 +1,12 @@
 # Staging the refreshed beam-off TRAINING partition (WCL1116) to Aurora
 
-**Status (2026-11-17): prepared, NOT executed.** The transfer needs Avinay's own session: a Fermilab gpvm login and
-the ALCF one-time passcode. Nothing in this directory can or should run unattended. Evaluation beam-off is never a
-substitute.
+**Status (2026-11-19): EXECUTED AND VERIFIED.**
+- Avinay pushed the 558 files from his gpvm session on 2026-11-18.
+- `tools/verify_staged_beamoff.py` verified 558 / 558; record in `round2/manifests/wcl1116_dev_v1/beamoff_train_staging.{json,tsv.gz}`.
+- Training list sha256 `8f2ea601…`.
+
+The transfer needs Avinay's own session: a Fermilab gpvm login and the ALCF one-time passcode. Nothing in this
+directory can or should run unattended. Evaluation beam-off is never a substitute.
 
 ## What is copied
 
@@ -63,8 +67,11 @@ The verifier writes the list **only if** all of these hold:
 - every staged file is one of the 558;
 - every file has an odd run, in its name and in its header, equal to the membership run;
 - size and ADLER32 equal the gpvm record, and a sha256 is recorded;
-- the file is WCL1116: `recTreeWireCell` and `recTreeWireCell_dv2snap` present, `wct_version` `0.38.0`, `dl_weights`
-  naming the `aurora_space` bundle `51588842…`;
+- the file is WCL1116:
+  - `recTreeWireCell` and `recTreeWireCell_dv2snap` present;
+  - `wct_version` exactly `0.38.0` or `HEAD-0.38.0`, the two stamps of toolkit c935e30d
+    (`docs/WCL1116_TOOLKIT_PROVENANCE_NOTE.md`), the same in both trees and across the sample;
+  - `dl_weights` exactly `<mode>:dv2max/sbnd/aurora_space/bundle.json@sha256:51588842…`;
 - `ismc == 0`;
 - 0 duplicate, hold-out, unknown or even-run files, and none missing.
 

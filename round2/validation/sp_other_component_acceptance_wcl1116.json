@@ -1,0 +1,77 @@
+{
+ "label": "DEVELOPMENT ROC-EQUIVALENT DIAGNOSTIC -- NOT ROUND2 CUT (SP other, per negative component, holdout rows)",
+ "modes": {
+  "dv2_split_move": {
+   "point_A_threshold_native_margin": 1.9205538630485535,
+   "legacy_cut": 0.2,
+   "components": {
+    "signal": {
+     "rows": 8821,
+     "legacy_pass": 0.5738578392472509,
+     "dev_pass_at_point_A": 0.5738578392472509
+    },
+    "nc_no_pi0": {
+     "rows": 1927,
+     "legacy_pass": 0.11728074727555786,
+     "dev_pass_at_point_A": 0.03684483653347172
+    },
+    "dirt": {
+     "rows": 3616,
+     "legacy_pass": 0.13329646017699115,
+     "dev_pass_at_point_A": 0.035398230088495575
+    },
+    "out_of_fv_in_tpc": {
+     "rows": 424,
+     "legacy_pass": 0.18160377358490565,
+     "dev_pass_at_point_A": 0.05660377358490566
+    },
+    "cosmic_matched_mc": {
+     "rows": 1557,
+     "legacy_pass": 0.05394990366088632,
+     "dev_pass_at_point_A": 0.018625561978163133
+    },
+    "beam_off_ext": {
+     "rows": 224,
+     "legacy_pass": 0.05357142857142857,
+     "dev_pass_at_point_A": 0.008928571428571428
+    }
+   }
+  },
+  "dv2_snap": {
+   "point_A_threshold_native_margin": 1.852640151977539,
+   "legacy_cut": 0.2,
+   "components": {
+    "signal": {
+     "rows": 8745,
+     "legacy_pass": 0.571869639794168,
+     "dev_pass_at_point_A": 0.571869639794168
+    },
+    "nc_no_pi0": {
+     "rows": 1926,
+     "legacy_pass": 0.122533748701973,
+     "dev_pass_at_point_A": 0.03894080996884735
+    },
+    "dirt": {
+     "rows": 3616,
+     "legacy_pass": 0.13799778761061948,
+     "dev_pass_at_point_A": 0.035398230088495575
+    },
+    "out_of_fv_in_tpc": {
+     "rows": 427,
+     "legacy_pass": 0.17330210772833723,
+     "dev_pass_at_point_A": 0.06088992974238876
+    },
+    "cosmic_matched_mc": {
+     "rows": 1563,
+     "legacy_pass": 0.0563019833653231,
+     "dev_pass_at_point_A": 0.01471529110684581
+    },
+    "beam_off_ext": {
+     "rows": 225,
+     "legacy_pass": 0.06666666666666667,
+     "dev_pass_at_point_A": 0.008888888888888889
+    }
+   }
+  }
+ }
+}

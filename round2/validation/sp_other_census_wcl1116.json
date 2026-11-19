@@ -1,0 +1,199 @@
+{
+ "label": "SP other CENSUS (development tables; no training)",
+ "modes": {
+  "dv2_split_move": {
+   "samples_present": [
+    "wcl1116-aurora-ncdr",
+    "wcl1116-aurora-bnb",
+    "wcl1116-fg-beamoff-train"
+   ],
+   "samples_missing": [],
+   "mc_only": false,
+   "stamp_filter": {
+    "wcl1116-aurora-ncdr": {
+     "expected_wct_version_stamp": "0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    },
+    "wcl1116-aurora-bnb": {
+     "expected_wct_version_stamp": "0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    },
+    "wcl1116-fg-beamoff-train": {
+     "expected_wct_version_stamp": "HEAD-0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    }
+   },
+   "candidates": 321918,
+   "preselected": 82514,
+   "classed": 33211,
+   "nonfinite_classed_rows": 0,
+   "positive": {
+    "rows": 17582,
+    "events": 17577,
+    "train": 8761,
+    "holdout": 8821
+   },
+   "negative": {
+    "rows": 15629,
+    "events": 15613,
+    "train": 7881,
+    "holdout": 7748
+   },
+   "negative_by_component": {
+    "nc_no_pi0": {
+     "rows": 3822,
+     "events": 3822,
+     "train": 1895,
+     "holdout": 1927,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 3691,
+      "wcl1116-aurora-ncdr": 131
+     }
+    },
+    "dirt": {
+     "rows": 7263,
+     "events": 7256,
+     "train": 3647,
+     "holdout": 3616,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 7007,
+      "wcl1116-aurora-ncdr": 256
+     }
+    },
+    "out_of_fv_in_tpc": {
+     "rows": 843,
+     "events": 843,
+     "train": 419,
+     "holdout": 424,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 769,
+      "wcl1116-aurora-ncdr": 74
+     }
+    },
+    "cosmic_matched_mc": {
+     "rows": 3192,
+     "events": 3190,
+     "train": 1635,
+     "holdout": 1557,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 3033,
+      "wcl1116-aurora-ncdr": 159
+     }
+    },
+    "beam_off_ext": {
+     "rows": 509,
+     "events": 509,
+     "train": 285,
+     "holdout": 224,
+     "by_sample": {
+      "wcl1116-fg-beamoff-train": 509
+     }
+    }
+   },
+   "beam_off_fraction_of_negatives": 0.03256766267835434,
+   "events_with_multiple_classed_candidates": 62,
+   "events_with_more_than_one_component": 48,
+   "old_reconstruction_ext_rows_reference": 481
+  },
+  "dv2_snap": {
+   "samples_present": [
+    "wcl1116-aurora-ncdr",
+    "wcl1116-aurora-bnb",
+    "wcl1116-fg-beamoff-train"
+   ],
+   "samples_missing": [],
+   "mc_only": false,
+   "stamp_filter": {
+    "wcl1116-aurora-ncdr": {
+     "expected_wct_version_stamp": "0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    },
+    "wcl1116-aurora-bnb": {
+     "expected_wct_version_stamp": "0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    },
+    "wcl1116-fg-beamoff-train": {
+     "expected_wct_version_stamp": "HEAD-0.38.0",
+     "files_without_stamp": 0,
+     "candidates_dropped": 0
+    }
+   },
+   "candidates": 321918,
+   "preselected": 82787,
+   "classed": 33108,
+   "nonfinite_classed_rows": 0,
+   "positive": {
+    "rows": 17412,
+    "events": 17407,
+    "train": 8667,
+    "holdout": 8745
+   },
+   "negative": {
+    "rows": 15696,
+    "events": 15677,
+    "train": 7939,
+    "holdout": 7757
+   },
+   "negative_by_component": {
+    "nc_no_pi0": {
+     "rows": 3849,
+     "events": 3849,
+     "train": 1923,
+     "holdout": 1926,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 3718,
+      "wcl1116-aurora-ncdr": 131
+     }
+    },
+    "dirt": {
+     "rows": 7298,
+     "events": 7290,
+     "train": 3682,
+     "holdout": 3616,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 7038,
+      "wcl1116-aurora-ncdr": 260
+     }
+    },
+    "out_of_fv_in_tpc": {
+     "rows": 846,
+     "events": 846,
+     "train": 419,
+     "holdout": 427,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 768,
+      "wcl1116-aurora-ncdr": 78
+     }
+    },
+    "cosmic_matched_mc": {
+     "rows": 3195,
+     "events": 3192,
+     "train": 1632,
+     "holdout": 1563,
+     "by_sample": {
+      "wcl1116-aurora-bnb": 3039,
+      "wcl1116-aurora-ncdr": 156
+     }
+    },
+    "beam_off_ext": {
+     "rows": 508,
+     "events": 508,
+     "train": 283,
+     "holdout": 225,
+     "by_sample": {
+      "wcl1116-fg-beamoff-train": 508
+     }
+    }
+   },
+   "beam_off_fraction_of_negatives": 0.03236493374108053,
+   "events_with_multiple_classed_candidates": 66,
+   "events_with_more_than_one_component": 50,
+   "old_reconstruction_ext_rows_reference": 481
+  }
+ }
+}

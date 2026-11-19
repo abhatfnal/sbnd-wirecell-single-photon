@@ -113,14 +113,27 @@ def test_wcl1116_specs_keep_the_round1_training_definition(model):
     devtrain.require_development_spec(new)
 
 
-def test_other_spec_is_blocked_on_transfer_with_a_narrow_exception():
+def test_other_spec_is_ready_only_from_the_verified_staging_with_a_narrow_exception():
+    stg = json.load(open(os.path.join(MAN, 'beamoff_train_staging.json')))
+    assert stg['status'] == 'VERIFIED' and stg['verified'] == stg['expected'] == stg['staged_files'] == 558 and stg['n_missing'] == 0
+    assert stg['evaluation_half_files'] == stg['holdout_files'] == stg['unknown_files'] == stg['duplicate_ids'] == 0
+    assert stg['reco_failures'] == stg['checksum_failures'] == stg['data_mc_failures'] == 0 and stg['failures'] == []
+    assert stg['wct_version_stamps'] == {'HEAD-0.38.0': 558} and stg['toolkit_commit'] == 'c935e30d44a09bf208f6de2c2968171b01efd63d'
+    assert stg['wct_provenance']['accepted_wct_version_stamps'] == ['0.38.0', 'HEAD-0.38.0']
+    with gzip.open(os.path.join(MAN, 'beamoff_train_staging.tsv.gz'), 'rt') as f:
+        t = pd.read_csv(f, sep='\t')
+    mem = pd.read_csv(os.path.join(MAN, 'beamoff_train_membership.tsv.gz'), sep='\t', comment='#')
+    assert len(t) == 558 and t.ok.all() and t.pair_id.is_unique and set(t.pair_id) <= set(mem.file_id) and (t.run % 2 == 1).all()
+    assert (t.wct_version == 'HEAD-0.38.0').all() and (t.wct_version_snap == 'HEAD-0.38.0').all()
     for mode in MODES:
         s = _spec('other', mode)
-        assert s['status'] == 'BLOCKED_TRANSFER_EXECUTION' and 'BLOCKED ONLY ON TRANSFER EXECUTION' in s['status_reason']
-        with pytest.raises(labels.TargetBlockedError):
-            labels.require_ready(s)
+        assert s['status'] == 'READY_FOR_DEVELOPMENT_TRAINING'
+        labels.require_ready(s)
         ext = [d for d in s['samples']['development'] if d.get('role') == labels.EXT_ROLE]
-        assert [d['id'] for d in ext] == ['wcl1116-fg-beamoff-train'] and ext[0]['list'] is None
+        assert [d['id'] for d in ext] == ['wcl1116-fg-beamoff-train']
+        assert ext[0]['list_sha256'] == stg['list_sha256'] and ext[0]['files'] == 558 and ext[0]['wct_version_stamp'] == 'HEAD-0.38.0'
+        if os.path.exists(ext[0]['list']):
+            assert devtrain.sha256_file(ext[0]['list']) == stg['list_sha256']
         e = s['samples']['approved_exceptions']
         assert len(e) == 1 and e[0]['approved_by'] == 'Avinay Bhat' and e[0]['scope'].startswith('development_wcl1116_v1 only')
         assert (s['xgboost']['max_depth'], s['xgboost']['n_estimators'], s['xgboost']['base_score']) == (5, 215, 0.0)
@@ -301,3 +314,115 @@ def test_nue_inputs_census_and_manifests_agree():
     v = json.load(open(os.path.join(ROUND2, 'validation', 'wcl1116_mode_compare_nue.json')))
     assert v['retraining_verdict']['verdict'] == _tool('wcl1116_mode_compare').verdict(
         [(v['modes'][md]['dev_minus_legacy_auc']['gain'], v['modes'][md]['dev_minus_legacy_auc']['bootstrap_sd']) for md in MODES])
+
+
+# ---------------------------------------------------------------- WCLocal2026Nov16 toolkit provenance (2026-11-19)
+def test_wcl1116_stamp_policy_is_an_exact_closed_list():
+    from sp_retrain import provenance as pv
+    assert pv.WCL1116_TOOLKIT_COMMIT == 'c935e30d44a09bf208f6de2c2968171b01efd63d' and pv.WCL1116_TAG == '0.38.0'
+    assert sorted(pv.WCL1116_STAMPS) == ['0.38.0', 'HEAD-0.38.0']
+    assert pv.wcl1116_stamp_ok('0.38.0') and pv.wcl1116_stamp_ok('HEAD-0.38.0')
+    for bad in ('HEAD-0.38.0-1-gabcdef12', 'HEAD-0.38.0-17-g054f7600', 'branch-0.38.0', 'master-0.38.0', 'feature-0.38.0-3-gdeadbee',
+                '0.38.0-1-gc935e30', '0.38.0-2-g054f7600', 'HEAD-0.38.1', '0.38.1', '0.38', 'v0.38.0', 'HEAD-v0.38.0',
+                'sbnd-dlvtx-35-pre-master-merge-54-ga2785870', 'sbnd-dlvtx-76-g78f81c64', '', ' 0.38.0', '0.38.0 ', 'head-0.38.0',
+                'HEAD-0.38.0\n', 'x0.38.0', 'HEAD-HEAD-0.38.0', None, b'0.38.0', 38):
+        assert not pv.wcl1116_stamp_ok(bad), bad
+    assert pv.wcl1116_dl_weights('dv2_snap') == 'dv2_snap:dv2max/sbnd/aurora_space/bundle.json@sha256:' + pv.WCL1116_BUNDLE_SHA256
+    # per-sample stamps: default = the manifest's (unchanged for every existing sample); an override must be WCL1116
+    assert pv.expected_sample_stamp(dict(id='a'), 'sbnd-dlvtx-35-pre-master-merge-54-ga2785870') == 'sbnd-dlvtx-35-pre-master-merge-54-ga2785870'
+    assert pv.expected_sample_stamp(dict(id='a', wct_version_stamp='HEAD-0.38.0'), '0.38.0') == 'HEAD-0.38.0'
+    with pytest.raises(ValueError):
+        pv.expected_sample_stamp(dict(id='a', wct_version_stamp='HEAD-0.38.0-1-gabcdef12'), '0.38.0')
+    p = pv.WCL1116_PROVENANCE
+    assert p['approved_by'] == 'Avinay Bhat' and p['dirty_cfg_files'] == 0 and 'exact string equality' in p['rule']
+    assert 'c935e30d 0.38.0 0 dirty cfg files' in p['stamp_mapping']['HEAD-0.38.0']['evidence']
+
+
+def test_verifier_reco_checks_are_exact_per_tree():
+    from sp_retrain import provenance as pv
+    v = _tool('verify_staged_beamoff')
+    trees = {t: True for t in v.TREES}
+    def meta(s1, s2, d1=None, d2=None, tr=None):
+        return dict(trees=dict(tr or trees), recTreeWireCell=dict(wct_version=s1, dl_weights=d1 or pv.wcl1116_dl_weights('dv2_split_move')),
+                    recTreeWireCell_dv2snap=dict(wct_version=s2, dl_weights=d2 or pv.wcl1116_dl_weights('dv2_snap')))
+    assert v.wcl1116_problems(meta('HEAD-0.38.0', 'HEAD-0.38.0')) == []
+    assert v.wcl1116_problems(meta('0.38.0', '0.38.0')) == []
+    for s in ('HEAD-0.38.0-1-gabcdef12', 'branch-0.38.0', 'branch-0.38.0-4-g1234567', 'sbnd-dlvtx-76-g78f81c64', 'unknown', ''):
+        assert any('not WCL1116 (wct_version' in b for b in v.wcl1116_problems(meta(s, s))), s
+    assert any('different stamps' in b for b in v.wcl1116_problems(meta('0.38.0', 'HEAD-0.38.0')))
+    # the bundle string must be exact and per tree: swapped modes, another bundle, a truncated hash all fail
+    assert any('dl_weights' in b for b in v.wcl1116_problems(meta('0.38.0', '0.38.0', d1=pv.wcl1116_dl_weights('dv2_snap'))))
+    assert any('dl_weights' in b for b in v.wcl1116_problems(meta('0.38.0', '0.38.0', d2='dv2_snap:dv2max/sbnd/other/bundle.json@sha256:' + pv.WCL1116_BUNDLE_SHA256)))
+    assert any('dl_weights' in b for b in v.wcl1116_problems(meta('0.38.0', '0.38.0', d1=pv.wcl1116_dl_weights('dv2_split_move')[:-1])))
+    assert any('missing tree' in b for b in v.wcl1116_problems(meta('0.38.0', '0.38.0', tr={**trees, 'recTreeWireCell_dv2snap': False})))
+
+
+def test_firewall_exception_prefix_stops_at_a_directory_boundary():
+    pre = ('/lus/w/wcl1116_beamoff_train/',)
+    assert firewall.check_training_inputs(['/lus/w/wcl1116_beamoff_train/p1/a.root'], ['/lus/x'], approved_exceptions=pre) == 1
+    for p in ('/lus/w/wcl1116_beamoff_train_x/p1/a.root', '/lus/w/wcl1116_beamoff_trainx.root', '/lus/w/wcl1116_beamoff_train2/a.root'):
+        with pytest.raises(firewall.FirewallError):
+            firewall.check_training_inputs([p], ['/lus/x'], approved_exceptions=pre)
+
+
+def test_other_spec_needs_the_verified_list_hash_and_stamp(tmp_path, monkeypatch):
+    g = _tool('make_wcl1116_dev_specs')
+    lst = tmp_path / 'list.txt'; lst.write_text('/a/b.root\n')
+    import hashlib
+    h = hashlib.sha256(lst.read_bytes()).hexdigest()
+    rec = tmp_path / 'staging.json'
+    monkeypatch.setattr(g, 'STAGING', str(rec)); monkeypatch.setattr(g, 'EXT_LIST', str(lst))
+    man = json.load(open(os.path.join(MAN, 'inputs.json')))
+    rec.write_text(json.dumps(dict(status='VERIFIED', list_sha256='0' * 64, verified=1, wct_version_stamp='HEAD-0.38.0')))
+    with pytest.raises(SystemExit):
+        g.other_spec('dv2_split_move', man)                      # hash mismatch: refused
+    rec.write_text(json.dumps(dict(status='VERIFIED', list_sha256=h, verified=1, wct_version_stamp='HEAD-0.38.0-1-gabcdef12')))
+    with pytest.raises(SystemExit):
+        g.other_spec('dv2_split_move', man)                      # not a campaign stamp: refused
+    rec.write_text(json.dumps(dict(status='VERIFIED', list_sha256=h, verified=1, wct_version_stamp='HEAD-0.38.0')))
+    sp = g.other_spec('dv2_split_move', man)
+    ext = [d for d in sp['samples']['development'] if d.get('role') == labels.EXT_ROLE][0]
+    assert sp['status'] == 'READY_FOR_DEVELOPMENT_TRAINING' and ext['list'] == str(lst) and ext['list_sha256'] == h
+    assert ext['wct_version_stamp'] == 'HEAD-0.38.0' and ext['toolkit_commit'] == 'c935e30d44a09bf208f6de2c2968171b01efd63d'
+    rec.write_text(json.dumps(dict(status='NOT VERIFIED')))
+    assert g.other_spec('dv2_split_move', man)['status'] == 'BLOCKED_TRANSFER_EXECUTION'
+
+
+@pytest.mark.parametrize('mode', list(MODES))
+def test_other_model_provenance_census_verdict_and_export(mode):
+    p = os.path.join(MAN, 'single_photon_other_%s_dev_manifest.json' % mode)
+    if not os.path.exists(p):
+        pytest.skip('SP other not trained')
+    m = json.load(open(p))
+    stg = json.load(open(os.path.join(MAN, 'beamoff_train_staging.json')))
+    assert m['model']['name'] == 'single_photon_other_sbnd_wcl1116_%s_DEV_DO_NOT_DEPLOY' % mode and m['reconstruction']['wc_tree'] == MODES[mode]
+    assert m['upstream_numu'] == 'SHIPPED_CONTROL' and m['deployable'] is False
+    x = m['xgboost_params']
+    assert (x['max_depth'], m['num_boost_round'], x['base_score'], x['eta'] if 'eta' in x else x['learning_rate'], x['subsample'], x['gamma']) == (5, 215, 0.0, 0.1, 0.8, 0.2)
+    assert m['leakage']['overlapping_events'] == 0 and m['leakage']['duplicate_rows'] == 0 and m['reproducibility']['identical_json']
+    e = m['inputs']['wcl1116-fg-beamoff-train']
+    assert e['list_sha256'] == stg['list_sha256'] and e['files'] == 558 and e['wct_versions'] == ['HEAD-0.38.0']
+    assert e['expected_wct_version_stamp'] == 'HEAD-0.38.0' and e['candidates_dropped_without_stamp'] == 0
+    for sid in ('wcl1116-aurora-ncdr', 'wcl1116-aurora-bnb'):
+        assert m['inputs'][sid]['expected_wct_version_stamp'] == '0.38.0'
+    # the census counts exactly the training / holdout classes, with the EXT component and no positives from data
+    c = json.load(open(os.path.join(ROUND2, 'validation', 'sp_other_census_wcl1116.json')))['modes'][mode]
+    assert not c['mc_only'] and c['samples_missing'] == [] and c['nonfinite_classed_rows'] == 0
+    assert (c['positive']['train'], c['positive']['holdout']) == (m['counts']['train']['positive_rows'], m['counts']['test']['positive_rows'])
+    assert (c['negative']['train'], c['negative']['holdout']) == (m['counts']['train']['negative_rows'], m['counts']['test']['negative_rows'])
+    ext = c['negative_by_component']['beam_off_ext']
+    assert ext['rows'] > 0 and (ext['train'], ext['holdout']) == (m['counts']['train']['by_sample']['wcl1116-fg-beamoff-train']['negative'],
+                                                                   m['counts']['test']['by_sample']['wcl1116-fg-beamoff-train']['negative'])
+    assert m['counts']['train']['by_sample']['wcl1116-fg-beamoff-train']['positive'] == m['counts']['test']['by_sample']['wcl1116-fg-beamoff-train']['positive'] == 0
+    assert sum(v['rows'] for v in c['negative_by_component'].values()) == c['negative']['rows']
+    mc = json.load(open(os.path.join(ROUND2, 'validation', 'sp_other_census_wcl1116_mc_only.json')))['modes'][mode]['negative_by_component']
+    assert all(c['negative_by_component'][k]['rows'] == mc[k]['rows'] for k in mc if k != 'beam_off_ext')    # MC unchanged
+    ex = json.load(open(os.path.join(ROUND2, 'validation', 'wcl1116_export_equivalence_other_%s.json' % mode)))
+    assert ex['all_pass'] and ex['models']['single_photon_other']['model_sha256'] == m['model']['sha256']
+    assert all(t['flips_score'] == 0 for t in ex['models']['single_photon_other']['thresholds'])
+    v = json.load(open(os.path.join(ROUND2, 'validation', 'wcl1116_mode_compare_other.json')))
+    assert v['retraining_verdict']['verdict'] == _tool('wcl1116_mode_compare').verdict(
+        [(v['modes'][md]['dev_minus_legacy_auc']['gain'], v['modes'][md]['dev_minus_legacy_auc']['bootstrap_sd']) for md in MODES])
+    assert v['modes'][mode]['feature_sanity']['bookkeeping_inputs'] == []
+    fs = json.load(open(os.path.join(ROUND2, 'validation', 'sp_other_feature_sanity_wcl1116.json')))
+    assert fs['bookkeeping_inputs'] == [] and fs['inputs_per_family'] == {'shower': 81, 'cosmic_tagger': 59, 'upstream_scores': 4, 'numu_tagger': 1, 'vertex': 1}

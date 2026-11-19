@@ -21,7 +21,7 @@ import pandas as pd
 
 ROUND2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROUND2)
-from sp_retrain import devtrain, features, labels, legacy_control as lc  # noqa: E402
+from sp_retrain import devtrain, features, labels, legacy_control as lc, provenance  # noqa: E402
 
 VARS = {
     'single_photon_numu': ['numu_score', 'numu_1_score', 'shw_sp_length_total', 'shw_sp_length_main',
@@ -44,7 +44,8 @@ def load_cands(tables, tag, spec, extra):
     for s in spec['samples']['development']:
         F = pd.read_parquet(os.path.join(tables, 'files_%s_%s.parquet' % (s['id'], tag)))
         C = pd.read_parquet(os.path.join(tables, 'cands_%s_%s.parquet' % (s['id'], tag)))
-        out.append(C[~C.file_id.isin(set(F[F.wct_version.fillna('') != stamp].file_id))])
+        st = provenance.expected_sample_stamp(s, stamp)
+        out.append(C[~C.file_id.isin(set(F[F.wct_version.fillna('') != st].file_id))])
     return pd.concat(out, ignore_index=True)
 
 

@@ -46,7 +46,7 @@ def check_training_inputs(paths, allowed_roots, approved_exceptions=()):
     bad = []
     for p in paths:
         q = os.path.normpath(str(p))
-        if any(q.startswith(e) for e in exc):
+        if any(q == e or q.startswith(e + os.sep) for e in exc):    # directory boundary: no sibling-prefix match
             continue
         m = official_marker(q)
         if m is not None:

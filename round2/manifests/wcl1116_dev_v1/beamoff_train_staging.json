@@ -1,0 +1,53 @@
+{
+ "staged_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_beamoff_train",
+ "membership": "manifests/wcl1116_dev_v1/beamoff_train_membership.tsv.gz",
+ "expected": 558,
+ "staged_files": 558,
+ "verified": 558,
+ "missing": [],
+ "n_missing": 0,
+ "evaluation_half_files": 0,
+ "holdout_files": 0,
+ "unknown_files": 0,
+ "duplicate_ids": 0,
+ "reco_failures": 0,
+ "checksum_failures": 0,
+ "data_mc_failures": 0,
+ "expect_reco": "wcl1116",
+ "source_manifest": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_beamoff_train/source_manifest.tsv",
+ "failures": [],
+ "wct_version_stamps": {
+  "HEAD-0.38.0": 558
+ },
+ "wct_version_stamp": "HEAD-0.38.0",
+ "uniform_stamp": true,
+ "wct_provenance": {
+  "campaign": "development_wcl1116_v1 (WCLocal2026Nov16)",
+  "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "tag": "0.38.0",
+  "dirty_cfg_files": 0,
+  "accepted_wct_version_stamps": [
+   "0.38.0",
+   "HEAD-0.38.0"
+  ],
+  "stamp_mapping": {
+   "0.38.0": {
+    "build": "Aurora WCLocal2026Nov16 (/lus/flare/projects/neutrinoGPU/yuhw/opt-0.38.0; worktree wct-0.38.0 at c935e30d)",
+    "evidence": "round2/manifests/wcl1116_aurora_v0/production_provenance.json (stored_wct_version_stamp \"0.38.0\", toolkit commit c935e30d)"
+   },
+   "HEAD-0.38.0": {
+    "build": "FermiGrid / gpVM WCLocal2026Nov16 (/exp/sbnd/data/users/yuhw/wclocal-nov16/opt)",
+    "evidence": "TARBALL-PROVENANCE.txt: opt /exp/sbnd/data/users/yuhw/wclocal-nov16/opt: wire-cell WIRECELL_VERSION \"HEAD-0.38.0\"; cfg /exp/sbnd/data/users/yuhw/wclocal-nov16/wct/cfg: wire-cell-toolkit c935e30d 0.38.0 0 dirty cfg files. Found in p0/emu-ncpi0-s0-7/tar/wc/, emu53a/w-mc-nuecc/tar/wc/ and emu53a/w-opendata/tar/wc/ (inspected by Avinay on the gpVM)"
+   }
+  },
+  "rule": "exact string equality against this closed list; no substring, regex, suffix or prefix matching",
+  "per_file_vs_campaign": "each ROOT file stores only the version string (and the DL bundle sha256 in dl_weights), not the toolkit SHA; the SHA comes from the campaign-level build records above, and the mapping is this table",
+  "approved_by": "Avinay Bhat",
+  "approved": "2026-11-19"
+ },
+ "toolkit_commit": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+ "status": "VERIFIED",
+ "out_tsv_content_sha256": "4c6ed160e6908ad9e940538e4b7a238ffe0e25564e08732a519a367a69e0b4a3",
+ "list": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_dev/lists/wcl1116-fg-beamoff-train.txt",
+ "list_sha256": "8f2ea60117070a6585f004e65898d5f2b8170788fd1a8a10eba46a697b5e9cca"
+}
