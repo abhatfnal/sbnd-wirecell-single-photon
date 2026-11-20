@@ -1,0 +1,24 @@
+# DATA / BLINDING POLICY of the purity + data/MC package (code gate: src/sbnd_single_photon/datapolicy.py).
+#
+# STATUS: no collaboration-approved SBND unblinding procedure for the exclusive NC-Delta -> N gamma signal region exists in the repository
+# (grep of docs/ and configs/ on 2026-11-20: the only data statements are "validation, shape validation now" in NCDELTA_BASELINE_ANALYSIS_DESIGN.md and the
+# open-data designation of `beam_on_open` in samples.yaml). This file therefore encodes the MOST CONSERVATIVE reading and nothing more:
+#   * the designated OPEN beam-on sample may be plotted at loose / background-enhanced stages;
+#   * the FINAL frozen-selection (signal region) of ANY beam-on sample is BLOCKED until `signal_region.approved_by` is filled by Avinay / the analysis
+#     conveners (a person and a date, never a flag flipped by code);
+#   * `run3bnb` (Run-3 beam-on, Nov16 production only) is NOT designated open anywhere in the repository: blocked at every stage until approved.
+# MicroBooNE reference (docs/analysis/MICROBOONE_NCDELTA_DATAMC_PURITY_REFERENCE.md): far sideband first, then fractions of the data, signal region last.
+version: 1
+samples:
+  beam_on_open:
+    designation: "designated open data in samples.yaml (runs 18255, 18259; Σ TotalPOT 4.62125e18)"
+    allowed_stage_kinds: [preselection, sideband]
+  run3bnb:
+    designation: "NOT designated open anywhere in the repository"
+    allowed_stage_kinds: []
+  beam_off:
+    designation: "beam-off cosmic data; contains no neutrino signal; may be shown at every stage as a SHAPE (never added to the stack: scale blocked by blocker G)"
+    allowed_stage_kinds: [preselection, sideband, signal_region]
+signal_region:
+  approved_by: ""        # MUST be a named approver + date, e.g. "Avinay Bhat 2026-12-01 (collab. approval ref ...)"
+  approved_date: ""

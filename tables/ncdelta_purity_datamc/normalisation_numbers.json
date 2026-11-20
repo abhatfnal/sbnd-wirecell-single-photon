@@ -1,0 +1,16 @@
+{
+ "old_fg1": {
+  "w_sig": 0.03522948326165283,
+  "w_cv": 3.677278849509709,
+  "pot_cv": 2.719402147414874e+19,
+  "n_removed_events": 105,
+  "n_removed_selected_final": 8
+ },
+ "nov16": {
+  "w_sig": 0.03522948326165283,
+  "w_cv": 3.677278849509709,
+  "pot_cv": 2.719402147414874e+19,
+  "n_removed_events": 105,
+  "n_removed_selected_final": 17
+ }
+}

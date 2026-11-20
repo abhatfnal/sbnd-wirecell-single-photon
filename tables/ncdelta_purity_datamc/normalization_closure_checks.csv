@@ -1,0 +1,11 @@
+check,status,detail
+signal and CV POT are exact sums over the listed files; weights = POT_target/POT,CLOSED,"w_sig = 0.0352295, w_cv = 3.67728 per event at 1e20 POT"
+dedicated in-region signal rate agrees with the natural CV rate (consistency of the two normalisations),CLOSED,437.8 vs 430.2 +- 39.8 per 1e20 POT (ratio 0.983)
+no double counting of NC-Delta: in-region natural NC-Delta events removed from the CV background,CLOSED,105 CV events with candidates removed (8 / 17 of them selected at the final stage old / Nov16)
+no double counting of intrinsic nue: nueCC control sample not added; intrinsic nue is in the generic CV,CLOSED,nuecc contributes 0 to every yield
+dirt: no separate sample needed; dirt/rock interactions are inside the generic CV,CLOSED,OUTSIDE_TPC_NU category
+cosmics overlaid in MC (cosmic-matched candidates),CLOSED,COSMIC_OR_UNMATCHED present in both productions
+cosmic-ONLY (no-neutrino) component: needs beam-off scale,OPEN,"blocker G (gate counters vs triggers, livetime, run overlap) unanswered; purity is therefore an UPPER BOUND / MC-only"
+MC systematic reweighting (GENIE/flux/G4),OPEN,unit weights only; no validated SBND weights wired in; statistical errors only
+provisional TPC box as the signal region and as the truth denominator,OPEN,analysis FV not frozen; the box is a stated provisional definition
+"signal numerator = event passes with ANY candidate (Round-1 policy), not 'candidate truth-matched to the signal'",CLOSED,identical to the efficiency numerator; selected-signal events passing only via a cosmic-matched candidate are counted as signal
