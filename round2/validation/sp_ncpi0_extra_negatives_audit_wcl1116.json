@@ -1,0 +1,166 @@
+{
+ "label": "SP ncpi0 EXTRA-NEGATIVE SOURCE AUDIT (no training)",
+ "provenance": {
+  "sample": "wcl1116-aurora-nuecc (Gen2 CC nu_e configL, WCLocal2026Nov16 refresh of the Gen2 300k production)",
+  "generation": "GEN: full BNB flux, all four flavours + CORSIKA, 125 spills per subrun (configL gsimple, rockbox0p1)",
+  "filter": "official run_sbnd_gen2_rare_signal_filter.fcl (T. Wester); kept stream outnuecc = sbnd_ccnue_filter; DISCARDED streams: outccpi0, outncpi0, outeta, outkaon, outccdeltarad, outncdeltarad",
+  "source": "parsl-production/sbn_parsl-gen2-ccnue-configL-300k-reco1only-main-20261027/settings/sbnd/gen2_ccnue_configL_300k_*.toml (filter_output_stream / filter_discard_streams); filter FCL preserved in gen2-ccnue-review-20261023/c2_preserved_gen/",
+  "consequence": "every event is a spill selected for a CC nu_e interaction; an NC pi0 row in it is a SECOND interaction of a spill selected for a different neutrino"
+ },
+ "modes": {
+  "dv2_split_move": {
+   "nuecc_ncpi0_rows": 374,
+   "nuecc_ncpi0_split": {
+    "train": 180,
+    "holdout": 194
+   },
+   "bnb_ncpi0_rows": 9267,
+   "bnb_ncpi0_split": {
+    "train": 4625,
+    "holdout": 4642
+   },
+   "target_definition_satisfied_by_label": true,
+   "partner_flavour": {
+    "nuecc": {
+     "14.0": 368,
+     "12.0": 3,
+     "-14.0": 3
+    },
+    "bnb": {
+     "14.0": 9085,
+     "-14.0": 98,
+     "12.0": 79,
+     "-12.0": 5
+    }
+   },
+   "partner_energy_gev": {
+    "nuecc_median": 1.1213484406471252,
+    "bnb_median": 1.135406829573459,
+    "ks_pvalue": 0.49790439440205025
+   },
+   "n_prim_pi0": {
+    "nuecc": {
+     "1.0": 345,
+     "2.0": 20,
+     "3.0": 8,
+     "5.0": 1
+    },
+    "bnb": {
+     "1.0": 8714,
+     "2.0": 487,
+     "3.0": 61,
+     "4.0": 3,
+     "5.0": 2
+    }
+   },
+   "environment": {
+    "nuecc": {
+     "rows": 374,
+     "events": 373,
+     "frac_with_another_active_interaction": 0.9973262032085561,
+     "frac_with_a_nue_cc_in_active": 0.9973262032085561,
+     "mean_active_interactions": 2.0294117647058822
+    },
+    "bnb": {
+     "rows": 9267,
+     "events": 9254,
+     "frac_with_another_active_interaction": 0.05805546563073271,
+     "frac_with_a_nue_cc_in_active": 0.00021581957483543757,
+     "mean_active_interactions": 1.0599978418042517
+    }
+   },
+   "duplication": {
+    "shared_file_ids": 0,
+    "run_range": {
+     "nuecc": [
+      6700013,
+      6734825
+     ],
+     "bnb": [
+      2100001,
+      5000813
+     ]
+    },
+    "shared_event_keys": 0
+   }
+  },
+  "dv2_snap": {
+   "nuecc_ncpi0_rows": 371,
+   "nuecc_ncpi0_split": {
+    "train": 177,
+    "holdout": 194
+   },
+   "bnb_ncpi0_rows": 9236,
+   "bnb_ncpi0_split": {
+    "train": 4615,
+    "holdout": 4621
+   },
+   "target_definition_satisfied_by_label": true,
+   "partner_flavour": {
+    "nuecc": {
+     "14.0": 365,
+     "12.0": 3,
+     "-14.0": 3
+    },
+    "bnb": {
+     "14.0": 9057,
+     "-14.0": 97,
+     "12.0": 77,
+     "-12.0": 5
+    }
+   },
+   "partner_energy_gev": {
+    "nuecc_median": 1.1232709884643555,
+    "bnb_median": 1.1367502513207346,
+    "ks_pvalue": 0.4474369034253377
+   },
+   "n_prim_pi0": {
+    "nuecc": {
+     "1.0": 342,
+     "2.0": 20,
+     "3.0": 8,
+     "5.0": 1
+    },
+    "bnb": {
+     "1.0": 8681,
+     "2.0": 490,
+     "3.0": 60,
+     "4.0": 3,
+     "5.0": 2
+    }
+   },
+   "environment": {
+    "nuecc": {
+     "rows": 371,
+     "events": 371,
+     "frac_with_another_active_interaction": 0.9973045822102425,
+     "frac_with_a_nue_cc_in_active": 0.9973045822102425,
+     "mean_active_interactions": 2.0296495956873315
+    },
+    "bnb": {
+     "rows": 9236,
+     "events": 9225,
+     "frac_with_another_active_interaction": 0.05835859679514942,
+     "frac_with_a_nue_cc_in_active": 0.00021654395842355997,
+     "mean_active_interactions": 1.0603074924209615
+    }
+   },
+   "duplication": {
+    "shared_file_ids": 0,
+    "run_range": {
+     "nuecc": [
+      6700013,
+      6734825
+     ],
+     "bnb": [
+      2100001,
+      5000813
+     ]
+    },
+    "shared_event_keys": 0
+   }
+  }
+ },
+ "verdict": "AVAILABLE EXTRA SAMPLE NOT SOURCE-COMPATIBLE",
+ "verdict_basis": "the target label matches and nothing is duplicated, but the rows are second interactions in spills selected for a CC nu_e; their reconstruction environment (an extra CC nu_e interaction in the active TPC) differs from the BNB NC pi0 training population; the official source of extra NC pi0 statistics is the outncpi0 stream of the same filter, discarded in this production"
+}

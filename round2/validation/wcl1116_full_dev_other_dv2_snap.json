@@ -1,0 +1,2968 @@
+{
+ "label": "WCL1116 FULL DEVELOPMENT (FIT / NESTED VALIDATION; existing holdout reported separately) -- DEVELOPMENT ONLY, NOT ROUND2",
+ "model": "single_photon_other",
+ "mode": "dv2_snap",
+ "spec": "round2/specs/single_photon_other_training_spec_dev_wcl1116_dv2_snap.yaml",
+ "nested_rule": "nested_v1",
+ "nested_fraction": 0.2,
+ "rows": {
+  "fit": {
+   "pos": 6920,
+   "neg": 6418
+  },
+  "nval": {
+   "pos": 1747,
+   "neg": 1521
+  },
+  "test": {
+   "pos": 8745,
+   "neg": 7757
+  }
+ },
+ "units": {
+  "fit": 12827,
+  "nval": 3185,
+  "test": 15978
+ },
+ "rows_by_sample": {
+  "wcl1116-aurora-bnb": {
+   "fit": 6938,
+   "nval": 1708,
+   "test": 8515
+  },
+  "wcl1116-aurora-ncdr": {
+   "fit": 6138,
+   "nval": 1539,
+   "test": 7762
+  },
+  "wcl1116-fg-beamoff-train": {
+   "fit": 262,
+   "nval": 21,
+   "test": 225
+  }
+ },
+ "legacy_cut": 0.2,
+ "variants": {
+  "FIT_BASELINE": {
+   "n_inputs": 146,
+   "removed": [],
+   "fit_auc": 0.9739783070374687,
+   "nval": {
+    "roc_auc": 0.9115357707229488,
+    "pr_auc": 0.9263312557704471,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8686582446098328,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 40,
+      "tn": 1481,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.026298487836949377,
+      "background_rejection": 0.9737015121630507
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.42844241857528687,
+      "tp": 1371,
+      "fn": 376,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.7847738981110475,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.029197080291970802
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.023192360163710776
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.02666666666666667
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.03202846975088968
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.0,
+      "binomial_sd": 2.1821789023599238e-07
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.1192214111922141
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.12278308321964529
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.17333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.0711743772241993
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.047619047619047616
+     }
+    },
+    "rows": {
+     "pos": 1747,
+     "neg": 1521
+    },
+    "fit_minus_this_auc": 0.0624425363145199
+   },
+   "holdout": {
+    "roc_auc": 0.9115888981441945,
+    "pr_auc": 0.9226873888097898,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8639691472053528,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 262,
+      "tn": 7495,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.03377594430836664,
+      "background_rejection": 0.9662240556916334
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.4527153968811035,
+      "tp": 6845,
+      "fn": 1900,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.7827329902801601,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.03997923156801662
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.03650442477876106
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.05620608899297424
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.016634676903390915
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.013333333333333334,
+      "binomial_sd": 0.007646511348482335
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.122533748701973
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.13799778761061948
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.17330210772833723
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.0563019833653231
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.06666666666666667
+     }
+    },
+    "rows": {
+     "pos": 8745,
+     "neg": 7757
+    },
+    "fit_minus_this_auc": 0.062389408893274156
+   },
+   "calibration_nval": {
+    "brier": 0.11838102897422081,
+    "mean_pred_pos": 0.7785277163921277,
+    "mean_pred_neg": 0.25375639287922597,
+    "margin_q10_50_90_pos": [
+     -0.7344520449638366,
+     2.24177885055542,
+     3.853332328796387
+    ],
+    "margin_q10_50_90_neg": [
+     -3.574202060699463,
+     -1.5854644775390625,
+     0.5637736916542053
+    ],
+    "reliability": [
+     {
+      "bin": 0,
+      "mean_pred": 0.048895449148030776,
+      "frac_pos": 0.06118881118881119,
+      "n": 572
+     },
+     {
+      "bin": 1,
+      "mean_pred": 0.14994430196362205,
+      "frac_pos": 0.16578947368421051,
+      "n": 380
+     },
+     {
+      "bin": 2,
+      "mean_pred": 0.24499423855890115,
+      "frac_pos": 0.25203252032520324,
+      "n": 246
+     },
+     {
+      "bin": 3,
+      "mean_pred": 0.34500927627148736,
+      "frac_pos": 0.3089005235602094,
+      "n": 191
+     },
+     {
+      "bin": 4,
+      "mean_pred": 0.448260058536212,
+      "frac_pos": 0.3924050632911392,
+      "n": 158
+     },
+     {
+      "bin": 5,
+      "mean_pred": 0.5526871786029265,
+      "frac_pos": 0.5352941176470588,
+      "n": 170
+     },
+     {
+      "bin": 6,
+      "mean_pred": 0.6492924524455852,
+      "frac_pos": 0.6462585034013606,
+      "n": 147
+     },
+     {
+      "bin": 7,
+      "mean_pred": 0.7547312055446369,
+      "frac_pos": 0.7318435754189944,
+      "n": 179
+     },
+     {
+      "bin": 8,
+      "mean_pred": 0.8539773954589488,
+      "frac_pos": 0.8409090909090909,
+      "n": 308
+     },
+     {
+      "bin": 9,
+      "mean_pred": 0.9559314986691275,
+      "frac_pos": 0.9705561613958561,
+      "n": 917
+     }
+    ]
+   },
+   "top20_splits": [
+    "numu_score",
+    "numu_1_score",
+    "shw_sp_E_indirect_max_energy",
+    "kine_nu_y_corr",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_lem_e_charge",
+    "shw_sp_stem_length",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_br4_1_shower_main_length",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_highest_dQ_dx",
+    "shw_sp_max_shw_dis",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_vec_dQ_dx_12",
+    "shw_sp_vec_dQ_dx_6",
+    "shw_sp_br4_2_ratio1_15"
+   ],
+   "top20_gain": [
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_lem_e_charge",
+    "cosmict_flag",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_length_total",
+    "numu_score",
+    "numu_1_score",
+    "cosmict_10_score",
+    "shw_sp_n_20br1_showers",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_length_main",
+    "shw_sp_lem_shower_main_length",
+    "kine_nu_y_corr",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_min_dis",
+    "shw_sp_br4_1_shower_main_length",
+    "shw_sp_n_br3_showers",
+    "shw_sp_hol_2_min_angle"
+   ],
+   "gain_share": {
+    "cosmict_flag_2": 0.000389,
+    "cosmict_2_filled": 6.9e-05,
+    "cosmict_2_particle_type": 0.001131,
+    "cosmict_2_n_muon_tracks": 0.000516,
+    "cosmict_2_total_shower_length": 0.008881,
+    "cosmict_2_flag_inside": 0.000821,
+    "cosmict_2_angle_beam": 0.004283,
+    "cosmict_2_flag_dir_weak": 0.000512,
+    "cosmict_2_dQ_dx_end": 0.005118,
+    "cosmict_2_dQ_dx_front": 0.007133,
+    "cosmict_2_theta": 0.002151,
+    "cosmict_2_phi": 0.002931,
+    "cosmict_2_valid_tracks": 0.0009,
+    "cosmict_flag_4": 0.000884,
+    "cosmict_4_filled": 0.0,
+    "cosmict_4_flag_inside": 0.000358,
+    "cosmict_4_angle_beam": 0.001036,
+    "cosmict_4_connected_showers": 0.000276,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 0.000134,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 0.000101,
+    "cosmict_3_flag_dir_weak": 0.000235,
+    "cosmict_3_dQ_dx_end": 2.6e-05,
+    "cosmict_3_dQ_dx_front": 0.000499,
+    "cosmict_3_theta": 0.000128,
+    "cosmict_3_phi": 7e-06,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 0.000498,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 8.4e-05,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 0.000109,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 0.00021,
+    "cosmict_7_flag_sec": 0.0,
+    "cosmict_7_n_muon_tracks": 0.000104,
+    "cosmict_7_total_shower_length": 0.000291,
+    "cosmict_7_flag_inside": 0.000208,
+    "cosmict_7_angle_beam": 0.000429,
+    "cosmict_7_flag_dir_weak": 5.1e-05,
+    "cosmict_7_dQ_dx_end": 0.000181,
+    "cosmict_7_dQ_dx_front": 0.000821,
+    "cosmict_7_theta": 0.000509,
+    "cosmict_7_phi": 0.00035,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 6.8e-05,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 0.001449,
+    "cosmict_8_acc_length": 0.000595,
+    "cosmict_flag_9": 0.000419,
+    "cosmic_flag": 0.000324,
+    "cosmic_filled": 0.000262,
+    "cosmict_flag": 0.064192,
+    "numu_cc_flag": 0.007483,
+    "shw_sp_br2_num_valid_tracks": 0.000534,
+    "shw_sp_br2_n_shower_main_segs": 0.007878,
+    "shw_sp_br2_sg_length": 0.006156,
+    "shw_sp_br4_1_shower_main_length": 0.011482,
+    "shw_sp_br4_1_shower_total_length": 0.096673,
+    "shw_sp_br4_1_min_dis": 0.008747,
+    "shw_sp_br4_1_flag_avoid_muon_check": 0.000673,
+    "shw_sp_br4_1_n_vtx_segs": 0.001934,
+    "shw_sp_br4_1_n_main_segs": 0.006023,
+    "shw_sp_br4_2_ratio_45": 0.003661,
+    "shw_sp_br4_2_ratio_35": 0.004104,
+    "shw_sp_br4_2_ratio_25": 0.00368,
+    "shw_sp_br4_2_ratio_15": 0.004239,
+    "shw_sp_br4_2_ratio1_45": 0.005207,
+    "shw_sp_br4_2_ratio1_35": 0.004782,
+    "shw_sp_br4_2_ratio1_25": 0.007774,
+    "shw_sp_br4_2_ratio1_15": 0.009391,
+    "shw_sp_lem_shower_main_length": 0.019929,
+    "shw_sp_lem_n_3seg": 0.003561,
+    "shw_sp_lem_e_charge": 0.082711,
+    "shw_sp_lem_e_dQdx": 0.022204,
+    "shw_sp_lem_shower_num_main_segs": 0.008619,
+    "shw_sp_max_dQ_dx_sample": 0.008994,
+    "shw_sp_n_below_threshold": 0.002253,
+    "shw_sp_n_below_zero": 0.000147,
+    "shw_sp_n_lowest": 0.002039,
+    "shw_sp_n_highest": 0.003952,
+    "shw_sp_lowest_dQ_dx": 0.0042,
+    "shw_sp_highest_dQ_dx": 0.007129,
+    "shw_sp_medium_dQ_dx": 0.020316,
+    "shw_sp_stem_length": 0.008492,
+    "shw_sp_length_main": 0.020284,
+    "shw_sp_length_total": 0.053323,
+    "shw_sp_n_vertex": 0.001765,
+    "shw_sp_n_good_tracks": 0.000614,
+    "shw_sp_E_indirect_max_energy": 0.05396,
+    "shw_sp_flag_all_above": 0.000441,
+    "shw_sp_min_dQ_dx_5": 0.00291,
+    "shw_sp_n_other_vertex": 0.002405,
+    "shw_sp_n_stem_size": 0.00391,
+    "shw_sp_min_dis": 0.012498,
+    "shw_sp_vec_mean_dedx": 0.005173,
+    "shw_sp_vec_dQ_dx_0": 0.009183,
+    "shw_sp_vec_dQ_dx_1": 0.006974,
+    "shw_sp_vec_dQ_dx_2": 0.014055,
+    "shw_sp_vec_dQ_dx_3": 0.010194,
+    "shw_sp_vec_dQ_dx_4": 0.00703,
+    "shw_sp_vec_dQ_dx_5": 0.0056,
+    "shw_sp_vec_dQ_dx_6": 0.007113,
+    "shw_sp_vec_dQ_dx_7": 0.006224,
+    "shw_sp_vec_dQ_dx_8": 0.004089,
+    "shw_sp_vec_dQ_dx_9": 0.004788,
+    "shw_sp_vec_dQ_dx_10": 0.003217,
+    "shw_sp_vec_dQ_dx_11": 0.00533,
+    "shw_sp_vec_dQ_dx_12": 0.006533,
+    "shw_sp_vec_dQ_dx_13": 0.004053,
+    "shw_sp_vec_dQ_dx_14": 0.003772,
+    "shw_sp_vec_dQ_dx_15": 0.003392,
+    "shw_sp_vec_dQ_dx_16": 0.004434,
+    "shw_sp_vec_dQ_dx_17": 0.004718,
+    "shw_sp_vec_dQ_dx_18": 0.003368,
+    "shw_sp_vec_dQ_dx_19": 0.002546,
+    "shw_sp_vec_median_dedx": 0.007824,
+    "shw_sp_proton_length_1": 0.003008,
+    "shw_sp_proton_dqdx_1": 0.002634,
+    "shw_sp_proton_energy_1": 0.002275,
+    "shw_sp_proton_length_2": 0.000503,
+    "shw_sp_proton_dqdx_2": 0.00027,
+    "shw_sp_proton_energy_2": 0.000106,
+    "shw_sp_n_good_showers": 0.002355,
+    "shw_sp_n_br1_showers": 0.005843,
+    "shw_sp_n_br2_showers": 0.003102,
+    "shw_sp_n_br3_showers": 0.011375,
+    "shw_sp_n_br4_showers": 0.002797,
+    "shw_sp_n_20br1_showers": 0.024031,
+    "shw_sp_shw_vtx_dis": 0.021368,
+    "shw_sp_max_shw_dis": 0.009061,
+    "shw_sp_num_mip_tracks": 0.004365,
+    "shw_sp_num_muons": 0.002082,
+    "shw_sp_num_protons": 0.000891,
+    "shw_sp_hol_2_min_angle": 0.011023,
+    "cosmict_10_score": 0.029352,
+    "numu_1_score": 0.032348,
+    "numu_2_score": 0.000539,
+    "numu_score": 0.039084,
+    "kine_nu_y_corr": 0.015224
+   },
+   "splits": {
+    "cosmict_flag_2": 4.0,
+    "cosmict_2_filled": 1.0,
+    "cosmict_2_particle_type": 12.0,
+    "cosmict_2_n_muon_tracks": 8.0,
+    "cosmict_2_total_shower_length": 45.0,
+    "cosmict_2_flag_inside": 6.0,
+    "cosmict_2_angle_beam": 49.0,
+    "cosmict_2_flag_dir_weak": 3.0,
+    "cosmict_2_dQ_dx_end": 53.0,
+    "cosmict_2_dQ_dx_front": 61.0,
+    "cosmict_2_theta": 24.0,
+    "cosmict_2_phi": 43.0,
+    "cosmict_2_valid_tracks": 11.0,
+    "cosmict_flag_4": 10.0,
+    "cosmict_4_filled": 0.0,
+    "cosmict_4_flag_inside": 5.0,
+    "cosmict_4_angle_beam": 13.0,
+    "cosmict_4_connected_showers": 3.0,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 1.0,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 3.0,
+    "cosmict_3_flag_dir_weak": 1.0,
+    "cosmict_3_dQ_dx_end": 1.0,
+    "cosmict_3_dQ_dx_front": 5.0,
+    "cosmict_3_theta": 2.0,
+    "cosmict_3_phi": 1.0,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 3.0,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 1.0,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 2.0,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 2.0,
+    "cosmict_7_flag_sec": 0.0,
+    "cosmict_7_n_muon_tracks": 2.0,
+    "cosmict_7_total_shower_length": 4.0,
+    "cosmict_7_flag_inside": 2.0,
+    "cosmict_7_angle_beam": 5.0,
+    "cosmict_7_flag_dir_weak": 1.0,
+    "cosmict_7_dQ_dx_end": 3.0,
+    "cosmict_7_dQ_dx_front": 10.0,
+    "cosmict_7_theta": 6.0,
+    "cosmict_7_phi": 5.0,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 1.0,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 16.0,
+    "cosmict_8_acc_length": 8.0,
+    "cosmict_flag_9": 5.0,
+    "cosmic_flag": 4.0,
+    "cosmic_filled": 4.0,
+    "cosmict_flag": 58.0,
+    "numu_cc_flag": 17.0,
+    "shw_sp_br2_num_valid_tracks": 6.0,
+    "shw_sp_br2_n_shower_main_segs": 45.0,
+    "shw_sp_br2_sg_length": 53.0,
+    "shw_sp_br4_1_shower_main_length": 93.0,
+    "shw_sp_br4_1_shower_total_length": 82.0,
+    "shw_sp_br4_1_min_dis": 57.0,
+    "shw_sp_br4_1_flag_avoid_muon_check": 6.0,
+    "shw_sp_br4_1_n_vtx_segs": 15.0,
+    "shw_sp_br4_1_n_main_segs": 35.0,
+    "shw_sp_br4_2_ratio_45": 46.0,
+    "shw_sp_br4_2_ratio_35": 49.0,
+    "shw_sp_br4_2_ratio_25": 41.0,
+    "shw_sp_br4_2_ratio_15": 49.0,
+    "shw_sp_br4_2_ratio1_45": 76.0,
+    "shw_sp_br4_2_ratio1_35": 62.0,
+    "shw_sp_br4_2_ratio1_25": 75.0,
+    "shw_sp_br4_2_ratio1_15": 77.0,
+    "shw_sp_lem_shower_main_length": 37.0,
+    "shw_sp_lem_n_3seg": 18.0,
+    "shw_sp_lem_e_charge": 98.0,
+    "shw_sp_lem_e_dQdx": 75.0,
+    "shw_sp_lem_shower_num_main_segs": 22.0,
+    "shw_sp_max_dQ_dx_sample": 105.0,
+    "shw_sp_n_below_threshold": 37.0,
+    "shw_sp_n_below_zero": 2.0,
+    "shw_sp_n_lowest": 30.0,
+    "shw_sp_n_highest": 51.0,
+    "shw_sp_lowest_dQ_dx": 62.0,
+    "shw_sp_highest_dQ_dx": 91.0,
+    "shw_sp_medium_dQ_dx": 93.0,
+    "shw_sp_stem_length": 97.0,
+    "shw_sp_length_main": 30.0,
+    "shw_sp_length_total": 74.0,
+    "shw_sp_n_vertex": 23.0,
+    "shw_sp_n_good_tracks": 7.0,
+    "shw_sp_E_indirect_max_energy": 138.0,
+    "shw_sp_flag_all_above": 4.0,
+    "shw_sp_min_dQ_dx_5": 32.0,
+    "shw_sp_n_other_vertex": 18.0,
+    "shw_sp_n_stem_size": 44.0,
+    "shw_sp_min_dis": 65.0,
+    "shw_sp_vec_mean_dedx": 68.0,
+    "shw_sp_vec_dQ_dx_0": 97.0,
+    "shw_sp_vec_dQ_dx_1": 79.0,
+    "shw_sp_vec_dQ_dx_2": 86.0,
+    "shw_sp_vec_dQ_dx_3": 87.0,
+    "shw_sp_vec_dQ_dx_4": 69.0,
+    "shw_sp_vec_dQ_dx_5": 72.0,
+    "shw_sp_vec_dQ_dx_6": 77.0,
+    "shw_sp_vec_dQ_dx_7": 62.0,
+    "shw_sp_vec_dQ_dx_8": 58.0,
+    "shw_sp_vec_dQ_dx_9": 63.0,
+    "shw_sp_vec_dQ_dx_10": 53.0,
+    "shw_sp_vec_dQ_dx_11": 75.0,
+    "shw_sp_vec_dQ_dx_12": 78.0,
+    "shw_sp_vec_dQ_dx_13": 55.0,
+    "shw_sp_vec_dQ_dx_14": 43.0,
+    "shw_sp_vec_dQ_dx_15": 46.0,
+    "shw_sp_vec_dQ_dx_16": 59.0,
+    "shw_sp_vec_dQ_dx_17": 62.0,
+    "shw_sp_vec_dQ_dx_18": 45.0,
+    "shw_sp_vec_dQ_dx_19": 40.0,
+    "shw_sp_vec_median_dedx": 66.0,
+    "shw_sp_proton_length_1": 38.0,
+    "shw_sp_proton_dqdx_1": 34.0,
+    "shw_sp_proton_energy_1": 26.0,
+    "shw_sp_proton_length_2": 6.0,
+    "shw_sp_proton_dqdx_2": 3.0,
+    "shw_sp_proton_energy_2": 1.0,
+    "shw_sp_n_good_showers": 15.0,
+    "shw_sp_n_br1_showers": 51.0,
+    "shw_sp_n_br2_showers": 39.0,
+    "shw_sp_n_br3_showers": 54.0,
+    "shw_sp_n_br4_showers": 42.0,
+    "shw_sp_n_20br1_showers": 37.0,
+    "shw_sp_shw_vtx_dis": 103.0,
+    "shw_sp_max_shw_dis": 90.0,
+    "shw_sp_num_mip_tracks": 28.0,
+    "shw_sp_num_muons": 19.0,
+    "shw_sp_num_protons": 10.0,
+    "shw_sp_hol_2_min_angle": 48.0,
+    "cosmict_10_score": 64.0,
+    "numu_1_score": 175.0,
+    "numu_2_score": 5.0,
+    "numu_score": 176.0,
+    "kine_nu_y_corr": 122.0
+   }
+  },
+  "A_FULL": {
+   "n_inputs": 146,
+   "removed": [],
+   "fit_auc": 0.9739783070374687,
+   "nval": {
+    "roc_auc": 0.9115357707229488,
+    "pr_auc": 0.9263312557704471,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8686582446098328,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 40,
+      "tn": 1481,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.026298487836949377,
+      "background_rejection": 0.9737015121630507
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.42844241857528687,
+      "tp": 1371,
+      "fn": 376,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.7847738981110475,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.029197080291970802
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.023192360163710776
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.02666666666666667
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.03202846975088968
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.0,
+      "binomial_sd": 2.1821789023599238e-07
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.1192214111922141
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.12278308321964529
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.17333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.0711743772241993
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.047619047619047616
+     }
+    },
+    "rows": {
+     "pos": 1747,
+     "neg": 1521
+    },
+    "fit_minus_this_auc": 0.0624425363145199
+   },
+   "holdout": {
+    "roc_auc": 0.9115888981441945,
+    "pr_auc": 0.9226873888097898,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8639691472053528,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 262,
+      "tn": 7495,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.03377594430836664,
+      "background_rejection": 0.9662240556916334
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.4527153968811035,
+      "tp": 6845,
+      "fn": 1900,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.7827329902801601,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.03997923156801662
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.03650442477876106
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.05620608899297424
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.016634676903390915
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.013333333333333334,
+      "binomial_sd": 0.007646511348482335
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.122533748701973
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.13799778761061948
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.17330210772833723
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.0563019833653231
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.06666666666666667
+     }
+    },
+    "rows": {
+     "pos": 8745,
+     "neg": 7757
+    },
+    "fit_minus_this_auc": 0.062389408893274156
+   },
+   "calibration_nval": {
+    "brier": 0.11838102897422081,
+    "mean_pred_pos": 0.7785277163921277,
+    "mean_pred_neg": 0.25375639287922597,
+    "margin_q10_50_90_pos": [
+     -0.7344520449638366,
+     2.24177885055542,
+     3.853332328796387
+    ],
+    "margin_q10_50_90_neg": [
+     -3.574202060699463,
+     -1.5854644775390625,
+     0.5637736916542053
+    ],
+    "reliability": [
+     {
+      "bin": 0,
+      "mean_pred": 0.048895449148030776,
+      "frac_pos": 0.06118881118881119,
+      "n": 572
+     },
+     {
+      "bin": 1,
+      "mean_pred": 0.14994430196362205,
+      "frac_pos": 0.16578947368421051,
+      "n": 380
+     },
+     {
+      "bin": 2,
+      "mean_pred": 0.24499423855890115,
+      "frac_pos": 0.25203252032520324,
+      "n": 246
+     },
+     {
+      "bin": 3,
+      "mean_pred": 0.34500927627148736,
+      "frac_pos": 0.3089005235602094,
+      "n": 191
+     },
+     {
+      "bin": 4,
+      "mean_pred": 0.448260058536212,
+      "frac_pos": 0.3924050632911392,
+      "n": 158
+     },
+     {
+      "bin": 5,
+      "mean_pred": 0.5526871786029265,
+      "frac_pos": 0.5352941176470588,
+      "n": 170
+     },
+     {
+      "bin": 6,
+      "mean_pred": 0.6492924524455852,
+      "frac_pos": 0.6462585034013606,
+      "n": 147
+     },
+     {
+      "bin": 7,
+      "mean_pred": 0.7547312055446369,
+      "frac_pos": 0.7318435754189944,
+      "n": 179
+     },
+     {
+      "bin": 8,
+      "mean_pred": 0.8539773954589488,
+      "frac_pos": 0.8409090909090909,
+      "n": 308
+     },
+     {
+      "bin": 9,
+      "mean_pred": 0.9559314986691275,
+      "frac_pos": 0.9705561613958561,
+      "n": 917
+     }
+    ]
+   },
+   "top20_splits": [
+    "numu_score",
+    "numu_1_score",
+    "shw_sp_E_indirect_max_energy",
+    "kine_nu_y_corr",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_lem_e_charge",
+    "shw_sp_stem_length",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_br4_1_shower_main_length",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_highest_dQ_dx",
+    "shw_sp_max_shw_dis",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_vec_dQ_dx_12",
+    "shw_sp_vec_dQ_dx_6",
+    "shw_sp_br4_2_ratio1_15"
+   ],
+   "top20_gain": [
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_lem_e_charge",
+    "cosmict_flag",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_length_total",
+    "numu_score",
+    "numu_1_score",
+    "cosmict_10_score",
+    "shw_sp_n_20br1_showers",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_length_main",
+    "shw_sp_lem_shower_main_length",
+    "kine_nu_y_corr",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_min_dis",
+    "shw_sp_br4_1_shower_main_length",
+    "shw_sp_n_br3_showers",
+    "shw_sp_hol_2_min_angle"
+   ],
+   "gain_share": {
+    "cosmict_flag_2": 0.000389,
+    "cosmict_2_filled": 6.9e-05,
+    "cosmict_2_particle_type": 0.001131,
+    "cosmict_2_n_muon_tracks": 0.000516,
+    "cosmict_2_total_shower_length": 0.008881,
+    "cosmict_2_flag_inside": 0.000821,
+    "cosmict_2_angle_beam": 0.004283,
+    "cosmict_2_flag_dir_weak": 0.000512,
+    "cosmict_2_dQ_dx_end": 0.005118,
+    "cosmict_2_dQ_dx_front": 0.007133,
+    "cosmict_2_theta": 0.002151,
+    "cosmict_2_phi": 0.002931,
+    "cosmict_2_valid_tracks": 0.0009,
+    "cosmict_flag_4": 0.000884,
+    "cosmict_4_filled": 0.0,
+    "cosmict_4_flag_inside": 0.000358,
+    "cosmict_4_angle_beam": 0.001036,
+    "cosmict_4_connected_showers": 0.000276,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 0.000134,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 0.000101,
+    "cosmict_3_flag_dir_weak": 0.000235,
+    "cosmict_3_dQ_dx_end": 2.6e-05,
+    "cosmict_3_dQ_dx_front": 0.000499,
+    "cosmict_3_theta": 0.000128,
+    "cosmict_3_phi": 7e-06,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 0.000498,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 8.4e-05,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 0.000109,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 0.00021,
+    "cosmict_7_flag_sec": 0.0,
+    "cosmict_7_n_muon_tracks": 0.000104,
+    "cosmict_7_total_shower_length": 0.000291,
+    "cosmict_7_flag_inside": 0.000208,
+    "cosmict_7_angle_beam": 0.000429,
+    "cosmict_7_flag_dir_weak": 5.1e-05,
+    "cosmict_7_dQ_dx_end": 0.000181,
+    "cosmict_7_dQ_dx_front": 0.000821,
+    "cosmict_7_theta": 0.000509,
+    "cosmict_7_phi": 0.00035,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 6.8e-05,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 0.001449,
+    "cosmict_8_acc_length": 0.000595,
+    "cosmict_flag_9": 0.000419,
+    "cosmic_flag": 0.000324,
+    "cosmic_filled": 0.000262,
+    "cosmict_flag": 0.064192,
+    "numu_cc_flag": 0.007483,
+    "shw_sp_br2_num_valid_tracks": 0.000534,
+    "shw_sp_br2_n_shower_main_segs": 0.007878,
+    "shw_sp_br2_sg_length": 0.006156,
+    "shw_sp_br4_1_shower_main_length": 0.011482,
+    "shw_sp_br4_1_shower_total_length": 0.096673,
+    "shw_sp_br4_1_min_dis": 0.008747,
+    "shw_sp_br4_1_flag_avoid_muon_check": 0.000673,
+    "shw_sp_br4_1_n_vtx_segs": 0.001934,
+    "shw_sp_br4_1_n_main_segs": 0.006023,
+    "shw_sp_br4_2_ratio_45": 0.003661,
+    "shw_sp_br4_2_ratio_35": 0.004104,
+    "shw_sp_br4_2_ratio_25": 0.00368,
+    "shw_sp_br4_2_ratio_15": 0.004239,
+    "shw_sp_br4_2_ratio1_45": 0.005207,
+    "shw_sp_br4_2_ratio1_35": 0.004782,
+    "shw_sp_br4_2_ratio1_25": 0.007774,
+    "shw_sp_br4_2_ratio1_15": 0.009391,
+    "shw_sp_lem_shower_main_length": 0.019929,
+    "shw_sp_lem_n_3seg": 0.003561,
+    "shw_sp_lem_e_charge": 0.082711,
+    "shw_sp_lem_e_dQdx": 0.022204,
+    "shw_sp_lem_shower_num_main_segs": 0.008619,
+    "shw_sp_max_dQ_dx_sample": 0.008994,
+    "shw_sp_n_below_threshold": 0.002253,
+    "shw_sp_n_below_zero": 0.000147,
+    "shw_sp_n_lowest": 0.002039,
+    "shw_sp_n_highest": 0.003952,
+    "shw_sp_lowest_dQ_dx": 0.0042,
+    "shw_sp_highest_dQ_dx": 0.007129,
+    "shw_sp_medium_dQ_dx": 0.020316,
+    "shw_sp_stem_length": 0.008492,
+    "shw_sp_length_main": 0.020284,
+    "shw_sp_length_total": 0.053323,
+    "shw_sp_n_vertex": 0.001765,
+    "shw_sp_n_good_tracks": 0.000614,
+    "shw_sp_E_indirect_max_energy": 0.05396,
+    "shw_sp_flag_all_above": 0.000441,
+    "shw_sp_min_dQ_dx_5": 0.00291,
+    "shw_sp_n_other_vertex": 0.002405,
+    "shw_sp_n_stem_size": 0.00391,
+    "shw_sp_min_dis": 0.012498,
+    "shw_sp_vec_mean_dedx": 0.005173,
+    "shw_sp_vec_dQ_dx_0": 0.009183,
+    "shw_sp_vec_dQ_dx_1": 0.006974,
+    "shw_sp_vec_dQ_dx_2": 0.014055,
+    "shw_sp_vec_dQ_dx_3": 0.010194,
+    "shw_sp_vec_dQ_dx_4": 0.00703,
+    "shw_sp_vec_dQ_dx_5": 0.0056,
+    "shw_sp_vec_dQ_dx_6": 0.007113,
+    "shw_sp_vec_dQ_dx_7": 0.006224,
+    "shw_sp_vec_dQ_dx_8": 0.004089,
+    "shw_sp_vec_dQ_dx_9": 0.004788,
+    "shw_sp_vec_dQ_dx_10": 0.003217,
+    "shw_sp_vec_dQ_dx_11": 0.00533,
+    "shw_sp_vec_dQ_dx_12": 0.006533,
+    "shw_sp_vec_dQ_dx_13": 0.004053,
+    "shw_sp_vec_dQ_dx_14": 0.003772,
+    "shw_sp_vec_dQ_dx_15": 0.003392,
+    "shw_sp_vec_dQ_dx_16": 0.004434,
+    "shw_sp_vec_dQ_dx_17": 0.004718,
+    "shw_sp_vec_dQ_dx_18": 0.003368,
+    "shw_sp_vec_dQ_dx_19": 0.002546,
+    "shw_sp_vec_median_dedx": 0.007824,
+    "shw_sp_proton_length_1": 0.003008,
+    "shw_sp_proton_dqdx_1": 0.002634,
+    "shw_sp_proton_energy_1": 0.002275,
+    "shw_sp_proton_length_2": 0.000503,
+    "shw_sp_proton_dqdx_2": 0.00027,
+    "shw_sp_proton_energy_2": 0.000106,
+    "shw_sp_n_good_showers": 0.002355,
+    "shw_sp_n_br1_showers": 0.005843,
+    "shw_sp_n_br2_showers": 0.003102,
+    "shw_sp_n_br3_showers": 0.011375,
+    "shw_sp_n_br4_showers": 0.002797,
+    "shw_sp_n_20br1_showers": 0.024031,
+    "shw_sp_shw_vtx_dis": 0.021368,
+    "shw_sp_max_shw_dis": 0.009061,
+    "shw_sp_num_mip_tracks": 0.004365,
+    "shw_sp_num_muons": 0.002082,
+    "shw_sp_num_protons": 0.000891,
+    "shw_sp_hol_2_min_angle": 0.011023,
+    "cosmict_10_score": 0.029352,
+    "numu_1_score": 0.032348,
+    "numu_2_score": 0.000539,
+    "numu_score": 0.039084,
+    "kine_nu_y_corr": 0.015224
+   },
+   "splits": {
+    "cosmict_flag_2": 4.0,
+    "cosmict_2_filled": 1.0,
+    "cosmict_2_particle_type": 12.0,
+    "cosmict_2_n_muon_tracks": 8.0,
+    "cosmict_2_total_shower_length": 45.0,
+    "cosmict_2_flag_inside": 6.0,
+    "cosmict_2_angle_beam": 49.0,
+    "cosmict_2_flag_dir_weak": 3.0,
+    "cosmict_2_dQ_dx_end": 53.0,
+    "cosmict_2_dQ_dx_front": 61.0,
+    "cosmict_2_theta": 24.0,
+    "cosmict_2_phi": 43.0,
+    "cosmict_2_valid_tracks": 11.0,
+    "cosmict_flag_4": 10.0,
+    "cosmict_4_filled": 0.0,
+    "cosmict_4_flag_inside": 5.0,
+    "cosmict_4_angle_beam": 13.0,
+    "cosmict_4_connected_showers": 3.0,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 1.0,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 3.0,
+    "cosmict_3_flag_dir_weak": 1.0,
+    "cosmict_3_dQ_dx_end": 1.0,
+    "cosmict_3_dQ_dx_front": 5.0,
+    "cosmict_3_theta": 2.0,
+    "cosmict_3_phi": 1.0,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 3.0,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 1.0,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 2.0,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 2.0,
+    "cosmict_7_flag_sec": 0.0,
+    "cosmict_7_n_muon_tracks": 2.0,
+    "cosmict_7_total_shower_length": 4.0,
+    "cosmict_7_flag_inside": 2.0,
+    "cosmict_7_angle_beam": 5.0,
+    "cosmict_7_flag_dir_weak": 1.0,
+    "cosmict_7_dQ_dx_end": 3.0,
+    "cosmict_7_dQ_dx_front": 10.0,
+    "cosmict_7_theta": 6.0,
+    "cosmict_7_phi": 5.0,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 1.0,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 16.0,
+    "cosmict_8_acc_length": 8.0,
+    "cosmict_flag_9": 5.0,
+    "cosmic_flag": 4.0,
+    "cosmic_filled": 4.0,
+    "cosmict_flag": 58.0,
+    "numu_cc_flag": 17.0,
+    "shw_sp_br2_num_valid_tracks": 6.0,
+    "shw_sp_br2_n_shower_main_segs": 45.0,
+    "shw_sp_br2_sg_length": 53.0,
+    "shw_sp_br4_1_shower_main_length": 93.0,
+    "shw_sp_br4_1_shower_total_length": 82.0,
+    "shw_sp_br4_1_min_dis": 57.0,
+    "shw_sp_br4_1_flag_avoid_muon_check": 6.0,
+    "shw_sp_br4_1_n_vtx_segs": 15.0,
+    "shw_sp_br4_1_n_main_segs": 35.0,
+    "shw_sp_br4_2_ratio_45": 46.0,
+    "shw_sp_br4_2_ratio_35": 49.0,
+    "shw_sp_br4_2_ratio_25": 41.0,
+    "shw_sp_br4_2_ratio_15": 49.0,
+    "shw_sp_br4_2_ratio1_45": 76.0,
+    "shw_sp_br4_2_ratio1_35": 62.0,
+    "shw_sp_br4_2_ratio1_25": 75.0,
+    "shw_sp_br4_2_ratio1_15": 77.0,
+    "shw_sp_lem_shower_main_length": 37.0,
+    "shw_sp_lem_n_3seg": 18.0,
+    "shw_sp_lem_e_charge": 98.0,
+    "shw_sp_lem_e_dQdx": 75.0,
+    "shw_sp_lem_shower_num_main_segs": 22.0,
+    "shw_sp_max_dQ_dx_sample": 105.0,
+    "shw_sp_n_below_threshold": 37.0,
+    "shw_sp_n_below_zero": 2.0,
+    "shw_sp_n_lowest": 30.0,
+    "shw_sp_n_highest": 51.0,
+    "shw_sp_lowest_dQ_dx": 62.0,
+    "shw_sp_highest_dQ_dx": 91.0,
+    "shw_sp_medium_dQ_dx": 93.0,
+    "shw_sp_stem_length": 97.0,
+    "shw_sp_length_main": 30.0,
+    "shw_sp_length_total": 74.0,
+    "shw_sp_n_vertex": 23.0,
+    "shw_sp_n_good_tracks": 7.0,
+    "shw_sp_E_indirect_max_energy": 138.0,
+    "shw_sp_flag_all_above": 4.0,
+    "shw_sp_min_dQ_dx_5": 32.0,
+    "shw_sp_n_other_vertex": 18.0,
+    "shw_sp_n_stem_size": 44.0,
+    "shw_sp_min_dis": 65.0,
+    "shw_sp_vec_mean_dedx": 68.0,
+    "shw_sp_vec_dQ_dx_0": 97.0,
+    "shw_sp_vec_dQ_dx_1": 79.0,
+    "shw_sp_vec_dQ_dx_2": 86.0,
+    "shw_sp_vec_dQ_dx_3": 87.0,
+    "shw_sp_vec_dQ_dx_4": 69.0,
+    "shw_sp_vec_dQ_dx_5": 72.0,
+    "shw_sp_vec_dQ_dx_6": 77.0,
+    "shw_sp_vec_dQ_dx_7": 62.0,
+    "shw_sp_vec_dQ_dx_8": 58.0,
+    "shw_sp_vec_dQ_dx_9": 63.0,
+    "shw_sp_vec_dQ_dx_10": 53.0,
+    "shw_sp_vec_dQ_dx_11": 75.0,
+    "shw_sp_vec_dQ_dx_12": 78.0,
+    "shw_sp_vec_dQ_dx_13": 55.0,
+    "shw_sp_vec_dQ_dx_14": 43.0,
+    "shw_sp_vec_dQ_dx_15": 46.0,
+    "shw_sp_vec_dQ_dx_16": 59.0,
+    "shw_sp_vec_dQ_dx_17": 62.0,
+    "shw_sp_vec_dQ_dx_18": 45.0,
+    "shw_sp_vec_dQ_dx_19": 40.0,
+    "shw_sp_vec_median_dedx": 66.0,
+    "shw_sp_proton_length_1": 38.0,
+    "shw_sp_proton_dqdx_1": 34.0,
+    "shw_sp_proton_energy_1": 26.0,
+    "shw_sp_proton_length_2": 6.0,
+    "shw_sp_proton_dqdx_2": 3.0,
+    "shw_sp_proton_energy_2": 1.0,
+    "shw_sp_n_good_showers": 15.0,
+    "shw_sp_n_br1_showers": 51.0,
+    "shw_sp_n_br2_showers": 39.0,
+    "shw_sp_n_br3_showers": 54.0,
+    "shw_sp_n_br4_showers": 42.0,
+    "shw_sp_n_20br1_showers": 37.0,
+    "shw_sp_shw_vtx_dis": 103.0,
+    "shw_sp_max_shw_dis": 90.0,
+    "shw_sp_num_mip_tracks": 28.0,
+    "shw_sp_num_muons": 19.0,
+    "shw_sp_num_protons": 10.0,
+    "shw_sp_hol_2_min_angle": 48.0,
+    "cosmict_10_score": 64.0,
+    "numu_1_score": 175.0,
+    "numu_2_score": 5.0,
+    "numu_score": 176.0,
+    "kine_nu_y_corr": 122.0
+   },
+   "ablation": "A_FULL"
+  },
+  "B_NO_COSMIC_TAGGER_DIRECT": {
+   "ablation": "B_NO_COSMIC_TAGGER_DIRECT",
+   "n_inputs": 87,
+   "removed": [
+    "cosmict_flag_2",
+    "cosmict_2_filled",
+    "cosmict_2_particle_type",
+    "cosmict_2_n_muon_tracks",
+    "cosmict_2_total_shower_length",
+    "cosmict_2_flag_inside",
+    "cosmict_2_angle_beam",
+    "cosmict_2_flag_dir_weak",
+    "cosmict_2_dQ_dx_end",
+    "cosmict_2_dQ_dx_front",
+    "cosmict_2_theta",
+    "cosmict_2_phi",
+    "cosmict_2_valid_tracks",
+    "cosmict_flag_4",
+    "cosmict_4_filled",
+    "cosmict_4_flag_inside",
+    "cosmict_4_angle_beam",
+    "cosmict_4_connected_showers",
+    "cosmict_flag_3",
+    "cosmict_3_filled",
+    "cosmict_3_flag_inside",
+    "cosmict_3_angle_beam",
+    "cosmict_3_flag_dir_weak",
+    "cosmict_3_dQ_dx_end",
+    "cosmict_3_dQ_dx_front",
+    "cosmict_3_theta",
+    "cosmict_3_phi",
+    "cosmict_3_valid_tracks",
+    "cosmict_flag_5",
+    "cosmict_5_filled",
+    "cosmict_5_flag_inside",
+    "cosmict_5_angle_beam",
+    "cosmict_5_connected_showers",
+    "cosmict_flag_6",
+    "cosmict_6_filled",
+    "cosmict_6_flag_dir_weak",
+    "cosmict_6_flag_inside",
+    "cosmict_6_angle",
+    "cosmict_flag_7",
+    "cosmict_7_filled",
+    "cosmict_7_flag_sec",
+    "cosmict_7_n_muon_tracks",
+    "cosmict_7_total_shower_length",
+    "cosmict_7_flag_inside",
+    "cosmict_7_angle_beam",
+    "cosmict_7_flag_dir_weak",
+    "cosmict_7_dQ_dx_end",
+    "cosmict_7_dQ_dx_front",
+    "cosmict_7_theta",
+    "cosmict_7_phi",
+    "cosmict_flag_8",
+    "cosmict_8_filled",
+    "cosmict_8_flag_out",
+    "cosmict_8_muon_length",
+    "cosmict_8_acc_length",
+    "cosmict_flag_9",
+    "cosmic_flag",
+    "cosmic_filled",
+    "cosmict_flag"
+   ],
+   "fit_auc": 0.972353575204852,
+   "nval": {
+    "roc_auc": 0.9038735324235743,
+    "pr_auc": 0.9206404398742808,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.7961927652359009,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 57,
+      "tn": 1464,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.03747534516765286,
+      "background_rejection": 0.9625246548323472
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.4476137012243271,
+      "tp": 1337,
+      "fn": 410,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.7653119633657699,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.0364963503649635
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.03274215552523874
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.09333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.03914590747330961
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.0,
+      "binomial_sd": 2.1821789023599238e-07
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.1192214111922141
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.12278308321964529
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.17333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.0711743772241993
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.047619047619047616
+     }
+    },
+    "rows": {
+     "pos": 1747,
+     "neg": 1521
+    },
+    "fit_minus_this_auc": 0.06848004278127773
+   },
+   "holdout": {
+    "roc_auc": 0.9053075283520822,
+    "pr_auc": 0.9163991244710392,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.7813129425048828,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 270,
+      "tn": 7487,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.03480727085213356,
+      "background_rejection": 0.9651927291478665
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.4513850659132004,
+      "tp": 6727,
+      "fn": 2018,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.7692395654659806,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.0347871235721703
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.03982300884955752
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.07494145199063232
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.01599488163787588
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.008888888888888889,
+      "binomial_sd": 0.0062573961724275194
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.122533748701973
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.13799778761061948
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.17330210772833723
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.0563019833653231
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.06666666666666667
+     }
+    },
+    "rows": {
+     "pos": 8745,
+     "neg": 7757
+    },
+    "fit_minus_this_auc": 0.06704604685276983
+   },
+   "calibration_nval": {
+    "brier": 0.12425165974762925,
+    "mean_pred_pos": 0.7697969199751483,
+    "mean_pred_neg": 0.263724983744714,
+    "margin_q10_50_90_pos": [
+     -0.7036965370178219,
+     2.1534667015075684,
+     3.843324947357178
+    ],
+    "margin_q10_50_90_neg": [
+     -3.5241353511810303,
+     -1.5250300168991089,
+     0.5876132845878601
+    ],
+    "reliability": [
+     {
+      "bin": 0,
+      "mean_pred": 0.04837299829749315,
+      "frac_pos": 0.055248618784530384,
+      "n": 543
+     },
+     {
+      "bin": 1,
+      "mean_pred": 0.14619221013549305,
+      "frac_pos": 0.17679558011049723,
+      "n": 362
+     },
+     {
+      "bin": 2,
+      "mean_pred": 0.2479787918869602,
+      "frac_pos": 0.232,
+      "n": 250
+     },
+     {
+      "bin": 3,
+      "mean_pred": 0.3492424404200398,
+      "frac_pos": 0.35807860262008734,
+      "n": 229
+     },
+     {
+      "bin": 4,
+      "mean_pred": 0.4512943291367051,
+      "frac_pos": 0.4336734693877551,
+      "n": 196
+     },
+     {
+      "bin": 5,
+      "mean_pred": 0.5554256951210743,
+      "frac_pos": 0.5125,
+      "n": 160
+     },
+     {
+      "bin": 6,
+      "mean_pred": 0.647453585983038,
+      "frac_pos": 0.6644295302013423,
+      "n": 149
+     },
+     {
+      "bin": 7,
+      "mean_pred": 0.7526785473303911,
+      "frac_pos": 0.6923076923076923,
+      "n": 182
+     },
+     {
+      "bin": 8,
+      "mean_pred": 0.8551045948048887,
+      "frac_pos": 0.8509933774834437,
+      "n": 302
+     },
+     {
+      "bin": 9,
+      "mean_pred": 0.9561789019138898,
+      "frac_pos": 0.9653631284916201,
+      "n": 895
+     }
+    ]
+   },
+   "top20_splits": [
+    "numu_score",
+    "numu_1_score",
+    "kine_nu_y_corr",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_lem_e_charge",
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_max_shw_dis",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_highest_dQ_dx",
+    "shw_sp_vec_dQ_dx_6",
+    "shw_sp_vec_dQ_dx_7",
+    "cosmict_10_score",
+    "shw_sp_br4_2_ratio1_15"
+   ],
+   "top20_gain": [
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_lem_e_charge",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_lem_e_dQdx",
+    "cosmict_10_score",
+    "numu_score",
+    "numu_1_score",
+    "kine_nu_y_corr",
+    "shw_sp_lem_shower_main_length",
+    "shw_sp_lem_n_3seg",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_n_20br1_showers",
+    "shw_sp_length_total",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_min_dis",
+    "shw_sp_length_main",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_max_shw_dis"
+   ],
+   "gain_share": {
+    "numu_cc_flag": 0.010384,
+    "shw_sp_br2_num_valid_tracks": 0.00111,
+    "shw_sp_br2_n_shower_main_segs": 0.007653,
+    "shw_sp_br2_sg_length": 0.006936,
+    "shw_sp_br4_1_shower_main_length": 0.007347,
+    "shw_sp_br4_1_shower_total_length": 0.103714,
+    "shw_sp_br4_1_min_dis": 0.00926,
+    "shw_sp_br4_1_flag_avoid_muon_check": 0.000369,
+    "shw_sp_br4_1_n_vtx_segs": 0.002806,
+    "shw_sp_br4_1_n_main_segs": 0.008176,
+    "shw_sp_br4_2_ratio_45": 0.003138,
+    "shw_sp_br4_2_ratio_35": 0.003413,
+    "shw_sp_br4_2_ratio_25": 0.003516,
+    "shw_sp_br4_2_ratio_15": 0.008269,
+    "shw_sp_br4_2_ratio1_45": 0.005753,
+    "shw_sp_br4_2_ratio1_35": 0.006949,
+    "shw_sp_br4_2_ratio1_25": 0.007339,
+    "shw_sp_br4_2_ratio1_15": 0.007072,
+    "shw_sp_lem_shower_main_length": 0.028385,
+    "shw_sp_lem_n_3seg": 0.028043,
+    "shw_sp_lem_e_charge": 0.065751,
+    "shw_sp_lem_e_dQdx": 0.052013,
+    "shw_sp_lem_shower_num_main_segs": 0.004652,
+    "shw_sp_max_dQ_dx_sample": 0.009712,
+    "shw_sp_n_below_threshold": 0.003071,
+    "shw_sp_n_below_zero": 2.6e-05,
+    "shw_sp_n_lowest": 0.002476,
+    "shw_sp_n_highest": 0.004195,
+    "shw_sp_lowest_dQ_dx": 0.004929,
+    "shw_sp_highest_dQ_dx": 0.006492,
+    "shw_sp_medium_dQ_dx": 0.019772,
+    "shw_sp_stem_length": 0.00839,
+    "shw_sp_length_main": 0.012949,
+    "shw_sp_length_total": 0.016095,
+    "shw_sp_n_vertex": 0.002419,
+    "shw_sp_n_good_tracks": 0.001216,
+    "shw_sp_E_indirect_max_energy": 0.063108,
+    "shw_sp_flag_all_above": 0.000448,
+    "shw_sp_min_dQ_dx_5": 0.002543,
+    "shw_sp_n_other_vertex": 0.003027,
+    "shw_sp_n_stem_size": 0.004072,
+    "shw_sp_min_dis": 0.015877,
+    "shw_sp_vec_mean_dedx": 0.006392,
+    "shw_sp_vec_dQ_dx_0": 0.01236,
+    "shw_sp_vec_dQ_dx_1": 0.008639,
+    "shw_sp_vec_dQ_dx_2": 0.015928,
+    "shw_sp_vec_dQ_dx_3": 0.023654,
+    "shw_sp_vec_dQ_dx_4": 0.007437,
+    "shw_sp_vec_dQ_dx_5": 0.005982,
+    "shw_sp_vec_dQ_dx_6": 0.006321,
+    "shw_sp_vec_dQ_dx_7": 0.007406,
+    "shw_sp_vec_dQ_dx_8": 0.004803,
+    "shw_sp_vec_dQ_dx_9": 0.004928,
+    "shw_sp_vec_dQ_dx_10": 0.004147,
+    "shw_sp_vec_dQ_dx_11": 0.005682,
+    "shw_sp_vec_dQ_dx_12": 0.006095,
+    "shw_sp_vec_dQ_dx_13": 0.004366,
+    "shw_sp_vec_dQ_dx_14": 0.003726,
+    "shw_sp_vec_dQ_dx_15": 0.005172,
+    "shw_sp_vec_dQ_dx_16": 0.005097,
+    "shw_sp_vec_dQ_dx_17": 0.004126,
+    "shw_sp_vec_dQ_dx_18": 0.003914,
+    "shw_sp_vec_dQ_dx_19": 0.004392,
+    "shw_sp_vec_median_dedx": 0.006251,
+    "shw_sp_proton_length_1": 0.003481,
+    "shw_sp_proton_dqdx_1": 0.00491,
+    "shw_sp_proton_energy_1": 0.003569,
+    "shw_sp_proton_length_2": 0.000611,
+    "shw_sp_proton_dqdx_2": 0.000117,
+    "shw_sp_proton_energy_2": 0.000314,
+    "shw_sp_n_good_showers": 0.001744,
+    "shw_sp_n_br1_showers": 0.004326,
+    "shw_sp_n_br2_showers": 0.004525,
+    "shw_sp_n_br3_showers": 0.011101,
+    "shw_sp_n_br4_showers": 0.002637,
+    "shw_sp_n_20br1_showers": 0.017675,
+    "shw_sp_shw_vtx_dis": 0.021211,
+    "shw_sp_max_shw_dis": 0.012025,
+    "shw_sp_num_mip_tracks": 0.008038,
+    "shw_sp_num_muons": 0.002844,
+    "shw_sp_num_protons": 0.000871,
+    "shw_sp_hol_2_min_angle": 0.00919,
+    "cosmict_10_score": 0.051296,
+    "numu_1_score": 0.039805,
+    "numu_2_score": 0.002019,
+    "numu_score": 0.049114,
+    "kine_nu_y_corr": 0.028891
+   },
+   "splits": {
+    "numu_cc_flag": 31.0,
+    "shw_sp_br2_num_valid_tracks": 10.0,
+    "shw_sp_br2_n_shower_main_segs": 40.0,
+    "shw_sp_br2_sg_length": 50.0,
+    "shw_sp_br4_1_shower_main_length": 72.0,
+    "shw_sp_br4_1_shower_total_length": 109.0,
+    "shw_sp_br4_1_min_dis": 61.0,
+    "shw_sp_br4_1_flag_avoid_muon_check": 5.0,
+    "shw_sp_br4_1_n_vtx_segs": 24.0,
+    "shw_sp_br4_1_n_main_segs": 38.0,
+    "shw_sp_br4_2_ratio_45": 40.0,
+    "shw_sp_br4_2_ratio_35": 48.0,
+    "shw_sp_br4_2_ratio_25": 42.0,
+    "shw_sp_br4_2_ratio_15": 75.0,
+    "shw_sp_br4_2_ratio1_45": 64.0,
+    "shw_sp_br4_2_ratio1_35": 78.0,
+    "shw_sp_br4_2_ratio1_25": 72.0,
+    "shw_sp_br4_2_ratio1_15": 81.0,
+    "shw_sp_lem_shower_main_length": 46.0,
+    "shw_sp_lem_n_3seg": 19.0,
+    "shw_sp_lem_e_charge": 115.0,
+    "shw_sp_lem_e_dQdx": 87.0,
+    "shw_sp_lem_shower_num_main_segs": 38.0,
+    "shw_sp_max_dQ_dx_sample": 107.0,
+    "shw_sp_n_below_threshold": 35.0,
+    "shw_sp_n_below_zero": 1.0,
+    "shw_sp_n_lowest": 32.0,
+    "shw_sp_n_highest": 55.0,
+    "shw_sp_lowest_dQ_dx": 68.0,
+    "shw_sp_highest_dQ_dx": 86.0,
+    "shw_sp_medium_dQ_dx": 115.0,
+    "shw_sp_stem_length": 81.0,
+    "shw_sp_length_main": 39.0,
+    "shw_sp_length_total": 71.0,
+    "shw_sp_n_vertex": 20.0,
+    "shw_sp_n_good_tracks": 16.0,
+    "shw_sp_E_indirect_max_energy": 169.0,
+    "shw_sp_flag_all_above": 6.0,
+    "shw_sp_min_dQ_dx_5": 34.0,
+    "shw_sp_n_other_vertex": 25.0,
+    "shw_sp_n_stem_size": 49.0,
+    "shw_sp_min_dis": 60.0,
+    "shw_sp_vec_mean_dedx": 67.0,
+    "shw_sp_vec_dQ_dx_0": 102.0,
+    "shw_sp_vec_dQ_dx_1": 99.0,
+    "shw_sp_vec_dQ_dx_2": 119.0,
+    "shw_sp_vec_dQ_dx_3": 89.0,
+    "shw_sp_vec_dQ_dx_4": 79.0,
+    "shw_sp_vec_dQ_dx_5": 75.0,
+    "shw_sp_vec_dQ_dx_6": 82.0,
+    "shw_sp_vec_dQ_dx_7": 82.0,
+    "shw_sp_vec_dQ_dx_8": 58.0,
+    "shw_sp_vec_dQ_dx_9": 70.0,
+    "shw_sp_vec_dQ_dx_10": 59.0,
+    "shw_sp_vec_dQ_dx_11": 77.0,
+    "shw_sp_vec_dQ_dx_12": 76.0,
+    "shw_sp_vec_dQ_dx_13": 62.0,
+    "shw_sp_vec_dQ_dx_14": 51.0,
+    "shw_sp_vec_dQ_dx_15": 68.0,
+    "shw_sp_vec_dQ_dx_16": 70.0,
+    "shw_sp_vec_dQ_dx_17": 57.0,
+    "shw_sp_vec_dQ_dx_18": 51.0,
+    "shw_sp_vec_dQ_dx_19": 58.0,
+    "shw_sp_vec_median_dedx": 64.0,
+    "shw_sp_proton_length_1": 42.0,
+    "shw_sp_proton_dqdx_1": 53.0,
+    "shw_sp_proton_energy_1": 44.0,
+    "shw_sp_proton_length_2": 10.0,
+    "shw_sp_proton_dqdx_2": 3.0,
+    "shw_sp_proton_energy_2": 5.0,
+    "shw_sp_n_good_showers": 15.0,
+    "shw_sp_n_br1_showers": 54.0,
+    "shw_sp_n_br2_showers": 42.0,
+    "shw_sp_n_br3_showers": 60.0,
+    "shw_sp_n_br4_showers": 29.0,
+    "shw_sp_n_20br1_showers": 40.0,
+    "shw_sp_shw_vtx_dis": 109.0,
+    "shw_sp_max_shw_dis": 101.0,
+    "shw_sp_num_mip_tracks": 34.0,
+    "shw_sp_num_muons": 18.0,
+    "shw_sp_num_protons": 9.0,
+    "shw_sp_hol_2_min_angle": 48.0,
+    "cosmict_10_score": 82.0,
+    "numu_1_score": 202.0,
+    "numu_2_score": 16.0,
+    "numu_score": 206.0,
+    "kine_nu_y_corr": 177.0
+   },
+   "spearman_vs_baseline_nval": 0.962893404141506,
+   "gain_share_spearman_vs_baseline": 0.9286833855799372,
+   "top10_gain_overlap_with_baseline": 7,
+   "migration_at_A_nval": {
+    "signal": {
+     "both_pass": 928,
+     "legacy_pass_dev_fail": 72,
+     "legacy_fail_dev_pass": 72,
+     "both_fail": 675
+    },
+    "background": {
+     "both_pass": 38,
+     "legacy_pass_dev_fail": 2,
+     "legacy_fail_dev_pass": 19,
+     "both_fail": 1462
+    },
+    "note": "both models at their own equal-legacy-signal-efficiency threshold; legacy_* = baseline here"
+   }
+  },
+  "C_NO_UPSTREAM_NUMU_FAMILY": {
+   "ablation": "C_NO_UPSTREAM_NUMU_FAMILY",
+   "n_inputs": 142,
+   "removed": [
+    "cosmict_10_score",
+    "numu_1_score",
+    "numu_2_score",
+    "numu_score"
+   ],
+   "fit_auc": 0.9715381189465322,
+   "nval": {
+    "roc_auc": 0.9037365454520137,
+    "pr_auc": 0.9228050530889256,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8082823157310486,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 47,
+      "tn": 1474,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.030900723208415515,
+      "background_rejection": 0.9690992767915845
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.3996034413576126,
+      "tp": 1356,
+      "fn": 391,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.7761877504293074,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.0340632603406326
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.03137789904502047
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.02666666666666667
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.028469750889679714
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.0,
+      "binomial_sd": 2.1821789023599238e-07
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.1192214111922141
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.12278308321964529
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.17333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.0711743772241993
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.047619047619047616
+     }
+    },
+    "rows": {
+     "pos": 1747,
+     "neg": 1521
+    },
+    "fit_minus_this_auc": 0.06780157349451854
+   },
+   "holdout": {
+    "roc_auc": 0.9037211783038437,
+    "pr_auc": 0.9153750371005495,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.8168787360191345,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 290,
+      "tn": 7467,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.03738558721155086,
+      "background_rejection": 0.9626144127884492
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.400698721408844,
+      "tp": 6750,
+      "fn": 1995,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.7718696397941681,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.03790238836967809
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.04286504424778761
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.07259953161592506
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.018554062699936022
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.008888888888888889,
+      "binomial_sd": 0.0062573961724275194
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.122533748701973
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.13799778761061948
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.17330210772833723
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.0563019833653231
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.06666666666666667
+     }
+    },
+    "rows": {
+     "pos": 8745,
+     "neg": 7757
+    },
+    "fit_minus_this_auc": 0.0678169406426885
+   },
+   "calibration_nval": {
+    "brier": 0.12381881604292484,
+    "mean_pred_pos": 0.7687090817241524,
+    "mean_pred_neg": 0.26512987977663843,
+    "margin_q10_50_90_pos": [
+     -0.8703174471855163,
+     2.1910502910614014,
+     3.8703995227813723
+    ],
+    "margin_q10_50_90_neg": [
+     -3.0833494663238525,
+     -1.473461389541626,
+     0.5508626103401184
+    ],
+    "reliability": [
+     {
+      "bin": 0,
+      "mean_pred": 0.05458604260789234,
+      "frac_pos": 0.05708245243128964,
+      "n": 473
+     },
+     {
+      "bin": 1,
+      "mean_pred": 0.14552471101362674,
+      "frac_pos": 0.17452830188679244,
+      "n": 424
+     },
+     {
+      "bin": 2,
+      "mean_pred": 0.24764183234612822,
+      "frac_pos": 0.28,
+      "n": 300
+     },
+     {
+      "bin": 3,
+      "mean_pred": 0.3438082770708564,
+      "frac_pos": 0.29245283018867924,
+      "n": 212
+     },
+     {
+      "bin": 4,
+      "mean_pred": 0.4472350930970314,
+      "frac_pos": 0.39080459770114945,
+      "n": 174
+     },
+     {
+      "bin": 5,
+      "mean_pred": 0.5501849473010214,
+      "frac_pos": 0.48427672955974843,
+      "n": 159
+     },
+     {
+      "bin": 6,
+      "mean_pred": 0.650272171342003,
+      "frac_pos": 0.625,
+      "n": 160
+     },
+     {
+      "bin": 7,
+      "mean_pred": 0.7512073026984291,
+      "frac_pos": 0.7660818713450293,
+      "n": 171
+     },
+     {
+      "bin": 8,
+      "mean_pred": 0.8565394641607028,
+      "frac_pos": 0.8552188552188552,
+      "n": 297
+     },
+     {
+      "bin": 9,
+      "mean_pred": 0.9569100256064188,
+      "frac_pos": 0.9688195991091314,
+      "n": 898
+     }
+    ]
+   },
+   "top20_splits": [
+    "shw_sp_E_indirect_max_energy",
+    "kine_nu_y_corr",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_lem_e_charge",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_stem_length",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_max_shw_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_br4_2_ratio1_15",
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_vec_dQ_dx_6",
+    "cosmict_flag",
+    "shw_sp_vec_dQ_dx_4",
+    "cosmict_2_dQ_dx_front",
+    "shw_sp_vec_median_dedx"
+   ],
+   "top20_gain": [
+    "shw_sp_br4_1_shower_total_length",
+    "cosmict_flag",
+    "shw_sp_lem_e_charge",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_length_total",
+    "shw_sp_br4_1_shower_main_length",
+    "shw_sp_n_20br1_showers",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_n_br3_showers",
+    "shw_sp_lem_shower_main_length",
+    "shw_sp_vec_dQ_dx_2",
+    "numu_cc_flag",
+    "kine_nu_y_corr",
+    "shw_sp_min_dis",
+    "shw_sp_br2_sg_length",
+    "shw_sp_br4_1_min_dis",
+    "shw_sp_lem_n_3seg",
+    "shw_sp_vec_dQ_dx_0"
+   ],
+   "gain_share": {
+    "cosmict_flag_2": 0.001425,
+    "cosmict_2_filled": 0.000286,
+    "cosmict_2_particle_type": 0.000687,
+    "cosmict_2_n_muon_tracks": 0.000899,
+    "cosmict_2_total_shower_length": 0.01019,
+    "cosmict_2_flag_inside": 0.000484,
+    "cosmict_2_angle_beam": 0.003845,
+    "cosmict_2_flag_dir_weak": 0.000142,
+    "cosmict_2_dQ_dx_end": 0.006335,
+    "cosmict_2_dQ_dx_front": 0.009933,
+    "cosmict_2_theta": 0.00305,
+    "cosmict_2_phi": 0.004319,
+    "cosmict_2_valid_tracks": 0.000952,
+    "cosmict_flag_4": 0.000775,
+    "cosmict_4_filled": 1.8e-05,
+    "cosmict_4_flag_inside": 0.000961,
+    "cosmict_4_angle_beam": 0.002201,
+    "cosmict_4_connected_showers": 0.000157,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 0.000386,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 0.001116,
+    "cosmict_3_flag_dir_weak": 0.0,
+    "cosmict_3_dQ_dx_end": 0.0,
+    "cosmict_3_dQ_dx_front": 0.000563,
+    "cosmict_3_theta": 0.000418,
+    "cosmict_3_phi": 0.0,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 0.000888,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 0.0,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 0.0,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 0.000141,
+    "cosmict_7_flag_sec": 0.000126,
+    "cosmict_7_n_muon_tracks": 0.0,
+    "cosmict_7_total_shower_length": 0.000206,
+    "cosmict_7_flag_inside": 0.000618,
+    "cosmict_7_angle_beam": 0.00072,
+    "cosmict_7_flag_dir_weak": 0.0,
+    "cosmict_7_dQ_dx_end": 0.000292,
+    "cosmict_7_dQ_dx_front": 0.000232,
+    "cosmict_7_theta": 0.000155,
+    "cosmict_7_phi": 0.000315,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 9.5e-05,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 0.002275,
+    "cosmict_8_acc_length": 0.000506,
+    "cosmict_flag_9": 0.001098,
+    "cosmic_flag": 0.000257,
+    "cosmic_filled": 0.000433,
+    "cosmict_flag": 0.080431,
+    "numu_cc_flag": 0.014663,
+    "shw_sp_br2_num_valid_tracks": 0.001723,
+    "shw_sp_br2_n_shower_main_segs": 0.005802,
+    "shw_sp_br2_sg_length": 0.012378,
+    "shw_sp_br4_1_shower_main_length": 0.034269,
+    "shw_sp_br4_1_shower_total_length": 0.110453,
+    "shw_sp_br4_1_min_dis": 0.012315,
+    "shw_sp_br4_1_flag_avoid_muon_check": 0.00031,
+    "shw_sp_br4_1_n_vtx_segs": 0.004239,
+    "shw_sp_br4_1_n_main_segs": 0.006145,
+    "shw_sp_br4_2_ratio_45": 0.002965,
+    "shw_sp_br4_2_ratio_35": 0.0027,
+    "shw_sp_br4_2_ratio_25": 0.005829,
+    "shw_sp_br4_2_ratio_15": 0.005287,
+    "shw_sp_br4_2_ratio1_45": 0.004875,
+    "shw_sp_br4_2_ratio1_35": 0.005009,
+    "shw_sp_br4_2_ratio1_25": 0.007529,
+    "shw_sp_br4_2_ratio1_15": 0.009092,
+    "shw_sp_lem_shower_main_length": 0.016946,
+    "shw_sp_lem_n_3seg": 0.01068,
+    "shw_sp_lem_e_charge": 0.069017,
+    "shw_sp_lem_e_dQdx": 0.041451,
+    "shw_sp_lem_shower_num_main_segs": 0.007244,
+    "shw_sp_max_dQ_dx_sample": 0.008846,
+    "shw_sp_n_below_threshold": 0.002735,
+    "shw_sp_n_below_zero": 8.9e-05,
+    "shw_sp_n_lowest": 0.001884,
+    "shw_sp_n_highest": 0.003127,
+    "shw_sp_lowest_dQ_dx": 0.004507,
+    "shw_sp_highest_dQ_dx": 0.005238,
+    "shw_sp_medium_dQ_dx": 0.020934,
+    "shw_sp_stem_length": 0.009164,
+    "shw_sp_length_main": 0.004933,
+    "shw_sp_length_total": 0.035477,
+    "shw_sp_n_vertex": 0.002975,
+    "shw_sp_n_good_tracks": 0.001104,
+    "shw_sp_E_indirect_max_energy": 0.054124,
+    "shw_sp_flag_all_above": 0.000256,
+    "shw_sp_min_dQ_dx_5": 0.003117,
+    "shw_sp_n_other_vertex": 0.00302,
+    "shw_sp_n_stem_size": 0.005737,
+    "shw_sp_min_dis": 0.013701,
+    "shw_sp_vec_mean_dedx": 0.006693,
+    "shw_sp_vec_dQ_dx_0": 0.010653,
+    "shw_sp_vec_dQ_dx_1": 0.00898,
+    "shw_sp_vec_dQ_dx_2": 0.015262,
+    "shw_sp_vec_dQ_dx_3": 0.010054,
+    "shw_sp_vec_dQ_dx_4": 0.009138,
+    "shw_sp_vec_dQ_dx_5": 0.00506,
+    "shw_sp_vec_dQ_dx_6": 0.008013,
+    "shw_sp_vec_dQ_dx_7": 0.004669,
+    "shw_sp_vec_dQ_dx_8": 0.005034,
+    "shw_sp_vec_dQ_dx_9": 0.005529,
+    "shw_sp_vec_dQ_dx_10": 0.004728,
+    "shw_sp_vec_dQ_dx_11": 0.005732,
+    "shw_sp_vec_dQ_dx_12": 0.005599,
+    "shw_sp_vec_dQ_dx_13": 0.003463,
+    "shw_sp_vec_dQ_dx_14": 0.004522,
+    "shw_sp_vec_dQ_dx_15": 0.003672,
+    "shw_sp_vec_dQ_dx_16": 0.004624,
+    "shw_sp_vec_dQ_dx_17": 0.005399,
+    "shw_sp_vec_dQ_dx_18": 0.003362,
+    "shw_sp_vec_dQ_dx_19": 0.004267,
+    "shw_sp_vec_median_dedx": 0.008796,
+    "shw_sp_proton_length_1": 0.003218,
+    "shw_sp_proton_dqdx_1": 0.003953,
+    "shw_sp_proton_energy_1": 0.004183,
+    "shw_sp_proton_length_2": 0.0005,
+    "shw_sp_proton_dqdx_2": 0.000367,
+    "shw_sp_proton_energy_2": 0.000305,
+    "shw_sp_n_good_showers": 0.001037,
+    "shw_sp_n_br1_showers": 0.005225,
+    "shw_sp_n_br2_showers": 0.003625,
+    "shw_sp_n_br3_showers": 0.017417,
+    "shw_sp_n_br4_showers": 0.002238,
+    "shw_sp_n_20br1_showers": 0.030148,
+    "shw_sp_shw_vtx_dis": 0.029105,
+    "shw_sp_max_shw_dis": 0.010565,
+    "shw_sp_num_mip_tracks": 0.008994,
+    "shw_sp_num_muons": 0.001583,
+    "shw_sp_num_protons": 0.000477,
+    "shw_sp_hol_2_min_angle": 0.009333,
+    "kine_nu_y_corr": 0.01466
+   },
+   "splits": {
+    "cosmict_flag_2": 14.0,
+    "cosmict_2_filled": 3.0,
+    "cosmict_2_particle_type": 9.0,
+    "cosmict_2_n_muon_tracks": 13.0,
+    "cosmict_2_total_shower_length": 47.0,
+    "cosmict_2_flag_inside": 6.0,
+    "cosmict_2_angle_beam": 49.0,
+    "cosmict_2_flag_dir_weak": 3.0,
+    "cosmict_2_dQ_dx_end": 56.0,
+    "cosmict_2_dQ_dx_front": 82.0,
+    "cosmict_2_theta": 38.0,
+    "cosmict_2_phi": 57.0,
+    "cosmict_2_valid_tracks": 12.0,
+    "cosmict_flag_4": 8.0,
+    "cosmict_4_filled": 1.0,
+    "cosmict_4_flag_inside": 10.0,
+    "cosmict_4_angle_beam": 29.0,
+    "cosmict_4_connected_showers": 3.0,
+    "cosmict_flag_3": 0.0,
+    "cosmict_3_filled": 3.0,
+    "cosmict_3_flag_inside": 0.0,
+    "cosmict_3_angle_beam": 8.0,
+    "cosmict_3_flag_dir_weak": 0.0,
+    "cosmict_3_dQ_dx_end": 0.0,
+    "cosmict_3_dQ_dx_front": 8.0,
+    "cosmict_3_theta": 3.0,
+    "cosmict_3_phi": 0.0,
+    "cosmict_3_valid_tracks": 0.0,
+    "cosmict_flag_5": 0.0,
+    "cosmict_5_filled": 0.0,
+    "cosmict_5_flag_inside": 0.0,
+    "cosmict_5_angle_beam": 5.0,
+    "cosmict_5_connected_showers": 0.0,
+    "cosmict_flag_6": 0.0,
+    "cosmict_6_filled": 0.0,
+    "cosmict_6_flag_dir_weak": 0.0,
+    "cosmict_6_flag_inside": 0.0,
+    "cosmict_6_angle": 0.0,
+    "cosmict_flag_7": 0.0,
+    "cosmict_7_filled": 2.0,
+    "cosmict_7_flag_sec": 1.0,
+    "cosmict_7_n_muon_tracks": 0.0,
+    "cosmict_7_total_shower_length": 3.0,
+    "cosmict_7_flag_inside": 5.0,
+    "cosmict_7_angle_beam": 8.0,
+    "cosmict_7_flag_dir_weak": 0.0,
+    "cosmict_7_dQ_dx_end": 4.0,
+    "cosmict_7_dQ_dx_front": 4.0,
+    "cosmict_7_theta": 3.0,
+    "cosmict_7_phi": 6.0,
+    "cosmict_flag_8": 0.0,
+    "cosmict_8_filled": 2.0,
+    "cosmict_8_flag_out": 0.0,
+    "cosmict_8_muon_length": 22.0,
+    "cosmict_8_acc_length": 5.0,
+    "cosmict_flag_9": 9.0,
+    "cosmic_flag": 3.0,
+    "cosmic_filled": 3.0,
+    "cosmict_flag": 82.0,
+    "numu_cc_flag": 33.0,
+    "shw_sp_br2_num_valid_tracks": 15.0,
+    "shw_sp_br2_n_shower_main_segs": 38.0,
+    "shw_sp_br2_sg_length": 73.0,
+    "shw_sp_br4_1_shower_main_length": 68.0,
+    "shw_sp_br4_1_shower_total_length": 90.0,
+    "shw_sp_br4_1_min_dis": 62.0,
+    "shw_sp_br4_1_flag_avoid_muon_check": 4.0,
+    "shw_sp_br4_1_n_vtx_segs": 27.0,
+    "shw_sp_br4_1_n_main_segs": 38.0,
+    "shw_sp_br4_2_ratio_45": 36.0,
+    "shw_sp_br4_2_ratio_35": 37.0,
+    "shw_sp_br4_2_ratio_25": 44.0,
+    "shw_sp_br4_2_ratio_15": 58.0,
+    "shw_sp_br4_2_ratio1_45": 63.0,
+    "shw_sp_br4_2_ratio1_35": 56.0,
+    "shw_sp_br4_2_ratio1_25": 77.0,
+    "shw_sp_br4_2_ratio1_15": 93.0,
+    "shw_sp_lem_shower_main_length": 59.0,
+    "shw_sp_lem_n_3seg": 22.0,
+    "shw_sp_lem_e_charge": 119.0,
+    "shw_sp_lem_e_dQdx": 87.0,
+    "shw_sp_lem_shower_num_main_segs": 30.0,
+    "shw_sp_max_dQ_dx_sample": 111.0,
+    "shw_sp_n_below_threshold": 37.0,
+    "shw_sp_n_below_zero": 1.0,
+    "shw_sp_n_lowest": 26.0,
+    "shw_sp_n_highest": 38.0,
+    "shw_sp_lowest_dQ_dx": 64.0,
+    "shw_sp_highest_dQ_dx": 72.0,
+    "shw_sp_medium_dQ_dx": 94.0,
+    "shw_sp_stem_length": 108.0,
+    "shw_sp_length_main": 47.0,
+    "shw_sp_length_total": 58.0,
+    "shw_sp_n_vertex": 29.0,
+    "shw_sp_n_good_tracks": 14.0,
+    "shw_sp_E_indirect_max_energy": 166.0,
+    "shw_sp_flag_all_above": 4.0,
+    "shw_sp_min_dQ_dx_5": 38.0,
+    "shw_sp_n_other_vertex": 18.0,
+    "shw_sp_n_stem_size": 56.0,
+    "shw_sp_min_dis": 63.0,
+    "shw_sp_vec_mean_dedx": 75.0,
+    "shw_sp_vec_dQ_dx_0": 89.0,
+    "shw_sp_vec_dQ_dx_1": 103.0,
+    "shw_sp_vec_dQ_dx_2": 111.0,
+    "shw_sp_vec_dQ_dx_3": 87.0,
+    "shw_sp_vec_dQ_dx_4": 82.0,
+    "shw_sp_vec_dQ_dx_5": 72.0,
+    "shw_sp_vec_dQ_dx_6": 83.0,
+    "shw_sp_vec_dQ_dx_7": 53.0,
+    "shw_sp_vec_dQ_dx_8": 72.0,
+    "shw_sp_vec_dQ_dx_9": 51.0,
+    "shw_sp_vec_dQ_dx_10": 59.0,
+    "shw_sp_vec_dQ_dx_11": 70.0,
+    "shw_sp_vec_dQ_dx_12": 69.0,
+    "shw_sp_vec_dQ_dx_13": 48.0,
+    "shw_sp_vec_dQ_dx_14": 56.0,
+    "shw_sp_vec_dQ_dx_15": 52.0,
+    "shw_sp_vec_dQ_dx_16": 56.0,
+    "shw_sp_vec_dQ_dx_17": 66.0,
+    "shw_sp_vec_dQ_dx_18": 46.0,
+    "shw_sp_vec_dQ_dx_19": 56.0,
+    "shw_sp_vec_median_dedx": 80.0,
+    "shw_sp_proton_length_1": 42.0,
+    "shw_sp_proton_dqdx_1": 46.0,
+    "shw_sp_proton_energy_1": 44.0,
+    "shw_sp_proton_length_2": 7.0,
+    "shw_sp_proton_dqdx_2": 5.0,
+    "shw_sp_proton_energy_2": 4.0,
+    "shw_sp_n_good_showers": 12.0,
+    "shw_sp_n_br1_showers": 55.0,
+    "shw_sp_n_br2_showers": 40.0,
+    "shw_sp_n_br3_showers": 60.0,
+    "shw_sp_n_br4_showers": 39.0,
+    "shw_sp_n_20br1_showers": 39.0,
+    "shw_sp_shw_vtx_dis": 128.0,
+    "shw_sp_max_shw_dis": 103.0,
+    "shw_sp_num_mip_tracks": 36.0,
+    "shw_sp_num_muons": 14.0,
+    "shw_sp_num_protons": 6.0,
+    "shw_sp_hol_2_min_angle": 46.0,
+    "kine_nu_y_corr": 143.0
+   },
+   "spearman_vs_baseline_nval": 0.959290876493534,
+   "gain_share_spearman_vs_baseline": 0.9628440572083458,
+   "top10_gain_overlap_with_baseline": 7,
+   "migration_at_A_nval": {
+    "signal": {
+     "both_pass": 937,
+     "legacy_pass_dev_fail": 63,
+     "legacy_fail_dev_pass": 63,
+     "both_fail": 684
+    },
+    "background": {
+     "both_pass": 35,
+     "legacy_pass_dev_fail": 5,
+     "legacy_fail_dev_pass": 12,
+     "both_fail": 1469
+    },
+    "note": "both models at their own equal-legacy-signal-efficiency threshold; legacy_* = baseline here"
+   }
+  },
+  "D_NO_COSMIC_NO_UPSTREAM": {
+   "ablation": "D_NO_COSMIC_NO_UPSTREAM",
+   "n_inputs": 83,
+   "removed": [
+    "cosmict_flag_2",
+    "cosmict_2_filled",
+    "cosmict_2_particle_type",
+    "cosmict_2_n_muon_tracks",
+    "cosmict_2_total_shower_length",
+    "cosmict_2_flag_inside",
+    "cosmict_2_angle_beam",
+    "cosmict_2_flag_dir_weak",
+    "cosmict_2_dQ_dx_end",
+    "cosmict_2_dQ_dx_front",
+    "cosmict_2_theta",
+    "cosmict_2_phi",
+    "cosmict_2_valid_tracks",
+    "cosmict_flag_4",
+    "cosmict_4_filled",
+    "cosmict_4_flag_inside",
+    "cosmict_4_angle_beam",
+    "cosmict_4_connected_showers",
+    "cosmict_flag_3",
+    "cosmict_3_filled",
+    "cosmict_3_flag_inside",
+    "cosmict_3_angle_beam",
+    "cosmict_3_flag_dir_weak",
+    "cosmict_3_dQ_dx_end",
+    "cosmict_3_dQ_dx_front",
+    "cosmict_3_theta",
+    "cosmict_3_phi",
+    "cosmict_3_valid_tracks",
+    "cosmict_flag_5",
+    "cosmict_5_filled",
+    "cosmict_5_flag_inside",
+    "cosmict_5_angle_beam",
+    "cosmict_5_connected_showers",
+    "cosmict_flag_6",
+    "cosmict_6_filled",
+    "cosmict_6_flag_dir_weak",
+    "cosmict_6_flag_inside",
+    "cosmict_6_angle",
+    "cosmict_flag_7",
+    "cosmict_7_filled",
+    "cosmict_7_flag_sec",
+    "cosmict_7_n_muon_tracks",
+    "cosmict_7_total_shower_length",
+    "cosmict_7_flag_inside",
+    "cosmict_7_angle_beam",
+    "cosmict_7_flag_dir_weak",
+    "cosmict_7_dQ_dx_end",
+    "cosmict_7_dQ_dx_front",
+    "cosmict_7_theta",
+    "cosmict_7_phi",
+    "cosmict_flag_8",
+    "cosmict_8_filled",
+    "cosmict_8_flag_out",
+    "cosmict_8_muon_length",
+    "cosmict_8_acc_length",
+    "cosmict_flag_9",
+    "cosmic_flag",
+    "cosmic_filled",
+    "cosmict_flag",
+    "cosmict_10_score",
+    "numu_1_score",
+    "numu_2_score",
+    "numu_score"
+   ],
+   "fit_auc": 0.9661129531826133,
+   "nval": {
+    "roc_auc": 0.8879832318914702,
+    "pr_auc": 0.90554117012179,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.5866263508796692,
+      "tp": 1000,
+      "fn": 747,
+      "fp": 68,
+      "tn": 1453,
+      "signal_efficiency": 0.5724098454493417,
+      "background_acceptance": 0.044707429322813935,
+      "background_rejection": 0.9552925706771861
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.4517402797937393,
+      "tp": 1293,
+      "fn": 454,
+      "fp": 173,
+      "tn": 1348,
+      "signal_efficiency": 0.7401259301659988,
+      "background_acceptance": 0.11374095989480605,
+      "background_rejection": 0.886259040105194
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.0364963503649635
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.0504774897680764
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.08
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.03558718861209965
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.0,
+      "binomial_sd": 2.1821789023599238e-07
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 411,
+      "acceptance": 0.1192214111922141
+     },
+     "dirt": {
+      "rows": 733,
+      "acceptance": 0.12278308321964529
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 75,
+      "acceptance": 0.17333333333333334
+     },
+     "cosmic_matched_mc": {
+      "rows": 281,
+      "acceptance": 0.0711743772241993
+     },
+     "beam_off_ext": {
+      "rows": 21,
+      "acceptance": 0.047619047619047616
+     }
+    },
+    "rows": {
+     "pos": 1747,
+     "neg": 1521
+    },
+    "fit_minus_this_auc": 0.07812972129114304
+   },
+   "holdout": {
+    "roc_auc": 0.8874012760233606,
+    "pr_auc": 0.9028873693581284,
+    "op": {
+     "legacy": {
+      "cut": 0.2,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     },
+     "A_equal_signal_efficiency": {
+      "cut": 1.6004492044448853,
+      "tp": 5001,
+      "fn": 3744,
+      "fp": 360,
+      "tn": 7397,
+      "signal_efficiency": 0.571869639794168,
+      "background_acceptance": 0.04640969446951141,
+      "background_rejection": 0.9535903055304886
+     },
+     "B_equal_background_acceptance": {
+      "cut": 0.477840855717659,
+      "tp": 6417,
+      "fn": 2328,
+      "fp": 912,
+      "tn": 6845,
+      "signal_efficiency": 0.7337907375643224,
+      "background_acceptance": 0.1175712259894289,
+      "background_rejection": 0.8824287740105711
+     }
+    },
+    "components_at_A": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.03374870197300104
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.05724557522123894
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.10772833723653395
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.02431222008957134
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.017777777777777778,
+      "binomial_sd": 0.008809522220633189
+     }
+    },
+    "components_legacy": {
+     "nc_no_pi0": {
+      "rows": 1926,
+      "acceptance": 0.122533748701973
+     },
+     "dirt": {
+      "rows": 3616,
+      "acceptance": 0.13799778761061948
+     },
+     "out_of_fv_in_tpc": {
+      "rows": 427,
+      "acceptance": 0.17330210772833723
+     },
+     "cosmic_matched_mc": {
+      "rows": 1563,
+      "acceptance": 0.0563019833653231
+     },
+     "beam_off_ext": {
+      "rows": 225,
+      "acceptance": 0.06666666666666667
+     }
+    },
+    "rows": {
+     "pos": 8745,
+     "neg": 7757
+    },
+    "fit_minus_this_auc": 0.07871167715925265
+   },
+   "calibration_nval": {
+    "brier": 0.1340321818494928,
+    "mean_pred_pos": 0.7503423960081058,
+    "mean_pred_neg": 0.28740144870658096,
+    "margin_q10_50_90_pos": [
+     -0.8403411507606506,
+     2.0081939697265625,
+     3.669143581390381
+    ],
+    "margin_q10_50_90_neg": [
+     -2.7879414558410645,
+     -1.2821940183639526,
+     0.6112821102142334
+    ],
+    "reliability": [
+     {
+      "bin": 0,
+      "mean_pred": 0.060599185496972026,
+      "frac_pos": 0.05307262569832402,
+      "n": 358
+     },
+     {
+      "bin": 1,
+      "mean_pred": 0.1472783618499009,
+      "frac_pos": 0.16554809843400448,
+      "n": 447
+     },
+     {
+      "bin": 2,
+      "mean_pred": 0.2478410856095722,
+      "frac_pos": 0.23391812865497075,
+      "n": 342
+     },
+     {
+      "bin": 3,
+      "mean_pred": 0.3461656363888739,
+      "frac_pos": 0.36259541984732824,
+      "n": 262
+     },
+     {
+      "bin": 4,
+      "mean_pred": 0.44852139619155984,
+      "frac_pos": 0.46078431372549017,
+      "n": 204
+     },
+     {
+      "bin": 5,
+      "mean_pred": 0.5506655139387316,
+      "frac_pos": 0.47619047619047616,
+      "n": 168
+     },
+     {
+      "bin": 6,
+      "mean_pred": 0.6491387989753771,
+      "frac_pos": 0.6358381502890174,
+      "n": 173
+     },
+     {
+      "bin": 7,
+      "mean_pred": 0.7528888121902967,
+      "frac_pos": 0.770949720670391,
+      "n": 179
+     },
+     {
+      "bin": 8,
+      "mean_pred": 0.8569454139716168,
+      "frac_pos": 0.8626760563380281,
+      "n": 284
+     },
+     {
+      "bin": 9,
+      "mean_pred": 0.9524676930718711,
+      "frac_pos": 0.954171562867215,
+      "n": 851
+     }
+    ]
+   },
+   "top20_splits": [
+    "kine_nu_y_corr",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_shw_vtx_dis",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_max_shw_dis",
+    "shw_sp_lem_e_charge",
+    "shw_sp_vec_mean_dedx",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_highest_dQ_dx",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_max_dQ_dx_sample",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_vec_median_dedx",
+    "shw_sp_stem_length",
+    "shw_sp_vec_dQ_dx_1",
+    "shw_sp_lowest_dQ_dx",
+    "shw_sp_br4_2_ratio1_15",
+    "shw_sp_vec_dQ_dx_8",
+    "shw_sp_vec_dQ_dx_5",
+    "shw_sp_br4_2_ratio1_25"
+   ],
+   "top20_gain": [
+    "shw_sp_lem_e_charge",
+    "shw_sp_br4_1_shower_total_length",
+    "shw_sp_E_indirect_max_energy",
+    "shw_sp_shw_vtx_dis",
+    "kine_nu_y_corr",
+    "shw_sp_length_total",
+    "shw_sp_n_20br1_showers",
+    "shw_sp_br4_1_min_dis",
+    "shw_sp_lem_shower_main_length",
+    "numu_cc_flag",
+    "shw_sp_medium_dQ_dx",
+    "shw_sp_n_br3_showers",
+    "shw_sp_lem_e_dQdx",
+    "shw_sp_vec_dQ_dx_3",
+    "shw_sp_vec_dQ_dx_2",
+    "shw_sp_vec_dQ_dx_0",
+    "shw_sp_max_shw_dis",
+    "shw_sp_hol_2_min_angle",
+    "shw_sp_br4_1_n_main_segs",
+    "shw_sp_vec_dQ_dx_5"
+   ],
+   "gain_share": {
+    "numu_cc_flag": 0.024561,
+    "shw_sp_br2_num_valid_tracks": 0.002017,
+    "shw_sp_br2_n_shower_main_segs": 0.006159,
+    "shw_sp_br2_sg_length": 0.010505,
+    "shw_sp_br4_1_shower_main_length": 0.007255,
+    "shw_sp_br4_1_shower_total_length": 0.098397,
+    "shw_sp_br4_1_min_dis": 0.028656,
+    "shw_sp_br4_1_flag_avoid_muon_check": 0.000426,
+    "shw_sp_br4_1_n_vtx_segs": 0.002913,
+    "shw_sp_br4_1_n_main_segs": 0.011289,
+    "shw_sp_br4_2_ratio_45": 0.00275,
+    "shw_sp_br4_2_ratio_35": 0.002601,
+    "shw_sp_br4_2_ratio_25": 0.005095,
+    "shw_sp_br4_2_ratio_15": 0.007738,
+    "shw_sp_br4_2_ratio1_45": 0.005687,
+    "shw_sp_br4_2_ratio1_35": 0.007616,
+    "shw_sp_br4_2_ratio1_25": 0.009489,
+    "shw_sp_br4_2_ratio1_15": 0.008966,
+    "shw_sp_lem_shower_main_length": 0.028611,
+    "shw_sp_lem_n_3seg": 0.004119,
+    "shw_sp_lem_e_charge": 0.127232,
+    "shw_sp_lem_e_dQdx": 0.01956,
+    "shw_sp_lem_shower_num_main_segs": 0.004448,
+    "shw_sp_max_dQ_dx_sample": 0.009263,
+    "shw_sp_n_below_threshold": 0.003491,
+    "shw_sp_n_below_zero": 0.0,
+    "shw_sp_n_lowest": 0.002139,
+    "shw_sp_n_highest": 0.005239,
+    "shw_sp_lowest_dQ_dx": 0.007479,
+    "shw_sp_highest_dQ_dx": 0.010022,
+    "shw_sp_medium_dQ_dx": 0.023938,
+    "shw_sp_stem_length": 0.009302,
+    "shw_sp_length_main": 0.00792,
+    "shw_sp_length_total": 0.032356,
+    "shw_sp_n_vertex": 0.003571,
+    "shw_sp_n_good_tracks": 0.000825,
+    "shw_sp_E_indirect_max_energy": 0.059801,
+    "shw_sp_flag_all_above": 0.000405,
+    "shw_sp_min_dQ_dx_5": 0.004171,
+    "shw_sp_n_other_vertex": 0.00382,
+    "shw_sp_n_stem_size": 0.007551,
+    "shw_sp_min_dis": 0.010487,
+    "shw_sp_vec_mean_dedx": 0.01022,
+    "shw_sp_vec_dQ_dx_0": 0.01432,
+    "shw_sp_vec_dQ_dx_1": 0.010201,
+    "shw_sp_vec_dQ_dx_2": 0.01703,
+    "shw_sp_vec_dQ_dx_3": 0.018558,
+    "shw_sp_vec_dQ_dx_4": 0.006763,
+    "shw_sp_vec_dQ_dx_5": 0.010857,
+    "shw_sp_vec_dQ_dx_6": 0.006182,
+    "shw_sp_vec_dQ_dx_7": 0.008316,
+    "shw_sp_vec_dQ_dx_8": 0.008152,
+    "shw_sp_vec_dQ_dx_9": 0.005593,
+    "shw_sp_vec_dQ_dx_10": 0.004194,
+    "shw_sp_vec_dQ_dx_11": 0.006263,
+    "shw_sp_vec_dQ_dx_12": 0.00665,
+    "shw_sp_vec_dQ_dx_13": 0.006002,
+    "shw_sp_vec_dQ_dx_14": 0.005588,
+    "shw_sp_vec_dQ_dx_15": 0.005031,
+    "shw_sp_vec_dQ_dx_16": 0.005075,
+    "shw_sp_vec_dQ_dx_17": 0.006031,
+    "shw_sp_vec_dQ_dx_18": 0.003275,
+    "shw_sp_vec_dQ_dx_19": 0.004286,
+    "shw_sp_vec_median_dedx": 0.01062,
+    "shw_sp_proton_length_1": 0.003569,
+    "shw_sp_proton_dqdx_1": 0.00441,
+    "shw_sp_proton_energy_1": 0.003959,
+    "shw_sp_proton_length_2": 0.000458,
+    "shw_sp_proton_dqdx_2": 0.000633,
+    "shw_sp_proton_energy_2": 0.000456,
+    "shw_sp_n_good_showers": 0.002293,
+    "shw_sp_n_br1_showers": 0.004722,
+    "shw_sp_n_br2_showers": 0.004315,
+    "shw_sp_n_br3_showers": 0.022502,
+    "shw_sp_n_br4_showers": 0.002744,
+    "shw_sp_n_20br1_showers": 0.032096,
+    "shw_sp_shw_vtx_dis": 0.037002,
+    "shw_sp_max_shw_dis": 0.013338,
+    "shw_sp_num_mip_tracks": 0.009196,
+    "shw_sp_num_muons": 0.004711,
+    "shw_sp_num_protons": 0.000769,
+    "shw_sp_hol_2_min_angle": 0.012616,
+    "kine_nu_y_corr": 0.033136
+   },
+   "splits": {
+    "numu_cc_flag": 55.0,
+    "shw_sp_br2_num_valid_tracks": 16.0,
+    "shw_sp_br2_n_shower_main_segs": 39.0,
+    "shw_sp_br2_sg_length": 73.0,
+    "shw_sp_br4_1_shower_main_length": 78.0,
+    "shw_sp_br4_1_shower_total_length": 88.0,
+    "shw_sp_br4_1_min_dis": 80.0,
+    "shw_sp_br4_1_flag_avoid_muon_check": 5.0,
+    "shw_sp_br4_1_n_vtx_segs": 29.0,
+    "shw_sp_br4_1_n_main_segs": 38.0,
+    "shw_sp_br4_2_ratio_45": 36.0,
+    "shw_sp_br4_2_ratio_35": 32.0,
+    "shw_sp_br4_2_ratio_25": 58.0,
+    "shw_sp_br4_2_ratio_15": 81.0,
+    "shw_sp_br4_2_ratio1_45": 62.0,
+    "shw_sp_br4_2_ratio1_35": 88.0,
+    "shw_sp_br4_2_ratio1_25": 90.0,
+    "shw_sp_br4_2_ratio1_15": 96.0,
+    "shw_sp_lem_shower_main_length": 77.0,
+    "shw_sp_lem_n_3seg": 11.0,
+    "shw_sp_lem_e_charge": 116.0,
+    "shw_sp_lem_e_dQdx": 87.0,
+    "shw_sp_lem_shower_num_main_segs": 29.0,
+    "shw_sp_max_dQ_dx_sample": 113.0,
+    "shw_sp_n_below_threshold": 42.0,
+    "shw_sp_n_below_zero": 0.0,
+    "shw_sp_n_lowest": 29.0,
+    "shw_sp_n_highest": 55.0,
+    "shw_sp_lowest_dQ_dx": 98.0,
+    "shw_sp_highest_dQ_dx": 114.0,
+    "shw_sp_medium_dQ_dx": 113.0,
+    "shw_sp_stem_length": 101.0,
+    "shw_sp_length_main": 52.0,
+    "shw_sp_length_total": 84.0,
+    "shw_sp_n_vertex": 21.0,
+    "shw_sp_n_good_tracks": 12.0,
+    "shw_sp_E_indirect_max_energy": 174.0,
+    "shw_sp_flag_all_above": 4.0,
+    "shw_sp_min_dQ_dx_5": 39.0,
+    "shw_sp_n_other_vertex": 29.0,
+    "shw_sp_n_stem_size": 75.0,
+    "shw_sp_min_dis": 84.0,
+    "shw_sp_vec_mean_dedx": 116.0,
+    "shw_sp_vec_dQ_dx_0": 112.0,
+    "shw_sp_vec_dQ_dx_1": 100.0,
+    "shw_sp_vec_dQ_dx_2": 115.0,
+    "shw_sp_vec_dQ_dx_3": 122.0,
+    "shw_sp_vec_dQ_dx_4": 84.0,
+    "shw_sp_vec_dQ_dx_5": 91.0,
+    "shw_sp_vec_dQ_dx_6": 79.0,
+    "shw_sp_vec_dQ_dx_7": 84.0,
+    "shw_sp_vec_dQ_dx_8": 96.0,
+    "shw_sp_vec_dQ_dx_9": 68.0,
+    "shw_sp_vec_dQ_dx_10": 58.0,
+    "shw_sp_vec_dQ_dx_11": 77.0,
+    "shw_sp_vec_dQ_dx_12": 89.0,
+    "shw_sp_vec_dQ_dx_13": 78.0,
+    "shw_sp_vec_dQ_dx_14": 58.0,
+    "shw_sp_vec_dQ_dx_15": 64.0,
+    "shw_sp_vec_dQ_dx_16": 63.0,
+    "shw_sp_vec_dQ_dx_17": 73.0,
+    "shw_sp_vec_dQ_dx_18": 41.0,
+    "shw_sp_vec_dQ_dx_19": 60.0,
+    "shw_sp_vec_median_dedx": 103.0,
+    "shw_sp_proton_length_1": 38.0,
+    "shw_sp_proton_dqdx_1": 56.0,
+    "shw_sp_proton_energy_1": 47.0,
+    "shw_sp_proton_length_2": 6.0,
+    "shw_sp_proton_dqdx_2": 10.0,
+    "shw_sp_proton_energy_2": 6.0,
+    "shw_sp_n_good_showers": 23.0,
+    "shw_sp_n_br1_showers": 48.0,
+    "shw_sp_n_br2_showers": 54.0,
+    "shw_sp_n_br3_showers": 67.0,
+    "shw_sp_n_br4_showers": 41.0,
+    "shw_sp_n_20br1_showers": 51.0,
+    "shw_sp_shw_vtx_dis": 174.0,
+    "shw_sp_max_shw_dis": 118.0,
+    "shw_sp_num_mip_tracks": 39.0,
+    "shw_sp_num_muons": 24.0,
+    "shw_sp_num_protons": 9.0,
+    "shw_sp_hol_2_min_angle": 65.0,
+    "kine_nu_y_corr": 186.0
+   },
+   "spearman_vs_baseline_nval": 0.9093722854289996,
+   "gain_share_spearman_vs_baseline": 0.9124092187565592,
+   "top10_gain_overlap_with_baseline": 5,
+   "migration_at_A_nval": {
+    "signal": {
+     "both_pass": 916,
+     "legacy_pass_dev_fail": 84,
+     "legacy_fail_dev_pass": 84,
+     "both_fail": 663
+    },
+    "background": {
+     "both_pass": 34,
+     "legacy_pass_dev_fail": 6,
+     "legacy_fail_dev_pass": 34,
+     "both_fail": 1447
+    },
+    "note": "both models at their own equal-legacy-signal-efficiency threshold; legacy_* = baseline here"
+   }
+  }
+ },
+ "leakage": {
+  "events_in_fit_and_nval": 0,
+  "events_in_fit_and_test": 0,
+  "events_in_nval_and_test": 0
+ },
+ "legacy": {
+  "nval": {
+   "roc_auc": 0.8338374378619193,
+   "pr_auc": 0.8428473587653252
+  },
+  "holdout": {
+   "roc_auc": 0.8359730855614063,
+   "pr_auc": 0.8317340479310987
+  }
+ },
+ "study": "ablation (DIAGNOSTIC ONLY; never candidate models)"
+}

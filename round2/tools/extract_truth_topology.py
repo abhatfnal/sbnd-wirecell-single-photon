@@ -22,7 +22,8 @@ PROTON_MASS_GEV = 0.938272
 PROTON_KE_MEV = 35.0
 BR = ['rec.hdr.run', 'rec.hdr.subrun', 'rec.hdr.evt', 'rec.mc.nu.pdg', 'rec.mc.nu.E', 'rec.mc.nu.isnc', 'rec.mc.nu.genie_mode',
       'rec.mc.nu.resnum', 'rec.mc.nu.hitnuc', 'rec.mc.nu.position.x', 'rec.mc.nu.position.y', 'rec.mc.nu.position.z',
-      'rec.mc.nu.prim.pdg', 'rec.mc.nu.prim.genE']
+      'rec.mc.nu.prim.pdg', 'rec.mc.nu.prim.genE', 'rec.mc.nu.prim..idx', 'rec.mc.nu.prim..length']
+# flat CAF: rec.mc.nu.prim.* is ONE flat array per event; neutrino k owns [prim..idx[k], prim..idx[k] + prim..length[k])
 
 
 def one(job):
@@ -37,8 +38,12 @@ def one(job):
     rows = []
     for i in range(len(a['rec.hdr.run'])):
         pdg = a['rec.mc.nu.pdg'][i]
+        P = np.asarray(a['rec.mc.nu.prim.pdg'][i]); PE = np.asarray(a['rec.mc.nu.prim.genE'][i], dtype=np.float64)
+        i0 = np.asarray(a['rec.mc.nu.prim..idx'][i]); nn = np.asarray(a['rec.mc.nu.prim..length'][i])
+        if len(i0) != len(pdg) or int(nn.sum()) != len(P):
+            return dict(sample=sample, file_id=fid, error='prim index mismatch in event %d' % i), []
         for k in range(len(pdg)):
-            pp = np.asarray(a['rec.mc.nu.prim.pdg'][i][k]); pe = np.asarray(a['rec.mc.nu.prim.genE'][i][k], dtype=np.float64)
+            pp = P[i0[k]:i0[k] + nn[k]]; pe = PE[i0[k]:i0[k] + nn[k]]
             ke = (pe - PROTON_MASS_GEV) * 1000.0
             isp = pp == 2212
             n35 = int((isp & (ke > PROTON_KE_MEV)).sum())
@@ -47,7 +52,7 @@ def one(job):
                              vx=float(a['rec.mc.nu.position.x'][i][k]), vy=float(a['rec.mc.nu.position.y'][i][k]),
                              vz=float(a['rec.mc.nu.position.z'][i][k]), isnc=int(a['rec.mc.nu.isnc'][i][k]),
                              genie_mode=int(a['rec.mc.nu.genie_mode'][i][k]), resnum=int(a['rec.mc.nu.resnum'][i][k]),
-                             hitnuc=int(a['rec.mc.nu.hitnuc'][i][k]), n_p35=n35, n_p_all=int(isp.sum()),
+                             hitnuc=int(a['rec.mc.nu.hitnuc'][i][k]), n_p35=n35, n_p_all=int(isp.sum()), n_prim=int(nn[k]),
                              max_p_ke_mev=float(ke[isp].max()) if isp.any() else float('nan'), topology=int(min(n35, 2))))
     return dict(sample=sample, file_id=fid, error=''), rows
 
