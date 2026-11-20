@@ -303,6 +303,16 @@ the moment its gate (§5) opens.
 
 ## 11. Readiness
 
+**Full development (2026-11-20; `SP_BDT_FULL_DEVELOPMENT_SUMMARY.md`).** On nested validation, the four development
+models in production order keep 44.0 % of NC Δ signal at the BNB background where the inherited XMLs keep 27.1 %. The
+development choices are:
+- SP nue unweighted;
+- SP ncpi0 current negatives adequate;
+- SP other must be retrained in the effective-boundary domain.
+
+The final-domain rerun is a gated template (`SP_BDT_FINAL_DOMAIN_RERUN_CONTRACT.md`). No model, threshold, weighting
+or vertex mode is frozen.
+
 **WCL1116 development (2026-11-17 night).**
 - Development models now exist in the refreshed domain for both vertex modes:
   - SP numu: holdout AUC 0.976 / 0.974;
