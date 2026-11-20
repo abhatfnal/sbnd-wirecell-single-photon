@@ -50,3 +50,24 @@ def approx_category(c: pd.DataFrame, ev: pd.DataFrame) -> pd.Series:
     cat = np.select([nomatch, ~inbox, pi0 & cc, pi0 & ~cc, cc & (np.abs(pdg) == 12), cc & (np.abs(pdg) == 14), cc],
                     ["COSMIC_OR_UNMATCHED", "OUTSIDE_TPC_NU", "CC_PI0", "NC_PI0", "NUE_CC", "NUMU_CC", "OTHER_CC"], "OTHER_NC")
     return pd.Series(cat, index=c.index)
+
+
+LIGHT = {"old_fg1": SPD / "ncdelta_purity_datamc" / "bnb_cv_old" / "light.parquet", "nov16": SPD / "ncdelta_purity_datamc" / "bnb_cv_nov16" / "light.parquet"}
+
+
+def authoritative_category(prod, c, sigN):
+    """Production-matched (authoritative) candidate category for EVERY candidate of the generic CV, or None if the full-candidate truth scan has not been run.
+
+    Same `light_work` association + `BM.add_categories` as the Round-1 / replay procedure (SIGNAL_NCDELTA > OUTSIDE_TPC_NU > pi0 > flavour, COSMIC_OR_UNMATCHED and
+    MULTI_OR_AMBIGUOUS structural). Candidates without a stored association raise (no silent fall-back)."""
+    from sbnd_single_photon import background_mechanisms as BM
+    f = LIGHT[prod]
+    if not f.exists():
+        return None
+    light = BM.add_categories(pd.read_parquet(f), sigN)
+    ck = ["file_index", "ev", "nu_index"]
+    assert not light.duplicated(ck).any(), "duplicate candidate rows in the truth scan"
+    j = c[["file_index", "ev", "c_nu_index"]].rename(columns={"c_nu_index": "nu_index"}).merge(light[ck + ["cand_category"]], on=ck, how="left")
+    missing = int(j.cand_category.isna().sum())
+    assert missing == 0, f"{missing} candidates of {prod} have no truth association in {f}"
+    return pd.Series(j.cand_category.to_numpy(), index=c.index)

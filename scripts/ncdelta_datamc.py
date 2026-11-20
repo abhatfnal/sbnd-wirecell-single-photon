@@ -31,6 +31,9 @@ def collect(prod, cfg):
     sev, sc = load_signal(prod, cfg); cev, cc, cf = load_cv(prod, cfg); sig, nat = natural_signal_in_region()
     st_c = PU.event_stage_table(cc, KEY); rm = PU.remove_in_region_natural_signal(st_c, nat[KEY], KEY)
     rmk = set(map(tuple, st_c.loc[rm, KEY].to_numpy())); cc["cat"] = approx_category(cc, cev)
+    auth = authoritative_category(prod, cc, sig)                                  # production-matched truth for every candidate (full scan), else the labelled approximation
+    if auth is not None:
+        cc["cat"] = auth
     cc["removed"] = [(a, b) in rmk for a, b in zip(cc.file_index.to_numpy(), cc.ev.to_numpy())]
     sk = set(map(tuple, sev[KEY].to_numpy())); sc["in_region"] = [(a, b) in sk for a, b in zip(sc.file_index.to_numpy(), sc.ev.to_numpy())]
     D = {}

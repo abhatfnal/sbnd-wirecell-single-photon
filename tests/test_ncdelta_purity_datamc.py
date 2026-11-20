@@ -146,3 +146,46 @@ def test_committed_tables_reproduce_the_round1_and_nov16_efficiencies_and_close(
     for _, r in c.iterrows():                                                # purity = S/(S+B) exactly
         assert np.isclose(r.purity, r.S_per_1e20 / (r.S_per_1e20 + r.B_per_1e20)) if r.B_per_1e20 + r.S_per_1e20 > 0 else True
     assert (c.groupby("production").efficiency_pct.apply(lambda x: x.is_monotonic_decreasing)).all()
+
+
+# ---- authoritative truth scan + systematic-weight inventory -------------------------------------------------------------------------------------------
+def test_candidate_association_with_no_overlapping_truth_is_unmatched_not_a_crash():
+    """Files whose candidates overlap no truth object used to crash the scan (empty groupby aggregate); they must come back as tm_n = 0 / UNMATCHED."""
+    from sbnd_single_photon import background_truth as BT
+    R = pd.DataFrame(dict(row=[0, 1], ev=[0, 0], level=[3, 3], side=[0, 1], nu_index=[3, -1], mutual=[0, 0], nmatch=[0, 0], obj=[0, 0], truth_nu_idx=[-1, -1], truth_trackid=[-1, -1]))
+    I = pd.DataFrame(dict(row=pd.Series([], dtype=int), match_obj=pd.Series([], dtype=int), match_iou_q=pd.Series([], dtype=float), match_shared_q=pd.Series([], dtype=float),
+                          match_iou_n=pd.Series([], dtype=float), match_shared_n=pd.Series([], dtype=float)))
+    a = BT.candidate_association(R, I)
+    assert len(a) == 1 and int(a.tm_n[0]) == 0 and int(a.tm_top_nu[0]) == BT.UNMATCHED
+    assert BT.classify_candidate(int(a.tm_top_nu[0]), 0, 0, 0, False, 0, True, False) == "COSMIC_OR_UNMATCHED"
+
+
+def test_authoritative_category_refuses_candidates_without_a_truth_association(tmp_path, monkeypatch):
+    import ncdelta_purity_common as NC
+    light = pd.DataFrame(dict(file_index=0, ev=[0], nu_index=[0], tm_n=[1], tm_n_distinct_nu=[1], tm_top_nu=[0], mnu_pdg=[14.0], mnu_ccnc=[0.0], mnu_x=[100.0], mnu_y=[0.0], mnu_z=[250.0],
+                              mnu_k=[0.0], k_n_pi0=[0.0]))
+    f = tmp_path / "light.parquet"; light.to_parquet(f); monkeypatch.setitem(NC.LIGHT, "nov16", f)
+    sig = pd.DataFrame(dict(file_index=[9], ev=[9], k=[0]))
+    cands = pd.DataFrame(dict(file_index=0, ev=[0, 1], c_nu_index=[0, 0]))
+    with pytest.raises(AssertionError):
+        NC.authoritative_category("nov16", cands, sig)                       # candidate (0, 1) has no stored association -> no silent fall-back
+    ok = NC.authoritative_category("nov16", cands.iloc[:1], sig)
+    assert list(ok) == ["NUMU_CC"]
+    monkeypatch.setitem(NC.LIGHT, "nov16", tmp_path / "absent.parquet")
+    assert NC.authoritative_category("nov16", cands, sig) is None             # scan not run -> caller falls back explicitly and labels it
+
+
+def test_scan_script_supports_both_productions_and_changes_no_selection():
+    s = (ROOT / "scripts" / "ncdelta_purity_light_scan_nov16.py").read_text()
+    assert '--production' in s and 'choices=["nov16", "old"]' in s and "light_work" in s
+    assert not re.search(r"\.fit\(|train\(|DEV_DO_NOT_DEPLOY|aurora", s, re.I)
+
+
+@pytest.mark.skipif(not (TAB / "systematic_weights_summary.csv").exists(), reason="inventory not generated")
+def test_systematic_weight_inventory_is_consistent():
+    s = pd.read_csv(TAB / "systematic_weights_summary.csv").set_index("category"); inv = pd.read_csv(TAB / "systematic_weights_inventory.csv")
+    assert int(s.loc["flux", "n_functions"]) == 19 and int(s.loc["flux", "total_universes"]) == 19000
+    assert int(s.loc["xsec_fsi", "n_functions"]) == 115 and int(s.loc["xsec_fsi", "total_universes"]) == 3485
+    assert not inv.family.str.contains("detector", case=False).any()          # no detector-variation weights exist in these files
+    cv, sg = inv[inv["sample"] == "bnb_cv"], inv[inv["sample"] == "official_gen2_ncdelta"]
+    assert set(zip(cv.weight, cv.n_universes)) == set(zip(sg.weight, sg.n_universes))

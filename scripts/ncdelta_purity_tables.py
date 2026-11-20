@@ -18,9 +18,13 @@ for prod in PRODUCTIONS:
     cev, cc, cfiles = load_cv(prod, cfg); pot_cv = float(cfiles.total_pot.sum())
     st_c = PU.event_stage_table(cc, KEY)
     rm = PU.remove_in_region_natural_signal(st_c, nat_keys, KEY)
-    cc["cat"] = approx_category(cc, cev)
+    cc["cat_approx"] = approx_category(cc, cev); cc["cat"] = cc["cat_approx"]
+    auth_all = authoritative_category(prod, cc, sigN)                 # None until the full-candidate truth scan exists
+    if auth_all is not None:
+        cc["cat"] = auth_all
+    cat_source = "authoritative (production-matched, all candidates)" if auth_all is not None else "dominant-neutrino approximation"
     res[prod] = dict(sig=st_s, cv=st_c, cv_removed=rm, cc=cc, cev=cev, pot_cv=pot_cv)
-    led[prod] = dict(w_sig=PU.weight(POT_TARGET, POT_SIGNAL), w_cv=PU.weight(POT_TARGET, pot_cv), pot_cv=pot_cv, n_removed_events=int(rm.sum()), n_removed_selected_final=int((rm & st_c.n20br1).sum()))
+    led[prod] = dict(category_source=cat_source, w_sig=PU.weight(POT_TARGET, POT_SIGNAL), w_cv=PU.weight(POT_TARGET, pot_cv), pot_cv=pot_cv, n_removed_events=int(rm.sum()), n_removed_selected_final=int((rm & st_c.n20br1).sum()))
 assert abs(res["old_fg1"]["pot_cv"] - res["nov16"]["pot_cv"]) / res["nov16"]["pot_cv"] < 1e-9
 json.dump(led, open(TAB / "normalisation_numbers.json", "w"), indent=1, default=float)
 
@@ -71,11 +75,30 @@ new_cls = RB1.classify(c_n, deep, sigN); auth["nov16"] = new_cls[new_cls.event_c
 rows = []
 for prod in PRODUCTIONS:
     R = res[prod]; cc = R["cc"]; m = PU.stage_masks(cc)["n20br1"]; sub = cc[m]
-    ap = sub.groupby(KEY).cat.agg(lambda x: x.iloc[0] if x.nunique() == 1 else "MULTI_OR_AMBIGUOUS")
+    ap = sub.groupby(KEY).cat_approx.agg(lambda x: x.iloc[0] if x.nunique() == 1 else "MULTI_OR_AMBIGUOUS")
     j = pd.concat([auth[prod].rename("authoritative"), ap.rename("approx")], axis=1, join="inner")
     ct = pd.crosstab(j.authoritative, j.approx); ct.insert(0, "production", prod); ct.to_csv(TAB / f"taxonomy_validation_crosstab_{prod}.csv")
     rows.append(dict(production=prod, n_background_events=len(j), agree=int((j.authoritative == j.approx).sum()), agree_frac=float((j.authoritative == j.approx).mean())))
 pd.DataFrame(rows).to_csv(TAB / "taxonomy_validation.csv", index=False)
+
+# ---- 4b. approximation vs authoritative truth classification at EVERY stage (candidate level and event level), needs the full-candidate scan ------
+rows = []; allct = []
+for prod in PRODUCTIONS:
+    R = res[prod]; cc = R["cc"]
+    if led[prod]["category_source"].startswith("dominant"):
+        continue
+    masks = PU.stage_masks(cc); rm_key = pd.concat([R["cv"][KEY], R["cv_removed"].rename("rm")], axis=1); cc2 = cc[KEY + ["cat", "cat_approx"]].merge(rm_key, on=KEY, how="left")
+    for st in ST:
+        m = masks[st]; sub = cc2[m]
+        cand_agree = float((sub.cat == sub.cat_approx).mean()) if len(sub) else np.nan
+        sub = sub[~sub.rm.fillna(False).to_numpy(bool)]
+        ea = sub.groupby(KEY).cat.agg(lambda x: x.iloc[0] if x.nunique() == 1 else "MULTI_OR_AMBIGUOUS"); eb = sub.groupby(KEY).cat_approx.agg(lambda x: x.iloc[0] if x.nunique() == 1 else "MULTI_OR_AMBIGUOUS")
+        rows.append(dict(production=prod, stage=st, n_candidates=int(m.sum()), candidate_agree_frac=cand_agree, n_background_events=len(ea), event_agree_frac=float((ea == eb).mean()) if len(ea) else np.nan))
+        if st in ("numu", "n20br1"):
+            ct = pd.crosstab(ea.rename("authoritative"), eb.rename("approx")); ct.insert(0, "stage", st); ct.insert(0, "production", prod); allct.append(ct.reset_index())
+pd.DataFrame(rows).to_csv(TAB / "taxonomy_validation_by_stage.csv", index=False)
+if allct:
+    pd.concat(allct).to_csv(TAB / "taxonomy_validation_by_stage_crosstabs.csv", index=False)
 # authoritative final-stage composition (production-matched)
 rows = []
 for prod in PRODUCTIONS:

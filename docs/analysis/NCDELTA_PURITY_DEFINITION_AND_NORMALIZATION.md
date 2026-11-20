@@ -33,10 +33,10 @@ Code: `src/sbnd_single_photon/purity.py`; tables `tables/ncdelta_purity_datamc/n
 
 ## 4. Ledger closure
 
-CLOSED: exposure arithmetic, signal/CV rate consistency, no double counting (NC-Delta, nue, dirt), cosmic overlay, numerator definition.
+CLOSED: exposure arithmetic, signal/CV rate consistency, no double counting (NC-Delta, nue, dirt), cosmic overlay, numerator definition. **The background category labels are now authoritative** (production-matched truth for all 241,845 old / 241,882 Nov16 candidates, 2026-11-20); the in-region natural-NC-Delta removal rule was checked against it: every selected candidate classified `SIGNAL_NCDELTA` is a natural NC-Delta event, the in-region ones (8 old / 17 Nov16) are exactly the removed events, and the remaining 1 / 2 are outside the provisional box and stay in B by definition (P changes by < 0.01 percentage points either way).
 **OPEN (explicit):**
 1. **Cosmic-only component.** The CV generator keeps only events with an in-TPC neutrino or a neutrino-induced deposit (`POT_EXPOSURE_AUDIT.md`): there are **no pure-cosmic (no-neutrino) events** in the MC, so the part of the real background that comes from cosmic activity in a beam spill with no neutrino interaction is missing. Beam-off data would supply it, but its scale (gate counters vs trigger counts, livetime, run overlap) is the unanswered blocker G. **Every purity here is therefore an upper bound ("MC-only").** `cosmic_only_headroom.csv` states how large an unknown cosmic-only expectation per 1e20 POT would lower P by 10/25/50 % (old: 119/357/1070 events; Nov16: 288/865/2595 events); the beam-off sample shows 4 (old) / 6 (Nov16) frozen-selection events in 49,970 events, with no approved scale to convert them.
-2. **Systematics** (section 6 of the results note): none applied.
+2. **Systematics** (section 6 of the results note): none applied. The CAFs do carry 134 flux/GENIE/FSI weight functions in `recTree` (none detector-related); they are inventoried, not yet used. **`rec.mc.nu.imp_weight` is not 1** (mean ~0.17-0.19) and no event weight is applied; whether `TotalPOT` already accounts for it is undocumented (a normalisation question for the production owners; S/B would move by ~9 % relative if it applied).
 3. **Provisional TPC box** as signal region; the analysis FV is not frozen.
 
 Because item 1 is open, results are labelled **"MC-only expected purity (upper bound; statistical errors only)"** everywhere, as the request's rule "no purity result until the ledger closes" cannot be met for the cosmic-only row; all other rows are closed.

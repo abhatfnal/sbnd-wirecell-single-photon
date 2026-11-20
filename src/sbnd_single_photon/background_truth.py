@@ -61,8 +61,12 @@ def candidate_association(R: pd.DataFrame, I: pd.DataFrame, rule: str = "source"
     top = g.head(1).set_index(["ev", "nu_index"])
     sec = g.nth(1).set_index(["ev", "nu_index"]).match_iou_q.rename("tm_second_iou")
     extra = [c for c in ("match_iou_n",) if c in top.columns]
-    agg = pd.DataFrame({"tm_n": g.size(), "tm_n_distinct_nu": g.apply(lambda d: d.loc[d.truth_nu_idx >= 0, "truth_nu_idx"].nunique()),
-                        "tm_n_cosmic": g.apply(lambda d: int((d.truth_nu_idx < 0).sum()))})
+    if len(m):
+        agg = pd.DataFrame({"tm_n": g.size(), "tm_n_distinct_nu": g.apply(lambda d: d.loc[d.truth_nu_idx >= 0, "truth_nu_idx"].nunique()),
+                            "tm_n_cosmic": g.apply(lambda d: int((d.truth_nu_idx < 0).sum()))})
+    else:       # no truth object overlaps any candidate of this file: every candidate is unmatched (tm_n = 0, filled below); pandas cannot build the groupby aggregate of an empty frame
+        agg = pd.DataFrame({"tm_n": pd.Series(dtype=int), "tm_n_distinct_nu": pd.Series(dtype=int), "tm_n_cosmic": pd.Series(dtype=int)},
+                           index=pd.MultiIndex.from_arrays([[], []], names=["ev", "nu_index"]))
     out = C.set_index(["ev", "nu_index"])[["mutual"]].rename(columns={"mutual": "tm_mutual"}).join(agg).join(sec)
     out = out.join(top[["truth_nu_idx", "truth_trackid", "match_iou_q", "match_shared_q"] + extra].rename(
         columns={"truth_nu_idx": "tm_top_nu", "truth_trackid": "tm_top_trackid", "match_iou_q": "tm_top_iou", "match_shared_q": "tm_top_shared",
