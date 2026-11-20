@@ -79,35 +79,40 @@ def text(t, name):
         return ''
 
 
-def reco_check(path, expect):
+def reco_check(path, expect, prov=None):
     import uproot
+    prov = prov or provenance.WCL1116
     f = uproot.open(path)
-    r = dict(trees={t: t in f for t in TREES})
+    r = dict(trees={t: t in f for t in ('recTree',) + tuple(prov.trees)})
     h = f['recTree'].arrays(['rec.hdr.run', 'rec.hdr.ismc'], library='np')
     r['hdr_runs'] = sorted(set(int(x) for x in h['rec.hdr.run']))
     r['ismc'] = sorted(set(int(x) for x in h['rec.hdr.ismc']))
-    for t in ('recTreeWireCell', 'recTreeWireCell_dv2snap'):
+    for t in prov.trees:
         if t in f:
             r[t] = dict(wct_version=text(f[t], 'wc.Trun.wct_version'), dl_weights=text(f[t], 'wc.Trun.dl_weights'))
-    bad = wcl1116_problems(r) if expect == 'wcl1116' else []
+    bad = wcl1116_problems(r, prov) if expect in ('wcl1116', 'campaign') else []
     if r['ismc'] != [0]:
         bad.append('not real data (ismc %s)' % r['ismc'])
     return r, bad
 
 
-def wcl1116_problems(r):
-    """Reconstruction problems of one file's metadata r (trees present; per Wire-Cell tree wct_version, dl_weights)."""
+def wcl1116_problems(r, prov=None):
+    """Reconstruction problems of one file's metadata r (trees present; per Wire-Cell tree wct_version, dl_weights),
+    against prov (sp_retrain.provenance.Provenance; default WCL1116). Messages keep the 'not WCL1116' wording for the
+    default campaign and say 'not the campaign reconstruction' otherwise."""
+    prov = prov or provenance.WCL1116
+    tag = 'WCL1116' if prov is provenance.WCL1116 else 'the campaign reconstruction'
     bad = []
     if not all(r['trees'].values()):
         bad.append('missing tree %s' % [t for t, ok in r['trees'].items() if not ok])
-    for t, mode in MODE_OF_TREE.items():
+    for t, mode in prov.trees.items():
         if t not in r:
             continue
-        if not provenance.wcl1116_stamp_ok(r[t]['wct_version']):
-            bad.append('%s not WCL1116 (wct_version %r)' % (t, r[t]['wct_version']))
-        if r[t]['dl_weights'] != provenance.wcl1116_dl_weights(mode):
-            bad.append('%s not WCL1116 (dl_weights %r)' % (t, r[t]['dl_weights'][:80]))
-    st = [r[t]['wct_version'] for t in MODE_OF_TREE if t in r]
+        if not prov.stamp_ok(r[t]['wct_version']):
+            bad.append('%s not %s (wct_version %r)' % (t, tag, r[t]['wct_version']))
+        if r[t]['dl_weights'] != prov.dl_weights(mode):
+            bad.append('%s not %s (dl_weights %r)' % (t, tag, r[t]['dl_weights'][:80]))
+    st = [r[t]['wct_version'] for t in prov.trees if t in r]
     if len(set(st)) > 1:
         bad.append('trees carry different stamps %s' % st)
     return bad
@@ -118,8 +123,16 @@ def main():
     for k in ('--staged', '--membership', '--frozen-list', '--out-json'):
         ap.add_argument(k, required=True)
     ap.add_argument('--source-manifest', default=None); ap.add_argument('--out-tsv', default=None); ap.add_argument('--write-list', default=None)
-    ap.add_argument('--expect-reco', default='wcl1116', choices=['wcl1116', 'any']); ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--expect-reco', default='wcl1116', choices=['wcl1116', 'campaign', 'any']); ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--campaign-spec', default=None, help='with --expect-reco campaign: config/campaigns/*.yaml giving the exact stamps, toolkit, DL bundle and trees')
     a = ap.parse_args()
+    if a.expect_reco == 'campaign':
+        if not a.campaign_spec:
+            raise SystemExit('--expect-reco campaign needs --campaign-spec')
+        import yaml
+        prov = provenance.from_campaign_spec(yaml.safe_load(open(a.campaign_spec)))
+    else:
+        prov = provenance.WCL1116
     for p in (a.out_json, a.out_tsv, a.write_list):
         if p:
             firewall.check_output_path(p, ['/lus/flare/projects/neutrinoGPU/abhat/sbnd'])
@@ -165,7 +178,7 @@ def main():
                 if s.get('adler32_dcache', 'unknown') not in ('unknown', '') and s['adler32_dcache'].lower().zfill(8) != ad:
                     fails.append('adler32 %s != dCache %s' % (ad, s['adler32_dcache']))
         try:
-            reco, bad = reco_check(path, a.expect_reco)
+            reco, bad = reco_check(path, a.expect_reco, prov)
             fails += bad
             if reco['hdr_runs'] and reco['hdr_runs'] != [run]:
                 fails.append('header runs %s != name run %d' % (reco['hdr_runs'], run))
@@ -195,9 +208,10 @@ def main():
     res['wct_version_stamps'] = stamps
     res['wct_version_stamp'] = next(iter(stamps)) if len(stamps) == 1 else None    # one build per sample
     res['uniform_stamp'] = len(stamps) == 1
-    if a.expect_reco == 'wcl1116':
-        res['wct_provenance'] = provenance.WCL1116_PROVENANCE
-        res['toolkit_commit'] = provenance.WCL1116_TOOLKIT_COMMIT
+    if a.expect_reco in ('wcl1116', 'campaign'):
+        res['wct_provenance'] = prov.record
+        res['toolkit_commit'] = prov.toolkit_commit
+        res['verifier_sha256'] = hashlib.sha256(open(os.path.abspath(__file__), 'rb').read()).hexdigest()
     res['status'] = 'VERIFIED' if (res['verified'] == res['expected'] == res['staged_files'] and not res['failures'] and res['uniform_stamp']) else 'NOT VERIFIED'
     if a.out_tsv:
         cols = ['pair_id', 'file', 'run', 'bytes', 'adler32', 'sha256', 'role', 'source', 'wct_version', 'wct_version_snap', 'trees', 'ok', 'fails']

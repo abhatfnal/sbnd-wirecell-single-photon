@@ -109,3 +109,127 @@ def test_threshold_table_is_monotonic_and_op_points_match_targets():
     assert abs(op['A_equal_signal_efficiency']['signal_efficiency'] - op['legacy']['signal_efficiency']) < 1e-3
     assert abs(op['B_equal_background_acceptance']['background_acceptance'] - op['legacy']['background_acceptance']) < 1e-3
     assert op['A_equal_signal_efficiency']['background_acceptance'] < op['legacy']['background_acceptance']   # the better score
+
+
+# ---------------------------------------------------------------- final-domain rerun template
+def _tool(name):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(name, os.path.join(ROUND2, 'tools', name + '.py'))
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    return mod
+
+
+def _complete_campaign(tmp_path):
+    import hashlib, yaml
+    g = _tool('final_domain_campaign')
+    c = yaml.safe_load(open(os.path.join(ROUND2, 'config', 'campaigns', 'round2_final_reco_candidate.yaml')))
+    h = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    stage = tmp_path / 'stage'; stage.mkdir()
+    for k, n in (('ncdr_list', 3), ('bnb_list', 2), ('nuecc_list', 2), ('beamoff_train_list', 2)):
+        p = tmp_path / (k + '.txt')
+        root = str(stage) if k == 'beamoff_train_list' else '/lus/flare/projects/neutrinoGPU/yuhw/production-prep/NEXT/full'
+        p.write_text(''.join('%s/u%d/x.wc.flat.caf.root\n' % (root, j) for j in range(n)))
+        c['inputs'][k] = dict(path=str(p), sha256=h(p), files=n)
+    c['production'].update(tag='WCLocalNEXT', toolkit_commit='a' * 40, toolkit_version_stamps=['0.39.0', 'HEAD-0.39.0'], toolkit_stamp_evidence='build records',
+                           dl_bundle='dv2max/sbnd/next/bundle.json', dl_bundle_sha256='b' * 64, vertex_mode='dv2_split_move',
+                           wc_trees={'recTreeWireCell': 'dv2_split_move'}, effective_boundary_profile='measured_effective_v1', effective_boundary_sha256='c' * 64)
+    c['upstream'].update(numu_model_fingerprint='d' * 64, nue_l1_fingerprints='e' * 64)
+    rec = tmp_path / 'staging.json'
+    rec.write_text(json.dumps(dict(status='VERIFIED', expect_reco='campaign', list_sha256=c['inputs']['beamoff_train_list']['sha256'],
+                                   toolkit_commit='a' * 40, verifier_sha256='f' * 64, wct_version_stamp='HEAD-0.39.0')))
+    c['inputs']['beamoff_staging_record'] = dict(path=str(rec), sha256=h(rec))
+    c['inputs']['beamoff_verifier_sha256'] = 'f' * 64
+    c['inputs']['beamoff_exception'] = dict(approved_by='Avinay Bhat', date='2026-12-01', staged_dir=str(stage))
+    return g, c
+
+
+def test_final_domain_template_is_refused_until_every_field_is_supplied():
+    import yaml
+    g = _tool('final_domain_campaign')
+    c = yaml.safe_load(open(os.path.join(ROUND2, 'config', 'campaigns', 'round2_final_reco_candidate.yaml')))
+    assert c['campaign'] == 'round2_final_reco_candidate' and c['status'] == 'TEMPLATE_NOT_RUNNABLE'
+    bad = g.check(c)
+    for f in ('production.tag', 'production.toolkit_commit', 'production.toolkit_version_stamps', 'production.dl_bundle_sha256', 'production.vertex_mode',
+              'production.effective_boundary_profile', 'production.effective_boundary_sha256', 'upstream.numu_model_fingerprint', 'upstream.nue_l1_fingerprints',
+              'inputs.ncdr_list.path', 'inputs.bnb_list.sha256', 'inputs.nuecc_list.files', 'inputs.beamoff_train_list.path',
+              'inputs.beamoff_verifier_sha256', 'inputs.beamoff_exception.approved_by'):
+        assert any(b.startswith(f) for b in bad), f
+    with pytest.raises(SystemExit):
+        g.make_specs(c)
+    with pytest.raises(SystemExit):
+        g.plan(c, '/tmp/never')
+
+
+def test_complete_final_domain_campaign_generates_trainable_frozen_specs_and_a_ten_step_plan(tmp_path):
+    from sp_retrain import devtrain
+    import copy
+    g, c = _complete_campaign(tmp_path)
+    assert g.check(c) == []
+    specs = g.make_specs(c)
+    assert sorted(specs) == ['ncpi0', 'nue', 'numu', 'other']
+    for m, s in specs.items():
+        base = labels.load_spec(os.path.join(ROUND2, 'specs', 'single_photon_%s_training_spec_dev_wcl1116_dv2_split_move.yaml' % m))
+        devtrain.require_development_spec(s)                        # the trainer accepts it unchanged
+        assert s['xgboost'] == base['xgboost'] and s['inputs'] == base['inputs'] and s['label'] == base['label']    # frozen
+        assert s['campaign'] == 'round2_final_reco_candidate' and s['deployable'] is False and s['reconstruction']['toolkit_commit'] == 'a' * 40
+        assert all(firewall.official_marker(d['id']) is None for d in s['samples']['development'] if d.get('role') != 'ext_beam_off')
+    ext = [d for d in specs['other']['samples']['development'] if d.get('role') == 'ext_beam_off'][0]
+    assert ext['wct_version_stamp'] == 'HEAD-0.39.0' and specs['other']['samples']['approved_exceptions'][0]['approved_by'] == 'Avinay Bhat'
+    body = g.plan(c, str(tmp_path / 'plan'))
+    pos = [body.index('# %d ' % k) for k in range(1, 11) if '# %d ' % k in body]
+    assert len(pos) == 9 and pos == sorted(pos) and '# 7 export + 8 Python equivalence' in body      # steps 7 and 8 share one tool
+    # every single defect is refused
+    for path, val in (('production.toolkit_commit', 'abc'), ('production.vertex_mode', 'dv2_other'), ('production.toolkit_version_stamps', ['x', 'x']),
+                      ('upstream.numu_model_fingerprint', 'TBD'), ('production.dl_bundle_sha256', 'B' * 64)):
+        c2 = copy.deepcopy(c); a, b = path.split('.'); c2[a][b] = val
+        assert g.check(c2), path
+    c2 = copy.deepcopy(c); c2['inputs']['bnb_list']['sha256'] = '0' * 64
+    assert any('does not match' in b for b in g.check(c2))
+    c2 = copy.deepcopy(c); open(c2['inputs']['ncdr_list']['path'], 'a').write('/pnfs/sbnd/x/beam-off/y.root\n')
+    assert g.check(c2)                                              # hash and line count no longer match, official marker present
+
+
+def test_campaign_provenance_is_exact_and_explicit():
+    from sp_retrain import provenance as pv
+    v = _tool('verify_staged_beamoff')
+    spec = dict(campaign='round2_final_reco_candidate', production=dict(toolkit_commit='a' * 40, toolkit_version_stamps=['0.39.0', 'HEAD-0.39.0'],
+                dl_bundle='dv2max/sbnd/next/bundle.json', dl_bundle_sha256='b' * 64, wc_trees={'recTreeWireCell': 'dv2_split_move'}))
+    p = pv.from_campaign_spec(spec)
+    ok = dict(trees={'recTree': True, 'recTreeWireCell': True}, recTreeWireCell=dict(wct_version='HEAD-0.39.0', dl_weights=p.dl_weights('dv2_split_move')))
+    assert v.wcl1116_problems(ok, p) == []
+    for s in ('HEAD-0.39.0-1-gabcdef1', '0.38.0', 'HEAD-0.38.0', 'branch-0.39.0'):
+        assert v.wcl1116_problems(dict(ok, recTreeWireCell=dict(ok['recTreeWireCell'], wct_version=s)), p), s
+    with pytest.raises(ValueError):
+        pv.from_campaign_spec(dict(production=dict(toolkit_commit='a' * 40)))
+    assert pv.WCL1116.stamp_ok('HEAD-0.38.0') and not pv.WCL1116.stamp_ok('HEAD-0.39.0')
+
+
+# ---------------------------------------------------------------- operating points and joint four-cut evaluator
+def test_joint_cut_order_is_the_production_order():
+    op = _tool('sp_operating_points')
+    assert op.ORDER == ('numu', 'other', 'ncpi0', 'nue')
+    assert set(op.LEVELS) >= {0.80, 0.85, 0.90, 0.95, 0.98, None}          # the pre-declared levels are all kept
+
+
+@pytest.mark.parametrize('mode', ['dv2_split_move', 'dv2_snap'])
+def test_operating_point_outputs_are_monotonic_ordered_and_unfrozen(mode):
+    p = os.path.join(VAL, 'sp_operating_points_%s.json' % mode)
+    if not os.path.exists(p):
+        pytest.skip('operating points not run')
+    d = json.load(open(p))
+    assert 'NOT ROUND2 CUT' in d['label'] and 'NO THRESHOLD FROZEN' in d['label']
+    for m, v in d['models'].items():
+        assert v['threshold_table_monotonic'], m
+        t = pd.read_csv(os.path.join(VAL, 'op_tables', 'threshold_table_%s_%s.csv' % (m, mode)))
+        assert dv.is_monotonic(t) and (np.diff(t.threshold) <= 0).all()
+        A = v['op']['A_equal_signal_efficiency']; L = v['op']['legacy']
+        assert abs(A['signal_efficiency'] - L['signal_efficiency']) < 0.01
+    j = d['joint']
+    assert j['order'] == ['numu', 'other', 'ncpi0', 'nue']
+    for ref in ('LEGACY_HISTORICAL', 'DEV_ROC_EQUIVALENT'):
+        c = j[ref]['cascade']
+        assert [s['after'] for s in c] == j['order']
+        assert all(c[k + 1]['ncdr_signal_eff'] <= c[k]['ncdr_signal_eff'] + 1e-12 and c[k + 1]['bnb_bkg_acc'] <= c[k]['bnb_bkg_acc'] + 1e-12 for k in range(3))
+    assert sum(j['rows']['ncdr_signal_by_topology'].values()) == j['rows']['ncdr_signal']
+    f = pd.read_csv(os.path.join(VAL, 'op_tables', 'joint_pareto_%s.csv' % mode)).sort_values('bnb_bkg_acc')
+    assert len(f) == j['pareto_points'] and (np.diff(f.ncdr_signal_eff) > 0).all()     # a front: more signal only for more background

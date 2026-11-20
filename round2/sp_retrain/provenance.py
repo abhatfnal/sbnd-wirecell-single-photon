@@ -64,3 +64,34 @@ def expected_sample_stamp(sample_entry, manifest_stamp):
     if not wcl1116_stamp_ok(s):
         raise ValueError('sample %s: wct_version stamp %r is not a WCLocal2026Nov16 build' % (sample_entry.get('id'), s))
     return s
+
+
+# ------------------------------------------------------------------ campaign-level provenance from an explicit spec
+class Provenance:
+    """Exact-match reconstruction provenance: a closed list of stored wct_version strings, a toolkit commit, the DL
+    bundle and the Wire-Cell trees with their vertex modes. WCL1116 is the default; the next production supplies its own
+    values through a campaign spec (config/campaigns/*.yaml) -- nothing is inferred."""
+
+    def __init__(self, stamps, toolkit_commit, bundle, bundle_sha256, trees, record):
+        self.stamps = tuple(stamps); self.toolkit_commit = toolkit_commit
+        self.bundle, self.bundle_sha256 = bundle, bundle_sha256
+        self.trees = dict(trees); self.record = record
+
+    def stamp_ok(self, stamp):
+        return isinstance(stamp, str) and stamp in self.stamps
+
+    def dl_weights(self, mode):
+        return '%s:%s@sha256:%s' % (mode, self.bundle, self.bundle_sha256)
+
+
+WCL1116 = Provenance(sorted(WCL1116_STAMPS), WCL1116_TOOLKIT_COMMIT, WCL1116_BUNDLE, WCL1116_BUNDLE_SHA256,
+                     {'recTreeWireCell': 'dv2_split_move', 'recTreeWireCell_dv2snap': 'dv2_snap'}, WCL1116_PROVENANCE)
+
+
+def from_campaign_spec(spec):
+    p = spec['production']
+    missing = [k for k in ('toolkit_commit', 'toolkit_version_stamps', 'dl_bundle', 'dl_bundle_sha256', 'wc_trees') if not p.get(k)]
+    if missing:
+        raise ValueError('campaign spec production block lacks %s' % missing)
+    return Provenance(p['toolkit_version_stamps'], p['toolkit_commit'], p['dl_bundle'], p['dl_bundle_sha256'], p['wc_trees'],
+                      dict(campaign=spec.get('campaign'), production=p))

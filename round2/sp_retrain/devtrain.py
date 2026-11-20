@@ -18,7 +18,9 @@ from sp_retrain import features, labels, split
 
 CAMPAIGN = 'development_round1_domain_v1'
 CAMPAIGN_WCL1116 = 'development_wcl1116_v1'     # 2026-11-17: Haiwang's WCLocal2026Nov16 refresh, both vertex trees
-CAMPAIGNS = (CAMPAIGN, CAMPAIGN_WCL1116)
+CAMPAIGN_FINAL_CANDIDATE = 'round2_final_reco_candidate'   # placeholder domain of the next (effective-boundary) production
+CAMPAIGNS = (CAMPAIGN, CAMPAIGN_WCL1116, CAMPAIGN_FINAL_CANDIDATE)
+WCL1116_LIKE = (CAMPAIGN_WCL1116, CAMPAIGN_FINAL_CANDIDATE)     # campaigns run by tools/train_wcl1116_dev_model.py
 EV = ['sample', 'file_id', 'run', 'subrun', 'event']
 ROW_KEY = EV + ['cand']
 SOURCE_XGB = ('max_depth', 'n_estimators', 'learning_rate', 'objective', 'colsample_bytree', 'colsample_bylevel',

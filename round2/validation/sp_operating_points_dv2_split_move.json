@@ -1,0 +1,785 @@
+{
+ "label": "VALIDATION-ONLY OPERATING POINTS (WCL1116 development, NESTED VALIDATION) -- DEVELOPMENT ROC-EQUIVALENT DIAGNOSTIC, NOT ROUND2 CUT; NO THRESHOLD FROZEN",
+ "mode": "dv2_split_move",
+ "models": {
+  "numu": {
+   "model": "single_photon_numu",
+   "rows": {
+    "pos": 1761,
+    "neg": 3935
+   },
+   "roc_pr": {
+    "roc_auc": 0.9789446189390774,
+    "pr_auc": 0.9574414015776033
+   },
+   "legacy_roc_pr": {
+    "roc_auc": 0.9609682323561394,
+    "pr_auc": 0.9155017809037862
+   },
+   "op": {
+    "legacy": {
+     "cut": 0.4,
+     "tp": 1477,
+     "fn": 284,
+     "fp": 259,
+     "tn": 3676,
+     "signal_efficiency": 0.8387279954571266,
+     "background_acceptance": 0.06581956797966963,
+     "background_rejection": 0.9341804320203304
+    },
+    "A_equal_signal_efficiency": {
+     "cut": 0.5555963814258575,
+     "tp": 1477,
+     "fn": 284,
+     "fp": 132,
+     "tn": 3803,
+     "signal_efficiency": 0.8387279954571266,
+     "background_acceptance": 0.03354510800508259,
+     "background_rejection": 0.9664548919949174
+    },
+    "B_equal_background_acceptance": {
+     "cut": -0.40414029359817505,
+     "tp": 1612,
+     "fn": 149,
+     "fp": 259,
+     "tn": 3676,
+     "signal_efficiency": 0.9153889835320841,
+     "background_acceptance": 0.06581956797966963,
+     "background_rejection": 0.9341804320203304
+    }
+   },
+   "components_at_A": {
+    "numuCCBkg": {
+     "rows": 2253,
+     "acceptance": 0.0230803373280071
+    },
+    "numuCCpi0Bkg": {
+     "rows": 1682,
+     "acceptance": 0.04756242568370987
+    }
+   },
+   "components_legacy": {
+    "numuCCBkg": {
+     "rows": 2253,
+     "acceptance": 0.05104305370616955
+    },
+    "numuCCpi0Bkg": {
+     "rows": 1682,
+     "acceptance": 0.08561236623067776
+    }
+   },
+   "threshold_table_monotonic": true,
+   "topology": {
+    "legacy_at_historical_cut": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.8839941262848752
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.8432510885341074
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.7983870967741935
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.8622047244094488
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.8677098150782361
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_A": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.9192364170337739
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.8606676342525399
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.6774193548387096
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.89501312335958
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.8648648648648649
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_B": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.9647577092511013
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.9332365747460087
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.8064516129032258
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.94750656167979
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.9388335704125178
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "note": "NC Delta sample signal rows (NESTED VALIDATION)"
+   },
+   "tables": [
+    "threshold_table_numu_dv2_split_move.csv",
+    "roc_numu_dv2_split_move.csv",
+    "pr_numu_dv2_split_move.csv"
+   ]
+  },
+  "other": {
+   "model": "single_photon_other",
+   "rows": {
+    "pos": 1761,
+    "neg": 1512
+   },
+   "roc_pr": {
+    "roc_auc": 0.9157840813150298,
+    "pr_auc": 0.9314820472899756
+   },
+   "legacy_roc_pr": {
+    "roc_auc": 0.8336165117823267,
+    "pr_auc": 0.8431212956330307
+   },
+   "op": {
+    "legacy": {
+     "cut": 0.2,
+     "tp": 1019,
+     "fn": 742,
+     "fp": 182,
+     "tn": 1330,
+     "signal_efficiency": 0.578648495173197,
+     "background_acceptance": 0.12037037037037036,
+     "background_rejection": 0.8796296296296297
+    },
+    "A_equal_signal_efficiency": {
+     "cut": 1.8925377130508423,
+     "tp": 1019,
+     "fn": 742,
+     "fp": 38,
+     "tn": 1474,
+     "signal_efficiency": 0.578648495173197,
+     "background_acceptance": 0.02513227513227513,
+     "background_rejection": 0.9748677248677249
+    },
+    "B_equal_background_acceptance": {
+     "cut": 0.37324993312358856,
+     "tp": 1411,
+     "fn": 350,
+     "fp": 182,
+     "tn": 1330,
+     "signal_efficiency": 0.8012492901760363,
+     "background_acceptance": 0.12037037037037036,
+     "background_rejection": 0.8796296296296297
+    }
+   },
+   "components_at_A": {
+    "NCBkg": {
+     "rows": 398,
+     "acceptance": 0.02512562814070352
+    },
+    "beam_off_ext": {
+     "rows": 20,
+     "acceptance": 0.0
+    },
+    "outFVBkg": {
+     "rows": 810,
+     "acceptance": 0.024691358024691357
+    },
+    "partner_cosmic": {
+     "rows": 278,
+     "acceptance": 0.02877697841726619
+    },
+    "partner_none": {
+     "rows": 6,
+     "acceptance": 0.0
+    }
+   },
+   "components_legacy": {
+    "NCBkg": {
+     "rows": 398,
+     "acceptance": 0.14321608040201006
+    },
+    "beam_off_ext": {
+     "rows": 20,
+     "acceptance": 0.05
+    },
+    "outFVBkg": {
+     "rows": 810,
+     "acceptance": 0.1271604938271605
+    },
+    "partner_cosmic": {
+     "rows": 278,
+     "acceptance": 0.07553956834532374
+    },
+    "partner_none": {
+     "rows": 6,
+     "acceptance": 0.0
+    }
+   },
+   "threshold_table_monotonic": true,
+   "topology": {
+    "legacy_at_historical_cut": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.5447870778267254
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.6473149492017417
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.6612903225806451
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.5498687664041995
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.6586059743954481
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_A": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.6211453744493393
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.6719883889695211
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.6129032258064516
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.6062992125984252
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.6927453769559033
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_B": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.8355359765051396
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.8708272859216255
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.8548387096774194
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.8320209973753281
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.8805120910384068
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "note": "NC Delta sample signal rows (NESTED VALIDATION)"
+   },
+   "tables": [
+    "threshold_table_other_dv2_split_move.csv",
+    "roc_other_dv2_split_move.csv",
+    "pr_other_dv2_split_move.csv"
+   ]
+  },
+  "ncpi0": {
+   "model": "single_photon_ncpi0",
+   "rows": {
+    "pos": 1761,
+    "neg": 957
+   },
+   "roc_pr": {
+    "roc_auc": 0.893362634154504,
+    "pr_auc": 0.9262161430623397
+   },
+   "legacy_roc_pr": {
+    "roc_auc": 0.853106640629404,
+    "pr_auc": 0.8912257017740486
+   },
+   "op": {
+    "legacy": {
+     "cut": -0.05,
+     "tp": 921,
+     "fn": 840,
+     "fp": 93,
+     "tn": 864,
+     "signal_efficiency": 0.5229982964224872,
+     "background_acceptance": 0.09717868338557993,
+     "background_rejection": 0.9028213166144201
+    },
+    "A_equal_signal_efficiency": {
+     "cut": 2.5045090913772583,
+     "tp": 921,
+     "fn": 840,
+     "fp": 55,
+     "tn": 902,
+     "signal_efficiency": 0.5229982964224872,
+     "background_acceptance": 0.05747126436781609,
+     "background_rejection": 0.9425287356321839
+    },
+    "B_equal_background_acceptance": {
+     "cut": 1.780821144580841,
+     "tp": 1226,
+     "fn": 535,
+     "fp": 93,
+     "tn": 864,
+     "signal_efficiency": 0.6961953435547984,
+     "background_acceptance": 0.09717868338557993,
+     "background_rejection": 0.9028213166144201
+    }
+   },
+   "components_at_A": {
+    "NCpi0Bkg": {
+     "rows": 957,
+     "acceptance": 0.05747126436781609
+    }
+   },
+   "components_legacy": {
+    "NCpi0Bkg": {
+     "rows": 957,
+     "acceptance": 0.09717868338557993
+    }
+   },
+   "threshold_table_monotonic": true,
+   "topology": {
+    "legacy_at_historical_cut": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.5844346549192364
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.5341074020319303
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.2903225806451613
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.5406824146981627
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.5448079658605974
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_A": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.6754772393538914
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.5036284470246735
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.3870967741935484
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.6259842519685039
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.5220483641536273
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_B": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.788546255506608
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.7489114658925979
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.532258064516129
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.7532808398950132
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.7567567567567568
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "note": "NC Delta sample signal rows (NESTED VALIDATION)"
+   },
+   "tables": [
+    "threshold_table_ncpi0_dv2_split_move.csv",
+    "roc_ncpi0_dv2_split_move.csv",
+    "pr_ncpi0_dv2_split_move.csv"
+   ]
+  },
+  "nue": {
+   "model": "single_photon_nue",
+   "rows": {
+    "pos": 1767,
+    "neg": 21195
+   },
+   "roc_pr": {
+    "roc_auc": 0.962439086323896,
+    "pr_auc": 0.7476304964269086
+   },
+   "legacy_roc_pr": {
+    "roc_auc": 0.922402455010892,
+    "pr_auc": 0.5066824563594639
+   },
+   "op": {
+    "legacy": {
+     "cut": -1.0,
+     "tp": 1414,
+     "fn": 353,
+     "fp": 2834,
+     "tn": 18361,
+     "signal_efficiency": 0.8002263723825693,
+     "background_acceptance": 0.1337107808445388,
+     "background_rejection": 0.8662892191554612
+    },
+    "A_equal_signal_efficiency": {
+     "cut": -1.452397108078003,
+     "tp": 1414,
+     "fn": 353,
+     "fp": 1180,
+     "tn": 20015,
+     "signal_efficiency": 0.8002263723825693,
+     "background_acceptance": 0.055673507902807264,
+     "background_rejection": 0.9443264920971928
+    },
+    "B_equal_background_acceptance": {
+     "cut": -2.5998806953430176,
+     "tp": 1624,
+     "fn": 143,
+     "fp": 2785,
+     "tn": 18410,
+     "signal_efficiency": 0.9190718732314658,
+     "background_acceptance": 0.1313989148384053,
+     "background_rejection": 0.8686010851615947
+    }
+   },
+   "components_at_A": {
+    "nueCCBkg": {
+     "rows": 21195,
+     "acceptance": 0.055673507902807264
+    }
+   },
+   "components_legacy": {
+    "nueCCBkg": {
+     "rows": 21195,
+     "acceptance": 0.1337107808445388
+    }
+   },
+   "threshold_table_monotonic": true,
+   "topology": {
+    "legacy_at_historical_cut": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.8428781204111601
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.7750362844702468
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.6935483870967742
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.8333333333333334
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.7667140825035562
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_A": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.8414096916299559
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.8490566037735849
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.7741935483870968
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.8293963254593176
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.8549075391180654
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "dev_at_B": {
+     "0p": {
+      "rows": 681,
+      "efficiency": 0.9295154185022027
+     },
+     "1p": {
+      "rows": 689,
+      "efficiency": 0.9506531204644412
+     },
+     ">=2p": {
+      "rows": 124,
+      "efficiency": 0.9193548387096774
+     },
+     "Delta0": {
+      "rows": 762,
+      "efficiency": 0.931758530183727
+     },
+     "Delta+": {
+      "rows": 703,
+      "efficiency": 0.9487908961593172
+     },
+     "unmatched": {
+      "rows": 0,
+      "efficiency": null
+     }
+    },
+    "note": "NC Delta sample signal rows (NESTED VALIDATION)"
+   },
+   "tables": [
+    "threshold_table_nue_dv2_split_move.csv",
+    "roc_nue_dv2_split_move.csv",
+    "pr_nue_dv2_split_move.csv"
+   ]
+  }
+ },
+ "joint": {
+  "order": [
+   "numu",
+   "other",
+   "ncpi0",
+   "nue"
+  ],
+  "levels": [
+   0.5,
+   0.6,
+   0.7,
+   0.8,
+   0.85,
+   0.9,
+   0.95,
+   0.98,
+   "none"
+  ],
+  "vectors": 6561,
+  "pareto_points": 123,
+  "rows": {
+   "ncdr_signal": 1494,
+   "all_signal": 1767,
+   "bnb_background": 6424,
+   "ext": 20,
+   "nuecc_nueccbkg": 21079,
+   "ncdr_signal_by_topology": {
+    "0p": 681,
+    "1p": 689,
+    ">=2p": 124
+   },
+   "events_with_multiple_preselected_candidates": 263
+  },
+  "LEGACY_HISTORICAL": {
+   "cuts": {
+    "numu": 0.4,
+    "other": 0.2,
+    "ncpi0": -0.05,
+    "nue": -1.0
+   },
+   "cascade": [
+    {
+     "after": "numu",
+     "ncdr_signal_eff": 0.85809906291834,
+     "bnb_bkg_acc": 0.25404732254047324
+    },
+    {
+     "after": "other",
+     "ncdr_signal_eff": 0.5689424364123159,
+     "bnb_bkg_acc": 0.09308841843088418
+    },
+    {
+     "after": "ncpi0",
+     "ncdr_signal_eff": 0.3333333333333333,
+     "bnb_bkg_acc": 0.016811955168119553
+    },
+    {
+     "after": "nue",
+     "ncdr_signal_eff": 0.2710843373493976,
+     "bnb_bkg_acc": 0.007471980074719801
+    }
+   ],
+   "ncdr_signal_eff": 0.2710843373493976,
+   "all_signal_eff": 0.2495755517826825,
+   "bnb_bkg_acc": 0.007471980074719801,
+   "ext_acc": 0.0,
+   "nuecc_nueccbkg_acc": 0.010816452393377295,
+   "ncdr_eff_0p": 0.3010279001468429,
+   "ncdr_eff_1p": 0.2714078374455733,
+   "ncdr_eff_>=2p": 0.10483870967741936,
+   "bnb_acc_NCBkg": 0.005235602094240838,
+   "bnb_acc_NCpi0Bkg": 0.023579849946409433,
+   "bnb_acc_nueCCBkg": 0.008695652173913044,
+   "bnb_acc_numuCCBkg": 0.0,
+   "bnb_acc_numuCCpi0Bkg": 0.0035885167464114833,
+   "bnb_acc_outFVBkg": 0.017879948914431672,
+   "bnb_acc_partner_cosmic": 0.011320754716981131,
+   "bnb_acc_partner_none": 0.0,
+   "bnb_acc_unclassified": 0.0
+  },
+  "DEV_ROC_EQUIVALENT": {
+   "cuts": {
+    "numu": 0.5555963814258575,
+    "other": 1.8925377130508423,
+    "ncpi0": 2.5045090913772583,
+    "nue": -1.452397108078003
+   },
+   "cascade": [
+    {
+     "after": "numu",
+     "ncdr_signal_eff": 0.8721552878179384,
+     "bnb_bkg_acc": 0.1860211706102117
+    },
+    {
+     "after": "other",
+     "ncdr_signal_eff": 0.6251673360107095,
+     "bnb_bkg_acc": 0.0273972602739726
+    },
+    {
+     "after": "ncpi0",
+     "ncdr_signal_eff": 0.46117804551539493,
+     "bnb_bkg_acc": 0.009806973848069738
+    },
+    {
+     "after": "nue",
+     "ncdr_signal_eff": 0.4397590361445783,
+     "bnb_bkg_acc": 0.007783312577833126
+    }
+   ],
+   "ncdr_signal_eff": 0.4397590361445783,
+   "all_signal_eff": 0.3870967741935484,
+   "bnb_bkg_acc": 0.007783312577833126,
+   "ext_acc": 0.0,
+   "nuecc_nueccbkg_acc": 0.00925091323117795,
+   "ncdr_eff_0p": 0.5124816446402349,
+   "ncdr_eff_1p": 0.3991291727140784,
+   "ncdr_eff_>=2p": 0.2661290322580645,
+   "bnb_acc_NCBkg": 0.005235602094240838,
+   "bnb_acc_NCpi0Bkg": 0.02465166130760986,
+   "bnb_acc_nueCCBkg": 0.02608695652173913,
+   "bnb_acc_numuCCBkg": 0.00044802867383512545,
+   "bnb_acc_numuCCpi0Bkg": 0.0029904306220095694,
+   "bnb_acc_outFVBkg": 0.016602809706257982,
+   "bnb_acc_partner_cosmic": 0.011320754716981131,
+   "bnb_acc_partner_none": 0.0,
+   "bnb_acc_unclassified": 0.0
+  },
+  "DEV_FRONT_AT_LEGACY_BNB_ACCEPTANCE": {
+   "level_numu": 0.6,
+   "level_other": 0.5,
+   "level_ncpi0": 0.7,
+   "level_nue": 0.9,
+   "ncdr_signal_eff": 0.4738955823293173,
+   "all_signal_eff": 0.41765704584040747,
+   "bnb_bkg_acc": 0.007471980074719801,
+   "ext_acc": 0.0,
+   "nuecc_nueccbkg_acc": 0.009488116134541487,
+   "ncdr_eff_0p": 0.5007342143906021,
+   "ncdr_eff_1p": 0.4876632801161103,
+   "ncdr_eff_>=2p": 0.25,
+   "bnb_acc_NCBkg": 0.005235602094240838,
+   "bnb_acc_NCpi0Bkg": 0.027867095391211148,
+   "bnb_acc_nueCCBkg": 0.008695652173913044,
+   "bnb_acc_numuCCBkg": 0.0008960573476702509,
+   "bnb_acc_numuCCpi0Bkg": 0.004186602870813397,
+   "bnb_acc_outFVBkg": 0.011494252873563218,
+   "bnb_acc_partner_cosmic": 0.0037735849056603774,
+   "bnb_acc_partner_none": 0.0,
+   "bnb_acc_unclassified": 0.0,
+   "pareto": true
+  },
+  "pareto_csv": "joint_pareto_dv2_split_move.csv",
+  "grid_csv": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/wcl1116_full_dev/op/dv2_split_move/joint_grid_dv2_split_move.csv",
+  "note": "per-row rates per sample; no exposure weighting; no threshold vector chosen"
+ }
+}

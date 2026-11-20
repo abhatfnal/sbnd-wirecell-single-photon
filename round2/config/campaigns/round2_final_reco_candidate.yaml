@@ -1,0 +1,29 @@
+# Final-domain SP BDT rerun TEMPLATE (docs/SP_BDT_FINAL_DOMAIN_RERUN_CONTRACT.md).
+# The production tag, paths and hashes are NOT known yet: every `null` must be filled from Haiwang's production record
+# and the collaboration's upstream freeze. tools/final_domain_campaign.py REFUSES to plan or run while any required field
+# is null, a placeholder, malformed, or does not match the files it names. Nothing here is inferred.
+campaign: round2_final_reco_candidate
+status: TEMPLATE_NOT_RUNNABLE
+production:
+  tag: null                       # Haiwang's production tag (string)
+  toolkit_commit: null            # full 40-hex Wire-Cell toolkit commit
+  toolkit_version_stamps: null    # closed list of the EXACT stored wc.Trun.wct_version strings (one per build: Aurora, FermiGrid)
+  toolkit_stamp_evidence: null    # where each stamp was mapped to toolkit_commit (build records / TARBALL-PROVENANCE)
+  dl_bundle: null                 # e.g. dv2max/sbnd/<name>/bundle.json
+  dl_bundle_sha256: null          # 64-hex
+  vertex_mode: null               # dv2_split_move | dv2_snap (collaboration decision)
+  wc_trees: null                  # mapping of every stored Wire-Cell tree to its vertex mode, e.g. {recTreeWireCell: dv2_split_move}
+  effective_boundary_profile: null    # name of the non-box / effective boundary configuration
+  effective_boundary_sha256: null     # 64-hex of the boundary definition file(s) used by cosmic_tagger()
+upstream:
+  numu_model_fingerprint: null    # 64-hex over the collaboration-frozen nu_mu final + level-1 weight files (numu_score family)
+  nue_l1_fingerprints: null       # 64-hex over the 15 nu_e level-1 weight files (stored or re-frozen)
+inputs:                           # Aurora TRAINING side only (lists written by tools/make_refresh_list.py)
+  ncdr_list: {path: null, sha256: null, files: null}
+  bnb_list: {path: null, sha256: null, files: null}
+  nuecc_list: {path: null, sha256: null, files: null}
+  beamoff_train_list: {path: null, sha256: null, files: null}
+  beamoff_staging_record: {path: null, sha256: null}          # verify_staged_beamoff.py --expect-reco campaign output
+  beamoff_verifier_sha256: null   # sha256 of tools/verify_staged_beamoff.py that wrote the staging record
+  beamoff_exception: {approved_by: null, date: null, staged_dir: null}   # the SP other firewall exception must be re-approved for this domain
+models: [numu, ncpi0, other, nue] # frozen WCL1116 development specs re-generated for this domain (features, hyperparameters, seed unchanged)

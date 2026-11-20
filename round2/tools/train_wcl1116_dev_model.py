@@ -68,8 +68,8 @@ def main():
 
     spec = labels.load_spec(a.spec)
     devtrain.require_development_spec(spec)
-    if spec['campaign'] != devtrain.CAMPAIGN_WCL1116:
-        raise SystemExit('not a %s spec' % devtrain.CAMPAIGN_WCL1116)
+    if spec['campaign'] not in devtrain.WCL1116_LIKE:
+        raise SystemExit('not a %s spec' % (devtrain.WCL1116_LIKE,))
     name = spec['classifier']['name']; model_name = spec['classifier']['model_name']
     reco = spec['reconstruction']; tree = reco['wc_tree']; mode = reco['vertex_mode']
     if mode not in model_name or 'DO_NOT_DEPLOY' not in model_name:
@@ -186,7 +186,7 @@ def main():
     json.dump(met, open(os.path.join(a.out_dir, 'metrics.json'), 'w'), indent=1, default=str)
 
     manifest = dict(
-        campaign=devtrain.CAMPAIGN_WCL1116 + ('-SMOKE' if a.smoke else ''), deployable=False, label='WCL1116_DEVELOPMENT_DO_NOT_DEPLOY',
+        campaign=spec['campaign'] + ('-SMOKE' if a.smoke else ''), deployable=False, label=('WCL1116' if spec['campaign'] == devtrain.CAMPAIGN_WCL1116 else 'FINAL_DOMAIN_CANDIDATE') + '_DEVELOPMENT_DO_NOT_DEPLOY',
         upstream_numu=spec['inputs'].get('upstream_numu'), holdout_kind='DEVELOPMENT HOLDOUT (not an independent end-to-end test)',
         reconstruction=dict(production=reco['production'], vertex_mode=mode, wc_tree=tree, wct_version_stamp=stamp,
                             toolkit_commit=reco['toolkit_commit'], dl_bundle_sha256=reco['dl_bundle_sha256']), classifier=name,
