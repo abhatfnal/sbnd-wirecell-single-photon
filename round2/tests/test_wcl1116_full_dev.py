@@ -233,3 +233,27 @@ def test_operating_point_outputs_are_monotonic_ordered_and_unfrozen(mode):
     assert sum(j['rows']['ncdr_signal_by_topology'].values()) == j['rows']['ncdr_signal']
     f = pd.read_csv(os.path.join(VAL, 'op_tables', 'joint_pareto_%s.csv' % mode)).sort_values('bnb_bkg_acc')
     assert len(f) == j['pareto_points'] and (np.diff(f.ncdr_signal_eff) > 0).all()     # a front: more signal only for more background
+
+
+# ---------------------------------------------------------------- collaboration figures
+def test_collaboration_figures_plot_the_committed_values(tmp_path):
+    if not os.path.exists(os.path.join(VAL, 'sp_operating_points_dv2_split_move.json')):
+        pytest.skip('operating points not run')
+    f = _tool('make_wcl1116_collab_figures')
+    V = f.collect()
+    r = lambda x, d=1: round(100 * x, d)
+    assert (r(V['joint']['legacy']['signal']), r(V['joint']['sbnd']['signal'])) == (27.1, 44.0)
+    assert (r(V['joint']['legacy']['bnb'], 2), r(V['joint']['sbnd']['bnb'], 2)) == (0.75, 0.78)
+    assert [r(V['topology']['legacy'][t][0]) for t in ('0p', '1p', '>=2p')] == [30.1, 27.1, 10.5]
+    assert [r(V['topology']['sbnd'][t][0]) for t in ('0p', '1p', '>=2p')] == [51.2, 39.9, 26.6]     # 349/681 = 51.25 %
+    assert {m: (round(a, 3), round(b, 3)) for m, (a, b) in V['auc'].items()} == {
+        'numu': (0.958, 0.976), 'ncpi0': (0.848, 0.899), 'other': (0.84, 0.915), 'nue': (0.918, 0.959)}
+    assert [s[0] for s in V['cascade']['sbnd']] == ['numu', 'other', 'ncpi0', 'nue']
+    assert [(r(s[1]), r(s[2])) for s in V['cascade']['legacy']] == [(85.8, 25.4), (56.9, 9.3), (33.3, 1.7), (27.1, 0.7)]
+    assert [(r(s[1]), r(s[2])) for s in V['cascade']['sbnd']] == [(87.2, 18.6), (62.5, 2.7), (46.1, 1.0), (44.0, 0.8)]
+    import matplotlib
+    matplotlib.use('Agg')
+    for fn in (f.fig_joint, f.fig_topology, f.fig_auc, f.fig_cascade):
+        fn(V, str(tmp_path))
+    names = {'joint_selection_legacy_vs_sbnd_dev', 'joint_selection_topology_efficiency', 'four_sp_bdt_auc_legacy_vs_sbnd', 'joint_selection_cascade'}
+    assert {p.name for p in tmp_path.iterdir()} == {n + e for n in names for e in ('.png', '.pdf')}

@@ -156,7 +156,7 @@ Details: `$SP_WORK/wcl1116_legacy_controls/<mode>/<model>/legacy_vs_dev.json`.
    - Split-move has a slightly higher preselected-signal ceiling on NC Δ (0.661 vs 0.654). On BNB the two are equal
      within 0.3 points.
    - Class populations differ by < 1.5 %.
-2. **Legacy control.** Holdout AUC split / snap: numu 0.958 / 0.954; ncpi0 0.849 / 0.847.
+2. **Legacy control.** Holdout AUC split / snap: numu 0.958 / 0.954; ncpi0 0.848 / 0.847.
 3. **New development models.** Holdout AUC split / snap: numu 0.976 / 0.974; ncpi0 0.899 / 0.897. Similar gaps and
    importances.
 4. **Fair matched comparison** on holdout candidates present in both modes with the same key and class (bootstrap of

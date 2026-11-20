@@ -23,7 +23,7 @@ Detailed reports:
 | model | split legacy | split dev | snap legacy | snap dev |
 |---|---:|---:|---:|---:|
 | SP numu | 0.958 | 0.976 | 0.954 | 0.974 |
-| SP ncpi0 | 0.849 | 0.899 | 0.847 | 0.897 |
+| SP ncpi0 | 0.848 | 0.899 | 0.847 | 0.897 |
 | SP other | **0.840** | **0.915** | **0.836** | **0.912** |
 | SP nue | 0.918 | 0.959 | 0.914 | 0.952 |
 

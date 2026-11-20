@@ -13,7 +13,7 @@ Date: 2026-11-20. Branch `round2/sp-bdt-wcl1116-full-development-20261120`, base
 | model | split legacy / dev | snap legacy / dev |
 |---|---|---|
 | numu | 0.958 / 0.976 | 0.954 / 0.974 |
-| ncpi0 | 0.849 / 0.899 | 0.847 / 0.897 |
+| ncpi0 | 0.848 / 0.899 | 0.847 / 0.897 |
 | other | 0.840 / 0.915 | 0.836 / 0.912 |
 | nue | 0.918 / 0.959 | 0.914 / 0.952 |
 
@@ -47,7 +47,7 @@ In production order, on nested validation (split-move):
 |---|---|---|
 | NC Δ signal efficiency | 27.1 ± 1.2 % | **44.0 ± 1.3 %** |
 | BNB background acceptance | 0.75 ± 0.11 % | 0.78 ± 0.11 % |
-| 0p / 1p / ≥ 2p | 30.1 / 27.1 / 10.5 % | **51.3 / 39.9 / 26.6 %** |
+| 0p / 1p / ≥ 2p | 30.1 / 27.1 / 10.5 % | **51.2 / 39.9 / 26.6 %** |
 
 Snap: 26.4 → 41.2 %. **The retrained set keeps about 1.6× the NC Δ signal at the same BNB background**, with the
 largest absolute gain in 0p. No threshold is chosen.

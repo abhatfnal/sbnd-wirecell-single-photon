@@ -49,7 +49,7 @@ Nested-validation rows, split-move:
 | point | NC Δ signal eff. | BNB background acc. | 0p | 1p | ≥ 2p | νe CC acc. |
 |---|---:|---:|---:|---:|---:|---:|
 | **LEGACY_HISTORICAL** (0.4 / 0.2 / −0.05 / −1.0) | 27.1 ± 1.2 % | 0.75 ± 0.11 % (48) | 30.1 % | 27.1 % | 10.5 % | 1.08 % |
-| **DEV_ROC_EQUIVALENT** (each model at its legacy-equal efficiency; not chosen on the joint) | **44.0 ± 1.3 %** | 0.78 ± 0.11 % (50) | **51.3 %** | **39.9 %** | **26.6 %** | 0.93 % |
+| **DEV_ROC_EQUIVALENT** (each model at its legacy-equal efficiency; not chosen on the joint) | **44.0 ± 1.3 %** | 0.78 ± 0.11 % (50) | **51.2 %** | **39.9 %** | **26.6 %** | 0.93 % |
 | best grid vector at the legacy BNB acceptance (selected on these rows: optimistic) | 47.4 % | 0.75 % | 50.1 % | 48.8 % | 25.0 % | 0.95 % |
 | snap: legacy / dev ROC-equivalent | 26.4 % / **41.2 %** | 0.65 % / 0.68 % | 30.6 / **49.0** % | 25.0 / **36.6** % | 10.7 / **23.8** % | 1.02 / 0.92 % |
 

@@ -33,7 +33,7 @@ and policy in `docs/SP_BDT_WCL1116_DEVELOPMENT_{PLAN,RESULTS}.md` and
 `docs/AURORA_UMBRELLA_MODEL_TRAINING_AND_EVALUATION_POLICY.md`.
 - Tables of NC Δ and BNB from **both** vertex trees (split-move and snap) on compute nodes.
 - SP numu and SP ncpi0 developed per mode (`DEV_DO_NOT_DEPLOY`). Development-holdout AUC: numu 0.976 / 0.974, ncpi0
-  0.899 / 0.897, against legacy 0.958 / 0.954 and 0.849 / 0.847.
+  0.899 / 0.897, against legacy 0.958 / 0.954 and 0.848 / 0.847.
 - SP other is blocked only on staging the beam-off half.
 - SP nue shift LARGE: retraining should be developed.
 - Exporter verified in C++ (TMVA::Reader = toolkit TmvaGradForest, bit for bit).
