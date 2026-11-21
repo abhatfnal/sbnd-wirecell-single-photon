@@ -161,3 +161,32 @@ No cut, threshold or correction changed. **Statistical errors only. ABSENT: dete
 **Cross-region control (stat only, `np_over_0p_double_ratio_all_regions.txt`):** the same Np/0p data/MC double ratio is 0.82 / 0.80 (old / Nov16) in preselection and 0.81 / 0.80 in `SB_numu`, 0.91 / 0.79 in `SB_other`, 0.67 / 0.75 in the NC-pi0 sideband, 1.07 / 0.54 in `SB_nue` (few events). **The MC overpredicts the reco-Np/0p ratio by ~20 % in all populated regions; the NC-pi0 sideband is only moderately lower.** With the available neutrino covariance the shape-only topology chi2 is p = 0.07-0.11 in the numu/preselection regions but p = 5e-4 / 7e-3 in the NC-pi0 sideband (section 7), so the neutrino covariance covers much more of the general ~20 % effect than of the larger NC-pi0 one.
 
 **Answer to the key question (what the data support, not proven):** (i) not pi0 kinematics, not pair finding, not edge, not low proton KE; (ii) the effect is general (~0.8 in preselection and the nu-mu-rich region, which are CC-dominated and have a different hadronic final state), which points to something common to all events - proton reconstruction/topology migration in MC, or the generic hadronic (FSI/proton-multiplicity) model - rather than to NC-pi0 physics; (iii) the data cannot separate the two: data has no truth, and because the MC migration is large (true-Np -> reco-0p 30-40 %), a lower reco-Np fraction in data can come from fewer true protons or from a different reconstruction efficiency; the available GENIE FSI/xsec weights do not reproduce the NC-pi0 shape tension. **Detector systematics (proton reconstruction, calibration, recombination) are absent and are the most likely missing piece**; an independent test needs detector-variation samples or an alternative generator, neither of which is available here. The extra NC-pi0 deficit above the general ~0.8 (double ratio 0.67-0.75) is ~1-1.5 sigma stat-only relative to the general value.
+
+
+## 10. Np/0p double ratio with the available covariance; exact P(truth Np | reco topology) (`ncdelta_np_over_0p_summary.py`, figure K)
+
+**Weight-tail finding that affects earlier numbers.** Propagating the saved topo2 covariance to the Np/0p double ratio gave an implausible 34-50 % uncertainty in preselection and `SB_numu`, entirely from `reinteractions_neutron_Geant4`: in the Np bin its universes have a resolved mean event weight up to 13.7 (0p bin: 0.85-1.14), which over ~18,600 events needs a total excess weight of O(10^5), i.e. a handful of events with enormous weights, not a smooth reweighting. This is the same function that is already flagged `single_event_dominated` for Nov16 in the final-selection table (sigma ratio 0.30 without the top event). It is **not clipped** (standing rule); here it is reported both ways. Consequences: (a) the beamline-G4 contribution quoted for `SB_numu` ("25-28 %") and the 24-30 % total available uncertainty on the preselection/`SB_numu` integrated Data/MC rates in section 7 are inflated by this one weight-tail function; (b) the topology shape-only chi2 p = 0.07-0.11 quoted for those two regions in section 7 is likewise too lenient; (c) the NC-pi0 sideband and `SB_other` are not affected (no tail function; NC-pi0 integrated 20.4 / 20.6 % unchanged); `SB_nue` has one mild tail function (`NCRES`) with negligible effect. A per-event leave-one-out audit for the control regions was not done (the extraction stores per-universe sums); this should be done before the integrated numbers for preselection/`SB_numu` are quoted.
+
+**Np/0p double ratio (data/MC), available neutrino covariance via delta method on S+B with coherent universes; detector and proton-reconstruction systematics ABSENT:**
+
+| region | old | Nov16 | rel. unc. available (stat+MC+syst, tail functions excluded; incl.) |
+|---|---|---|---|
+| preselection | 0.820 | 0.797 | 6.6 % (33.8 %) / 6.1 % (36.7 %) |
+| `SB_numu` | 0.813 | 0.798 | 7.0 % (42.6 %) / 6.4 % (50.0 %) |
+| `SB_ncpi0` | 0.672 | 0.746 | 11.3 % / 10.9 % |
+| `SB_other` | 0.905 | 0.785 | 12.5 % / 10.2 % |
+| `SB_nue` | 1.07 | 0.54 | 36 % / 30 % |
+
+Deviation from 1 with the available covariance (tail functions excluded / included): preselection -3.4 sigma / -0.6 (old), -4.2 / -0.7 (Nov16); `SB_numu` -3.3 / -0.5, -4.0 / -0.5; `SB_ncpi0` -4.3, -3.1; `SB_other` -0.8, -2.7; `SB_nue` +0.2, -2.8. Statistics only: -9.3 / -10.7 (preselection), -8.5 / -8.9 (`SB_numu`), -5.4 / -4.4 (`SB_ncpi0`). So the ~20 % MC excess of reconstructed Np/0p in preselection and the nu-mu-rich region is significant if the single weight-tail function is excluded and not significant if it is kept at face value; the ordering of regions is unchanged. The NC-pi0 sideband is lower than the control regions by ~0.1-0.15 in the ratio, ~1 sigma of its available uncertainty. The significance depends on a weight-tail decision that has to be audited at event level; do not quote the sigmas prominently.
+
+**Exact weighted inverse conditional fractions (MC, resolved owners, S+B weights at open-data POT, stat error only; `ncpi0_P_truth_Np_given_reco.csv`):**
+
+| reco topology | P(truth >= 1 proton above 35 MeV \| reco), old | Nov16 | resolved weight fraction |
+|---|---|---|---|
+| reco 0p | 0.525 +- 0.011 | 0.446 +- 0.009 | 0.957 / 0.960 |
+| reco 1p | 0.831 +- 0.009 | 0.854 +- 0.007 | 0.983 / 0.984 |
+| reco >=2p | 0.909 +- 0.013 | 0.928 +- 0.010 | 0.975 / 0.981 |
+
+So "about half of reco-0p MC events have a true proton above 35 MeV" is 52.5 % (old) and 44.6 % (Nov16), computed directly from the weighted sample (not from the row-normalised migration matrix, which gives P(reco | truth)). The previous statement of "45-55 %" was read from the column-normalised table, which is the same quantity.
+
+Figure `K_np_over_0p_double_ratio_by_region.png` is the single collaboration plot (thick: data+MC stat; thin: + available covariance excluding the weight-tail function; dashed: including it). Message: a general reconstructed-proton-multiplicity mismatch (MC Np/0p too high by ~20 %) is present in every populated control region and not unique to NC-pi0; WCL1116 improves truth->reco proton finding in MC but the data/MC mismatch remains; reconstruction vs hadronic modelling cannot yet be separated (detector-variation samples or an alternative generator are needed). Detector and proton-reconstruction systematics are absent.
