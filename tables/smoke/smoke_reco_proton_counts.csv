@@ -1,0 +1,23 @@
+sample,rule,category,n_candidates
+bnb_cv,ke>35,0p,213
+bnb_cv,ke>35,1p,215
+bnb_cv,ke>35,ge2p,69
+bnb_cv,ke>35 & included==1,0p,222
+bnb_cv,ke>35 & included==1,1p,216
+bnb_cv,ke>35 & included==1,ge2p,59
+nuecc,ke>35,0p,378
+nuecc,ke>35,1p,396
+nuecc,ke>35,ge2p,209
+nuecc,ke>35 & included==1,0p,418
+nuecc,ke>35 & included==1,1p,383
+nuecc,ke>35 & included==1,ge2p,182
+beam_off,ke>35,0p,94
+beam_off,ke>35,1p,7
+beam_off,ke>35 & included==1,0p,94
+beam_off,ke>35 & included==1,1p,7
+beam_on_open,ke>35,0p,215
+beam_on_open,ke>35,1p,215
+beam_on_open,ke>35,ge2p,59
+beam_on_open,ke>35 & included==1,0p,232
+beam_on_open,ke>35 & included==1,1p,208
+beam_on_open,ke>35 & included==1,ge2p,49

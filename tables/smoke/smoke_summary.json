@@ -1,0 +1,235 @@
+{
+ "events_requested": 1000,
+ "baseline_policy": "any",
+ "samples": {
+  "bnb_cv": {
+   "sample": "bnb_cv",
+   "n_files": 72,
+   "n_events": 1000,
+   "n_valid": 1000,
+   "cand_hist": {
+    "0": 513,
+    "1": 477,
+    "2": 10
+   },
+   "proton": {
+    "ke>35": {
+     "0p": 213,
+     "1p": 215,
+     "ge2p": 69
+    },
+    "ke>35 & included==1": {
+     "0p": 222,
+     "1p": 216,
+     "ge2p": 59
+    }
+   },
+   "schema_md5": [
+    "d4396a3490ea5aec4b02f0c34fa9db33"
+   ],
+   "dl_weights": [
+    "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+   ],
+   "n_wc_branches": [
+    2401
+   ],
+   "ids_aligned": true,
+   "wall_s": 133.49419825524092,
+   "max_rss_gb_so_far": 0.243468,
+   "file_time_mean_s": 1.8525197035115626,
+   "events_per_s": 7.490962252067314,
+   "valid_fraction": 1.0,
+   "finite_fraction": {
+    "wc.T_tagger.shw_sp_n_20mev_showers": 1.0,
+    "wc.T_tagger.shw_sp_n_20br1_showers": 1.0,
+    "derived.single_photon_numu_score": 0.21327967806841047,
+    "derived.single_photon_other_score": 0.21327967806841047,
+    "derived.single_photon_ncpi0_score": 0.21327967806841047,
+    "derived.single_photon_nue_score": 0.21327967806841047
+   },
+   "bdt_evaluable_fraction": {
+    "numu": 0.21327967806841047,
+    "other": 0.21327967806841047,
+    "ncpi0": 0.21327967806841047,
+    "nue": 0.21327967806841047
+   }
+  },
+  "nuecc": {
+   "sample": "nuecc",
+   "n_files": 111,
+   "n_events": 1000,
+   "n_valid": 1000,
+   "cand_hist": {
+    "1": 909,
+    "2": 37,
+    "0": 54
+   },
+   "proton": {
+    "ke>35": {
+     "0p": 378,
+     "1p": 396,
+     "ge2p": 209
+    },
+    "ke>35 & included==1": {
+     "0p": 418,
+     "1p": 383,
+     "ge2p": 182
+    }
+   },
+   "schema_md5": [
+    "d4396a3490ea5aec4b02f0c34fa9db33"
+   ],
+   "dl_weights": [
+    "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+   ],
+   "n_wc_branches": [
+    2401
+   ],
+   "ids_aligned": true,
+   "wall_s": 212.43295817170292,
+   "max_rss_gb_so_far": 0.243468,
+   "file_time_mean_s": 1.9130972636410513,
+   "events_per_s": 4.707367484812462,
+   "valid_fraction": 1.0,
+   "finite_fraction": {
+    "wc.T_tagger.shw_sp_n_20mev_showers": 1.0,
+    "wc.T_tagger.shw_sp_n_20br1_showers": 1.0,
+    "derived.single_photon_numu_score": 0.8240081383519837,
+    "derived.single_photon_other_score": 0.8240081383519837,
+    "derived.single_photon_ncpi0_score": 0.8240081383519837,
+    "derived.single_photon_nue_score": 0.8240081383519837
+   },
+   "bdt_evaluable_fraction": {
+    "numu": 0.8240081383519837,
+    "other": 0.8240081383519837,
+    "ncpi0": 0.8240081383519837,
+    "nue": 0.8240081383519837
+   }
+  },
+  "beam_off": {
+   "sample": "beam_off",
+   "n_files": 22,
+   "n_events": 1000,
+   "n_valid": 1000,
+   "cand_hist": {
+    "0": 900,
+    "1": 99,
+    "2": 1
+   },
+   "proton": {
+    "ke>35": {
+     "0p": 94,
+     "1p": 7
+    },
+    "ke>35 & included==1": {
+     "0p": 94,
+     "1p": 7
+    }
+   },
+   "schema_md5": [
+    "d4396a3490ea5aec4b02f0c34fa9db33"
+   ],
+   "dl_weights": [
+    "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+   ],
+   "n_wc_branches": [
+    2401
+   ],
+   "ids_aligned": true,
+   "wall_s": 38.987992516718805,
+   "max_rss_gb_so_far": 0.243468,
+   "file_time_mean_s": 1.7711079832674428,
+   "events_per_s": 25.648922538681123,
+   "valid_fraction": 1.0,
+   "finite_fraction": {
+    "wc.T_tagger.shw_sp_n_20mev_showers": 1.0,
+    "wc.T_tagger.shw_sp_n_20br1_showers": 1.0,
+    "derived.single_photon_numu_score": 0.1485148514851485,
+    "derived.single_photon_other_score": 0.1485148514851485,
+    "derived.single_photon_ncpi0_score": 0.1485148514851485,
+    "derived.single_photon_nue_score": 0.1485148514851485
+   },
+   "bdt_evaluable_fraction": {
+    "numu": 0.1485148514851485,
+    "other": 0.1485148514851485,
+    "ncpi0": 0.1485148514851485,
+    "nue": 0.1485148514851485
+   }
+  },
+  "beam_on_open": {
+   "sample": "beam_on_open",
+   "n_files": 20,
+   "n_events": 1000,
+   "n_valid": 1000,
+   "cand_hist": {
+    "0": 514,
+    "1": 483,
+    "2": 3
+   },
+   "proton": {
+    "ke>35": {
+     "0p": 215,
+     "1p": 215,
+     "ge2p": 59
+    },
+    "ke>35 & included==1": {
+     "0p": 232,
+     "1p": 208,
+     "ge2p": 49
+    }
+   },
+   "schema_md5": [
+    "c845fe94fbe59b507ef50ea87417c3f9"
+   ],
+   "dl_weights": [
+    "uboone/scn_vtx/t48k-m16-l5-lr5d-res0.5-CP24.pth"
+   ],
+   "n_wc_branches": [
+    2283
+   ],
+   "ids_aligned": true,
+   "wall_s": 32.88394609466195,
+   "max_rss_gb_so_far": 0.243468,
+   "file_time_mean_s": 1.6430316341575235,
+   "events_per_s": 30.409975649556547,
+   "valid_fraction": 1.0,
+   "finite_fraction": {
+    "wc.T_tagger.shw_sp_n_20mev_showers": 1.0,
+    "wc.T_tagger.shw_sp_n_20br1_showers": 1.0,
+    "derived.single_photon_numu_score": 0.2147239263803681,
+    "derived.single_photon_other_score": 0.2147239263803681,
+    "derived.single_photon_ncpi0_score": 0.2147239263803681,
+    "derived.single_photon_nue_score": 0.2147239263803681
+   },
+   "bdt_evaluable_fraction": {
+    "numu": 0.2147239263803681,
+    "other": 0.2147239263803681,
+    "ncpi0": 0.2147239263803681,
+    "nue": 0.2147239263803681
+   }
+  }
+ },
+ "branch_compat_vs_beam_on": {
+  "bnb_cv": {
+   "n_wc_branches": 2401,
+   "branches_not_in_beam_on": 118,
+   "beam_on_branches_not_here": 0
+  },
+  "nuecc": {
+   "n_wc_branches": 2401,
+   "branches_not_in_beam_on": 118,
+   "beam_on_branches_not_here": 0
+  },
+  "beam_off": {
+   "n_wc_branches": 2401,
+   "branches_not_in_beam_on": 118,
+   "beam_on_branches_not_here": 0
+  },
+  "beam_on_open": {
+   "n_wc_branches": 2283,
+   "branches_not_in_beam_on": 0,
+   "beam_on_branches_not_here": 0
+  }
+ },
+ "max_rss_gb": 0.243468
+}
