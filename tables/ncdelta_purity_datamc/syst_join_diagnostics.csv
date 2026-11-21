@@ -1,0 +1,5 @@
+production,sample,n_events,n_unique_owner,frac_events,yield_per_1e20,yield_unique_per_1e20,frac_yield,unresolved_reasons,n_events_multiple_passing_candidates,n_events_whose_candidates_differ_in_energy_bin,unresolved_event_categories
+old_fg1,S,833,833,1.0,29.346159556956806,29.346159556956806,1.0,,0,0,
+old_fg1,B,283,267,0.9434628975265018,1040.6699144112476,981.8334528190924,0.9434628975265018,"{""cosmic_or_unmatched_candidate"": 13, ""multi_or_ambiguous_candidate"": 3}",0,0,"{""COSMIC_OR_UNMATCHED"": 13, ""MULTI_OR_AMBIGUOUS"": 3}"
+nov16,S,1938,1938,1.0,68.27473856108318,68.27473856108318,1.0,,0,0,
+nov16,B,687,657,0.9563318777292577,2526.29056961317,2415.9722041278787,0.9563318777292577,"{""cosmic_or_unmatched_candidate"": 25, ""multi_or_ambiguous_candidate"": 5}",0,0,"{""COSMIC_OR_UNMATCHED"": 25, ""MULTI_OR_AMBIGUOUS"": 5}"

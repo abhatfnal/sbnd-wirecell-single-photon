@@ -1,0 +1,7 @@
+weight_set,functions,functions_with_nonfinite,functions_with_negative,functions_with_zero,functions_max_gt10,overall_max,functions_inert_all_events
+B_selected_resolved_nov16,134,0,5,48,2,397.8248596191406,32
+B_selected_resolved_old_fg1,134,0,4,41,2,36.38568878173828,40
+S_selected_nov16,134,0,2,8,2,96.6852798461914,98
+S_selected_old_fg1,134,0,1,7,3,44.90879821777344,100
+bnb_cv_all_interactions_random_files_nov16,134,0,5,50,6,515.0338745117188,26
+signal_all_interactions_random_files_nov16,134,0,1,38,1,37.20233917236328,40

@@ -1,0 +1,5 @@
+production,sample,n_files,n_entries_checked,same_length_all,files_ids_identical_in_order,rec_ids_unique_all,wc_ids_unique_all,n_events_joined,found_by_id,joined_entry_equals_table_entry,wc_id_at_table_entry_matches,layout_ok,owner_vertex_within_1e3_um,max_vertex_dist_cm,owner_pdg_matches
+old_fg1,signal,809,1477,True,809,True,True,833,833,833,833,833,833,0.0,833
+old_fg1,bnb_cv,267,3742,True,267,True,True,267,267,267,267,267,267,2.6761608742572948e-05,267
+nov16,signal,1820,3284,True,1820,True,True,1938,1938,1938,1938,1938,1938,0.0,1938
+nov16,bnb_cv,652,9050,True,652,True,True,657,657,657,657,657,657,2.0885310489624402e-05,657
