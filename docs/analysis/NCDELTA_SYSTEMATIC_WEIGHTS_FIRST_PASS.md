@@ -113,3 +113,24 @@ Reading (preliminary): **once the available flux+GENIE+FSI+G4 covariance is incl
 Topology (2-bin 0p/Np) shape-only chi2/ndof in the nu-mu-rich and preselection regions is 2.6-3.2/1 (p = 0.07-0.11) for both productions, i.e. the large 1g0p/1gNp split seen in the NC-pi0 sideband (7.2-12.3/1) is specific to that region.
 
 Limitations specific to this section: the Pearson variance underestimates the variance of nearly empty bins (the Neyman column is the cross-check); 100-universe GENIE sets carry ~7 % sampling noise on each variance; shape-only chi-squares drop one bin (the sum is fixed); bins with zero prediction are dropped from the chi-square and the number of dropped bins is recorded.
+
+
+## 8. NC-pi0 sideband: reco-topology diagnosis (1g0p / 1g1p / >=2p; `scripts/ncdelta_ncpi0_topology_diag.py`; DIAGNOSIS ONLY)
+
+No selection, threshold or data-driven correction changed. Event level, S+B nominal at the open-data POT, **statistical uncertainties only** (data + MC); the neutrino covariance is a ~20 % mostly-normalisation mode and is not applied per bin here; **detector and proton-reconstruction systematics are absent, cosmic-only MC is absent, `imp_weight` unresolved.** Tables `ncpi0_topology_*.csv`, figure `H_ncpi0_topology_variables.png`.
+
+| | old fg1 | Nov16 |
+|---|---|---|
+| data / MC, 1g0p | 360 / 396.9 = 0.91 +- 0.05 | 420 / 493.3 = 0.85 +- 0.04 |
+| data / MC, 1g1p | 176 / 280.4 = 0.63 | 253 / 403.7 = 0.63 |
+| data / MC, >=2p | 49 / 88.6 = 0.55 | 82 / 123.4 = 0.66 |
+| normalisation-free double ratio (Np/0p)data/(Np/0p)MC | 0.67 +- 0.06 (5.4 sigma) | 0.75 +- 0.06 (4.3 sigma) |
+| composition shape-only chi2/ndof (stat) | 17.6/2 (p = 2e-4) | 14.0/2 (p = 9e-4) |
+
+Findings (preliminary):
+- The deficit is **in the number of events with reconstructed protons, not a uniform rate deficit**: 1g1p and >=2p are both low; the 1g0p deficit is mild. WCL1116 moves the >=2p ratio from 0.55 to 0.66 and the double ratio from 0.67 to 0.75 (both within ~1 sigma of the old value, so no demonstrated improvement).
+- **Not localised in the quantities available in the tables** (shape-only, stat-only chi2, MC scaled to data in each panel; all p > 0.05): leading-proton KE (including near the 35 MeV threshold), sum of proton KE, number of protons at any KE, shower energy, shower-vertex distance, shower angle, vertex x/y/z. The Np deficit is similar near and far from the TPC faces (0.63 / 0.60 old, 0.56 / 0.66 Nov16 for d_edge < / >= 25 cm), so it is not an edge effect. Reco-0p events with and without a sub-threshold proton have the same ratio (0.90 / 0.92 old, 0.85 / 0.85 Nov16): no sign of a threshold-migration pile-up. The MC Np events are ~60-65 % truth NC-pi0 (`ncpi0_topology_mc_truth_composition_*.csv`).
+- **0p<->Np migration old -> Nov16** (same events reprocessed, `ncpi0_topology_migration_*.csv`): of 331 data events in the region in both productions 56 (17 %) change topology, 31 from 0p to Np and 12 the other way; MC (2607 events) 15 %, 182 0p->Np vs 93 Np->0p. Nov16 therefore moves both data and MC toward more Np (Np share: data 38 -> 44 %, MC 48 -> 52 %), leaving the data/MC gap similar.
+- Interpretation (hypothesis only): a flat-in-all-variables Np deficit of ~35-40 % looks more like a proton-multiplicity / hadronic-model or proton-reconstruction-efficiency effect than a kinematic or boundary effect; the available GENIE FSI/xsec weights do not reproduce it (section 7). Not tested.
+
+Not done (needs data not in the analysis tables): pair-level pi0 observables (two-shower mass, opening angle, energy asymmetry, leading/subleading energy, conversion gap, dE/dx; `c_shw_sp_medium_dQ_dx` is zero in these tables), proton track length and start distance, and the truth->reco topology migration matrix for NC-pi0 (no truth proton count stored for generic-BNB background). These require a new CAF extraction/truth scan of the NC-pi0 sideband events.
