@@ -8,7 +8,7 @@ Event-level throughout (any candidate passes, event counted once). S = dedicated
 Common-universe coherence: for each source and universe index u the SAME u is applied to S and B, P_u = S_u / (S_u + B_u) is formed, and only then the spread is taken.
 Components (independent sources, each with its documented prescription): flux (13 families), beamline G4 reinteraction (6), GENIE cross section (multisim), cross-section extras
 (single-sigma GENIE shapes + unisim +-1 sigma 2p2h/misc/non-resonant-pion sets), GENIE FSI (multisim). OUTSIDE the band: detector, beam-off/cosmic normalisation, dirt, POT,
-radiative-BR model, imp_weight, MC statistics (shown separately), and neutrino systematics of unresolved events.
+the NC-Delta signal-model dials (RDecBR1gamma, ThetaDelta2NRad; shown separately), imp_weight, MC statistics (shown separately), and neutrino systematics of unresolved events.
 """
 from ncdelta_syst_common import *
 from sbnd_single_photon import syst_weights as SW
@@ -18,8 +18,8 @@ PS.apply_style()
 
 TAB = REPO / "tables" / "ncdelta_purity_datamc"; FT = pd.read_csv(TAB / "syst_function_table.csv", keep_default_na=False)
 COMP = {"flux": ["flux_multisim"], "beamline_g4_reint": ["beamline_g4_reint_multisim"], "xsec_genie": ["xsec_genie_multisim"], "xsec_extras": ["xsec_genie_unisim_extra", "xsec_extra_multisigma"], "fsi_genie": ["fsi_genie_multisim"]}
-CORDER = list(COMP); OUTSIDE = {"radiative_BR_OUTSIDE_band": ["signal_radiative_br_outside_band"]}
-TAG = "PRELIMINARY first-pass: MC only; neutrino flux/xsec/FSI/G4 only. NOT in band: detector, cosmic/beam-off, dirt, POT, radiative-BR, imp_weight, unresolved-owner events"
+CORDER = list(COMP); OUTSIDE = {"ncdelta_model_RDecBR1gamma_OUTSIDE_band": "multisim_RDecBR1gamma", "ncdelta_model_ThetaDelta2NRad_OUTSIDE_band": "multisigma_ThetaDelta2NRad"}      # NC-Delta signal-model dials: shown separately
+TAG = "PRELIMINARY first-pass: MC only; neutrino flux/xsec/FSI/G4 only. NOT in band: detector, cosmic/beam-off, dirt, POT, NC-Delta signal model (radiative decay), imp_weight, unresolved-owner events"
 
 
 def view_bins(ev, view):
@@ -58,8 +58,8 @@ def products(prod, X, view, tail):
                 return float(np.sqrt((dN2 ** 2).mean()) / np.sqrt((dN ** 2).mean())) if (dN ** 2).sum() > 0 else np.nan
             lS = loo(WS, wS, sl) if fn["type_code"] == SW.KMULTISIM else np.nan; lB = loo(WB, wB, sl) if fn["type_code"] == SW.KMULTISIM else np.nan
             out["per_fn"].append(dict(name=fn["name"], group=fn["group"], in_band=fn["in_band"], computed=True, rel_S=rS, rel_B=rB, rel_P=rP, corr_S_B=rho, sigma_ratio_without_top_event_S=lS, sigma_ratio_without_top_event_B=lB))
-        for c, gs in {**(COMP if fn["in_band"] else {}), **OUTSIDE}.items():
-            if fn["group"] in gs:
+        for c, gs in {**(COMP if fn["in_band"] else {}), **{k: [v] for k, v in OUTSIDE.items()}}.items():
+            if (fn["group"] in gs) if c in COMP else fn["name"].endswith(gs[0]):
                 out["comp"][c]["Q"] += sc * D @ D.T; out["comp"][c]["pur"] += sc * Dp @ Dp.T; out["comp"][c]["pred"] += sc * Dpred @ Dpred.T
                 if fn["in_band"] and tail.get(fn["name"], False):
                     out["comp"]["single_event_dominated"]["Q"] += sc * D @ D.T; out["comp"]["single_event_dominated"]["pur"] += sc * Dp @ Dp.T; out["comp"]["single_event_dominated"]["pred"] += sc * Dpred @ Dpred.T

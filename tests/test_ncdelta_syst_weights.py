@@ -72,10 +72,12 @@ def test_audit_reports_without_modifying_the_weights():
 
 
 @pytest.mark.skipif(not (TAB / "syst_function_table.csv").exists(), reason="inventory not generated")
-def test_function_table_keeps_the_radiative_br_outside_the_band_and_does_not_double_count_genie():
+def test_function_table_keeps_the_ncdelta_signal_model_outside_the_band_and_does_not_double_count_genie():
     ft = pd.read_csv(TAB / "syst_function_table.csv", keep_default_na=False)
     assert len(ft) == 134 and int(ft.nuniv.sum()) == 22485 and (ft.stop - ft.start).tolist() == ft.nuniv.tolist()
-    r = ft[ft.name.str.endswith("multisim_RDecBR1gamma")].iloc[0]; assert (not r.in_band) and r.group == "signal_radiative_br_outside_band"
+    for suffix in ("multisim_RDecBR1gamma", "multisigma_ThetaDelta2NRad"):                                       # the two NC-Delta radiative-decay model dials: separate category, not in the generic band
+        r = ft[ft.name.str.endswith(suffix)].iloc[0]; assert (not r.in_band) and r.group == SW.NCDELTA_SIGNAL_MODEL_GROUP
+    assert ft[ft.group == SW.NCDELTA_SIGNAL_MODEL_GROUP].shape[0] == 2
     ms = ft[ft.name.str.contains("multisigma_") & ft.name.str.startswith("GENIE") & (ft.nuniv == 6)]; assert len(ms) == 48 and not ms.in_band.any()      # duplicates of the multisim sets
     assert set(ft[ft.in_band].type_name) <= {"multisim", "multisigma"} and int(ft[(ft.group == "flux_multisim")].nuniv.min()) == 1000
     assert ft[ft.in_band & (ft.type_name == "multisigma")].sigmas.isin([";".join(f"{x:g}" for x in SW.SIGMA_GRID), "1"]).all()                           # only documented sigma conventions are applied
@@ -98,7 +100,7 @@ def test_band_total_is_the_quadrature_of_its_in_band_components_and_excludes_out
     b = pd.read_csv(TAB / "syst_band_by_component.csv"); comps = ["flux", "beamline_g4_reint", "xsec_genie", "xsec_extras", "fsi_genie"]
     for (prod, view, bin_), g in b.groupby(["production", "view", "bin"]):
         g = g.set_index("component"); assert np.isclose(g.loc["TOTAL_available", "sigma_pred"] ** 2, sum(g.loc[c, "sigma_pred"] ** 2 for c in comps), rtol=1e-9)
-        assert "radiative_BR_OUTSIDE_band" in g.index and g.loc["TOTAL_available", "sigma_pred"] >= g.loc["TOTAL_excluding_single_event_dominated", "sigma_pred"] - 1e-12
+        assert {"ncdelta_model_RDecBR1gamma_OUTSIDE_band", "ncdelta_model_ThetaDelta2NRad_OUTSIDE_band"} <= set(g.index) and g.loc["TOTAL_available", "sigma_pred"] >= g.loc["TOTAL_excluding_single_event_dominated", "sigma_pred"] - 1e-12
     cov = pd.read_csv(TAB / "syst_band_coverage.csv"); assert cov.frac_prediction_with_varied_neutrino_systematics.between(0.94, 0.96).all()
 
 
@@ -106,3 +108,33 @@ def test_new_scripts_use_no_dev_bdt_no_blocked_data_and_no_imp_weight_product():
     code = "\n".join(l for f in ("ncdelta_syst_common.py", "ncdelta_syst_extract.py", "ncdelta_syst_diagnostics.py", "ncdelta_syst_covariance.py") for l in (ROOT / "scripts" / f).read_text().splitlines() if not l.strip().startswith("#"))
     assert "DEV_DO_NOT_DEPLOY" not in code and "beam_on_open" not in code and "run3bnb" not in code and not re.search(r"\.fit\(|train\(", code)
     assert not re.search(r"W\s*\*=?\s*.*imp_weight|imp_weight\s*\*", code)                                    # imp_weight is read and reported, never multiplied into a yield
+
+
+# ---- control-region data/MC with covariance ---------------------------------------------------------------------------------------------------------------
+def test_shape_normalisation_and_chi2_helpers():
+    import ncdelta_syst_regions as R
+    Q = np.array([[1.0, 2.0], [3.0, 2.0]]); g = R.shape_norm(10.0)(Q)
+    assert np.allclose(g.sum(0), 10.0) and np.allclose(g[:, 0], [2.5, 7.5])                                  # every universe renormalised to the data total
+    D = np.array([8.0, 12.0]); P = np.array([10.0, 10.0]); assert np.isclose(R.chi2_pearson(D, P, np.zeros((2, 2)), P), 0.4 + 0.4)
+    C = np.full((2, 2), 4.0)                                                                                  # a fully correlated (normalisation-like) covariance does not penalise a common shift
+    assert R.chi2_pearson(np.array([9.0, 9.0]), P, C, P) < R.chi2_pearson(np.array([9.0, 9.0]), P, np.diag(np.diag(C)), P)
+
+
+def test_region_script_never_touches_the_blocked_final_region_or_stacks_beam_off():
+    src = (ROOT / "scripts" / "ncdelta_syst_regions.py").read_text(); code = "\n".join(l for l in src.splitlines() if not l.strip().startswith("#"))
+    assert "final_frozen" not in code and "signal_region" not in code.replace("signal_region approval", "")
+    assert "DP.check(\"beam_on_open\", KIND[r])" in code and "DP.check(\"beam_on_open\", \"sideband\")" in code                 # the data-policy gate is called for every region and for the sideband stage
+    assert "DEV_DO_NOT_DEPLOY" not in code and "run3bnb" not in code
+
+
+@pytest.mark.skipif(not list(TAB.glob("syst_sideband_datamc_chi2_*.csv")), reason="sideband analysis not generated")
+def test_committed_sideband_table_is_internally_consistent():
+    from scipy import stats
+    for f in TAB.glob("syst_sideband_datamc_chi2_*.csv"):
+        d = pd.read_csv(f)
+        r = d[d.test.str.startswith("rate_only")]; assert len(r) > 0
+        assert np.allclose(r.ratio, r.n_data / r.prediction)
+        assert np.allclose(r.rel_total, np.sqrt(r.rel_data_stat ** 2 + r.rel_mc_stat ** 2 + r.rel_syst ** 2))
+        comps = [c for c in r.columns if c.startswith("rel_syst_")]; assert np.allclose(r.rel_syst ** 2, (r[comps] ** 2).sum(1), rtol=1e-6)                 # independent sources add in quadrature
+        assert np.allclose(d.p_value, stats.chi2.sf(d.chi2, d.ndof)) and (d.ndof >= 1).all() and (d.chi2 >= 0).all()
+        assert set(d.production) == {"old_fg1", "nov16"} and not d.region.isin(["final_frozen"]).any()

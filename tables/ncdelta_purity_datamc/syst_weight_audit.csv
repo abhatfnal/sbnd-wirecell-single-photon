@@ -34,7 +34,7 @@ S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_NonRESBGvbarnNC2pi,833,6,4998
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,833,6,4998,0,1666,0,0.0,2.5,2.5,0,0,0.0,0.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,833,6,4998,0,0,0,0.7954351902008057,1.1363765001296997,1.0208958728313573,0,0,0.9963985594237695,0.9963985594237695,genie_multisigma_diagnostic,multisigma,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,833,1,833,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_unisim_extra,multisigma,True
-S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,833,1,833,0,0,0,1.0643105269991793e-05,2.9951999187469482,2.9885205974578866,0,0,0.0,0.0,xsec_genie_unisim_extra,multisigma,True
+S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,833,1,833,0,0,0,1.0643105269991793e-05,2.9951999187469482,2.9885205974578866,0,0,0.0,0.0,nc_delta_signal_model_outside_band,multisigma,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,833,6,4998,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,833,6,4998,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisigma_AhtBY,833,6,4998,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
@@ -75,7 +75,7 @@ S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC1pi,833,100,8330
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,833,100,83300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,833,100,83300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,833,100,83300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,833,100,83300,0,1666,0,0.0,2.07316255569458,2.07316255569458,0,0,0.0,0.0,signal_radiative_br_outside_band,multisim,False
+S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,833,100,83300,0,1666,0,0.0,2.07316255569458,2.07316255569458,0,0,0.0,0.0,nc_delta_signal_model_outside_band,multisim,False
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,833,100,83300,0,0,0,0.8147444725036621,1.1363765001296997,1.0068688634634075,0,0,0.9963985594237695,0.9963985594237695,xsec_genie_multisim,multisim,True
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,833,100,83300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_old_fg1,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,833,100,83300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
@@ -168,7 +168,7 @@ B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_NonRESBGvbarnNC2pi,2
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,267,6,1602,0,4,0,0.0,2.5,2.1995000000000573,0,0,0.550561797752809,0.550561797752809,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,267,6,1602,0,38,0,0.0,2.5,2.5,0,0,0.8389513108614233,0.8389513108614233,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,267,1,267,0,0,0,0.8000626564025879,1.8823182582855225,1.8771818623542793,0,0,0.37453183520599254,0.37453183520599254,xsec_genie_unisim_extra,multisigma,True
-B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,267,1,267,0,0,0,0.13477922976016998,1.2539535760879517,1.186401924848566,0,0,0.9925093632958801,0.9925093632958801,xsec_genie_unisim_extra,multisigma,True
+B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,267,1,267,0,0,0,0.13477922976016998,1.2539535760879517,1.186401924848566,0,0,0.9925093632958801,0.9925093632958801,nc_delta_signal_model_outside_band,multisigma,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,267,6,1602,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,267,6,1602,0,15,0,0.0,4.0,4.0,0,0,0.9812734082397003,0.9812734082397003,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisigma_AhtBY,267,6,1602,0,0,0,0.8052774667739868,1.9903374910354614,1.8554618149995898,0,0,0.9550561797752809,0.9550561797752809,genie_multisigma_diagnostic,multisigma,False
@@ -209,7 +209,7 @@ B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC1pi,267
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,267,100,26700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,267,100,26700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,267,100,26700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,267,100,26700,0,4,0,0.0,2.07316255569458,1.4289028644561768,0,0,0.550561797752809,0.550561797752809,signal_radiative_br_outside_band,multisim,False
+B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,267,100,26700,0,4,0,0.0,2.07316255569458,1.4289028644561768,0,0,0.550561797752809,0.550561797752809,nc_delta_signal_model_outside_band,multisim,False
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,267,100,26700,0,42,0,0.0,2.358412027359009,2.1697020530700684,0,0,0.8389513108614233,0.8389513108614233,xsec_genie_multisim,multisim,True
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,267,100,26700,0,100,0,0.0,3.5092904567718506,2.7912144660949707,0,0,0.9812734082397003,0.9812734082397003,xsec_genie_multisim,multisim,True
 B_selected_resolved_old_fg1,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,267,100,26700,0,0,0,0.7058128714561462,2.261387348175049,1.8079198648929653,0,0,0.9550561797752809,0.9550561797752809,xsec_genie_multisim,multisim,True
@@ -302,7 +302,7 @@ S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_NonRESBGvbarnNC2pi,1938,6,11628
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,1938,6,11628,0,3876,0,0.0,2.5,2.5,0,0,0.0,0.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,1938,6,11628,0,0,0,0.9375,1.0416666269302368,1.0006872241497047,0,0,0.9974200206398349,0.9974200206398349,genie_multisigma_diagnostic,multisigma,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,1938,1,1938,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_unisim_extra,multisigma,True
-S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,1938,1,1938,0,0,0,9.854850269164217e-09,2.9954566955566406,2.987677654266358,0,0,0.0,0.0,xsec_genie_unisim_extra,multisigma,True
+S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,1938,1,1938,0,0,0,9.854850269164217e-09,2.9954566955566406,2.987677654266358,0,0,0.0,0.0,nc_delta_signal_model_outside_band,multisigma,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,1938,6,11628,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,1938,6,11628,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisigma_AhtBY,1938,6,11628,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
@@ -343,7 +343,7 @@ S_selected_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC1pi,1938,100,19380
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,1938,100,193800,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,1938,100,193800,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,1938,100,193800,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-S_selected_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,1938,100,193800,0,3876,0,0.0,2.07316255569458,2.07316255569458,0,0,0.0,0.0,signal_radiative_br_outside_band,multisim,False
+S_selected_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,1938,100,193800,0,3876,0,0.0,2.07316255569458,2.07316255569458,0,0,0.0,0.0,nc_delta_signal_model_outside_band,multisim,False
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,1938,100,193800,0,0,0,0.9433994889259338,1.0416666269302368,1.0002325773239136,0,0,0.9974200206398349,0.9974200206398349,xsec_genie_multisim,multisim,True
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,1938,100,193800,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 S_selected_nov16,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,1938,100,193800,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
@@ -436,7 +436,7 @@ B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_NonRESBGvbarnNC2pi,657
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,657,6,3942,0,8,0,0.0,2.5,2.0295000000003256,0,0,0.5296803652968036,0.5296803652968036,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,657,6,3942,0,88,0,0.0,2.5,2.5,0,0,0.8447488584474886,0.8447488584474886,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,657,1,657,0,0,0,0.8000626564025879,1.9266575574874878,1.9211437406539922,0,0,0.410958904109589,0.410958904109589,xsec_genie_unisim_extra,multisigma,True
-B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,657,1,657,0,0,0,0.13477922976016998,2.969404935836792,1.7504990406037324,0,0,0.9939117199391172,0.9939117199391172,xsec_genie_unisim_extra,multisigma,True
+B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,657,1,657,0,0,0,0.13477922976016998,2.969404935836792,1.7504990406037324,0,0,0.9939117199391172,0.9939117199391172,nc_delta_signal_model_outside_band,multisigma,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,657,6,3942,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,657,6,3942,0,72,0,0.0,4.0,4.0,0,0,0.9634703196347032,0.9634703196347032,genie_multisigma_diagnostic,multisigma,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisigma_AhtBY,657,6,3942,0,0,0,0.7903300523757935,1.217140793800354,1.1139849826097539,0,0,0.9680365296803652,0.9680365296803652,genie_multisigma_diagnostic,multisigma,False
@@ -477,7 +477,7 @@ B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC1pi,657,1
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,657,100,65700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,657,100,65700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,657,100,65700,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,657,100,65700,0,8,0,0.0,2.07316255569458,1.392457127571106,0,0,0.5296803652968036,0.5296803652968036,signal_radiative_br_outside_band,multisim,False
+B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,657,100,65700,0,8,0,0.0,2.07316255569458,1.392457127571106,0,0,0.5296803652968036,0.5296803652968036,nc_delta_signal_model_outside_band,multisim,False
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,657,100,65700,0,105,0,0.0,2.358412027359009,2.1697020530700684,0,0,0.8447488584474886,0.8447488584474886,xsec_genie_multisim,multisim,True
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,657,100,65700,0,480,0,0.0,3.5092904567718506,3.0561094284057617,0,0,0.9634703196347032,0.9634703196347032,xsec_genie_multisim,multisim,True
 B_selected_resolved_nov16,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,657,100,65700,0,0,0,0.6994444131851196,1.3290828466415405,1.1604742517471514,0,0,0.9680365296803652,0.9680365296803652,xsec_genie_multisim,multisim,True
@@ -570,7 +570,7 @@ signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NonRE
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,383,6,2298,0,426,0,0.0,2.5,2.5,0,0,0.4046997389033943,0.4046997389033943,genie_multisigma_diagnostic,multisigma,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,383,6,2298,0,1,0,0.0,1.6666666269302368,1.246708349466449,0,0,0.9869451697127938,0.9869451697127938,genie_multisigma_diagnostic,multisigma,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,383,1,383,0,0,0,0.8002722859382629,1.9133844375610352,1.891948085784915,0,0,0.9321148825065274,0.9321148825065274,xsec_genie_unisim_extra,multisigma,True
-signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,383,1,383,0,0,0,1.0186749022977892e-05,2.95034122467041,2.9400582094192518,0,0,0.44386422976501305,0.44386422976501305,xsec_genie_unisim_extra,multisigma,True
+signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,383,1,383,0,0,0,1.0186749022977892e-05,2.95034122467041,2.9400582094192518,0,0,0.44386422976501305,0.44386422976501305,nc_delta_signal_model_outside_band,multisigma,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,383,6,2298,0,6,0,0.0,4.0,3.0,0,0,0.9947780678851175,0.9947780678851175,genie_multisigma_diagnostic,multisigma,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,383,6,2298,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,genie_multisigma_diagnostic,multisigma,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_AhtBY,383,6,2298,0,0,0,0.8390388488769531,1.5557538270950317,1.2907952748537903,0,0,0.9843342036553525,0.9843342036553525,genie_multisigma_diagnostic,multisigma,False
@@ -611,7 +611,7 @@ signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESB
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,383,100,38300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,383,100,38300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,383,100,38300,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,383,100,38300,0,426,0,0.0,2.07316255569458,2.07316255569458,0,0,0.4046997389033943,0.4046997389033943,signal_radiative_br_outside_band,multisim,False
+signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,383,100,38300,0,426,0,0.0,2.07316255569458,2.07316255569458,0,0,0.4046997389033943,0.4046997389033943,nc_delta_signal_model_outside_band,multisim,False
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,383,100,38300,0,0,0,0.09439198672771454,1.6666666269302368,1.104224156260495,0,0,0.9869451697127938,0.9869451697127938,xsec_genie_multisim,multisim,True
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,383,100,38300,0,30,0,0.0,4.349490165710449,1.8158507347106934,0,0,0.9947780678851175,0.9947780678851175,xsec_genie_multisim,multisim,True
 signal_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,383,100,38300,0,0,0,0.7235398888587952,1.6677755117416382,1.279777865171434,0,0,0.9843342036553525,0.9843342036553525,xsec_genie_multisim,multisim,True
@@ -704,7 +704,7 @@ bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NonRE
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1gamma,3586,6,21516,0,4,0,0.0,2.5,1.0060361623764038,0,0,0.8987730061349694,0.8987730061349694,genie_multisigma_diagnostic,multisigma,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_RDecBR1eta,3586,6,21516,0,74,0,0.0,2.5,2.0,0,0,0.9598438371444507,0.9598438371444507,genie_multisigma_diagnostic,multisigma,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_Theta_Delta2Npi,3586,1,3586,0,0,0,0.8000000715255737,1.9801312685012817,1.927183820605294,0,0,0.7757947573898494,0.7757947573898494,xsec_genie_unisim_extra,multisigma,True
-bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,3586,1,3586,0,0,0,0.9355752468109131,1.7864869832992554,1.0,0,0,0.9994422755158952,0.9994422755158952,xsec_genie_unisim_extra,multisigma,True
+bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_ThetaDelta2NRad,3586,1,3586,0,0,0,0.9355752468109131,1.7864869832992554,1.0,0,0,0.9994422755158952,0.9994422755158952,nc_delta_signal_model_outside_band,multisigma,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NormCCCOH,3586,6,21516,0,9,0,0.0,4.0,1.0,0,0,0.9991634132738427,0.9991634132738427,genie_multisigma_diagnostic,multisigma,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_NormNCCOH,3586,6,21516,0,9,0,0.0,4.0,1.0,0,0,0.9991634132738427,0.9991634132738427,genie_multisigma_diagnostic,multisigma,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisigma_AhtBY,3586,6,21516,0,0,0,0.7123436331748962,1.7049959897994995,1.2214941954612806,0,0,0.9824316787506971,0.9824316787506971,genie_multisigma_diagnostic,multisigma,False
@@ -745,7 +745,7 @@ bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESB
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnCC2pi,3586,100,358600,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC1pi,3586,100,358600,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_NonRESBGvbarnNC2pi,3586,100,358600,0,0,0,1.0,1.0,1.0,0,0,1.0,1.0,xsec_genie_multisim,multisim,True
-bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,3586,100,358600,0,4,0,0.0,2.07316255569458,1.0060361623764038,0,0,0.8987730061349694,0.8987730061349694,signal_radiative_br_outside_band,multisim,False
+bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1gamma,3586,100,358600,0,4,0,0.0,2.07316255569458,1.0060361623764038,0,0,0.8987730061349694,0.8987730061349694,nc_delta_signal_model_outside_band,multisim,False
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_RDecBR1eta,3586,100,358600,0,48,0,0.0,2.358412027359009,1.5086545944213867,0,0,0.9598438371444507,0.9598438371444507,xsec_genie_multisim,multisim,True
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_COHVariationResponse,3586,100,358600,0,105,0,0.0,4.349490165710449,1.0,0,0,0.9983268265476855,0.9983268265476855,xsec_genie_multisim,multisim,True
 bnb_cv_all_interactions_random_files_nov16,GENIEReWeight_SBN_v1_multisim_DISBYVariationResponse,3586,100,358600,0,0,0,0.6226663589477539,1.871866226196289,1.2133019645214143,0,0,0.9824316787506971,0.9824316787506971,xsec_genie_multisim,multisim,True

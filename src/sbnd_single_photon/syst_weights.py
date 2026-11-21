@@ -167,6 +167,7 @@ def sample_blocks_worker(job):
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 SIGMA_GRID = (-1.0, 1.0, -2.0, 2.0, -3.0, 3.0)
 SINGLE_EVENT_RATIO_THRESHOLD = 0.8     # a multisim function is flagged single-event-dominated if removing its single most influential event changes sigma(total yield) by more than 20 %
+NCDELTA_SIGNAL_MODEL_GROUP = "nc_delta_signal_model_outside_band"
 GROUPS_IN_BAND = ("flux_multisim", "beamline_g4_reint_multisim", "xsec_genie_multisim", "fsi_genie_multisim", "xsec_genie_unisim_extra", "xsec_extra_multisigma")
 
 
@@ -177,11 +178,13 @@ def function_table(names, nuniv, types, sigmas: dict) -> "pd.DataFrame":
     for i, (n, u, t) in enumerate(zip(names, nuniv, types)):
         grp = source_group(n, int(t)); sg = tuple(float(x) for x in sigmas.get(n, ()))
         if n.endswith("multisim_RDecBR1gamma"):
-            grp = "signal_radiative_br_outside_band"; presc, used, why = "multisim (computed and shown separately)", False, "Delta -> N gamma radiative branching ratio = the signal model; kept OUTSIDE the band by instruction"
+            grp = NCDELTA_SIGNAL_MODEL_GROUP; presc, used, why = "multisim (computed and shown separately)", False, "NC-Delta signal-model systematic (Delta -> N gamma radiative branching ratio): shown separately, not in the generic neutrino band"
         elif grp in ("flux_multisim", "beamline_g4_reint_multisim", "xsec_genie_multisim", "fsi_genie_multisim"):
             presc, used, why = "multisim: sample covariance of the universe yields about the nominal (1/N sum_u dN dN^T)", True, ""
         elif grp == "genie_multisigma_diagnostic":
-            if len(sg) == 1:
+            if len(sg) == 1 and n.endswith("multisigma_ThetaDelta2NRad"):
+                grp = NCDELTA_SIGNAL_MODEL_GROUP; presc, used, why = "single shifted universe (sigma = +1), computed and shown separately", False, "NC-Delta signal-model systematic (photon angular distribution of the radiative Delta decay): shown separately, not in the generic neutrino band"
+            elif len(sg) == 1:
                 grp = "xsec_genie_unisim_extra"; presc, used, why = "single shifted universe (sigma = +1): one-sided dN = N(+1) - N_nom, independent", True, "knob has no multisim counterpart"
             else:
                 presc, used, why = "diagnostic only (+-1 sigma response)", False, "duplicates the GENIE multisim set for the same knob (adding both would double count)"
@@ -238,3 +241,45 @@ def audit_weights(W: np.ndarray, nuniv_slices: list) -> "pd.DataFrame":
                          n_gt5=int((xf > 5).sum()), n_gt10=int((xf > 10).sum()), frac_exactly_1=float((xf == 1.0).mean()) if xf.size else np.nan,
                          frac_events_inert=float(allone.mean()) if allone.size else np.nan))
     return pd.DataFrame(rows)
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------
+# on-the-fly accumulation of per-universe bin yields for control regions (no per-event storage)
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------
+def region_accum_worker(job):
+    """job = dict(tag, slot_nb, files=[(file_index, url, rows)]) with rows = list of dict(run, subrun, evt, ev, k, ex, ey, ez, epdg, items=[(slot, bin), ...]).
+
+    For every file: the same identity/layout/vertex checks as `owner_blocks_worker` (events failing any check are NOT accumulated and counted), then for each item the owner's weight block is added
+    (unweighted, float64) to acc[slot][bin]. Returns acc (dict slot -> (nbin, U)), counts per (slot, bin) of accumulated events, and counters."""
+    import awkward as ak, uproot
+    slot_nb = job["slot_nb"]; U = 22485
+    acc = {s: np.zeros((nb, U)) for s, nb in enumerate(slot_nb)}; cnt = {s: np.zeros(nb, int) for s, nb in enumerate(slot_nb)}
+    c = dict(files=0, file_errors=0, events=0, not_found=0, layout_bad=0, vertex_bad=0, pdg_bad=0, ids_not_identical=0, entry_not_equal=0, errs=[])
+    for fi, url, rows in job["files"]:
+        try:
+            f = uproot.open(url); t = f["recTree"]; w = f["recTreeWireCell"]; nuniv = np.asarray(f["globalTree"]["global/wgts/wgts.nuniv"].array(library="ak")[0].tolist())
+            rid = np.stack([t[b].array(library="np").astype(np.int64) for b in ("rec.hdr.run", "rec.hdr.subrun", "rec.hdr.evt")], 1)
+            wid = np.stack([w[b].array(library="np").astype(np.int64) for b in ("wc.run", "wc.subrun", "wc.evt")], 1)
+            c["ids_not_identical"] += int(not (len(rid) == len(wid) and np.array_equal(rid, wid)))
+            want = np.array([[r["run"], r["subrun"], r["evt"]] for r in rows], dtype=np.int64); ent = map_events_by_id(rid, want)
+            a = t.arrays(["rec.mc.nu.pdg", "rec.mc.nu.position.x", "rec.mc.nu.position.y", "rec.mc.nu.position.z", "rec.mc.nu.wgt.univ", "rec.mc.nu.wgt.univ..length"], library="ak")
+            c["files"] += 1
+            for r, e in zip(rows, ent):
+                c["events"] += 1
+                if e < 0:
+                    c["not_found"] += 1; continue
+                c["entry_not_equal"] += int(e != r["ev"])
+                n_nu = len(a["rec.mc.nu.pdg"][e])
+                if not layout_ok(np.asarray(a["rec.mc.nu.wgt.univ..length"][e]), n_nu, nuniv) or not (0 <= r["k"] < n_nu):
+                    c["layout_bad"] += 1; continue
+                px, py, pz = (float(a[f"rec.mc.nu.position.{q}"][e][int(r["k"])]) for q in "xyz")
+                if np.sqrt((px - r["ex"]) ** 2 + (py - r["ey"]) ** 2 + (pz - r["ez"]) ** 2) > 1e-3:
+                    c["vertex_bad"] += 1; continue
+                if r.get("epdg", 0) != 0 and int(a["rec.mc.nu.pdg"][e][int(r["k"])]) != r["epdg"]:
+                    c["pdg_bad"] += 1; continue
+                blk = split_blocks(np.asarray(a["rec.mc.nu.wgt.univ"][e]), n_nu, nuniv)[int(r["k"])].astype(np.float64)
+                for s, b in r["items"]:
+                    acc[s][b] += blk; cnt[s][b] += 1
+        except Exception as ex:
+            c["file_errors"] += 1; c["errs"].append(repr(ex)[:200])
+    return dict(tag=job["tag"], acc=acc, cnt=cnt, counters=c)

@@ -25,18 +25,18 @@ Status: **preliminary; do not quote as an uncertainty on a result.** Scope: the 
 
 Types come from `caf::ReweightType_t` in the installed `SREnums.h` (0 multisim, 1 pm-n-sigma, 2 fixed, 3 multisigma), and the sigma value of every multisigma universe is read from `globalTree: global/wgts/wgts.map` (uproot cannot decode it; the raw basket is parsed with validated byte counts). Not every function is a 1,000-universe multisim:
 
-| Component | Functions / universes | Prescription | In band |
+| Component | Functions / universes | Prescription | In generic band |
 |---|---|---|---|
 | flux | 13 / 13,000 (multisim) | sample covariance about the nominal, 1/N, families independent | yes |
 | beamline G4 reinteraction | 6 / 6,000 (multisim) | same | yes |
 | GENIE cross section | 27 / 2,700 (multisim, 100 universes) | same | yes |
 | GENIE FSI | 2 / 200 (multisim: `FSI_pi`, `FSI_N`) | same | yes |
-| cross-section extras | 4 single-universe GENIE shape dials (sigma = +1, no multisim counterpart) + 28 +-sigma-grid sets (4 MINERvA 2p2h, 2 C12-to-Ar40 scaling, 22 NOvA non-resonant pion) = 32 functions / 172 universes | one-sided shift (single) / (N(+1 sigma)-N(-1 sigma))/2 (grid), each independent | yes |
-| GENIE multisigma duplicates | 48 / 288 | +-1 sigma response, diagnostic only | **no** (same knobs as the multisim sets: adding both would double count) |
-| signal radiative BR | 1 / 100 (`multisim_RDecBR1gamma`) | computed and shown separately | **no** (outside the band by instruction) |
-| non-sigma dials | 5 (`Mnv2p2hGaussEnhancement`, `nuenuebar`/`nuenumu` ratios, `SPPLowQ2Suppression`, `NR_nu_np_CC_1Pi`) | none | **no** (universes are not a +-sigma grid and no convention is documented) |
+| cross-section extras | 3 single-universe GENIE shape dials (sigma = +1, no multisim counterpart) + 28 +-sigma-grid sets (4 MINERvA 2p2h, 2 C12-to-Ar40 scaling, 22 NOvA non-resonant pion) = 31 functions / 171 universes | one-sided shift (single) / (N(+1 sigma)-N(-1 sigma))/2 (grid), each independent | yes |
+| **NC-Delta signal-model systematics** | 2 / 101: `multisim_RDecBR1gamma` (Delta -> N gamma radiative branching ratio, 100 universes) and `multisigma_ThetaDelta2NRad` (photon angular distribution of the radiative Delta decay, 1 universe) | multisim covariance / one-sided shift, each computed and **shown separately** | **no - shown separately, not included in the generic neutrino band** (how to combine them into the final signal-model covariance is decided later) |
+| GENIE multisigma duplicates | 48 / 288 | +-1 sigma response, diagnostic only | no (same knobs as the multisim sets: adding both would double count) |
+| non-sigma dials | 5 (`Mnv2p2hGaussEnhancement`, `nuenuebar`/`nuenumu` ratios, `SPPLowQ2Suppression`, `NR_nu_np_CC_1Pi`) | none | no (universes are not a +-sigma grid and no convention is documented) |
 
-80 of 134 functions (22,072 universes) enter the band. Independence between functions/families is the standard assumption, not something verified here; 100-universe sets carry sampling noise of order 7 % on each variance.
+79 of 134 functions (22,071 universes) enter the generic band. Independence between functions/families is the standard assumption, not something verified here; 100-universe sets carry sampling noise of order 7 % on each variance.
 
 ## 4. Pathological-weight audit (`syst_weight_audit.csv`; nothing clipped)
 
@@ -49,22 +49,64 @@ Types come from `caf::ReweightType_t` in the installed `SREnums.h` (0 multisim, 
 
 Coherence is supported empirically: the S-B correlation across universes is 0.999 for the NC-resonance function and 0.8-0.95 for the flux families (independent draws would give ~0), consistent with the generator seeding the universes identically in both samples (fixed `random_seed` in the fcl). For each universe P_u = S_u/(S_u+B_u) is formed first and only then the spread is taken.
 
-| Final selection, per 1e20 POT | old fg1 | Nov16 |
+| Final selection, per 1e20 POT (generic neutrino band, signal-model dials excluded) | old fg1 | Nov16 |
 |---|---|---|
 | S, B (nominal) | 29.3, 1040.7 | 68.3, 2526.3 |
-| sigma(S) / S, total available | 24.8 % | 24.2 % |
-| sigma(B) / B, total available | 19.9 % | 22.6 % (18.9 % without single-event-dominated functions) |
+| sigma(S) / S | 24.0 % | 24.0 % |
+| sigma(B) / B | 19.9 % | 22.6 % (18.9 % without the single-event-dominated function) |
 | sigma(S+B) / (S+B) | 19.9 % | 22.4 % (18.9 %) |
-| **sigma(P) / P, coherent per-universe** | **18.5 %** | **20.6 % (18.0 %)** |
-| sigma(P) / P, naive independent S and B | 30.9 % | 32.3 % |
+| **sigma(P) / P, coherent per-universe** | **17.5 %** | **20.3 % (17.7 %)** |
+| sigma(P) / P, naive independent S and B | 30.4 % | 32.1 % |
 | MC statistical sigma(P)/P (not in the band) | 6.7 % | 4.3 % |
 
-sigma(P)/P by component (old / Nov16, per-universe coherent): flux 3.1 / 2.2 %, beamline G4 6.0 / 9.9 %, GENIE cross section 13.7 / 14.2 %, cross-section extras 6.7 / 4.8 %, GENIE FSI 8.0 / 9.7 %. Dominant: GENIE cross section, driven by `NCRESVariationResponse` (S 23 %, B 12 %, highly correlated). By topology (total available, old / Nov16): 1g0p 18.1 / 23.7 % (19.9 % without the flagged function), 1gNp 26.8 / 23.0 %. Energy histogram (`syst_cov_energy_*.npz`; 8 bins, 20-3000 MeV): total sigma/(S+B) 22-26 % (old, 6 bins with > 20 events) and 22-36 % (Nov16, 7 bins), larger than the MC statistical error in the well-populated bins (statistical 6-10 %) and smaller in the sparsely populated edge bins (statistical up to ~30 %). Covariances by component for S, B, S+B and purity are stored per view (all, topo2, channel3, energy).
+How to communicate it: *WCL1116 frozen legacy chain: MC-only expected purity 2.63 %, with a preliminary +-20 % relative neutrino-model uncertainty (20.3 %) from the currently available flux/xsec/FSI/G4 weights. Detector, cosmic/beam-off normalisation, dirt, POT, the NC-Delta radiative-decay signal model, `imp_weight` and unresolved-owner events are not included.* It is not a final total uncertainty on the purity.
 
-**Outside the band, shown separately:** signal radiative-BR dial `multisim_RDecBR1gamma` moves S by 44.9 % (S-B correlation 1; B 0.2 %) and P by 43.6 / 43.7 %; if the radiative-BR model is wanted in the band this dominates everything else. `ThetaDelta2NRad` (photon angular distribution of the radiative decay, single universe) stays in the band as a one-sided shift and is a signal-decay-model dial: it alone gives 18.9 % (old) / 16.8 % (Nov16) on the 1gNp signal, i.e. the whole "cross-section extras" signal effect in 1gNp (1g0p: 7.0 / 6.3 %). Whether it belongs in the band or with the radiative-BR model outside it is a decision for the analysers; moving it out removes the 17-19 % extras effect on the 1gNp signal.
+sigma(P)/P by component (old / Nov16, per-universe coherent): flux 3.1 / 2.2 %, beamline G4 5.9 / 9.9 %, GENIE cross section 13.7 / 14.2 %, cross-section extras 3.2 / 3.5 %, GENIE FSI 8.0 / 9.7 %. Dominant: GENIE cross section, driven by `NCRESVariationResponse` (S 23 %, B 12 %, highly correlated). By topology (total available, old / Nov16): 1g0p 16.6 / 22.9 % (18.9 % without the flagged function), 1gNp 19.5 / 16.2 %. Energy histogram (`syst_cov_energy_*.npz`; 8 bins, 20-3000 MeV): total sigma/(S+B) 22-26 % (old, 6 bins with > 20 events) and 22-36 % (Nov16, 7 bins), larger than the MC statistical error in the well-populated bins (statistical 6-10 %) and smaller in the sparsely populated edge bins (statistical up to ~30 %). The very large fractional uncertainties of the nearly empty low-energy bins of the old reconstruction are not an alarm: those bins have essentially no constraining statistics. Covariances by component for S, B, S+B and purity are stored per view (all, topo2, channel3, energy).
+
+### NC-Delta signal-model systematics - shown separately, not included in the generic neutrino band
+
+| Dial | effect on S (all) | on S (1g0p / 1gNp) | on P (all) | on B |
+|---|---|---|---|---|
+| `RDecBR1gamma` (radiative branching ratio) | 44.9 % (S-B correlation 1) | 44.9 / 44.9 % | 43.6 % (old), 43.7 % (Nov16) | 0.2 % |
+| `ThetaDelta2NRad` (radiative-decay photon angle; one-sided, sigma = +1) | 6.2 % (old), 3.4 % (Nov16) | old 7.0 / 18.9 %, Nov16 6.3 / 16.8 % | 5.8 % (old), 3.3 % (Nov16) | 0.2 % |
+
+If the radiative-decay model is to be in the final band, `RDecBR1gamma` dominates everything else on S and P; the two must be combined into one signal-model covariance later (they are not independent knobs of the same kind: one is a rate, the other an angular distribution).
 
 ## 6. What the band covers and what is missing
 
 * **Coverage of the prediction:** neutrino systematics are varied for **94.5 % (old) / 95.7 % (Nov16)** of the expected S+B yield (S 100 %, background by yield 94.3 % / 95.6 %); **5.5 % / 4.3 % is unvaried** (cosmic/unmatched and ambiguous owners).
-* **Within the varied part, the band covers:** flux, beamline G4 reinteraction, GENIE cross-section and FSI multisim sets and 32 extras. It does not include the 5 non-sigma dials, the GENIE multisigma duplicates (by design), or functions that are inert for these events.
-* **Missing / outside:** detector variations (no weights in these files; separate productions needed), beam-off / cosmic normalisation (blocked), dirt normalisation (dirt is inside the CV with no handle), POT, the signal radiative-BR model (shown separately), `imp_weight` (unresolved, see the results note section 6; hypothetical effect only), MC statistics beyond Poisson (shown separately), the neutrino systematics of unresolved-owner events, and the preselection/sideband extension (the NC-pi0 sideband excess cannot yet be compared with a band).
+* **Within the varied part, the band covers:** flux, beamline G4 reinteraction, GENIE cross-section and FSI multisim sets and 31 extras. It does not include the 5 non-sigma dials, the GENIE multisigma duplicates (by design), or functions that are inert for these events.
+* **Missing / outside:** detector variations (no weights in these files; separate productions needed), beam-off / cosmic normalisation (blocked), dirt normalisation (dirt is inside the CV with no handle), POT, the NC-Delta signal-model dials `RDecBR1gamma` and `ThetaDelta2NRad` (shown separately), `imp_weight` (unresolved, see the results note section 6; hypothetical effect only), MC statistics beyond Poisson (shown separately), the neutrino systematics of unresolved-owner events, and the preselection/sideband extension (the NC-pi0 sideband excess cannot yet be compared with a band).
+
+## 7. Control regions: open-data Data/MC with the available covariance (`syst_sideband_datamc_chi2_*.csv`, figures F and G)
+
+Same machinery, extended to the sidebands (`scripts/ncdelta_syst_regions.py plan|extract|analyze`; per-universe bin yields accumulated on the fly; the signal region stays blocked, only the open-data policy stages `sideband`/`preselection` are used). Event level for data, S and B alike (events with more than one region-passing candidate are < 0.5 % and none in the NC-pi0 sideband for the old reconstruction, so event and candidate counts coincide: 585 / 755 data events as before). For B the owner must be unique over all region-passing candidates of the event, otherwise the event is not varied. The prediction is S + B scaled to the open-data POT (4.62e18); **it does not contain the cosmic-only (beam-off) component** (scale blocked): adding it would raise the prediction and lower every Data/MC below. Independent identity/layout/vertex/PDG checks passed for all 28,251 accumulated events (13,517 old, 14,734 Nov16) with zero failures.
+
+Covariance = flux + beamline G4 + GENIE cross section + cross-section extras + GENIE FSI (79 functions, S and B with the same universe index); data statistics enter the chi-square as the Pearson (expected-count) variance, Neyman is in the table as a cross-check. **Not in the covariance: detector, cosmic/beam-off, dirt, POT, NC-Delta signal model, `imp_weight`, unresolved-owner events (resolved owners: NC-pi0 sideband 96.9 % old / 97.2 % Nov16 of events; `SB_other` ~82 %).** The chi-square with these categories missing is a lower bound on the tension in the sense that every excluded source would normally add variance, but the missing cosmic-only component would push the prediction the other way.
+
+### NC-pi0-rich sideband (the ~25 % deficit)
+
+| | old fg1 | Nov16 |
+|---|---|---|
+| data events / prediction (S+B) | 585 / 765.8 | 755 / 1020.5 |
+| **Data/MC (integrated)** | **0.764 +- 0.158** | **0.740 +- 0.154** |
+| uncertainty: data stat / MC stat / available syst | 3.2 % / 1.5 % / 20.4 % | 2.7 % / 1.3 % / 20.6 % |
+| syst by component (xsec GENIE / FSI / G4 / flux / extras) | 15.1 / 9.2 / 7.3 / 6.5 / 3.1 % | 15.2 / 9.6 / 6.9 / 6.4 / 3.7 % |
+| deviation from 1: stat+MC only -> with available syst | -8.9 sigma -> **-1.5 sigma** | -11.8 sigma -> **-1.7 sigma** |
+| rate-only chi2/ndof (p) | 1.29 / 1 (0.26) | 1.55 / 1 (0.21) |
+| rate+shape, shower energy (8 bins) chi2/ndof (p) | 6.0 / 8 (0.65) | 8.4 / 8 (0.40) |
+| shape-only, shower energy (8 bins) chi2/ndof (p) | 6.0 / 7 (0.54) | 9.7 / 7 (0.21) |
+| rate+shape, reco topology (1g0p, 1gNp) chi2/ndof (p) | 8.5 / 2 (0.015) | 5.1 / 2 (0.080) |
+| **shape-only, reco topology chi2/ndof (p)** | **12.3 / 1 (0.0005)** | **7.2 / 1 (0.0072)** |
+
+Reading (preliminary): **once the available flux+GENIE+FSI+G4 covariance is included, the ~25 % rate deficit is within about 1.5-1.7 sigma** and the shower-energy shape is fully consistent; the deficit is flat in energy (the data/MC ratio is 0.6-0.8 in every populated bin) and the systematic covariance is almost a pure normalisation mode (96.7 % of its variance in one eigenmode), which is why the energy shape tests are unremarkable. **The topology split is not consistent, however:** the data/MC ratio is 0.91 (old) / 0.85 (Nov16) for reconstructed 1g0p but 0.61 / 0.64 for 1gNp (corr. of the systematic between the two ~0.95), i.e. the 1gNp fraction in the data is lower than predicted, a shape tension of p = 5e-4 / 7e-3 that no available neutrino systematic reproduces. Detector and proton-reconstruction modelling, which are absent from this band, are the obvious suspects. Neither statement is a conclusion about the physics: the rate result depends on the excluded categories above.
+
+### Other regions (rate and shape; `syst_sideband_datamc_chi2_*.csv`)
+
+| Region | Data/MC old (total unc.) | Data/MC Nov16 (total unc.) | energy rate+shape chi2/ndof old / Nov16 | note |
+|---|---|---|---|---|
+| `SB_other` | 1.054 +- 0.152 | 1.028 +- 0.148 | 7.9/8 (0.44) / **25.0/8 (0.0015)** | the Nov16 energy-shape chi2 is driven by two sparsely populated high-energy bins (1 observed vs 8.3 predicted, then 8 vs 2.2); this is the cosmic-rich, outside-TPC-like sideband where the MC has no cosmic-only component, so the excess in the last bin is the pattern the missing component would give (hypothesis, not demonstrated) |
+| `SB_nue` | 0.993 +- 0.223 | 0.917 +- 0.200 | 1.8/5 (0.88) / 5.7/5 (0.34) | consistent; 3 empty-prediction energy bins dropped (ndof reduced) |
+| `SB_numu`, `preselection` | pending (second extraction) | pending | | |
+
+Limitations specific to this section: the Pearson variance underestimates the variance of nearly empty bins (the Neyman column is the cross-check); 100-universe GENIE sets carry ~7 % sampling noise on each variance; shape-only chi-squares drop one bin (the sum is fixed); bins with zero prediction are dropped from the chi-square and the number of dropped bins is recorded.
