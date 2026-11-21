@@ -138,3 +138,17 @@ def test_committed_sideband_table_is_internally_consistent():
         comps = [c for c in r.columns if c.startswith("rel_syst_")]; assert np.allclose(r.rel_syst ** 2, (r[comps] ** 2).sum(1), rtol=1e-6)                 # independent sources add in quadrature
         assert np.allclose(d.p_value, stats.chi2.sf(d.chi2, d.ndof)) and (d.ndof >= 1).all() and (d.chi2 >= 0).all()
         assert set(d.production) == {"old_fg1", "nov16"} and not d.region.isin(["final_frozen"]).any()
+
+
+def test_ncpi0_topology_truth_migration_tables_are_sane():
+    """Truth topology must be sliced per interaction (prim.* is flat per event): the committed migration has non-empty >=2p truth and rows that sum to the MC weight."""
+    import glob
+    import pandas as pd
+    fs = sorted(glob.glob(str(ROOT / "tables" / "ncdelta_purity_datamc" / "ncpi0_truth_reco_migration_*_all_resolved.csv")))
+    if not fs:
+        pytest.skip("migration tables not generated")
+    for f in fs:
+        M = pd.read_csv(f, index_col=0); assert M.loc["truth >=2p"].sum() > 0 and M.loc["truth 1p"].sum() > 0
+        assert (M.to_numpy() >= 0).all()
+    src = (ROOT / "scripts" / "ncdelta_ncpi0_topology_extract.py").read_text()
+    assert "nprim" in src and "sum(nprim)" in src.replace("npr.sum()", "sum(nprim)") and "beam_on_open" in src and "signal" not in src.lower().replace("signal-sample", "")

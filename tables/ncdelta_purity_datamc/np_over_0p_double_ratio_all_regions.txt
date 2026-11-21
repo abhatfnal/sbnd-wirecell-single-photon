@@ -1,0 +1,11 @@
+region production  data0p dataNp  MC0p MCNp  Np/0p(data/MC) +-stat  [stat only; no detector/neutrino systematics]
+preselection  old_fg1    4702   3778   4354.9   4266.9   0.820 +- 0.019  (-9.3 sigma)
+SB_numu       old_fg1    3190   3111   2860.6   3432.9   0.813 +- 0.022  (-8.5 sigma)
+SB_other      old_fg1     977    294    905.4    301.0   0.905 +- 0.065  (-1.5 sigma)
+SB_nue        old_fg1      19     36     19.9     35.4   1.066 +- 0.326  (+0.2 sigma)
+SB_ncpi0      old_fg1     360    225    396.9    368.9   0.672 +- 0.061  (-5.4 sigma)
+preselection  nov16      4568   3753   4209.2   4338.2   0.797 +- 0.019  (-10.7 sigma)
+SB_numu       nov16      2891   2980   2530.8   3268.2   0.798 +- 0.023  (-8.9 sigma)
+SB_other      nov16       981    281    899.3    328.0   0.785 +- 0.057  (-3.8 sigma)
+SB_nue        nov16        32     31     24.7     44.1   0.543 +- 0.148  (-3.1 sigma)
+SB_ncpi0      nov16       420    335    493.3    527.2   0.746 +- 0.058  (-4.4 sigma)
