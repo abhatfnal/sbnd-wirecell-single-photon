@@ -152,3 +152,60 @@ def test_ncpi0_topology_truth_migration_tables_are_sane():
         assert (M.to_numpy() >= 0).all()
     src = (ROOT / "scripts" / "ncdelta_ncpi0_topology_extract.py").read_text()
     assert "nprim" in src and "sum(nprim)" in src.replace("npr.sum()", "sum(nprim)") and "beam_on_open" in src and "signal" not in src.lower().replace("signal-sample", "")
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+# closure of the control-region / systematics development package
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+TABD = ROOT / "tables" / "ncdelta_purity_datamc"
+
+
+def test_neutron_g4_event_audit_tables_and_policy_are_consistent():
+    f = TABD / "audit_neutron_g4_variance_concentration_regions.csv"; g = TABD / "audit_neutron_g4_variance_concentration_final.csv"; t = TABD / "audit_neutron_g4_top_events.csv"
+    if not (f.exists() and g.exists() and t.exists()):
+        pytest.skip("audit tables not generated")
+    c = pd.read_csv(f); fin = pd.read_csv(g); top = pd.read_csv(t)
+    tot = c[c.quantity == "total_yield"]; assert (tot.n50 == 1).all() and (tot.n99 <= 12).all()                       # control-region total variance: one event carries 50 %
+    z = c[c.quantity == "yield_0p"]; assert (z.n50 > 10).all()                                                       # the 0p yield is broad
+    b = fin[(fin.quantity == "B_yield") & (fin.tag == "B")].set_index("production"); assert b.loc["nov16", "n50"] == 1 and b.loc["old_fg1", "n50"] > 5   # Nov16 final selection dominated by few events, old broad
+    lead = top[(top.region == "preselection") & (top.quantity == "total_yield") & (top["rank"] == 1)]
+    assert set(lead.production) == {"old_fg1", "nov16"} and (lead.run == 8011).all() and (lead.subrun == 91).all() and (lead.evt == 3).all()   # same physical MC event in both productions
+    assert (lead.max_weight > 1e5).all() and (top.share_of_variance.between(-1.0, 1.1)).all()
+    # the validated total excludes ONLY the neutron function; no weight was clipped anywhere
+    band = pd.read_csv(TABD / "syst_band_by_component.csv"); a = band[(band.view == "all") & (band.component.isin(["TOTAL_available", "TOTAL_validated_excl_nG4", "unvalidated_nG4"]))]
+    for prod in ("old_fg1", "nov16"):
+        x = a[a.production == prod].set_index("component").sigma_purity_coherent_per_universe
+        assert x["TOTAL_validated_excl_nG4"] < x["TOTAL_available"] and x["unvalidated_nG4"] > 0
+    for f_ in ("ncdelta_neutron_g4_extract.py", "ncdelta_neutron_g4_audit.py", "ncdelta_neutron_g4_topevents.py"):
+        code = (ROOT / "scripts" / f_).read_text(); assert "clip" not in code.lower().replace("no clipping", "").replace("nothing is clipped", "").replace("not clipped", "") or "np.clip" not in code
+        assert "load_data(" not in code and "beam_on_open" not in code and "DEV_DO_NOT_DEPLOY" not in code and "run3bnb" not in code
+
+
+def test_control_region_summary_matches_the_committed_region_tables_and_the_double_ratio_definition():
+    s = TABD / "control_region_summary_final.csv"
+    if not s.exists():
+        pytest.skip("summary not generated")
+    d = pd.read_csv(s); assert len(d) == 10 and set(d.region) == {"preselection", "SB_numu", "SB_other", "SB_ncpi0", "SB_nue"}
+    A = pd.concat([pd.read_csv(TABD / f"syst_sideband_datamc_chi2_{t}.csv") for t in ("SB_ncpi0-SB_other-SB_nue", "SB_numu-preselection")])
+    X = pd.concat([pd.read_csv(TABD / f"syst_sideband_datamc_chi2_{t}_excl.csv") for t in ("SB_ncpi0-SB_other-SB_nue", "SB_numu-preselection")])
+    N = pd.read_csv(TABD / "np_over_0p_double_ratio_with_covariance.csv")
+    for r in d.itertuples():
+        a = A[(A.production == r.production) & (A.region == r.region) & A.test.str.startswith("rate_only")].iloc[0]; x = X[(X.production == r.production) & (X.region == r.region) & X.test.str.startswith("rate_only")].iloc[0]
+        n = N[(N.production == r.production) & (N.region == r.region)].iloc[0]
+        assert abs(r.data_over_mc - a.ratio) < 1e-9 and r.n_data == a.n_data and abs(r.rel_syst_validated - x.rel_syst) < 1e-9 and abs(r.rel_syst_incl_nG4 - a.rel_syst) < 1e-9
+        assert x.rel_syst <= a.rel_syst + 1e-12                                                                      # excluding a function can only reduce the covariance
+        assert abs(n.double_ratio - (n.data_Np / n.data_0p) / (n.mc_Np / n.mc_0p)) < 1e-9 and abs(r.np_over_0p_double_ratio - n.double_ratio) < 1e-12
+        assert n.rel_syst_incl_neutron_g4 >= n.rel_syst_available - 1e-12
+    assert d[d.n_data < 100].stat_weak.notna().all() and d[d.region == "SB_nue"].stat_weak.notna().all()           # statistically weak regions are flagged
+    ex = pd.read_csv(TABD / "ncpi0_P_truth_Np_given_reco.csv"); p0 = ex[ex.reco == "reco 0p"].set_index("production").P_truth_ge1p_given_reco
+    assert abs(p0["old_fg1"] - 0.525) < 0.005 and abs(p0["nov16"] - 0.446) < 0.005
+
+
+def test_purity_central_values_and_firewall_are_untouched_by_the_closure():
+    band = pd.read_csv(TABD / "syst_band_by_component.csv"); a = band[(band.view == "all") & (band.component == "TOTAL_available")].drop_duplicates("production").set_index("production").purity
+    assert abs(a["old_fg1"] - 0.0274) < 5e-5 and abs(a["nov16"] - 0.0263) < 5e-5                                    # central purity unchanged (MC-only upper bound)
+    for f in ("ncdelta_np_over_0p_summary.py", "ncdelta_control_region_summary.py"):
+        code = (ROOT / "scripts" / f).read_text(); assert "load_data(" not in code and "beam_on_open" not in code and "DEV_DO_NOT_DEPLOY" not in code
+    pol = (ROOT / "configs" / "data_policy.yaml").read_text(); assert "FINAL" in pol.upper() and "approved_date: \"\"" in pol                                  # the data-policy gate file is present and the final region has NO approval date
+    doc = (ROOT / "docs" / "analysis" / "NCDELTA_CONTROL_REGION_COLLABORATION_HANDOFF.md").read_text()
+    assert "No Aurora DEV model was evaluated" in doc and "No signal-region" in doc and "not pushed" in doc.lower()

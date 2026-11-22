@@ -113,8 +113,10 @@ def chi2_pearson(D, P, C, var_stat):
     r = D - P; Ct = C + np.diag(var_stat); return float(r @ np.linalg.solve(Ct, r))
 
 
-def analyze(regions, tag_name):
-    rows, mats = [], {}
+def analyze(regions, tag_name, exclude=()):
+    """exclude = names of weight functions left OUT of the covariance (diagnostic variant; default: all in-band functions). The excluded variant writes *_excl_<n>fn files and no figures."""
+    rows, mats = [], {}; sfx = "" if not exclude else "_excl"; exclude = set(exclude)
+    assert exclude <= set(CV.FT.name), f"unknown functions {exclude - set(CV.FT.name)}"
     FTd = CV.FT.to_dict("records"); inb = [f for f in FTd if f["in_band"]]
     for prod in PRODUCTIONS:
         plan = pickle.load(open(SYST / f"regions_plan_{prod}.pkl", "rb")); acc = pickle.load(open(SYST / f"regions_acc_{prod}_{tag_name}.pkl", "rb"))
@@ -137,6 +139,8 @@ def analyze(regions, tag_name):
                 for c in COMPS:
                     Cc[c] = np.zeros((nb, nb)); Cs[c] = np.zeros((nb, nb))
                 for fn in inb:
+                    if fn["name"] in exclude:
+                        continue
                     sl = slice(fn["start"], fn["stop"])
                     for c, gs in COMPS.items():
                         if fn["group"] in gs:
@@ -162,11 +166,16 @@ def analyze(regions, tag_name):
                         Cdat = np.diag(Ps) - np.outer(Ps, Ps) / Dt; Ct = (Cst + Cmc + Cdat)[: nk - 1, : nk - 1]; rr_ = (Dk - Ps)[: nk - 1]
                         cs_ = float(rr_ @ np.linalg.solve(Ct, rr_)); Cdn = np.diag(np.maximum(Dk, 1.0)) - np.outer(Dk, Dk) / Dt; Ctn = (Cst + Cmc + Cdn)[: nk - 1, : nk - 1]; cs_n = float(rr_ @ np.linalg.solve(Ctn, rr_))
                         rows.append(dict(production=prod, region=r, test=f"shape-only ({view}, {nk} bins)", n_data=int(Dt), prediction=Pt, ratio=Dt / Pt, chi2=cs_, ndof=nk - 1, p_value=float(stats.chi2.sf(cs_, nk - 1)), chi2_neyman=cs_n, bins_dropped_zero_prediction=dropped))
-    df = pd.DataFrame(rows); df.to_csv(TAB / f"syst_sideband_datamc_chi2_{tag_name}.csv", index=False); print(df.round(4).to_string(index=False))
-    pickle.dump(mats, open(SYST / f"regions_mats_{tag_name}.pkl", "wb")); figures(regions, mats, df, tag_name)
+    df = pd.DataFrame(rows); df.to_csv(TAB / f"syst_sideband_datamc_chi2_{tag_name}{sfx}.csv", index=False); print(df.round(4).to_string(index=False))
+    pickle.dump(mats, open(SYST / f"regions_mats_{tag_name}{sfx}.pkl", "wb"))
+    other = None if exclude else None
+    if exclude:
+        other = pd.read_csv(TAB / f"syst_sideband_datamc_chi2_{tag_name}.csv")
+    figures(regions, mats, df, tag_name, sfx="" if exclude else "_incl_nG4", other=other)
 
 
-def figures(regions, mats, df, tag_name):
+def figures(regions, mats, df, tag_name, sfx="", other=None):
+    """sfx '' = validated covariance (WITHOUT reinteractions_neutron_Geant4; main figures); '_incl_nG4' = all in-band functions (backup)."""
     import matplotlib.pyplot as plt
     from sbnd_single_photon import plotstyle as PS; PS.apply_style(); PLT_ = REPO / "plots" / "ncdelta_purity_datamc"
     ttl = {"old_fg1": "old fg1-era reconstruction", "nov16": "WCLocal2026Nov16"}
@@ -177,24 +186,25 @@ def figures(regions, mats, df, tag_name):
         for ci, prod in enumerate(PRODUCTIONS):
             M = mats[prod, r, "energy"]; P, Dv = M["P"], M["D"]; syst = np.sqrt(np.diag(M["Csyst"])); mc = np.sqrt(M["var_mc"]); tot = np.hypot(syst, mc); a0, a1 = ax[0, ci], ax[1, ci]
             a0.bar(x, P, 0.9, color="#D9D9D9", edgecolor="#777777", lw=0.6, label="MC prediction (S+B)"); a0.errorbar(x, P, yerr=tot, fmt="none", ecolor="#D55E00", lw=3, label="syst. (available) + MC stat."); a0.errorbar(x, P, yerr=mc, fmt="none", ecolor="#333333", lw=1.2, capsize=2, label="MC stat. only")
-            a0.errorbar(x, Dv, yerr=np.sqrt(np.maximum(Dv, 1)), fmt="ko", ms=4, label="open beam-on data"); a0.set_ylabel("events"); a0.set_xticks(x); a0.set_xticklabels([]); a0.set_title(ttl[prod], fontsize=10)
+            a0.errorbar(x, Dv, yerr=np.sqrt(np.maximum(Dv, 1)), fmt="ko", ms=4, label="open beam-on data"); a0.set_ylim(0, 1.55 * float((P + tot).max())); a0.set_ylabel("events"); a0.set_xticks(x); a0.set_xticklabels([]); a0.set_title(ttl[prod], fontsize=10)
             ra = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("rate_only"))].iloc[0]; rs = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("rate+shape (energy"))].iloc[0]; sh = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("shape-only (energy"))].iloc[0]
-            a0.text(0.97, 0.95, f"Data/MC = {ra.ratio:.2f} +- {ra.rel_total * ra.ratio:.2f}\n(data {100 * ra.rel_data_stat:.1f}%, MC stat {100 * ra.rel_mc_stat:.1f}%, syst {100 * ra.rel_syst:.1f}%)\nrate+shape chi2/ndof = {rs.chi2:.1f}/{rs.ndof:.0f}\nshape-only chi2/ndof = {sh.chi2:.1f}/{sh.ndof:.0f}", transform=a0.transAxes, ha="right", va="top", fontsize=7.5)
+            oth = "" if other is None else f"\nincl. unvalidated neutron-G4 fn: {(other[(other.production == prod) & (other.region == r) & other.test.str.startswith('rate_only')].iloc[0].n_sigma_from_unity_total):+.1f} sigma"
+            a0.text(0.97, 0.95, f"Data/MC = {ra.ratio:.2f} +- {ra.rel_total * ra.ratio:.2f}\n(data {100 * ra.rel_data_stat:.1f}%, MC stat {100 * ra.rel_mc_stat:.1f}%, syst {100 * ra.rel_syst:.1f}%)\ndeviation from 1: {ra.n_sigma_from_unity_total:+.1f} sigma{oth}\nrate+shape chi2/ndof = {rs.chi2:.1f}/{rs.ndof:.0f}\nshape-only chi2/ndof = {sh.chi2:.1f}/{sh.ndof:.0f}", transform=a0.transAxes, ha="right", va="top", fontsize=7.5)
             if ci == 0:
                 a0.legend(fontsize=6.5, loc="upper left")
             rr = Dv / P; a1.fill_between(np.r_[x - 0.45, x[-1] + 0.45], 1 - np.r_[tot / P, (tot / P)[-1]], 1 + np.r_[tot / P, (tot / P)[-1]], color="#D55E00", alpha=0.25, step="post", lw=0)
             a1.errorbar(x, rr, yerr=np.sqrt(np.maximum(Dv, 1)) / P, fmt="ko", ms=4); a1.axhline(1, color="k", lw=0.6); a1.set_ylim(0, 2); a1.set_ylabel("data / MC"); a1.set_xticks(x); a1.set_xticklabels(lab, fontsize=7); a1.set_xlabel("selected-shower energy, lower bin edge [MeV]", fontsize=8)
-        fig.suptitle("NC-pi0-rich sideband (open data) | frozen legacy chain | event level\nPRELIMINARY: available flux+GENIE+FSI+G4 systematics only; no detector, cosmic/beam-off, dirt, POT, signal-model, imp_weight", fontsize=8)
-        fig.savefig(PLT_ / "F_ncpi0_sideband_datamc_with_systematics.png", dpi=130, bbox_inches="tight"); plt.close(fig); print("wrote F_ncpi0_sideband_datamc_with_systematics.png")
+        fig.suptitle("NC-pi0-rich sideband (open data) | frozen legacy chain | event level\nPRELIMINARY: " + ("validated available covariance (flux+GENIE+FSI+G4 WITHOUT the unvalidated reinteractions_neutron_Geant4 weight-tail function)" if sfx == "" else "all in-band functions INCLUDING the unvalidated reinteractions_neutron_Geant4 weight-tail function") + "\nNOT included: detector, cosmic/beam-off, dirt, POT, signal-model, imp_weight", fontsize=8)
+        fig.savefig(PLT_ / f"F_ncpi0_sideband_datamc_with_systematics{sfx}.png", dpi=130, bbox_inches="tight"); plt.close(fig); print("wrote F_ncpi0_sideband_datamc_with_systematics" + sfx + ".png")
     d = df[df.test.str.startswith("rate_only")]; fig, ax = plt.subplots(figsize=(8, 3.8)); xs = np.arange(len(regions))
     for k, prod in enumerate(PRODUCTIONS):
         y = d[d.production == prod].set_index("region").loc[regions]; ax.errorbar(xs + (k - 0.5) * 0.18, y.ratio, yerr=y.ratio * y.rel_total, fmt="o", color=["#0072B2", "#D55E00"][k], capsize=3, label=ttl[prod] + " (total)")
         ax.errorbar(xs + (k - 0.5) * 0.18, y.ratio, yerr=y.ratio * np.hypot(y.rel_data_stat, y.rel_mc_stat), fmt="none", ecolor=["#0072B2", "#D55E00"][k], lw=4, alpha=0.35)
     ax.axhline(1, color="k", lw=0.6); ax.set_xticks(xs); ax.set_xticklabels(regions); ax.set_ylabel("integrated data / MC (event level)"); ax.legend(fontsize=7); ax.set_title("thick: data+MC statistics; thin: + available neutrino systematics. MC excludes cosmic-only (beam-off) component", fontsize=8)
-    fig.savefig(PLT_ / "G_sideband_integrated_ratio_with_systematics.png", dpi=130, bbox_inches="tight"); plt.close(fig); print("wrote G_sideband_integrated_ratio_with_systematics.png")
+    fig.savefig(PLT_ / f"G_sideband_integrated_ratio_{tag_name}{sfx}.png", dpi=130, bbox_inches="tight"); plt.close(fig); print("wrote G_sideband_integrated_ratio_" + tag_name + sfx + ".png")
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("stage", choices=["plan", "extract", "analyze"]); ap.add_argument("--regions", nargs="+", default=["SB_ncpi0", "SB_other", "SB_nue"]); ap.add_argument("--workers", type=int, default=24); ap.add_argument("--productions", nargs="+", default=None)
+    ap = argparse.ArgumentParser(); ap.add_argument("stage", choices=["plan", "extract", "analyze"]); ap.add_argument("--regions", nargs="+", default=["SB_ncpi0", "SB_other", "SB_nue"]); ap.add_argument("--workers", type=int, default=24); ap.add_argument("--productions", nargs="+", default=None); ap.add_argument("--exclude-functions", nargs="*", default=[])
     a = ap.parse_args(); assert all(r in REG_ALL for r in a.regions)
-    {"plan": lambda: do_plan(a.regions), "extract": lambda: do_extract(a.regions, a.workers, a.productions), "analyze": lambda: analyze(a.regions, "-".join(a.regions))}[a.stage]()
+    {"plan": lambda: do_plan(a.regions), "extract": lambda: do_extract(a.regions, a.workers, a.productions), "analyze": lambda: analyze(a.regions, "-".join(a.regions), a.exclude_functions)}[a.stage]()

@@ -126,7 +126,9 @@ def main():
             for j in range(3): a_.text(j, i, f"{Mn.values[i, j]:.2f}\n({M.values[i, j]:.0f})", ha="center", va="center", fontsize=8)
         a_.set_xticks(range(3)); a_.set_xticklabels(TOPO); a_.set_yticks(range(3)); a_.set_yticklabels(["truth 0p", "truth 1p", "truth >=2p"]); a_.set_title(f"{p}: {lab}\nrow-normalised (weighted events)", fontsize=8)
     fig.text(0.01, 0.005, "DIAGNOSTIC: MC only (resolved owners), NC-pi0 sideband; truth = post-FSI primary protons with KE > 35 MeV; stat only; no detector systematics", fontsize=7, color="#555")
-    fig.tight_layout(rect=(0, 0.03, 1, 1)); fig.savefig(PLT / "J_ncpi0_truth_reco_topology_migration.png", dpi=110); plt.close(fig)
+    r2 = pd.DataFrame(rows2).set_index("truth")
+    fig.suptitle("Reconstructed 0p/Np is migration-heavy; WCL1116 improves proton finding in MC (same MC events: true 1p -> reco 0p %.0f%% -> %.0f%%, true >=2p -> reco >=2p %.0f%% -> %.0f%%)" % (100 * r2.loc["1p", "old_reco0"], 100 * r2.loc["1p", "new_reco0"], 100 * r2.loc[">=2p", "old_reco2"], 100 * r2.loc[">=2p", "new_reco2"]), fontsize=9)
+    fig.tight_layout(rect=(0, 0.03, 1, 0.93)); fig.savefig(PLT / "J_ncpi0_truth_reco_topology_migration.png", dpi=110); plt.close(fig)
 
 
 if __name__ == "__main__":

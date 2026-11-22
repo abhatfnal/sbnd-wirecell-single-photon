@@ -42,7 +42,7 @@ def products(prod, X, view, tail):
     Qn = np.concatenate([Sn, Bn]); pred = lambda Q: Q[:nb] + Q[nb:]; pur = lambda Q: Q[:nb] / (Q[:nb] + Q[nb:])
     nS, nBn = np.bincount(iS[iS >= 0], minlength=nb), np.bincount(iB[iB >= 0], minlength=nb)
     out = dict(labels=labels, nb=nb, Sn=Sn, Bn=Bn, statS=np.sqrt(nS) * wS, statB=np.sqrt(nBn) * wB, comp={}, per_fn=[])
-    for c in CORDER + list(OUTSIDE) + ["single_event_dominated"]:
+    for c in CORDER + list(OUTSIDE) + ["single_event_dominated", "unvalidated_nG4"]:
         out["comp"][c] = dict(Q=np.zeros((2 * nb, 2 * nb)), pred=np.zeros((nb, nb)), pur=np.zeros((nb, nb)))
     for fn in FT.to_dict("records"):
         sl = slice(fn["start"], fn["stop"]); Qu = np.vstack([YS[:, sl], YB[:, sl]])
@@ -61,10 +61,13 @@ def products(prod, X, view, tail):
         for c, gs in {**(COMP if fn["in_band"] else {}), **{k: [v] for k, v in OUTSIDE.items()}}.items():
             if (fn["group"] in gs) if c in COMP else fn["name"].endswith(gs[0]):
                 out["comp"][c]["Q"] += sc * D @ D.T; out["comp"][c]["pur"] += sc * Dp @ Dp.T; out["comp"][c]["pred"] += sc * Dpred @ Dpred.T
+                if fn["in_band"] and fn["name"] == "reinteractions_neutron_Geant4":      # unvalidated weight-tail function (event-level audit): tracked separately; the 'validated' total excludes only this function
+                    out["comp"]["unvalidated_nG4"]["Q"] += sc * D @ D.T; out["comp"]["unvalidated_nG4"]["pur"] += sc * Dp @ Dp.T; out["comp"]["unvalidated_nG4"]["pred"] += sc * Dpred @ Dpred.T
                 if fn["in_band"] and tail.get(fn["name"], False):
                     out["comp"]["single_event_dominated"]["Q"] += sc * D @ D.T; out["comp"]["single_event_dominated"]["pur"] += sc * Dp @ Dp.T; out["comp"]["single_event_dominated"]["pred"] += sc * Dpred @ Dpred.T
     tot = dict(Q=sum(out["comp"][c]["Q"] for c in CORDER), pred=sum(out["comp"][c]["pred"] for c in CORDER), pur=sum(out["comp"][c]["pur"] for c in CORDER)); out["comp"]["TOTAL_available"] = tot
     out["comp"]["TOTAL_excluding_single_event_dominated"] = {k: tot[k] - out["comp"]["single_event_dominated"][k] for k in tot}
+    out["comp"]["TOTAL_validated_excl_nG4"] = {k: tot[k] - out["comp"]["unvalidated_nG4"][k] for k in tot}
     return out
 
 
@@ -90,7 +93,7 @@ def main():
         for view in ("all", "topo2", "channel3", "energy"):
             P = products(prod, X, view, tail); res[prod][view] = P; nb = P["nb"]
             Sn, Bn = P["Sn"], P["Bn"]; pn = Sn / (Sn + Bn)
-            for c in CORDER + ["TOTAL_available", "TOTAL_excluding_single_event_dominated", "single_event_dominated"] + list(OUTSIDE):
+            for c in CORDER + ["TOTAL_available", "TOTAL_excluding_single_event_dominated", "TOTAL_validated_excl_nG4", "unvalidated_nG4", "single_event_dominated"] + list(OUTSIDE):
                 C = P["comp"][c]; CSS, CBB, CSB = C["Q"][:nb, :nb], C["Q"][nb:, nb:], C["Q"][:nb, nb:]
                 for b in range(nb):
                     sS, sB = np.sqrt(CSS[b, b]), np.sqrt(CBB[b, b]); sP = np.sqrt(C["pur"][b, b]); spred = np.sqrt(C["pred"][b, b])
