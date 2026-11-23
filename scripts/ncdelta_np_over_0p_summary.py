@@ -51,8 +51,8 @@ def main():
     ax.axhline(1, color="k", lw=0.7); ax.set_xticks(xs); ax.set_xticklabels(["preselection", "SB nu-mu-rich", "SB NC-pi0-rich", "SB other-rich", "SB nu-e-rich"], fontsize=8)
     ax.set_ylabel("(Np / 0p)$_{data}$ / (Np / 0p)$_{MC}$"); ax.set_ylim(0, 1.9); ax.legend(loc="upper right", fontsize=8)
     ax.set_title("Reconstructed proton multiplicity: data/MC Np/0p ratio by control region (open data, event level)", fontsize=9)
-    for yy, tx in ((0.085, "PRELIMINARY. Thick bar: data + MC statistics. Thin solid bar: + available flux/GENIE/FSI/G4 covariance excluding the unvalidated function reinteractions_neutron_Geant4."),
-                   (0.055, "Dashed bar: including that function (unvalidated weight-tail function, driven by a handful of events; no approved SBN treatment found)."),
+    for yy, tx in ((0.085, "PRELIMINARY. Thick bar: data + MC statistics. Thin solid bar: + available flux/GENIE/FSI/G4 covariance excluding the unresolved function reinteractions_neutron_Geant4."),
+                   (0.055, "Dashed bar: including that function (unresolved neutron-G4 tail function, driven by a handful of events; no approved SBN treatment found)."),
                    (0.025, "NOT included: detector and proton-reconstruction systematics, cosmic-only (beam-off) MC, dirt, POT, imp_weight.")):
         fig.text(0.01, yy, tx, fontsize=5.8, color="#555")
     fig.tight_layout(rect=(0, 0.11, 1, 1)); fig.savefig(PLT / "K_np_over_0p_double_ratio_by_region.png", dpi=150); plt.close(fig)

@@ -175,7 +175,7 @@ def analyze(regions, tag_name, exclude=()):
 
 
 def figures(regions, mats, df, tag_name, sfx="", other=None):
-    """sfx '' = validated covariance (WITHOUT reinteractions_neutron_Geant4; main figures); '_incl_nG4' = all in-band functions (backup)."""
+    """sfx '' = baseline available covariance (WITHOUT reinteractions_neutron_Geant4; main figures); '_incl_nG4' = all in-band functions (backup)."""
     import matplotlib.pyplot as plt
     from sbnd_single_photon import plotstyle as PS; PS.apply_style(); PLT_ = REPO / "plots" / "ncdelta_purity_datamc"
     ttl = {"old_fg1": "old fg1-era reconstruction", "nov16": "WCLocal2026Nov16"}
@@ -188,13 +188,13 @@ def figures(regions, mats, df, tag_name, sfx="", other=None):
             a0.bar(x, P, 0.9, color="#D9D9D9", edgecolor="#777777", lw=0.6, label="MC prediction (S+B)"); a0.errorbar(x, P, yerr=tot, fmt="none", ecolor="#D55E00", lw=3, label="syst. (available) + MC stat."); a0.errorbar(x, P, yerr=mc, fmt="none", ecolor="#333333", lw=1.2, capsize=2, label="MC stat. only")
             a0.errorbar(x, Dv, yerr=np.sqrt(np.maximum(Dv, 1)), fmt="ko", ms=4, label="open beam-on data"); a0.set_ylim(0, 1.55 * float((P + tot).max())); a0.set_ylabel("events"); a0.set_xticks(x); a0.set_xticklabels([]); a0.set_title(ttl[prod], fontsize=10)
             ra = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("rate_only"))].iloc[0]; rs = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("rate+shape (energy"))].iloc[0]; sh = df[(df.production == prod) & (df.region == r) & (df.test.str.startswith("shape-only (energy"))].iloc[0]
-            oth = "" if other is None else f"\nincl. unvalidated neutron-G4 fn: {(other[(other.production == prod) & (other.region == r) & other.test.str.startswith('rate_only')].iloc[0].n_sigma_from_unity_total):+.1f} sigma"
+            oth = "" if other is None else f"\nincl. unresolved neutron-G4 fn: {(other[(other.production == prod) & (other.region == r) & other.test.str.startswith('rate_only')].iloc[0].n_sigma_from_unity_total):+.1f} sigma"
             a0.text(0.97, 0.95, f"Data/MC = {ra.ratio:.2f} +- {ra.rel_total * ra.ratio:.2f}\n(data {100 * ra.rel_data_stat:.1f}%, MC stat {100 * ra.rel_mc_stat:.1f}%, syst {100 * ra.rel_syst:.1f}%)\ndeviation from 1: {ra.n_sigma_from_unity_total:+.1f} sigma{oth}\nrate+shape chi2/ndof = {rs.chi2:.1f}/{rs.ndof:.0f}\nshape-only chi2/ndof = {sh.chi2:.1f}/{sh.ndof:.0f}", transform=a0.transAxes, ha="right", va="top", fontsize=7.5)
             if ci == 0:
                 a0.legend(fontsize=6.5, loc="upper left")
             rr = Dv / P; a1.fill_between(np.r_[x - 0.45, x[-1] + 0.45], 1 - np.r_[tot / P, (tot / P)[-1]], 1 + np.r_[tot / P, (tot / P)[-1]], color="#D55E00", alpha=0.25, step="post", lw=0)
             a1.errorbar(x, rr, yerr=np.sqrt(np.maximum(Dv, 1)) / P, fmt="ko", ms=4); a1.axhline(1, color="k", lw=0.6); a1.set_ylim(0, 2); a1.set_ylabel("data / MC"); a1.set_xticks(x); a1.set_xticklabels(lab, fontsize=7); a1.set_xlabel("selected-shower energy, lower bin edge [MeV]", fontsize=8)
-        fig.suptitle("NC-pi0-rich sideband (open data) | frozen legacy chain | event level\nPRELIMINARY: " + ("validated available covariance (flux+GENIE+FSI+G4 WITHOUT the unvalidated reinteractions_neutron_Geant4 weight-tail function)" if sfx == "" else "all in-band functions INCLUDING the unvalidated reinteractions_neutron_Geant4 weight-tail function") + "\nNOT included: detector, cosmic/beam-off, dirt, POT, signal-model, imp_weight", fontsize=8)
+        fig.suptitle("NC-pi0-rich sideband (open data) | frozen legacy chain | event level\nPRELIMINARY: " + ("baseline available covariance (flux+GENIE+FSI+G4 WITHOUT the unresolved reinteractions_neutron_Geant4 weight-tail function)" if sfx == "" else "all in-band functions INCLUDING the unresolved reinteractions_neutron_Geant4 weight-tail function") + "\nNOT included: detector, cosmic/beam-off, dirt, POT, signal-model, imp_weight", fontsize=8)
         fig.savefig(PLT_ / f"F_ncpi0_sideband_datamc_with_systematics{sfx}.png", dpi=130, bbox_inches="tight"); plt.close(fig); print("wrote F_ncpi0_sideband_datamc_with_systematics" + sfx + ".png")
     d = df[df.test.str.startswith("rate_only")]; fig, ax = plt.subplots(figsize=(8, 3.8)); xs = np.arange(len(regions))
     for k, prod in enumerate(PRODUCTIONS):

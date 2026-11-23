@@ -1,4 +1,4 @@
-| region | reco | data | MC (S+B) | Data/MC | data stat | MC stat | avail. syst, validated (incl. nG4) | Np/0p data/MC +- (stat+MC+syst validated; incl. nG4) | energy rate+shape chi2/ndof, validated (incl.) | energy shape-only chi2/ndof, validated (incl.) | dominant MC truth | flag |
+| region | reco | data | MC (S+B) | Data/MC | data stat | MC stat | avail. syst, baseline (incl. unresolved nG4 tail) | Np/0p data/MC +- (stat+MC+syst baseline; incl. unresolved nG4 tail) | energy rate+shape chi2/ndof, baseline (incl. nG4 tail) | energy shape-only chi2/ndof, baseline (incl. nG4 tail) | dominant MC truth | flag |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | preselection | old | 8480 | 8622 | 0.98 | 1.1% | 0.4% | 15.1% (23.8%) | 0.82 +- 0.05 (0.28) | 17.9/8 (15.8) | 16.1/7 (14.3) | NUMU_CC 33%; CC_PI0 26% |  |
 | SB_numu | old | 6301 | 6294 | 1.00 | 1.3% | 0.5% | 16.2% (29.6%) | 0.81 +- 0.06 (0.35) | 12.1/8 (10.5) | 9.8/7 (8.7) | NUMU_CC 42%; CC_PI0 31% |  |

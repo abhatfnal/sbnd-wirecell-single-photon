@@ -61,7 +61,7 @@ def products(prod, X, view, tail):
         for c, gs in {**(COMP if fn["in_band"] else {}), **{k: [v] for k, v in OUTSIDE.items()}}.items():
             if (fn["group"] in gs) if c in COMP else fn["name"].endswith(gs[0]):
                 out["comp"][c]["Q"] += sc * D @ D.T; out["comp"][c]["pur"] += sc * Dp @ Dp.T; out["comp"][c]["pred"] += sc * Dpred @ Dpred.T
-                if fn["in_band"] and fn["name"] == "reinteractions_neutron_Geant4":      # unvalidated weight-tail function (event-level audit): tracked separately; the 'validated' total excludes only this function
+                if fn["in_band"] and fn["name"] == "reinteractions_neutron_Geant4":      # unresolved neutron-G4 tail function (event-level audit): tracked separately; the baseline total excludes only this function
                     out["comp"]["unvalidated_nG4"]["Q"] += sc * D @ D.T; out["comp"]["unvalidated_nG4"]["pur"] += sc * Dp @ Dp.T; out["comp"]["unvalidated_nG4"]["pred"] += sc * Dpred @ Dpred.T
                 if fn["in_band"] and tail.get(fn["name"], False):
                     out["comp"]["single_event_dominated"]["Q"] += sc * D @ D.T; out["comp"]["single_event_dominated"]["pur"] += sc * Dp @ Dp.T; out["comp"]["single_event_dominated"]["pred"] += sc * Dpred @ Dpred.T

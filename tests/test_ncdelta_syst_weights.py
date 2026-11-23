@@ -171,7 +171,7 @@ def test_neutron_g4_event_audit_tables_and_policy_are_consistent():
     lead = top[(top.region == "preselection") & (top.quantity == "total_yield") & (top["rank"] == 1)]
     assert set(lead.production) == {"old_fg1", "nov16"} and (lead.run == 8011).all() and (lead.subrun == 91).all() and (lead.evt == 3).all()   # same physical MC event in both productions
     assert (lead.max_weight > 1e5).all() and (top.share_of_variance.between(-1.0, 1.1)).all()
-    # the validated total excludes ONLY the neutron function; no weight was clipped anywhere
+    # the baseline total excludes ONLY the neutron function; no weight was clipped anywhere
     band = pd.read_csv(TABD / "syst_band_by_component.csv"); a = band[(band.view == "all") & (band.component.isin(["TOTAL_available", "TOTAL_validated_excl_nG4", "unvalidated_nG4"]))]
     for prod in ("old_fg1", "nov16"):
         x = a[a.production == prod].set_index("component").sigma_purity_coherent_per_universe
@@ -192,7 +192,7 @@ def test_control_region_summary_matches_the_committed_region_tables_and_the_doub
     for r in d.itertuples():
         a = A[(A.production == r.production) & (A.region == r.region) & A.test.str.startswith("rate_only")].iloc[0]; x = X[(X.production == r.production) & (X.region == r.region) & X.test.str.startswith("rate_only")].iloc[0]
         n = N[(N.production == r.production) & (N.region == r.region)].iloc[0]
-        assert abs(r.data_over_mc - a.ratio) < 1e-9 and r.n_data == a.n_data and abs(r.rel_syst_validated - x.rel_syst) < 1e-9 and abs(r.rel_syst_incl_nG4 - a.rel_syst) < 1e-9
+        assert abs(r.data_over_mc - a.ratio) < 1e-9 and r.n_data == a.n_data and abs(r.rel_syst_baseline - x.rel_syst) < 1e-9 and abs(r.rel_syst_incl_nG4 - a.rel_syst) < 1e-9
         assert x.rel_syst <= a.rel_syst + 1e-12                                                                      # excluding a function can only reduce the covariance
         assert abs(n.double_ratio - (n.data_Np / n.data_0p) / (n.mc_Np / n.mc_0p)) < 1e-9 and abs(r.np_over_0p_double_ratio - n.double_ratio) < 1e-12
         assert n.rel_syst_incl_neutron_g4 >= n.rel_syst_available - 1e-12
