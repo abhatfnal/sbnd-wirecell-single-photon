@@ -1,5 +1,7 @@
 # Upstream SBND Wire-Cell nu_e / nu_mu classifiers: EAF / FermiGrid integration readiness report
 
+> **SUPERSEDED IN PART (2026-11-28, later):** the nominal scoring backend is now Aurora's toolkit-equivalent `wc_upstream_chain` 1.0.0 (vendored, fingerprint verified); the standalone-xgboost scorer described below is cross-check only; V3-V5 are closed on the development fixture and V7 was updated. See `UPSTREAM_EAF_V3V5_CLOSURE_AND_V7_MEMBERSHIP.md`. Statements below that the nominal backend, fixture or membership manifests are pending are historical.
+
 Date: 2026-11-28. Branch `analysis/ncdelta-purity-datamc-20261120` (pushed base `d18b8a8`; this work is local until Avinay reviews).
 Scope: audit the released upstream classifiers, audit the official EAF samples for offline score-only regeneration, prepare an isolated, non-destructive deployment layer, and list what remains before a final evaluation.
 **Nothing was evaluated.** No official sample was read except branch-name metadata of 36 files (4.4); no upstream score was computed on any official event; no selection, threshold, vertex mode or model variant was chosen; no signal-region data were opened; no Aurora development BDT was evaluated. The independent-evaluation policy stays in force and is now enforced in code (section 7).

@@ -320,12 +320,69 @@ def _backend(cfg: dict, backend: str | None, kind: str):
                              f"the standalone xgboost route is cross-check only (backend='xgboost_standalone')")
 
 
-def score_nue(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], backend: str | None = None) -> pd.DataFrame:
-    name, fn = _backend(cfg, backend, "nue"); r = fn(releases, cfg, cands, objs, key); r.attrs["backend"] = name; return r
+BUNDLE_DIR = Path(__file__).resolve().parents[2] / "third_party" / "wc_upstream_chain_bundle"
+
+
+def _bundle(cfg: dict):
+    """Import the vendored toolkit-equivalent scorer and verify its fingerprint against the pin (a modified copy is refused)."""
+    import sys
+    if str(BUNDLE_DIR) not in sys.path: sys.path.insert(0, str(BUNDLE_DIR))
+    import wc_upstream_chain as w
+    pin = cfg["scoring_backend"]["reference_pin"]
+    if w.__version__ != pin["version"] or w.bundle_fingerprint()[0] != pin["bundle_fingerprint"]:
+        raise UpstreamError(f"vendored wc_upstream_chain {w.__version__} / {w.bundle_fingerprint()[0]} != pin {pin['version']} / {pin['bundle_fingerprint']}")
+    return w
+
+
+def _chain_dirs(releases, cfg: dict) -> list[str]:
+    import os
+    shipped = os.environ.get(cfg["scoring_backend"]["shipped_weights_env"])
+    if not shipped: raise UpstreamError(f"set {cfg['scoring_backend']['shipped_weights_env']} to the shipped wire-cell-data directory (99c6497f; numu_tagger3 resolves there)")
+    r = Path(releases)
+    return [str(r / cfg["models"]["nue"]["folder"] / "wirecell" / cfg["models"]["nue"]["variant"]), str(r / cfg["models"]["numu"]["folder"] / "wirecell"), shipped]
+
+
+def _chain_core(releases, cfg, cands, objs, key, kind, numu, nue):
+    w = _bundle(cfg); dirs = _chain_dirs(releases, cfg)
+    uc = w.UpstreamChain(dirs, numu=numu, nue=nue, sim_dqdx_scale=None if numu else 1.0)       # k follows the resolved nu_mu weights: 1.071 for the released numu weights on MC, 1.0 for data
+    if numu and uc.numu_route != "release": raise UpstreamError(f"nu_mu weights resolve to {uc.numu_route!r}, not the pinned release")
+    res = uc.score(cands, objs, kind=kind, key=key)
+    return w, res
+
+
+def _score_nue_chain(releases, cfg, cands, objs, key, is_simulation=None):
+    kind = "mc" if is_simulation else "data"      # the nu_e classifier is NEVER corrected; kind only labels the sample
+    _check_marker(cands, objs, False, cfg, "nue"); w, r = _chain_core(releases, cfg, cands.drop(columns=[CORR_COL], errors="ignore"), objs, key, kind, False, True)
+    out = r[key].copy(); out["up_nue_score"] = r["nue_score"].to_numpy(); L1 = [c for c in r.columns if c.endswith("_score") and c not in ("nue_score", "numu_score", "numu_1_score", "numu_2_score", "cosmict_10_score")]
+    for c in L1: out["up_nue_l1_" + c[:-6]] = r[c].to_numpy()
+    ph, br = r["diag_is_placeholder"].to_numpy().astype(bool) if "diag_is_placeholder" in r else np.zeros(len(r), bool), r["diag_br_filled"].to_numpy()
+    out["up_nue_diag_final_nan_input"] = r["diag_nue_final_nan_input"].to_numpy(); out["up_l1_models_with_nan_object"] = r["diag_l1_models_with_nan_object"].to_numpy() if "diag_l1_models_with_nan_object" in r else 0
+    out["up_nue_status"] = np.select([ph, br != 1, r["diag_nue_final_nan_input"].to_numpy().astype(bool)], [STATUS["placeholder"], STATUS["tagger_not_run"], STATUS["input_nan"]], STATUS["scored"]).astype(np.int8)
+    return out
+
+
+def _score_numu_chain(releases, cfg, cands, objs, key, is_simulation):
+    kind = "mc" if is_simulation else "data"      # the bundle applies the correction (k from the weights) to PRIVATE copies; the inputs here must be RAW (no marker column)
+    if any(_is_marked(f) for f in (cands, *objs.values())): raise UpstreamError("the nominal backend takes RAW CAF-derived inputs and applies the nu_mu correction exactly once to its own private copies; marked (already corrected) copies are refused")
+    w, r = _chain_core(releases, cfg, cands, objs, key, kind, True, False)
+    out = r[key].copy()
+    for c in ("numu_score", "numu_1_score", "numu_2_score", "cosmict_10_score"): out["up_" + c] = r[c].to_numpy()
+    for c in ("diag_numu_cc_flag_switched_off", "diag_numu_final_nan_input", "diag_sim_dqdx_scale"):
+        if c in r: out["up_numu_" + c[len("diag_numu_"):] if c.startswith("diag_numu_") else "up_numu_sim_dqdx_scale"] = r[c].to_numpy()
+    ph = r["diag_is_placeholder"].to_numpy().astype(bool) if "diag_is_placeholder" in r else np.zeros(len(r), bool)
+    out["up_numu_status"] = np.where(ph, STATUS["placeholder"], np.where(r["diag_numu_final_nan_input"].to_numpy().astype(bool), STATUS["input_nan"], STATUS["scored"])).astype(np.int8)
+    return out
+
+
+def score_nue(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], backend: str | None = None, is_simulation: bool = False) -> pd.DataFrame:
+    name, fn = _backend(cfg, backend, "nue"); r = fn(releases, cfg, cands, objs, key) if name in cfg["scoring_backend"]["cross_check_only"] else fn(releases, cfg, cands, objs, key, is_simulation); r.attrs["backend"] = name; return r
 
 
 def score_numu(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], is_simulation: bool, backend: str | None = None) -> pd.DataFrame:
     name, fn = _backend(cfg, backend, "numu"); r = fn(releases, cfg, cands, objs, key, is_simulation); r.attrs["backend"] = name; return r
+
+
+register_backend("toolkit_equivalent", _score_nue_chain, _score_numu_chain)
 
 
 def resolve_route(cfg: dict, production: str, tree: str) -> str:
@@ -429,10 +486,11 @@ def apply_to_sp_inputs(frame: pd.DataFrame, overlay_joined: pd.DataFrame, sp_nam
     """Copy of the single-photon BDT input frame with ONLY the upstream-classifier outputs replaced (mapping ``sp_downstream_dependencies``); every raw reconstruction feature is asserted bit-identical."""
     if "up_origin" not in overlay_joined or set(overlay_joined["up_origin"]) != {expected_origin}: raise OverlayError(f"upstream-score origin {set(overlay_joined.get('up_origin', []))} != required {expected_origin!r}: shipped / stored / cross-check scores must never be mixed into the SP features")
     mp = cfg["sp_downstream_dependencies"][sp_name]; raw = [c for c in cfg["sp_downstream_dependencies"]["raw_features_that_must_stay_raw"] if c in frame.columns]
-    st_col = "up_nue_status" if any(v.startswith("up_nue") for v in mp.values()) else "up_numu_status"
-    if mp and on_unscored == "error" and (overlay_joined[st_col].to_numpy() != STATUS["scored"]).any():
-        raise OverlayError(f"{sp_name}: {(overlay_joined[st_col].to_numpy() != STATUS['scored']).sum()} candidates have no upstream score ({st_col} != scored); decide the convention for them explicitly (on_unscored='keep_flagged')")
-    out = frame.copy(); ok = overlay_joined[st_col].to_numpy() == STATUS["scored"] if mp else np.ones(len(frame), bool); out["upstream_replaced"] = ok; out["upstream_origin"] = expected_origin
+    cols = list(mp.values()); vals = overlay_joined[cols].to_numpy(np.float64) if cols else np.zeros((len(frame), 0))
+    ok = np.isfinite(vals).all(axis=1)
+    if mp and on_unscored == "error" and not ok.all():
+        raise OverlayError(f"{sp_name}: {int((~ok).sum())} candidates have a non-finite upstream value in {cols}; the chain stores a value for EVERY candidate (placeholders and br_filled == 0 included), so this is a scoring failure, not a convention")
+    out = frame.copy(); out["upstream_replaced"] = ok; out["upstream_origin"] = expected_origin
     for sp_col, up_col in mp.items():
         if sp_col not in frame.columns: raise OverlayError(f"{sp_name}: input {sp_col!r} not in the frame")
         out.loc[ok, sp_col] = overlay_joined.loc[ok, up_col].to_numpy()
@@ -475,6 +533,22 @@ def validate_frozen_bundle(b: dict, cfg: dict | None = None) -> list[str]:
         if unk: bad.append(f"sp_models[{m.get('name')}] uses unknown overlay columns {sorted(unk)}")
         raw = set(m.get("raw_features_used") or []) & set(cfg["simulation_correction"]["inputs"])
         if raw and not m.get("raw_features_used"): bad.append("raw features missing")
+    dr = b.get("deployment_route") or {}; route = dr.get("route")
+    if route not in ("R1", "R2"): bad.append("deployment_route.route must be R1 or R2")
+    if route == "R1":
+        e = dr.get("r1_evidence") or {}
+        if not hexre.match(str(e.get("job_manifest_sha256", ""))): bad.append("r1_evidence.job_manifest_sha256 is not a sha256")
+        for k in ("all_sim_jobs_release_weights", "all_sim_jobs_k_1p071", "no_data_job_corrected"):
+            if e.get(k) is not True: bad.append(f"r1_evidence.{k} must be true")
+        if len(set(e.get("sites") or [])) < 2: bad.append("r1_evidence.sites must name both production sites")
+    if route == "R2":
+        e = dr.get("r2_evidence") or {}
+        if not hexre.match(str(e.get("final_domain_closure_report_sha256", ""))): bad.append("r2_evidence.final_domain_closure_report_sha256 is not a sha256")
+        if e.get("final_domain_closure_exact") is not True: bad.append("r2_evidence.final_domain_closure_exact must be true")
+    bo = b.get("beam_off_normalization") or {}
+    if bo.get("evaluation_files") != "even_run_only": bad.append("beam_off_normalization.evaluation_files must be even_run_only")
+    for k in ("counter_convention", "live_time_treatment", "run_coverage_statement", "approved_by"): need(f"beam_off_normalization.{k}", bo.get(k))
+    if not hexre.match(str(bo.get("even_run_exposure_ledger_sha256", ""))): bad.append("beam_off_normalization.even_run_exposure_ledger_sha256 is not a sha256")
     sm = b.get("selection_manifest") or {}
     for k in ("file", "candidate_policy", "fiducial_volume", "signal_definition", "topology_definition"): need(f"selection_manifest.{k}", sm.get(k))
     if not hexre.match(str(sm.get("sha256", ""))): bad.append("selection_manifest.sha256 is not a sha256")

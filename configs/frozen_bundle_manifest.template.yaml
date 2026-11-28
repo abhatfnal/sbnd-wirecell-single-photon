@@ -26,6 +26,24 @@ production:
   vertex_configuration: ""          # dv2_split_move / snap, DL bundle sha256
   effective_boundary_treatment: ""  # box / effective boundary; which production implements it
   upstream_applicability_statement: ""   # Xuyang's statement that the released models apply to THIS production's inputs (the models were trained on WCLocal2026Nov16)
+deployment_route:                   # R1 or R2 for the FINAL production (see configs/upstream_release.yaml, comment at the end)
+  route: ""                         # R1 (final production already stores released-model scores) | R2 (offline regeneration with the toolkit-equivalent scorer)
+  r1_evidence:                      # R1 only: evidence that the CORRECT upstream weights and correction configuration were applied to EVERY relevant simulation production job at BOTH sites, and no data job was corrected
+    job_manifest_sha256: ""         # per-job table: site, sample, job id, weights directory fingerprints (== release chain fingerprints), numu_sim_dqdx_scale, reality
+    all_sim_jobs_release_weights: false
+    all_sim_jobs_k_1p071: false
+    no_data_job_corrected: false
+    sites: []                       # must name both production sites
+  r2_evidence:                      # R2 only: NEW closure on the final domain
+    final_domain_closure_report_sha256: ""
+    final_domain_closure_exact: false
+beam_off_normalization:             # required before any beam-off enters an evaluation (no factor is derived from physics distributions)
+  evaluation_files: "even_run_only"
+  even_run_exposure_ledger_sha256: ""      # gates/triggers/live-time per even-run file (the odd-run half is upstream training data and excluded)
+  counter_convention: ""                   # gate counters vs recorded triggers, approved by the collaboration
+  live_time_treatment: ""
+  run_coverage_statement: ""               # compatibility with the open-data runs (no beam-off file exists in run 18255)
+  approved_by: ""
 sp_models:                          # the four retrained single-photon BDTs (numu, other, ncpi0, nue)
   - name: ""
     file: ""

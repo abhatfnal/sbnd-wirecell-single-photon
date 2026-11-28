@@ -1,0 +1,5 @@
+official_sample,member_set,member_sample,n_official_files,n_member_rows,files_same_name,files_same_genjob,run_subrun_event_coincidences,shared_seeds,verdict,reason
+official_gen2_ncdelta,aurora_membership_events,wcl1116-aurora-ncdr,9150,26745,0,0,0,0,UNDETERMINED_INDEPENDENCE,"no file / job-id / run-number overlap, but the generator seed namespace of the official production is not documented"
+bnb_cv,aurora_membership_events,wcl1116-aurora-bnb,37742,626441,0,0,0,0,UNDETERMINED_INDEPENDENCE,"no file / job-id / run-number overlap, but the generator seed namespace of the official production is not documented"
+nuecc,aurora_membership_events,wcl1116-aurora-nuecc,11441,268783,0,0,0,0,UNDETERMINED_INDEPENDENCE,"no file / job-id / run-number overlap, but the generator seed namespace of the official production is not documented"
+beam_off,aurora_membership_events,wcl1116-fg-beamoff-train,1058,2475,544,0,2475,0,CONFIRMED_IDENTICAL_FILE,

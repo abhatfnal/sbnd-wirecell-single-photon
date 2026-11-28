@@ -25,7 +25,7 @@ def test_config_pins_the_defaults_and_is_unauthorised():
     assert CFG["simulation_correction"]["k"] == 1.071 and CFG["simulation_correction"]["update_flag1"] is True
     g = CFG["evaluation_guard"]
     assert g["authorized"] is False and not any(str(g[k]).strip() for k in ("approved_by", "approved_date", "frozen_model_bundle_sha256", "selection_manifest_sha256"))
-    assert CFG["fixtures"] == [] and CFG["applicability"]["old_fg1"]["applicable"] is False and CFG["applicability"]["nov16"]["applicable"] is True
+    assert CFG["fixtures"] == ["upstream_r4_dev_fixture_v1"] and CFG["applicability"]["old_fg1"]["applicable"] is False and CFG["applicability"]["nov16"]["applicable"] is True
 
 
 def test_every_registered_sample_is_refused():
@@ -63,7 +63,7 @@ def test_sp_dependency_map_matches_committed_input_tables():
 def test_no_scores_or_overlays_of_official_samples_in_the_repo():
     bad = [p for p in (REPO / "tables").rglob("*") if p.is_file() and ("overlay" in p.name.lower() or p.name.startswith("up_") or "upstream_scores" in p.name)]
     assert not bad, bad
-    allowed = {"release_audit.json", "release_file_hashes.csv", "required_inputs.csv", "baseline_artifact_hashes.csv", "schema_audit_branches.csv", "schema_audit_summary.json", "sample_applicability.csv", "official_id_space_summary.csv", "beam_off_membership_ledger.csv", "membership_audit_result.csv"}
+    allowed = {"release_audit.json", "release_file_hashes.csv", "required_inputs.csv", "baseline_artifact_hashes.csv", "schema_audit_branches.csv", "schema_audit_summary.json", "sample_applicability.csv", "official_id_space_summary.csv", "beam_off_membership_ledger.csv", "membership_audit_result.csv", "fixture_closure_report.json", "membership_audit_summary.json", "official_vs_aurora_membership.csv"}
     assert {p.name for p in (REPO / "tables/upstream_release").iterdir()} <= allowed        # metadata / provenance only: no score table of any sample
 
 
@@ -147,9 +147,11 @@ def test_sentinel_convention_and_sp_input_replacement():
     j["up_numu_1_score"], j["up_cosmict_10_score"], j["up_numu_2_score"] = 0.1, 0.2, 0.3
     out = US.apply_to_sp_inputs(sp, j, "other_sp", CFG); assert (out.numu_score == 1.0).all() and (out.cosmict_10_score == 0.2).all() and out.upstream_replaced.all()
     assert out.cosmict_2_dQ_dx_end.equals(sp.cosmict_2_dQ_dx_end) and out.numu_cc_flag.equals(sp.numu_cc_flag) and (sp.numu_score == -9.0).all()      # raw features identical; input frame untouched
-    j2 = j.copy(); j2.loc[2, "up_numu_status"] = US.STATUS["tagger_not_run"]
-    with pytest.raises(US.OverlayError, match="no upstream score"): US.apply_to_sp_inputs(sp, j2, "other_sp", CFG)
-    assert (~US.apply_to_sp_inputs(sp, j2, "other_sp", CFG, on_unscored="keep_flagged").upstream_replaced).sum() == 1
+    j2 = j.copy(); j2.loc[2, "up_numu_status"] = US.STATUS["tagger_not_run"]; j2.loc[3, "up_nue_status"] = US.STATUS["placeholder"]
+    assert US.apply_to_sp_inputs(sp, j2, "other_sp", CFG).upstream_replaced.all()                       # statuses are descriptive: the chain stores a value for EVERY candidate (br_filled == 0, placeholders)
+    j3 = j.copy(); j3.loc[2, "up_numu_score"] = np.nan
+    with pytest.raises(US.OverlayError, match="non-finite"): US.apply_to_sp_inputs(sp, j3, "other_sp", CFG)
+    assert (~US.apply_to_sp_inputs(sp, j3, "other_sp", CFG, on_unscored="keep_flagged").upstream_replaced).sum() == 1
 
 
 def test_overlay_is_versioned_and_needs_provenance(tmp_path):
@@ -256,9 +258,14 @@ def test_bundle_template_is_incomplete_by_design_and_a_complete_one_passes():
     t.update(frozen_utc="2026-12-01T00:00:00Z", frozen_by="X Y", code=dict(repo="r", commit="c"), production=dict(name="WCLocal2026Nov16", wct="0.38.0", wc_tree="recTreeWireCell", vertex_configuration="dv2_split_move", effective_boundary_treatment="box", upstream_applicability_statement="trained here"))
     t["sp_models"] = [dict(name=n, file="f", sha256=h, xgboost_version="3.4.1", inputs_file="i", inputs_sha256=h, upstream_score_inputs=({"numu_score": "up_numu_score"} if n == "numu" else {}), raw_features_used=[], score_definition="margin", sentinel_policy="s", frozen_thresholds={"cut": 0.0}) for n in ("numu", "other", "ncpi0", "nue")]
     t["upstream_scorer"].update(repo="r", commit="c", sha256=h, closure_report="x", closure_report_sha256=h, closure_exact=True, standalone_xgboost_used_for_production=False)
+    t["deployment_route"].update(route="R2", r2_evidence=dict(final_domain_closure_report_sha256=h, final_domain_closure_exact=True))
+    t["beam_off_normalization"].update(even_run_exposure_ledger_sha256=h, counter_convention="gates", live_time_treatment="x", run_coverage_statement="y", approved_by="Z")
     t["selection_manifest"].update(file="s", sha256=h, candidate_policy="any", fiducial_volume="box", signal_definition="d", topology_definition="t")
     t["training_membership"].update(manifests=[{"sample": "x"}], split_rule="r", beam_off_half_used_for_training="odd", sets_covered=["upstream_fit", "upstream_dev", "sp_fit", "sp_nested_val", "sp_outer_holdout", "dlvertex_train"], dlvertex_training_membership="d", beam_off_upstream_training_files="b")
     assert US.validate_frozen_bundle(t, CFG) == []
+    r1 = yaml.safe_load(yaml.safe_dump(t)); r1["deployment_route"].update(route="R1", r1_evidence=dict(job_manifest_sha256="x", all_sim_jobs_release_weights=True, all_sim_jobs_k_1p071=False, no_data_job_corrected=True, sites=["aurora"]))
+    pr1 = US.validate_frozen_bundle(r1, CFG); assert any("job_manifest_sha256" in q for q in pr1) and any("all_sim_jobs_k_1p071" in q for q in pr1) and any("both production sites" in q for q in pr1)
+    bo = yaml.safe_load(yaml.safe_dump(t)); bo["beam_off_normalization"]["evaluation_files"] = "all"; assert any("even_run_only" in q for q in US.validate_frozen_bundle(bo, CFG))
     t["upstream_release"]["nue"]["variant"] = "nogap"; t["production"]["wc_tree"] = "recTreeWireCell_dv2snap"; t["validation"]["no_official_sample_used"] = False; t["upstream_scorer"]["standalone_xgboost_used_for_production"] = True; t["upstream_scorer"]["closure_exact"] = False
     p2 = US.validate_frozen_bundle(t, CFG); assert any("nue variant" in x for x in p2) and any("verified for that tree only" in x for x in p2) and any("no_official_sample_used" in x for x in p2) and any("standalone_xgboost" in x for x in p2) and any("closure_exact" in x for x in p2)
 
@@ -283,9 +290,15 @@ def test_committed_schema_audit_is_complete():
 
 
 # ---------------------------------------------------------------- backend / origin / route / fixture guards ----------------------------------------------------------------
-def test_nominal_backend_is_not_available_until_delivered_and_standalone_cannot_write_production(tmp_path):
-    assert CFG["scoring_backend"]["nominal"] == "toolkit_equivalent" and CFG["scoring_backend"]["cross_check_only"] == ["xgboost_standalone"] and CFG["scoring_backend"]["reference_pin"]["commit"] == ""
-    with pytest.raises(US.BackendUnavailable, match="toolkit-equivalent"): US.score_nue("x", CFG, None, {}, US.UPSTREAM_KEY)
+def test_nominal_backend_is_the_vendored_toolkit_equivalent_scorer_and_standalone_cannot_write_production(tmp_path, monkeypatch):
+    pin = CFG["scoring_backend"]["reference_pin"]
+    assert CFG["scoring_backend"]["nominal"] == "toolkit_equivalent" and CFG["scoring_backend"]["cross_check_only"] == ["xgboost_standalone"] and "toolkit_equivalent" in US.BACKENDS
+    w = US._bundle(CFG); assert w.__version__ == "1.0.0" and w.bundle_fingerprint()[0] == pin["bundle_fingerprint"] == "976614411c847041139eacd50ca8ffba54d50eb1083359fe73167e8fe4ad0c9e"
+    assert pin["canonical_release_inventory_fingerprint"] == "1d48baed0b3d386b3848c20829099b736f42d6020456f4ea60dd4dbbf60c1f9f"
+    bad = yaml.safe_load(yaml.safe_dump(CFG)); bad["scoring_backend"]["reference_pin"]["bundle_fingerprint"] = "0" * 64
+    with pytest.raises(US.UpstreamError, match="!= pin"): US._bundle(bad)                                   # a modified / different bundle is refused
+    monkeypatch.delenv(CFG["scoring_backend"]["shipped_weights_env"], raising=False)
+    with pytest.raises(US.UpstreamError, match="SP_SHIPPED_WIRECELL_DATA"): US.score_nue("x", CFG, pd.DataFrame(), {}, US.UPSTREAM_KEY)
     with pytest.raises(US.BackendUnavailable): US.score_numu("x", CFG, None, {}, US.UPSTREAM_KEY, True, backend="not_registered")
     k = ["k"]; a = pd.DataFrame(dict(k=[1])); a.attrs["backend"] = "xgboost_standalone"; b = a.copy(); b.attrs["backend"] = "xgboost_standalone"
     ov = US.make_overlay(a, b, k, US.provenance_record(CFG, "synthetic", "nov16", True, 1, "fixture"))
@@ -294,9 +307,16 @@ def test_nominal_backend_is_not_available_until_delivered_and_standalone_cannot_
     with pytest.raises(US.OverlayError, match="cross_check"): US.write_overlay(ov, tmp_path / "x.parquet")
     c = b.copy(); c.attrs["backend"] = "other"
     with pytest.raises(US.OverlayError, match="ONE backend"): US.make_overlay(a, c, k, {})
-    US.register_backend("toolkit_equivalent", lambda *a, **k: pd.DataFrame(), lambda *a, **k: pd.DataFrame())
-    try: assert US.score_nue("x", CFG, None, {}, US.UPSTREAM_KEY).attrs["backend"] == "toolkit_equivalent"
-    finally: US.BACKENDS.clear()
+    a.attrs["backend"] = b.attrs["backend"] = "toolkit_equivalent"; n = US.make_overlay(a, b, k, US.provenance_record(CFG, "synthetic", "nov16", True, 1, "fixture")); assert n["up_origin"].iloc[0] == US.ORIGIN_NOMINAL and n.attrs["provenance"]["backend_nominal"]
+
+
+def test_canonical_inventory_fingerprint_and_vendored_bundle_agree_with_the_committed_tables():
+    import hashlib
+    h = pd.read_csv(REPO / "tables/upstream_release/release_file_hashes.csv"); mod = h[~h.role.isin(["manifest", "correction", "chain_weights_json"])]
+    assert len(mod) == 57 and mod.path.is_unique
+    lines = "".join(f"{p} {s}\n" for p, s in sorted(zip(mod.path, mod.sha256_manifest))); assert hashlib.sha256(lines.encode()).hexdigest() == CFG["scoring_backend"]["reference_pin"]["canonical_release_inventory_fingerprint"]
+    import sys; sys.path.insert(0, str(REPO / "third_party/wc_upstream_chain_bundle")); import wc_upstream_chain as w
+    assert w.release_inventory()["fingerprints"]["canonical_inventory"] == CFG["scoring_backend"]["reference_pin"]["canonical_release_inventory_fingerprint"]
 
 
 def test_origins_are_never_mixed_into_sp_features():
@@ -331,15 +351,71 @@ def test_fixture_registration_refuses_official_files_and_closure_is_exact():
     assert US.closure_report(e, g.iloc[:2], ["k"], ["s"])["missing_rows"] == 1
 
 
-def test_membership_classification_separates_overlap_from_id_collision():
+def test_membership_classification_never_treats_different_job_ids_as_independence():
     import importlib.util
     sp = importlib.util.spec_from_file_location("ma", REPO / "scripts/upstream_membership_audit.py"); ma = importlib.util.module_from_spec(sp); sp.loader.exec_module(ma)
     off = pd.DataFrame(dict(sample="official_gen2_ncdelta", file_name=["reco2-x-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root", "reco2-x-gen-0013-f189-8bbd-676e_ncdeltarad.wc.flat.caf.root"], run=[201, 202], subrun=[1, 1], event=[5, 6]))
     off["gen_id"] = off.file_name.map(ma.gen_id); assert off.gen_id.tolist() == ["0009-3f30-ac82-477c", "0013-f189-8bbd-676e"]
-    v = lambda m: ma.classify(off, pd.DataFrame(m)).verdict.iloc[0]
-    assert v(dict(set="upstream_fit", sample="a", file_name=["reco2-x-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root"])) == "TRUE_OVERLAP_FILE"
-    assert v(dict(set="upstream_fit", sample="a", file_name=["reco1-y-filter-gen-0013-f189-8bbd-676e_ncdeltarad.root"])) == "TRUE_OVERLAP_GENJOB"            # same production job, different stage file
-    assert v(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"], run=[201], subrun=[1], event=[5])) == "ID_COLLISION"             # same numbers, different job
-    assert v(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"])) == "DISJOINT"
-    assert v(dict(set="sp_fit", sample="a", run=[1], subrun=[1], event=[1])) == "UNDETERMINED"                                                        # no file/job identifier: cannot decide
-    L = ma.beam_off_ledger(); assert len(L) == 1058 and (L.groupby("parity").size().to_dict() == {"even": 486, "odd": 572}) and (L.in_sp_other_staged_558.astype(bool).sum() in (0, 558)) and (L[L.parity == "odd"].policy_class == "UPSTREAM_TRAINING_HALF_EXCLUDE").all()
+    v = lambda m, **k: ma.classify(off, pd.DataFrame(m), **k).verdict.iloc[0]
+    assert v(dict(set="upstream_fit", sample="a", file_name=["reco2-x-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root"])) == "CONFIRMED_IDENTICAL_FILE"
+    assert v(dict(set="upstream_fit", sample="a", file_name=["reco1-y-filter-gen-0013-f189-8bbd-676e_ncdeltarad.root"])) == "CONFIRMED_SHARED_GENERATOR_ANCESTRY"      # same production job, different stage file
+    assert v(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"], run=[201], subrun=[1], event=[5])) == "NUMERICAL_COLLISION_NO_ANCESTRY"
+    o2 = off.assign(seed=[750004154, 750004155])
+    own = ma.classify(o2, pd.DataFrame(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"], seed=[750004154]))); assert own.verdict.iloc[0] == "SHARED_SEED_REQUIRES_VERIFICATION"
+    # different job ids and different run numbers: NOT independence unless the official seed namespace is documented and distinct
+    m = dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"], run=[7000005], subrun=[1], event=[1])
+    assert v(m) == "UNDETERMINED_INDEPENDENCE" and "seed namespace" in ma.classify(off, pd.DataFrame(m)).reason.iloc[0]
+    assert v(m, official_seed_documented={"official_gen2_ncdelta": "distinct_namespace"}) == "ESTABLISHED_DISJOINT"
+    assert v(dict(set="sp_fit", sample="a", run=[1], subrun=[1], event=[1])) == "UNDETERMINED_INDEPENDENCE"                                                       # no file / job identifier at all
+    assert v(dict(set="train", sample="beamoff", file_name=["other-run1-file.root"], is_data=[True])) == "ESTABLISHED_DISJOINT"                                      # data files: no generator, no file in common
+    assert ma.OFFICIAL_SEED_NAMESPACE_DOCUMENTED == {}                                                                                                            # no official seed namespace is documented today
+    L = ma.beam_off_ledger(); assert len(L) == 1058 and (L.groupby("parity").size().to_dict() == {"even": 486, "odd": 572}) and (L[L.parity == "odd"].policy_class == "UPSTREAM_TRAINING_HALF_EXCLUDE").all() and (L.in_sp_other_staged_558.astype(bool).sum() in (0, 558))
+
+
+def test_committed_v7_result_reports_ncdelta_undetermined_and_beamoff_identical():
+    r = pd.read_csv(REPO / "tables/upstream_release/official_vs_aurora_membership.csv").set_index("official_sample")
+    assert r.loc["official_gen2_ncdelta", "verdict"] == "UNDETERMINED_INDEPENDENCE" and r.loc["official_gen2_ncdelta", ["files_same_name", "files_same_genjob", "run_subrun_event_coincidences"]].sum() == 0
+    assert r.loc["beam_off", "verdict"] == "CONFIRMED_IDENTICAL_FILE" and r.loc["beam_off", "files_same_name"] >= 544
+    import importlib.util
+    sp = importlib.util.spec_from_file_location("ma", REPO / "scripts/upstream_membership_audit.py"); ma = importlib.util.module_from_spec(sp); sp.loader.exec_module(ma); assert set(r.verdict) <= set(ma.VERDICTS)
+
+
+# ---------------------------------------------------------------- closure on the authorised development fixture (skipped if not present) ----------------------------------------------------------------
+FIXTURE = Path(os.environ.get("SP_UPSTREAM_FIXTURE_DIR", "/exp/sbnd/data/users/abhat/single_photon_ncdelta/aurora_fixtures/upstream_r4_dev_fixture_v1")); SHIPPED = os.environ.get("SP_SHIPPED_WIRECELL_DATA", "")
+needs_fixture = pytest.mark.skipif(not ((FIXTURE / "FIXTURE_MANIFEST.json").exists() and (CLONE / "releases").exists() and SHIPPED), reason="fixture, release clone or SP_SHIPPED_WIRECELL_DATA missing")
+
+
+@needs_fixture
+def test_nominal_adapter_is_bit_exact_on_the_fixture_and_never_corrects_data_or_nue(monkeypatch):
+    monkeypatch.setenv(CFG["scoring_backend"]["shipped_weights_env"], SHIPPED); man = json.loads((FIXTURE / "FIXTURE_MANIFEST.json").read_text()); rel = CLONE / "releases"; n = 0
+    assert man["name"] in CFG["fixtures"]
+    for case in man["cases"]:
+        d = FIXTURE / case["dir"]
+        if not d.is_dir(): continue
+        C = pd.read_parquet(d / "cands.parquet"); E = pd.read_parquet(d / "expected_upstream.parquet"); key = case["key"]; sim = case["kind"] == "mc"; before = C.copy(deep=True)
+        O = {m: pd.read_parquet(d / f"objs_{m}.parquet") for m in json.loads((rel / "numu_round3af/manifest.json").read_text())["level1"]["models"]}
+        O.update({m: pd.read_parquet(d / f"objs_{m}.parquet") for m in json.loads((rel / "nue_round4_ruleA_v2/manifest.json").read_text())["level1"]["models"]})
+        nue = US.score_nue(rel, CFG, C, O, key, is_simulation=sim); numu = US.score_numu(rel, CFG, C, O, key, sim)
+        pd.testing.assert_frame_equal(C, before)                                                                    # raw inputs untouched
+        bits = lambda x: np.asarray(x, np.float64).astype(np.float32).view(np.uint32)
+        assert (bits(nue.up_nue_score) == bits(E.chain_release_nue_score)).all() and (bits(numu.up_numu_score) == bits(E.chain_release_numu_score)).all(), case["dir"]
+        for m in ("br3_3", "pio_2", "tro_5"): assert (bits(nue["up_nue_l1_" + m]) == bits(E[f"chain_release_{m}_score"])).all()
+        assert (E.fixture_tags.fillna("").str.contains("br_filled_0")).any() == bool((nue.up_nue_status == US.STATUS["tagger_not_run"]).any())             # br_filled == 0 rows carry chain values, flagged not NaN
+        assert np.isfinite(nue.up_nue_score).all() and np.isfinite(numu.up_numu_score).all(); n += 1
+        if not sim: assert (numu.get("up_numu_sim_dqdx_scale", pd.Series([1.0])) == 1.0).all()                      # data are never corrected
+    assert n == 8
+    mk = C.assign(**{US.CORR_COL: 1.071})
+    with pytest.raises(US.UpstreamError, match="exactly once"): US.score_numu(rel, CFG, mk, O, key, True)           # a marked (already corrected) copy is refused by the nominal backend
+
+
+@needs_fixture
+def test_closure_script_report_is_exact(tmp_path):
+    out = tmp_path / "r.json"; env = dict(os.environ, SP_SHIPPED_WIRECELL_DATA=SHIPPED)
+    r = subprocess.run([sys.executable, str(REPO / "scripts/upstream_fixture_closure.py"), "--fixture", str(FIXTURE), "--releases", str(CLONE / "releases"), "--builder", str(CLONE / "tables/build_tables.py"), "--shipped", SHIPPED, "--out", str(out)], capture_output=True, text=True, env=env)
+    assert r.returncode == 0, r.stderr[-600:]; rep = json.loads(out.read_text())
+    assert rep["blocks"]["fixture_checksums"]["mismatches"] == 0 and rep["blocks"]["release_verification"]["ok"]
+    assert all(all(v["exact"] == v["n"] for v in c["release_vs_expected"].values()) for c in rep["cases"])
+    for mode, b in rep["reader_and_in_chain"].items():
+        assert all(not v["cand_columns_mismatching"] and v["keys_equal"] and all(not o["mismatching_columns"] for o in v["objs"].values()) for k, v in b.items() if k.startswith("V3_"))
+        assert all(all(o["exact"] == o["n"] for o in v["outputs"].values()) for v in b["V4_in_chain"].values()) and all(v["joined_one_to_one"] for v in b["V5_identity"].values())
+    assert all(not v["features_D_columns_not_exact"] and v["raw_features_unchanged"] and all(d["bits_equal"] == d["rows"] for d in v.values() if isinstance(d, dict) and "bits_equal" in d) for v in rep["sp_chain"].values())

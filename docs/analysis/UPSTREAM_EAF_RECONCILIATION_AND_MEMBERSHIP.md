@@ -1,5 +1,7 @@
 # Upstream classifier integration, part 2: numerical reconciliation, V3-V5 closure, V7 membership, beam-off ledger, final-bundle checklist
 
+> **SUPERSEDED IN PART (2026-11-28, later):** the nominal scoring backend is now Aurora's toolkit-equivalent `wc_upstream_chain` 1.0.0 (vendored, fingerprint verified); the standalone-xgboost scorer described below is cross-check only; V3-V5 are closed on the development fixture and V7 was updated. See `UPSTREAM_EAF_V3V5_CLOSURE_AND_V7_MEMBERSHIP.md`. Statements below that the nominal backend, fixture or membership manifests are pending are historical.
+
 Date: 2026-11-28. Follows `UPSTREAM_WC_CLASSIFIER_EAF_INTEGRATION_READINESS.md` (pushed checkpoint `fc31cf9`).
 Policy unchanged: no official new-model evaluation, no beam-on signal-region access, the `evaluation_guard` is **not** authorised, no thresholds, models or vertex configurations are chosen here. Everything below is bookkeeping, code and tests; no classifier score, kinematic distribution, selection output or blinded datum of an official sample was read.
 

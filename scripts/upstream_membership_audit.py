@@ -10,8 +10,9 @@ Membership manifest (CSV/parquet), one row per file (or per event if known):
   sample     : e.g. aurora_bnb_cv, aurora_ncdr, aurora_nuecc, aurora_beam_off  (required)
   file_name  : the CAF / reco file name WITHOUT directory (preferred)            gen_id : production job id as in `filter-gen-<4>-<4>-<4>-<4>` or `Gen2_2026-<4>-<4>-<4>-<4>` (if file_name absent)
   run, subrun, event : optional event-level identifiers                          ancestry : free text, e.g. SAM parent chain / production name (needed to separate collisions from overlaps)
-Classes: TRUE_OVERLAP_FILE (same file name), TRUE_OVERLAP_GENJOB (same production job id: same generated events), ID_COLLISION (same run/subrun/event numbers, different job id and ancestry:
-a numerical coincidence between distinct productions, NOT an overlap), DISJOINT (all identifiers present and none match), UNDETERMINED (the manifest lacks the identifier needed to decide).
+Verdicts (VERDICTS): CONFIRMED_IDENTICAL_FILE; CONFIRMED_SHARED_GENERATOR_ANCESTRY (same production job id); CONFIRMED_GENERATOR_IDENTICAL_EVENTS (only from delivered evidence, e.g. Aurora's duplicate groups);
+SHARED_SEED_REQUIRES_VERIFICATION; NUMERICAL_COLLISION_NO_ANCESTRY (same run/subrun/event numbers, no shared ancestry: a coincidence of distinct productions); ESTABLISHED_DISJOINT (data files with no file in common,
+or a documented distinct seed namespace); UNDETERMINED_INDEPENDENCE. Different job ids alone never establish independence.
 """
 import re, sys
 from pathlib import Path
@@ -65,21 +66,37 @@ def id_space_summary() -> pd.DataFrame:
     return A.merge(pd.DataFrame(ev), on=["production", "sample"], how="left")
 
 
-def classify(official: pd.DataFrame, member: pd.DataFrame) -> pd.DataFrame:
-    """official: columns sample, file_name, gen_id, [run, subrun, event]; member: the delivered manifest. One row per (official sample, member set) with counts of each class."""
-    out = []
+VERDICTS = ["CONFIRMED_IDENTICAL_FILE", "CONFIRMED_SHARED_GENERATOR_ANCESTRY", "CONFIRMED_GENERATOR_IDENTICAL_EVENTS", "SHARED_SEED_REQUIRES_VERIFICATION", "NUMERICAL_COLLISION_NO_ANCESTRY", "ESTABLISHED_DISJOINT", "UNDETERMINED_INDEPENDENCE"]
+# Official sample -> documented generator seed namespace. EMPTY on purpose: neither SAM nor the production files record the generator seeds / NuRandomService offsets of the official productions, so
+# "different job ids and different run numbers" can never by itself establish independence. A sample is added here only with a written reference (production fcl / logs).
+OFFICIAL_SEED_NAMESPACE_DOCUMENTED: dict = {}
+
+
+def classify(official: pd.DataFrame, member: pd.DataFrame, official_seed_documented: dict | None = None) -> pd.DataFrame:
+    """official: columns sample, file_name, gen_id, [run, subrun, event]; member: the delivered manifest (see module docstring). One row per (official sample, member set, member sample).
+    Different production job ids or different run numbers are NOT sufficient: Aurora found generator-identical events under repeated GEN seeds with different subruns, so independence is
+    ESTABLISHED_DISJOINT only for data files (no generator) or when the official seed namespace is documented and distinct from the member's."""
+    documented = OFFICIAL_SEED_NAMESPACE_DOCUMENTED if official_seed_documented is None else official_seed_documented; out = []
     for (sset, msample), m in member.groupby(["set", "sample"]):
         mn = set(m["file_name"].dropna()) if "file_name" in m else set(); mg = set(m["gen_id"].dropna()) if "gen_id" in m else set()
         if "file_name" in m: mg |= {gen_id(n) for n in mn if gen_id(n)}
         has_ev = all(c in m for c in ("run", "subrun", "event")); mev = set(map(tuple, m[["run", "subrun", "event"]].dropna().astype(int).values)) if has_ev else set()
+        is_data = bool(m["is_data"].astype(bool).all()) if "is_data" in m else False
+        mseed = set(m["seed"].dropna().astype(np.int64)) if "seed" in m else set()
         for osamp, o in official.groupby("sample"):
-            f_overlap = int(o.file_name.isin(mn).sum()); g_overlap = int((o.gen_id.isin(mg) & ~o.file_name.isin(mn)).sum())
-            coll = 0
-            if has_ev and {"run", "subrun", "event"} <= set(o.columns):
-                oe = set(map(tuple, o[["run", "subrun", "event"]].dropna().astype(int).values)); coll = len(oe & mev) if not (f_overlap or g_overlap) else 0
-            decidable = bool(mn or mg)
-            cls = "TRUE_OVERLAP_FILE" if f_overlap else ("TRUE_OVERLAP_GENJOB" if g_overlap else ("ID_COLLISION" if coll else ("DISJOINT" if decidable else "UNDETERMINED")))
-            out.append(dict(official_sample=osamp, member_set=sset, member_sample=msample, n_official_files=len(o), n_member_rows=len(m), files_same_name=f_overlap, files_same_genjob=g_overlap, run_subrun_event_coincidences=coll, verdict=cls))
+            of = o.drop_duplicates("file_name"); f_overlap = int(of.file_name.isin(mn).sum()); g_overlap = int((of.gen_id.isin(mg) & ~of.file_name.isin(mn)).sum())
+            coll = len(set(map(tuple, o[["run", "subrun", "event"]].dropna().astype(int).values)) & mev) if has_ev and {"run", "subrun", "event"} <= set(o.columns) else 0
+            oseed = set(o["seed"].dropna().astype(np.int64)) if "seed" in o else set(); s_overlap = len(oseed & mseed)
+            decidable = bool(mn or mg); reason = ""
+            if f_overlap: v = "CONFIRMED_IDENTICAL_FILE"
+            elif g_overlap: v = "CONFIRMED_SHARED_GENERATOR_ANCESTRY"
+            elif s_overlap: v = "SHARED_SEED_REQUIRES_VERIFICATION"
+            elif coll: v = "NUMERICAL_COLLISION_NO_ANCESTRY"
+            elif not decidable: v, reason = "UNDETERMINED_INDEPENDENCE", "manifest has no file name / job id"
+            elif is_data: v, reason = "ESTABLISHED_DISJOINT", "data files: no generator; no file in common"
+            elif documented.get(osamp) == "distinct_namespace": v, reason = "ESTABLISHED_DISJOINT", "official seed namespace documented and distinct"
+            else: v, reason = "UNDETERMINED_INDEPENDENCE", "no file / job-id / run-number overlap, but the generator seed namespace of the official production is not documented"
+            out.append(dict(official_sample=osamp, member_set=sset, member_sample=msample, n_official_files=len(of), n_member_rows=len(m), files_same_name=f_overlap, files_same_genjob=g_overlap, run_subrun_event_coincidences=coll, shared_seeds=s_overlap, verdict=v, reason=reason))
     return pd.DataFrame(out)
 
 
@@ -96,6 +113,16 @@ def main():
         L = beam_off_ledger(); L.to_csv(OUT / "beam_off_membership_ledger.csv", index=False); g = id_space_summary(); g.to_csv(OUT / "official_id_space_summary.csv", index=False)
         print(L.groupby(["parity", "policy_class"]).size()); print(g.to_string())
         old = beam_off_ledger("old_fg1"); print("old and Nov16 beam-off name sets identical:", set(old.name) == set(L.name))
+    elif cmd == "aurora":
+        M = Path(sys.argv[2]); Ev = pd.read_parquet(M / "membership_events.parquet", columns=["sample", "file_id", "run", "subrun", "event"]).rename(columns={"file_id": "file_name"}); Ev["set"] = "aurora_membership_events"; Ev["is_data"] = Ev["sample"].str.contains("beamoff")
+        off = official_table(); names = {s_: [u.rstrip("/").split("/")[-1] for u in urls("nov16", s_)] for s_ in SAMPLES}; rows = []
+        for s_ in ("bnb_cv", "nuecc", "official_gen2_ncdelta", "beam_off"):
+            e = pd.read_parquet(SPD / "wcl1116_nov16" / "analysis_tables_new" / s_ / "events.parquet", columns=["file_index", "run", "subrun", "evt"]).rename(columns={"evt": "event"})
+            e["file_name"] = e.file_index.map(dict(enumerate(names[s_]))); e["gen_id"] = e.file_name.map(gen_id); e["sample"] = s_; rows.append(e.drop(columns="file_index"))
+        O = pd.concat(rows, ignore_index=True)
+        PAIRS = {"official_gen2_ncdelta": "wcl1116-aurora-ncdr", "bnb_cv": "wcl1116-aurora-bnb", "nuecc": "wcl1116-aurora-nuecc", "beam_off": "wcl1116-fg-beamoff-train"}
+        res = pd.concat([classify(O[O["sample"] == o_], Ev[Ev["sample"] == a_]) for o_, a_ in PAIRS.items()], ignore_index=True)
+        res.to_csv(OUT / "official_vs_aurora_membership.csv", index=False); print(res.to_string())
     else:
         mem = pd.concat([pd.read_parquet(p) if p.endswith(".parquet") else pd.read_csv(p) for p in sys.argv[2:]], ignore_index=True); r = classify(official_table(), mem); r.to_csv(OUT / "membership_audit_result.csv", index=False); print(r.to_string())
 

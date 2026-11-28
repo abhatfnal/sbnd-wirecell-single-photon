@@ -9,7 +9,7 @@ release:
   trained_on_production: WCLocal2026Nov16
   wct_version: "0.38.0 (c935e30d)"
   xgboost_in_release: "3.4.1"
-  file_hash_table: tables/upstream_release/release_file_hashes.csv     # sha256 of every model file named by the two manifests (57) plus the two manifests, correction.json and chain_weights.json (61), committed
+  file_hash_table: tables/upstream_release/release_file_hashes.csv     # sha256 of every model file named by the two manifests (57 unique paths; fingerprint below) plus the two manifests, correction.json and chain_weights.json (61 rows), committed
 models:
   nue:
     folder: nue_round4_ruleA_v2
@@ -35,9 +35,18 @@ simulation_correction:               # release numu_round3af/correction.json (sh
   update_flag1: true                 # per numu_1 segment: flag_1 stays on iff corrected dQ/dx < numu_cc_1_dQ_dx_cut; numu_cc_flag = any flag_1 OR any numu_cc_2 flag OR numu_cc_flag_3 (only ever switched off)
   never_applied_to: [raw SP reconstruction features, nu_e classifier inputs, beam-on data, beam-off data, stored (raw) tagger values]
 scoring_backend:                     # HOW scores are computed. The numerical reference is the actual Wire-Cell toolkit, not the release's standalone xgboost scorer.
-  nominal: toolkit_equivalent        # Aurora's chain-equivalent scorer (round2/sp-bdt-wcl1116-upstream-r4-integration-20261128, sp_retrain/upstream_chain.py or its portable successor): reproduces the in-chain scores bit for bit
-  reference_pin: {source: "", commit: "", sha256: "", status: "PENDING: branch not yet available on origin (2026-11-28)"}   # filled when the portable scorer is delivered and its closure on the fixtures passes
-  cross_check_only: [xgboost_standalone]   # release/score_release.py arithmetic: differs from the toolkit on ~1 % of candidates, up to 0.4 score units (Aurora, 2026-11-28). Never a production overlay.
+  nominal: toolkit_equivalent        # Aurora's portable chain-equivalent scorer `wc_upstream_chain` (numpy + pandas only), vendored in third_party/wc_upstream_chain_bundle; bit-identical to the patched in-chain output
+  reference_pin:
+    package: wc_upstream_chain
+    version: "1.0.0"
+    aurora_repo: abhatfnal/sbnd-wirecell-single-photon
+    aurora_branch: round2/sp-bdt-wcl1116-upstream-r4-integration-20261128
+    aurora_commit: 8178610            # bundle files identical at tip dd3bb5b
+    bundle_fingerprint: 976614411c847041139eacd50ca8ffba54d50eb1083359fe73167e8fe4ad0c9e
+    canonical_release_inventory_fingerprint: 1d48baed0b3d386b3848c20829099b736f42d6020456f4ea60dd4dbbf60c1f9f     # 57 unique manifest-listed model files (sorted `releases/<path> <sha256>` lines)
+    status: "REGISTERED 2026-11-28; closed on the development fixture upstream_r4_dev_fixture_v1 (tables/upstream_release/fixture_closure_report.json); shipped nu_e final closure pending (XGB_nue_seed2_0923.xml unavailable on EAF)"
+  shipped_weights_env: SP_SHIPPED_WIRECELL_DATA      # directory holding uboone/weights of wire-cell-data 99c6497f (numu_tagger3 and the shipped closure resolve there)
+  cross_check_only: [xgboost_standalone]   # release/score_release.py arithmetic: differs from the toolkit on ~1 % of candidates, up to 0.4 score units. Never a production overlay, never an SP input.
 score_origins:                       # the four kinds of upstream-score information; an SP feature frame may use exactly ONE origin per upstream score family
   raw_caf_input: "values stored in the CAF (tagger scalars, per-object lists); never modified"
   numu_corrected_copy: "temporary in-memory copy of the seven nu_mu inputs (x1.071, simulation only), used inside nu_mu inference only; never stored as features, never reaches nu_e or the SP raw features"
@@ -64,7 +73,8 @@ evaluation_guard:
   selection_manifest_sha256: ""
 # Explicitly designated NON-evaluation development fixtures that scoring code may run on without authorisation. EMPTY: no such sample exists on EAF
 # (the Aurora isolated training/development samples stay on Aurora). Synthetic unit-test tables are not registered samples and need no entry.
-fixtures: []
+fixtures:                            # explicitly designated NON-evaluation fixtures (name -> authorisation); the fixture CONTENT is never committed
+  - upstream_r4_dev_fixture_v1       # "DEVELOPMENT fixture authorized by Avinay Bhat on 2026-11-28 (Aurora development samples NC Delta / BNB / nu_e CC and the permitted odd-run beam-off TRAINING half only). Not an evaluation sample."
 # Routes for the FINAL production (not yet defined; add an entry under `applicability` ONLY when the production, its tree and its vertex configuration are frozen AND technically validated):
 #   R1: the production already books the released models -> consume the stored scores after verifying `stored_scores.released_models_booked: true` and the hashes of the booked chain weights == tables/upstream_release/release_file_hashes.csv (chain: roles)
 #   R2: the production stores other scores -> regenerate offline with the validated toolkit-equivalent scorer after confirming applicability (Xuyang's written statement for that production)
