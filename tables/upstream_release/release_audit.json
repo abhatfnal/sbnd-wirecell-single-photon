@@ -1,0 +1,114 @@
+{
+ "ok": true,
+ "n_checks": 21,
+ "n_files": 57,
+ "pinned_commit": "0f13988db44423a227789e151b0a374e25771abd",
+ "head_commit": "0f13988db44423a227789e151b0a374e25771abd",
+ "checks": [
+  {
+   "check": "clone HEAD == pinned commit",
+   "ok": true,
+   "detail": "0f13988db44423a227789e151b0a374e25771abd"
+  },
+  {
+   "check": "releases/ has no uncommitted change",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "nue manifest sha256 == pin",
+   "ok": true,
+   "detail": "226ab04bc8a7d5feda2e1e7ae5168a595ee4a5bc8d4ae199c0272814640a8cb2"
+  },
+  {
+   "check": "numu manifest sha256 == pin",
+   "ok": true,
+   "detail": "b900b33f453f1b52754e85605626859f7bd290cdb6e2e2cbac2d4e3fd5a328d6"
+  },
+  {
+   "check": "nue manifest is nue_round4_ruleA_v2",
+   "ok": true,
+   "detail": "nue_round4_ruleA_v2"
+  },
+  {
+   "check": "nue default variant is main",
+   "ok": true,
+   "detail": "{'variant': 'main', 'chain_dir': 'wirecell/main', 'cut': 3.06, 'decided': '2026-11-20, by the user; A-nogap v2 and B v2 kept as alternatives'}"
+  },
+  {
+   "check": "nue label rule A",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "nue has the chain transform (v2: runs in the toolkit without missing values)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "nue main L2: 258 inputs, nothing left out",
+   "ok": true,
+   "detail": "258"
+  },
+  {
+   "check": "nue 15 level-1 models",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "nue informational cut == release value",
+   "ok": true,
+   "detail": "3.06"
+  },
+  {
+   "check": "nue chain files: main variant has 16 files and declares 258 inputs",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "numu manifest is numu_round3af",
+   "ok": true,
+   "detail": "numu_round3af"
+  },
+  {
+   "check": "numu correction mode uniform, k == 1.071",
+   "ok": true,
+   "detail": "('uniform', 1.071)"
+  },
+  {
+   "check": "numu correction inputs == the seven documented dQ/dx inputs",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "numu muon-flag update on (3af, not 3a)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "numu 74 L2 inputs; numu_cc_flag among them",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "numu informational cut == release value",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "correction.json sha256 == pin",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "correction.json k == config k",
+   "ok": true,
+   "detail": "{'mode': 'uniform', 'k': 1.071, 'source': 'gpvm #41 round3_charge_correction.json 3a'}"
+  },
+  {
+   "check": "all 57 model files match their manifest sha256",
+   "ok": true,
+   "detail": "0 mismatches"
+  }
+ ]
+}

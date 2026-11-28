@@ -1,0 +1,58 @@
+# Pin and guard rails for the RELEASED UPSTREAM SBND Wire-Cell nu_e / nu_mu classifiers (Xuyang; https://github.com/Ningclover/sbnd-wirecell-bdt, `releases/`).
+# This file is the single versioned statement of WHICH upstream models the EAF side may apply and under WHAT conditions. Nothing here selects a model or a threshold:
+# the defaults are Xuyang's published defaults (releases/README.md, 2026-11-24). The analysis cuts below are INFORMATIONAL (recorded from the release) and are never applied by our code.
+# The EAF side is a deployment / evaluation side: it does not retrain, tune or choose among upstream variants. Aurora supplies the frozen bundle and selection manifest.
+version: 1
+release:
+  repo: https://github.com/Ningclover/sbnd-wirecell-bdt
+  pinned_commit: 0f13988db44423a227789e151b0a374e25771abd      # merge of PR #9 "releases-readme-defaults", 2026-11-24
+  trained_on_production: WCLocal2026Nov16
+  wct_version: "0.38.0 (c935e30d)"
+  xgboost_in_release: "3.4.1"
+  file_hash_table: tables/upstream_release/release_file_hashes.csv     # sha256 of every model file named by the two manifests (57 files), committed
+models:
+  nue:
+    folder: nue_round4_ruleA_v2
+    variant: main                    # the chain-compatible A v2 release (NOT v1 ruleA, which needs missing values; NOT nogap, ruleB)
+    manifest_sha256: 226ab04bc8a7d5feda2e1e7ae5168a595ee4a5bc8d4ae199c0272814640a8cb2
+    informational_operating_cut_nue_score: 3.06      # 82 % purity on the Fermilab evaluation samples (release README); NOT applied here
+    n_l2_inputs: 258
+    n_l1_models: 15
+    sentinels: {tagger_not_run_chain_value: -15.0, chain_any_nan_input_value: -16.2556}
+  numu:
+    folder: numu_round3af
+    manifest_sha256: b900b33f453f1b52754e85605626859f7bd290cdb6e2e2cbac2d4e3fd5a328d6
+    informational_operating_cut_numu_score: 0.985    # 95 % purity; margin 1.134; NOT applied here
+    n_l2_inputs: 74
+    n_l1_models: 3
+    numu_score_over_margin: 0.868589
+simulation_correction:               # release numu_round3af/correction.json (sha256 below); applies ONLY to copies of the nu_mu classifier inputs of SIMULATION
+  correction_json_sha256: 2e9b7eef8cf1b355b15b32ffa876bda6779699f4e0c7cdf195032554e7c1d960
+  k: 1.071
+  mode: uniform
+  inputs: [numu_cc_1_medium_dQ_dx, cosmict_2_dQ_dx_end, cosmict_2_dQ_dx_front, cosmict_3_dQ_dx_end, cosmict_3_dQ_dx_front, cosmict_7_dQ_dx_end, cosmict_7_dQ_dx_front]
+  only_where: "finite and > 0; cosmict_N values only where cosmict_N_filled == 1"
+  update_flag1: true                 # per numu_1 segment: flag_1 stays on iff corrected dQ/dx < numu_cc_1_dQ_dx_cut; numu_cc_flag = any flag_1 OR any numu_cc_2 flag OR numu_cc_flag_3 (only ever switched off)
+  never_applied_to: [raw SP reconstruction features, nu_e classifier inputs, beam-on data, beam-off data, stored (raw) tagger values]
+applicability:                       # which of OUR productions the released models may be applied to
+  nov16: {applicable: true,  tree: recTreeWireCell, note: "WCLocal2026Nov16, WCT 0.38.0: the production the models were trained on; the release table builder reads recTreeWireCell (dv2_split_move, the production default). The second tree recTreeWireCell_dv2snap is NOT covered: no statement that the models apply to it"}
+  old_fg1: {applicable: false, note: "legacy fg1-era reconstruction (WCT 4b6853d4): different inputs; kept with its shipped scores as the documented diagnostic baseline; do not rescore"}
+sp_downstream_dependencies:          # which downstream single-photon BDT inputs are upstream-classifier outputs (read from the committed input_source_table_*.csv)
+  numu_sp:   {numu_1_score: up_numu_1_score, numu_score: up_numu_score}
+  ncpi0_sp:  {br3_3_score: up_nue_l1_br3_3, br3_5_score: up_nue_l1_br3_5, br3_6_score: up_nue_l1_br3_6, pio_2_score: up_nue_l1_pio_2, stw_2_score: up_nue_l1_stw_2, stw_3_score: up_nue_l1_stw_3, stw_4_score: up_nue_l1_stw_4,
+              sig_1_score: up_nue_l1_sig_1, sig_2_score: up_nue_l1_sig_2, lol_1_score: up_nue_l1_lol_1, lol_2_score: up_nue_l1_lol_2, tro_1_score: up_nue_l1_tro_1, tro_2_score: up_nue_l1_tro_2, tro_4_score: up_nue_l1_tro_4, tro_5_score: up_nue_l1_tro_5}
+  other_sp:  {cosmict_10_score: up_cosmict_10_score, numu_1_score: up_numu_1_score, numu_2_score: up_numu_2_score, numu_score: up_numu_score}
+  nue_sp:    {}
+  raw_features_that_must_stay_raw: [cosmict_2_dQ_dx_end, cosmict_2_dQ_dx_front, cosmict_3_dQ_dx_end, cosmict_3_dQ_dx_front, cosmict_7_dQ_dx_end, cosmict_7_dQ_dx_front, numu_cc_flag]   # inputs of the `other` SP BDT
+# ---------------------------------------------------------------------------------------------------------------------------------------------------
+# EVALUATION GUARD. Independent-evaluation policy: the retrained SP BDTs are never evaluated or optimised on the official FermiGrid samples until Avinay authorises it
+# AFTER receiving the frozen model bundle and selection manifest from Aurora. Every field below must be filled by a named person; code never fills it.
+evaluation_guard:
+  authorized: false
+  approved_by: ""
+  approved_date: ""
+  frozen_model_bundle_sha256: ""
+  selection_manifest_sha256: ""
+# Explicitly designated NON-evaluation development fixtures that scoring code may run on without authorisation. EMPTY: no such sample exists on EAF
+# (the Aurora isolated training/development samples stay on Aurora). Synthetic unit-test tables are not registered samples and need no entry.
+fixtures: []

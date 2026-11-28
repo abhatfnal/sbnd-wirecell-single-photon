@@ -1,0 +1,47 @@
+# TEMPLATE of the manifest Aurora must deliver with the FROZEN model bundle before the EAF / FermiGrid independent evaluation (docs/analysis/UPSTREAM_WC_CLASSIFIER_EAF_INTEGRATION_READINESS.md, section 10).
+# Nothing here is filled by EAF. `scripts/upstream_bundle_check.py BUNDLE.yaml` validates a filled copy (structure, hash formats, consistency with configs/upstream_release.yaml); it does not evaluate any model.
+bundle_version: 1
+frozen_utc: ""                      # timestamp of the freeze
+frozen_by: ""                       # named person
+code:
+  repo: ""
+  commit: ""
+upstream_release:                   # must equal configs/upstream_release.yaml
+  commit: 0f13988db44423a227789e151b0a374e25771abd
+  nue: {folder: nue_round4_ruleA_v2, variant: main, manifest_sha256: 226ab04bc8a7d5feda2e1e7ae5168a595ee4a5bc8d4ae199c0272814640a8cb2}
+  numu: {folder: numu_round3af, manifest_sha256: b900b33f453f1b52754e85605626859f7bd290cdb6e2e2cbac2d4e3fd5a328d6}
+  sim_dqdx_k: 1.071
+production:
+  name: ""                          # the analysis production (WCLocal2026Nov16 or the effective-boundary production), with the toolkit commit
+  wct: ""
+  wc_tree: ""                       # recTreeWireCell (dv2_split_move) or other; the upstream release is verified for recTreeWireCell only
+  vertex_configuration: ""          # dv2_split_move / snap, DL bundle sha256
+  effective_boundary_treatment: ""  # box / effective boundary; which production implements it
+  upstream_applicability_statement: ""   # Xuyang's statement that the released models apply to THIS production's inputs (the models were trained on WCLocal2026Nov16)
+sp_models:                          # the four retrained single-photon BDTs (numu, other, ncpi0, nue)
+  - name: ""
+    file: ""
+    sha256: ""
+    xgboost_version: ""
+    inputs_file: ""                 # ordered feature list
+    inputs_sha256: ""
+    upstream_score_inputs: {}       # {feature name: overlay column}, e.g. numu_score: up_numu_score; must be a subset of sp_downstream_dependencies
+    raw_features_used: []           # raw reconstruction features (never corrected)
+    score_definition: ""            # raw margin / probability / log10 transform, applied once
+    sentinel_policy: ""             # how non-finite inputs and unscored candidates are treated
+    frozen_thresholds: {}           # the thresholds of the chain (cut values), frozen BEFORE evaluation
+selection_manifest:
+  file: ""
+  sha256: ""
+  candidate_policy: ""              # any / first / dedup
+  fiducial_volume: ""
+  signal_definition: ""             # truth definition and denominator
+  topology_definition: ""           # reco 0p / Np, proton threshold
+training_membership:                # needed for exact disjointness from the official samples
+  manifests: []                     # [{sample, file_list_sha256, run_subrun_event_list_sha256, role: train|dev|test}]
+  split_rule: ""
+  beam_off_half_used_for_training: ""   # odd / even runs and file list
+  nested_validation_report: ""
+validation:
+  development_only_results: ""      # path / hash of the Aurora-side nested validation report
+  no_official_sample_used: true     # the bundle was fit and chosen without any official FermiGrid sample

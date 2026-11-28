@@ -1,0 +1,13 @@
+production,sample,n_files,upstream_role,upstream_training_overlap_statement,applicable_to_released_models,n_runs,n_files_odd_run,n_files_even_run,n_files_no_run_in_name,note
+old_fg1,bnb_cv,37742,Fermilab evaluation sample (fg1 / WCLocal2026Nov16 mc-cv); NOT used in training per the release,"upstream trained on Aurora BNB CV (627k events, a different production); event-level disjointness not documented",False,,,,,
+old_fg1,nuecc,11441,Fermilab nuecc: evaluation use only per the release,Aurora nueCC-filtered (269k events) was used for training; file-level hold-out lists matched on file_id exist (examples/gpvm README); membership manifest needed,False,,,,,
+old_fg1,official_gen2_ncdelta,9150,official Gen2 NC-Delta: evaluation,"Aurora NC-Delta radiative (27k events, 'wcl1116-ncdr') was TRAINING background for nu_e and nu_mu; official sample is a separate production, but event-level disjointness is not documented",False,,,,,
+old_fg1,beam_off,1058,even-run half = evaluation; ODD-RUN half = upstream TRAINING data,run parity decides overlap (counts below),False,156.0,572.0,486.0,0.0,
+old_fg1,beam_on_open,1817,open data (runs 18255/18259): used by the release only for data/prediction checks,no training use,False,,,,,
+old_fg1,run3bnb,0,,,False,,,,,registered for WCLocal2026Nov16 only (no old-production run3bnb)
+nov16,bnb_cv,37742,Fermilab evaluation sample (fg1 / WCLocal2026Nov16 mc-cv); NOT used in training per the release,"upstream trained on Aurora BNB CV (627k events, a different production); event-level disjointness not documented",True,,,,,
+nov16,nuecc,11441,Fermilab nuecc: evaluation use only per the release,Aurora nueCC-filtered (269k events) was used for training; file-level hold-out lists matched on file_id exist (examples/gpvm README); membership manifest needed,True,,,,,
+nov16,official_gen2_ncdelta,9150,official Gen2 NC-Delta: evaluation,"Aurora NC-Delta radiative (27k events, 'wcl1116-ncdr') was TRAINING background for nu_e and nu_mu; official sample is a separate production, but event-level disjointness is not documented",True,,,,,
+nov16,beam_off,1058,even-run half = evaluation; ODD-RUN half = upstream TRAINING data,run parity decides overlap (counts below),True,156.0,572.0,486.0,0.0,
+nov16,beam_on_open,1817,open data (runs 18255/18259): used by the release only for data/prediction checks,no training use,True,,,,,
+nov16,run3bnb,2208,Run-3 beam-on: used by the release for data/prediction checks (their evaluation); BLOCKED for us (data policy),no training use,True,,,,,

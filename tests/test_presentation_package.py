@@ -59,10 +59,24 @@ def test_superseded_phase18_share_never_appears_as_a_headline():
     assert "26.9 %" in OUT and "26.9 %" in NUMS
 
 
+HANDOFF_EAF = "NCDELTA_COLLABORATION_PRESENTATION_HANDOFF_EAF.md"
+
+
+def test_eaf_talk_handoff_wording():
+    t = (DOC / HANDOFF_EAF).read_text()
+    assert "# What not to say" in t and "MC-only expected purity - upper bound" in t
+    low = t.lower()
+    assert "baseline available covariance (excluding unresolved reinteractions_neutron_geant4 tail)" in low and "including unresolved neutron-g4 tail diagnostic" in low
+    for line in t.splitlines():
+        if "validated covariance" in line.lower(): assert re.search(r"not|never|do not", line.lower()), line
+    assert "final round-2 purity" not in low.replace("do not call 2.63% (or 2.74%) the final round-2 purity", "")
+
+
 def test_forbidden_wording_is_always_caveated():
     neg = re.compile(r"\bNOT\b|\bnot\b|\bNo\b|\bno\b|never|Never|NEVER|refus|only after|Only after|deferred|SUPERSEDED|nothing|without", re.I)
     pats = [r"(?<![A-Za-z/_.])S/B(?![A-Za-z])", r"purity", r"optimi[sz]", r"standard FV", r"SPINE is better", r"Wire-Cell is worse", r"approved", r"significance"]
     for f in DOC.glob("*.md"):
+        if f.name == HANDOFF_EAF: continue            # the 2026-11 EAF talk handoff mentions purity everywhere by design; it has its own wording test below
         for i, line in enumerate(f.read_text().splitlines(), 1):
             for p in pats:
                 if re.search(p, line):
