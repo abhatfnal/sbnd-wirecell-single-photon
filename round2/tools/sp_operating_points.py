@@ -97,8 +97,10 @@ def per_model(model, mode, a, topo, xgb):
                 tables=['threshold_table_%s_%s.csv' % (model, mode), 'roc_%s_%s.csv' % (model, mode), 'pr_%s_%s.csv' % (model, mode)]), tA
 
 
-def joint_frame(mode, a, topo):
-    """Every preselected NESTED-VALIDATION row of the four training-side samples, with all four input sets."""
+def joint_frame(mode, a, topo, roles=None):
+    """Every preselected NESTED-VALIDATION row of the four training-side samples, with all four input sets.
+    roles: the nested_v1 roles to keep (default: NESTED VALIDATION only, unchanged behaviour); the 'role' column is kept."""
+    roles = (dv.ROLE_NVAL,) if roles is None else tuple(roles)
     other, nue = spec_of('other', mode), spec_of('nue', mode)
     entries = {s['id']: s for s in other['samples']['development'] + nue['samples']['development']}
     stamp = json.load(open(os.path.join(os.path.dirname(ROUND2), other['samples']['input_manifest'])))['reconstruction']['wct_version_stamp']
@@ -124,7 +126,7 @@ def joint_frame(mode, a, topo):
         cs = cs[pre].reset_index(drop=True)
         cs['split'] = np.where(cs['sample'] == EXT, np.where(cs.run % 4 == 1, 'test', 'train'), np.where(cs.subrun % 2 == 1, 'test', 'train'))
         cs['role'] = dv.nested_roles(cs)
-        parts.append(cs[cs.role == dv.ROLE_NVAL])
+        parts.append(cs[cs.role.isin(roles)])
     J = pd.concat(parts, ignore_index=True)
     sig = ((J.partner_kind.astype(str) == 'neutrino') & (J.m_sp_truth_ok.fillna(0) == 1) & (J.m_sp_signal.fillna(0) == 1) & (J['sample'] != EXT)).to_numpy()
     J['signal'] = sig

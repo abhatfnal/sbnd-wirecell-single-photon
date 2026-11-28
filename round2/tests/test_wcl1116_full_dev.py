@@ -133,7 +133,13 @@ def _complete_campaign(tmp_path):
     c['production'].update(tag='WCLocalNEXT', toolkit_commit='a' * 40, toolkit_version_stamps=['0.39.0', 'HEAD-0.39.0'], toolkit_stamp_evidence='build records',
                            dl_bundle='dv2max/sbnd/next/bundle.json', dl_bundle_sha256='b' * 64, vertex_mode='dv2_split_move',
                            wc_trees={'recTreeWireCell': 'dv2_split_move'}, effective_boundary_profile='measured_effective_v1', effective_boundary_sha256='c' * 64)
-    c['upstream'].update(numu_model_fingerprint='d' * 64, nue_l1_fingerprints='e' * 64)
+    c['upstream'].update(numu_model_fingerprint='d' * 64, nue_l1_fingerprints='e' * 64, route='R1', release_repository='https://example.invalid/release',
+                         release_commit='9' * 40, canonical_inventory_fingerprint='8' * 64, nue_chain_fingerprint='7' * 64, sim_dqdx_scale=1.071,
+                         toolkit_patch_sha256='6' * 64, workflow_patch_sha256='5' * 64)
+    ev = tmp_path / 'simlog.json'
+    ev.write_text(json.dumps(dict(tool='verify_sim_dqdx_logs.py', status='VERIFIED', expect_k=1.071, sim_logs_total=10, sim_logs_with_scale=10,
+                                  data_logs_total=4, data_logs_with_scale=0)))
+    c['upstream']['sim_correction_evidence'] = dict(path=str(ev), sha256=h(ev))
     rec = tmp_path / 'staging.json'
     rec.write_text(json.dumps(dict(status='VERIFIED', expect_reco='campaign', list_sha256=c['inputs']['beamoff_train_list']['sha256'],
                                    toolkit_commit='a' * 40, verifier_sha256='f' * 64, wct_version_stamp='HEAD-0.39.0')))
@@ -151,6 +157,7 @@ def test_final_domain_template_is_refused_until_every_field_is_supplied():
     bad = g.check(c)
     for f in ('production.tag', 'production.toolkit_commit', 'production.toolkit_version_stamps', 'production.dl_bundle_sha256', 'production.vertex_mode',
               'production.effective_boundary_profile', 'production.effective_boundary_sha256', 'upstream.numu_model_fingerprint', 'upstream.nue_l1_fingerprints',
+              'upstream.route', 'upstream.release_commit', 'upstream.canonical_inventory_fingerprint', 'upstream.sim_dqdx_scale', 'upstream.sim_correction_evidence',
               'inputs.ncdr_list.path', 'inputs.bnb_list.sha256', 'inputs.nuecc_list.files', 'inputs.beamoff_train_list.path',
               'inputs.beamoff_verifier_sha256', 'inputs.beamoff_exception.approved_by'):
         assert any(b.startswith(f) for b in bad), f
@@ -257,3 +264,55 @@ def test_collaboration_figures_plot_the_committed_values(tmp_path):
         fn(V, str(tmp_path))
     names = {'joint_selection_legacy_vs_sbnd_dev', 'joint_selection_topology_efficiency', 'four_sp_bdt_auc_legacy_vs_sbnd', 'joint_selection_cascade'}
     assert {p.name for p in tmp_path.iterdir()} == {n + e for n in names for e in ('.png', '.pdf')}
+
+
+def test_final_domain_upstream_routes_and_sim_only_evidence(tmp_path):
+    """R1 needs a VERIFIED log census (every simulation log scaled, no data log) and the patch hashes; R2 needs stored fingerprints, a
+    CLOSED closure record of this production and per-sample kinds; the development-only patched stamp is refused for the final campaign."""
+    import copy, hashlib
+    h = lambda p: hashlib.sha256(open(p, 'rb').read()).hexdigest()
+    g, c = _complete_campaign(tmp_path)
+    assert g.check(c) == []
+
+    def with_record(c0, field, rec, name):
+        c2 = copy.deepcopy(c0); p = tmp_path / name; p.write_text(json.dumps(rec)); c2['upstream'][field] = dict(path=str(p), sha256=h(p)); return c2
+    base = dict(tool='verify_sim_dqdx_logs.py', status='VERIFIED', expect_k=1.071, sim_logs_total=10, sim_logs_with_scale=10, data_logs_total=4, data_logs_with_scale=0)
+    for bad_rec, name in ((dict(base, sim_logs_with_scale=9), 'a.json'), (dict(base, data_logs_with_scale=1), 'b.json'), (dict(base, status='NOT_VERIFIED'), 'c.json'),
+                          (dict(base, expect_k=1.0), 'd.json')):
+        assert g.check(with_record(c, 'sim_correction_evidence', bad_rec, name)), bad_rec
+    c2 = copy.deepcopy(c); c2['upstream']['toolkit_patch_sha256'] = None
+    assert any('toolkit_patch_sha256' in b for b in g.check(c2))
+    c2 = copy.deepcopy(c); c2['production']['toolkit_version_stamps'] = ['numu-sim-dqdx-scale-0.38.0-1-gccb19cf']
+    assert any('DEVELOPMENT validation only' in b for b in g.check(c2))
+    c2 = copy.deepcopy(c); c2['upstream']['route'] = 'R3'
+    assert any('upstream.route' in b for b in g.check(c2))
+    # route R2
+    r2 = copy.deepcopy(c); r2['upstream'].update(route='R2', stored_numu_model_fingerprint='4' * 64, stored_nue_l1_fingerprints='3' * 64, scoring_bundle_version='1.0.0')
+    r2 = with_record(r2, 'overlay_closure_record', dict(status='CLOSED', production='WCLocalNEXT'), 'cl.json')
+    r2 = with_record(r2, 'sim_correction_evidence', dict(status='VERIFIED', route='R2', samples={'ncdr': dict(kind='mc', sim_dqdx_scale_applied=1.071),
+                                                                                                  'beamoff': dict(kind='data', sim_dqdx_scale_applied=1.0)}), 'r2.json')
+    assert g.check(r2) == []
+    bad = with_record(r2, 'sim_correction_evidence', dict(status='VERIFIED', route='R2', samples={'beamoff': dict(kind='data', sim_dqdx_scale_applied=1.071)}), 'r2b.json')
+    assert any('beamoff' in b for b in g.check(bad))
+    bad = with_record(r2, 'overlay_closure_record', dict(status='CLOSED', production='OTHER'), 'cl2.json')
+    assert any('overlay_closure_record' in b for b in g.check(bad))
+    bad = copy.deepcopy(r2); bad['upstream'].update(stored_numu_model_fingerprint='d' * 64, stored_nue_l1_fingerprints='e' * 64)
+    assert any('route R1' in b for b in g.check(bad))
+    assert 'verify_sim_dqdx_logs.py' in g.plan(c, str(tmp_path / 'p1')) and 'wc_upstream_chain score' in g.plan(r2, str(tmp_path / 'p2'))
+
+
+def test_sim_dqdx_log_verifier(tmp_path):
+    import gzip
+    v = _tool('verify_sim_dqdx_logs')
+    def unit(name, real, lines):
+        d = tmp_path / 'runs' / name; (d / 'pr' / 'all').mkdir(parents=True)
+        (d / 'run_pair.log').write_text('2026-11-28 03:41:43 start %s %s reco1=x\n' % (name, real))
+        with gzip.open(d / 'pr' / 'all' / 'wct.log.gz', 'wt') as f:
+            f.write('x\n' + ''.join('[info] UbooneNumuBDTScorer: simulation dQ/dx scale %s applied\n' % k for k in lines))
+    unit('s1', 'sim', ['1.071']); unit('d1', 'data', [])
+    assert v.verify([str(tmp_path / 'runs')], 1.071)['status'] == 'VERIFIED'
+    unit('s2', 'sim', [])                                       # a simulation job that never received the factor
+    r = v.verify([str(tmp_path / 'runs')], 1.071)
+    assert r['status'] == 'NOT_VERIFIED' and r['sim_logs_with_scale'] == 1 and r['sim_logs_total'] == 2
+    unit('d2', 'data', ['1.071'])                               # a data job that did
+    assert v.verify([str(tmp_path / 'runs')], 1.071)['data_logs_with_scale'] == 1

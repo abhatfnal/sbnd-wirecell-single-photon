@@ -60,6 +60,7 @@ def check(spec):
         need('production.' + k, p.get(k))
     for k in ('numu_model_fingerprint', 'nue_l1_fingerprints'):
         need('upstream.' + k, u.get(k))
+    bad += check_upstream(spec)
     if not absent(p.get('toolkit_commit')) and not HEX40.match(str(p['toolkit_commit'])):
         bad.append('production.toolkit_commit: not a full 40-hex commit')
     for k, d in (('production.dl_bundle_sha256', p), ('production.effective_boundary_sha256', p), ('upstream.numu_model_fingerprint', u),
@@ -116,6 +117,84 @@ def check(spec):
             bad.append('beam-off staging record: stamp %r is not in production.toolkit_version_stamps' % r.get('wct_version_stamp'))
     elif not absent(sr.get('path')):
         bad.append('inputs.beamoff_staging_record.path: does not exist')
+    return bad
+
+
+def _record(path_sha, label, bad):
+    """Load a JSON record named by {path, sha256}; None (and a problem) when absent / mismatched."""
+    ps = path_sha or {}
+    if absent(ps.get('path')) or absent(ps.get('sha256')):
+        bad.append('%s: path and sha256 required' % label); return None
+    if not os.path.exists(str(ps['path'])):
+        bad.append('%s.path: does not exist' % label); return None
+    if sha(ps['path']) != ps['sha256']:
+        bad.append('%s.sha256: does not match the file' % label); return None
+    return json.load(open(ps['path']))
+
+
+def check_upstream(spec):
+    """Route R1 / R2 upstream requirements (contract section 1a). Problems list."""
+    bad = []
+    p, u = spec.get('production') or {}, spec.get('upstream') or {}
+    dev = provenance.UPSTREAM_R4_DEV_TOOLKIT['stamp']
+    if dev in (p.get('toolkit_version_stamps') or []):
+        bad.append('production.toolkit_version_stamps: %r was approved for DEVELOPMENT validation only (2026-11-28), not for the final campaign' % dev)
+    route = u.get('route')
+    if route not in ('R1', 'R2'):
+        bad.append('upstream.route: must be R1 (production books the models in the chain) or R2 (validated score-only overlay)')
+    for k in ('release_repository', 'release_commit', 'canonical_inventory_fingerprint', 'nue_chain_fingerprint', 'sim_dqdx_scale'):
+        if absent(u.get(k)):
+            bad.append('upstream.%s: missing / placeholder' % k)
+    if not absent(u.get('release_commit')) and not HEX40.match(str(u['release_commit'])):
+        bad.append('upstream.release_commit: not a full 40-hex commit')
+    for k in ('canonical_inventory_fingerprint', 'nue_chain_fingerprint'):
+        if not absent(u.get(k)) and not HEX64.match(str(u[k])):
+            bad.append('upstream.%s: not 64-hex' % k)
+    k = u.get('sim_dqdx_scale')
+    try:
+        k = float(k) if not absent(k) else None
+    except (TypeError, ValueError):
+        bad.append('upstream.sim_dqdx_scale: not a number'); k = None
+    if k is not None and not (k > 0 and k < 10):
+        bad.append('upstream.sim_dqdx_scale: must be a positive finite factor'); k = None
+    ev = _record(u.get('sim_correction_evidence'), 'upstream.sim_correction_evidence', bad)
+    if route == 'R1':
+        if k is not None and k != 1.0:
+            for f in ('toolkit_patch_sha256', 'workflow_patch_sha256'):
+                if absent(u.get(f)) or not HEX64.match(str(u.get(f))):
+                    bad.append('upstream.%s: required (64-hex) for R1 with a simulation correction' % f)
+        if ev is not None:
+            if ev.get('tool') != 'verify_sim_dqdx_logs.py' or ev.get('status') != 'VERIFIED':
+                bad.append('upstream.sim_correction_evidence: not a VERIFIED verify_sim_dqdx_logs.py record')
+            elif k is not None:
+                if k != 1.0 and (abs(float(ev.get('expect_k', -1)) - k) > 1e-12 or not ev.get('sim_logs_total') or
+                                 ev.get('sim_logs_with_scale') != ev.get('sim_logs_total')):
+                    bad.append('upstream.sim_correction_evidence: not every simulation step-2 log carries the scale line with k = %g' % k)
+                if k == 1.0 and ev.get('sim_logs_with_scale'):
+                    bad.append('upstream.sim_correction_evidence: scale lines present although sim_dqdx_scale is 1')
+                if ev.get('data_logs_with_scale'):
+                    bad.append('upstream.sim_correction_evidence: %s data step-2 logs carry the scale line' % ev.get('data_logs_with_scale'))
+    if route == 'R2':
+        for f in ('stored_numu_model_fingerprint', 'stored_nue_l1_fingerprints'):
+            if absent(u.get(f)) or not HEX64.match(str(u.get(f))):
+                bad.append('upstream.%s: required (64-hex) for R2' % f)
+        if not absent(u.get('stored_numu_model_fingerprint')) and u.get('stored_numu_model_fingerprint') == u.get('numu_model_fingerprint') \
+                and u.get('stored_nue_l1_fingerprints') == u.get('nue_l1_fingerprints'):
+            bad.append('upstream: stored fingerprints equal the selected ones: that is route R1, not an overlay')
+        if absent(u.get('scoring_bundle_version')):
+            bad.append('upstream.scoring_bundle_version: required for R2')
+        cl = _record(u.get('overlay_closure_record'), 'upstream.overlay_closure_record', bad)
+        if cl is not None and (cl.get('status') != 'CLOSED' or cl.get('production') != p.get('tag')):
+            bad.append('upstream.overlay_closure_record: not CLOSED for production %r' % p.get('tag'))
+        if ev is not None:
+            smp = ev.get('samples') or {}
+            if ev.get('status') != 'VERIFIED' or ev.get('route') != 'R2' or not smp:
+                bad.append('upstream.sim_correction_evidence: not a VERIFIED R2 overlay record with per-sample kinds')
+            elif k is not None:
+                for name, r in smp.items():
+                    want = k if r.get('kind') == 'mc' else 1.0 if r.get('kind') == 'data' else None
+                    if want is None or abs(float(r.get('sim_dqdx_scale_applied', -1)) - want) > 1e-12:
+                        bad.append('upstream.sim_correction_evidence: sample %s kind %r applied %r' % (name, r.get('kind'), r.get('sim_dqdx_scale_applied')))
     return bad
 
 
@@ -178,7 +257,17 @@ def plan(spec, out_dir):
     mode = p['vertex_mode']; tree = [t for t, m in p['wc_trees'].items() if m == mode][0]
     W = '$SP_WORK/final_domain'; T = '%s/tables/%s' % (W, mode)
     L = []
-    L.append('# 1 provenance verification\npython round2/tools/final_domain_campaign.py check CAMPAIGN_SPEC || exit 2')
+    u = spec['upstream']
+    up = ('# upstream (route R1): the production WIRECELL_PATH must resolve the campaign fingerprints; the log census is the sim-only proof\n'
+          'python -m wc_upstream_chain fingerprint --weights-path <production WIRECELL_PATH>   # must print %s / %s\n'
+          'python round2/tools/verify_sim_dqdx_logs.py --runs <every training-sample step-2 runs dir> --expect-k %s --out <record>   # = upstream.sim_correction_evidence'
+          % (u['numu_model_fingerprint'][:8], u['nue_l1_fingerprints'][:8], u['sim_dqdx_scale'])) if u['route'] == 'R1' else (
+          '# upstream (route R2): score-only overlay with the common bundle (kind mc for simulation, data for beam-off), then the overlay join check\n'
+          'python round2/tools/extract_upstream_inputs.py <sample> <dir> --list <list> --wc-tree %s --nproc 64\n'
+          'python -m wc_upstream_chain score --cands <dir>/cands_<sample>.parquet --objs "<dir>/objs_{model}_<sample>.parquet" --kind <mc|data> '
+          '--weights-path <selected release dirs>:<shipped wire-cell-data> --out <overlay scores>\n'
+          'python round2/tools/build_upstream_overlay.py ...   # refuses missing rows / stored mismatches' % tree)
+    L.append('# 1 provenance verification\npython round2/tools/final_domain_campaign.py check CAMPAIGN_SPEC || exit 2\n' + up)
     builds = ['python -m sp_retrain.build_tables %s %s --list %s --wc-tree %s --tag dev --nproc 160 --allowed-input-root <production root> '
               '--allowed-output-root /lus/flare/projects/neutrinoGPU/abhat/sbnd' % (sample_id(k), T, i[k]['path'], tree) for k in ('ncdr_list', 'bnb_list', 'nuecc_list')]
     builds.append('python -m sp_retrain.build_tables %s %s --list %s --wc-tree %s --tag dev --allowed-input-root %s --allowed-output-root /lus/flare/projects/neutrinoGPU/abhat/sbnd '

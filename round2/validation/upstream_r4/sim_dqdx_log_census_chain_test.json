@@ -1,0 +1,454 @@
+{
+ "tool": "verify_sim_dqdx_logs.py",
+ "expect_k": 1.071,
+ "runs": [
+  "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+  "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/gate"
+ ],
+ "created_utc": "2026-11-28T13:14:37Z",
+ "units": 19,
+ "sim_units": 18,
+ "data_units": 1,
+ "sim_logs_total": 36,
+ "sim_logs_with_scale": 36,
+ "data_logs_total": 2,
+ "data_logs_with_scale": 0,
+ "problems": [],
+ "status": "VERIFIED",
+ "verifier_sha256": "bbfecceb58acd868e078ed7b9893e5a930981d31a2e69da9f1bac08a3beb668d",
+ "detail": [
+  {
+   "unit": "reco1-detsim-g4-filter-gen-002a-3336-821f-ab78",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-002a-3336-821f-ab78/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-002a-3336-821f-ab78/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-0032-edd9-95fb-49ba",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-0032-edd9-95fb-49ba/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-0032-edd9-95fb-49ba/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-03e0-9800-245e-5a04",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-03e0-9800-245e-5a04/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-03e0-9800-245e-5a04/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-157e-a739-aff8-eb71",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-157e-a739-aff8-eb71/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-157e-a739-aff8-eb71/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-247e-8fd0-76e1-0678",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-247e-8fd0-76e1-0678/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-247e-8fd0-76e1-0678/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-2a14-5379-d4f1-2f4d",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-2a14-5379-d4f1-2f4d/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-2a14-5379-d4f1-2f4d/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-7025-7a27-2a97-a0ac",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-7025-7a27-2a97-a0ac/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-7025-7a27-2a97-a0ac/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-7b4c-1512-e06b-42b3",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-7b4c-1512-e06b-42b3/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-7b4c-1512-e06b-42b3/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-bf5e-34ac-b809-3cf9",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-bf5e-34ac-b809-3cf9/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-bf5e-34ac-b809-3cf9/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-dad0-3a30-ab75-4cb7",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-dad0-3a30-ab75-4cb7/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-dad0-3a30-ab75-4cb7/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-dc2d-73f7-1280-fefb",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-dc2d-73f7-1280-fefb/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-dc2d-73f7-1280-fefb/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-e45f-66b2-b168-6c51",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-e45f-66b2-b168-6c51/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-e45f-66b2-b168-6c51/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-f811-1c32-f170-7fb9",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-f811-1c32-f170-7fb9/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-f811-1c32-f170-7fb9/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco2-reco1-detsim-g4-gen-0000-3124-e32f-6fe0",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco2-reco1-detsim-g4-gen-0000-3124-e32f-6fe0/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco2-reco1-detsim-g4-gen-0000-3124-e32f-6fe0/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco2-reco1-detsim-g4-gen-d301-3608-b243-a67f",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco2-reco1-detsim-g4-gen-d301-3608-b243-a67f/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco2-reco1-detsim-g4-gen-d301-3608-b243-a67f/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco2-reco1-detsim-g4-gen-ed59-97a7-e40c-eca4",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco2-reco1-detsim-g4-gen-ed59-97a7-e40c-eca4/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco2-reco1-detsim-g4-gen-ed59-97a7-e40c-eca4/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco2-reco1-detsim-g4-gen-f867-8739-01c0-79fa",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/new",
+   "reality": "sim",
+   "passes": [
+    {
+     "log": "reco2-reco1-detsim-g4-gen-f867-8739-01c0-79fa/pr-dv2snap/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    },
+    {
+     "log": "reco2-reco1-detsim-g4-gen-f867-8739-01c0-79fa/pr/all/wct.log.gz",
+     "lines": 1,
+     "k": [
+      1.071
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "unit": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f",
+   "runs": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/runs/gate",
+   "reality": "data",
+   "passes": [
+    {
+     "log": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f/pr-dv2snap/all/wct.log.gz",
+     "lines": 0,
+     "k": [],
+     "ok": true
+    },
+    {
+     "log": "reco1-detsim-g4-filter-gen-d6e8-d56b-0427-743f/pr/all/wct.log.gz",
+     "lines": 0,
+     "k": [],
+     "ok": true
+    }
+   ]
+  }
+ ]
+}

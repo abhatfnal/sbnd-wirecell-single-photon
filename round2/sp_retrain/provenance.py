@@ -44,6 +44,43 @@ WCL1116_PROVENANCE = dict(
     approved_by='Avinay Bhat', approved='2026-11-19')
 
 
+# ------------------------------------------------------------------ patched toolkit: DEVELOPMENT validation only
+# Avinay approved (2026-11-28) the exact stamp below for DEVELOPMENT validation of Xuyang's upstream releases ONLY, on the
+# condition that the full commit, base commit, patch checksums, build provenance and observed stamp are recorded. It is NOT a
+# WCLocal2026Nov16 stamp (wcl1116_stamp_ok stays False for it), it is NOT accepted for the final reconstruction campaign, and
+# there is no pattern matching: a rebuild from any other commit stamps a different string and needs its own approval.
+UPSTREAM_R4_DEV_TOOLKIT = dict(
+    stamp='numu-sim-dqdx-scale-0.38.0-1-gccb19cf',
+    purpose='development_validation',
+    scope=('in-chain validation of Ningclover/sbnd-wirecell-bdt releases numu_round3af + nue_round4_ruleA_v2 (@ 0f13988d) on '
+           'WCL1116 development units (PBS 9137793); NOT approved for the final reconstruction campaign'),
+    commit='ccb19cfbdc7f35958f1817391ab924e6c9da156c', tree='ae25293c25a54930fce02fa1a00f84f510f802c6',
+    base_commit=WCL1116_TOOLKIT_COMMIT, branch='numu-sim-dqdx-scale',
+    patch=dict(file='releases/numu_round3af/wirecell/patches/wct-0.38.0-numu_sim_dqdx_scale.patch', release_commit='0f13988db44423a227789e151b0a374e25771abd',
+               sha256='3162b22fb0337308fc258c6d6113e4b4acfe49e6b3077da5abbdbd5f8127846f', git_patch_id='58c8bb035a9bb4a7f2b77ae5677f5c03f08bfecb',
+               diff_c935e30d_to_ccb19cf_sha256='f8a2bd2afce28bde35f041f5b142fd0e42ef93747153e4db659b65b673e426b7',
+               files_changed=['cfg/pgrapher/common/clus.jsonnet', 'cfg/pgrapher/experiment/sbnd/clus.jsonnet', 'cfg/pgrapher/experiment/sbnd/wct-pr.jsonnet',
+                              'root/inc/WireCellRoot/UbooneNumuBDTScorer.h', 'root/src/UbooneNumuBDTScorer.cxx'],
+               note='commit authored by Xuyang Ning (applied with git am), committed by Avinay Bhat; git patch-id equals the released patch'),
+    workflow=dict(repo='swp-wclocal (Aurora clone $SP_WORK/upstream_r4_20261128/chain/swp-wclocal-numu)', commit='eaaa02f55e97cd2ce25bbc25f4d3b2f189693d5b',
+                  base_commit='d05cf47f6ca1db8d2e6ea327e8de0b49a2570b5e', patch='releases/numu_round3af/wirecell/patches/step2-numu_sim_dqdx_scale.patch',
+                  patch_sha256='bc83b90becf9045391bbf96cc4081118aa3c716a66259037489667747bef9a0a', git_patch_id='47131847975a84deed85ca7b62271aedb994090c'),
+    build=dict(prefix='$SP_WORK/upstream_r4_20261128/chain/opt-0.38.0-numu-sim', host='x4418c4s6b0n0', started_utc='2026-11-28T03:30:07Z',
+               waf='waf -k, rc 0, 3 min 51 s', configured_version='numu-sim-dqdx-scale-0.38.0-1-gccb19cf',
+               sha256={'bin/wire-cell': 'e536fc4aaf24e5598f5806d6a46148ffca92f0419c9fb7e349f86ebf3b47d39e',
+                       'lib/libWireCellRoot.so': '2aa4f7a0699e5c7297541a80c7a1f63d01bda1b874bcd5fa0f3a3c22973a8154',
+                       'lib/libWireCellUtil.so': '3bd316f23c13930efccafc30e1a849d013c1a8e9c39b6593264fc6e41d654a4f'},
+               log='$SP_WORK/upstream_r4_20261128/chain/logs/build_wct_numu_sim.out'),
+    observed=dict(stamp='numu-sim-dqdx-scale-0.38.0-1-gccb19cf', where='wc.Trun.wct_version of every ctl / new / noscale / gate CAF of PBS 9137793 '
+                  '(validation/upstream_r4/chain_test_summary.json)'),
+    approved_by='Avinay Bhat', approved='2026-11-28')
+
+
+def upstream_r4_dev_stamp_ok(stamp, purpose):
+    """True only for the exact patched-toolkit stamp AND purpose 'development_validation'. Never for a final campaign."""
+    return purpose == UPSTREAM_R4_DEV_TOOLKIT['purpose'] and isinstance(stamp, str) and stamp == UPSTREAM_R4_DEV_TOOLKIT['stamp']
+
+
 def wcl1116_stamp_ok(stamp):
     """True only for the exact stored strings of the two WCLocal2026Nov16 builds of c935e30d."""
     return isinstance(stamp, str) and stamp in WCL1116_STAMPS

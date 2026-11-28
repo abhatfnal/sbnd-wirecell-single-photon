@@ -15,11 +15,28 @@ production:
   wc_trees: null                  # mapping of every stored Wire-Cell tree to its vertex mode, e.g. {recTreeWireCell: dv2_split_move}
   effective_boundary_profile: null    # name of the non-box / effective boundary configuration
   effective_boundary_sha256: null     # 64-hex of the boundary definition file(s) used by cosmic_tagger()
-upstream:
-  numu_model_fingerprint: null    # 64-hex over the collaboration-frozen nu_mu final + level-1 weight files (numu_score family); computed by
-                                  # sp_retrain.upstream_chain.fingerprint (numu_round3af release would be 0b8485a8..., shipped 595a9963...; NOT frozen)
-  nue_l1_fingerprints: null       # 64-hex over the 15 nu_e level-1 weight files (stored or re-frozen); same function
-                                  # (nue_round4_ruleA_v2 main would be 36ec972f..., shipped 17a8e17e...; NOT frozen)
+upstream:                         # contract section 1a: R1 (production books the collaboration-selected models in the chain, preferred)
+                                  # or R2 (validated score-only overlay on CAFs with the shipped weights). NOTHING here is filled until the
+                                  # collaboration selects the upstream models and Haiwang's final production exists.
+  route: null                     # R1 | R2
+  release_repository: null        # e.g. https://github.com/Ningclover/sbnd-wirecell-bdt
+  release_commit: null            # full 40-hex commit of the collaboration-selected release
+  canonical_inventory_fingerprint: null   # 64-hex over the manifest-listed model files (wc_upstream_chain rule; 0f13988d would be 1d48baed...)
+  numu_model_fingerprint: null    # 64-hex over the nu_mu final + level-1 files the chain resolves (wc_upstream_chain.chain_fingerprints /
+                                  # sp_retrain.upstream_chain.fingerprint; numu_round3af release would be 0b8485a8..., shipped 595a9963...; NOT frozen)
+  nue_l1_fingerprints: null       # 64-hex over the 15 nu_e level-1 files (nue_round4_ruleA_v2 main would be 36ec972f..., shipped 17a8e17e...; NOT frozen)
+  nue_chain_fingerprint: null     # 64-hex over the 15 nu_e level-1 files + the nu_e final (release 3526cdea..., shipped 655fb390...)
+  sim_dqdx_scale: null            # k of the selected nu_mu release (numu_round3af: 1.071), simulation only; 1.0 if the release has no correction
+  sim_correction_evidence: {path: null, sha256: null}   # R1: tools/verify_sim_dqdx_logs.py record over EVERY step-2 job of the training samples
+                                  # (VERIFIED; every simulation log has the scale line with k, no data log has it). R2: the overlay record
+                                  # (status VERIFIED, route R2, per sample kind and sim_dqdx_scale_applied: k for simulation, 1.0 for data)
+  toolkit_patch_sha256: null      # R1 with k != 1: sha256 of the toolkit patch carried by the production build
+  workflow_patch_sha256: null     # R1 with k != 1: sha256 of the step-2 workflow patch that forwards the scale
+  stored_numu_model_fingerprint: null   # R2: fingerprints of the weights the production CAFs were made with
+  stored_nue_l1_fingerprints: null      # R2
+  scoring_bundle_version: null    # R2: wc_upstream_chain version used for the overlay
+  overlay_closure_record: {path: null, sha256: null}    # R2: closure in THIS domain (status CLOSED, production tag): shipped finals reproduce the
+                                  # stored scores and the bundle equals an in-chain rerun of a sample of this production
 inputs:                           # Aurora TRAINING side only (lists written by tools/make_refresh_list.py)
   ncdr_list: {path: null, sha256: null, files: null}
   bnb_list: {path: null, sha256: null, files: null}
