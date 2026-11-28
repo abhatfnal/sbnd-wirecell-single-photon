@@ -1,0 +1,360 @@
+{
+ "source": "round2/config/upstream/l1_models_xning_0f13988d.py (Xuyang Ning, sbnd-wirecell-bdt spec, byte-identical copy)",
+ "note": "pre_cut is the TRAINING-table pre-cut of the spec; in the toolkit 0.38.0 chain only pio_2 is gated (pio_filled == 1 and pio_flag_pio == 0); numu_1 / numu_2 / cosmict_10 run on every candidate (no cosmict_flag_1 gate) and the 15 nu_e models run without a br_filled gate. The bundle implements the CHAIN behaviour.",
+ "chain_gated": {
+  "pio_2": "pio_filled == 1 and pio_flag_pio == 0"
+ },
+ "nue_l1_order": [
+  "br3_3",
+  "br3_5",
+  "br3_6",
+  "pio_2",
+  "stw_2",
+  "stw_3",
+  "stw_4",
+  "sig_1",
+  "sig_2",
+  "lol_1",
+  "lol_2",
+  "tro_1",
+  "tro_2",
+  "tro_4",
+  "tro_5"
+ ],
+ "models": {
+  "numu_1": {
+   "lists": [
+    "numu_cc_1_particle_type",
+    "numu_cc_1_length",
+    "numu_cc_1_medium_dQ_dx",
+    "numu_cc_1_dQ_dx_cut",
+    "numu_cc_1_direct_length",
+    "numu_cc_1_n_daughter_tracks",
+    "numu_cc_1_n_daughter_all"
+   ],
+   "scalars": [],
+   "flag": "numu_cc_flag_1",
+   "pool": "max",
+   "empty": -0.4,
+   "score": "numu_1_score",
+   "flavour": "numu",
+   "pre_cut": "cosmict_flag_1 == 0",
+   "protect": {
+    "numu_cc_1_dQ_dx_cut": [
+     "inf",
+     10.0
+    ]
+   }
+  },
+  "numu_2": {
+   "lists": [
+    "numu_cc_2_length",
+    "numu_cc_2_total_length",
+    "numu_cc_2_n_daughter_tracks",
+    "numu_cc_2_n_daughter_all"
+   ],
+   "scalars": [],
+   "flag": "numu_cc_flag_2",
+   "pool": "max",
+   "empty": -0.1,
+   "score": "numu_2_score",
+   "flavour": "numu",
+   "pre_cut": "cosmict_flag_1 == 0",
+   "protect": {}
+  },
+  "cosmict_10": {
+   "lists": [
+    "cosmict_10_vtx_z",
+    "cosmict_10_flag_shower",
+    "cosmict_10_flag_dir_weak",
+    "cosmict_10_angle_beam",
+    "cosmict_10_length"
+   ],
+   "scalars": [],
+   "flag": "cosmict_flag_10",
+   "pool": "min",
+   "empty": 0.7,
+   "score": "cosmict_10_score",
+   "flavour": "cosmic",
+   "pre_cut": "cosmict_flag_1 == 0",
+   "protect": {
+    "cosmict_10_angle_beam": [
+     "nan",
+     0.0
+    ]
+   }
+  },
+  "br3_3": {
+   "lists": [
+    "br3_3_v_energy",
+    "br3_3_v_angle",
+    "br3_3_v_dir_length",
+    "br3_3_v_length"
+   ],
+   "scalars": [],
+   "flag": "br3_3_v_flag",
+   "pool": "min",
+   "empty": 0.3,
+   "score": "br3_3_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "br3_5": {
+   "lists": [
+    "br3_5_v_dir_length",
+    "br3_5_v_total_length",
+    "br3_5_v_flag_avoid_muon_check",
+    "br3_5_v_n_seg",
+    "br3_5_v_angle",
+    "br3_5_v_sg_length",
+    "br3_5_v_energy",
+    "br3_5_v_n_segs",
+    "br3_5_v_shower_main_length",
+    "br3_5_v_shower_total_length"
+   ],
+   "scalars": [],
+   "flag": "br3_5_v_flag",
+   "pool": "min",
+   "empty": 0.42,
+   "score": "br3_5_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "br3_6": {
+   "lists": [
+    "br3_6_v_angle",
+    "br3_6_v_angle1",
+    "br3_6_v_flag_shower_trajectory",
+    "br3_6_v_direct_length",
+    "br3_6_v_length",
+    "br3_6_v_n_other_vtx_segs",
+    "br3_6_v_energy"
+   ],
+   "scalars": [],
+   "flag": "br3_6_v_flag",
+   "pool": "min",
+   "empty": 0.75,
+   "score": "br3_6_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "pio_2": {
+   "lists": [
+    "pio_2_v_dis2",
+    "pio_2_v_angle2",
+    "pio_2_v_acc_length"
+   ],
+   "scalars": [
+    "pio_mip_id"
+   ],
+   "flag": "pio_2_v_flag",
+   "pool": "min",
+   "empty": 0.2,
+   "score": "pio_2_score",
+   "flavour": "nue",
+   "pre_cut": "pio_filled == 1 and pio_flag_pio == 0",
+   "protect": {}
+  },
+  "stw_2": {
+   "lists": [
+    "stw_2_v_medium_dQ_dx",
+    "stw_2_v_energy",
+    "stw_2_v_angle",
+    "stw_2_v_dir_length",
+    "stw_2_v_max_dQ_dx"
+   ],
+   "scalars": [],
+   "flag": "stw_2_v_flag",
+   "pool": "min",
+   "empty": 0.7,
+   "score": "stw_2_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "stw_3": {
+   "lists": [
+    "stw_3_v_angle",
+    "stw_3_v_dir_length",
+    "stw_3_v_energy",
+    "stw_3_v_medium_dQ_dx"
+   ],
+   "scalars": [],
+   "flag": "stw_3_v_flag",
+   "pool": "min",
+   "empty": 0.5,
+   "score": "stw_3_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "stw_4": {
+   "lists": [
+    "stw_4_v_angle",
+    "stw_4_v_dis",
+    "stw_4_v_energy"
+   ],
+   "scalars": [],
+   "flag": "stw_4_v_flag",
+   "pool": "min",
+   "empty": 0.7,
+   "score": "stw_4_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "sig_1": {
+   "lists": [
+    "sig_1_v_angle",
+    "sig_1_v_flag_single_shower",
+    "sig_1_v_energy",
+    "sig_1_v_energy_1"
+   ],
+   "scalars": [],
+   "flag": "sig_1_v_flag",
+   "pool": "min",
+   "empty": 0.59,
+   "score": "sig_1_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "sig_2": {
+   "lists": [
+    "sig_2_v_energy",
+    "sig_2_v_shower_angle",
+    "sig_2_v_flag_single_shower",
+    "sig_2_v_medium_dQ_dx",
+    "sig_2_v_start_dQ_dx"
+   ],
+   "scalars": [],
+   "flag": "sig_2_v_flag",
+   "pool": "min",
+   "empty": 0.55,
+   "score": "sig_2_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "lol_1": {
+   "lists": [
+    "lol_1_v_energy",
+    "lol_1_v_vtx_n_segs",
+    "lol_1_v_nseg",
+    "lol_1_v_angle"
+   ],
+   "scalars": [],
+   "flag": "lol_1_v_flag",
+   "pool": "min",
+   "empty": 0.85,
+   "score": "lol_1_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "lol_2": {
+   "lists": [
+    "lol_2_v_length",
+    "lol_2_v_angle",
+    "lol_2_v_type",
+    "lol_2_v_vtx_n_segs",
+    "lol_2_v_energy",
+    "lol_2_v_shower_main_length",
+    "lol_2_v_flag_dir_weak"
+   ],
+   "scalars": [],
+   "flag": "lol_2_v_flag",
+   "pool": "min",
+   "empty": 0.7,
+   "score": "lol_2_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "tro_1": {
+   "lists": [
+    "tro_1_v_particle_type",
+    "tro_1_v_flag_dir_weak",
+    "tro_1_v_min_dis",
+    "tro_1_v_sg1_length",
+    "tro_1_v_shower_main_length",
+    "tro_1_v_max_n_vtx_segs",
+    "tro_1_v_tmp_length",
+    "tro_1_v_medium_dQ_dx",
+    "tro_1_v_dQ_dx_cut",
+    "tro_1_v_flag_shower_topology"
+   ],
+   "scalars": [],
+   "flag": "tro_1_v_flag",
+   "pool": "min",
+   "empty": 0.28,
+   "score": "tro_1_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "tro_2": {
+   "lists": [
+    "tro_2_v_energy",
+    "tro_2_v_stem_length",
+    "tro_2_v_iso_angle",
+    "tro_2_v_max_length",
+    "tro_2_v_angle"
+   ],
+   "scalars": [],
+   "flag": "tro_2_v_flag",
+   "pool": "min",
+   "empty": 0.35,
+   "score": "tro_2_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "tro_4": {
+   "lists": [
+    "tro_4_v_dir2_mag",
+    "tro_4_v_angle",
+    "tro_4_v_angle1",
+    "tro_4_v_angle2",
+    "tro_4_v_length",
+    "tro_4_v_length1",
+    "tro_4_v_medium_dQ_dx",
+    "tro_4_v_end_dQ_dx",
+    "tro_4_v_energy",
+    "tro_4_v_shower_main_length",
+    "tro_4_v_flag_shower_trajectory"
+   ],
+   "scalars": [],
+   "flag": "tro_4_v_flag",
+   "pool": "min",
+   "empty": 0.33,
+   "score": "tro_4_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  },
+  "tro_5": {
+   "lists": [
+    "tro_5_v_max_angle",
+    "tro_5_v_min_angle",
+    "tro_5_v_max_length",
+    "tro_5_v_iso_angle",
+    "tro_5_v_n_vtx_segs",
+    "tro_5_v_min_count",
+    "tro_5_v_max_count",
+    "tro_5_v_energy"
+   ],
+   "scalars": [],
+   "flag": "tro_5_v_flag",
+   "pool": "min",
+   "empty": 0.5,
+   "score": "tro_5_score",
+   "flavour": "nue",
+   "pre_cut": "",
+   "protect": {}
+  }
+ }
+}
