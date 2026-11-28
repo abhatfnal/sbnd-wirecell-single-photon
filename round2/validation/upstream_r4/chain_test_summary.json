@@ -1,0 +1,2065 @@
+{
+ "compare_dir": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/compare",
+ "arms": {
+  "ctl": {
+   "units": 18,
+   "units_by_sample": {
+    "nuecc": 7,
+    "ncdr": 7,
+    "bnb": 4
+   },
+   "verdicts": {
+    "UNEXPECTED_DIFFERENCES": 18
+   },
+   "differing_union": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   },
+   "changed_scores_union": {
+    "recTreeWireCell": [],
+    "recTreeWireCell_dv2snap": []
+   },
+   "entries": {
+    "recTree": 254,
+    "recTreeWireCell": 254,
+    "recTreeWireCell_dv2snap": 254
+   },
+   "branches_compared": {
+    "recTree": 2839,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "identical_branches_min": {
+    "recTree": 2662,
+    "recTreeWireCell": 2413,
+    "recTreeWireCell_dv2snap": 2398
+   },
+   "differing_outside_tagger_scores": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   }
+  },
+  "gate": {
+   "units": 1,
+   "units_by_sample": {
+    "ncdr": 1
+   },
+   "verdicts": {
+    "UNEXPECTED_DIFFERENCES": 1
+   },
+   "differing_union": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.T_bundle.final_cluster_id",
+     "wc.T_cluster..length",
+     "wc.T_cluster.beam_flash",
+     "wc.T_cluster.cluster_id",
+     "wc.T_cluster.cluster_t0_us",
+     "wc.T_cluster.fc",
+     "wc.T_cluster.flash_id",
+     "wc.T_cluster.flash_pe",
+     "wc.T_cluster.flash_time_us",
+     "wc.T_cluster.flash_tpc",
+     "wc.T_cluster.in_scope",
+     "wc.T_cluster.is_associated",
+     "wc.T_cluster.is_main",
+     "wc.T_cluster.length_cm",
+     "wc.T_cluster.lm",
+     "wc.T_cluster.matched_flash_gid",
+     "wc.T_cluster.npoints",
+     "wc.T_cluster.stm",
+     "wc.T_cluster.tgm",
+     "wc.T_dlvtx_call.dl_y",
+     "wc.T_dlvtx_call.dl_z",
+     "wc.T_dlvtx_call.final_x",
+     "wc.T_dlvtx_call.final_y",
+     "wc.T_dlvtx_call.final_z",
+     "wc.T_dlvtx_call.n_points",
+     "wc.T_dlvtx_call.payload",
+     "wc.T_dlvtx_call.rerank_y",
+     "wc.T_dlvtx_call.rerank_z",
+     "wc.T_dlvtx_call.space_cluster_id",
+     "wc.T_dlvtx_call.trad_y",
+     "wc.T_dlvtx_call.trad_z",
+     "wc.T_dlvtx_cloud..length",
+     "wc.T_dlvtx_cloud.call_index",
+     "wc.T_dlvtx_cloud.eventNo",
+     "wc.T_dlvtx_cloud.ipoint",
+     "wc.T_dlvtx_cloud.is_vertex",
+     "wc.T_dlvtx_cloud.nu_index",
+     "wc.T_dlvtx_cloud.pass",
+     "wc.T_dlvtx_cloud.q",
+     "wc.T_dlvtx_cloud.runNo",
+     "wc.T_dlvtx_cloud.subRunNo",
+     "wc.T_dlvtx_cloud.x",
+     "wc.T_dlvtx_cloud.y",
+     "wc.T_dlvtx_cloud.z",
+     "wc.T_dlvtx_space.cluster_id",
+     "wc.T_dlvtx_space.y",
+     "wc.T_dlvtx_space.z",
+     "wc.T_flash.n_matched_clusters",
+     "wc.T_flash.n_matched_main",
+     "wc.T_kine.cluster_id",
+     "wc.T_kine.kine_energy_particle",
+     "wc.T_kine.kine_main_vertex_id",
+     "wc.T_kine.kine_nu_x_corr",
+     "wc.T_kine.kine_nu_y_corr",
+     "wc.T_kine.kine_nu_z_corr",
+     "wc.T_kine.kine_particle_cluster_id",
+     "wc.T_kine.kine_particle_id",
+     "wc.T_kine.kine_reco_Enu",
+     "wc.T_match..length",
+     "wc.T_match.cluster_id",
+     "wc.T_match.eventNo",
+     "wc.T_match.kine_index",
+     "wc.T_match.level",
+     "wc.T_match.match_iou_n",
+     "wc.T_match.match_iou_n..idx",
+     "wc.T_match.match_iou_n..length",
+     "wc.T_match.match_iou_n..totarraysize",
+     "wc.T_match.match_iou_q",
+     "wc.T_match.match_iou_q..idx",
+     "wc.T_match.match_iou_q..length",
+     "wc.T_match.match_iou_q..totarraysize",
+     "wc.T_match.match_obj",
+     "wc.T_match.match_obj..idx",
+     "wc.T_match.match_obj..length",
+     "wc.T_match.match_obj..totarraysize",
+     "wc.T_match.match_shared_n",
+     "wc.T_match.match_shared_n..idx",
+     "wc.T_match.match_shared_n..length",
+     "wc.T_match.match_shared_n..totarraysize",
+     "wc.T_match.match_shared_q",
+     "wc.T_match.match_shared_q..idx",
+     "wc.T_match.match_shared_q..length",
+     "wc.T_match.match_shared_q..totarraysize",
+     "wc.T_match.mutual",
+     "wc.T_match.n_unlabeled",
+     "wc.T_match.nmatch",
+     "wc.T_match.nu_index",
+     "wc.T_match.obj",
+     "wc.T_match.q_unlabeled",
+     "wc.T_match.runNo",
+     "wc.T_match.side",
+     "wc.T_match.size_n",
+     "wc.T_match.size_q",
+     "wc.T_match.subRunNo",
+     "wc.T_match.truth_nu_idx",
+     "wc.T_match.truth_q_in_blobs",
+     "wc.T_match.truth_q_readout",
+     "wc.T_match.truth_trackid",
+     "wc.T_overlap..length",
+     "wc.T_overlap.cluster_id",
+     "wc.T_overlap.eventNo",
+     "wc.T_overlap.in_enu",
+     "wc.T_overlap.in_pf",
+     "wc.T_overlap.kine_index",
+     "wc.T_overlap.n_points",
+     "wc.T_overlap.n_pure",
+     "wc.T_overlap.nu_idx",
+     "wc.T_overlap.nu_index",
+     "wc.T_overlap.particle_id",
+     "wc.T_overlap.q",
+     "wc.T_overlap.q_pure",
+     "wc.T_overlap.runNo",
+     "wc.T_overlap.segment_id",
+     "wc.T_overlap.subRunNo",
+     "wc.T_overlap.trackid",
+     "wc.T_pf..length",
+     "wc.T_pf.depth",
+     "wc.T_pf.end_x",
+     "wc.T_pf.end_y",
+     "wc.T_pf.end_z",
+     "wc.T_pf.eventNo",
+     "wc.T_pf.is_pseudo",
+     "wc.T_pf.ke_mev",
+     "wc.T_pf.kine_index",
+     "wc.T_pf.n_children",
+     "wc.T_pf.name",
+     "wc.T_pf.name..idx",
+     "wc.T_pf.name..length",
+     "wc.T_pf.name..totarraysize",
+     "wc.T_pf.node_id",
+     "wc.T_pf.nu_index",
+     "wc.T_pf.parent_id",
+     "wc.T_pf.pdg",
+     "wc.T_pf.runNo",
+     "wc.T_pf.start_x",
+     "wc.T_pf.start_y",
+     "wc.T_pf.start_z",
+     "wc.T_pf.subRunNo",
+     "wc.T_proj_data.charge_pred.v",
+     "wc.T_proj_data.cluster_id",
+     "wc.T_rec_charge..length",
+     "wc.T_rec_charge.chi2",
+     "wc.T_rec_charge.cluster_id",
+     "wc.T_rec_charge.flag_shower",
+     "wc.T_rec_charge.flag_vertex",
+     "wc.T_rec_charge.ndf",
+     "wc.T_rec_charge.nq",
+     "wc.T_rec_charge.nu_index",
+     "wc.T_rec_charge.particle_id",
+     "wc.T_rec_charge.point_cluster_id",
+     "wc.T_rec_charge.pt",
+     "wc.T_rec_charge.pu",
+     "wc.T_rec_charge.pv",
+     "wc.T_rec_charge.pw",
+     "wc.T_rec_charge.q",
+     "wc.T_rec_charge.real_cluster_id",
+     "wc.T_rec_charge.reduced_chi2",
+     "wc.T_rec_charge.rr",
+     "wc.T_rec_charge.sub_cluster_id",
+     "wc.T_rec_charge.x",
+     "wc.T_rec_charge.y",
+     "wc.T_rec_charge.z",
+     "wc.T_segment.cluster_id",
+     "wc.T_segment.end_vertex_id",
+     "wc.T_segment.flag_shower",
+     "wc.T_segment.ke_mev",
+     "wc.T_segment.length_cm",
+     "wc.T_segment.n_fit",
+     "wc.T_segment.segment_id",
+     "wc.T_segment.shower_id",
+     "wc.T_segment.start_vertex_id",
+     "wc.T_tagger.act_cluster_id",
+     "wc.T_tagger.cluster_id",
+     "wc.T_tagger.nu_x",
+     "wc.T_tagger.nu_y",
+     "wc.T_tagger.nu_z",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_cc_1_dQ_dx_cut",
+     "wc.T_tagger.numu_cc_1_direct_length",
+     "wc.T_tagger.numu_cc_1_length",
+     "wc.T_tagger.numu_cc_1_medium_dQ_dx",
+     "wc.T_tagger.numu_cc_3_max_length_all",
+     "wc.T_tagger.numu_cc_3_track_length",
+     "wc.T_tagger.numu_score",
+     "wc.T_truth_track..length",
+     "wc.T_truth_track.ancestor_trackid",
+     "wc.T_truth_track.bee_trackid",
+     "wc.T_truth_track.e_readout",
+     "wc.T_truth_track.end_x",
+     "wc.T_truth_track.end_y",
+     "wc.T_truth_track.end_z",
+     "wc.T_truth_track.eventNo",
+     "wc.T_truth_track.mother_pdg",
+     "wc.T_truth_track.mother_trackid",
+     "wc.T_truth_track.n_blobs_dom",
+     "wc.T_truth_track.nu_idx",
+     "wc.T_truth_track.pdg",
+     "wc.T_truth_track.process",
+     "wc.T_truth_track.prong_trackid",
+     "wc.T_truth_track.q_dom_blobs",
+     "wc.T_truth_track.q_in_blobs",
+     "wc.T_truth_track.q_readout",
+     "wc.T_truth_track.runNo",
+     "wc.T_truth_track.start_E",
+     "wc.T_truth_track.start_t",
+     "wc.T_truth_track.start_x",
+     "wc.T_truth_track.start_y",
+     "wc.T_truth_track.start_z",
+     "wc.T_truth_track.subRunNo",
+     "wc.T_truth_track.trackid",
+     "wc.Trun.nu_n_main",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.T_bundle.final_cluster_id",
+     "wc.T_cluster..length",
+     "wc.T_cluster.beam_flash",
+     "wc.T_cluster.cluster_id",
+     "wc.T_cluster.cluster_t0_us",
+     "wc.T_cluster.fc",
+     "wc.T_cluster.flash_id",
+     "wc.T_cluster.flash_pe",
+     "wc.T_cluster.flash_time_us",
+     "wc.T_cluster.flash_tpc",
+     "wc.T_cluster.in_scope",
+     "wc.T_cluster.is_associated",
+     "wc.T_cluster.is_main",
+     "wc.T_cluster.length_cm",
+     "wc.T_cluster.lm",
+     "wc.T_cluster.matched_flash_gid",
+     "wc.T_cluster.npoints",
+     "wc.T_cluster.stm",
+     "wc.T_cluster.tgm",
+     "wc.T_dlvtx_call.dl_y",
+     "wc.T_dlvtx_call.dl_z",
+     "wc.T_dlvtx_call.final_y",
+     "wc.T_dlvtx_call.final_z",
+     "wc.T_dlvtx_call.n_points",
+     "wc.T_dlvtx_call.payload",
+     "wc.T_dlvtx_call.rerank_y",
+     "wc.T_dlvtx_call.rerank_z",
+     "wc.T_dlvtx_call.trad_y",
+     "wc.T_dlvtx_call.trad_z",
+     "wc.T_dlvtx_cloud..length",
+     "wc.T_dlvtx_cloud.call_index",
+     "wc.T_dlvtx_cloud.eventNo",
+     "wc.T_dlvtx_cloud.ipoint",
+     "wc.T_dlvtx_cloud.is_vertex",
+     "wc.T_dlvtx_cloud.nu_index",
+     "wc.T_dlvtx_cloud.pass",
+     "wc.T_dlvtx_cloud.q",
+     "wc.T_dlvtx_cloud.runNo",
+     "wc.T_dlvtx_cloud.subRunNo",
+     "wc.T_dlvtx_cloud.x",
+     "wc.T_dlvtx_cloud.y",
+     "wc.T_dlvtx_cloud.z",
+     "wc.T_flash.n_matched_clusters",
+     "wc.T_flash.n_matched_main",
+     "wc.T_kine.cluster_id",
+     "wc.T_kine.kine_energy_particle",
+     "wc.T_kine.kine_main_vertex_id",
+     "wc.T_kine.kine_nu_y_corr",
+     "wc.T_kine.kine_nu_z_corr",
+     "wc.T_kine.kine_particle_cluster_id",
+     "wc.T_kine.kine_particle_id",
+     "wc.T_kine.kine_reco_Enu",
+     "wc.T_match..length",
+     "wc.T_match.cluster_id",
+     "wc.T_match.eventNo",
+     "wc.T_match.kine_index",
+     "wc.T_match.level",
+     "wc.T_match.match_iou_n",
+     "wc.T_match.match_iou_n..idx",
+     "wc.T_match.match_iou_n..length",
+     "wc.T_match.match_iou_n..totarraysize",
+     "wc.T_match.match_iou_q",
+     "wc.T_match.match_iou_q..idx",
+     "wc.T_match.match_iou_q..length",
+     "wc.T_match.match_iou_q..totarraysize",
+     "wc.T_match.match_obj",
+     "wc.T_match.match_obj..idx",
+     "wc.T_match.match_obj..length",
+     "wc.T_match.match_obj..totarraysize",
+     "wc.T_match.match_shared_n",
+     "wc.T_match.match_shared_n..idx",
+     "wc.T_match.match_shared_n..length",
+     "wc.T_match.match_shared_n..totarraysize",
+     "wc.T_match.match_shared_q",
+     "wc.T_match.match_shared_q..idx",
+     "wc.T_match.match_shared_q..length",
+     "wc.T_match.match_shared_q..totarraysize",
+     "wc.T_match.mutual",
+     "wc.T_match.n_unlabeled",
+     "wc.T_match.nmatch",
+     "wc.T_match.nu_index",
+     "wc.T_match.obj",
+     "wc.T_match.q_unlabeled",
+     "wc.T_match.runNo",
+     "wc.T_match.side",
+     "wc.T_match.size_n",
+     "wc.T_match.size_q",
+     "wc.T_match.subRunNo",
+     "wc.T_match.truth_nu_idx",
+     "wc.T_match.truth_q_in_blobs",
+     "wc.T_match.truth_q_readout",
+     "wc.T_match.truth_trackid",
+     "wc.T_overlap..length",
+     "wc.T_overlap.cluster_id",
+     "wc.T_overlap.eventNo",
+     "wc.T_overlap.in_enu",
+     "wc.T_overlap.in_pf",
+     "wc.T_overlap.kine_index",
+     "wc.T_overlap.n_points",
+     "wc.T_overlap.n_pure",
+     "wc.T_overlap.nu_idx",
+     "wc.T_overlap.nu_index",
+     "wc.T_overlap.particle_id",
+     "wc.T_overlap.q",
+     "wc.T_overlap.q_pure",
+     "wc.T_overlap.runNo",
+     "wc.T_overlap.segment_id",
+     "wc.T_overlap.subRunNo",
+     "wc.T_overlap.trackid",
+     "wc.T_pf..length",
+     "wc.T_pf.depth",
+     "wc.T_pf.end_x",
+     "wc.T_pf.end_y",
+     "wc.T_pf.end_z",
+     "wc.T_pf.eventNo",
+     "wc.T_pf.is_pseudo",
+     "wc.T_pf.ke_mev",
+     "wc.T_pf.kine_index",
+     "wc.T_pf.n_children",
+     "wc.T_pf.name",
+     "wc.T_pf.name..idx",
+     "wc.T_pf.name..length",
+     "wc.T_pf.name..totarraysize",
+     "wc.T_pf.node_id",
+     "wc.T_pf.nu_index",
+     "wc.T_pf.parent_id",
+     "wc.T_pf.pdg",
+     "wc.T_pf.runNo",
+     "wc.T_pf.start_x",
+     "wc.T_pf.start_y",
+     "wc.T_pf.start_z",
+     "wc.T_pf.subRunNo",
+     "wc.T_proj_data.charge_pred.v",
+     "wc.T_proj_data.cluster_id",
+     "wc.T_rec_charge..length",
+     "wc.T_rec_charge.chi2",
+     "wc.T_rec_charge.cluster_id",
+     "wc.T_rec_charge.flag_shower",
+     "wc.T_rec_charge.flag_vertex",
+     "wc.T_rec_charge.ndf",
+     "wc.T_rec_charge.nq",
+     "wc.T_rec_charge.nu_index",
+     "wc.T_rec_charge.particle_id",
+     "wc.T_rec_charge.point_cluster_id",
+     "wc.T_rec_charge.pt",
+     "wc.T_rec_charge.pu",
+     "wc.T_rec_charge.pv",
+     "wc.T_rec_charge.pw",
+     "wc.T_rec_charge.q",
+     "wc.T_rec_charge.real_cluster_id",
+     "wc.T_rec_charge.reduced_chi2",
+     "wc.T_rec_charge.rr",
+     "wc.T_rec_charge.sub_cluster_id",
+     "wc.T_rec_charge.x",
+     "wc.T_rec_charge.y",
+     "wc.T_rec_charge.z",
+     "wc.T_segment.cluster_id",
+     "wc.T_segment.end_vertex_id",
+     "wc.T_segment.flag_shower",
+     "wc.T_segment.ke_mev",
+     "wc.T_segment.length_cm",
+     "wc.T_segment.n_fit",
+     "wc.T_segment.segment_id",
+     "wc.T_segment.shower_id",
+     "wc.T_segment.start_vertex_id",
+     "wc.T_tagger.act_cluster_id",
+     "wc.T_tagger.cluster_id",
+     "wc.T_tagger.nu_y",
+     "wc.T_tagger.nu_z",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_score",
+     "wc.T_truth_track..length",
+     "wc.T_truth_track.ancestor_trackid",
+     "wc.T_truth_track.bee_trackid",
+     "wc.T_truth_track.e_readout",
+     "wc.T_truth_track.end_x",
+     "wc.T_truth_track.end_y",
+     "wc.T_truth_track.end_z",
+     "wc.T_truth_track.eventNo",
+     "wc.T_truth_track.mother_pdg",
+     "wc.T_truth_track.mother_trackid",
+     "wc.T_truth_track.n_blobs_dom",
+     "wc.T_truth_track.nu_idx",
+     "wc.T_truth_track.pdg",
+     "wc.T_truth_track.process",
+     "wc.T_truth_track.prong_trackid",
+     "wc.T_truth_track.q_dom_blobs",
+     "wc.T_truth_track.q_in_blobs",
+     "wc.T_truth_track.q_readout",
+     "wc.T_truth_track.runNo",
+     "wc.T_truth_track.start_E",
+     "wc.T_truth_track.start_t",
+     "wc.T_truth_track.start_x",
+     "wc.T_truth_track.start_y",
+     "wc.T_truth_track.start_z",
+     "wc.T_truth_track.subRunNo",
+     "wc.T_truth_track.trackid",
+     "wc.Trun.nu_n_main",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   },
+   "changed_scores_union": {
+    "recTreeWireCell": [
+     "act_cluster_id",
+     "cluster_id",
+     "nu_x",
+     "nu_y",
+     "nu_z",
+     "numu_1_score",
+     "numu_cc_1_dQ_dx_cut",
+     "numu_cc_1_direct_length",
+     "numu_cc_1_length",
+     "numu_cc_1_medium_dQ_dx",
+     "numu_cc_3_max_length_all",
+     "numu_cc_3_track_length",
+     "numu_score"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "act_cluster_id",
+     "cluster_id",
+     "nu_y",
+     "nu_z",
+     "numu_1_score",
+     "numu_score"
+    ]
+   },
+   "entries": {
+    "recTree": 1,
+    "recTreeWireCell": 1,
+    "recTreeWireCell_dv2snap": 1
+   },
+   "branches_compared": {
+    "recTree": 2839,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "identical_branches_min": {
+    "recTree": 2839,
+    "recTreeWireCell": 2202,
+    "recTreeWireCell_dv2snap": 2200
+   },
+   "differing_outside_tagger_scores": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.T_bundle.final_cluster_id",
+     "wc.T_cluster..length",
+     "wc.T_cluster.beam_flash",
+     "wc.T_cluster.cluster_id",
+     "wc.T_cluster.cluster_t0_us",
+     "wc.T_cluster.fc",
+     "wc.T_cluster.flash_id",
+     "wc.T_cluster.flash_pe",
+     "wc.T_cluster.flash_time_us",
+     "wc.T_cluster.flash_tpc",
+     "wc.T_cluster.in_scope",
+     "wc.T_cluster.is_associated",
+     "wc.T_cluster.is_main",
+     "wc.T_cluster.length_cm",
+     "wc.T_cluster.lm",
+     "wc.T_cluster.matched_flash_gid",
+     "wc.T_cluster.npoints",
+     "wc.T_cluster.stm",
+     "wc.T_cluster.tgm",
+     "wc.T_dlvtx_call.dl_y",
+     "wc.T_dlvtx_call.dl_z",
+     "wc.T_dlvtx_call.final_x",
+     "wc.T_dlvtx_call.final_y",
+     "wc.T_dlvtx_call.final_z",
+     "wc.T_dlvtx_call.n_points",
+     "wc.T_dlvtx_call.payload",
+     "wc.T_dlvtx_call.rerank_y",
+     "wc.T_dlvtx_call.rerank_z",
+     "wc.T_dlvtx_call.space_cluster_id",
+     "wc.T_dlvtx_call.trad_y",
+     "wc.T_dlvtx_call.trad_z",
+     "wc.T_dlvtx_cloud..length",
+     "wc.T_dlvtx_cloud.call_index",
+     "wc.T_dlvtx_cloud.eventNo",
+     "wc.T_dlvtx_cloud.ipoint",
+     "wc.T_dlvtx_cloud.is_vertex",
+     "wc.T_dlvtx_cloud.nu_index",
+     "wc.T_dlvtx_cloud.pass",
+     "wc.T_dlvtx_cloud.q",
+     "wc.T_dlvtx_cloud.runNo",
+     "wc.T_dlvtx_cloud.subRunNo",
+     "wc.T_dlvtx_cloud.x",
+     "wc.T_dlvtx_cloud.y",
+     "wc.T_dlvtx_cloud.z",
+     "wc.T_dlvtx_space.cluster_id",
+     "wc.T_dlvtx_space.y",
+     "wc.T_dlvtx_space.z",
+     "wc.T_flash.n_matched_clusters",
+     "wc.T_flash.n_matched_main",
+     "wc.T_kine.cluster_id",
+     "wc.T_kine.kine_energy_particle",
+     "wc.T_kine.kine_main_vertex_id",
+     "wc.T_kine.kine_nu_x_corr",
+     "wc.T_kine.kine_nu_y_corr",
+     "wc.T_kine.kine_nu_z_corr",
+     "wc.T_kine.kine_particle_cluster_id",
+     "wc.T_kine.kine_particle_id",
+     "wc.T_kine.kine_reco_Enu",
+     "wc.T_match..length",
+     "wc.T_match.cluster_id",
+     "wc.T_match.eventNo",
+     "wc.T_match.kine_index",
+     "wc.T_match.level",
+     "wc.T_match.match_iou_n",
+     "wc.T_match.match_iou_n..idx",
+     "wc.T_match.match_iou_n..length",
+     "wc.T_match.match_iou_n..totarraysize",
+     "wc.T_match.match_iou_q",
+     "wc.T_match.match_iou_q..idx",
+     "wc.T_match.match_iou_q..length",
+     "wc.T_match.match_iou_q..totarraysize",
+     "wc.T_match.match_obj",
+     "wc.T_match.match_obj..idx",
+     "wc.T_match.match_obj..length",
+     "wc.T_match.match_obj..totarraysize",
+     "wc.T_match.match_shared_n",
+     "wc.T_match.match_shared_n..idx",
+     "wc.T_match.match_shared_n..length",
+     "wc.T_match.match_shared_n..totarraysize",
+     "wc.T_match.match_shared_q",
+     "wc.T_match.match_shared_q..idx",
+     "wc.T_match.match_shared_q..length",
+     "wc.T_match.match_shared_q..totarraysize",
+     "wc.T_match.mutual",
+     "wc.T_match.n_unlabeled",
+     "wc.T_match.nmatch",
+     "wc.T_match.nu_index",
+     "wc.T_match.obj",
+     "wc.T_match.q_unlabeled",
+     "wc.T_match.runNo",
+     "wc.T_match.side",
+     "wc.T_match.size_n",
+     "wc.T_match.size_q",
+     "wc.T_match.subRunNo",
+     "wc.T_match.truth_nu_idx",
+     "wc.T_match.truth_q_in_blobs",
+     "wc.T_match.truth_q_readout",
+     "wc.T_match.truth_trackid",
+     "wc.T_overlap..length",
+     "wc.T_overlap.cluster_id",
+     "wc.T_overlap.eventNo",
+     "wc.T_overlap.in_enu",
+     "wc.T_overlap.in_pf",
+     "wc.T_overlap.kine_index",
+     "wc.T_overlap.n_points",
+     "wc.T_overlap.n_pure",
+     "wc.T_overlap.nu_idx",
+     "wc.T_overlap.nu_index",
+     "wc.T_overlap.particle_id",
+     "wc.T_overlap.q",
+     "wc.T_overlap.q_pure",
+     "wc.T_overlap.runNo",
+     "wc.T_overlap.segment_id",
+     "wc.T_overlap.subRunNo",
+     "wc.T_overlap.trackid",
+     "wc.T_pf..length",
+     "wc.T_pf.depth",
+     "wc.T_pf.end_x",
+     "wc.T_pf.end_y",
+     "wc.T_pf.end_z",
+     "wc.T_pf.eventNo",
+     "wc.T_pf.is_pseudo",
+     "wc.T_pf.ke_mev",
+     "wc.T_pf.kine_index",
+     "wc.T_pf.n_children",
+     "wc.T_pf.name",
+     "wc.T_pf.name..idx",
+     "wc.T_pf.name..length",
+     "wc.T_pf.name..totarraysize",
+     "wc.T_pf.node_id",
+     "wc.T_pf.nu_index",
+     "wc.T_pf.parent_id",
+     "wc.T_pf.pdg",
+     "wc.T_pf.runNo",
+     "wc.T_pf.start_x",
+     "wc.T_pf.start_y",
+     "wc.T_pf.start_z",
+     "wc.T_pf.subRunNo",
+     "wc.T_proj_data.charge_pred.v",
+     "wc.T_proj_data.cluster_id",
+     "wc.T_rec_charge..length",
+     "wc.T_rec_charge.chi2",
+     "wc.T_rec_charge.cluster_id",
+     "wc.T_rec_charge.flag_shower",
+     "wc.T_rec_charge.flag_vertex",
+     "wc.T_rec_charge.ndf",
+     "wc.T_rec_charge.nq",
+     "wc.T_rec_charge.nu_index",
+     "wc.T_rec_charge.particle_id",
+     "wc.T_rec_charge.point_cluster_id",
+     "wc.T_rec_charge.pt",
+     "wc.T_rec_charge.pu",
+     "wc.T_rec_charge.pv",
+     "wc.T_rec_charge.pw",
+     "wc.T_rec_charge.q",
+     "wc.T_rec_charge.real_cluster_id",
+     "wc.T_rec_charge.reduced_chi2",
+     "wc.T_rec_charge.rr",
+     "wc.T_rec_charge.sub_cluster_id",
+     "wc.T_rec_charge.x",
+     "wc.T_rec_charge.y",
+     "wc.T_rec_charge.z",
+     "wc.T_segment.cluster_id",
+     "wc.T_segment.end_vertex_id",
+     "wc.T_segment.flag_shower",
+     "wc.T_segment.ke_mev",
+     "wc.T_segment.length_cm",
+     "wc.T_segment.n_fit",
+     "wc.T_segment.segment_id",
+     "wc.T_segment.shower_id",
+     "wc.T_segment.start_vertex_id",
+     "wc.T_tagger.act_cluster_id",
+     "wc.T_tagger.cluster_id",
+     "wc.T_tagger.nu_x",
+     "wc.T_tagger.nu_y",
+     "wc.T_tagger.nu_z",
+     "wc.T_tagger.numu_cc_1_dQ_dx_cut",
+     "wc.T_tagger.numu_cc_1_direct_length",
+     "wc.T_tagger.numu_cc_1_length",
+     "wc.T_tagger.numu_cc_1_medium_dQ_dx",
+     "wc.T_tagger.numu_cc_3_max_length_all",
+     "wc.T_tagger.numu_cc_3_track_length",
+     "wc.T_truth_track..length",
+     "wc.T_truth_track.ancestor_trackid",
+     "wc.T_truth_track.bee_trackid",
+     "wc.T_truth_track.e_readout",
+     "wc.T_truth_track.end_x",
+     "wc.T_truth_track.end_y",
+     "wc.T_truth_track.end_z",
+     "wc.T_truth_track.eventNo",
+     "wc.T_truth_track.mother_pdg",
+     "wc.T_truth_track.mother_trackid",
+     "wc.T_truth_track.n_blobs_dom",
+     "wc.T_truth_track.nu_idx",
+     "wc.T_truth_track.pdg",
+     "wc.T_truth_track.process",
+     "wc.T_truth_track.prong_trackid",
+     "wc.T_truth_track.q_dom_blobs",
+     "wc.T_truth_track.q_in_blobs",
+     "wc.T_truth_track.q_readout",
+     "wc.T_truth_track.runNo",
+     "wc.T_truth_track.start_E",
+     "wc.T_truth_track.start_t",
+     "wc.T_truth_track.start_x",
+     "wc.T_truth_track.start_y",
+     "wc.T_truth_track.start_z",
+     "wc.T_truth_track.subRunNo",
+     "wc.T_truth_track.trackid",
+     "wc.Trun.nu_n_main",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.T_bundle.final_cluster_id",
+     "wc.T_cluster..length",
+     "wc.T_cluster.beam_flash",
+     "wc.T_cluster.cluster_id",
+     "wc.T_cluster.cluster_t0_us",
+     "wc.T_cluster.fc",
+     "wc.T_cluster.flash_id",
+     "wc.T_cluster.flash_pe",
+     "wc.T_cluster.flash_time_us",
+     "wc.T_cluster.flash_tpc",
+     "wc.T_cluster.in_scope",
+     "wc.T_cluster.is_associated",
+     "wc.T_cluster.is_main",
+     "wc.T_cluster.length_cm",
+     "wc.T_cluster.lm",
+     "wc.T_cluster.matched_flash_gid",
+     "wc.T_cluster.npoints",
+     "wc.T_cluster.stm",
+     "wc.T_cluster.tgm",
+     "wc.T_dlvtx_call.dl_y",
+     "wc.T_dlvtx_call.dl_z",
+     "wc.T_dlvtx_call.final_y",
+     "wc.T_dlvtx_call.final_z",
+     "wc.T_dlvtx_call.n_points",
+     "wc.T_dlvtx_call.payload",
+     "wc.T_dlvtx_call.rerank_y",
+     "wc.T_dlvtx_call.rerank_z",
+     "wc.T_dlvtx_call.trad_y",
+     "wc.T_dlvtx_call.trad_z",
+     "wc.T_dlvtx_cloud..length",
+     "wc.T_dlvtx_cloud.call_index",
+     "wc.T_dlvtx_cloud.eventNo",
+     "wc.T_dlvtx_cloud.ipoint",
+     "wc.T_dlvtx_cloud.is_vertex",
+     "wc.T_dlvtx_cloud.nu_index",
+     "wc.T_dlvtx_cloud.pass",
+     "wc.T_dlvtx_cloud.q",
+     "wc.T_dlvtx_cloud.runNo",
+     "wc.T_dlvtx_cloud.subRunNo",
+     "wc.T_dlvtx_cloud.x",
+     "wc.T_dlvtx_cloud.y",
+     "wc.T_dlvtx_cloud.z",
+     "wc.T_flash.n_matched_clusters",
+     "wc.T_flash.n_matched_main",
+     "wc.T_kine.cluster_id",
+     "wc.T_kine.kine_energy_particle",
+     "wc.T_kine.kine_main_vertex_id",
+     "wc.T_kine.kine_nu_y_corr",
+     "wc.T_kine.kine_nu_z_corr",
+     "wc.T_kine.kine_particle_cluster_id",
+     "wc.T_kine.kine_particle_id",
+     "wc.T_kine.kine_reco_Enu",
+     "wc.T_match..length",
+     "wc.T_match.cluster_id",
+     "wc.T_match.eventNo",
+     "wc.T_match.kine_index",
+     "wc.T_match.level",
+     "wc.T_match.match_iou_n",
+     "wc.T_match.match_iou_n..idx",
+     "wc.T_match.match_iou_n..length",
+     "wc.T_match.match_iou_n..totarraysize",
+     "wc.T_match.match_iou_q",
+     "wc.T_match.match_iou_q..idx",
+     "wc.T_match.match_iou_q..length",
+     "wc.T_match.match_iou_q..totarraysize",
+     "wc.T_match.match_obj",
+     "wc.T_match.match_obj..idx",
+     "wc.T_match.match_obj..length",
+     "wc.T_match.match_obj..totarraysize",
+     "wc.T_match.match_shared_n",
+     "wc.T_match.match_shared_n..idx",
+     "wc.T_match.match_shared_n..length",
+     "wc.T_match.match_shared_n..totarraysize",
+     "wc.T_match.match_shared_q",
+     "wc.T_match.match_shared_q..idx",
+     "wc.T_match.match_shared_q..length",
+     "wc.T_match.match_shared_q..totarraysize",
+     "wc.T_match.mutual",
+     "wc.T_match.n_unlabeled",
+     "wc.T_match.nmatch",
+     "wc.T_match.nu_index",
+     "wc.T_match.obj",
+     "wc.T_match.q_unlabeled",
+     "wc.T_match.runNo",
+     "wc.T_match.side",
+     "wc.T_match.size_n",
+     "wc.T_match.size_q",
+     "wc.T_match.subRunNo",
+     "wc.T_match.truth_nu_idx",
+     "wc.T_match.truth_q_in_blobs",
+     "wc.T_match.truth_q_readout",
+     "wc.T_match.truth_trackid",
+     "wc.T_overlap..length",
+     "wc.T_overlap.cluster_id",
+     "wc.T_overlap.eventNo",
+     "wc.T_overlap.in_enu",
+     "wc.T_overlap.in_pf",
+     "wc.T_overlap.kine_index",
+     "wc.T_overlap.n_points",
+     "wc.T_overlap.n_pure",
+     "wc.T_overlap.nu_idx",
+     "wc.T_overlap.nu_index",
+     "wc.T_overlap.particle_id",
+     "wc.T_overlap.q",
+     "wc.T_overlap.q_pure",
+     "wc.T_overlap.runNo",
+     "wc.T_overlap.segment_id",
+     "wc.T_overlap.subRunNo",
+     "wc.T_overlap.trackid",
+     "wc.T_pf..length",
+     "wc.T_pf.depth",
+     "wc.T_pf.end_x",
+     "wc.T_pf.end_y",
+     "wc.T_pf.end_z",
+     "wc.T_pf.eventNo",
+     "wc.T_pf.is_pseudo",
+     "wc.T_pf.ke_mev",
+     "wc.T_pf.kine_index",
+     "wc.T_pf.n_children",
+     "wc.T_pf.name",
+     "wc.T_pf.name..idx",
+     "wc.T_pf.name..length",
+     "wc.T_pf.name..totarraysize",
+     "wc.T_pf.node_id",
+     "wc.T_pf.nu_index",
+     "wc.T_pf.parent_id",
+     "wc.T_pf.pdg",
+     "wc.T_pf.runNo",
+     "wc.T_pf.start_x",
+     "wc.T_pf.start_y",
+     "wc.T_pf.start_z",
+     "wc.T_pf.subRunNo",
+     "wc.T_proj_data.charge_pred.v",
+     "wc.T_proj_data.cluster_id",
+     "wc.T_rec_charge..length",
+     "wc.T_rec_charge.chi2",
+     "wc.T_rec_charge.cluster_id",
+     "wc.T_rec_charge.flag_shower",
+     "wc.T_rec_charge.flag_vertex",
+     "wc.T_rec_charge.ndf",
+     "wc.T_rec_charge.nq",
+     "wc.T_rec_charge.nu_index",
+     "wc.T_rec_charge.particle_id",
+     "wc.T_rec_charge.point_cluster_id",
+     "wc.T_rec_charge.pt",
+     "wc.T_rec_charge.pu",
+     "wc.T_rec_charge.pv",
+     "wc.T_rec_charge.pw",
+     "wc.T_rec_charge.q",
+     "wc.T_rec_charge.real_cluster_id",
+     "wc.T_rec_charge.reduced_chi2",
+     "wc.T_rec_charge.rr",
+     "wc.T_rec_charge.sub_cluster_id",
+     "wc.T_rec_charge.x",
+     "wc.T_rec_charge.y",
+     "wc.T_rec_charge.z",
+     "wc.T_segment.cluster_id",
+     "wc.T_segment.end_vertex_id",
+     "wc.T_segment.flag_shower",
+     "wc.T_segment.ke_mev",
+     "wc.T_segment.length_cm",
+     "wc.T_segment.n_fit",
+     "wc.T_segment.segment_id",
+     "wc.T_segment.shower_id",
+     "wc.T_segment.start_vertex_id",
+     "wc.T_tagger.act_cluster_id",
+     "wc.T_tagger.cluster_id",
+     "wc.T_tagger.nu_y",
+     "wc.T_tagger.nu_z",
+     "wc.T_truth_track..length",
+     "wc.T_truth_track.ancestor_trackid",
+     "wc.T_truth_track.bee_trackid",
+     "wc.T_truth_track.e_readout",
+     "wc.T_truth_track.end_x",
+     "wc.T_truth_track.end_y",
+     "wc.T_truth_track.end_z",
+     "wc.T_truth_track.eventNo",
+     "wc.T_truth_track.mother_pdg",
+     "wc.T_truth_track.mother_trackid",
+     "wc.T_truth_track.n_blobs_dom",
+     "wc.T_truth_track.nu_idx",
+     "wc.T_truth_track.pdg",
+     "wc.T_truth_track.process",
+     "wc.T_truth_track.prong_trackid",
+     "wc.T_truth_track.q_dom_blobs",
+     "wc.T_truth_track.q_in_blobs",
+     "wc.T_truth_track.q_readout",
+     "wc.T_truth_track.runNo",
+     "wc.T_truth_track.start_E",
+     "wc.T_truth_track.start_t",
+     "wc.T_truth_track.start_x",
+     "wc.T_truth_track.start_y",
+     "wc.T_truth_track.start_z",
+     "wc.T_truth_track.subRunNo",
+     "wc.T_truth_track.trackid",
+     "wc.Trun.nu_n_main",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   }
+  },
+  "new": {
+   "units": 18,
+   "units_by_sample": {
+    "nuecc": 7,
+    "ncdr": 7,
+    "bnb": 4
+   },
+   "verdicts": {
+    "UNEXPECTED_DIFFERENCES": 18
+   },
+   "differing_union": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.T_tagger.br3_3_score",
+     "wc.T_tagger.br3_5_score",
+     "wc.T_tagger.br3_6_score",
+     "wc.T_tagger.cosmict_10_score",
+     "wc.T_tagger.lol_1_score",
+     "wc.T_tagger.lol_2_score",
+     "wc.T_tagger.nue_score",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_2_score",
+     "wc.T_tagger.numu_score",
+     "wc.T_tagger.pio_2_score",
+     "wc.T_tagger.sig_1_score",
+     "wc.T_tagger.sig_2_score",
+     "wc.T_tagger.stw_2_score",
+     "wc.T_tagger.stw_3_score",
+     "wc.T_tagger.stw_4_score",
+     "wc.T_tagger.tro_1_score",
+     "wc.T_tagger.tro_2_score",
+     "wc.T_tagger.tro_4_score",
+     "wc.T_tagger.tro_5_score",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.T_tagger.br3_3_score",
+     "wc.T_tagger.br3_5_score",
+     "wc.T_tagger.br3_6_score",
+     "wc.T_tagger.cosmict_10_score",
+     "wc.T_tagger.lol_1_score",
+     "wc.T_tagger.lol_2_score",
+     "wc.T_tagger.nue_score",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_2_score",
+     "wc.T_tagger.numu_score",
+     "wc.T_tagger.pio_2_score",
+     "wc.T_tagger.sig_1_score",
+     "wc.T_tagger.sig_2_score",
+     "wc.T_tagger.stw_2_score",
+     "wc.T_tagger.stw_3_score",
+     "wc.T_tagger.stw_4_score",
+     "wc.T_tagger.tro_1_score",
+     "wc.T_tagger.tro_2_score",
+     "wc.T_tagger.tro_4_score",
+     "wc.T_tagger.tro_5_score",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   },
+   "changed_scores_union": {
+    "recTreeWireCell": [
+     "br3_3_score",
+     "br3_5_score",
+     "br3_6_score",
+     "cosmict_10_score",
+     "lol_1_score",
+     "lol_2_score",
+     "nue_score",
+     "numu_1_score",
+     "numu_2_score",
+     "numu_score",
+     "pio_2_score",
+     "sig_1_score",
+     "sig_2_score",
+     "stw_2_score",
+     "stw_3_score",
+     "stw_4_score",
+     "tro_1_score",
+     "tro_2_score",
+     "tro_4_score",
+     "tro_5_score"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "br3_3_score",
+     "br3_5_score",
+     "br3_6_score",
+     "cosmict_10_score",
+     "lol_1_score",
+     "lol_2_score",
+     "nue_score",
+     "numu_1_score",
+     "numu_2_score",
+     "numu_score",
+     "pio_2_score",
+     "sig_1_score",
+     "sig_2_score",
+     "stw_2_score",
+     "stw_3_score",
+     "stw_4_score",
+     "tro_1_score",
+     "tro_2_score",
+     "tro_4_score",
+     "tro_5_score"
+    ]
+   },
+   "entries": {
+    "recTree": 254,
+    "recTreeWireCell": 254,
+    "recTreeWireCell_dv2snap": 254
+   },
+   "branches_compared": {
+    "recTree": 2839,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "identical_branches_min": {
+    "recTree": 2662,
+    "recTreeWireCell": 2394,
+    "recTreeWireCell_dv2snap": 2378
+   },
+   "differing_outside_tagger_scores": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   }
+  },
+  "noscale": {
+   "units": 3,
+   "units_by_sample": {
+    "nuecc": 1,
+    "ncdr": 1,
+    "bnb": 1
+   },
+   "verdicts": {
+    "UNEXPECTED_DIFFERENCES": 3
+   },
+   "differing_union": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.T_tagger.br3_3_score",
+     "wc.T_tagger.br3_5_score",
+     "wc.T_tagger.br3_6_score",
+     "wc.T_tagger.cosmict_10_score",
+     "wc.T_tagger.lol_1_score",
+     "wc.T_tagger.lol_2_score",
+     "wc.T_tagger.nue_score",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_2_score",
+     "wc.T_tagger.numu_score",
+     "wc.T_tagger.pio_2_score",
+     "wc.T_tagger.sig_1_score",
+     "wc.T_tagger.sig_2_score",
+     "wc.T_tagger.stw_2_score",
+     "wc.T_tagger.stw_3_score",
+     "wc.T_tagger.stw_4_score",
+     "wc.T_tagger.tro_1_score",
+     "wc.T_tagger.tro_2_score",
+     "wc.T_tagger.tro_4_score",
+     "wc.T_tagger.tro_5_score",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.T_tagger.br3_3_score",
+     "wc.T_tagger.br3_5_score",
+     "wc.T_tagger.br3_6_score",
+     "wc.T_tagger.cosmict_10_score",
+     "wc.T_tagger.lol_1_score",
+     "wc.T_tagger.lol_2_score",
+     "wc.T_tagger.nue_score",
+     "wc.T_tagger.numu_1_score",
+     "wc.T_tagger.numu_2_score",
+     "wc.T_tagger.numu_score",
+     "wc.T_tagger.pio_2_score",
+     "wc.T_tagger.sig_1_score",
+     "wc.T_tagger.sig_2_score",
+     "wc.T_tagger.stw_2_score",
+     "wc.T_tagger.stw_3_score",
+     "wc.T_tagger.stw_4_score",
+     "wc.T_tagger.tro_1_score",
+     "wc.T_tagger.tro_2_score",
+     "wc.T_tagger.tro_4_score",
+     "wc.T_tagger.tro_5_score",
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   },
+   "changed_scores_union": {
+    "recTreeWireCell": [
+     "br3_3_score",
+     "br3_5_score",
+     "br3_6_score",
+     "cosmict_10_score",
+     "lol_1_score",
+     "lol_2_score",
+     "nue_score",
+     "numu_1_score",
+     "numu_2_score",
+     "numu_score",
+     "pio_2_score",
+     "sig_1_score",
+     "sig_2_score",
+     "stw_2_score",
+     "stw_3_score",
+     "stw_4_score",
+     "tro_1_score",
+     "tro_2_score",
+     "tro_4_score",
+     "tro_5_score"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "br3_3_score",
+     "br3_5_score",
+     "br3_6_score",
+     "cosmict_10_score",
+     "lol_1_score",
+     "lol_2_score",
+     "nue_score",
+     "numu_1_score",
+     "numu_2_score",
+     "numu_score",
+     "pio_2_score",
+     "sig_1_score",
+     "sig_2_score",
+     "stw_2_score",
+     "stw_3_score",
+     "stw_4_score",
+     "tro_1_score",
+     "tro_2_score",
+     "tro_4_score",
+     "tro_5_score"
+    ]
+   },
+   "entries": {
+    "recTree": 52,
+    "recTreeWireCell": 52,
+    "recTreeWireCell_dv2snap": 52
+   },
+   "branches_compared": {
+    "recTree": 2839,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "identical_branches_min": {
+    "recTree": 2662,
+    "recTreeWireCell": 2395,
+    "recTreeWireCell_dv2snap": 2378
+   },
+   "differing_outside_tagger_scores": {
+    "recTree": [],
+    "recTreeWireCell": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ],
+    "recTreeWireCell_dv2snap": [
+     "wc.Trun.wct_version",
+     "wc.Trun.wct_version..length",
+     "wc.Trun.wct_version..totarraysize"
+    ]
+   }
+  },
+  "prodbuild": {
+   "units": 2,
+   "units_by_sample": {
+    "ncdr": 1,
+    "bnb": 1
+   },
+   "verdicts": {
+    "ONLY_EXPECTED_DIFFERENCES": 2
+   },
+   "differing_union": {
+    "recTree": [],
+    "recTreeWireCell": [],
+    "recTreeWireCell_dv2snap": []
+   },
+   "changed_scores_union": {
+    "recTreeWireCell": [],
+    "recTreeWireCell_dv2snap": []
+   },
+   "entries": {
+    "recTree": 50,
+    "recTreeWireCell": 50,
+    "recTreeWireCell_dv2snap": 50
+   },
+   "branches_compared": {
+    "recTree": 2839,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "identical_branches_min": {
+    "recTree": 2662,
+    "recTreeWireCell": 2416,
+    "recTreeWireCell_dv2snap": 2401
+   },
+   "differing_outside_tagger_scores": {
+    "recTree": [],
+    "recTreeWireCell": [],
+    "recTreeWireCell_dv2snap": []
+   }
+  }
+ },
+ "score_parity": {
+  "gate dv2_snap ncdr": {
+   "candidates": 1,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "1/1",
+    "numu_2_score": "1/1",
+    "cosmict_10_score": "1/1",
+    "numu_score": "1/1"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "gate dv2_split_move ncdr": {
+   "candidates": 1,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "1/1",
+    "numu_2_score": "1/1",
+    "cosmict_10_score": "1/1",
+    "numu_score": "1/1"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_snap bnb": {
+   "candidates": 86,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 86,
+    "exact": 86,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 47,
+    "pass_emulated": 47,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 86,
+    "exact": 86,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "86/86",
+    "numu_2_score": "86/86",
+    "cosmict_10_score": "86/86",
+    "numu_score": "86/86"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_snap ncdr": {
+   "candidates": 10,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 10,
+    "exact": 10,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 10,
+    "exact": 10,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "10/10",
+    "numu_2_score": "10/10",
+    "cosmict_10_score": "10/10",
+    "numu_score": "10/10"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_snap nuecc": {
+   "candidates": 32,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 32,
+    "exact": 32,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 2,
+    "pass_emulated": 2,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 32,
+    "exact": 32,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 15,
+    "pass_emulated": 15,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "32/32",
+    "numu_2_score": "32/32",
+    "cosmict_10_score": "32/32",
+    "numu_score": "32/32"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_split_move bnb": {
+   "candidates": 86,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 86,
+    "exact": 86,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 49,
+    "pass_emulated": 49,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 86,
+    "exact": 86,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "86/86",
+    "numu_2_score": "86/86",
+    "cosmict_10_score": "86/86",
+    "numu_score": "86/86"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_split_move ncdr": {
+   "candidates": 10,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 10,
+    "exact": 10,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 10,
+    "exact": 10,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 2,
+    "pass_emulated": 2,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "10/10",
+    "numu_2_score": "10/10",
+    "cosmict_10_score": "10/10",
+    "numu_score": "10/10"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "new dv2_split_move nuecc": {
+   "candidates": 32,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 32,
+    "exact": 32,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 4,
+    "pass_emulated": 4,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 32,
+    "exact": 32,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 17,
+    "pass_emulated": 17,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "32/32",
+    "numu_2_score": "32/32",
+    "cosmict_10_score": "32/32",
+    "numu_score": "32/32"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_snap bnb": {
+   "candidates": 17,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 17,
+    "exact": 17,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 12,
+    "pass_emulated": 12,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 17,
+    "exact": 17,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "17/17",
+    "numu_2_score": "17/17",
+    "cosmict_10_score": "17/17",
+    "numu_score": "17/17"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_snap ncdr": {
+   "candidates": 1,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "1/1",
+    "numu_2_score": "1/1",
+    "cosmict_10_score": "1/1",
+    "numu_score": "1/1"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_snap nuecc": {
+   "candidates": 2,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 2,
+    "exact": 2,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 2,
+    "exact": 2,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "2/2",
+    "numu_2_score": "2/2",
+    "cosmict_10_score": "2/2",
+    "numu_score": "2/2"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_split_move bnb": {
+   "candidates": 17,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 17,
+    "exact": 17,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 12,
+    "pass_emulated": 12,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 17,
+    "exact": 17,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "17/17",
+    "numu_2_score": "17/17",
+    "cosmict_10_score": "17/17",
+    "numu_score": "17/17"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_split_move ncdr": {
+   "candidates": 1,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 1,
+    "exact": 1,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 0,
+    "pass_emulated": 0,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "1/1",
+    "numu_2_score": "1/1",
+    "cosmict_10_score": "1/1",
+    "numu_score": "1/1"
+   },
+   "nue_l1_over_1e6": 0
+  },
+  "noscale dv2_split_move nuecc": {
+   "candidates": 2,
+   "worst": {
+    "numu": 0.0,
+    "nue_l1": 0.0,
+    "nue_score": 0.0
+   },
+   "numu_score": {
+    "n": 2,
+    "exact": 2,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "nue_score": {
+    "n": 2,
+    "exact": 2,
+    "max_abs": 0.0,
+    "over_1e6": 0,
+    "over_1e5": 0,
+    "pass_chain": 1,
+    "pass_emulated": 1,
+    "pass_disagree": 0
+   },
+   "numu_exact": {
+    "numu_1_score": "2/2",
+    "numu_2_score": "2/2",
+    "cosmict_10_score": "2/2",
+    "numu_score": "2/2"
+   },
+   "nue_l1_over_1e6": 0
+  }
+ },
+ "shipped_final_closure_on_rerun": {
+  "ctl_dv2_snap wcl1116-aurora-bnb": {
+   "numu_score": "86/86 exact",
+   "nue_score": "86/86 exact"
+  },
+  "ctl_dv2_snap wcl1116-aurora-ncdr": {
+   "numu_score": "10/10 exact",
+   "nue_score": "10/10 exact"
+  },
+  "ctl_dv2_snap wcl1116-aurora-nuecc": {
+   "numu_score": "32/32 exact",
+   "nue_score": "32/32 exact"
+  },
+  "ctl_dv2_split_move wcl1116-aurora-bnb": {
+   "numu_score": "86/86 exact",
+   "nue_score": "86/86 exact"
+  },
+  "ctl_dv2_split_move wcl1116-aurora-ncdr": {
+   "numu_score": "10/10 exact",
+   "nue_score": "10/10 exact"
+  },
+  "ctl_dv2_split_move wcl1116-aurora-nuecc": {
+   "numu_score": "32/32 exact",
+   "nue_score": "32/32 exact"
+  },
+  "gate_dv2_snap wcl1116-aurora-ncdr": {
+   "numu_score": "0/1 exact",
+   "nue_score": "1/1 exact"
+  },
+  "gate_dv2_split_move wcl1116-aurora-ncdr": {
+   "numu_score": "0/1 exact",
+   "nue_score": "1/1 exact"
+  },
+  "new_dv2_snap wcl1116-aurora-bnb": {
+   "numu_score": "0/86 exact",
+   "nue_score": "81/86 exact"
+  },
+  "new_dv2_snap wcl1116-aurora-ncdr": {
+   "numu_score": "0/10 exact",
+   "nue_score": "6/10 exact"
+  },
+  "new_dv2_snap wcl1116-aurora-nuecc": {
+   "numu_score": "0/32 exact",
+   "nue_score": "7/32 exact"
+  },
+  "new_dv2_split_move wcl1116-aurora-bnb": {
+   "numu_score": "0/86 exact",
+   "nue_score": "80/86 exact"
+  },
+  "new_dv2_split_move wcl1116-aurora-ncdr": {
+   "numu_score": "0/10 exact",
+   "nue_score": "4/10 exact"
+  },
+  "new_dv2_split_move wcl1116-aurora-nuecc": {
+   "numu_score": "0/32 exact",
+   "nue_score": "8/32 exact"
+  },
+  "noscale_dv2_snap wcl1116-aurora-bnb": {
+   "numu_score": "0/17 exact",
+   "nue_score": "16/17 exact"
+  },
+  "noscale_dv2_snap wcl1116-aurora-ncdr": {
+   "numu_score": "0/1 exact",
+   "nue_score": "1/1 exact"
+  },
+  "noscale_dv2_snap wcl1116-aurora-nuecc": {
+   "numu_score": "0/2 exact",
+   "nue_score": "0/2 exact"
+  },
+  "noscale_dv2_split_move wcl1116-aurora-bnb": {
+   "numu_score": "0/17 exact",
+   "nue_score": "16/17 exact"
+  },
+  "noscale_dv2_split_move wcl1116-aurora-ncdr": {
+   "numu_score": "0/1 exact",
+   "nue_score": "1/1 exact"
+  },
+  "noscale_dv2_split_move wcl1116-aurora-nuecc": {
+   "numu_score": "0/2 exact",
+   "nue_score": "0/2 exact"
+  },
+  "prodbuild_dv2_snap wcl1116-aurora-bnb": {
+   "numu_score": "17/17 exact",
+   "nue_score": "17/17 exact"
+  },
+  "prodbuild_dv2_snap wcl1116-aurora-ncdr": {
+   "numu_score": "1/1 exact",
+   "nue_score": "1/1 exact"
+  },
+  "prodbuild_dv2_split_move wcl1116-aurora-bnb": {
+   "numu_score": "17/17 exact",
+   "nue_score": "17/17 exact"
+  },
+  "prodbuild_dv2_split_move wcl1116-aurora-ncdr": {
+   "numu_score": "1/1 exact",
+   "nue_score": "1/1 exact"
+  }
+ },
+ "sp_level_new_arm": {
+  "arm": "new",
+  "modes": {
+   "dv2_split_move": {
+    "rows": {
+     "test": 128,
+     "production": 128,
+     "matched": 128
+    },
+    "numu": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "other": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "ncpi0": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "nue": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    }
+   },
+   "dv2_snap": {
+    "rows": {
+     "test": 128,
+     "production": 128,
+     "matched": 128
+    },
+    "numu": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "other": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "ncpi0": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    },
+    "nue": {
+     "rows": 128,
+     "finite_rows": 128,
+     "rows_feature_vector_differs": 0,
+     "inputs_differing": {},
+     "retrained_domainD": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "fixed_domainA": {
+      "max_abs": 0.0,
+      "exact": 128
+     },
+     "legacy_xml": {
+      "max_abs": 0.0,
+      "pass_changes": 0
+     }
+    }
+   }
+  }
+ },
+ "environment_proof": [
+  "ENVCHECK ctl OPT=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/opt-0.38.0-numu-sim WCT_SRC=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/wct-0.38.0-numu-sim NUMU_SIM_DQDX_SCALE=1.071 wire-cell=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/opt-0.38.0-numu-sim/bin/wire-cell",
+  "ENVCHECK ctl XGB_nue_seed2_0923.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 6199d20294f4c20d",
+  "ENVCHECK ctl br3_3_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 ec3c504d6e2ed241",
+  "ENVCHECK ctl tro_5_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 865bf7bb057ee57f",
+  "ENVCHECK ctl numu_scalars_scores_0923.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 426e670c3a1650ea",
+  "ENVCHECK ctl numu_tagger1.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 4ef4b52d843a188d",
+  "ENVCHECK ctl numu_tagger3.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 fda358096093e97a",
+  "ENVCHECK ctl cos_tagger_10.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 a6a8c2227533db4e",
+  "ENVCHECK new OPT=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/opt-0.38.0-numu-sim WCT_SRC=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/wct-0.38.0-numu-sim NUMU_SIM_DQDX_SCALE=1.071 wire-cell=/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128/chain/opt-0.38.0-numu-sim/bin/wire-cell",
+  "ENVCHECK new XGB_nue_seed2_0923.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main 9912f6f2976f6bd0",
+  "ENVCHECK new br3_3_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main 418ad3815721ec7f",
+  "ENVCHECK new tro_5_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main f071db76f6c9a5f8",
+  "ENVCHECK new numu_scalars_scores_0923.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell 81fb26f88bb1aed3",
+  "ENVCHECK new numu_tagger1.weights.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell 1af283ddb28a54f8",
+  "ENVCHECK new numu_tagger3.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 fda358096093e97a",
+  "ENVCHECK new cos_tagger_10.weights.xml -> /lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell 8405c13c5e3129a9",
+  "ENVCHECK prodbuild OPT=/lus/flare/projects/neutrinoGPU/yuhw/opt-0.38.0 WCT_SRC=/lus/flare/projects/neutrinoGPU/yuhw/wct-0.38.0 NUMU_SIM_DQDX_SCALE=1.071 wire-cell=/lus/flare/projects/neutrinoGPU/yuhw/opt-0.38.0/bin/wire-cell",
+  "ENVCHECK prodbuild XGB_nue_seed2_0923.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 6199d20294f4c20d",
+  "ENVCHECK prodbuild br3_3_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 ec3c504d6e2ed241",
+  "ENVCHECK prodbuild tro_5_BDT.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 865bf7bb057ee57f",
+  "ENVCHECK prodbuild numu_scalars_scores_0923.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 426e670c3a1650ea",
+  "ENVCHECK prodbuild numu_tagger1.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 4ef4b52d843a188d",
+  "ENVCHECK prodbuild numu_tagger3.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 fda358096093e97a",
+  "ENVCHECK prodbuild cos_tagger_10.weights.xml -> /lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0 a6a8c2227533db4e"
+ ],
+ "sim_scale_log_line": {
+  "new": "36/36 step-2 logs",
+  "noscale": "0/6",
+  "gate": "0/2 (NUMU_SIM_DQDX_SCALE=1.071 set, reality=data)",
+  "ctl": "0/36",
+  "prodbuild": "0/4"
+ },
+ "build": {
+  "toolkit_clone": "chain/wct-0.38.0-numu-sim",
+  "commit": "ccb19cfbdc7f35958f1817391ab924e6c9da156c",
+  "base": "c935e30d44a09bf208f6de2c2968171b01efd63d",
+  "configured_version": "numu-sim-dqdx-scale-0.38.0-1-gccb19cf",
+  "wcb_k_rc": 0,
+  "same_lib_names_as_production": true,
+  "patched_symbol_present": true
+ },
+ "workflow": {
+  "clone": "chain/swp-wclocal-numu",
+  "commit": "eaaa02f",
+  "base": "d05cf47f6ca1db8d2e6ea327e8de0b49a2570b5e"
+ }
+}

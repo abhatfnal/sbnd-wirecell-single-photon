@@ -56,11 +56,13 @@ domains:
         list: null
         list_sha256: null
 
-upstream_models:          # placeholders: filled only when the owners freeze them
-  nu_mu_final:   {owner: Xuyang Ning + Matteo Vicenzi, file: null, sha256: null, status: NOT_FROZEN, booked_in_wcl1116: "uboone/weights/numu_scalars_scores_0923.xml sha256 426e670c3a1650ea... (shipped)"}
-  nu_mu_level1:  {owner: Xuyang Ning + Matteo Vicenzi, files: [numu_tagger1, numu_tagger2, numu_tagger3, cos_tagger_10], status: "UNKNOWN whether retrained (shipped today)"}
-  nu_e_final:    {owner: Xuyang Ning + Matteo Vicenzi, file: null, sha256: null, status: NOT_FROZEN, booked_in_wcl1116: "uboone/weights/XGB_nue_seed2_0923.xml sha256 6199d20294f4c20d... (shipped)"}
-  nu_e_level1:   {owner: shipped, files: "15 TMVA level-1 XMLs (br3_3 ... tro_5)", status: "FIXED (Xuyang spec_v1.md:67: used as stored)"}
+upstream_models:          # file / sha256 = the model FROZEN for Round-2 SP training (null until frozen); release_* = Xuyang's RELEASED + RECOMMENDED model (2026-11-28)
+  release_repository: {url: "https://github.com/Ningclover/sbnd-wirecell-bdt", commit: 0f13988db44423a227789e151b0a374e25771abd, checksums: "61/61 model files match the manifests (validation/upstream_r4/upstream_release_checksums.json)"}
+  nu_mu_final:   {owner: Xuyang Ning + Matteo Vicenzi, release: numu_round3af, file: null, sha256: null, release_file: releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml, release_sha256: 81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6, status: "RELEASED + RECOMMENDED by the owner (2026-11-23); needs the simulation dQ/dx x1.071 toolkit patch", booked_in_wcl1116: "uboone/weights/numu_scalars_scores_0923.xml sha256 426e670c3a1650ea... (shipped)"}
+  nu_mu_level1:  {owner: Xuyang Ning + Matteo Vicenzi, release: numu_round3af, files: {numu_tagger1: 1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92, numu_tagger2: a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f, cos_tagger_10: 8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9}, numu_tagger3: "NOT retrained (shipped; feeds no SP model)", status: "RETRAINED + RELEASED (answers the open question 'are the nu_mu L1 models kept?': NO)"}
+  nu_e_final:    {owner: Xuyang Ning + Matteo Vicenzi, release: nue_round4_ruleA_v2 (main), file: null, sha256: null, release_file: releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml, release_sha256: 9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078, status: "RELEASED + RECOMMENDED (2026-11-20); not an input of any SP model", booked_in_wcl1116: "uboone/weights/XGB_nue_seed2_0923.xml sha256 6199d20294f4c20d... (shipped)"}
+  nu_e_level1:   {owner: Xuyang Ning + Matteo Vicenzi, release: nue_round4_ruleA_v2 (main), files: "15 chain XMLs <model>_BDT.weights.xml (sha256 in validation/upstream_r4/upstream_release_checksums.json)", status: "RETRAINED (round 4, rule A) + RELEASED: supersedes 'FIXED (used as stored)'; the 15 SP ncpi0 inputs change"}
+  integration:   {doc: round2/docs/SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md, overlays: "$SP_WORK/upstream_r4_20261128/overlay/<mode>/", status: "DEVELOPMENT (offline re-scoring of the WCL1116 development samples; nothing frozen)"}
   dl_vertex:     {owner: Snehadri, file: dv2max/sbnd/aurora_space/bundle.json, sha256: 51588842984919b5d8146f007287a5e7841be6bbc709263b10cdb39046ff8a74, status: "AS RUN in wcl1116"}
   wct_config:    {owner: Haiwang Yu, compiled_md5_sim_split_move: fa3745b3b49538b845feedb894bc3551, status: "AS RUN in wcl1116"}
 
@@ -68,6 +70,8 @@ gates_before_final_training:
   - refreshed training lists written by tools/make_refresh_list.py from COMPLETE samples, hashed, manifests committed
   - training_tree_confirmed true (split-move vs snap = the Round-2 production vertex)
   - nu_mu chain frozen (final + level-1 decision) and numu_score / numu_*_score recomputed on the refreshed training CAFs (SP numu, SP other)
-  - nu_e level-1 still fixed (SP ncpi0); nu_e final frozen only matters for the nu_e analysis, not for SP ncpi0
+    # 2026-11-28: numu_round3af released (final + numu_1 / numu_2 / cosmict_10); offline re-scoring of WCL1116 = the integration audit
+  - nu_e level-1 scores of the training CAFs equal the collaboration's chosen nu_e release (SP ncpi0)
+    # 2026-11-28: nue_round4_ruleA_v2 RETRAINED the 15 level-1 models (supersedes 'nu_e level-1 still fixed'); nu_e final is not an SP input
   - SP other: wcl1116-fg-beamoff-train odd-run half available on the training side and approved_by filled
   - Round-2 production configuration (toolkit, DL bundle, config md5) equals the one recorded above, or the refresh is redone

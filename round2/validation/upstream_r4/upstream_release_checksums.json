@@ -1,0 +1,556 @@
+{
+ "repository": "https://github.com/Ningclover/sbnd-wirecell-bdt",
+ "commit": "0f13988db44423a227789e151b0a374e25771abd",
+ "files_checked": 61,
+ "mismatches": [],
+ "unlisted_model_files": [],
+ "correction": {
+  "mode": "uniform",
+  "k": 1.071,
+  "source": "gpvm #41 round3_charge_correction.json 3a"
+ },
+ "simulation_correction_manifest": {
+  "mode": "uniform",
+  "k": 1.071,
+  "source": "gpvm #41 round3_charge_correction.json 3a",
+  "inputs": [
+   "numu_cc_1_medium_dQ_dx",
+   "cosmict_2_dQ_dx_end",
+   "cosmict_2_dQ_dx_front",
+   "cosmict_3_dQ_dx_end",
+   "cosmict_3_dQ_dx_front",
+   "cosmict_7_dQ_dx_end",
+   "cosmict_7_dQ_dx_front"
+  ],
+  "applies_to": "simulation only, filled values > 0; data never",
+  "update_flag1": true,
+  "flag_rule": "per numu_1 segment: numu_cc_flag_1 = numu_cc_flag_1 AND (corrected numu_cc_1_medium_dQ_dx < numu_cc_1_dQ_dx_cut); numu_cc_flag = any segment flag_1 OR any numu_cc_2 flag OR numu_cc_flag_3",
+  "code": "training/numu/make_corrected_tables.py --update-flag1"
+ },
+ "operating_points": {
+  "numu": {
+   "purity": 0.95,
+   "cut_margin": 1.134,
+   "cut_numu_score": 0.985,
+   "efficiency": 0.8033,
+   "efficiency_range": [
+    0.8002,
+    0.8053
+   ],
+   "data_selected": 40222,
+   "data_predicted": 37854.1,
+   "data_over_prediction": 1.0626,
+   "source": "Fermilab evaluation samples, simulation charge-corrected as in correction.json (gpvm, private issue #42, numu/results/round3/eval_fg/eval_at_purity_95.json)"
+  },
+  "nue": {
+   "cut": 3.06,
+   "default": {
+    "variant": "main",
+    "chain_dir": "wirecell/main",
+    "cut": 3.06,
+    "decided": "2026-11-20, by the user; A-nogap v2 and B v2 kept as alternatives"
+   }
+  }
+ },
+ "auxiliary_sha256": {
+  "numu_round3af/correction.json": "2e9b7eef8cf1b355b15b32ffa876bda6779699f4e0c7cdf195032554e7c1d960",
+  "numu_round3af/manifest.json": "b900b33f453f1b52754e85605626859f7bd290cdb6e2e2cbac2d4e3fd5a328d6",
+  "numu_round3af/wirecell/chain_weights.json": "b147cd4388865e5c5e1a86af161bcf64210c5324ec7dd6ccd72402b1c62f031e",
+  "numu_round3af/wirecell/patches/wct-0.38.0-numu_sim_dqdx_scale.patch": "3162b22fb0337308fc258c6d6113e4b4acfe49e6b3077da5abbdbd5f8127846f",
+  "numu_round3af/wirecell/patches/step2-numu_sim_dqdx_scale.patch": "bc83b90becf9045391bbf96cc4081118aa3c716a66259037489667747bef9a0a",
+  "nue_round4_ruleA_v2/manifest.json": "226ab04bc8a7d5feda2e1e7ae5168a595ee4a5bc8d4ae199c0272814640a8cb2",
+  "nue_round4_ruleA_v2/wirecell/main/chain_weights.json": "4446bea50357c11c237e78037161ec1d3ead84cd14c2eb87fc481da6e81bb05e",
+  "README.md": "84e6dfa7bf9260cef8892afcb5dcd418f7a4c1abd9d5d11be4363eb0c00d87ac"
+ },
+ "files": [
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 br3_3",
+   "file": "l1/br3_3.json",
+   "expected": "971876eed15d0b6915be14fca3c60714a7595347d69ebb43e10dc67d70ddf210",
+   "actual": "971876eed15d0b6915be14fca3c60714a7595347d69ebb43e10dc67d70ddf210",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 br3_5",
+   "file": "l1/br3_5.json",
+   "expected": "41c52445e896e7b88596c272a8da990fef7683132647271c3ef6869e011a25f7",
+   "actual": "41c52445e896e7b88596c272a8da990fef7683132647271c3ef6869e011a25f7",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 br3_6",
+   "file": "l1/br3_6.json",
+   "expected": "d87e0f6af88073843163a0eeb3197b9cae7b4ad4d5fb01ba20faf1290aa8ba9a",
+   "actual": "d87e0f6af88073843163a0eeb3197b9cae7b4ad4d5fb01ba20faf1290aa8ba9a",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 pio_2",
+   "file": "l1/pio_2.json",
+   "expected": "76c52809e5a1a53a4ea02868fce91d34602186ac30b06ad846916724846af744",
+   "actual": "76c52809e5a1a53a4ea02868fce91d34602186ac30b06ad846916724846af744",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 stw_2",
+   "file": "l1/stw_2.json",
+   "expected": "dfe7102af0dbf351274e717302d4dff178d4fe22d39eeff7ea39725db94249d8",
+   "actual": "dfe7102af0dbf351274e717302d4dff178d4fe22d39eeff7ea39725db94249d8",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 stw_3",
+   "file": "l1/stw_3.json",
+   "expected": "7377b661fbaabf21b7b9c6f866ac81a8983599faddb59b7c2313204a7066511e",
+   "actual": "7377b661fbaabf21b7b9c6f866ac81a8983599faddb59b7c2313204a7066511e",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 stw_4",
+   "file": "l1/stw_4.json",
+   "expected": "64aaaf33e6b7cc07961b41d62eaf96097b0f378829b8168c7b770c475d2eba67",
+   "actual": "64aaaf33e6b7cc07961b41d62eaf96097b0f378829b8168c7b770c475d2eba67",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 sig_1",
+   "file": "l1/sig_1.json",
+   "expected": "a53d5cbc7853b5c9ddba86bfef0e816568bd1b793f9d55f0db7db6bddef7bd74",
+   "actual": "a53d5cbc7853b5c9ddba86bfef0e816568bd1b793f9d55f0db7db6bddef7bd74",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 sig_2",
+   "file": "l1/sig_2.json",
+   "expected": "66ece21cdc5aed025eb0d8e777cf7f9c24720231f01f0abca185b5c0d1bae918",
+   "actual": "66ece21cdc5aed025eb0d8e777cf7f9c24720231f01f0abca185b5c0d1bae918",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 lol_1",
+   "file": "l1/lol_1.json",
+   "expected": "b5441da52f854e070750a1ffca7ef0eafec5a628a622a8a5d5c490bfa98e98b6",
+   "actual": "b5441da52f854e070750a1ffca7ef0eafec5a628a622a8a5d5c490bfa98e98b6",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 lol_2",
+   "file": "l1/lol_2.json",
+   "expected": "5dba083f149c6068f2d7876dfa212a35e3c2151ef52fb38aaf6411cb0e08a627",
+   "actual": "5dba083f149c6068f2d7876dfa212a35e3c2151ef52fb38aaf6411cb0e08a627",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 tro_1",
+   "file": "l1/tro_1.json",
+   "expected": "ae05102fa001fd19a45c63205c9a7a4898a2aaf6a1467f39469a2ca44f796b22",
+   "actual": "ae05102fa001fd19a45c63205c9a7a4898a2aaf6a1467f39469a2ca44f796b22",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 tro_2",
+   "file": "l1/tro_2.json",
+   "expected": "e7fe04edfd9a8e8406329900ec3f57a03c0be0ea98f8e171ebdaabc41cb7c8cc",
+   "actual": "e7fe04edfd9a8e8406329900ec3f57a03c0be0ea98f8e171ebdaabc41cb7c8cc",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 tro_4",
+   "file": "l1/tro_4.json",
+   "expected": "5af8cda2e899c3c1fc26a37796f6021619172029dffe63a6c40cf188a41a9b81",
+   "actual": "5af8cda2e899c3c1fc26a37796f6021619172029dffe63a6c40cf188a41a9b81",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level1 tro_5",
+   "file": "l1/tro_5.json",
+   "expected": "2fdd2ce452ded36c4ae88b1dbd307afc7b74bc350caa85f58337d39a87d4462e",
+   "actual": "2fdd2ce452ded36c4ae88b1dbd307afc7b74bc350caa85f58337d39a87d4462e",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level2 main",
+   "file": "l2/nue_l2.json",
+   "expected": "67df0d9069931dafd224b6704f8a08cc81855ca771a607108aca606711813743",
+   "actual": "67df0d9069931dafd224b6704f8a08cc81855ca771a607108aca606711813743",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "level2 nogap",
+   "file": "l2/nue_l2_nogap.json",
+   "expected": "4f58d848b634846536f69fb8d780fe82e1fdd6b3babbd65c5eeaf4ea359fb8b1",
+   "actual": "4f58d848b634846536f69fb8d780fe82e1fdd6b3babbd65c5eeaf4ea359fb8b1",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+   "expected": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078",
+   "actual": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+   "expected": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0",
+   "actual": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+   "expected": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3",
+   "actual": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+   "expected": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072",
+   "actual": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+   "expected": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3",
+   "actual": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+   "expected": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78",
+   "actual": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+   "expected": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed",
+   "actual": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+   "expected": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82",
+   "actual": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+   "expected": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790",
+   "actual": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+   "expected": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6",
+   "actual": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+   "expected": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432",
+   "actual": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+   "expected": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3",
+   "actual": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+   "expected": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190",
+   "actual": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+   "expected": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49",
+   "actual": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+   "expected": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e",
+   "actual": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell main",
+   "file": "wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+   "expected": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da",
+   "actual": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/XGB_nue_seed2_0923.xml",
+   "expected": "e805f54a6a44574efbfe84f90a0be981e6097967c8c4720aaae1b86c50f2e4ae",
+   "actual": "e805f54a6a44574efbfe84f90a0be981e6097967c8c4720aaae1b86c50f2e4ae",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/br3_3_BDT.weights.xml",
+   "expected": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0",
+   "actual": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/br3_5_BDT.weights.xml",
+   "expected": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3",
+   "actual": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/br3_6_BDT.weights.xml",
+   "expected": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072",
+   "actual": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/lol_1_BDT.weights.xml",
+   "expected": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3",
+   "actual": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/lol_2_BDT.weights.xml",
+   "expected": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78",
+   "actual": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/pio_2_BDT.weights.xml",
+   "expected": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed",
+   "actual": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/sig_1_BDT.weights.xml",
+   "expected": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82",
+   "actual": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/sig_2_BDT.weights.xml",
+   "expected": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790",
+   "actual": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/stw_2_BDT.weights.xml",
+   "expected": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6",
+   "actual": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/stw_3_BDT.weights.xml",
+   "expected": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432",
+   "actual": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/stw_4_BDT.weights.xml",
+   "expected": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3",
+   "actual": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/tro_1_BDT.weights.xml",
+   "expected": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190",
+   "actual": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/tro_2_BDT.weights.xml",
+   "expected": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49",
+   "actual": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/tro_4_BDT.weights.xml",
+   "expected": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e",
+   "actual": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e",
+   "ok": true
+  },
+  {
+   "release": "nue_round4_ruleA_v2",
+   "role": "wirecell nogap",
+   "file": "wirecell/nogap/uboone/weights/tro_5_BDT.weights.xml",
+   "expected": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da",
+   "actual": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "level1 numu_1",
+   "file": "l1/l1_numu_1.json",
+   "expected": "cce2fc3ef3fb06b6eb3d73cf8408b39dfc9373da9defe97bdffec5489aa3a0b4",
+   "actual": "cce2fc3ef3fb06b6eb3d73cf8408b39dfc9373da9defe97bdffec5489aa3a0b4",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "level1 numu_2",
+   "file": "l1/l1_numu_2.json",
+   "expected": "63551c6305c360876c27f4a53b72b049984c735a0b42983a940d7c451992e678",
+   "actual": "63551c6305c360876c27f4a53b72b049984c735a0b42983a940d7c451992e678",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "level1 cosmict_10",
+   "file": "l1/l1_cosmict_10.json",
+   "expected": "aa4ed0c90d79d692d3f8fd1006524508ab840adac9608894f4f12236c51e1a85",
+   "actual": "aa4ed0c90d79d692d3f8fd1006524508ab840adac9608894f4f12236c51e1a85",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "final d6_f0",
+   "file": "l2/numu_l2.json",
+   "expected": "48b3c88787e9265222f1c5be93240a098d0abcac8a0309a39048ab338c434920",
+   "actual": "48b3c88787e9265222f1c5be93240a098d0abcac8a0309a39048ab338c434920",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "wirecell numu_1",
+   "file": "wirecell/uboone/weights/numu_tagger1.weights.xml",
+   "expected": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92",
+   "actual": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "wirecell numu_2",
+   "file": "wirecell/uboone/weights/numu_tagger2.weights.xml",
+   "expected": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f",
+   "actual": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "wirecell cosmict_10",
+   "file": "wirecell/uboone/weights/cos_tagger_10.weights.xml",
+   "expected": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9",
+   "actual": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "wirecell final",
+   "file": "wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+   "expected": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6",
+   "actual": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "chain_weights numu_1",
+   "file": "wirecell/uboone/weights/numu_tagger1.weights.xml",
+   "expected": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92",
+   "actual": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "chain_weights numu_2",
+   "file": "wirecell/uboone/weights/numu_tagger2.weights.xml",
+   "expected": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f",
+   "actual": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "chain_weights cosmict_10",
+   "file": "wirecell/uboone/weights/cos_tagger_10.weights.xml",
+   "expected": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9",
+   "actual": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9",
+   "ok": true
+  },
+  {
+   "release": "numu_round3af",
+   "role": "chain_weights final",
+   "file": "wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+   "expected": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6",
+   "actual": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6",
+   "ok": true
+  }
+ ],
+ "verdict": "ALL_MATCH"
+}

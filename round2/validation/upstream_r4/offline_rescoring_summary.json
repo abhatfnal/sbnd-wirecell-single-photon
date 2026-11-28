@@ -1,0 +1,2018 @@
+{
+ "work": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_r4_20261128",
+ "modes": {
+  "dv2_split_move": {
+   "samples": {
+    "wcl1116-aurora-ncdr": {
+     "files": 17604,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 24031,
+     "objects": {
+      "numu_1": 29880,
+      "numu_2": 561,
+      "cosmict_10": 271,
+      "br3_3": 35711,
+      "br3_5": 5718,
+      "br3_6": 11156,
+      "pio_2": 200026,
+      "stw_2": 6101,
+      "stw_3": 12233,
+      "stw_4": 2195,
+      "sig_1": 1477,
+      "sig_2": 6164,
+      "lol_1": 42032,
+      "lol_2": 1598,
+      "tro_1": 23131,
+      "tro_2": 8417,
+      "tro_4": 18922,
+      "tro_5": 5665
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 427,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 24031,
+       "n": 24031,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 24031,
+       "n": 24031,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 151,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 24031,
+       "official": 24031,
+       "joined": 24031
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 24031,
+        "max_abs": 2.980232238769531e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 11702
+       },
+       "numu_2": {
+        "n": 24031,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 23817
+       },
+       "cosmict_10": {
+        "n": 24031,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 24023
+       }
+      },
+      "numu_score": {
+       "n": 24031,
+       "max_abs": 0.2350088655948639,
+       "over_1e6": 6038,
+       "over_1e5": 454,
+       "exact": 947,
+       "pass_emulated": 1501,
+       "pass_official": 1501,
+       "pass_disagree": 0
+      },
+      "nue_rows": {
+       "official_br_filled": 6310,
+       "joined": 6310,
+       "emulated_br_filled_nonplaceholder": 6310
+      },
+      "nue_level1_worst": 5.960464477539062e-07,
+      "nue_score": {
+       "n": 6310,
+       "max_abs": 0.2436070442199707,
+       "over_1e6": 604,
+       "over_1e5": 87,
+       "exact": 979,
+       "pass_emulated": 256,
+       "pass_official": 256,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-aurora-bnb": {
+     "files": 11874,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 301830,
+     "objects": {
+      "numu_1": 530074,
+      "numu_2": 38101,
+      "cosmict_10": 13355,
+      "br3_3": 100107,
+      "br3_5": 15355,
+      "br3_6": 28079,
+      "pio_2": 530681,
+      "stw_2": 30924,
+      "stw_3": 59731,
+      "stw_4": 20140,
+      "sig_1": 13590,
+      "sig_2": 19970,
+      "lol_1": 122339,
+      "lol_2": 22716,
+      "tro_1": 58916,
+      "tro_2": 20797,
+      "tro_4": 56355,
+      "tro_5": 14924
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 7637,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 301830,
+       "n": 301830,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 301830,
+       "n": 301830,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 1639,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 301830,
+       "official": 301830,
+       "joined": 301830
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 301830,
+        "max_abs": 4.172325134277344e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 213325
+       },
+       "numu_2": {
+        "n": 301830,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 297861
+       },
+       "cosmict_10": {
+        "n": 301830,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 301039
+       }
+      },
+      "numu_score": {
+       "n": 301830,
+       "max_abs": 0.30691003799438477,
+       "over_1e6": 150704,
+       "over_1e5": 4089,
+       "exact": 12278,
+       "pass_emulated": 171315,
+       "pass_official": 171313,
+       "pass_disagree": 4
+      },
+      "nue_rows": {
+       "official_br_filled": 20414,
+       "joined": 20414,
+       "emulated_br_filled_nonplaceholder": 20414
+      },
+      "nue_level1_worst": 6.854534149169922e-07,
+      "nue_score": {
+       "n": 20414,
+       "max_abs": 16.500281780958176,
+       "over_1e6": 3232,
+       "over_1e5": 532,
+       "exact": 3237,
+       "pass_emulated": 835,
+       "pass_official": 835,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-aurora-nuecc": {
+     "files": 61238,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 265367,
+     "objects": {
+      "numu_1": 559317,
+      "numu_2": 12748,
+      "cosmict_10": 5647,
+      "br3_3": 2460551,
+      "br3_5": 176265,
+      "br3_6": 354205,
+      "pio_2": 11362483,
+      "stw_2": 300793,
+      "stw_3": 966574,
+      "stw_4": 148532,
+      "sig_1": 99708,
+      "sig_2": 187751,
+      "lol_1": 2710849,
+      "lol_2": 219464,
+      "tro_1": 1327097,
+      "tro_2": 287809,
+      "tro_4": 1342638,
+      "tro_5": 174360
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 1252,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 265367,
+       "n": 265367,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 265367,
+       "n": 265367,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 2127,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 265367,
+       "official": 265367,
+       "joined": 265367
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 265367,
+        "max_abs": 6.556510925292969e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 117874
+       },
+       "numu_2": {
+        "n": 265367,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 260320
+       },
+       "cosmict_10": {
+        "n": 265367,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 265072
+       }
+      },
+      "numu_score": {
+       "n": 265367,
+       "max_abs": 0.33756057918071747,
+       "over_1e6": 37581,
+       "over_1e5": 2585,
+       "exact": 12763,
+       "pass_emulated": 34222,
+       "pass_official": 34222,
+       "pass_disagree": 2
+      },
+      "nue_rows": {
+       "official_br_filled": 190945,
+       "joined": 190945,
+       "emulated_br_filled_nonplaceholder": 190945
+      },
+      "nue_level1_worst": 7.450580596923828e-07,
+      "nue_score": {
+       "n": 190945,
+       "max_abs": 0.3339313268661499,
+       "over_1e6": 49783,
+       "over_1e5": 2564,
+       "exact": 27221,
+       "pass_emulated": 137287,
+       "pass_official": 137304,
+       "pass_disagree": 19
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-fg-beamoff-train": {
+     "files": 558,
+     "file_errors": 0,
+     "wct_versions": [
+      "HEAD-0.38.0"
+     ],
+     "candidates": 2495,
+     "objects": {
+      "numu_1": 1972,
+      "numu_2": 314,
+      "cosmict_10": 197,
+      "br3_3": 849,
+      "br3_5": 106,
+      "br3_6": 196,
+      "pio_2": 3783,
+      "stw_2": 246,
+      "stw_3": 360,
+      "stw_4": 153,
+      "sig_1": 100,
+      "sig_2": 120,
+      "lol_1": 985,
+      "lol_2": 72,
+      "tro_1": 488,
+      "tro_2": 148,
+      "tro_4": 447,
+      "tro_5": 105
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 1342,
+      "compared_columns": 359
+     },
+     "kind": "data",
+     "sim_scale_applied": 1.0,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 2495,
+       "n": 2495,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 2495,
+       "n": 2495,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 0,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 2495,
+       "official": 2495,
+       "joined": 2495
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 2495,
+        "max_abs": 2.384185791015625e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 1828
+       },
+       "numu_2": {
+        "n": 2495,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 2455
+       },
+       "cosmict_10": {
+        "n": 2495,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 2491
+       }
+      },
+      "numu_score": {
+       "n": 2495,
+       "max_abs": 0.1297588348388672,
+       "over_1e6": 1640,
+       "over_1e5": 45,
+       "exact": 67,
+       "pass_emulated": 140,
+       "pass_official": 140,
+       "pass_disagree": 0
+      },
+      "nue_rows": {
+       "official_br_filled": 126,
+       "joined": 126,
+       "emulated_br_filled_nonplaceholder": 126
+      },
+      "nue_level1_worst": 5.066394805908203e-07,
+      "nue_score": {
+       "n": 126,
+       "max_abs": 0.12617945671081543,
+       "over_1e6": 13,
+       "over_1e5": 5,
+       "exact": 20,
+       "pass_emulated": 3,
+       "pass_official": 3,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    }
+   },
+   "official_correction": {
+    "objs_numu_1_wcl1116-aurora-bnb.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 526026,
+     "median_factor": "1.071"
+    },
+    "objs_numu_1_wcl1116-aurora-ncdr.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 29540,
+     "median_factor": "1.071"
+    },
+    "objs_numu_1_wcl1116-aurora-nuecc.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 554648,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 192222,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 192202,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 30675,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 30675,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 30302,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 30297,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-bnb": {
+     "candidates": 1639,
+     "flag1_lost": 1778
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 7646,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 7645,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 248,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 248,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 560,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 560,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-ncdr": {
+     "candidates": 151,
+     "flag1_lost": 152
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 84499,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 84468,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 4198,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 4197,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 20428,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 20428,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-nuecc": {
+     "candidates": 2127,
+     "flag1_lost": 2297
+    }
+   }
+  },
+  "dv2_snap": {
+   "samples": {
+    "wcl1116-aurora-ncdr": {
+     "files": 17604,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 24031,
+     "objects": {
+      "numu_1": 29458,
+      "numu_2": 536,
+      "cosmict_10": 249,
+      "br3_3": 34730,
+      "br3_5": 5567,
+      "br3_6": 10893,
+      "pio_2": 193295,
+      "stw_2": 5918,
+      "stw_3": 11894,
+      "stw_4": 2161,
+      "sig_1": 1501,
+      "sig_2": 6003,
+      "lol_1": 40864,
+      "lol_2": 1486,
+      "tro_1": 22614,
+      "tro_2": 8224,
+      "tro_4": 18389,
+      "tro_5": 5524
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 427,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 24031,
+       "n": 24031,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 24031,
+       "n": 24031,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 154,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 24031,
+       "official": 24031,
+       "joined": 24031
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 24031,
+        "max_abs": 2.980232238769531e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 11511
+       },
+       "numu_2": {
+        "n": 24031,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 23809
+       },
+       "cosmict_10": {
+        "n": 24031,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 24020
+       }
+      },
+      "numu_score": {
+       "n": 24031,
+       "max_abs": 0.18981730937957764,
+       "over_1e6": 6136,
+       "over_1e5": 490,
+       "exact": 961,
+       "pass_emulated": 1446,
+       "pass_official": 1445,
+       "pass_disagree": 1
+      },
+      "nue_rows": {
+       "official_br_filled": 6142,
+       "joined": 6142,
+       "emulated_br_filled_nonplaceholder": 6142
+      },
+      "nue_level1_worst": 6.556510925292969e-07,
+      "nue_score": {
+       "n": 6142,
+       "max_abs": 0.2436075210571289,
+       "over_1e6": 573,
+       "over_1e5": 74,
+       "exact": 929,
+       "pass_emulated": 289,
+       "pass_official": 289,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-aurora-bnb": {
+     "files": 11874,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 301830,
+     "objects": {
+      "numu_1": 522162,
+      "numu_2": 33174,
+      "cosmict_10": 11931,
+      "br3_3": 95943,
+      "br3_5": 14612,
+      "br3_6": 26922,
+      "pio_2": 526519,
+      "stw_2": 30830,
+      "stw_3": 59640,
+      "stw_4": 19690,
+      "sig_1": 13640,
+      "sig_2": 19685,
+      "lol_1": 117791,
+      "lol_2": 23078,
+      "tro_1": 57778,
+      "tro_2": 20107,
+      "tro_4": 54492,
+      "tro_5": 14184
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 7637,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 301830,
+       "n": 301830,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 301830,
+       "n": 301830,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 1816,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 301830,
+       "official": 301830,
+       "joined": 301830
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 301830,
+        "max_abs": 4.172325134277344e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 213647
+       },
+       "numu_2": {
+        "n": 301830,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 298189
+       },
+       "cosmict_10": {
+        "n": 301830,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 301159
+       }
+      },
+      "numu_score": {
+       "n": 301830,
+       "max_abs": 0.30691099166870117,
+       "over_1e6": 151628,
+       "over_1e5": 4257,
+       "exact": 11995,
+       "pass_emulated": 168227,
+       "pass_official": 168224,
+       "pass_disagree": 5
+      },
+      "nue_rows": {
+       "official_br_filled": 20102,
+       "joined": 20102,
+       "emulated_br_filled_nonplaceholder": 20102
+      },
+      "nue_level1_worst": 6.854534149169922e-07,
+      "nue_score": {
+       "n": 20102,
+       "max_abs": 0.35389137268066406,
+       "over_1e6": 3015,
+       "over_1e5": 546,
+       "exact": 3067,
+       "pass_emulated": 843,
+       "pass_official": 843,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-aurora-nuecc": {
+     "files": 61238,
+     "file_errors": 0,
+     "wct_versions": [
+      "0.38.0"
+     ],
+     "candidates": 265367,
+     "objects": {
+      "numu_1": 555767,
+      "numu_2": 12428,
+      "cosmict_10": 5127,
+      "br3_3": 2418588,
+      "br3_5": 174104,
+      "br3_6": 353576,
+      "pio_2": 11191623,
+      "stw_2": 302006,
+      "stw_3": 960854,
+      "stw_4": 148535,
+      "sig_1": 101531,
+      "sig_2": 185865,
+      "lol_1": 2667005,
+      "lol_2": 218509,
+      "tro_1": 1315032,
+      "tro_2": 286391,
+      "tro_4": 1323091,
+      "tro_5": 172258
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 1252,
+      "compared_columns": 359
+     },
+     "kind": "mc",
+     "sim_scale_applied": 1.071,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 265367,
+       "n": 265367,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 265367,
+       "n": 265367,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 2222,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 265367,
+       "official": 265367,
+       "joined": 265367
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 265367,
+        "max_abs": 7.152557373046875e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 117024
+       },
+       "numu_2": {
+        "n": 265367,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 260213
+       },
+       "cosmict_10": {
+        "n": 265367,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 265046
+       }
+      },
+      "numu_score": {
+       "n": 265367,
+       "max_abs": 0.4222433567047119,
+       "over_1e6": 38896,
+       "over_1e5": 2530,
+       "exact": 12544,
+       "pass_emulated": 33519,
+       "pass_official": 33519,
+       "pass_disagree": 8
+      },
+      "nue_rows": {
+       "official_br_filled": 189004,
+       "joined": 189004,
+       "emulated_br_filled_nonplaceholder": 189004
+      },
+      "nue_level1_worst": 6.854534149169922e-07,
+      "nue_score": {
+       "n": 189004,
+       "max_abs": 0.39766407012939453,
+       "over_1e6": 44103,
+       "over_1e5": 2619,
+       "exact": 27512,
+       "pass_emulated": 127634,
+       "pass_official": 127644,
+       "pass_disagree": 18
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    },
+    "wcl1116-fg-beamoff-train": {
+     "files": 558,
+     "file_errors": 0,
+     "wct_versions": [
+      "HEAD-0.38.0"
+     ],
+     "candidates": 2495,
+     "objects": {
+      "numu_1": 1893,
+      "numu_2": 278,
+      "cosmict_10": 175,
+      "br3_3": 789,
+      "br3_5": 100,
+      "br3_6": 177,
+      "pio_2": 3124,
+      "stw_2": 214,
+      "stw_3": 285,
+      "stw_4": 127,
+      "sig_1": 84,
+      "sig_2": 112,
+      "lol_1": 914,
+      "lol_2": 65,
+      "tro_1": 462,
+      "tro_2": 143,
+      "tro_4": 416,
+      "tro_5": 98
+     },
+     "builder_equivalence": {
+      "verdict": "IDENTICAL",
+      "files": 300,
+      "candidates": 1342,
+      "compared_columns": 359
+     },
+     "kind": "data",
+     "sim_scale_applied": 1.0,
+     "key_unique": true,
+     "closure_shipped_final_models": {
+      "numu_score": {
+       "exact": 2495,
+       "n": 2495,
+       "max_abs": 0.0
+      },
+      "nue_score": {
+       "exact": 2495,
+       "n": 2495,
+       "max_abs": 0.0
+      }
+     },
+     "nan_objects": {
+      "numu": {
+       "numu_1": 0,
+       "numu_2": 0,
+       "cosmict_10": 0
+      },
+      "nue": {
+       "br3_3": 0,
+       "br3_5": 0,
+       "br3_6": 0,
+       "pio_2": 0,
+       "stw_2": 0,
+       "stw_3": 0,
+       "stw_4": 0,
+       "sig_1": 0,
+       "sig_2": 0,
+       "lol_1": 0,
+       "lol_2": 0,
+       "tro_1": 0,
+       "tro_2": 0,
+       "tro_4": 0,
+       "tro_5": 0
+      }
+     },
+     "numu_cc_flag_bdt_turned_off": 0,
+     "official_vs_emulation": {
+      "numu_rows": {
+       "emulated": 2495,
+       "official": 2495,
+       "joined": 2495
+      },
+      "numu_level1": {
+       "numu_1": {
+        "n": 2495,
+        "max_abs": 2.384185791015625e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 1832
+       },
+       "numu_2": {
+        "n": 2495,
+        "max_abs": 5.513429641723633e-07,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 2455
+       },
+       "cosmict_10": {
+        "n": 2495,
+        "max_abs": 5.960464477539063e-08,
+        "over_1e6": 0,
+        "over_1e5": 0,
+        "exact": 2491
+       }
+      },
+      "numu_score": {
+       "n": 2495,
+       "max_abs": 0.1297588348388672,
+       "over_1e6": 1668,
+       "over_1e5": 51,
+       "exact": 77,
+       "pass_emulated": 156,
+       "pass_official": 156,
+       "pass_disagree": 0
+      },
+      "nue_rows": {
+       "official_br_filled": 114,
+       "joined": 114,
+       "emulated_br_filled_nonplaceholder": 114
+      },
+      "nue_level1_worst": 6.854534149169922e-07,
+      "nue_score": {
+       "n": 114,
+       "max_abs": 0.12617945671081543,
+       "over_1e6": 15,
+       "over_1e5": 5,
+       "exact": 21,
+       "pass_emulated": 2,
+       "pass_official": 2,
+       "pass_disagree": 0
+      }
+     },
+     "weights": {
+      "shipped": {
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "426e670c3a1650ea47ca97c34d2bbf0f80fab5726ff861ce2e645b08e351a773"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/yuhw/wcd-0.38.0/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "6199d20294f4c20d78e995848a71561d656a45f6ee0c3c701317bda419f6edd2"
+       }
+      },
+      "numu_round3af": {
+       "numu_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger1.weights.xml",
+        "sha256": "1af283ddb28a54f823f82896cc68856336ea3101163dab9c0e5a73d5ee7edc92"
+       },
+       "numu_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_tagger2.weights.xml",
+        "sha256": "a129aaad2950564d717b4769abe043c67f17b3a46d5b10801135c418ba10592f"
+       },
+       "cosmict_10": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/cos_tagger_10.weights.xml",
+        "sha256": "8405c13c5e3129a9d4a4beeb8cdf009371dcbb13f36cdf332e613bce28c0f1b9"
+       },
+       "numu_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/numu_round3af/wirecell/uboone/weights/numu_scalars_scores_0923.xml",
+        "sha256": "81fb26f88bb1aed30455ea5e55e6179f53b49bf6af4a36a119fbd181da6310b6"
+       }
+      },
+      "nue_round4_ruleA_v2": {
+       "br3_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_3_BDT.weights.xml",
+        "sha256": "418ad3815721ec7fdf6687df460244bb9f04343e53dc4081cd9904c704f534b0"
+       },
+       "br3_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_5_BDT.weights.xml",
+        "sha256": "7986b4d006bd46e931db46341d34b735a9ff897b5eb48b77e092d093e2c758d3"
+       },
+       "br3_6": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/br3_6_BDT.weights.xml",
+        "sha256": "dcb6747eeec4b8941b77f934ee1dd85e410aa09edeeb3c2b060b8f1848855072"
+       },
+       "pio_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/pio_2_BDT.weights.xml",
+        "sha256": "5df5b189178fec539f8604d3e8df1ca5f38dc62f9b4fe05897fa6030723099ed"
+       },
+       "stw_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_2_BDT.weights.xml",
+        "sha256": "8aba1428141cd8206bc83c8725aca9184816665281939ad9576c37d20ec505e6"
+       },
+       "stw_3": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_3_BDT.weights.xml",
+        "sha256": "b3da17624cc1729c63a0258271b38e8b4377d132c861b776eec7ec2bddf52432"
+       },
+       "stw_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/stw_4_BDT.weights.xml",
+        "sha256": "e7a95b0616ac5343de57665cabc06570f2bf788a88f000786715acc76f6921a3"
+       },
+       "sig_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_1_BDT.weights.xml",
+        "sha256": "b5276ab726225ea87f51fbd6313b9b0b59c351b1e853fc0dfe6fe3614398bb82"
+       },
+       "sig_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/sig_2_BDT.weights.xml",
+        "sha256": "edfcbfd7f8c8eb522dfa3b69cb9738a02e7921d5b9ad034f2d84d837ead20790"
+       },
+       "lol_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_1_BDT.weights.xml",
+        "sha256": "67c58356558a5b7006d582fb8e323857a67e7f214e23659ae18f5a25e8d818b3"
+       },
+       "lol_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/lol_2_BDT.weights.xml",
+        "sha256": "efc47843cf15416606b722e6e1fdf54b00ce97292b83313e061f79fca6cbbf78"
+       },
+       "tro_1": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_1_BDT.weights.xml",
+        "sha256": "23663ae2efe0d1e3aa4af34c38c41d39ac43eb5850deed7370af4bf69fd32190"
+       },
+       "tro_2": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_2_BDT.weights.xml",
+        "sha256": "e39de304f05e4e8e2c28af61e99bb6f7e9361e674c53e274e23749588eab1f49"
+       },
+       "tro_4": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_4_BDT.weights.xml",
+        "sha256": "c21c787d44c5b98a5c917c1e056373e01b7945d5de659d92f91082eef5c5258e"
+       },
+       "tro_5": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/tro_5_BDT.weights.xml",
+        "sha256": "f071db76f6c9a5f85d286efc70957f4fdf4388dd402fcd3ce81b83c14a6e77da"
+       },
+       "nue_final": {
+        "path": "/lus/flare/projects/neutrinoGPU/abhat/sbnd/sp-bdt-round2-work-20261117/upstream_release_audit/sbnd-wirecell-bdt/releases/nue_round4_ruleA_v2/wirecell/main/uboone/weights/XGB_nue_seed2_0923.xml",
+        "sha256": "9912f6f2976f6bd0aaa731d8eb04d4f596b5c4e5e0d980ab20d71f142724f078"
+       }
+      }
+     }
+    }
+   },
+   "official_correction": {
+    "objs_numu_1_wcl1116-aurora-bnb.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 518217,
+     "median_factor": "1.071"
+    },
+    "objs_numu_1_wcl1116-aurora-ncdr.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 29132,
+     "median_factor": "1.071"
+    },
+    "objs_numu_1_wcl1116-aurora-nuecc.parquet:numu_cc_1_medium_dQ_dx": {
+     "corrected": 551171,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 194797,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 194800,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 27691,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 27693,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 21266,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-bnb.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 21267,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-bnb": {
+     "candidates": 1816,
+     "flag1_lost": 1961
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 7606,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 7607,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 229,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 229,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 424,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-ncdr.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 424,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-ncdr": {
+     "candidates": 154,
+     "flag1_lost": 162
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_2_dQ_dx_end": {
+     "corrected": 84699,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_2_dQ_dx_front": {
+     "corrected": 84705,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_3_dQ_dx_end": {
+     "corrected": 3707,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_3_dQ_dx_front": {
+     "corrected": 3708,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_7_dQ_dx_end": {
+     "corrected": 17216,
+     "median_factor": "1.071"
+    },
+    "cands_wcl1116-aurora-nuecc.parquet:cosmict_7_dQ_dx_front": {
+     "corrected": 17217,
+     "median_factor": "1.071"
+    },
+    "numu_cc_flag_off:wcl1116-aurora-nuecc": {
+     "candidates": 2222,
+     "flag1_lost": 2396
+    }
+   }
+  }
+ },
+ "verdict": "OFFLINE_INPUTS_SUFFICIENT_AND_CLOSED"
+}

@@ -1,0 +1,427 @@
+{
+ "sp": {
+  "single_photon_numu": {
+   "inputs": 73,
+   "replaced_by_numu_round3af": [
+    "numu_1_score",
+    "numu_score"
+   ],
+   "replaced_by_nue_round4_ruleA_v2": [],
+   "raw_numu_final_inputs_stored_unchanged": [
+    "numu_cc_flag_3",
+    "numu_cc_3_particle_type",
+    "numu_cc_3_max_length",
+    "numu_cc_3_track_length",
+    "numu_cc_3_max_length_all",
+    "numu_cc_3_max_muon_length",
+    "numu_cc_3_n_daughter_tracks",
+    "numu_cc_3_n_daughter_all"
+   ],
+   "raw_nue_final_inputs_stored_unchanged": [],
+   "sim_scaled_in_bdt_copy_only": [],
+   "unaffected": 63
+  },
+  "single_photon_other": {
+   "inputs": 146,
+   "replaced_by_numu_round3af": [
+    "cosmict_10_score",
+    "numu_1_score",
+    "numu_2_score",
+    "numu_score"
+   ],
+   "replaced_by_nue_round4_ruleA_v2": [],
+   "raw_numu_final_inputs_stored_unchanged": [
+    "cosmict_flag_2",
+    "cosmict_2_filled",
+    "cosmict_2_particle_type",
+    "cosmict_2_n_muon_tracks",
+    "cosmict_2_total_shower_length",
+    "cosmict_2_flag_inside",
+    "cosmict_2_angle_beam",
+    "cosmict_2_flag_dir_weak",
+    "cosmict_2_dQ_dx_end",
+    "cosmict_2_dQ_dx_front",
+    "cosmict_2_theta",
+    "cosmict_2_phi",
+    "cosmict_2_valid_tracks",
+    "cosmict_flag_4",
+    "cosmict_4_filled",
+    "cosmict_4_flag_inside",
+    "cosmict_4_angle_beam",
+    "cosmict_4_connected_showers",
+    "cosmict_flag_3",
+    "cosmict_3_filled",
+    "cosmict_3_flag_inside",
+    "cosmict_3_angle_beam",
+    "cosmict_3_flag_dir_weak",
+    "cosmict_3_dQ_dx_end",
+    "cosmict_3_dQ_dx_front",
+    "cosmict_3_theta",
+    "cosmict_3_phi",
+    "cosmict_3_valid_tracks",
+    "cosmict_flag_5",
+    "cosmict_5_filled",
+    "cosmict_5_flag_inside",
+    "cosmict_5_angle_beam",
+    "cosmict_5_connected_showers",
+    "cosmict_flag_6",
+    "cosmict_6_filled",
+    "cosmict_6_flag_dir_weak",
+    "cosmict_6_flag_inside",
+    "cosmict_6_angle",
+    "cosmict_flag_7",
+    "cosmict_7_filled",
+    "cosmict_7_flag_sec",
+    "cosmict_7_n_muon_tracks",
+    "cosmict_7_total_shower_length",
+    "cosmict_7_flag_inside",
+    "cosmict_7_angle_beam",
+    "cosmict_7_flag_dir_weak",
+    "cosmict_7_dQ_dx_end",
+    "cosmict_7_dQ_dx_front",
+    "cosmict_7_theta",
+    "cosmict_7_phi",
+    "cosmict_flag_8",
+    "cosmict_8_filled",
+    "cosmict_8_flag_out",
+    "cosmict_8_muon_length",
+    "cosmict_8_acc_length",
+    "cosmict_flag_9",
+    "cosmic_flag",
+    "cosmic_filled",
+    "cosmict_flag",
+    "numu_cc_flag"
+   ],
+   "raw_nue_final_inputs_stored_unchanged": [],
+   "sim_scaled_in_bdt_copy_only": [
+    "cosmict_2_dQ_dx_end",
+    "cosmict_2_dQ_dx_front",
+    "cosmict_3_dQ_dx_end",
+    "cosmict_3_dQ_dx_front",
+    "cosmict_7_dQ_dx_end",
+    "cosmict_7_dQ_dx_front"
+   ],
+   "unaffected": 82
+  },
+  "single_photon_ncpi0": {
+   "inputs": 45,
+   "replaced_by_numu_round3af": [],
+   "replaced_by_nue_round4_ruleA_v2": [
+    "tro_5_score",
+    "tro_4_score",
+    "tro_2_score",
+    "tro_1_score",
+    "stw_4_score",
+    "stw_3_score",
+    "stw_2_score",
+    "sig_2_score",
+    "sig_1_score",
+    "pio_2_score",
+    "lol_2_score",
+    "lol_1_score",
+    "br3_6_score",
+    "br3_5_score",
+    "br3_3_score"
+   ],
+   "raw_numu_final_inputs_stored_unchanged": [],
+   "raw_nue_final_inputs_stored_unchanged": [],
+   "sim_scaled_in_bdt_copy_only": [],
+   "unaffected": 30
+  },
+  "single_photon_nue": {
+   "inputs": 56,
+   "replaced_by_numu_round3af": [],
+   "replaced_by_nue_round4_ruleA_v2": [],
+   "raw_numu_final_inputs_stored_unchanged": [],
+   "raw_nue_final_inputs_stored_unchanged": [],
+   "sim_scaled_in_bdt_copy_only": [],
+   "unaffected": 56
+  }
+ },
+ "upstream": {
+  "numu_final": {
+   "inputs": 74,
+   "retrained_inputs": [
+    "cosmict_10_score",
+    "numu_1_score",
+    "numu_2_score"
+   ],
+   "sim_scaled_inputs_in_bdt_copy": [
+    "cosmict_2_dQ_dx_end",
+    "cosmict_2_dQ_dx_front",
+    "cosmict_3_dQ_dx_end",
+    "cosmict_3_dQ_dx_front",
+    "cosmict_7_dQ_dx_end",
+    "cosmict_7_dQ_dx_front"
+   ],
+   "flag_copy": "numu_cc_flag",
+   "nan_to_0": [
+    "cosmict_4_angle_beam",
+    "cosmict_7_angle_beam",
+    "cosmict_7_theta",
+    "cosmict_7_phi"
+   ]
+  },
+  "numu_level1": {
+   "numu_1": {
+    "inputs": [
+     "numu_cc_1_particle_type",
+     "numu_cc_1_length",
+     "numu_cc_1_medium_dQ_dx",
+     "numu_cc_1_dQ_dx_cut",
+     "numu_cc_1_direct_length",
+     "numu_cc_1_n_daughter_tracks",
+     "numu_cc_1_n_daughter_all"
+    ],
+    "pool": "max",
+    "empty": -0.4,
+    "retrained": true
+   },
+   "numu_2": {
+    "inputs": [
+     "numu_cc_2_length",
+     "numu_cc_2_total_length",
+     "numu_cc_2_n_daughter_tracks",
+     "numu_cc_2_n_daughter_all"
+    ],
+    "pool": "max",
+    "empty": -0.1,
+    "retrained": true
+   },
+   "cosmict_10": {
+    "inputs": [
+     "cosmict_10_vtx_z",
+     "cosmict_10_flag_shower",
+     "cosmict_10_flag_dir_weak",
+     "cosmict_10_angle_beam",
+     "cosmict_10_length"
+    ],
+    "pool": "min",
+    "empty": 0.7,
+    "retrained": true
+   }
+  },
+  "numu_3": "numu_tagger3 NOT retrained, not an input of the nu_mu final model nor of any SP model",
+  "nue_final": {
+   "inputs": 258,
+   "level1_inputs": [
+    "br3_3_score",
+    "br3_5_score",
+    "br3_6_score",
+    "pio_2_score",
+    "stw_2_score",
+    "stw_3_score",
+    "stw_4_score",
+    "sig_1_score",
+    "sig_2_score",
+    "lol_1_score",
+    "lol_2_score",
+    "tro_1_score",
+    "tro_2_score",
+    "tro_4_score",
+    "tro_5_score"
+   ],
+   "reads_numu_outputs": false
+  },
+  "nue_level1": {
+   "br3_3": {
+    "inputs": [
+     "br3_3_v_energy",
+     "br3_3_v_angle",
+     "br3_3_v_dir_length",
+     "br3_3_v_length"
+    ],
+    "pool": "min",
+    "empty": 0.3,
+    "pre_cut": null
+   },
+   "br3_5": {
+    "inputs": [
+     "br3_5_v_dir_length",
+     "br3_5_v_total_length",
+     "br3_5_v_flag_avoid_muon_check",
+     "br3_5_v_n_seg",
+     "br3_5_v_angle",
+     "br3_5_v_sg_length",
+     "br3_5_v_energy",
+     "br3_5_v_n_segs",
+     "br3_5_v_shower_main_length",
+     "br3_5_v_shower_total_length"
+    ],
+    "pool": "min",
+    "empty": 0.42,
+    "pre_cut": null
+   },
+   "br3_6": {
+    "inputs": [
+     "br3_6_v_angle",
+     "br3_6_v_angle1",
+     "br3_6_v_flag_shower_trajectory",
+     "br3_6_v_direct_length",
+     "br3_6_v_length",
+     "br3_6_v_n_other_vtx_segs",
+     "br3_6_v_energy"
+    ],
+    "pool": "min",
+    "empty": 0.75,
+    "pre_cut": null
+   },
+   "pio_2": {
+    "inputs": [
+     "pio_2_v_dis2",
+     "pio_2_v_angle2",
+     "pio_2_v_acc_length",
+     "pio_mip_id"
+    ],
+    "pool": "min",
+    "empty": 0.2,
+    "pre_cut": "pio_filled == 1 and pio_flag_pio == 0"
+   },
+   "stw_2": {
+    "inputs": [
+     "stw_2_v_medium_dQ_dx",
+     "stw_2_v_energy",
+     "stw_2_v_angle",
+     "stw_2_v_dir_length",
+     "stw_2_v_max_dQ_dx"
+    ],
+    "pool": "min",
+    "empty": 0.7,
+    "pre_cut": null
+   },
+   "stw_3": {
+    "inputs": [
+     "stw_3_v_angle",
+     "stw_3_v_dir_length",
+     "stw_3_v_energy",
+     "stw_3_v_medium_dQ_dx"
+    ],
+    "pool": "min",
+    "empty": 0.5,
+    "pre_cut": null
+   },
+   "stw_4": {
+    "inputs": [
+     "stw_4_v_angle",
+     "stw_4_v_dis",
+     "stw_4_v_energy"
+    ],
+    "pool": "min",
+    "empty": 0.7,
+    "pre_cut": null
+   },
+   "sig_1": {
+    "inputs": [
+     "sig_1_v_angle",
+     "sig_1_v_flag_single_shower",
+     "sig_1_v_energy",
+     "sig_1_v_energy_1"
+    ],
+    "pool": "min",
+    "empty": 0.59,
+    "pre_cut": null
+   },
+   "sig_2": {
+    "inputs": [
+     "sig_2_v_energy",
+     "sig_2_v_shower_angle",
+     "sig_2_v_flag_single_shower",
+     "sig_2_v_medium_dQ_dx",
+     "sig_2_v_start_dQ_dx"
+    ],
+    "pool": "min",
+    "empty": 0.55,
+    "pre_cut": null
+   },
+   "lol_1": {
+    "inputs": [
+     "lol_1_v_energy",
+     "lol_1_v_vtx_n_segs",
+     "lol_1_v_nseg",
+     "lol_1_v_angle"
+    ],
+    "pool": "min",
+    "empty": 0.85,
+    "pre_cut": null
+   },
+   "lol_2": {
+    "inputs": [
+     "lol_2_v_length",
+     "lol_2_v_angle",
+     "lol_2_v_type",
+     "lol_2_v_vtx_n_segs",
+     "lol_2_v_energy",
+     "lol_2_v_shower_main_length",
+     "lol_2_v_flag_dir_weak"
+    ],
+    "pool": "min",
+    "empty": 0.7,
+    "pre_cut": null
+   },
+   "tro_1": {
+    "inputs": [
+     "tro_1_v_particle_type",
+     "tro_1_v_flag_dir_weak",
+     "tro_1_v_min_dis",
+     "tro_1_v_sg1_length",
+     "tro_1_v_shower_main_length",
+     "tro_1_v_max_n_vtx_segs",
+     "tro_1_v_tmp_length",
+     "tro_1_v_medium_dQ_dx",
+     "tro_1_v_dQ_dx_cut",
+     "tro_1_v_flag_shower_topology"
+    ],
+    "pool": "min",
+    "empty": 0.28,
+    "pre_cut": null
+   },
+   "tro_2": {
+    "inputs": [
+     "tro_2_v_energy",
+     "tro_2_v_stem_length",
+     "tro_2_v_iso_angle",
+     "tro_2_v_max_length",
+     "tro_2_v_angle"
+    ],
+    "pool": "min",
+    "empty": 0.35,
+    "pre_cut": null
+   },
+   "tro_4": {
+    "inputs": [
+     "tro_4_v_dir2_mag",
+     "tro_4_v_angle",
+     "tro_4_v_angle1",
+     "tro_4_v_angle2",
+     "tro_4_v_length",
+     "tro_4_v_length1",
+     "tro_4_v_medium_dQ_dx",
+     "tro_4_v_end_dQ_dx",
+     "tro_4_v_energy",
+     "tro_4_v_shower_main_length",
+     "tro_4_v_flag_shower_trajectory"
+    ],
+    "pool": "min",
+    "empty": 0.33,
+    "pre_cut": null
+   },
+   "tro_5": {
+    "inputs": [
+     "tro_5_v_max_angle",
+     "tro_5_v_min_angle",
+     "tro_5_v_max_length",
+     "tro_5_v_iso_angle",
+     "tro_5_v_n_vtx_segs",
+     "tro_5_v_min_count",
+     "tro_5_v_max_count",
+     "tro_5_v_energy"
+    ],
+    "pool": "min",
+    "empty": 0.5,
+    "pre_cut": null
+   }
+  },
+  "families_independent": "the nu_e final model reads no nu_mu output and the nu_mu final model reads no nu_e output"
+ },
+ "rows": 320
+}

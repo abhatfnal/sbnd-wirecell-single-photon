@@ -16,8 +16,10 @@ production:
   effective_boundary_profile: null    # name of the non-box / effective boundary configuration
   effective_boundary_sha256: null     # 64-hex of the boundary definition file(s) used by cosmic_tagger()
 upstream:
-  numu_model_fingerprint: null    # 64-hex over the collaboration-frozen nu_mu final + level-1 weight files (numu_score family)
-  nue_l1_fingerprints: null       # 64-hex over the 15 nu_e level-1 weight files (stored or re-frozen)
+  numu_model_fingerprint: null    # 64-hex over the collaboration-frozen nu_mu final + level-1 weight files (numu_score family); computed by
+                                  # sp_retrain.upstream_chain.fingerprint (numu_round3af release would be 0b8485a8..., shipped 595a9963...; NOT frozen)
+  nue_l1_fingerprints: null       # 64-hex over the 15 nu_e level-1 weight files (stored or re-frozen); same function
+                                  # (nue_round4_ruleA_v2 main would be 36ec972f..., shipped 17a8e17e...; NOT frozen)
 inputs:                           # Aurora TRAINING side only (lists written by tools/make_refresh_list.py)
   ncdr_list: {path: null, sha256: null, files: null}
   bnb_list: {path: null, sha256: null, files: null}
