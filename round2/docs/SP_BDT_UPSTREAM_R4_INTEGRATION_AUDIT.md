@@ -53,6 +53,12 @@ development pipeline:
      current development models applied unchanged (44.0 % → 35.1 %).
    - **After retraining in the new domain, the joint selection front changes by −0.5 to +2 points** (D: 48.7 % vs 48.0 %
      at BNB ≤ 0.78 %). Per-model AUC: SP numu 0.979 → 0.980, SP other 0.916 → 0.919, SP ncpi0 0.893 → 0.894.
+
+     > **Correction and follow-up (2026-11-28, `SP_BDT_UPSTREAM_R4_FOLLOWUP.md` §5).** The "≤ 0.78 %" front column used a
+     > cap of 0.778 %. At the literal 0.78 %, A is 48.2 % and D is 48.7 %. Those fronts are maxima taken on the nested-validation
+     > rows themselves (selection-aware bootstrap: D − A = +0.4 points, 95 % interval [−3.3, +3.9]). On the development holdout
+     > at **matched** BNB acceptance, D is 0.6–1.3 points **below** A in both trees, driven by the νμ release; at the matched
+     > per-model points it is 0.9 points below at equal background. The original numbers above are kept unchanged.
 7. **Reuse:** the existing production is reusable for development through checked overlays. The final domain needs a
    new production for other reasons (boundary, vertex, beam-off), which should book the releases.
 8. **New integration issues found:**
@@ -433,7 +439,7 @@ At the domain-A per-model signal efficiency, the retrained background acceptance
 
 ### 8.3 Joint four-cut selection (production order, nested validation, split-move)
 
-| domain | inherited XMLs, historical cuts | domain-A models + thresholds, unchanged | retrained, at the domain-A per-model efficiencies | retrained front: best NC Δ at BNB ≤ 0.78 % / ≤ 0.70 % |
+| domain | inherited XMLs, historical cuts | domain-A models + thresholds, unchanged | retrained, at the domain-A per-model efficiencies | retrained front: best NC Δ at BNB ≤ 0.78 % / ≤ 0.70 % (the first cap was in fact 0.778 %; see the correction in §0 item 6) |
 |---|---|---|---|---|
 | A stored | 27.1 % / 0.75 % | 44.0 % / 0.78 % | 44.0 % / 0.78 % | 48.0 % / 45.4 % |
 | B νμ release | **2.5 % / 0.08 %** | 34.4 % / 0.42 % | 42.9 % / 0.73 % | 47.5 % / 45.4 % |

@@ -155,16 +155,26 @@ def sp_block(sel, J, mode, a):
     return rows, FA, FD, pred, models
 
 
+def merged_name(caf):
+    """chain_test_units.tsv 'caf' is the INPUT flat CAF (reco2-<id>.flat.caf.root); the merged Wire-Cell CAF of the unit is
+    <produnitdir>/merged/reco2-<id>.wc.flat.caf.root (= the table file_id)."""
+    b = os.path.basename(caf)
+    if not b.endswith('.flat.caf.root'):
+        raise SystemExit('unexpected CAF name %s' % b)
+    return b[:-len('.flat.caf.root')] + '.wc.flat.caf.root'
+
+
 def caf_part(a, out, units_tsv):
     import uproot
     U = pd.read_csv(units_tsv, sep='\t')
     U = U.rename(columns={'#sample': 'sample'})
     rows, ident, exp = [], [], []
     for r in U.itertuples():
-        base = os.path.basename(r.caf)
+        base = merged_name(r.caf)
+        prod = os.path.join(r.produnitdir, 'merged', base)
         new = os.path.join(a.work, 'chain', 'runs', 'new', r.id, 'merged', base)
         d = os.path.join(out, 'caf', r.id)
-        for sub, src in (('production', r.caf), ('released_chain', new)):
+        for sub, src in (('production', prod), ('released_chain', new)):
             os.makedirs(os.path.join(d, sub), exist_ok=True)
             dst = os.path.join(d, sub, base)
             if not os.path.exists(dst):
@@ -208,7 +218,7 @@ def main():
         raise SystemExit('%s exists: fixtures are versioned, never overwritten' % a.out)
     os.makedirs(a.out, exist_ok=True)
     units = pd.read_csv(a.units_tsv, sep='\t').rename(columns={'#sample': 'sample'})
-    unit_files = set(os.path.basename(p) for p in units.caf)
+    unit_files = set(merged_name(p) for p in units.caf)
     topo = spo.load_topology(a.topology_dir)
     cases, model_files = [], {}
     for mode in MODES:

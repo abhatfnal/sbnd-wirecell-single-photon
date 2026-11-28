@@ -25,6 +25,40 @@ Nobody is to be contacted in this phase.
    project directory list (Matteo has no Aurora area). There is no νμ spec, code or model, so it cannot be determined
    from files.
 
+## Membership questions (2026-11-28; drafts, NOT sent; Avinay decides whether and when)
+
+From the training-membership manifest (`SP_BDT_UPSTREAM_R4_FOLLOWUP.md` section 3). Each question is something the
+accessible sources do not settle.
+
+**Snehadri (DL vertex, DV2-MAX `aurora_space`).** The bundle README says the model was trained on aurora-r2 BNB and intrinsic
+νe CC events: fold 1 has 477,997 training events, and fold 0 is a 15,000-event hold-out. Those are the same production units as
+our Aurora BNB and νe CC samples. The per-event fold table lives under
+`/lus/eagle/projects/neutrinoGPU/snehadri/sbnd-vertexer/` (`cache_info.json`, id signature `70ab2b2bd5e9`), and Eagle is not
+mounted on Aurora.
+1. Please send the per-event fold table, `(sample, unit or file_id, run, subrun, event, fold)`, and the fold rule, or grant read
+   access.
+2. Which events did the ranker use? The README says "folds != 0".
+3. Was any NC Δ event used?
+
+*Why it matters.* The vertex every SP feature depends on was trained on part of our SP training and holdout events.
+
+**Xuyang.** His row counts are reproduced from his code (νμ to 256 rows, νe to 2 rows; the difference is his 25 PARTIAL files).
+4. Are the released `numu_round3af` and `nue_round4_ruleA_v2` meant to be the train-split fits? The code freezes the
+   early-stopped fits on the train rows only, with no 100 % retrain, which `spec_v1.md:82` contradicts.
+5. Should the 25 PARTIAL files (14 BNB, 11 νe CC) be in training? He used them; our tables exclude them.
+6. Should the 109 `r8` beam-off files be in training?
+
+*Why it matters.* Upstream-overlap bookkeeping, and the EAF disjointness check.
+
+**Haiwang.**
+7. What is the status of the PARTIAL units? Is the stored `wct_version` "48" in Xuyang's tables his builder's byte-decoding of
+   the string (our extractor reads `0.38.0`)? Why does the νe list have 61,249 files against 61,252 pairs?
+
+**Avinay (production policy, not a collaborator question).** 134 groups of generator-identical BNB events (59 subrun pairs)
+share the GEN `generator` engine seed under the default `random` policy. Chance alone would give about 2 such pairs in this
+sample, so the seed source is not uniform. Any further BNB production should use an explicit seed policy, as configL's
+`linearMapping` does.
+
 ## Questions still required for Haiwang
 
 **None now.** The earlier question, whether the refresh could include the beam-off training half, is answered by his

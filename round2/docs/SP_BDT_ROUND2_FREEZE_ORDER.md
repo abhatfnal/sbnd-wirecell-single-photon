@@ -26,6 +26,14 @@ Sources:
 >
 > Offline integration, in-chain validation and the development comparison:
 > [`SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`](SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md). Nothing is frozen.
+>
+> **Decision 2026-11-28 (Avinay).**
+> - Domain D (both releases) is the current WCL1116 **development** domain. Domain A stays the immutable reference.
+> - The patched toolkit stamp is approved for development validation only.
+> - SP nue keeps its current development model in domain D.
+> - All four SP models are retrained once the final reconstruction domain exists.
+> - The common Aurora/EAF upstream scorer is `round2/upstream_chain_bundle`, and the final-domain contract accepts routes R1 / R2
+>   ([`SP_BDT_UPSTREAM_R4_FOLLOWUP.md`](SP_BDT_UPSTREAM_R4_FOLLOWUP.md)).
 
 ## 1. Who trains what
 
@@ -300,10 +308,14 @@ DONE:
   Xuyang's upstream releases numu_round3af + nue_round4_ruleA_v2 (2026-11-23 / -20)
   upstream-release integration audit (2026-11-28): offline re-scoring of all development samples, both trees;
     in-chain validation; domains A/B/C/D development comparison (SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md)
+  follow-up (2026-11-28): domain D adopted for development; common Aurora/EAF bundle wc_upstream_chain 1.0.0; development
+    fixture; training-membership manifest; joint-selection statistics; contract routes R1 / R2 (SP_BDT_UPSTREAM_R4_FOLLOWUP.md)
 
 IN PROGRESS / WAITING:
   Haiwang effective-boundary production (final reconstruction domain)
-  collaboration choice of the upstream models booked in Round 2 (+ the patched toolkit and its stamp)
+  collaboration choice of the upstream models booked in Round 2 (+ the patched toolkit and its stamp; final route R1 or R2)
+  EAF: adopt wc_upstream_chain, run the fixture checks V1, V3-V5 (EAF_HANDOFF_UPSTREAM_CHAIN_BUNDLE.md)
+  membership facts outside Aurora: DL-vertex fold table (Snehadri); Xuyang's intent for the train-split fits and the PARTIAL / r8 files
   vertex-mode freeze (split-move favoured in development)
 
 AVINAY NEXT (Avinay owns the downstream SP training campaign):

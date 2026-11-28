@@ -1,0 +1,220 @@
+{
+ "name": "upstream_r4_dev_fixture_v1",
+ "created_utc": "2026-11-28T13:47:59Z",
+ "authorization": "DEVELOPMENT fixture authorized by Avinay Bhat on 2026-11-28 (Aurora development samples NC Delta / BNB / nu_e CC and the permitted odd-run beam-off TRAINING half only). Not an evaluation sample; no official FermiGrid, beam-on, even-run beam-off, Run-3 BNB or open-data event. Development models inside are DEV_DO_NOT_DEPLOY.",
+ "bundle_version": "1.0.0",
+ "release_commit": "0f13988db44423a227789e151b0a374e25771abd",
+ "canonical_inventory_fingerprint": "1d48baed0b3d386b3848c20829099b736f42d6020456f4ea60dd4dbbf60c1f9f",
+ "location": "$SP_WORK/upstream_r4_20261128/fixtures/upstream_r4_dev_fixture_v1 (not in git)",
+ "manifest_sha256": "49ea777af334e318a06433b9f431156fa4186e153dfcda1bc744c749222a6043",
+ "sha256sums_sha256": "3dd9b8dcc9a7a2c29181d9b7a15e9c6a121bca7954817413a51a5d82e1891461",
+ "files": 252,
+ "cases": [
+  {
+   "dir": "mc/cases/wcl1116-aurora-ncdr/dv2_split_move",
+   "part": "mc",
+   "sample": "wcl1116-aurora-ncdr",
+   "mode": "dv2_split_move",
+   "tree": "recTreeWireCell",
+   "kind": "mc",
+   "candidates": 451,
+   "sp_rows": 317
+  },
+  {
+   "dir": "mc/cases/wcl1116-aurora-bnb/dv2_split_move",
+   "part": "mc",
+   "sample": "wcl1116-aurora-bnb",
+   "mode": "dv2_split_move",
+   "tree": "recTreeWireCell",
+   "kind": "mc",
+   "candidates": 555,
+   "sp_rows": 249
+  },
+  {
+   "dir": "mc/cases/wcl1116-aurora-nuecc/dv2_split_move",
+   "part": "mc",
+   "sample": "wcl1116-aurora-nuecc",
+   "mode": "dv2_split_move",
+   "tree": "recTreeWireCell",
+   "kind": "mc",
+   "candidates": 488,
+   "sp_rows": 399
+  },
+  {
+   "dir": "beamoff_restricted/cases/wcl1116-fg-beamoff-train/dv2_split_move",
+   "part": "beamoff_restricted",
+   "sample": "wcl1116-fg-beamoff-train",
+   "mode": "dv2_split_move",
+   "tree": "recTreeWireCell",
+   "kind": "data",
+   "candidates": 281,
+   "sp_rows": 98
+  },
+  {
+   "dir": "mc/cases/wcl1116-aurora-ncdr/dv2_snap",
+   "part": "mc",
+   "sample": "wcl1116-aurora-ncdr",
+   "mode": "dv2_snap",
+   "tree": "recTreeWireCell_dv2snap",
+   "kind": "mc",
+   "candidates": 451,
+   "sp_rows": 306
+  },
+  {
+   "dir": "mc/cases/wcl1116-aurora-bnb/dv2_snap",
+   "part": "mc",
+   "sample": "wcl1116-aurora-bnb",
+   "mode": "dv2_snap",
+   "tree": "recTreeWireCell_dv2snap",
+   "kind": "mc",
+   "candidates": 555,
+   "sp_rows": 246
+  },
+  {
+   "dir": "mc/cases/wcl1116-aurora-nuecc/dv2_snap",
+   "part": "mc",
+   "sample": "wcl1116-aurora-nuecc",
+   "mode": "dv2_snap",
+   "tree": "recTreeWireCell_dv2snap",
+   "kind": "mc",
+   "candidates": 487,
+   "sp_rows": 401
+  },
+  {
+   "dir": "beamoff_restricted/cases/wcl1116-fg-beamoff-train/dv2_snap",
+   "part": "beamoff_restricted",
+   "sample": "wcl1116-fg-beamoff-train",
+   "mode": "dv2_snap",
+   "tree": "recTreeWireCell_dv2snap",
+   "kind": "data",
+   "candidates": 274,
+   "sp_rows": 108
+  }
+ ],
+ "candidates": 3542,
+ "sp_rows": 2124,
+ "tag_totals": {
+  "all_nue_lists_empty": 0,
+  "some_list_empty": 1187,
+  "br_filled_0": 2227,
+  "pio2_objects_gate_blocks": 0,
+  "pio2_objects_gate_passes": 1101,
+  "placeholder": 348,
+  "l1_nan_object": 0,
+  "numu_final_nan_input": 0,
+  "nue_final_nan_input": 1,
+  "cap_mip_min_dis": 0,
+  "cap_mip_quality_shortest_length": 0,
+  "nan_mip_quality_shortest_angle": 0,
+  "nan_stem_dir_ratio": 0,
+  "nan_cosmict_4_angle_beam": 0,
+  "nan_cosmict_7_angle_beam": 0,
+  "multi_candidate_event": 138,
+  "numu_cc_flag_switched_off": 167,
+  "sim_scale_moves_numu_score_gt_0p1": 1433,
+  "split_crossing_numu_score": 120,
+  "split_crossing_nue_score": 118,
+  "split_crossing_numu_1_score": 0,
+  "split_crossing_nue_l1": 120,
+  "in_chain_unit": 256
+ },
+ "tags_absent_in_development_samples": [
+  "all_nue_lists_empty",
+  "cap_mip_min_dis",
+  "cap_mip_quality_shortest_length",
+  "l1_nan_object",
+  "nan_cosmict_4_angle_beam",
+  "nan_cosmict_7_angle_beam",
+  "nan_mip_quality_shortest_angle",
+  "nan_stem_dir_ratio",
+  "numu_final_nan_input",
+  "pio2_objects_gate_blocks",
+  "split_crossing_numu_1_score"
+ ],
+ "caf_units": 18,
+ "caf_candidates_both_trees": 256,
+ "models": [
+  "mc/models/DEV_DO_NOT_DEPLOY_ncpi0_dv2_snap_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_ncpi0_dv2_snap_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_nue_dv2_snap_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_nue_dv2_snap_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_numu_dv2_snap_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_numu_dv2_snap_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_other_dv2_snap_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_other_dv2_snap_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_ncpi0_dv2_split_move_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_ncpi0_dv2_split_move_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_nue_dv2_split_move_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_nue_dv2_split_move_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_numu_dv2_split_move_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_numu_dv2_split_move_devD.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_other_dv2_split_move_devA.json",
+  "mc/models/DEV_DO_NOT_DEPLOY_other_dv2_split_move_devD.json"
+ ],
+ "check_fixture": {
+  "ok": true,
+  "cases": [
+   {
+    "case": "mc/cases/wcl1116-aurora-ncdr/dv2_split_move",
+    "kind": "mc",
+    "candidates": 451,
+    "ok": true
+   },
+   {
+    "case": "mc/cases/wcl1116-aurora-bnb/dv2_split_move",
+    "kind": "mc",
+    "candidates": 555,
+    "ok": true
+   },
+   {
+    "case": "mc/cases/wcl1116-aurora-nuecc/dv2_split_move",
+    "kind": "mc",
+    "candidates": 488,
+    "ok": true
+   },
+   {
+    "case": "beamoff_restricted/cases/wcl1116-fg-beamoff-train/dv2_split_move",
+    "kind": "data",
+    "candidates": 281,
+    "ok": true
+   },
+   {
+    "case": "mc/cases/wcl1116-aurora-ncdr/dv2_snap",
+    "kind": "mc",
+    "candidates": 451,
+    "ok": true
+   },
+   {
+    "case": "mc/cases/wcl1116-aurora-bnb/dv2_snap",
+    "kind": "mc",
+    "candidates": 555,
+    "ok": true
+   },
+   {
+    "case": "mc/cases/wcl1116-aurora-nuecc/dv2_snap",
+    "kind": "mc",
+    "candidates": 487,
+    "ok": true
+   },
+   {
+    "case": "beamoff_restricted/cases/wcl1116-fg-beamoff-train/dv2_snap",
+    "kind": "data",
+    "candidates": 274,
+    "ok": true
+   }
+  ]
+ },
+ "in_chain_caf_vs_expected": {
+  "dv2_split_move": "128/128 candidates, all 20 outputs bit-identical; identity map keys == fixture keys",
+  "dv2_snap": "128/128 candidates, all 20 outputs bit-identical; identity map keys == fixture keys",
+  "nu_index_differs_from_position": 0
+ },
+ "transfer": {
+  "directory": "$SP_WORK/upstream_r4_20261128/transfer",
+  "tarballs": {
+   "upstream_r4_dev_fixture_v1_beamoff_restricted.tar": "dfe679be897468e2ae19b08412e750f5c47e02a31d389026ddade3134da5d3c4",
+   "upstream_r4_dev_fixture_v1_mc.tar": "0c7f6fe185419fbbb1b1ad1559e9bcaf3110f0ee4f1190f8bdba2fda092a7d72",
+   "upstream_r4_membership_v1.tar": "673b97baa2c4542e7fbbc0752f94e0500ed8e915bdc6ee2a1c6ab03fadd5a796"
+  }
+ }
+}

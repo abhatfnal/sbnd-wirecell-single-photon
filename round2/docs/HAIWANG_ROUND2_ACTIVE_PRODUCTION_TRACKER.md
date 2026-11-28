@@ -143,6 +143,21 @@ on the training side.**
   - Offline re-scoring of all four development samples (both trees) and a small in-chain rerun:
     `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`. No production directory was written.
 
+- **Read-only recheck, 2026-11-28 13:00Z** (`SP_BDT_UPSTREAM_R4_FOLLOWUP.md` section 6). Haiwang's local clones were last
+  fetched on 11-16 (toolkit), 11-18 (ai-helper) and 11-20 (catalogue); later remote work would not show.
+  - **No production newer than WCLocal2026Nov16.** Since 11-20 there are only HDF5 conversions of WCL1116 CAFs
+    (`production-prep/sim-h5-wcl1116`, `h5-0.6`; PBS 9110541, 9122899/9123716) and blob dumps. The `wct-0.38.0` build is
+    unchanged and clean.
+  - **νe CC is complete**: 61,238 OK, 11 PARTIAL and 3 FAIL out of 61,252 (`p5-nuecc-tally.txt`). Lists exist for BNB 11,888,
+    NC Δ 17,604 and νe CC 61,249.
+  - **Effective boundary: plan only.** `wire-cell-toolkit-ai-helper/issues/50-sbnd-effective-boundary/plan.md` (11-17) says "no
+    WCT code was changed". No SBND curved / poly fiducial code exists in any branch.
+  - **Xuyang's releases are not booked.** No reference to `numu_round3af`, `nue_round4`, `NUMU_SIM_DQDX_SCALE` or
+    `numu_sim_dqdx_scale` exists in his workflow, cfg, run scripts or `opt-0.38.0/share` (`swp-wclocal@d05cf47`).
+  - **Catalogue** (`b4b9bba`, 11-18): `wcl1116-fg-beamoff-train` is available (572 pairs, 570 OK, 2 PARTIAL); `wcl1116-fg-ncdr` is
+    available. Issue 49: three crashes reproduce one event at a time.
+  - No running or queued jobs of user yuhw.
+
 ## 7. Smoke comparison with aurora-r2 (read-only)
 
 `tools/refresh_smoke_check.py`, `validation/refresh_smoke_wcl1116_aurora.json`. Sample: 5 BNB units (250 events) and 20

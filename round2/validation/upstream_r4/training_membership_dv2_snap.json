@@ -1,0 +1,240 @@
+{
+ "label": "TRAINING-MEMBERSHIP MANIFEST (Aurora development samples; DEVELOPMENT ONLY; no official evaluation event read)",
+ "mode": "dv2_snap",
+ "tree": "recTreeWireCell_dv2snap",
+ "definitions": {
+  "sp_split": "outer development holdout: MC subrun % 2 == 1, beam-off run % 4 == 1 -> test; else train",
+  "sp_nested_role": "nested_v1: sha256(\"nested_v1|sample|run|subrun\") / 2^32 < 0.20 -> nval, else fit (train side only)",
+  "xn_split_v11": "Xuyang spec_v1.split_v11: MC subrun % 10 == 0 -> dev; beam-off run % 10 == 1 -> dev; else train",
+  "up_numu_pool": "training/numu/train_numu_l2.py @0f13988d: bnb, ncdr NC-partner rows, beam-off; placeholder 0, label readable, reco vertex in spec_v1.in_fv",
+  "up_nue_pool": "training/round2/train_l2.py @0f13988d: nuecc, bnb, ncdr, beam-off; placeholder 0, label readable, spec_v1.pool_mask; BNB filtered spills dropped",
+  "up_*_role": "fit = in pool and xn train (rows the released trees were fitted on); early_stop = in pool and xn dev (early stopping only); ineligible = outside the pool. The released models are the early-stopped fits on the train rows (no 100 % retrain; training/numu/freeze_numu_l2.py, nue chain_v2 f0.5)",
+  "gen_duplicate_group": "BNB events with an identical generated neutrino list (event number, pdg, E to 1e-6 GeV, vertex to 1e-3 cm) as another event",
+  "dlvtx_training_status": "DV2-MAX aurora_space bundle README: trained on aurora-r2 BNB + intrinsic nu_e CC (fold 0 = 15k-event hold-out); per-event folds not on Aurora"
+ },
+ "candidates": 593723,
+ "sha256": {
+  "membership_candidates": "bc88dc10f944b7f3c0116039623234c8cbae96c8cc38a54daa945b4882c734a4"
+ },
+ "counts": {
+  "wcl1116-aurora-ncdr": {
+   "candidates": 24031,
+   "sp_preselected": 16065,
+   "sp_nested_role": {
+    "test": 12063,
+    "fit": 9569,
+    "nval": 2399
+   },
+   "xn_split_v11": {
+    "train": 21585,
+    "dev": 2446
+   },
+   "up_numu_role": {
+    "fit": 15475,
+    "ineligible": 6835,
+    "early_stop": 1721
+   },
+   "up_nue_role": {
+    "ineligible": 19224,
+    "fit": 4358,
+    "early_stop": 449
+   },
+   "in_model": {
+    "numu": 15140,
+    "other": 15439,
+    "ncpi0": 15100,
+    "nue": 14826
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 8642,
+    "nue": 2429,
+    "either": 8680
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 952,
+    "fit|fit": 3908,
+    "fit|ineligible": 1516,
+    "nval|early_stop": 256,
+    "nval|fit": 961,
+    "nval|ineligible": 380,
+    "test|fit": 6173,
+    "test|ineligible": 1919
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 366,
+    "fit|fit": 1556,
+    "fit|ineligible": 4454,
+    "nval|early_stop": 83,
+    "nval|fit": 373,
+    "nval|ineligible": 1141,
+    "test|fit": 2429,
+    "test|ineligible": 5663
+   }
+  },
+  "wcl1116-aurora-bnb": {
+   "candidates": 301830,
+   "sp_preselected": 66214,
+   "sp_nested_role": {
+    "test": 150151,
+    "fit": 121083,
+    "nval": 30596
+   },
+   "xn_split_v11": {
+    "train": 271550,
+    "dev": 30280
+   },
+   "up_numu_role": {
+    "fit": 193047,
+    "ineligible": 87275,
+    "early_stop": 21508
+   },
+   "up_nue_role": {
+    "ineligible": 288352,
+    "fit": 12077,
+    "early_stop": 1401
+   },
+   "in_model": {
+    "numu": 40920,
+    "other": 17161,
+    "ncpi0": 11831,
+    "nue": 3829
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 106801,
+    "nue": 6695,
+    "either": 106801
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 3774,
+    "fit|fit": 14992,
+    "fit|ineligible": 7780,
+    "nval|early_stop": 908,
+    "nval|fit": 3840,
+    "nval|ineligible": 1992,
+    "test|fit": 23325,
+    "test|ineligible": 9603
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 1129,
+    "fit|fit": 4286,
+    "fit|ineligible": 21131,
+    "nval|early_stop": 272,
+    "nval|fit": 1096,
+    "nval|ineligible": 5372,
+    "test|fit": 6695,
+    "test|ineligible": 26233
+   }
+  },
+  "wcl1116-aurora-nuecc": {
+   "candidates": 265367,
+   "sp_preselected": 220561,
+   "sp_nested_role": {
+    "test": 132902,
+    "fit": 106148,
+    "nval": 26317
+   },
+   "xn_split_v11": {
+    "train": 238823,
+    "dev": 26544
+   },
+   "up_numu_role": {
+    "ineligible": 265367
+   },
+   "up_nue_role": {
+    "fit": 135411,
+    "ineligible": 114816,
+    "early_stop": 15140
+   },
+   "in_model": {
+    "numu": 0,
+    "other": 0,
+    "ncpi0": 0,
+    "nue": 212344
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 0,
+    "nue": 75191,
+    "either": 75191
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|ineligible": 88237,
+    "nval|ineligible": 21944,
+    "test|ineligible": 110380
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 12148,
+    "fit|fit": 48102,
+    "fit|ineligible": 27987,
+    "nval|early_stop": 2992,
+    "nval|fit": 12118,
+    "nval|ineligible": 6834,
+    "test|fit": 75191,
+    "test|ineligible": 35189
+   }
+  },
+  "wcl1116-fg-beamoff-train": {
+   "candidates": 2495,
+   "sp_preselected": 508,
+   "sp_nested_role": {
+    "fit": 1241,
+    "test": 1161,
+    "nval": 93
+   },
+   "xn_split_v11": {
+    "train": 1961,
+    "dev": 534
+   },
+   "up_numu_role": {
+    "ineligible": 1709,
+    "fit": 634,
+    "early_stop": 152
+   },
+   "up_nue_role": {
+    "ineligible": 2434,
+    "fit": 49,
+    "early_stop": 12
+   },
+   "in_model": {
+    "numu": 0,
+    "other": 508,
+    "ncpi0": 0,
+    "nue": 0
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 299,
+    "nue": 20,
+    "either": 299
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 39,
+    "fit|fit": 110,
+    "fit|ineligible": 113,
+    "nval|fit": 9,
+    "nval|ineligible": 12,
+    "test|early_stop": 27,
+    "test|fit": 102,
+    "test|ineligible": 96
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 6,
+    "fit|fit": 28,
+    "fit|ineligible": 228,
+    "nval|fit": 1,
+    "nval|ineligible": 20,
+    "test|early_stop": 6,
+    "test|fit": 20,
+    "test|ineligible": 199
+   }
+  }
+ },
+ "upstream_bnb_filtered_spills": {
+  "spills": 1605,
+  "candidate_rows_dropped": 1584
+ },
+ "generator_duplicates_bnb": {
+  "groups": 134,
+  "events": 268,
+  "candidates_in_groups": 125
+ },
+ "wall_s": 33.4
+}

@@ -1,6 +1,7 @@
 # SP BDTs: final-domain rerun contract
 
-Date: 2026-11-20. Template `config/campaigns/round2_final_reco_candidate.yaml`; tool `tools/final_domain_campaign.py`.
+Date: 2026-11-20; upstream routes R1 / R2 added 2026-11-28. Template `config/campaigns/round2_final_reco_candidate.yaml`; tool
+`tools/final_domain_campaign.py`.
 
 **Purpose.** When Haiwang's next production, with the measured non-box / effective boundary, appears, the final-domain
 SP retraining is a **validated rerun of existing, tested tools, not new software development**.
@@ -18,8 +19,7 @@ SP retraining is a **validated rerun of existing, tested tools, not new software
 | | `dl_bundle`, `dl_bundle_sha256` | DL vertex bundle and its 64-hex sha256 |
 | | `vertex_mode`, `wc_trees` | the collaboration's vertex mode and the stored tree for it |
 | | `effective_boundary_profile`, `effective_boundary_sha256` | the boundary configuration used by `cosmic_tagger()` |
-| upstream | `numu_model_fingerprint` | 64-hex over the collaboration-frozen νμ final + level-1 weights |
-| | `nue_l1_fingerprints` | 64-hex over the 15 νe level-1 weights |
+| upstream | `route`, release and fingerprint fields, `sim_dqdx_scale`, `sim_correction_evidence`; per route the patch hashes (R1) or the stored fingerprints, bundle version and closure record (R2) | section 1a |
 | inputs | `ncdr_list`, `bnb_list`, `nuecc_list` | path, sha256 and file count of the Aurora **training** lists; no official-evaluation marker in any path |
 | | `beamoff_train_list` | the odd-run beam-off TRAINING half reprocessed in this domain |
 | | `beamoff_staging_record`, `beamoff_verifier_sha256` | `verify_staged_beamoff.py --expect-reco campaign --campaign-spec …` output, VERIFIED, with the same list hash, toolkit commit and verifier hash, and a stamp from the closed list |
@@ -33,21 +33,68 @@ SP retraining is a **validated rerun of existing, tested tools, not new software
   an upper-case hash, a list hash mismatch, an official path;
 - a complete synthetic campaign passes.
 
-**Upstream fields, 2026-11-28.** The fingerprint function is `sp_retrain.upstream_chain.fingerprint`: sha256 over the
-sorted lines `<file> <sha256>` of the weight files resolved along `WIRECELL_PATH`.
-- νμ: final + numu_tagger1/2/3 + cos_tagger_10. νe: the 15 level-1 files.
-- Values: the release would give `numu_model_fingerprint` `0b8485a8…`, `nue_l1_fingerprints` `36ec972f…`; the shipped
-  weights give `595a9963…` and `17a8e17e…` (`validation/upstream_r4/upstream_fingerprints.json`).
-- The template stays null until the collaboration freezes the upstream models.
-- A production with Xuyang's toolkit patch stores a **new** `wct_version` (`<branch>-0.38.0-<n>-g<sha>`). It must enter
-  `toolkit_version_stamps` with its own evidence, exactly as `HEAD-0.38.0` did (`WCL1116_TOOLKIT_PROVENANCE_NOTE.md`).
-- See `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`.
+## 1a. Upstream models: route R1 or R2 (2026-11-28)
+
+The final SP training reads upstream tagger outputs. Two routes are accepted, and both are checked by `final_domain_campaign.py
+check`. Neither is filled in the template: the collaboration has not selected the upstream models, and Haiwang's final production
+does not exist yet.
+
+| | **R1, preferred**: the final production books the collaboration-selected upstream models in the chain | **R2**: a validated score-only overlay on CAFs that carry the shipped weights |
+|---|---|---|
+| where the values come from | stored by Haiwang's step 2 (release folders first on `WIRECELL_PATH`, toolkit with the `numu_sim_dqdx_scale` patch) | `wc_upstream_chain` (the common Aurora/EAF bundle) applied to the stored inputs, joined by `build_upstream_overlay.py` |
+| `upstream.route` | `R1` | `R2` |
+| release | `release_repository`, `release_commit` (40-hex), `canonical_inventory_fingerprint` (64-hex) | same |
+| fingerprints | `numu_model_fingerprint`, `nue_l1_fingerprints`, `nue_chain_fingerprint` of the files the chain resolves | the same for the selected models, plus `stored_numu_model_fingerprint` and `stored_nue_l1_fingerprints` of the CAF weights. Stored equal to selected is refused: that is R1 |
+| toolkit provenance | `production.toolkit_commit`, `toolkit_version_stamps` with evidence (a patched build stores `<branch>-0.38.0-<n>-g<sha>`, which needs its own approval), `toolkit_patch_sha256` and `workflow_patch_sha256` when k ≠ 1 | the toolkit of the production as stored; `scoring_bundle_version` |
+| simulation-only charge correction | `sim_dqdx_scale` (k), and `sim_correction_evidence` = a `tools/verify_sim_dqdx_logs.py` record over **every** step-2 job of the training samples: VERIFIED, every simulation log has the scale line with k, no data log has it | `sim_dqdx_scale`, and `sim_correction_evidence` = the overlay record (VERIFIED, route R2, per sample `kind` and `sim_dqdx_scale_applied`: k for simulation, 1.0 for data) |
+| closure in the final domain | the in-chain values are the stored values | `overlay_closure_record`, CLOSED for this production tag: the shipped final models reproduce the stored scores, and the bundle equals an in-chain rerun of a sample of this production |
+| vertex mode and boundary | `production.vertex_mode`, `wc_trees`, `effective_boundary_profile`, `effective_boundary_sha256` (both routes) | same |
+
+Always refused:
+- the patched-toolkit stamp `numu-sim-dqdx-scale-0.38.0-1-gccb19cf`. It was approved on 2026-11-28 **for development validation
+  only** (`sp_retrain.provenance.UPSTREAM_R4_DEV_TOOLKIT`, `validation/upstream_r4/patched_toolkit_dev_approval.json`);
+- any stamp list containing patterns. Membership is exact string equality.
+
+**Enforcement chain of the simulation-only correction** (read-only recheck, 2026-11-28; our clones `ccb19cf` and `eaaa02f`):
+
+1. **Workflow** (`swp-wclocal aurora/bin/step2.sh:26`). It builds `--tla-code numu_sim_dqdx_scale=<k>` whenever
+   `NUMU_SIM_DQDX_SCALE` is set, whatever the reality. `site/aurora.sh:15` forwards the variable. **The workflow does not gate
+   it.**
+2. **Toolkit jsonnet** (`cfg/pgrapher/experiment/sbnd/clus.jsonnet:2993`). This is the only gate:
+   `numu_sim_dqdx_scale = (if reality == 'sim' then numu_sim_dqdx_scale else 1.0)`. Then `common/clus.jsonnet:778` omits the key
+   at 1.0, so a data configuration is byte-identical to the unpatched one.
+3. **C++** (`UbooneNumuBDTScorer.cxx:55`). It reads the value and does **not** re-check reality.
+4. **Tests.**
+   - In-chain test: the data arm with the variable set stored the unscaled values and had 0 scale lines.
+   - Log census (`validation/upstream_r4/sim_dqdx_log_census_chain_test.json`): 36/36 simulation logs scaled, 0/2 data logs.
+   - The census flags the `noscale` arm, so a simulation job without the factor is detected.
+
+Residual risks:
+- **A mislabelled unit.** A unit run as `REAL=sim` would also switch on truth matching, so the whole job would be visibly wrong.
+- **A hand-built configuration.**
+- **The reverse gap: a simulation job that silently stays at k = 1.** Two cases:
+  - drivers that never pass the parameter (`wct-pr-perevt.jsonnet`, `wcls-img-clus-matching-pr-lib.jsonnet:193`);
+  - FermiGrid `fermigrid/bin/submit.sh:36`, whose `jobsub -e` list does not forward `NUMU_SIM_DQDX_SCALE`.
+
+**For R1, the log census over every training-sample job is therefore mandatory, not optional.** The production workflow should
+also set the variable for simulation jobs only. Haiwang's current workflow does not reference the variable at all
+(`swp-wclocal@d05cf47`).
+
+The fingerprint function is `wc_upstream_chain.chain_fingerprints`, identical to `sp_retrain.upstream_chain.fingerprint`. Values:
+
+| | numu | νe level-1 | νe level-1 + final |
+|---|---|---|---|
+| releases @ 0f13988d | `0b8485a8…` | `36ec972f…` | `3526cdea…` |
+| shipped | `595a9963…` | `17a8e17e…` | `655fb390…` |
+
+The canonical inventory fingerprint of the release is `1d48baed…`: the 57 manifest-listed files, the same at Aurora and EAF. See
+`SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md` and `SP_BDT_UPSTREAM_R4_FOLLOWUP.md`.
 
 ## 2. The rerun (`final_domain_campaign.py plan` writes it as a script)
 
 | step | tool (existing, tested) |
 |---|---|
-| 1 provenance verification | `final_domain_campaign.py check`; `verify_staged_beamoff.py --expect-reco campaign` (exact stamps, per-tree `dl_weights`, membership, odd runs, checksums, `ismc`) |
+| 1 provenance verification | `final_domain_campaign.py check`; `verify_staged_beamoff.py --expect-reco campaign` (exact stamps, per-tree `dl_weights`, membership, odd runs, checksums, `ismc`); upstream route R1: `wc_upstream_chain fingerprint` on the production `WIRECELL_PATH` and `verify_sim_dqdx_logs.py`; route R2: `extract_upstream_inputs.py` → `wc_upstream_chain score` (kind per sample) → `build_upstream_overlay.py` |
 | 2 table building | `sp_retrain.build_tables`, per sample, on compute nodes (`-A neutrinoGPU::WireCell_aurora`); the EXT sample through `--approved-exceptions-spec` |
 | 3 sample census | `sp_other_census.py`, `sp_nue_census.py`, `make_refresh_list.py` census records |
 | 4 frozen feature-spec loading | `final_domain_campaign.py specs`. It regenerates the four WCL1116 development specs, changing only the reconstruction block, the sample lists, the campaign and the re-approved EXT exception; features, order, hyperparameters and seed are unchanged (tested). The trainer accepts them (`devtrain.CAMPAIGN_FINAL_CANDIDATE`) |

@@ -1,0 +1,480 @@
+{
+ "label": "TRAINING-MEMBERSHIP MANIFEST (Aurora development samples; DEVELOPMENT ONLY; no official evaluation event read)",
+ "mode": "dv2_split_move",
+ "tree": "recTreeWireCell",
+ "definitions": {
+  "sp_split": "outer development holdout: MC subrun % 2 == 1, beam-off run % 4 == 1 -> test; else train",
+  "sp_nested_role": "nested_v1: sha256(\"nested_v1|sample|run|subrun\") / 2^32 < 0.20 -> nval, else fit (train side only)",
+  "xn_split_v11": "Xuyang spec_v1.split_v11: MC subrun % 10 == 0 -> dev; beam-off run % 10 == 1 -> dev; else train",
+  "up_numu_pool": "training/numu/train_numu_l2.py @0f13988d: bnb, ncdr NC-partner rows, beam-off; placeholder 0, label readable, reco vertex in spec_v1.in_fv",
+  "up_nue_pool": "training/round2/train_l2.py @0f13988d: nuecc, bnb, ncdr, beam-off; placeholder 0, label readable, spec_v1.pool_mask; BNB filtered spills dropped",
+  "up_*_role": "fit = in pool and xn train (rows the released trees were fitted on); early_stop = in pool and xn dev (early stopping only); ineligible = outside the pool. The released models are the early-stopped fits on the train rows (no 100 % retrain; training/numu/freeze_numu_l2.py, nue chain_v2 f0.5)",
+  "gen_duplicate_group": "BNB events with an identical generated neutrino list (event number, pdg, E to 1e-6 GeV, vertex to 1e-3 cm) as another event",
+  "dlvtx_training_status": "DV2-MAX aurora_space bundle README: trained on aurora-r2 BNB + intrinsic nu_e CC (fold 0 = 15k-event hold-out); per-event folds not on Aurora"
+ },
+ "candidates": 593723,
+ "sha256": {
+  "membership_candidates": "5e2ebeb8358bcd416ad92fb83b0dc83d83a5d699fb3bd6f9eb460ce1906d67e9",
+  "membership_events": "843ee45cdb016741cb093310e0b1679d2f5872de6f0ef6b38ff4f5a9968c4c95",
+  "membership_files": "363323298c539ffcedb3de625edd4153360c426b41cf72c1135b03cc3c76c35b"
+ },
+ "counts": {
+  "wcl1116-aurora-ncdr": {
+   "candidates": 24031,
+   "sp_preselected": 16213,
+   "sp_nested_role": {
+    "test": 12063,
+    "fit": 9569,
+    "nval": 2399
+   },
+   "xn_split_v11": {
+    "train": 21585,
+    "dev": 2446
+   },
+   "up_numu_role": {
+    "fit": 15461,
+    "ineligible": 6851,
+    "early_stop": 1719
+   },
+   "up_nue_role": {
+    "ineligible": 19100,
+    "fit": 4472,
+    "early_stop": 459
+   },
+   "in_model": {
+    "numu": 15295,
+    "other": 15592,
+    "ncpi0": 15255,
+    "nue": 14985
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 8639,
+    "nue": 2482,
+    "either": 8680
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 958,
+    "fit|fit": 3959,
+    "fit|ineligible": 1530,
+    "nval|early_stop": 259,
+    "nval|fit": 969,
+    "nval|ineligible": 379,
+    "test|fit": 6218,
+    "test|ineligible": 1941
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 380,
+    "fit|fit": 1607,
+    "fit|ineligible": 4460,
+    "nval|early_stop": 79,
+    "nval|fit": 383,
+    "nval|ineligible": 1145,
+    "test|fit": 2482,
+    "test|ineligible": 5677
+   }
+  },
+  "wcl1116-aurora-bnb": {
+   "candidates": 301830,
+   "sp_preselected": 65792,
+   "sp_nested_role": {
+    "test": 150151,
+    "fit": 121083,
+    "nval": 30596
+   },
+   "xn_split_v11": {
+    "train": 271550,
+    "dev": 30280
+   },
+   "up_numu_role": {
+    "fit": 192981,
+    "ineligible": 87347,
+    "early_stop": 21502
+   },
+   "up_nue_role": {
+    "ineligible": 288171,
+    "fit": 12240,
+    "early_stop": 1419
+   },
+   "in_model": {
+    "numu": 40533,
+    "other": 17110,
+    "ncpi0": 11872,
+    "nue": 3849
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 106752,
+    "nue": 6796,
+    "either": 106752
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 3727,
+    "fit|fit": 14868,
+    "fit|ineligible": 7728,
+    "nval|early_stop": 918,
+    "nval|fit": 3790,
+    "nval|ineligible": 1983,
+    "test|fit": 23086,
+    "test|ineligible": 9692
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 1137,
+    "fit|fit": 4341,
+    "fit|ineligible": 20845,
+    "nval|early_stop": 282,
+    "nval|fit": 1103,
+    "nval|ineligible": 5306,
+    "test|fit": 6796,
+    "test|ineligible": 25982
+   }
+  },
+  "wcl1116-aurora-nuecc": {
+   "candidates": 265367,
+   "sp_preselected": 220503,
+   "sp_nested_role": {
+    "test": 132902,
+    "fit": 106148,
+    "nval": 26317
+   },
+   "xn_split_v11": {
+    "train": 238823,
+    "dev": 26544
+   },
+   "up_numu_role": {
+    "ineligible": 265367
+   },
+   "up_nue_role": {
+    "fit": 136545,
+    "ineligible": 113528,
+    "early_stop": 15294
+   },
+   "in_model": {
+    "numu": 0,
+    "other": 0,
+    "ncpi0": 0,
+    "nue": 212287
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 0,
+    "nue": 75923,
+    "either": 75923
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|ineligible": 88221,
+    "nval|ineligible": 21916,
+    "test|ineligible": 110366
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 12271,
+    "fit|fit": 48418,
+    "fit|ineligible": 27532,
+    "nval|early_stop": 3023,
+    "nval|fit": 12204,
+    "nval|ineligible": 6689,
+    "test|fit": 75923,
+    "test|ineligible": 34443
+   }
+  },
+  "wcl1116-fg-beamoff-train": {
+   "candidates": 2495,
+   "sp_preselected": 509,
+   "sp_nested_role": {
+    "fit": 1241,
+    "test": 1161,
+    "nval": 93
+   },
+   "xn_split_v11": {
+    "train": 1961,
+    "dev": 534
+   },
+   "up_numu_role": {
+    "ineligible": 1725,
+    "fit": 618,
+    "early_stop": 152
+   },
+   "up_nue_role": {
+    "ineligible": 2429,
+    "fit": 53,
+    "early_stop": 13
+   },
+   "in_model": {
+    "numu": 0,
+    "other": 509,
+    "ncpi0": 0,
+    "nue": 0
+   },
+   "sp_holdout_rows_fitted_upstream": {
+    "numu": 292,
+    "nue": 22,
+    "either": 292
+   },
+   "preselected_crosstab_sp_role_x_up_numu_role": {
+    "fit|early_stop": 40,
+    "fit|fit": 110,
+    "fit|ineligible": 115,
+    "nval|fit": 10,
+    "nval|ineligible": 10,
+    "test|early_stop": 25,
+    "test|fit": 101,
+    "test|ineligible": 98
+   },
+   "preselected_crosstab_sp_role_x_up_nue_role": {
+    "fit|early_stop": 6,
+    "fit|fit": 29,
+    "fit|ineligible": 230,
+    "nval|fit": 2,
+    "nval|ineligible": 18,
+    "test|early_stop": 7,
+    "test|fit": 22,
+    "test|ineligible": 195
+   }
+  }
+ },
+ "upstream_bnb_filtered_spills": {
+  "spills": 1605,
+  "candidate_rows_dropped": 1584
+ },
+ "generator_duplicates_bnb": {
+  "groups": 134,
+  "events": 268,
+  "candidates_in_groups": 125
+ },
+ "events": {
+  "rows": 924444,
+  "by_sample": {
+   "wcl1116-aurora-bnb": 626441,
+   "wcl1116-aurora-nuecc": 268783,
+   "wcl1116-aurora-ncdr": 26745,
+   "wcl1116-fg-beamoff-train": 2475
+  },
+  "files_events_total": {
+   "wcl1116-aurora-ncdr": 26745,
+   "wcl1116-aurora-bnb": 626441,
+   "wcl1116-aurora-nuecc": 268783,
+   "wcl1116-fg-beamoff-train": 26418
+  },
+  "note": "MC events = truth-table events plus candidate events; beam-off events = events with a Wire-Cell candidate (file and run lists are complete)",
+  "run_subrun_event_unique_across_mc": true,
+  "bnb_log_dirs_found_of_50_sampled": 50,
+  "configl_seed_check": {
+   "wcl1116-aurora-ncdr": [
+    {
+     "run": 7026457,
+     "subrun": 93,
+     "inst": 2645693,
+     "logged_generator_seed": 776456934,
+     "computed": 776456934
+    },
+    {
+     "run": 7010576,
+     "subrun": 21,
+     "inst": 1057521,
+     "logged_generator_seed": 760575214,
+     "computed": 760575214
+    },
+    {
+     "run": 7016486,
+     "subrun": 88,
+     "inst": 1648588,
+     "logged_generator_seed": 766485884,
+     "computed": 766485884
+    }
+   ],
+   "wcl1116-aurora-nuecc": [
+    {
+     "run": 6717246,
+     "subrun": 19,
+     "inst": 1724519,
+     "logged_generator_seed": 17245194,
+     "computed": 17245194
+    },
+    {
+     "run": 6724471,
+     "subrun": 36,
+     "inst": 2447036,
+     "logged_generator_seed": 24470364,
+     "computed": 24470364
+    },
+    {
+     "run": 6729179,
+     "subrun": 54,
+     "inst": 2917854,
+     "logged_generator_seed": 29178544,
+     "computed": 29178544
+    }
+   ]
+  },
+  "bnb_duplicate_groups_with_equal_master_seed": 97,
+  "bnb_duplicate_groups_with_equal_generator_engine_seed": 134,
+  "bnb_duplicate_subrun_pairs": 59,
+  "bnb_duplicate_groups_straddling": {
+   "sp_split": 60,
+   "sp_nested_role": 69,
+   "xn_split_v11": 27
+  },
+  "beamoff": {
+   "files": 558,
+   "runs_with_candidates": [
+    18253,
+    18259,
+    18261,
+    18265,
+    18269,
+    18271,
+    18273,
+    18275,
+    18277,
+    18279,
+    18281,
+    18303,
+    18309,
+    18313,
+    18323,
+    18327,
+    18329,
+    18331,
+    18333,
+    18337,
+    18339,
+    18345,
+    18351,
+    18353,
+    18355,
+    18359,
+    18361,
+    18365,
+    18367,
+    18385,
+    18387,
+    18391,
+    18393,
+    18395,
+    18409,
+    18417,
+    18423,
+    18431,
+    18439,
+    18441,
+    18443,
+    18445,
+    18451,
+    18453,
+    18457,
+    18459,
+    18461,
+    18467,
+    18469,
+    18481,
+    18485,
+    18487,
+    18489,
+    18503,
+    18505,
+    18507,
+    18509,
+    18515,
+    18517,
+    18521,
+    18523,
+    18525,
+    18529,
+    18531,
+    18535,
+    18537,
+    18541,
+    18543,
+    18551,
+    18553,
+    18559,
+    18577,
+    18579,
+    18585,
+    18587,
+    18591
+   ],
+   "runs_from_file_names": [
+    18253,
+    18259,
+    18261,
+    18265,
+    18269,
+    18271,
+    18273,
+    18275,
+    18277,
+    18279,
+    18281,
+    18295,
+    18299,
+    18303,
+    18309,
+    18313,
+    18323,
+    18327,
+    18329,
+    18331,
+    18333,
+    18337,
+    18339,
+    18345,
+    18351,
+    18353,
+    18355,
+    18359,
+    18361,
+    18365,
+    18367,
+    18385,
+    18387,
+    18391,
+    18393,
+    18395,
+    18407,
+    18409,
+    18417,
+    18419,
+    18423,
+    18431,
+    18439,
+    18441,
+    18443,
+    18445,
+    18451,
+    18453,
+    18457,
+    18459,
+    18461,
+    18467,
+    18469,
+    18481,
+    18485,
+    18487,
+    18489,
+    18503,
+    18505,
+    18507,
+    18509,
+    18515,
+    18517,
+    18521,
+    18523,
+    18525,
+    18529,
+    18531,
+    18535,
+    18537,
+    18541,
+    18543,
+    18551,
+    18553,
+    18559,
+    18577,
+    18579,
+    18585,
+    18587,
+    18591
+   ],
+   "all_runs_odd": true
+  }
+ },
+ "wall_s": 48.7
+}
