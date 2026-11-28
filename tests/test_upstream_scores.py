@@ -271,3 +271,9 @@ def test_identity_translation_is_one_to_one_and_loud():
     with pytest.raises(US.OverlayError, match="not unique"): US.translate_identity(df, pd.concat([ev, ev.iloc[:1]]), fm)
     c = pd.DataFrame(dict(file_id=["unitA"], run=1, subrun=1, event=10, cand=0, kine_reco_Enu=0.5, shw_sp_energy=3.0)); o = pd.DataFrame(dict(file_id=["unitA"], run=1, subrun=1, event=10, cand=0, up_nue_score=1.0))
     k = ["file_id", "run", "subrun", "event", "cand"]; assert US.carry_identity_checks(o, c, k, {"kine_reco_Enu": "kine_reco_Enu", "shw_sp_energy": "shw_sp_energy"}).columns.tolist()[-2:] == ["id_kine_reco_Enu", "id_shw_sp_energy"]
+
+
+def test_committed_schema_audit_is_complete():
+    s = json.loads((REPO / "tables/upstream_release/schema_audit_summary.json").read_text()); t = pd.read_csv(REPO / "tables/upstream_release/schema_audit_branches.csv")
+    assert s["files_checked"] == len(t) == s["complete_files"] and s["files_with_error"] == 0 and s["n_required_branches"] == 650 and (t.n_missing == 0).all()
+    assert set(t["sample"]) == {"bnb_cv", "official_gen2_ncdelta", "nuecc", "beam_off", "beam_on_open", "run3bnb"} and set(t.production) == {"old_fg1", "nov16"}

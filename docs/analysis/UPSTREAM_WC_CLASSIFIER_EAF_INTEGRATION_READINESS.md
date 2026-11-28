@@ -2,7 +2,7 @@
 
 Date: 2026-11-28. Branch `analysis/ncdelta-purity-datamc-20261120` (pushed base `d18b8a8`; this work is local until Avinay reviews).
 Scope: audit the released upstream classifiers, audit the official EAF samples for offline score-only regeneration, prepare an isolated, non-destructive deployment layer, and list what remains before a final evaluation.
-**Nothing was evaluated.** No official sample was read except branch-name metadata (and even that is pending credentials, see 4.4); no upstream score was computed on any official event; no selection, threshold, vertex mode or model variant was chosen; no signal-region data were opened; no Aurora development BDT was evaluated. The independent-evaluation policy stays in force and is now enforced in code (section 7).
+**Nothing was evaluated.** No official sample was read except branch-name metadata of 36 files (4.4); no upstream score was computed on any official event; no selection, threshold, vertex mode or model variant was chosen; no signal-region data were opened; no Aurora development BDT was evaluated. The independent-evaluation policy stays in force and is now enforced in code (section 7).
 
 ## 1. Summary
 
@@ -14,7 +14,7 @@ Scope: audit the released upstream classifiers, audit the official EAF samples f
 | Our scoring layer equals the release's standalone scripts | **done**: bit-identical final margins and level-1 values (nu_e and nu_mu, simulation and data routes) on synthetic tables |
 | Which official samples correspond to WCL1116 | **done** (section 3): all six `manifests/wcl1116/*` samples; the old fg1-era files are NOT applicable |
 | EAF analysis tables sufficient for rescoring | **no**: they hold ~64 summary columns. Rescoring needs the merged CAFs themselves (`recTreeWireCell`), which are already reachable on EAF |
-| Merged CAFs contain every required input | **expected, not yet verified here**: the release's own table builder reads exactly these branches from the same production files, and the release states it re-scored the shipped model from them. The metadata-only schema audit script is ready but could not run: no valid Kerberos/bearer credentials in this session (4.4) |
+| Merged CAFs contain every required input | **branch presence verified (2026-11-28)**: all 650 required `recTreeWireCell` branches (incl. `..idx`/`..length` helpers of the 106 per-object lists) are present in 36 of 36 files checked (3 per production x sample, 6 samples x 2 productions; Nov16 and old fg1, MC and data). Branch names only: filled values, NaN/sentinel rates and value equality with the training tables are not yet checked (V3-V5) |
 | Final evaluation | **not authorised and not executable**: `evaluation_guard` is empty; no frozen bundle yet |
 
 Findings that change how the evaluation must be run (details in sections 5-8):
@@ -84,10 +84,13 @@ Manifest-level inventory with the upstream training/evaluation statement per sam
 - The release's table builder (`tables/build_tables.py`) reads exactly `recTreeWireCell` branches (`wc.T_tagger.*` scalars, per-object lists with `..idx/..length`, `wc.T_kine`, `wc.T_dlvtx_call`, `wc.T_match`, `wc.T_truth_nu`, `wc.T_truth_pf`) from the *same* production files (its `examples/gpvm` README builds tables for the Fermilab productions from the merged CAFs, `--file-id-from dirname`), and the release README states the shipped TMVA model was re-scored without ROOT "to prove the merged CAFs carry the complete model inputs".
 - The Nov16 schema (`af9c87c8`, 2,416 branches) is the old schema plus the DL-vertex space dump; the tagger branches are unchanged.
 - Our own frozen chain already reads the shipped small-model scores, `numu_1_score`, `numu_score`, `cosmict_*`, `numu_cc_*` from `wc.T_tagger` for these files (`input_source_table_*.csv`), so the stored scalars exist.
-- **Not yet established here:** presence of the 90 + 16 per-object lists in each of our samples (data and MC, both productions), and of every branch name above. This is a pure branch-name check.
+- **Verified by the schema audit (4.4):** presence of every required branch in every sample. **Still not established:** that the values are filled (no NaN/sentinel surprises) and equal to what the training tables saw; that is V3-V5.
 
-### 4.4 Schema audit status
-`scripts/upstream_schema_audit.py` (metadata only: `uproot` `keys()`, no array) compares `required_inputs.csv` with the branch lists of a few files per production x sample and writes `schema_audit_branches.csv` / `schema_audit_summary.json`. **It has not run**: this session has no Kerberos ticket (`klist: No credentials cache found`) so `htgettoken` cannot mint a bearer token. To run it: `kinit abhat@FNAL.GOV`, `htgettoken -a htvaultprod.fnal.gov -i sbnd --nooidc -o $BEARER_TOKEN_FILE`, then `python scripts/upstream_schema_audit.py --n-files 3`. Until it runs, "the CAFs contain all inputs" is an expectation, not a result.
+### 4.4 Schema audit result
+`scripts/upstream_schema_audit.py --n-files 3` (metadata only: `uproot` `keys()` of `recTreeWireCell`/`recTree`, no array read) compared `required_inputs.csv` (650 branch names with helpers) with the branch lists of 3 files per production x sample (file 0 plus two seeded random files): **36 files, 0 missing branches, 0 read errors** (`schema_audit_branches.csv`, `schema_audit_summary.json`).
+- Nov16 (all six samples): 2,416 `recTreeWireCell` branches, all required present. Old fg1: 2,401 (MC and beam-off), 2,283 (old open data, the strict-subset schema), all required present. MC samples also carry `wc.T_truth_nu`, `wc.T_match`, `rec.mc.nu.wgt.univ` and `rec.mc.nu.imp_weight` (0 missing).
+- The old-production `run3bnb` rows read the Nov16 manifest (that sample is registered for Nov16 only); ignore them.
+- Limits: presence is not content. Per-branch fill and NaN rates, and numerical equality of the reader with the release's training tables, are checked only on a designated non-evaluation fixture (V3-V5). Three files per cell is a sample, not a census (schemas are fixed per production, so this is expected to generalise, but only the file-level build will prove it).
 
 ### 4.5 Other compatibility points
 - Candidate sets differ by design: nu_e scores candidates with `br_filled == 1` and `is_placeholder == 0`; nu_mu scores every non-placeholder candidate. The overlay carries one row per input candidate with a status code (`scored`, `tagger_not_run`, `placeholder`, `input_nan`); the overlay's identity set must equal our candidate table's after the same placeholder rule (to be reconciled on a fixture, 6.V5).
@@ -116,7 +119,7 @@ Guards implemented and tested: refuses any registered sample unless authorised o
 |---|---|---|
 | V0 | release pin, 57 hashes, manifest invariants | **done**, in `tests/test_upstream_scores.py` (skipped without a clone; the committed audit/hash tables are tested always) |
 | V1 | our scoring == the release's standalone scripts (`release/score_release.py`, `make_corrected_tables.py --update-flag1`, `score_numu_release.py`) on synthetic tables incl. NaN/inf/flag edge cases; correction semantics by hand-computed cases | **done** (bit-identical final margins, level-1 values, corrected columns and flags; 16 tests) |
-| V2 | metadata-only schema audit of every sample x production | **ready, blocked on credentials** |
+| V2 | metadata-only schema audit of every sample x production | **done**: 36 files, all 650 required branches present |
 | V3 | reader equivalence on a designated *non-evaluation* fixture: run the pinned builder + overlay on development CAFs and compare with the release scripts end to end | **needs Aurora**: no non-evaluation fixture exists on EAF (`fixtures: []`); Aurora can run the same CLI on its development files |
 | V4 | reproduce the *stored shipped* scores from the CAF inputs with the shipped TMVA model (the release's `tools/tmva_grad_forest.py`) on the fixture, to prove the reader and the sentinel conventions | needs the fixture |
 | V5 | identity reconciliation: overlay key set == our candidate table key set after the placeholder rule; `kine_reco_Enu`/`shw_sp_energy` checks equal | needs the fixture |
