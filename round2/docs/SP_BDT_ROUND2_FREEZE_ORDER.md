@@ -12,6 +12,21 @@ Sources:
 - Xuyang's plan (`xning/bdt-comm@42236ad`, public `Ningclover/sbnd-wirecell-bdt@e0ea617`, read-only);
 - Haiwang's catalogue `f4f2f93` and ai-helper issue 48.
 
+> **Update 2026-11-28: upstream release.** Xuyang released the recommended upstream models trained on WCLocal2026Nov16
+> (`Ningclover/sbnd-wirecell-bdt` @ `0f13988d`):
+> - νμ `numu_round3af`: final model **and** the level-1 numu_1, numu_2, cosmict_10 retrained (numu_3 not), with a
+>   simulation-only dQ/dx × 1.071 correction implemented by a toolkit patch;
+> - νe `nue_round4_ruleA_v2` (main): **all 15 level-1 models retrained** (rule A) and a final model retrained on the
+>   chain-stored values.
+>
+> Consequences for this document:
+> - the νμ level-1 question of §4 is answered (retrained);
+> - the "νe level-1 fixed / used as stored" assumption no longer holds: **SP ncpi0's 15 upstream inputs change**;
+> - SP numu and SP other read changed νμ outputs; SP nue is unaffected.
+>
+> Offline integration, in-chain validation and the development comparison:
+> [`SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`](SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md). Nothing is frozen.
+
 ## 1. Who trains what
 
 | role | person | models |
@@ -281,15 +296,21 @@ DONE:
   collaborator-question evidence closure
   SP ncpi0 negative-statistics learning curve (diagnostic): SOME BENEFIT LIKELY
   XGBoost JSON -> TMVA Grad XML exporter + Python equivalence on the dev fixtures
+  WCL1116 four-model SP development + full-development studies (27.1 -> 44.0 % NC Delta at equal BNB)
+  Xuyang's upstream releases numu_round3af + nue_round4_ruleA_v2 (2026-11-23 / -20)
+  upstream-release integration audit (2026-11-28): offline re-scoring of all development samples, both trees;
+    in-chain validation; domains A/B/C/D development comparison (SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md)
 
-IN PROGRESS:
-  Haiwang reconstruction refresh with Snehadri's DL vertex (WCLocal2026Nov16; Aurora NC Delta + BNB complete)
-  Xuyang/Matteo upstream nu_mu / nu_e retraining
+IN PROGRESS / WAITING:
+  Haiwang effective-boundary production (final reconstruction domain)
+  collaboration choice of the upstream models booked in Round 2 (+ the patched toolkit and its stamp)
+  vertex-mode freeze (split-move favoured in development)
 
 AVINAY NEXT (Avinay owns the downstream SP training campaign):
   1. monitor / validate the refreshed CAFs (tracker; smoke done; lists when complete)
   2. finish export / equivalence infrastructure (C++ TMVA::Reader + toolkit TmvaGradForest check)
   3. decide SP-nue from the refreshed-domain shift (section 6): developed 2026-11-18, RETRAINING CLEARLY BENEFICIAL
+  3b. develop SP-numu / SP-other / SP-ncpi0 in upstream domain D (overlays; DEVELOPMENT ONLY)
   4. final SP-numu / SP-other / SP-ncpi0 / SP-nue training
   5. freeze SP models
   6. validation-only joint threshold selection

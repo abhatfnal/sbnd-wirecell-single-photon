@@ -33,6 +33,16 @@ SP retraining is a **validated rerun of existing, tested tools, not new software
   an upper-case hash, a list hash mismatch, an official path;
 - a complete synthetic campaign passes.
 
+**Upstream fields, 2026-11-28.** The fingerprint function is `sp_retrain.upstream_chain.fingerprint`: sha256 over the
+sorted lines `<file> <sha256>` of the weight files resolved along `WIRECELL_PATH`.
+- νμ: final + numu_tagger1/2/3 + cos_tagger_10. νe: the 15 level-1 files.
+- Values: the release would give `numu_model_fingerprint` `0b8485a8…`, `nue_l1_fingerprints` `36ec972f…`; the shipped
+  weights give `595a9963…` and `17a8e17e…` (`validation/upstream_r4/upstream_fingerprints.json`).
+- The template stays null until the collaboration freezes the upstream models.
+- A production with Xuyang's toolkit patch stores a **new** `wct_version` (`<branch>-0.38.0-<n>-g<sha>`). It must enter
+  `toolkit_version_stamps` with its own evidence, exactly as `HEAD-0.38.0` did (`WCL1116_TOOLKIT_PROVENANCE_NOTE.md`).
+- See `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`.
+
 ## 2. The rerun (`final_domain_campaign.py plan` writes it as a script)
 
 | step | tool (existing, tested) |

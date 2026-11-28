@@ -6,6 +6,12 @@ Nobody is to be contacted in this phase.
 
 ## Questions still required for Xuyang / Matteo
 
+> **ANSWERED by the release, 2026-11-28 (no question needed).** `numu_round3af` retrains numu_1, numu_2 and cosmict_10
+> together with the final model; numu_tagger3 stays shipped. The new level-1 models are TMVA **Grad** files without
+> input transformations, so the offline route needs no AdaBoost-with-transforms evaluator. The shipped level-1 models
+> are closed with ROOT TMVA itself. See `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`. The question below is kept for the
+> record.
+
 1. **νμ level-1 models.** When you retrain the νμ CC tagger, will the four νμ level-1 models stay as shipped, with only
    the final `numu_score` model retrained? The level-1 models are `numu_tagger1`, `numu_tagger2`, `numu_tagger3` and
    `cos_tagger_10`; their scores are `numu_1_score`, `numu_2_score`, `numu_3_score` and `cosmict_10_score`.

@@ -1,5 +1,9 @@
 # SP BDT development on the WCL1116 vertex refresh: results
 
+> **2026-11-28.** Everything in this file is domain A: the stored WCL1116 values, with the shipped upstream weights. The
+> released upstream models (domains B / C / D) are integrated in `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`; domain A is
+> reproduced bit for bit there and remains the reference.
+
 Date: 2026-11-17; SP nue developed 2026-11-18; SP other developed 2026-11-19 (the campaign is complete). Campaign `development_wcl1116_v1`; plan in
 `SP_BDT_WCL1116_DEVELOPMENT_PLAN.md`. Four-model view: `SP_BDT_WCL1116_FOUR_MODEL_DEVELOPMENT_SUMMARY.md`.
 - Every model is **`…_DEV_DO_NOT_DEPLOY`**.

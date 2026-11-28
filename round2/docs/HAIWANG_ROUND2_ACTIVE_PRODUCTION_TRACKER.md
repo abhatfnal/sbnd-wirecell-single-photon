@@ -135,6 +135,14 @@ on the training side.**
     stored;
   - Xuyang's 258-input νe final model reads only `T_tagger` branches that both schemas carry.
 
+- **Update 2026-11-28: upstream releases.** Xuyang's `numu_round3af` + `nue_round4_ruleA_v2` (main) replace the shipped
+  νμ (4 files) and νe (16 files) weights through `WIRECELL_PATH`; νμ also needs the toolkit patch
+  `numu_sim_dqdx_scale` (simulation only) and the Aurora `step2` patch (`NUMU_SIM_DQDX_SCALE`).
+  - Both patches apply cleanly to this production's toolkit (`c935e30d`) and workflow (`wclocal-nov16` @ `d05cf47`).
+  - A patched build stamps `wct_version` = `<branch>-0.38.0-<n>-g<sha>`, not `0.38.0`.
+  - Offline re-scoring of all four development samples (both trees) and a small in-chain rerun:
+    `SP_BDT_UPSTREAM_R4_INTEGRATION_AUDIT.md`. No production directory was written.
+
 ## 7. Smoke comparison with aurora-r2 (read-only)
 
 `tools/refresh_smoke_check.py`, `validation/refresh_smoke_wcl1116_aurora.json`. Sample: 5 BNB units (250 events) and 20
