@@ -8,7 +8,7 @@ Scope: audit the released upstream classifiers, audit the official EAF samples f
 
 | item | status |
 |---|---|
-| Release pinned and verified | **done**: commit `0f13988db44423a227789e151b0a374e25771abd`; 57 model files, all sha256 match the manifests; 22 manifest/invariant checks pass |
+| Release pinned and verified | **done**: commit `0f13988db44423a227789e151b0a374e25771abd`; 61 release files (57 model files + 2 manifests + correction.json + chain_weights.json), all sha256 verified; 23 checks pass |
 | Recommended defaults are the ones audited | **yes**: `nue_round4_ruleA_v2` (chain-compatible A v2, `wirecell/main`) and `numu_round3af` |
 | nu_mu 1.071 correction semantics understood and implemented on copies only | **done**; matches the release's `make_corrected_tables.py --update-flag1` bit for bit on synthetic tables; raw SP features, nu_e inputs and data are protected by code |
 | Our scoring layer equals the release's standalone scripts | **done**: bit-identical final margins and level-1 values (nu_e and nu_mu, simulation and data routes) on synthetic tables |
@@ -41,7 +41,7 @@ All 57 files named by the two manifests were hashed (`tables/upstream_release/re
 **nu_mu 1.071 correction** (README + `correction.json` + toolkit patch, all read):
 - seven inputs only: `numu_cc_1_medium_dQ_dx` of every numu_1 segment and `cosmict_{2,3,7}_dQ_dx_{end,front}` (the latter only where `cosmict_N_filled == 1`), only finite values > 0, multiplied by 1.071;
 - internal muon-flag update: per numu_1 segment, `numu_cc_flag_1` stays on iff the corrected dQ/dx is still below `numu_cc_1_dQ_dx_cut`; `numu_cc_flag` = any segment flag_1 OR any `numu_cc_flag_2` OR `numu_cc_flag_3`; the flag is only ever switched off (about 1 % of flagged segments);
-- applied **only to copies handed to the nu_mu BDTs**, simulation only; stored tagger values stay raw; the stored `numu_score` of a patched-chain simulation is already corrected, so re-scoring those would double-correct (the Aurora/chain route is irrelevant to us because our CAFs were produced with the shipped weights and no patch);
+- applied **only to temporary copies handed to the nu_mu BDTs**, simulation only; stored tagger values stay raw. **Recomputing nu_mu scores offline from the unchanged raw CAF inputs is not a double correction: it applies the correction exactly once, to the temporary copy.** A double correction would arise only if (i) an input that is already corrected were corrected again (no production stores corrected dQ/dx; the corrected copies carry a marker column and are refused a second time), or (ii) the *stored* `numu_score` of a production whose chain already applies the patch (`numu_sim_dqdx_scale=1.071`) were treated as uncorrected and rescored through the correction. Our CAFs come from chains that book the shipped weights without the patch, so their stored scores are neither corrected nor released-model scores (section 5, origins);
 - never to data (the toolkit's `reality == 'data'` forces 1.0), never to the nu_e classifier.
 Without the correction, 9,049 of 302,172 BNB candidates move across the cut (release README): the correction is part of the model.
 

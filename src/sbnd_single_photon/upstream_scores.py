@@ -114,7 +114,14 @@ def verify_release(releases, cfg: dict, head_commit: str | None = None, dirty: b
         addfile("numu", f"l2:{m}", f"{cfg['models']['numu']['folder']}/{v['file']}", v["sha256"])
     for m, v in numu_m["wirecell"]["files"].items():
         addfile("numu", f"chain:{m}", f"{cfg['models']['numu']['folder']}/{v['file']}", v["sha256"])
-    chk(f"all {len(files)} model files match their manifest sha256", all(f["ok"] for f in files), f"{sum(not f['ok'] for f in files)} mismatches")
+    # the four control files (so the inventory is 61 = 57 model files + 2 manifests + correction.json + chain_weights.json)
+    cw = json.loads((releases / cfg["models"]["numu"]["folder"] / "wirecell" / "chain_weights.json").read_text())
+    for which, m in (("nue", cfg["models"]["nue"]), ("numu", cfg["models"]["numu"])):
+        addfile(which, "manifest", f"{m['folder']}/manifest.json", m["manifest_sha256"])
+    addfile("numu", "correction", f"{cfg['models']['numu']['folder']}/correction.json", cc["correction_json_sha256"])
+    addfile("numu", "chain_weights_json", f"{cfg['models']['numu']['folder']}/wirecell/chain_weights.json", sha256_file(releases / cfg["models"]["numu"]["folder"] / "wirecell" / "chain_weights.json"))
+    chk("numu chain_weights.json hashes == manifest chain-file hashes", all(cw["files"][k]["sha256"] == numu_m["wirecell"]["files"][k]["sha256"] for k in numu_m["wirecell"]["files"]))
+    chk(f"all {len(files)} release files (57 model files + 2 manifests + correction.json + chain_weights.json) match their recorded sha256", all(f["ok"] for f in files), f"{sum(not f['ok'] for f in files)} mismatches")
     # ---- committed hash table agrees (so a later change to the clone is detected) ----
     tab = Path(cfg["release"]["file_hash_table"])
     tab = tab if tab.is_absolute() else CONFIG_FILE.parents[1] / tab
@@ -251,8 +258,8 @@ def _l1_pooled(releases: Path, folder: str, model: str, md: dict, objs: pd.DataF
     return O.groupby(key, sort=False)["_p"].agg(md.get("pool", "min"))
 
 
-def score_nue(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str]) -> pd.DataFrame:
-    """nu_e A v2 (main chain variant). ``cands``: key + the 243 non-L1 L2 inputs + br_filled + is_placeholder + pio_filled/pio_flag_pio; ``objs[model]``: key + that model's per-object inputs.
+def _score_nue_xgb(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str]) -> pd.DataFrame:
+    """[xgboost_standalone: CROSS-CHECK ONLY] nu_e A v2 (main chain variant). ``cands``: key + the 243 non-L1 L2 inputs + br_filled + is_placeholder + pio_filled/pio_flag_pio; ``objs[model]``: key + that model's per-object inputs.
     Returns one row per input candidate: raw pooled L1 margins (up_nue_margin_l1_*), chain-stored L1 values (up_nue_l1_*), the final raw margin ``up_nue_score`` and ``up_nue_status``."""
     releases = Path(releases); _check_marker(cands, objs, False, cfg, "nue"); man = _manifest(releases, cfg, "nue"); folder = cfg["models"]["nue"]["folder"]
     l2m = man["level2"][cfg["models"]["nue"]["variant"]]; T = man["level1"]["chain_transform"]["models"]
@@ -276,8 +283,8 @@ def score_nue(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[st
     return res
 
 
-def score_numu(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], is_simulation: bool) -> pd.DataFrame:
-    """nu_mu round 3af. For simulation the inputs must be the corrected copies from ``apply_numu_sim_correction``; for data they must be raw. ``objs``: numu_1, numu_2, cosmict_10."""
+def _score_numu_xgb(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], is_simulation: bool) -> pd.DataFrame:
+    """[xgboost_standalone: CROSS-CHECK ONLY] nu_mu round 3af. For simulation the inputs must be the corrected copies from ``apply_numu_sim_correction``; for data they must be raw. ``objs``: numu_1, numu_2, cosmict_10."""
     releases = Path(releases); _check_marker(cands, objs, is_simulation, cfg, "numu"); man = _manifest(releases, cfg, "numu"); folder = cfg["models"]["numu"]["folder"]
     if cands[key].duplicated().any(): raise OverlayError("duplicate candidate identities in the nu_mu input table")
     names = man["inputs"]; C = cands[cands["is_placeholder"] == 0].copy()
@@ -291,6 +298,74 @@ def score_numu(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[s
     R = C[key].assign(up_numu_margin=margin, up_numu_score=margin * TO_NUMU_SCORE, **{"up_" + m + "_score": C["up_numu_l1_" + m].to_numpy() for m in man["level1"]["models"]})
     res = cands[key].merge(R, on=key, how="left"); res["up_numu_status"] = np.where(cands["is_placeholder"].to_numpy() == 1, STATUS["placeholder"], STATUS["scored"]).astype(np.int8)
     return res
+
+
+class BackendUnavailable(UpstreamError):
+    pass
+
+
+BACKENDS: dict = {}          # name -> dict(nue=callable, numu=callable); the nominal toolkit-equivalent scorer is registered here once delivered and closed on the fixtures
+
+
+def register_backend(name: str, nue, numu) -> None:
+    BACKENDS[name] = dict(nue=nue, numu=numu)
+
+
+def _backend(cfg: dict, backend: str | None, kind: str):
+    name = backend or cfg["scoring_backend"]["nominal"]
+    if name in cfg["scoring_backend"]["cross_check_only"]:
+        return name, {"nue": _score_nue_xgb, "numu": _score_numu_xgb}[kind]
+    if name in BACKENDS: return name, BACKENDS[name][kind]
+    raise BackendUnavailable(f"scoring backend {name!r} is not available: the nominal backend is the toolkit-equivalent scorer (pin: {cfg['scoring_backend']['reference_pin']}); "
+                             f"the standalone xgboost route is cross-check only (backend='xgboost_standalone')")
+
+
+def score_nue(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], backend: str | None = None) -> pd.DataFrame:
+    name, fn = _backend(cfg, backend, "nue"); r = fn(releases, cfg, cands, objs, key); r.attrs["backend"] = name; return r
+
+
+def score_numu(releases, cfg: dict, cands: pd.DataFrame, objs: dict, key: list[str], is_simulation: bool, backend: str | None = None) -> pd.DataFrame:
+    name, fn = _backend(cfg, backend, "numu"); r = fn(releases, cfg, cands, objs, key, is_simulation); r.attrs["backend"] = name; return r
+
+
+def resolve_route(cfg: dict, production: str, tree: str) -> str:
+    """R1 (consume stored released-model scores) or R2 (offline chain-equivalent regeneration) for a production, or raise. Unknown production / wrong tree / not applicable -> refused; this is the
+    protection against applying the WCL1116 model bundle to an incompatible reconstruction domain. R1 needs hash evidence that the production books the released models."""
+    a = cfg["applicability"].get(production)
+    if not a: raise UpstreamError(f"production {production!r} has no applicability entry: the released models are not verified for it (add an entry only after the production, tree and vertex configuration are frozen and validated)")
+    if not a.get("applicable"): raise UpstreamError(f"production {production!r}: released models not applicable ({a.get('note')})")
+    if tree != a.get("tree"): raise UpstreamError(f"production {production!r}: models verified for tree {a.get('tree')!r}, not {tree!r}")
+    st = a.get("stored_scores", {}); route = a.get("route")
+    if route == "R1" and not (st.get("released_models_booked") is True and str(st.get("booked_chain_weights_sha256_table", "")).strip()):
+        raise UpstreamError(f"{production}: route R1 needs released_models_booked: true and the booked chain-weights hash table; stored scores here are {st.get('weights_domain')!r}")
+    if route not in ("R1", "R2"): raise UpstreamError(f"{production}: route {route!r}")
+    return route
+
+
+ORIGIN_NOMINAL, ORIGIN_XGB = "offline_chain_equivalent", "offline_xgboost_standalone_cross_check"
+
+
+def validate_fixture_manifest(fixture_files: list[str], official_names: set[str], role: str, allowed_roles=("development", "dev", "fit", "nested_validation")) -> list[str]:
+    """A designated non-evaluation fixture must (a) have an explicitly permitted development role, (b) share NO file name or production-job id with any official sample."""
+    bad = []
+    if role not in allowed_roles: bad.append(f"fixture role {role!r} is not an explicitly permitted development role {allowed_roles}")
+    names = {Path(f).name for f in fixture_files}
+    if names & official_names: bad.append(f"{len(names & official_names)} fixture files are official-sample file names (e.g. {sorted(names & official_names)[:2]})")
+    gid = lambda n: (re.search(r"((?:Gen2_2026-)?[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}(?:-[0-9a-f]{4})?)", n) or [None, None])[1]
+    og = {gid(n) for n in official_names if gid(n)}; hit = {gid(n) for n in names if gid(n)} & og
+    if hit: bad.append(f"{len(hit)} fixture files share a production-job id with official files (e.g. {sorted(hit)[:2]})")
+    return bad
+
+
+def closure_report(expected: pd.DataFrame, got: pd.DataFrame, key: list[str], columns: list[str], rtol: float = 0.0) -> dict:
+    """Exact (rtol = 0) comparison of computed vs expected values on the shared identity; reports missing/extra rows and per-column mismatch counts and max |diff|. Reference = the actual toolkit values."""
+    m = expected[key + columns].merge(got[key + columns], on=key, how="outer", suffixes=("_exp", "_got"), indicator=True)
+    rep = dict(n_expected=len(expected), n_got=len(got), missing_rows=int((m["_merge"] == "left_only").sum()), extra_rows=int((m["_merge"] == "right_only").sum()), columns={})
+    both = m[m["_merge"] == "both"]
+    for c in columns:
+        a, b = both[c + "_exp"].to_numpy(np.float64), both[c + "_got"].to_numpy(np.float64); same = (a == b) | (np.isnan(a) & np.isnan(b)) if rtol == 0 else np.isclose(a, b, rtol=rtol, atol=0, equal_nan=True)
+        rep["columns"][c] = dict(n_mismatch=int((~same).sum()), max_abs_diff=float(np.nanmax(np.abs(a - b)[~same])) if (~same).any() else 0.0)
+    rep["exact"] = rep["missing_rows"] == 0 and rep["extra_rows"] == 0 and all(v["n_mismatch"] == 0 for v in rep["columns"].values()); return rep
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -309,15 +384,18 @@ def make_overlay(nue: pd.DataFrame, numu: pd.DataFrame, key: list[str], provenan
     if len(nue) != len(numu) or not nue[key].equals(numu[key]):
         m = nue[key].merge(numu[key], on=key, how="outer", indicator=True)
         raise OverlayError(f"nu_e and nu_mu scored different candidate sets ({(m['_merge'] != 'both').sum()} differ)")
-    ov = nue.merge(numu, on=key, how="inner", validate="one_to_one"); ov.attrs["provenance"] = provenance
+    bk = {nue.attrs.get("backend"), numu.attrs.get("backend")}
+    if len(bk) != 1 or None in bk: raise OverlayError(f"nu_e and nu_mu must be scored with ONE backend (got {bk})")
+    (name,) = bk; nominal = name not in load_config()["scoring_backend"]["cross_check_only"]
+    ov = nue.merge(numu, on=key, how="inner", validate="one_to_one"); ov["up_origin"] = ORIGIN_NOMINAL if nominal else ORIGIN_XGB
+    ov.attrs["provenance"] = dict(provenance, backend=name, backend_nominal=nominal, score_origin=ov["up_origin"].iloc[0] if len(ov) else None, purpose=provenance.get("purpose", "production" if nominal else "cross_check"))
     return ov
 
 
 def provenance_record(cfg: dict, sample: str, production: str, is_simulation: bool, n_input_candidates: int, authorization: str, extra: dict | None = None, tree: str = "recTreeWireCell") -> dict:
     import xgboost
-    if tree != cfg["applicability"].get(production, {}).get("tree", tree):
-        raise UpstreamError(f"{production}: the released models apply to tree {cfg['applicability'][production]['tree']!r}, not {tree!r}")
-    return dict(overlay_schema=1, sample=sample, production=production, wc_tree=tree, is_simulation=bool(is_simulation), n_input_candidates=int(n_input_candidates), authorization=authorization,
+    route = resolve_route(cfg, production, tree)                                  # refuses unknown / non-applicable productions and the wrong tree
+    return dict(overlay_schema=1, sample=sample, production=production, wc_tree=tree, route=route, stored_scores_domain=cfg["applicability"][production]["stored_scores"]["weights_domain"], is_simulation=bool(is_simulation), n_input_candidates=int(n_input_candidates), authorization=authorization,
                 release_repo=cfg["release"]["repo"], release_commit=cfg["release"]["pinned_commit"], nue_manifest_sha256=cfg["models"]["nue"]["manifest_sha256"], numu_manifest_sha256=cfg["models"]["numu"]["manifest_sha256"],
                 nue_model=f"{cfg['models']['nue']['folder']}/{cfg['models']['nue']['variant']}", numu_model=cfg["models"]["numu"]["folder"],
                 numu_sim_dqdx_k_applied=cfg["simulation_correction"]["k"] if is_simulation else None, nue_inputs_corrected=False, data_corrected=False,
@@ -327,6 +405,7 @@ def provenance_record(cfg: dict, sample: str, production: str, is_simulation: bo
 def write_overlay(ov: pd.DataFrame, path) -> Path:
     path = Path(path); prov = dict(ov.attrs.get("provenance") or {})
     if not prov: raise OverlayError("an overlay without provenance may not be written")
+    if prov.get("backend") and not prov.get("backend_nominal") and prov.get("purpose") != "cross_check": raise OverlayError("a non-nominal (standalone xgboost) backend may only write purpose=cross_check overlays")
     if path.exists(): raise OverlayError(f"{path} exists: overlays are versioned and never overwritten")
     ov.to_parquet(path, index=False); prov["overlay_sha256"] = sha256_file(path); prov["n_rows"] = int(len(ov))
     Path(str(path) + ".provenance.json").write_text(json.dumps(prov, indent=1, default=str) + "\n"); return path
@@ -346,13 +425,14 @@ def join_overlay(identity: pd.DataFrame, overlay: pd.DataFrame, key: list[str], 
     return out
 
 
-def apply_to_sp_inputs(frame: pd.DataFrame, overlay_joined: pd.DataFrame, sp_name: str, cfg: dict, on_unscored: str = "error") -> pd.DataFrame:
+def apply_to_sp_inputs(frame: pd.DataFrame, overlay_joined: pd.DataFrame, sp_name: str, cfg: dict, on_unscored: str = "error", expected_origin: str = ORIGIN_NOMINAL) -> pd.DataFrame:
     """Copy of the single-photon BDT input frame with ONLY the upstream-classifier outputs replaced (mapping ``sp_downstream_dependencies``); every raw reconstruction feature is asserted bit-identical."""
+    if "up_origin" not in overlay_joined or set(overlay_joined["up_origin"]) != {expected_origin}: raise OverlayError(f"upstream-score origin {set(overlay_joined.get('up_origin', []))} != required {expected_origin!r}: shipped / stored / cross-check scores must never be mixed into the SP features")
     mp = cfg["sp_downstream_dependencies"][sp_name]; raw = [c for c in cfg["sp_downstream_dependencies"]["raw_features_that_must_stay_raw"] if c in frame.columns]
     st_col = "up_nue_status" if any(v.startswith("up_nue") for v in mp.values()) else "up_numu_status"
     if mp and on_unscored == "error" and (overlay_joined[st_col].to_numpy() != STATUS["scored"]).any():
         raise OverlayError(f"{sp_name}: {(overlay_joined[st_col].to_numpy() != STATUS['scored']).sum()} candidates have no upstream score ({st_col} != scored); decide the convention for them explicitly (on_unscored='keep_flagged')")
-    out = frame.copy(); ok = overlay_joined[st_col].to_numpy() == STATUS["scored"] if mp else np.ones(len(frame), bool); out["upstream_replaced"] = ok
+    out = frame.copy(); ok = overlay_joined[st_col].to_numpy() == STATUS["scored"] if mp else np.ones(len(frame), bool); out["upstream_replaced"] = ok; out["upstream_origin"] = expected_origin
     for sp_col, up_col in mp.items():
         if sp_col not in frame.columns: raise OverlayError(f"{sp_name}: input {sp_col!r} not in the frame")
         out.loc[ok, sp_col] = overlay_joined.loc[ok, up_col].to_numpy()
@@ -374,6 +454,12 @@ def validate_frozen_bundle(b: dict, cfg: dict | None = None) -> list[str]:
         if (u.get(w) or {}).get("manifest_sha256") != cfg["models"][w]["manifest_sha256"]: bad.append(f"upstream_release.{w}.manifest_sha256 != pin")
     if (u.get("nue") or {}).get("variant") != cfg["models"]["nue"]["variant"]: bad.append("nue variant != main (chain-compatible A v2)")
     if u.get("sim_dqdx_k") != cfg["simulation_correction"]["k"]: bad.append("sim_dqdx_k != 1.071")
+    us = b.get("upstream_scorer") or {}
+    for k in ("repo", "commit"): need(f"upstream_scorer.{k}", us.get(k))
+    for k in ("sha256", "closure_report_sha256"):
+        if not hexre.match(str(us.get(k, ""))): bad.append(f"upstream_scorer.{k} is not a sha256")
+    if us.get("closure_exact") is not True: bad.append("upstream_scorer.closure_exact must be true (exact agreement with the toolkit on the fixtures)")
+    if us.get("standalone_xgboost_used_for_production") is not False: bad.append("upstream_scorer.standalone_xgboost_used_for_production must be false")
     pr = b.get("production") or {}
     for k in ("name", "wct", "wc_tree", "vertex_configuration", "effective_boundary_treatment", "upstream_applicability_statement"): need(f"production.{k}", pr.get(k))
     if pr.get("wc_tree") and pr.get("wc_tree") != "recTreeWireCell": bad.append("production.wc_tree is not recTreeWireCell: the released models are verified for that tree only")
@@ -393,6 +479,9 @@ def validate_frozen_bundle(b: dict, cfg: dict | None = None) -> list[str]:
     for k in ("file", "candidate_policy", "fiducial_volume", "signal_definition", "topology_definition"): need(f"selection_manifest.{k}", sm.get(k))
     if not hexre.match(str(sm.get("sha256", ""))): bad.append("selection_manifest.sha256 is not a sha256")
     tm = b.get("training_membership") or {}
+    miss_sets = {"upstream_fit", "upstream_dev", "sp_fit", "sp_nested_val", "sp_outer_holdout", "dlvertex_train"} - set(tm.get("sets_covered") or [])
+    if miss_sets: bad.append(f"training_membership.sets_covered lacks {sorted(miss_sets)}")
+    for k in ("dlvertex_training_membership", "beam_off_upstream_training_files"): need(f"training_membership.{k}", tm.get(k))
     need("training_membership.manifests", tm.get("manifests")); need("training_membership.split_rule", tm.get("split_rule")); need("training_membership.beam_off_half_used_for_training", tm.get("beam_off_half_used_for_training"))
     if (b.get("validation") or {}).get("no_official_sample_used") is not True: bad.append("validation.no_official_sample_used must be true")
     return bad

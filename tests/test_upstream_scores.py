@@ -41,7 +41,7 @@ def test_every_registered_sample_is_refused():
 
 def test_committed_release_audit_is_complete_and_clean():
     h = pd.read_csv(REPO / "tables/upstream_release/release_file_hashes.csv"); a = json.loads((REPO / "tables/upstream_release/release_audit.json").read_text())
-    assert len(h) == 57 and h.ok.all() and (h.sha256_manifest == h.sha256_found).all() and h.sha256_manifest.str.len().eq(64).all()
+    assert len(h) == 61 and h.ok.all() and (h.sha256_manifest == h.sha256_found).all() and h.sha256_manifest.str.len().eq(64).all()
     assert a["ok"] is True and a["head_commit"] == a["pinned_commit"] == CFG["release"]["pinned_commit"] and not [c for c in a["checks"] if not c["ok"]]
     ri = pd.read_csv(REPO / "tables/upstream_release/required_inputs.csv")
     assert (ri[(ri.model == "nue") & (ri.level == "L2")].shape[0] == 243) and ri[ri.model == "numu"].name.isin(["numu_cc_flag"]).any()
@@ -63,7 +63,7 @@ def test_sp_dependency_map_matches_committed_input_tables():
 def test_no_scores_or_overlays_of_official_samples_in_the_repo():
     bad = [p for p in (REPO / "tables").rglob("*") if p.is_file() and ("overlay" in p.name.lower() or p.name.startswith("up_") or "upstream_scores" in p.name)]
     assert not bad, bad
-    allowed = {"release_audit.json", "release_file_hashes.csv", "required_inputs.csv", "baseline_artifact_hashes.csv", "schema_audit_branches.csv", "schema_audit_summary.json", "sample_applicability.csv"}
+    allowed = {"release_audit.json", "release_file_hashes.csv", "required_inputs.csv", "baseline_artifact_hashes.csv", "schema_audit_branches.csv", "schema_audit_summary.json", "sample_applicability.csv", "official_id_space_summary.csv", "beam_off_membership_ledger.csv", "membership_audit_result.csv"}
     assert {p.name for p in (REPO / "tables/upstream_release").iterdir()} <= allowed        # metadata / provenance only: no score table of any sample
 
 
@@ -77,6 +77,8 @@ def test_baseline_fingerprint_recorded_and_the_cli_refuses_registered_samples():
 def test_provenance_records_the_tree_and_refuses_the_snap_tree():
     assert US.provenance_record(CFG, "synthetic", "nov16", True, 1, "fixture")["wc_tree"] == "recTreeWireCell"
     with pytest.raises(US.UpstreamError, match="recTreeWireCell"): US.provenance_record(CFG, "synthetic", "nov16", True, 1, "fixture", tree="recTreeWireCell_dv2snap")
+    for bad in ("old_fg1", "final_effective_boundary"):
+        with pytest.raises(US.UpstreamError): US.provenance_record(CFG, "synthetic", bad, True, 1, "fixture")
 
 
 # ---------------------------------------------------------------- correction semantics (hand-checkable) -------------------------------------------------
@@ -120,7 +122,7 @@ def _ident(n=6):
 
 
 def _ov(ident, status=0):
-    o = ident[US.EAF_KEY].copy(); o["up_nue_score"] = np.arange(len(o), dtype=float); o["up_nue_status"] = np.int8(status); o["up_numu_score"] = 1.0; o["up_numu_status"] = np.int8(0); o["kine_reco_Enu"] = ident.c_kine_reco_Enu
+    o = ident[US.EAF_KEY].copy(); o["up_nue_score"] = np.arange(len(o), dtype=float); o["up_nue_status"] = np.int8(status); o["up_numu_score"] = 1.0; o["up_numu_status"] = np.int8(0); o["up_origin"] = US.ORIGIN_NOMINAL; o["kine_reco_Enu"] = ident.c_kine_reco_Enu
     return o
 
 
@@ -153,11 +155,11 @@ def test_sentinel_convention_and_sp_input_replacement():
 def test_overlay_is_versioned_and_needs_provenance(tmp_path):
     i = _ident(); o = _ov(i)
     with pytest.raises(US.OverlayError, match="provenance"): US.write_overlay(o, tmp_path / "a.parquet")
-    o.attrs["provenance"] = US.provenance_record(CFG, "synthetic", "none", True, len(o), "fixture")
+    o.attrs["provenance"] = US.provenance_record(CFG, "synthetic", "nov16", True, len(o), "fixture")
     p = US.write_overlay(o, tmp_path / "a.parquet"); side = json.loads(Path(str(p) + ".provenance.json").read_text())
     assert side["overlay_sha256"] == US.sha256_file(p) and side["numu_sim_dqdx_k_applied"] == 1.071 and side["nue_inputs_corrected"] is False and side["data_corrected"] is False
     with pytest.raises(US.OverlayError, match="never overwritten"): US.write_overlay(o, tmp_path / "a.parquet")
-    assert US.provenance_record(CFG, "x", "y", False, 1, "fixture")["numu_sim_dqdx_k_applied"] is None
+    assert US.provenance_record(CFG, "x", "nov16", False, 1, "fixture")["numu_sim_dqdx_k_applied"] is None
 
 
 # ---------------------------------------------------------------- cross-check against the release's own scripts (synthetic tables) ----------------------------------------------------------------
@@ -210,7 +212,7 @@ def test_cross_check_against_release_scripts_on_synthetic_tables(tmp_path):
     # ---- nu_e ----
     _run([py, str(CLONE / "release/score_release.py"), str(rel / "nue_round4_ruleA_v2"), str(T), "synth", "--out", str(tmp_path / "nue_up.parquet"), "--nthread", "2"])
     up = pd.read_parquet(tmp_path / "nue_up.parquet")
-    ours = US.score_nue(rel, CFG, cands, {m: O for (f, m), O in objs.items() if f == "nue"}, KEY)
+    ours = US.score_nue(rel, CFG, cands, {m: O for (f, m), O in objs.items() if f == "nue"}, KEY, backend="xgboost_standalone")
     j = up.merge(ours, on=KEY, how="left", validate="one_to_one"); assert len(up) == int(((cands.is_placeholder == 0) & (cands.br_filled == 1)).sum()) and len(ours) == len(cands)
     assert (j.score.to_numpy() == j.up_nue_score.to_numpy()).all(), np.abs(j.score - j.up_nue_score).max()                  # bit identical final margin
     for m in json.loads((rel / "nue_round4_ruleA_v2/manifest.json").read_text())["level1"]["models"]:
@@ -230,7 +232,7 @@ def test_cross_check_against_release_scripts_on_synthetic_tables(tmp_path):
                 if col != "numu_cc_1_medium_dQ_dx": assert np.array_equal(c[col].to_numpy(), cr[col].to_numpy(), equal_nan=True), col
             assert np.array_equal(o["numu_1"].numu_cc_1_medium_dQ_dx.to_numpy(), orr.numu_cc_1_medium_dQ_dx.to_numpy(), equal_nan=True) and np.array_equal(o["numu_1"].flag.to_numpy(), orr.flag.to_numpy())
             assert rep["numu_cc_flag_turned_off"] > 0 and rep["segments_flag1_turned_off"] > 0                                    # the synthetic set exercises the flag update
-        ours = US.score_numu(rel, CFG, c, o, KEY, sim)
+        ours = US.score_numu(rel, CFG, c, o, KEY, sim, backend="xgboost_standalone")
         jj = upn.merge(ours, on=KEY, how="left", validate="one_to_one")
         keep = cands.is_placeholder == 0; assert len(upn) == len(cands) and len(ours) == len(cands)
         m = (jj.is_placeholder if "is_placeholder" in jj else pd.Series(0, index=jj.index)).eq(0) if False else jj.up_numu_status.eq(US.STATUS["scored"])
@@ -253,11 +255,12 @@ def test_bundle_template_is_incomplete_by_design_and_a_complete_one_passes():
     h = "a" * 64
     t.update(frozen_utc="2026-12-01T00:00:00Z", frozen_by="X Y", code=dict(repo="r", commit="c"), production=dict(name="WCLocal2026Nov16", wct="0.38.0", wc_tree="recTreeWireCell", vertex_configuration="dv2_split_move", effective_boundary_treatment="box", upstream_applicability_statement="trained here"))
     t["sp_models"] = [dict(name=n, file="f", sha256=h, xgboost_version="3.4.1", inputs_file="i", inputs_sha256=h, upstream_score_inputs=({"numu_score": "up_numu_score"} if n == "numu" else {}), raw_features_used=[], score_definition="margin", sentinel_policy="s", frozen_thresholds={"cut": 0.0}) for n in ("numu", "other", "ncpi0", "nue")]
+    t["upstream_scorer"].update(repo="r", commit="c", sha256=h, closure_report="x", closure_report_sha256=h, closure_exact=True, standalone_xgboost_used_for_production=False)
     t["selection_manifest"].update(file="s", sha256=h, candidate_policy="any", fiducial_volume="box", signal_definition="d", topology_definition="t")
-    t["training_membership"].update(manifests=[{"sample": "x"}], split_rule="r", beam_off_half_used_for_training="odd")
+    t["training_membership"].update(manifests=[{"sample": "x"}], split_rule="r", beam_off_half_used_for_training="odd", sets_covered=["upstream_fit", "upstream_dev", "sp_fit", "sp_nested_val", "sp_outer_holdout", "dlvertex_train"], dlvertex_training_membership="d", beam_off_upstream_training_files="b")
     assert US.validate_frozen_bundle(t, CFG) == []
-    t["upstream_release"]["nue"]["variant"] = "nogap"; t["production"]["wc_tree"] = "recTreeWireCell_dv2snap"; t["validation"]["no_official_sample_used"] = False
-    p2 = US.validate_frozen_bundle(t, CFG); assert any("nue variant" in x for x in p2) and any("verified for that tree only" in x for x in p2) and any("no_official_sample_used" in x for x in p2)
+    t["upstream_release"]["nue"]["variant"] = "nogap"; t["production"]["wc_tree"] = "recTreeWireCell_dv2snap"; t["validation"]["no_official_sample_used"] = False; t["upstream_scorer"]["standalone_xgboost_used_for_production"] = True; t["upstream_scorer"]["closure_exact"] = False
+    p2 = US.validate_frozen_bundle(t, CFG); assert any("nue variant" in x for x in p2) and any("verified for that tree only" in x for x in p2) and any("no_official_sample_used" in x for x in p2) and any("standalone_xgboost" in x for x in p2) and any("closure_exact" in x for x in p2)
 
 
 def test_identity_translation_is_one_to_one_and_loud():
@@ -277,3 +280,66 @@ def test_committed_schema_audit_is_complete():
     s = json.loads((REPO / "tables/upstream_release/schema_audit_summary.json").read_text()); t = pd.read_csv(REPO / "tables/upstream_release/schema_audit_branches.csv")
     assert s["files_checked"] == len(t) == s["complete_files"] and s["files_with_error"] == 0 and s["n_required_branches"] == 650 and (t.n_missing == 0).all()
     assert set(t["sample"]) == {"bnb_cv", "official_gen2_ncdelta", "nuecc", "beam_off", "beam_on_open", "run3bnb"} and set(t.production) == {"old_fg1", "nov16"}
+
+
+# ---------------------------------------------------------------- backend / origin / route / fixture guards ----------------------------------------------------------------
+def test_nominal_backend_is_not_available_until_delivered_and_standalone_cannot_write_production(tmp_path):
+    assert CFG["scoring_backend"]["nominal"] == "toolkit_equivalent" and CFG["scoring_backend"]["cross_check_only"] == ["xgboost_standalone"] and CFG["scoring_backend"]["reference_pin"]["commit"] == ""
+    with pytest.raises(US.BackendUnavailable, match="toolkit-equivalent"): US.score_nue("x", CFG, None, {}, US.UPSTREAM_KEY)
+    with pytest.raises(US.BackendUnavailable): US.score_numu("x", CFG, None, {}, US.UPSTREAM_KEY, True, backend="not_registered")
+    k = ["k"]; a = pd.DataFrame(dict(k=[1])); a.attrs["backend"] = "xgboost_standalone"; b = a.copy(); b.attrs["backend"] = "xgboost_standalone"
+    ov = US.make_overlay(a, b, k, US.provenance_record(CFG, "synthetic", "nov16", True, 1, "fixture"))
+    assert ov["up_origin"].iloc[0] == US.ORIGIN_XGB and ov.attrs["provenance"]["purpose"] == "cross_check" and ov.attrs["provenance"]["backend_nominal"] is False
+    ov.attrs["provenance"]["purpose"] = "production"
+    with pytest.raises(US.OverlayError, match="cross_check"): US.write_overlay(ov, tmp_path / "x.parquet")
+    c = b.copy(); c.attrs["backend"] = "other"
+    with pytest.raises(US.OverlayError, match="ONE backend"): US.make_overlay(a, c, k, {})
+    US.register_backend("toolkit_equivalent", lambda *a, **k: pd.DataFrame(), lambda *a, **k: pd.DataFrame())
+    try: assert US.score_nue("x", CFG, None, {}, US.UPSTREAM_KEY).attrs["backend"] == "toolkit_equivalent"
+    finally: US.BACKENDS.clear()
+
+
+def test_origins_are_never_mixed_into_sp_features():
+    i = _ident(); j = US.join_overlay(i, _ov(i), US.EAF_KEY); j["up_origin"] = US.ORIGIN_XGB
+    for c in ("up_numu_1_score", "up_cosmict_10_score", "up_numu_2_score"): j[c] = 0.1
+    sp = pd.DataFrame(dict(numu_score=-9.0, numu_1_score=-9.0, cosmict_10_score=-9.0, numu_2_score=-9.0), index=range(6))
+    with pytest.raises(US.OverlayError, match="never be mixed"): US.apply_to_sp_inputs(sp, j, "other_sp", CFG)                      # cross-check scores refused as nominal
+    j["up_origin"] = US.ORIGIN_NOMINAL; assert (US.apply_to_sp_inputs(sp, j, "other_sp", CFG).upstream_origin == US.ORIGIN_NOMINAL).all()
+    j.loc[0, "up_origin"] = "stored_production_score"
+    with pytest.raises(US.OverlayError, match="never be mixed"): US.apply_to_sp_inputs(sp, j, "other_sp", CFG)                      # one origin per frame
+
+
+def test_routes_and_domain_protection():
+    assert US.resolve_route(CFG, "nov16", "recTreeWireCell") == "R2"
+    with pytest.raises(US.UpstreamError, match="verified for tree"): US.resolve_route(CFG, "nov16", "recTreeWireCell_dv2snap")
+    with pytest.raises(US.UpstreamError, match="not applicable"): US.resolve_route(CFG, "old_fg1", "recTreeWireCell")
+    with pytest.raises(US.UpstreamError, match="no applicability entry"): US.resolve_route(CFG, "final_effective_boundary", "recTreeWireCell")
+    r1 = yaml.safe_load(yaml.safe_dump(CFG)); r1["applicability"]["nov16"]["route"] = "R1"
+    with pytest.raises(US.UpstreamError, match="R1 needs"): US.resolve_route(r1, "nov16", "recTreeWireCell")            # stored Nov16 scores are the SHIPPED weights, not released-model scores
+    assert CFG["applicability"]["nov16"]["stored_scores"]["released_models_booked"] is False and CFG["applicability"]["nov16"]["stored_scores"]["weights_domain"] == "shipped_microboone"
+    r1["applicability"]["nov16"]["stored_scores"].update(released_models_booked=True, booked_chain_weights_sha256_table="tables/x.csv"); assert US.resolve_route(r1, "nov16", "recTreeWireCell") == "R1"
+
+
+def test_fixture_registration_refuses_official_files_and_closure_is_exact():
+    off = {"reco2-reco1-detsim-g4-filter-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root"}
+    assert US.validate_fixture_manifest(["/a/b/dev-0001-aaaa-bbbb-cccc.wc.flat.caf.root"], off, "development") == []
+    assert any("official-sample file names" in x for x in US.validate_fixture_manifest(["/z/" + next(iter(off))], off, "development"))
+    assert any("production-job id" in x for x in US.validate_fixture_manifest(["x-filter-gen-0009-3f30-ac82-477c_other.root"], off, "development"))
+    assert any("permitted development role" in x for x in US.validate_fixture_manifest(["f.root"], off, "evaluation"))
+    e = pd.DataFrame(dict(k=[1, 2, 3], s=[1.0, np.nan, 3.0])); g = e.copy(); assert US.closure_report(e, g, ["k"], ["s"])["exact"]
+    g.loc[2, "s"] = 3.0 + 1e-12; r = US.closure_report(e, g, ["k"], ["s"]); assert not r["exact"] and r["columns"]["s"]["n_mismatch"] == 1
+    assert US.closure_report(e, g.iloc[:2], ["k"], ["s"])["missing_rows"] == 1
+
+
+def test_membership_classification_separates_overlap_from_id_collision():
+    import importlib.util
+    sp = importlib.util.spec_from_file_location("ma", REPO / "scripts/upstream_membership_audit.py"); ma = importlib.util.module_from_spec(sp); sp.loader.exec_module(ma)
+    off = pd.DataFrame(dict(sample="official_gen2_ncdelta", file_name=["reco2-x-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root", "reco2-x-gen-0013-f189-8bbd-676e_ncdeltarad.wc.flat.caf.root"], run=[201, 202], subrun=[1, 1], event=[5, 6]))
+    off["gen_id"] = off.file_name.map(ma.gen_id); assert off.gen_id.tolist() == ["0009-3f30-ac82-477c", "0013-f189-8bbd-676e"]
+    v = lambda m: ma.classify(off, pd.DataFrame(m)).verdict.iloc[0]
+    assert v(dict(set="upstream_fit", sample="a", file_name=["reco2-x-gen-0009-3f30-ac82-477c_ncdeltarad.wc.flat.caf.root"])) == "TRUE_OVERLAP_FILE"
+    assert v(dict(set="upstream_fit", sample="a", file_name=["reco1-y-filter-gen-0013-f189-8bbd-676e_ncdeltarad.root"])) == "TRUE_OVERLAP_GENJOB"            # same production job, different stage file
+    assert v(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"], run=[201], subrun=[1], event=[5])) == "ID_COLLISION"             # same numbers, different job
+    assert v(dict(set="sp_fit", sample="a", file_name=["aurora-1111-2222-3333-4444.root"])) == "DISJOINT"
+    assert v(dict(set="sp_fit", sample="a", run=[1], subrun=[1], event=[1])) == "UNDETERMINED"                                                        # no file/job identifier: cannot decide
+    L = ma.beam_off_ledger(); assert len(L) == 1058 and (L.groupby("parity").size().to_dict() == {"even": 486, "odd": 572}) and (L.in_sp_other_staged_558.astype(bool).sum() in (0, 558)) and (L[L.parity == "odd"].policy_class == "UPSTREAM_TRAINING_HALF_EXCLUDE").all()

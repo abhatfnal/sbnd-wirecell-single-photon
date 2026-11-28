@@ -1,7 +1,7 @@
 {
  "ok": true,
- "n_checks": 21,
- "n_files": 57,
+ "n_checks": 23,
+ "n_files": 61,
  "pinned_commit": "0f13988db44423a227789e151b0a374e25771abd",
  "head_commit": "0f13988db44423a227789e151b0a374e25771abd",
  "checks": [
@@ -106,9 +106,19 @@
    "detail": "{'mode': 'uniform', 'k': 1.071, 'source': 'gpvm #41 round3_charge_correction.json 3a'}"
   },
   {
-   "check": "all 57 model files match their manifest sha256",
+   "check": "numu chain_weights.json hashes == manifest chain-file hashes",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "all 61 release files (57 model files + 2 manifests + correction.json + chain_weights.json) match their recorded sha256",
    "ok": true,
    "detail": "0 mismatches"
+  },
+  {
+   "check": "clone files == committed release_file_hashes.csv",
+   "ok": true,
+   "detail": ""
   }
  ]
 }

@@ -11,6 +11,14 @@ upstream_release:                   # must equal configs/upstream_release.yaml
   nue: {folder: nue_round4_ruleA_v2, variant: main, manifest_sha256: 226ab04bc8a7d5feda2e1e7ae5168a595ee4a5bc8d4ae199c0272814640a8cb2}
   numu: {folder: numu_round3af, manifest_sha256: b900b33f453f1b52754e85605626859f7bd290cdb6e2e2cbac2d4e3fd5a328d6}
   sim_dqdx_k: 1.071
+upstream_scorer:                    # the toolkit-equivalent scorer used for route R2 (Aurora sp_retrain/upstream_chain.py or portable successor); the numerical reference is the actual toolkit
+  repo: ""
+  commit: ""
+  sha256: ""
+  closure_report: ""                # path of the V3-V5 fixture closure report (exact agreement with the toolkit / in-chain values)
+  closure_report_sha256: ""
+  closure_exact: false              # must be true
+  standalone_xgboost_used_for_production: false   # must be false
 production:
   name: ""                          # the analysis production (WCLocal2026Nov16 or the effective-boundary production), with the toolkit commit
   wct: ""
@@ -42,6 +50,9 @@ training_membership:                # needed for exact disjointness from the off
   split_rule: ""
   beam_off_half_used_for_training: ""   # odd / even runs and file list
   nested_validation_report: ""
+  sets_covered: []                  # must include upstream_fit, upstream_dev, sp_fit, sp_nested_val, sp_outer_holdout, dlvertex_train (or an explicit statement 'not available' per set)
+  dlvertex_training_membership: "" # Snehadri's DL-vertex training samples (file list with sha256) or an explicit not-available statement
+  beam_off_upstream_training_files: ""   # Xuyang's list of the beam-off files used for upstream training (the whole odd-run half is excluded regardless)
 validation:
   development_only_results: ""      # path / hash of the Aurora-side nested validation report
   no_official_sample_used: true     # the bundle was fit and chosen without any official FermiGrid sample
